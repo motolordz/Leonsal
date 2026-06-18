@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<title>Leon's Shape Builder — LeonSal.com</title>
+<meta name="description" content="Explore shapes, find matches, and build pictures with Leon! A playful shape learning game for ages 3-7." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#131E36;
+    --cloud:#F3F8FF;
+    --white:#FFFFFF;
+    --yellow:#FFD43B;
+    --yellow-deep:#F5B400;
+    --green:#3E9B22;
+    --green-deep:#2E7A18;
+    --shadow:0 14px 28px -10px rgba(19,30,54,0.25);
+
+    --c1:#FF5252; --c2:#FF9636; --c3:#FFD43B; --c4:#B0D936; --c5:#4FAE32;
+    --c6:#2FC4D1; --c7:#3AA0FF; --c8:#6C7AE0; --c9:#9D5DC4; --c10:#FF6FA5;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;font-family:'Nunito',sans-serif;color:var(--navy);
+    background:var(--cloud);min-height:100vh;
+  }
+  h1,h2,.brand{font-family:'Fredoka One',cursive;margin:0;}
+  button{font-family:inherit;border:none;cursor:pointer;background:none;}
+
+  .wrap{max-width:560px;margin:0 auto;padding:14px 18px 56px;}
+
+  /* ---- top bar ---- */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:6px 0 4px;}
+  .brand{font-size:1.05rem;white-space:nowrap;}
+  .brand a{text-decoration:none;display:flex;align-items:baseline;gap:1px;}
+  .brand .b1{color:#3AA0FF;} .brand .b2{color:#4FAE32;} .brand .b3{color:var(--yellow-deep);
+    -webkit-text-stroke:1px var(--navy);} .brand .b4{color:#FF5252;} .brand .b5{color:#2FC4D1;}
+  .brand .b6{color:#9D5DC4;} .brand .b7{color:#FF9636;}
+  .score-pill{
+    background:var(--white);border-radius:999px;padding:8px 16px;font-family:'Fredoka One',cursive;
+    font-size:1rem;color:var(--navy);box-shadow:var(--shadow);display:flex;align-items:center;gap:6px;
+  }
+
+  /* ---- title ---- */
+  .title{text-align:center;margin:14px 0 6px;}
+  .title h1{font-size:clamp(1.5rem,7vw,2rem);color:var(--navy);line-height:1.2;}
+
+  /* ---- shapes found tracker ---- */
+  .shapes-found-wrap{display:flex;justify-content:center;}
+  .shapes-found{
+    text-align:center;font-family:'Fredoka One',cursive;font-size:.95rem;color:var(--navy);
+    background:var(--white);box-shadow:var(--shadow);border-radius:999px;
+    padding:8px 16px;display:inline-flex;gap:6px;margin:4px auto 0;
+  }
+
+  /* ---- top-level game tabs ---- */
+  .game-tabs{display:flex;gap:8px;margin:16px 0;background:#E7ECF7;border-radius:20px;padding:6px;}
+  .game-tab{
+    flex:1;padding:12px 4px;border-radius:15px;font-family:'Fredoka One',cursive;
+    font-size:.8rem;background:transparent;color:#6B7494;transition:all .18s ease;
+  }
+  .game-tab.active{background:var(--white);color:var(--navy);box-shadow:var(--shadow);}
+  .game-tab:active{transform:scale(.97);}
+
+  .instruction{
+    text-align:center;font-weight:800;font-size:1.05rem;color:#3C4566;
+    min-height:1.4em;margin-bottom:14px;
+  }
+
+  /* ---- play zone ---- */
+  .play-zone{
+    background:var(--white);border-radius:28px;padding:24px 14px;box-shadow:var(--shadow);
+    margin-bottom:18px;display:flex;flex-direction:column;align-items:center;
+  }
+  .reveal-wrap{display:flex;justify-content:center;align-items:center;min-height:170px;position:relative;padding-bottom:34px;}
+  .reveal-caption{text-align:center;font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--navy);margin-top:4px;min-height:1.3em;}
+  .reveal-placeholder{
+    width:140px;height:140px;border-radius:32%;border:4px dashed #D9E2F5;
+    display:flex;align-items:center;justify-content:center;font-size:2.6rem;color:#C8D3EC;
+  }
+
+  .choices-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;min-height:120px;align-items:center;}
+
+  .picker-label{text-align:center;font-weight:800;color:#3C4566;margin-bottom:10px;}
+
+  /* ================= SHAPE DRAWING SYSTEM ================= */
+  .shape-icon{position:relative;display:inline-block;}
+  .shape-fill{position:absolute;background:var(--shape-color);}
+  .shape-fill.circle{inset:4%;border-radius:50%;}
+  .shape-fill.square{inset:10%;border-radius:12%;}
+  .shape-fill.rectangle{left:4%;right:4%;top:25%;bottom:25%;border-radius:10%;}
+  .shape-fill.oval{left:2%;right:2%;top:22%;bottom:22%;border-radius:50%;}
+  .shape-fill.triangle{inset:3%;clip-path:polygon(50% 4%, 4% 96%, 96% 96%);}
+  .shape-fill.diamond{inset:3%;clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);}
+  .shape-fill.star{inset:1%;clip-path:polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);}
+  .shape-fill.heart-l, .shape-fill.heart-r{position:absolute;width:50%;height:80%;top:2%;border-radius:50% 50% 0 0;}
+  .shape-fill.heart-l{left:0;transform:rotate(45deg);transform-origin:100% 100%;}
+  .shape-fill.heart-r{left:50%;transform:rotate(-45deg);transform-origin:0% 100%;}
+  .shape-fill.ghost{opacity:.28;background:#AEB9D6 !important;}
+
+  /* ---- shape face (explorer reveal only) ---- */
+  .shape-face-wrap{position:absolute;left:0;right:0;top:30%;display:flex;flex-direction:column;align-items:center;z-index:2;}
+  .shape-icon.triangle .shape-face-wrap{top:48%;}
+  .shape-icon.heart .shape-face-wrap{top:24%;}
+  .shape-icon.diamond .shape-face-wrap{top:38%;}
+  .shape-face{display:flex;gap:0.45em;}
+  .shape-eye{width:0.42em;height:0.42em;background:#fff;border-radius:50%;position:relative;}
+  .shape-eye::after{
+    content:"";position:absolute;width:0.18em;height:0.18em;background:var(--navy);
+    border-radius:50%;top:58%;left:58%;transform:translate(-50%,-50%);
+  }
+  .shape-smile{
+    width:0.9em;height:0.5em;border:0.1em solid transparent;border-bottom-color:var(--navy);
+    border-radius:50%;margin-top:0.1em;
+  }
+
+  /* ---- shape tile (grid / choices / picker) ---- */
+  .shape-tile{
+    background:var(--white);border:4px solid var(--shape-color);border-radius:18px;
+    display:flex;align-items:center;justify-content:center;transition:transform .12s ease;
+    width:100%;aspect-ratio:1/1;
+  }
+  .shape-tile:active{transform:scale(.92);}
+  .shape-tile.shake{animation:shake .4s ease;}
+  .shape-tile.discovered{background:#EBFBE3;}
+  .shape-tile--choice{width:96px;height:96px;aspect-ratio:auto;}
+
+  .shape-icon--reveal{width:clamp(130px, 38vw, 180px);height:clamp(130px, 38vw, 180px);}
+
+  @media (prefers-reduced-motion:no-preference){
+    .grid-tile{animation:shapeBounce 2.2s ease-in-out infinite;animation-delay:calc(var(--i,0) * 0.07s);}
+  }
+
+  .pop-in{animation:popIn .6s cubic-bezier(.34,1.56,.64,1);}
+
+  @keyframes shapeBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8%);}}
+  @keyframes popIn{0%{transform:scale(0) rotate(-12deg);opacity:0;}60%{transform:scale(1.18) rotate(5deg);opacity:1;}100%{transform:scale(1) rotate(0);}}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+
+  /* ---- badge toast ---- */
+  .badge-toast{
+    position:fixed;top:18px;left:50%;z-index:50;
+    background:var(--navy);color:#fff;font-family:'Fredoka One',cursive;font-size:1rem;
+    padding:14px 22px;border-radius:24px;box-shadow:0 10px 24px rgba(19,30,54,.35);
+    display:flex;align-items:center;gap:8px;text-align:center;
+    max-width:calc(100vw - 32px);
+    animation:badgePopIn .5s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes badgePopIn{
+    0%{transform:translateX(-50%) scale(0) rotate(-8deg);opacity:0;}
+    60%{transform:translateX(-50%) scale(1.12) rotate(4deg);opacity:1;}
+    100%{transform:translateX(-50%) scale(1) rotate(0);}
+  }
+  .badge-toast.fade-out{animation:badgeFade .5s ease forwards;}
+  @keyframes badgeFade{ to{opacity:0;transform:translateX(-50%) translateY(-12px);} }
+
+  /* ---- build picture mode ---- */
+  .build-target{text-align:center;font-family:'Fredoka One',cursive;font-size:1.4rem;color:var(--navy);margin-bottom:16px;}
+  .slots-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:8px;}
+  .slot-box{width:68px;height:68px;border-radius:14px;border:3px dashed #D9E2F5;position:relative;background:#F8FBFF;}
+  .slot-box.filled{border-style:solid;border-color:transparent;background:transparent;}
+  .build-picker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px;}
+  .btn-new-picture{
+    margin-top:16px;padding:14px 28px;border-radius:999px;font-family:'Fredoka One',cursive;font-size:1.05rem;
+    background:var(--yellow);color:var(--navy);box-shadow:0 7px 0 0 var(--yellow-deep);transition:transform .15s ease;
+  }
+  .btn-new-picture:active{transform:scale(.95);}
+  .btn-new-picture[hidden]{display:none;}
+
+  /* ---- confetti ---- */
+  .confetti-layer{position:absolute;inset:0;overflow:visible;pointer-events:none;}
+  .confetti-piece{
+    position:absolute;top:-10px;width:9px;height:14px;border-radius:2px;
+    animation-name:confettiFall;animation-timing-function:ease-in;animation-fill-mode:forwards;
+  }
+  @keyframes confettiFall{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(260px) rotate(360deg);opacity:0;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .confetti-piece{display:none;}
+    .grid-tile{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="brand">
+      <a href="../index.html" aria-label="Back to LeonSal.com home">
+        <span class="b1">L</span><span class="b2">e</span><span class="b3">o</span><span class="b4">n</span><span class="b5">S</span><span class="b6">a</span><span class="b7">l</span>
+      </a>
+    </span>
+    <span class="score-pill" id="scorePill" aria-live="polite">⭐ <span id="scoreNum">0</span></span>
+  </div>
+
+  <div class="title">
+    <h1>Leon's Shape Builder</h1>
+  </div>
+
+  <div class="shapes-found-wrap">
+    <span class="shapes-found">🔷 Shapes Found: <span id="shapesFoundNum">0</span>/8</span>
+  </div>
+
+  <div class="game-tabs" role="group" aria-label="Choose a game mode">
+    <button class="game-tab active" id="tabExploreBtn" aria-pressed="true">🔍 Shape Explorer</button>
+    <button class="game-tab" id="tabFindBtn" aria-pressed="false">🎯 Find Shape</button>
+    <button class="game-tab" id="tabBuildBtn" aria-pressed="false">🏗️ Build Picture</button>
+  </div>
+
+  <!-- ================= SHAPE EXPLORER ================= -->
+  <div id="exploreSection">
+    <p class="instruction">Tap a shape to start exploring!</p>
+
+    <div class="play-zone">
+      <div class="reveal-wrap" id="exploreRevealWrap">
+        <div class="reveal-placeholder">?</div>
+      </div>
+      <p class="reveal-caption" id="exploreCaption"></p>
+    </div>
+
+    <p class="picker-label">Tap any shape!</p>
+    <div class="build-picker-grid" id="shapeGrid" style="grid-template-columns:repeat(4,1fr);"></div>
+  </div>
+
+  <!-- ================= FIND THE SHAPE ================= -->
+  <div id="findSection" hidden>
+    <p class="instruction" id="findPrompt">Find the shape...</p>
+
+    <div class="play-zone">
+      <div class="choices-row" id="findChoices"></div>
+    </div>
+  </div>
+
+  <!-- ================= BUILD THE PICTURE ================= -->
+  <div id="buildSection" hidden>
+    <p class="instruction">Build the picture by tapping the right shapes!</p>
+
+    <div class="play-zone">
+      <p class="build-target" id="buildTarget">Build a House!</p>
+      <div class="slots-row" id="buildSlots"></div>
+      <button class="btn-new-picture" id="newPictureBtn" hidden>🔄 New Picture</button>
+    </div>
+
+    <p class="picker-label">Tap a shape!</p>
+    <div class="build-picker-grid" id="buildShapeGrid"></div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var SHAPES = [
+    {key:'circle',    name:'Circle',    color:'var(--c1)'},
+    {key:'square',    name:'Square',    color:'var(--c7)'},
+    {key:'triangle',  name:'Triangle',  color:'var(--c3)'},
+    {key:'rectangle', name:'Rectangle', color:'var(--c5)'},
+    {key:'oval',      name:'Oval',      color:'var(--c9)'},
+    {key:'star',      name:'Star',      color:'var(--c2)'},
+    {key:'heart',     name:'Heart',     color:'var(--c10)'},
+    {key:'diamond',   name:'Diamond',   color:'var(--c6)'}
+  ];
+  var SHAPE_BY_KEY = {};
+  SHAPES.forEach(function(s){ SHAPE_BY_KEY[s.key] = s; });
+
+  var PICTURES = [
+    {name:'House',  shapes:['square','triangle']},
+    {name:'Tree',   shapes:['rectangle','circle']},
+    {name:'Rocket', shapes:['triangle','rectangle','circle']},
+    {name:'Car',    shapes:['rectangle','circle','circle']},
+    {name:'Flower', shapes:['circle','circle','circle','rectangle']},
+    {name:'Robot',  shapes:['square','rectangle','circle']}
+  ];
+
+  var SUCCESS_MESSAGES = ['Amazing!', 'Great Job!', 'Fantastic!', 'Super Star!'];
+  function randomSuccessMessage(){
+    return SUCCESS_MESSAGES[Math.floor(Math.random() * SUCCESS_MESSAGES.length)];
+  }
+
+  /* ---- localStorage persistence ---- */
+  var STORAGE_SCORE_KEY = 'leonsal-shapes-stars';
+  var STORAGE_BADGES_KEY = 'leonsal-shapes-badges';
+  var STORAGE_DISCOVERED_KEY = 'leonsal-shapes-discovered';
+  var BADGES = [
+    {threshold:5,  name:'Shape Starter'},
+    {threshold:15, name:'Shape Explorer'},
+    {threshold:30, name:'Shape Builder'}
+  ];
+
+  function loadScore(){
+    try{ var s = localStorage.getItem(STORAGE_SCORE_KEY); return s ? (parseInt(s,10)||0) : 0; }
+    catch(e){ return 0; }
+  }
+  function saveScore(score){
+    try{ localStorage.setItem(STORAGE_SCORE_KEY, String(score)); }catch(e){ /* unavailable */ }
+  }
+  function loadShownBadges(){
+    try{ var s = localStorage.getItem(STORAGE_BADGES_KEY); return s ? JSON.parse(s) : []; }
+    catch(e){ return []; }
+  }
+  function saveShownBadges(list){
+    try{ localStorage.setItem(STORAGE_BADGES_KEY, JSON.stringify(list)); }catch(e){ /* unavailable */ }
+  }
+  function loadDiscovered(){
+    try{ var s = localStorage.getItem(STORAGE_DISCOVERED_KEY); return s ? JSON.parse(s) : []; }
+    catch(e){ return []; }
+  }
+  function saveDiscovered(list){
+    try{ localStorage.setItem(STORAGE_DISCOVERED_KEY, JSON.stringify(list)); }catch(e){ /* unavailable */ }
+  }
+
+  function showBadgeToast(name){
+    var toast = document.createElement('div');
+    toast.className = 'badge-toast';
+    toast.textContent = '🏅 Badge unlocked: ' + name + '!';
+    document.body.appendChild(toast);
+    setTimeout(function(){
+      toast.classList.add('fade-out');
+      setTimeout(function(){ if (toast.parentNode) toast.parentNode.removeChild(toast); }, 500);
+    }, 2400);
+  }
+
+  var shownBadges = loadShownBadges();
+  function checkBadges(score){
+    BADGES.forEach(function(b){
+      if (score >= b.threshold && shownBadges.indexOf(b.threshold) === -1){
+        shownBadges.push(b.threshold);
+        saveShownBadges(shownBadges);
+        showBadgeToast(b.name);
+      }
+    });
+  }
+
+  var state = { score: loadScore() };
+  var scoreNum = document.getElementById('scoreNum');
+  scoreNum.textContent = state.score;
+  function addStar(){
+    state.score += 1;
+    scoreNum.textContent = state.score;
+    saveScore(state.score);
+    checkBadges(state.score);
+  }
+
+  var discovered = loadDiscovered();
+  var shapesFoundNum = document.getElementById('shapesFoundNum');
+  function updateShapesFoundDisplay(){ shapesFoundNum.textContent = discovered.length; }
+  updateShapesFoundDisplay();
+
+  /* ---- audio + voice helpers ---- */
+  function speak(text){
+    try{
+      if (!('speechSynthesis' in window)) return;
+      var u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.88; u.pitch = 1.1;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    }catch(e){ /* speech not available — game still works fine */ }
+  }
+  var audioCtx = null;
+  function tone(freq, startDelay, duration){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = 'sine'; osc.frequency.value = freq;
+      var t0 = audioCtx.currentTime + startDelay;
+      gain.gain.setValueAtTime(0.001, t0);
+      gain.gain.linearRampToValueAtTime(0.16, t0 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start(t0); osc.stop(t0 + duration + 0.02);
+    }catch(e){ /* sound not available — skip silently */ }
+  }
+  function playClick(){ tone(640, 0, 0.08); }
+  function playSuccess(){ tone(523, 0, 0.16); tone(659, 0.1, 0.16); tone(784, 0.2, 0.26); }
+  function playGentle(){ tone(330, 0, 0.18); }
+
+  function spawnConfetti(target){
+    var layer = document.createElement('div');
+    layer.className = 'confetti-layer';
+    target.appendChild(layer);
+    var colors = ['var(--c1)','var(--c2)','var(--c3)','var(--c5)','var(--c6)','var(--c7)','var(--c9)','var(--c10)'];
+    for (var i = 0; i < 22; i++){
+      var p = document.createElement('span');
+      p.className = 'confetti-piece';
+      p.style.left = (Math.random() * 100) + '%';
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      p.style.animationDuration = (0.9 + Math.random() * 0.6) + 's';
+      p.style.animationDelay = (Math.random() * 0.25) + 's';
+      layer.appendChild(p);
+    }
+    setTimeout(function(){ if (layer.parentNode) layer.parentNode.removeChild(layer); }, 1800);
+  }
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  /* ================= SHAPE DRAWING HELPERS ================= */
+  function shapeFillMarkup(key){
+    if (key === 'heart'){
+      return '<span class="shape-fill heart-l"></span><span class="shape-fill heart-r"></span>';
+    }
+    return '<span class="shape-fill ' + key + '"></span>';
+  }
+  function shapeFaceMarkup(){
+    return '<div class="shape-face-wrap">' +
+             '<div class="shape-face"><span class="shape-eye"></span><span class="shape-eye"></span></div>' +
+             '<span class="shape-smile" aria-hidden="true"></span>' +
+           '</div>';
+  }
+  // big smiling shape, used for Explorer's reveal
+  function makeShapeReveal(key){
+    var wrap = document.createElement('div');
+    wrap.className = 'shape-icon shape-icon--reveal ' + key + ' pop-in';
+    wrap.style.setProperty('--shape-color', SHAPE_BY_KEY[key].color);
+    wrap.innerHTML = shapeFillMarkup(key) + shapeFaceMarkup();
+    return wrap;
+  }
+  // ghost (faint) shape icon, used for empty Build Picture slots
+  function makeGhostIcon(key){
+    var wrap = document.createElement('div');
+    wrap.className = 'shape-icon';
+    wrap.style.width = '58%';
+    wrap.style.height = '58%';
+    if (key === 'heart'){
+      wrap.innerHTML = '<span class="shape-fill heart-l ghost"></span><span class="shape-fill heart-r ghost"></span>';
+    } else {
+      wrap.innerHTML = '<span class="shape-fill ' + key + ' ghost"></span>';
+    }
+    return wrap;
+  }
+  // card tile (white card + colored border + colored icon), used in grid/choices/picker
+  function makeShapeTile(key, modifierClass){
+    var btn = document.createElement('button');
+    btn.className = 'shape-tile' + (modifierClass ? ' ' + modifierClass : '');
+    btn.style.setProperty('--shape-color', SHAPE_BY_KEY[key].color);
+    btn.setAttribute('aria-label', SHAPE_BY_KEY[key].name);
+    var icon = document.createElement('div');
+    icon.className = 'shape-icon';
+    icon.style.width = '58%';
+    icon.style.height = '58%';
+    icon.style.setProperty('--shape-color', SHAPE_BY_KEY[key].color);
+    icon.innerHTML = shapeFillMarkup(key);
+    btn.appendChild(icon);
+    return btn;
+  }
+
+  /* ================= GAME TABS ================= */
+  var tabExploreBtn = document.getElementById('tabExploreBtn');
+  var tabFindBtn = document.getElementById('tabFindBtn');
+  var tabBuildBtn = document.getElementById('tabBuildBtn');
+  var exploreSection = document.getElementById('exploreSection');
+  var findSection = document.getElementById('findSection');
+  var buildSection = document.getElementById('buildSection');
+
+  function showTab(which){
+    exploreSection.hidden = which !== 'explore';
+    findSection.hidden = which !== 'find';
+    buildSection.hidden = which !== 'build';
+    tabExploreBtn.classList.toggle('active', which === 'explore');
+    tabExploreBtn.setAttribute('aria-pressed', which === 'explore');
+    tabFindBtn.classList.toggle('active', which === 'find');
+    tabFindBtn.setAttribute('aria-pressed', which === 'find');
+    tabBuildBtn.classList.toggle('active', which === 'build');
+    tabBuildBtn.setAttribute('aria-pressed', which === 'build');
+    if (which === 'find' && !findSection.dataset.started){ findSection.dataset.started = '1'; newFindRound(); }
+    if (which === 'build' && !buildSection.dataset.started){ buildSection.dataset.started = '1'; newBuildPicture(); }
+  }
+  tabExploreBtn.addEventListener('click', function(){ showTab('explore'); });
+  tabFindBtn.addEventListener('click', function(){ showTab('find'); });
+  tabBuildBtn.addEventListener('click', function(){ showTab('build'); });
+
+  /* ================= SHAPE EXPLORER ================= */
+  var shapeGrid = document.getElementById('shapeGrid');
+  var exploreRevealWrap = document.getElementById('exploreRevealWrap');
+  var exploreCaption = document.getElementById('exploreCaption');
+
+  function articleFor(word){
+    return /^[aeiou]/i.test(word) ? 'an' : 'a';
+  }
+
+  SHAPES.forEach(function(s){
+    var tile = makeShapeTile(s.key);
+    tile.classList.add('grid-tile');
+    if (discovered.indexOf(s.key) !== -1){ tile.classList.add('discovered'); }
+    tile.addEventListener('click', function(){
+      exploreRevealWrap.innerHTML = '';
+      exploreRevealWrap.appendChild(makeShapeReveal(s.key));
+      var art = articleFor(s.name);
+      exploreCaption.textContent = 'This is ' + art + ' ' + s.name.toLowerCase() + '!';
+      spawnConfetti(exploreRevealWrap);
+      playSuccess();
+      speak('This is ' + art + ' ' + s.name.toLowerCase() + '.');
+      if (discovered.indexOf(s.key) === -1){
+        discovered.push(s.key);
+        saveDiscovered(discovered);
+        tile.classList.add('discovered');
+        updateShapesFoundDisplay();
+        addStar();
+      }
+    });
+    shapeGrid.appendChild(tile);
+  });
+
+  /* ================= FIND THE SHAPE ================= */
+  var findPrompt = document.getElementById('findPrompt');
+  var findChoices = document.getElementById('findChoices');
+  var findTarget = null;
+
+  function newFindRound(){
+    var targetIdx = Math.floor(Math.random() * SHAPES.length);
+    var pool = SHAPES.map(function(s, i){ return i; }).filter(function(i){ return i !== targetIdx; });
+    var distractors = shuffle(pool).slice(0, 2);
+    var choiceIdxs = shuffle([targetIdx, distractors[0], distractors[1]]);
+
+    findTarget = targetIdx;
+    findPrompt.textContent = 'Find the ' + SHAPES[targetIdx].name.toLowerCase();
+    findChoices.innerHTML = '';
+
+    choiceIdxs.forEach(function(idx){
+      var tile = makeShapeTile(SHAPES[idx].key, 'shape-tile--choice');
+      tile.addEventListener('click', function(){ onFindChoice(idx, tile); });
+      findChoices.appendChild(tile);
+    });
+  }
+
+  function onFindChoice(idx, tileEl){
+    if (idx === findTarget){
+      playSuccess();
+      spawnConfetti(findChoices);
+      speak(randomSuccessMessage() + ' That is the ' + SHAPES[idx].name.toLowerCase() + '!');
+      addStar();
+      findPrompt.textContent = randomSuccessMessage() + ' 🎉';
+      setTimeout(newFindRound, 1300);
+    } else {
+      playGentle();
+      tileEl.classList.remove('shake'); void tileEl.offsetWidth; tileEl.classList.add('shake');
+    }
+  }
+
+  /* ================= BUILD THE PICTURE ================= */
+  var buildTarget = document.getElementById('buildTarget');
+  var buildSlots = document.getElementById('buildSlots');
+  var buildShapeGrid = document.getElementById('buildShapeGrid');
+  var newPictureBtn = document.getElementById('newPictureBtn');
+
+  var currentPicture = null;
+  var slotsFilled = [];
+  var lastPictureIdx = -1;
+
+  function pickNewPictureIdx(){
+    if (PICTURES.length === 1) return 0;
+    var idx;
+    do { idx = Math.floor(Math.random() * PICTURES.length); } while (idx === lastPictureIdx);
+    return idx;
+  }
+
+  function renderSlots(){
+    buildSlots.innerHTML = '';
+    currentPicture.shapes.forEach(function(key, i){
+      var box = document.createElement('div');
+      box.className = 'slot-box';
+      if (slotsFilled[i]){
+        box.classList.add('filled');
+        box.style.display = 'flex'; box.style.alignItems = 'center'; box.style.justifyContent = 'center';
+        var icon = document.createElement('div');
+        icon.className = 'shape-icon pop-in';
+        icon.style.width = '70%'; icon.style.height = '70%';
+        icon.style.setProperty('--shape-color', SHAPE_BY_KEY[key].color);
+        icon.innerHTML = shapeFillMarkup(key);
+        box.appendChild(icon);
+      } else {
+        box.style.display = 'flex'; box.style.alignItems = 'center'; box.style.justifyContent = 'center';
+        box.appendChild(makeGhostIcon(key));
+      }
+      buildSlots.appendChild(box);
+    });
+  }
+
+  function newBuildPicture(){
+    var idx = pickNewPictureIdx();
+    lastPictureIdx = idx;
+    currentPicture = PICTURES[idx];
+    slotsFilled = currentPicture.shapes.map(function(){ return false; });
+    buildTarget.textContent = 'Build a ' + currentPicture.name + '!';
+    newPictureBtn.hidden = true;
+    renderSlots();
+  }
+
+  function onBuildShapeTap(key, tileEl){
+    var slotIdx = -1;
+    for (var i = 0; i < currentPicture.shapes.length; i++){
+      if (!slotsFilled[i] && currentPicture.shapes[i] === key){ slotIdx = i; break; }
+    }
+    if (slotIdx === -1){
+      playGentle();
+      tileEl.classList.remove('shake'); void tileEl.offsetWidth; tileEl.classList.add('shake');
+      return;
+    }
+    slotsFilled[slotIdx] = true;
+    playClick();
+    renderSlots();
+
+    if (slotsFilled.every(function(f){ return f; })){
+      addStar();
+      spawnConfetti(buildSlots);
+      playSuccess();
+      speak('You built a ' + currentPicture.name.toLowerCase() + '!');
+      buildTarget.textContent = randomSuccessMessage() + ' You built a ' + currentPicture.name + '!';
+      newPictureBtn.hidden = false;
+    }
+  }
+
+  SHAPES.forEach(function(s){
+    var tile = makeShapeTile(s.key);
+    tile.addEventListener('click', function(){ onBuildShapeTap(s.key, tile); });
+    buildShapeGrid.appendChild(tile);
+  });
+
+  newPictureBtn.addEventListener('click', newBuildPicture);
+
+})();
+</script>
+
+</body>
+</html>
