@@ -576,3 +576,14 @@
   line-height: 1.25;
   margin: 0;
 }
+
+.custom-number-row {
+  position: relative;
+  z-index: 5;
+}
+
+.custom-number-row .btn-custom-add,
+.custom-number-row .custom-input {
+  position: relative;
+  z-index: 6;
+}

@@ -4,7 +4,7 @@
   var states = ["empty", "low", "calm", "happy", "excited"];
   var registryPromise = null;
   var lastEnergyPercent = 68;
-  var selectedWorldId = "battery-buddy";
+  var selectedCharacter = { family: "world", id: "battery-buddy" };
 
   function stateFromPercent(percent) {
     var value = Math.max(0, Math.min(100, Number(percent) || 0));
@@ -71,7 +71,9 @@
       bus: "double-decker",
       plane: "plane",
       boat: "boat",
-      letter: "letter-a"
+      letter: "letter-a",
+      leon: "leon",
+      zaya: "zaya"
     };
     var slider = document.getElementById("energySlider");
     var worldSprite = document.getElementById("worldSprite");
@@ -82,7 +84,8 @@
 
     function render() {
       var state = stateFromPercent(slider ? slider.value : lastEnergyPercent);
-      var record = byId(registry.world, selectedWorldId);
+      var list = selectedCharacter.family === "guide" ? registry.guides : registry.world;
+      var record = byId(list, selectedCharacter.id);
       preload(record);
       setRealImage(worldSprite, record, state, (record && record.displayName) + " " + state);
       setRealImage(dashBuddy, record, state, (record && record.displayName) + " " + state);
@@ -92,13 +95,17 @@
     }
 
     document.querySelectorAll("[data-character]").forEach(function (button) {
-      var record = byId(registry.world, map[button.dataset.character]);
+      var family = button.dataset.character === "leon" || button.dataset.character === "zaya" ? "guides" : "world";
+      var record = byId(registry[family], map[button.dataset.character]);
       var icon = button.querySelector(".sprite");
       if (record && icon) {
         setRealImage(icon, record, "calm", record.displayName + " thumbnail");
       }
       button.addEventListener("click", function () {
-        selectedWorldId = map[button.dataset.character] || selectedWorldId;
+        selectedCharacter = {
+          family: button.dataset.character === "leon" || button.dataset.character === "zaya" ? "guide" : "world",
+          id: map[button.dataset.character] || selectedCharacter.id
+        };
         render();
       });
     });
