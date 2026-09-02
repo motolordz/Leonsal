@@ -9,7 +9,9 @@
     sound: false,
     haptic: false,
     contrast: false,
-    feeling: null
+    feeling: null,
+    character: 'battery',
+    glyph: 'A'
   };
 
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -70,7 +72,9 @@
         sound: typeof saved.sound === 'boolean' ? saved.sound : defaults.sound,
         haptic: typeof saved.haptic === 'boolean' ? saved.haptic : defaults.haptic,
         contrast: typeof saved.contrast === 'boolean' ? saved.contrast : defaults.contrast,
-        feeling: ['calm', 'wiggly', 'tired', 'big'].includes(saved.feeling) ? saved.feeling : null
+        feeling: ['calm', 'wiggly', 'tired', 'big', 'sad', 'angry', 'hungry', 'thirsty', 'loud', 'sore', 'toilet', 'worried'].includes(saved.feeling) ? saved.feeling : null,
+        character: ['battery', 'elephant', 'bus', 'plane', 'boat', 'letter'].includes(saved.character) ? saved.character : 'battery',
+        glyph: /^[A-Z0-9]$/.test(saved.glyph || '') ? saved.glyph : 'A'
       };
     } catch (_error) {
       return { ...defaults };
@@ -135,7 +139,7 @@
     if (value <= 5) {
       return {
         label: 'Battery empty',
-        message: 'Bolt has used all his energy. He is resting now.',
+        message: 'Your character has used all its energy and is resting now.',
         header: 'Resting now',
         colour: '#e96a62',
         className: 'empty'
@@ -144,7 +148,7 @@
     if (value <= 25) {
       return {
         label: 'Tired energy',
-        message: 'Bolt is low on energy. A quiet activity or rest may feel good.',
+        message: 'Your character is low on energy. A quiet activity or rest may feel good.',
         header: 'Low energy',
         colour: '#ef8d4a',
         className: 'tired'
@@ -153,7 +157,7 @@
     if (value <= 50) {
       return {
         label: 'Quiet energy',
-        message: 'Bolt has gentle energy for bubbles, patterns or a light trail.',
+        message: 'Your character has gentle energy for bubbles, patterns or a light trail.',
         header: 'Quiet energy',
         colour: '#d7ad35',
         className: 'quiet'
@@ -162,7 +166,7 @@
     if (value <= 80) {
       return {
         label: 'Ready energy',
-        message: 'Bolt has enough energy to choose an activity.',
+        message: 'Your character has enough energy to choose an activity.',
         header: 'Ready to play',
         colour: '#348de3',
         className: 'ready'
@@ -170,7 +174,7 @@
     }
     return {
       label: 'Full energy',
-      message: 'Bolt is charged and ready to move, learn or create.',
+      message: 'Your character is charged and ready to move, learn or create.',
       header: 'Fully charged',
       colour: '#46b668',
       className: 'full'
@@ -282,7 +286,7 @@
     saveState();
     playTone('tap');
     vibrate(18);
-    animateEnergy(0, 1800, () => announce('Bedtime. Bolt is resting with an empty battery.'));
+    animateEnergy(0, 1800, () => announce('Bedtime. Your character is resting with an empty battery.'));
   });
 
   elements.morningButton.addEventListener('click', () => {
@@ -291,7 +295,7 @@
     saveState();
     playTone('success');
     vibrate([15, 45, 15]);
-    animateEnergy(100, 2100, () => announce('Good morning. Bolt is fully charged.'));
+    animateEnergy(100, 2100, () => announce('Good morning. Your character is fully charged.'));
   });
 
   elements.motionToggle.addEventListener('click', () => {
@@ -345,6 +349,46 @@
       energy: 32,
       panel: 'draw',
       message: 'Big feelings selected. Finger Light Trail is open with no timer or score.'
+    },
+    sad: {
+      energy: 30,
+      panel: 'draw',
+      message: 'Sad selected. A grown-up can stay close while you make a gentle light trail.'
+    },
+    angry: {
+      energy: 48,
+      panel: 'breathe',
+      message: 'Angry selected. You can make space and try a slow breath when ready.'
+    },
+    hungry: {
+      energy: 25,
+      panel: 'pattern',
+      message: 'Hungry selected. Please show a grown-up that you want food.'
+    },
+    thirsty: {
+      energy: 28,
+      panel: 'bubbles',
+      message: 'Thirsty selected. Please show a grown-up that you want a drink.'
+    },
+    loud: {
+      energy: 22,
+      panel: 'bubbles',
+      message: 'Too loud selected. Motion is calmer and Quiet Bubbles is open.'
+    },
+    sore: {
+      energy: 20,
+      panel: 'breathe',
+      message: 'Something hurts selected. Use Show Me Where below and tell a grown-up.'
+    },
+    toilet: {
+      energy: 35,
+      panel: 'dash',
+      message: 'Toilet selected. Please show a grown-up that you need the toilet.'
+    },
+    worried: {
+      energy: 30,
+      panel: 'breathe',
+      message: 'Worried selected. A grown-up can stay close while you breathe slowly.'
     }
   };
 
@@ -421,4 +465,3 @@
       }
     });
   });
-

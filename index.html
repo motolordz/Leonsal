@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="sensory-battery.css">
   <link rel="stylesheet" href="sensory-games.css">
   <link rel="stylesheet" href="sensory-layout.css">
+  <link rel="stylesheet" href="sensory-phase2.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the activities</a>
@@ -50,14 +51,39 @@
     <section class="hero-copy" aria-labelledby="pageTitle">
       <div class="eyebrow">Made for Leon to explore</div>
       <h1 id="pageTitle">My Energy & Sensory Lab</h1>
-      <p>Swipe, tap, move, rest and recharge. There are no timers, no losing and no surprise sounds.</p>
+      <p>Choose a character, show what your body needs, then swipe, tap, move, rest and recharge.</p>
+    </section>
+
+    <section class="section-card world-picker" aria-labelledby="worldTitle">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">6 characters × 6 ways to play</div>
+          <h2 id="worldTitle">Choose My Character</h2>
+          <p>Your character comes with you to the battery, routines and charging game.</p>
+        </div>
+        <span class="section-icon" aria-hidden="true">🌎</span>
+      </div>
+      <div class="character-choices" role="list" aria-label="Choose a character world">
+        <button class="character-choice is-selected" type="button" data-character="battery" aria-pressed="true"><span class="sprite sprite-battery" aria-hidden="true"></span><strong>Battery</strong></button>
+        <button class="character-choice" type="button" data-character="elephant" aria-pressed="false"><span class="sprite sprite-elephant" aria-hidden="true"></span><strong>Elephant</strong></button>
+        <button class="character-choice" type="button" data-character="bus" aria-pressed="false"><span class="sprite sprite-bus" aria-hidden="true"></span><strong>Double-decker</strong></button>
+        <button class="character-choice" type="button" data-character="plane" aria-pressed="false"><span class="sprite sprite-plane" aria-hidden="true"></span><strong>Plane</strong></button>
+        <button class="character-choice" type="button" data-character="boat" aria-pressed="false"><span class="sprite sprite-boat" aria-hidden="true"></span><strong>Boat</strong></button>
+        <button class="character-choice" type="button" data-character="letter" aria-pressed="false"><span class="sprite sprite-letter" aria-hidden="true"></span><strong>Letter A</strong></button>
+      </div>
+      <div class="pack-switch" role="tablist" aria-label="More character packs">
+        <button type="button" role="tab" class="is-selected" aria-selected="true" data-pack="letters">A–Z Letters</button>
+        <button type="button" role="tab" aria-selected="false" data-pack="numbers">0–9 Numbers</button>
+      </div>
+      <div class="glyph-pack" id="glyphPack" aria-label="Alphabet character choices"></div>
+      <p class="world-count"><strong>42 characters are ready now:</strong> six 3D favourites, all 26 alphabet letters and all 10 number characters. Each can charge, sleep, move, breathe, feel and draw.</p>
     </section>
 
     <section class="section-card battery-board" aria-labelledby="batteryTitle">
       <div class="section-heading">
         <div>
-          <h2 id="batteryTitle">My Battery</h2>
-          <p>Swipe the bar from empty to full and watch Bolt change.</p>
+          <h2 id="batteryTitle">My Energy</h2>
+          <p>Swipe from empty to full and watch your character change.</p>
         </div>
         <span class="section-icon" aria-hidden="true">🔋</span>
       </div>
@@ -66,23 +92,11 @@
         <div class="character-stage" id="characterStage">
           <span class="sky-symbol" id="skySymbol" aria-hidden="true">☀️</span>
           <div class="ground-shadow" aria-hidden="true"></div>
-          <div class="battery-character" id="energyBuddy" aria-hidden="true">
-            <div class="arm left"></div>
-            <div class="arm right"></div>
-            <div class="leg left"></div>
-            <div class="leg right"></div>
-            <div class="battery-cap"></div>
-            <div class="battery-body">
-              <div class="battery-fill"></div>
-              <div class="battery-face">
-                <div class="face-inner">
-                  <div class="eyes"><span class="eye"></span><span class="eye"></span></div>
-                  <div class="mouth"></div>
-                </div>
-              </div>
-              <span class="energy-number" id="energyNumber">68%</span>
-            </div>
-            <div class="zzz" aria-hidden="true"><span>z</span><span>z</span><span>Z</span></div>
+          <div class="world-character" id="energyBuddy" aria-hidden="true">
+            <span class="world-sprite sprite sprite-battery" id="worldSprite"></span>
+            <span class="glyph-character" id="glyphCharacter"><b>A</b><i>•‿•</i></span>
+            <span class="sleep-cloud" id="sleepCloud">z · z · Z</span>
+            <span class="energy-number" id="energyNumber">68%</span>
           </div>
         </div>
 
@@ -105,6 +119,27 @@
       </div>
     </section>
 
+    <section class="section-card sensory-chooser" aria-labelledby="sensoryTitle">
+      <div class="section-heading">
+        <div>
+          <h2 id="sensoryTitle">What Would Help My Body?</h2>
+          <p>Choose one. The right activity opens straight away.</p>
+        </div>
+        <span class="section-icon" aria-hidden="true">🧭</span>
+      </div>
+      <div class="sensory-choice-grid">
+        <button type="button" data-sensory="move"><span>🏃</span><strong>I want to move</strong></button>
+        <button type="button" data-sensory="quiet"><span>🤫</span><strong>I want quiet</strong></button>
+        <button type="button" data-sensory="breathe"><span>🌬️</span><strong>I want to breathe</strong></button>
+        <button type="button" data-sensory="tap"><span>🫧</span><strong>I want to tap</strong></button>
+        <button type="button" data-sensory="watch"><span>✨</span><strong>I want to watch</strong></button>
+        <button type="button" data-sensory="match"><span>🔷</span><strong>I want to match</strong></button>
+        <button type="button" data-sensory="draw"><span>🎨</span><strong>I want to draw</strong></button>
+        <button type="button" data-sensory="rest"><span>🌙</span><strong>I want to rest</strong></button>
+      </div>
+      <p class="suggestion" id="sensorySuggestion" aria-live="polite">Pick what feels good right now.</p>
+    </section>
+
     <section class="section-card" aria-labelledby="feelingsTitle">
       <div class="section-heading">
         <div>
@@ -113,7 +148,7 @@
         </div>
         <span class="section-icon feelings-icon" aria-hidden="true">💛</span>
       </div>
-      <div class="feeling-grid">
+      <div class="feeling-grid feeling-grid-expanded">
         <button class="feeling-button" type="button" data-feeling="calm" aria-pressed="false">
           <span class="feeling-face" aria-hidden="true">🙂</span><span>Calm</span><small>steady and okay</small>
         </button>
@@ -126,8 +161,34 @@
         <button class="feeling-button" type="button" data-feeling="big" aria-pressed="false">
           <span class="feeling-face" aria-hidden="true">😣</span><span>Big feelings</span><small>need less around me</small>
         </button>
+        <button class="feeling-button" type="button" data-feeling="sad" aria-pressed="false"><span class="feeling-face" aria-hidden="true">😢</span><span>Sad</span><small>want comfort</small></button>
+        <button class="feeling-button" type="button" data-feeling="angry" aria-pressed="false"><span class="feeling-face" aria-hidden="true">😠</span><span>Angry</span><small>need safe space</small></button>
+        <button class="feeling-button" type="button" data-feeling="hungry" aria-pressed="false"><span class="feeling-face" aria-hidden="true">🍎</span><span>Hungry</span><small>want food</small></button>
+        <button class="feeling-button" type="button" data-feeling="thirsty" aria-pressed="false"><span class="feeling-face" aria-hidden="true">💧</span><span>Thirsty</span><small>want a drink</small></button>
+        <button class="feeling-button" type="button" data-feeling="loud" aria-pressed="false"><span class="feeling-face" aria-hidden="true">🎧</span><span>Too loud</span><small>want quiet</small></button>
+        <button class="feeling-button" type="button" data-feeling="sore" aria-pressed="false"><span class="feeling-face" aria-hidden="true">🩹</span><span>Something hurts</span><small>show me where</small></button>
+        <button class="feeling-button" type="button" data-feeling="toilet" aria-pressed="false"><span class="feeling-face" aria-hidden="true">🚻</span><span>Toilet</span><small>need the toilet</small></button>
+        <button class="feeling-button" type="button" data-feeling="worried" aria-pressed="false"><span class="feeling-face" aria-hidden="true">😟</span><span>Worried</span><small>want help</small></button>
       </div>
       <p class="suggestion" id="feelingSuggestion" aria-live="polite">Choose a feeling when you are ready.</p>
+
+      <div class="body-board" id="bodyBoard">
+        <div class="body-board-heading">
+          <div><h3>Show Me Where</h3><p>Choose a person, then tap a body area.</p></div>
+          <div class="avatar-toggle" role="group" aria-label="Choose body board person"><button type="button" data-avatar="boy" class="is-selected" aria-pressed="true">Boy</button><button type="button" data-avatar="girl" aria-pressed="false">Girl</button></div>
+        </div>
+        <div class="body-map-wrap">
+          <div class="body-avatar avatar-boy" id="bodyAvatar" role="img" aria-label="Boy body map"></div>
+          <div class="body-zone-grid" aria-label="Choose a body area">
+            <button type="button" data-body="head">Head</button><button type="button" data-body="ears">Ears</button>
+            <button type="button" data-body="mouth">Mouth</button><button type="button" data-body="chest">Chest</button>
+            <button type="button" data-body="tummy">Tummy</button><button type="button" data-body="hands">Hands</button>
+            <button type="button" data-body="legs">Legs</button><button type="button" data-body="feet">Feet</button>
+          </div>
+        </div>
+        <div class="need-options" id="needOptions" aria-label="What is happening?" hidden></div>
+        <p class="body-message" id="bodyMessage" aria-live="polite">Nothing selected yet.</p>
+      </div>
     </section>
 
     <section class="section-card activity-centre" aria-labelledby="activityTitle">
@@ -150,21 +211,28 @@
       <div class="activity-panel is-active" id="panel-dash" role="tabpanel" aria-labelledby="tab-dash" tabindex="0">
         <div class="game-intro">
           <h3>Dash to the Charging Dock</h3>
-          <p>Swipe the movement bar or use the arrows. Reach the dock to give Bolt more energy.</p>
+          <p>Move your character to the dock. It charges, powers a helper, then returns ready to go again.</p>
         </div>
         <div class="dash-lane" id="dashLane" aria-hidden="true">
           <div class="lane-dots"></div>
-          <div class="dash-buddy" id="dashBuddy"><span class="mini-fill"></span><span class="mini-face">•‿•</span></div>
+          <div class="dash-buddy sprite sprite-battery" id="dashBuddy"></div>
           <div class="charge-dock"><span>⚡</span><small>DOCK</small></div>
         </div>
         <label class="sr-only" for="dashSlider">Move Bolt toward the charging dock</label>
         <input id="dashSlider" class="dash-slider" type="range" min="0" max="100" step="1" value="0">
+        <div class="dock-meter" aria-label="Charging progress"><span id="dockMeterFill"></span><strong id="dockMeterLabel">Ready to travel</strong></div>
+        <div class="power-helpers" role="group" aria-label="Choose something to help power">
+          <button type="button" class="is-selected" data-helper="lamp" aria-pressed="true">💡 <span>Lamp</span></button>
+          <button type="button" data-helper="train" aria-pressed="false">🚂 <span>Train</span></button>
+          <button type="button" data-helper="house" aria-pressed="false">🏠 <span>House</span></button>
+          <button type="button" data-helper="music" aria-pressed="false">🎵 <span>Music</span></button>
+        </div>
         <div class="game-controls three">
           <button class="game-button" id="dashLeft" type="button">← Move left</button>
           <button class="game-button" id="dashReset" type="button">Start again</button>
           <button class="game-button primary" id="dashRight" type="button">Move right →</button>
         </div>
-        <p class="game-status" id="dashStatus" aria-live="polite">Bolt is at the start.</p>
+        <p class="game-status" id="dashStatus" aria-live="polite">Your character is low on energy and ready to visit the dock.</p>
       </div>
 
       <div class="activity-panel" id="panel-bubbles" role="tabpanel" aria-labelledby="tab-bubbles" tabindex="0" hidden>
@@ -279,5 +347,6 @@
   <script src="sensory-core.js" defer></script>
   <script src="sensory-games.js" defer></script>
   <script src="sensory-trail.js" defer></script>
+  <script src="sensory-phase2.js" defer></script>
 </body>
 </html>
