@@ -65,6 +65,11 @@
   function loadState() {
     try {
       const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '{}');
+      const savedCharacter = String(saved.character || '');
+      const validCharacter = ['battery', 'battery-buddy', 'elephant', 'bus', 'double-decker', 'plane', 'boat', 'letter', 'letter-a', 'leon', 'zaya'].includes(savedCharacter) ||
+        /^letter-[a-z]$/.test(savedCharacter) ||
+        /^number-(10|[1-9])$/.test(savedCharacter) ||
+        /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(savedCharacter);
       return {
         energy: clamp(Number.isFinite(Number(saved.energy)) ? Number(saved.energy) : defaults.energy, 0, 100),
         routine: saved.routine === 'night' ? 'night' : 'day',
@@ -73,8 +78,8 @@
         haptic: typeof saved.haptic === 'boolean' ? saved.haptic : defaults.haptic,
         contrast: typeof saved.contrast === 'boolean' ? saved.contrast : defaults.contrast,
         feeling: ['calm', 'wiggly', 'tired', 'big', 'sad', 'angry', 'hungry', 'thirsty', 'loud', 'sore', 'toilet', 'worried'].includes(saved.feeling) ? saved.feeling : null,
-        character: ['battery', 'elephant', 'bus', 'plane', 'boat', 'letter'].includes(saved.character) ? saved.character : 'battery',
-        glyph: /^[A-Z0-9]$/.test(saved.glyph || '') ? saved.glyph : 'A'
+        character: validCharacter ? savedCharacter : 'battery',
+        glyph: /^([A-Z]|10|[1-9])$/.test(saved.glyph || '') ? saved.glyph : 'A'
       };
     } catch (_error) {
       return { ...defaults };
@@ -82,6 +87,7 @@
   }
 
   let state = loadState();
+  window.leonSalState = state;
   let energyAnimation = 0;
   let audioContext = null;
   let announceTimer = 0;
@@ -136,48 +142,17 @@
   }
 
   function energyProfile(value) {
-    if (value <= 5) {
-      return {
-        label: 'Battery empty',
-        message: 'Your character has used all its energy and is resting now.',
-        header: 'Resting now',
-        colour: '#e96a62',
-        className: 'empty'
-      };
-    }
-    if (value <= 25) {
-      return {
-        label: 'Tired energy',
-        message: 'Your character is low on energy. A quiet activity or rest may feel good.',
-        header: 'Low energy',
-        colour: '#ef8d4a',
-        className: 'tired'
-      };
-    }
-    if (value <= 50) {
-      return {
-        label: 'Quiet energy',
-        message: 'Your character has gentle energy for bubbles, patterns or a light trail.',
-        header: 'Quiet energy',
-        colour: '#d7ad35',
-        className: 'quiet'
-      };
-    }
-    if (value <= 80) {
-      return {
-        label: 'Ready energy',
-        message: 'Your character has enough energy to choose an activity.',
-        header: 'Ready to play',
-        colour: '#348de3',
-        className: 'ready'
-      };
-    }
+    const profile = window.LeonSalCharacters.energyProfile(value, state.character);
+    const colours = {
+      empty: '#e96a62',
+      low: '#ef8d4a',
+      calm: '#d7ad35',
+      happy: '#348de3',
+      excited: '#46b668'
+    };
     return {
-      label: 'Full energy',
-      message: 'Your character is charged and ready to move, learn or create.',
-      header: 'Fully charged',
-      colour: '#46b668',
-      className: 'full'
+      ...profile,
+      colour: colours[profile.state] || '#348de3'
     };
   }
 
@@ -193,21 +168,21 @@
   function renderEnergy() {
     const value = Math.round(state.energy);
     const profile = energyProfile(value);
-    const sleeping = value <= 5;
+    const sleeping = profile.state === 'empty';
 
     elements.root.style.setProperty('--energy', `${value}%`);
     elements.root.style.setProperty('--energy-colour', profile.colour);
     elements.energySlider.value = String(value);
-    elements.energySlider.setAttribute('aria-valuetext', `${profile.label}, ${value} percent`);
+    elements.energySlider.setAttribute('aria-valuetext', `${profile.label}, ${value} percent, ${window.LeonSalCharacters.displayNameForCharacter(state.character)}`);
     elements.energyNumber.textContent = `${value}%`;
     elements.energyState.textContent = profile.label;
     elements.energyPill.textContent = `${value}% full`;
     elements.energyMessage.textContent = profile.message;
     elements.headerStatus.textContent = profile.header;
 
-    elements.energyBuddy.classList.toggle('is-sleeping', sleeping);
-    elements.energyBuddy.classList.toggle('is-tired', value > 5 && value <= 25);
-    elements.energyBuddy.classList.toggle('is-charged', value >= 85);
+    elements.energyBuddy.classList.toggle('is-sleeping', profile.state === 'empty');
+    elements.energyBuddy.classList.toggle('is-tired', profile.state === 'low');
+    elements.energyBuddy.classList.toggle('is-charged', profile.state === 'excited');
     elements.characterStage.classList.toggle('is-sleeping', sleeping);
     elements.characterStage.dataset.energyState = profile.className;
   }
@@ -275,7 +250,7 @@
 
   elements.energySlider.addEventListener('change', () => {
     const profile = energyProfile(state.energy);
-    announce(`${profile.label}. Battery is ${Math.round(state.energy)} percent.`);
+    announce(`${profile.label}. ${window.LeonSalCharacters.displayNameForCharacter(state.character)} is ${Math.round(state.energy)} percent.`);
     vibrate(12);
     playTone('tap');
   });
@@ -286,7 +261,7 @@
     saveState();
     playTone('tap');
     vibrate(18);
-    animateEnergy(0, 1800, () => announce('Bedtime. Your character is resting with an empty battery.'));
+    animateEnergy(0, 1800, () => announce(`Bedtime. ${window.LeonSalCharacters.displayNameForCharacter(state.character)} is resting.`));
   });
 
   elements.morningButton.addEventListener('click', () => {
@@ -295,7 +270,7 @@
     saveState();
     playTone('success');
     vibrate([15, 45, 15]);
-    animateEnergy(100, 2100, () => announce('Good morning. Your character is fully charged.'));
+    animateEnergy(100, 2100, () => announce(`Good morning. ${window.LeonSalCharacters.displayNameForCharacter(state.character)} is fully charged.`));
   });
 
   elements.motionToggle.addEventListener('click', () => {

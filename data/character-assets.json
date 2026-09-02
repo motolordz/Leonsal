@@ -11,838 +11,135 @@
       "id": "leon",
       "displayName": "Leon",
       "family": "guide",
-      "states": {
-        "empty": "assets/characters/leon/empty.webp",
-        "low": "assets/characters/leon/low.webp",
-        "calm": "assets/characters/leon/calm.webp",
-        "happy": "assets/characters/leon/happy.webp",
-        "excited": "assets/characters/leon/excited.webp"
-      }
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
     },
     {
       "id": "zaya",
       "displayName": "Zaya",
       "family": "guide",
-      "states": {
-        "empty": "assets/characters/zaya/empty.webp",
-        "low": "assets/characters/zaya/low.webp",
-        "calm": "assets/characters/zaya/calm.webp",
-        "happy": "assets/characters/zaya/happy.webp",
-        "excited": "assets/characters/zaya/excited.webp"
-      }
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
     }
   ],
-  "alphabet": [
-    {
-      "id": "letter-a",
-      "displayName": "Letter A",
-      "uppercase": "A",
-      "lowercase": "a",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/a/empty.webp",
-        "low": "assets/characters/alphabet/a/low.webp",
-        "calm": "assets/characters/alphabet/a/calm.webp",
-        "happy": "assets/characters/alphabet/a/happy.webp",
-        "excited": "assets/characters/alphabet/a/excited.webp"
-      }
-    },
-    {
-      "id": "letter-b",
-      "displayName": "Letter B",
-      "uppercase": "B",
-      "lowercase": "b",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/b/empty.webp",
-        "low": "assets/characters/alphabet/b/low.webp",
-        "calm": "assets/characters/alphabet/b/calm.webp",
-        "happy": "assets/characters/alphabet/b/happy.webp",
-        "excited": "assets/characters/alphabet/b/excited.webp"
-      }
-    },
-    {
-      "id": "letter-c",
-      "displayName": "Letter C",
-      "uppercase": "C",
-      "lowercase": "c",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/c/empty.webp",
-        "low": "assets/characters/alphabet/c/low.webp",
-        "calm": "assets/characters/alphabet/c/calm.webp",
-        "happy": "assets/characters/alphabet/c/happy.webp",
-        "excited": "assets/characters/alphabet/c/excited.webp"
-      }
-    },
-    {
-      "id": "letter-d",
-      "displayName": "Letter D",
-      "uppercase": "D",
-      "lowercase": "d",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/d/empty.webp",
-        "low": "assets/characters/alphabet/d/low.webp",
-        "calm": "assets/characters/alphabet/d/calm.webp",
-        "happy": "assets/characters/alphabet/d/happy.webp",
-        "excited": "assets/characters/alphabet/d/excited.webp"
-      }
-    },
-    {
-      "id": "letter-e",
-      "displayName": "Letter E",
-      "uppercase": "E",
-      "lowercase": "e",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/e/empty.webp",
-        "low": "assets/characters/alphabet/e/low.webp",
-        "calm": "assets/characters/alphabet/e/calm.webp",
-        "happy": "assets/characters/alphabet/e/happy.webp",
-        "excited": "assets/characters/alphabet/e/excited.webp"
-      }
-    },
-    {
-      "id": "letter-f",
-      "displayName": "Letter F",
-      "uppercase": "F",
-      "lowercase": "f",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/f/empty.webp",
-        "low": "assets/characters/alphabet/f/low.webp",
-        "calm": "assets/characters/alphabet/f/calm.webp",
-        "happy": "assets/characters/alphabet/f/happy.webp",
-        "excited": "assets/characters/alphabet/f/excited.webp"
-      }
-    },
-    {
-      "id": "letter-g",
-      "displayName": "Letter G",
-      "uppercase": "G",
-      "lowercase": "g",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/g/empty.webp",
-        "low": "assets/characters/alphabet/g/low.webp",
-        "calm": "assets/characters/alphabet/g/calm.webp",
-        "happy": "assets/characters/alphabet/g/happy.webp",
-        "excited": "assets/characters/alphabet/g/excited.webp"
-      }
-    },
-    {
-      "id": "letter-h",
-      "displayName": "Letter H",
-      "uppercase": "H",
-      "lowercase": "h",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/h/empty.webp",
-        "low": "assets/characters/alphabet/h/low.webp",
-        "calm": "assets/characters/alphabet/h/calm.webp",
-        "happy": "assets/characters/alphabet/h/happy.webp",
-        "excited": "assets/characters/alphabet/h/excited.webp"
-      }
-    },
-    {
-      "id": "letter-i",
-      "displayName": "Letter I",
-      "uppercase": "I",
-      "lowercase": "i",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/i/empty.webp",
-        "low": "assets/characters/alphabet/i/low.webp",
-        "calm": "assets/characters/alphabet/i/calm.webp",
-        "happy": "assets/characters/alphabet/i/happy.webp",
-        "excited": "assets/characters/alphabet/i/excited.webp"
-      }
-    },
-    {
-      "id": "letter-j",
-      "displayName": "Letter J",
-      "uppercase": "J",
-      "lowercase": "j",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/j/empty.webp",
-        "low": "assets/characters/alphabet/j/low.webp",
-        "calm": "assets/characters/alphabet/j/calm.webp",
-        "happy": "assets/characters/alphabet/j/happy.webp",
-        "excited": "assets/characters/alphabet/j/excited.webp"
-      }
-    },
-    {
-      "id": "letter-k",
-      "displayName": "Letter K",
-      "uppercase": "K",
-      "lowercase": "k",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/k/empty.webp",
-        "low": "assets/characters/alphabet/k/low.webp",
-        "calm": "assets/characters/alphabet/k/calm.webp",
-        "happy": "assets/characters/alphabet/k/happy.webp",
-        "excited": "assets/characters/alphabet/k/excited.webp"
-      }
-    },
-    {
-      "id": "letter-l",
-      "displayName": "Letter L",
-      "uppercase": "L",
-      "lowercase": "l",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/l/empty.webp",
-        "low": "assets/characters/alphabet/l/low.webp",
-        "calm": "assets/characters/alphabet/l/calm.webp",
-        "happy": "assets/characters/alphabet/l/happy.webp",
-        "excited": "assets/characters/alphabet/l/excited.webp"
-      }
-    },
-    {
-      "id": "letter-m",
-      "displayName": "Letter M",
-      "uppercase": "M",
-      "lowercase": "m",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/m/empty.webp",
-        "low": "assets/characters/alphabet/m/low.webp",
-        "calm": "assets/characters/alphabet/m/calm.webp",
-        "happy": "assets/characters/alphabet/m/happy.webp",
-        "excited": "assets/characters/alphabet/m/excited.webp"
-      }
-    },
-    {
-      "id": "letter-n",
-      "displayName": "Letter N",
-      "uppercase": "N",
-      "lowercase": "n",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/n/empty.webp",
-        "low": "assets/characters/alphabet/n/low.webp",
-        "calm": "assets/characters/alphabet/n/calm.webp",
-        "happy": "assets/characters/alphabet/n/happy.webp",
-        "excited": "assets/characters/alphabet/n/excited.webp"
-      }
-    },
-    {
-      "id": "letter-o",
-      "displayName": "Letter O",
-      "uppercase": "O",
-      "lowercase": "o",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/o/empty.webp",
-        "low": "assets/characters/alphabet/o/low.webp",
-        "calm": "assets/characters/alphabet/o/calm.webp",
-        "happy": "assets/characters/alphabet/o/happy.webp",
-        "excited": "assets/characters/alphabet/o/excited.webp"
-      }
-    },
-    {
-      "id": "letter-p",
-      "displayName": "Letter P",
-      "uppercase": "P",
-      "lowercase": "p",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/p/empty.webp",
-        "low": "assets/characters/alphabet/p/low.webp",
-        "calm": "assets/characters/alphabet/p/calm.webp",
-        "happy": "assets/characters/alphabet/p/happy.webp",
-        "excited": "assets/characters/alphabet/p/excited.webp"
-      }
-    },
-    {
-      "id": "letter-q",
-      "displayName": "Letter Q",
-      "uppercase": "Q",
-      "lowercase": "q",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/q/empty.webp",
-        "low": "assets/characters/alphabet/q/low.webp",
-        "calm": "assets/characters/alphabet/q/calm.webp",
-        "happy": "assets/characters/alphabet/q/happy.webp",
-        "excited": "assets/characters/alphabet/q/excited.webp"
-      }
-    },
-    {
-      "id": "letter-r",
-      "displayName": "Letter R",
-      "uppercase": "R",
-      "lowercase": "r",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/r/empty.webp",
-        "low": "assets/characters/alphabet/r/low.webp",
-        "calm": "assets/characters/alphabet/r/calm.webp",
-        "happy": "assets/characters/alphabet/r/happy.webp",
-        "excited": "assets/characters/alphabet/r/excited.webp"
-      }
-    },
-    {
-      "id": "letter-s",
-      "displayName": "Letter S",
-      "uppercase": "S",
-      "lowercase": "s",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/s/empty.webp",
-        "low": "assets/characters/alphabet/s/low.webp",
-        "calm": "assets/characters/alphabet/s/calm.webp",
-        "happy": "assets/characters/alphabet/s/happy.webp",
-        "excited": "assets/characters/alphabet/s/excited.webp"
-      }
-    },
-    {
-      "id": "letter-t",
-      "displayName": "Letter T",
-      "uppercase": "T",
-      "lowercase": "t",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/t/empty.webp",
-        "low": "assets/characters/alphabet/t/low.webp",
-        "calm": "assets/characters/alphabet/t/calm.webp",
-        "happy": "assets/characters/alphabet/t/happy.webp",
-        "excited": "assets/characters/alphabet/t/excited.webp"
-      }
-    },
-    {
-      "id": "letter-u",
-      "displayName": "Letter U",
-      "uppercase": "U",
-      "lowercase": "u",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/u/empty.webp",
-        "low": "assets/characters/alphabet/u/low.webp",
-        "calm": "assets/characters/alphabet/u/calm.webp",
-        "happy": "assets/characters/alphabet/u/happy.webp",
-        "excited": "assets/characters/alphabet/u/excited.webp"
-      }
-    },
-    {
-      "id": "letter-v",
-      "displayName": "Letter V",
-      "uppercase": "V",
-      "lowercase": "v",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/v/empty.webp",
-        "low": "assets/characters/alphabet/v/low.webp",
-        "calm": "assets/characters/alphabet/v/calm.webp",
-        "happy": "assets/characters/alphabet/v/happy.webp",
-        "excited": "assets/characters/alphabet/v/excited.webp"
-      }
-    },
-    {
-      "id": "letter-w",
-      "displayName": "Letter W",
-      "uppercase": "W",
-      "lowercase": "w",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/w/empty.webp",
-        "low": "assets/characters/alphabet/w/low.webp",
-        "calm": "assets/characters/alphabet/w/calm.webp",
-        "happy": "assets/characters/alphabet/w/happy.webp",
-        "excited": "assets/characters/alphabet/w/excited.webp"
-      }
-    },
-    {
-      "id": "letter-x",
-      "displayName": "Letter X",
-      "uppercase": "X",
-      "lowercase": "x",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/x/empty.webp",
-        "low": "assets/characters/alphabet/x/low.webp",
-        "calm": "assets/characters/alphabet/x/calm.webp",
-        "happy": "assets/characters/alphabet/x/happy.webp",
-        "excited": "assets/characters/alphabet/x/excited.webp"
-      }
-    },
-    {
-      "id": "letter-y",
-      "displayName": "Letter Y",
-      "uppercase": "Y",
-      "lowercase": "y",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/y/empty.webp",
-        "low": "assets/characters/alphabet/y/low.webp",
-        "calm": "assets/characters/alphabet/y/calm.webp",
-        "happy": "assets/characters/alphabet/y/happy.webp",
-        "excited": "assets/characters/alphabet/y/excited.webp"
-      }
-    },
-    {
-      "id": "letter-z",
-      "displayName": "Letter Z",
-      "uppercase": "Z",
-      "lowercase": "z",
-      "family": "alphabet",
-      "states": {
-        "empty": "assets/characters/alphabet/z/empty.webp",
-        "low": "assets/characters/alphabet/z/low.webp",
-        "calm": "assets/characters/alphabet/z/calm.webp",
-        "happy": "assets/characters/alphabet/z/happy.webp",
-        "excited": "assets/characters/alphabet/z/excited.webp"
-      }
-    }
-  ],
-  "numbers": [
-    {
-      "id": "number-1",
-      "displayName": "Number 1",
-      "value": 1,
-      "family": "number",
-      "states": {
-        "empty": "assets/characters/numbers/1/empty.webp",
-        "low": "assets/characters/numbers/1/low.webp",
-        "calm": "assets/characters/numbers/1/calm.webp",
-        "happy": "assets/characters/numbers/1/happy.webp",
-        "excited": "assets/characters/numbers/1/excited.webp"
-      }
-    },
-    {
-      "id": "number-2",
-      "displayName": "Number 2",
-      "value": 2,
-      "family": "number",
-      "states": {
-        "empty": "assets/characters/numbers/2/empty.webp",
-        "low": "assets/characters/numbers/2/low.webp",
-        "calm": "assets/characters/numbers/2/calm.webp",
-        "happy": "assets/characters/numbers/2/happy.webp",
-        "excited": "assets/characters/numbers/2/excited.webp"
-      }
-    },
-    {
-      "id": "number-3",
-      "displayName": "Number 3",
-      "value": 3,
-      "family": "number",
-      "states": {
-        "empty": "assets/characters/numbers/3/empty.webp",
-        "low": "assets/characters/numbers/3/low.webp",
-        "calm": "assets/characters/numbers/3/calm.webp",
-        "happy": "assets/characters/numbers/3/happy.webp",
-        "excited": "assets/characters/numbers/3/excited.webp"
-      }
-    },
-    {
-      "id": "number-4",
-      "displayName": "Number 4",
-      "value": 4,
-      "family": "number",
-      "states": {
-        "empty": "assets/characters/numbers/4/empty.webp",
-        "low": "assets/characters/numbers/4/low.webp",
-        "calm": "assets/characters/numbers/4/calm.webp",
-        "happy": "assets/characters/numbers/4/happy.webp",
-        "excited": "assets/characters/numbers/4/excited.webp"
-      }
-    },
-    {
-      "id": "number-5",
-      "displayName": "Number 5",
-      "value": 5,
-      "family": "number",
-      "states": {
-        "empty": "assets/characters/numbers/5/empty.webp",
-        "low": "assets/characters/numbers/5/low.webp",
-        "calm": "assets/characters/numbers/5/calm.webp",
-        "happy": "assets/characters/numbers/5/happy.webp",
-        "excited": "assets/characters/numbers/5/excited.webp"
-      }
-    },
-    {
-      "id": "number-6",
-      "displayName": "Number 6",
-      "value": 6,
-      "family": "number",
-      "states": {
-        "empty": "assets/characters/numbers/6/empty.webp",
-        "low": "assets/characters/numbers/6/low.webp",
-        "calm": "assets/characters/numbers/6/calm.webp",
-        "happy": "assets/characters/numbers/6/happy.webp",
-        "excited": "assets/characters/numbers/6/excited.webp"
-      }
-    },
-    {
-      "id": "number-7",
-      "displayName": "Number 7",
-      "value": 7,
-      "family": "number",
-      "states": {
-        "empty": "assets/characters/numbers/7/empty.webp",
-        "low": "assets/characters/numbers/7/low.webp",
-        "calm": "assets/characters/numbers/7/calm.webp",
-        "happy": "assets/characters/numbers/7/happy.webp",
-        "excited": "assets/characters/numbers/7/excited.webp"
-      }
-    },
-    {
-      "id": "number-8",
-      "displayName": "Number 8",
-      "value": 8,
-      "family": "number",
-      "states": {
-        "empty": "assets/characters/numbers/8/empty.webp",
-        "low": "assets/characters/numbers/8/low.webp",
-        "calm": "assets/characters/numbers/8/calm.webp",
-        "happy": "assets/characters/numbers/8/happy.webp",
-        "excited": "assets/characters/numbers/8/excited.webp"
-      }
-    },
-    {
-      "id": "number-9",
-      "displayName": "Number 9",
-      "value": 9,
-      "family": "number",
-      "states": {
-        "empty": "assets/characters/numbers/9/empty.webp",
-        "low": "assets/characters/numbers/9/low.webp",
-        "calm": "assets/characters/numbers/9/calm.webp",
-        "happy": "assets/characters/numbers/9/happy.webp",
-        "excited": "assets/characters/numbers/9/excited.webp"
-      }
-    },
-    {
-      "id": "number-10",
-      "displayName": "Number 10",
-      "value": 10,
-      "family": "number",
-      "states": {
-        "empty": "assets/characters/numbers/10/empty.webp",
-        "low": "assets/characters/numbers/10/low.webp",
-        "calm": "assets/characters/numbers/10/calm.webp",
-        "happy": "assets/characters/numbers/10/happy.webp",
-        "excited": "assets/characters/numbers/10/excited.webp"
-      }
-    }
-  ],
+  "alphabet": [],
+  "numbers": [],
   "world": [
     {
       "id": "battery-buddy",
       "displayName": "Battery Buddy",
       "family": "world",
-      "states": {
-        "empty": "assets/characters/world/battery-buddy/empty.webp",
-        "low": "assets/characters/world/battery-buddy/low.webp",
-        "calm": "assets/characters/world/battery-buddy/calm.webp",
-        "happy": "assets/characters/world/battery-buddy/happy.webp",
-        "excited": "assets/characters/world/battery-buddy/excited.webp"
-      }
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
     },
     {
       "id": "elephant",
       "displayName": "Elephant",
       "family": "world",
-      "states": {
-        "empty": "assets/characters/world/elephant/empty.webp",
-        "low": "assets/characters/world/elephant/low.webp",
-        "calm": "assets/characters/world/elephant/calm.webp",
-        "happy": "assets/characters/world/elephant/happy.webp",
-        "excited": "assets/characters/world/elephant/excited.webp"
-      }
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
     },
     {
       "id": "double-decker",
       "displayName": "Double-decker Bus",
       "family": "world",
-      "states": {
-        "empty": "assets/characters/world/double-decker/empty.webp",
-        "low": "assets/characters/world/double-decker/low.webp",
-        "calm": "assets/characters/world/double-decker/calm.webp",
-        "happy": "assets/characters/world/double-decker/happy.webp",
-        "excited": "assets/characters/world/double-decker/excited.webp"
-      }
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
     },
     {
       "id": "plane",
       "displayName": "Plane",
       "family": "world",
-      "states": {
-        "empty": "assets/characters/world/plane/empty.webp",
-        "low": "assets/characters/world/plane/low.webp",
-        "calm": "assets/characters/world/plane/calm.webp",
-        "happy": "assets/characters/world/plane/happy.webp",
-        "excited": "assets/characters/world/plane/excited.webp"
-      }
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
     },
     {
       "id": "boat",
       "displayName": "Boat",
       "family": "world",
-      "states": {
-        "empty": "assets/characters/world/boat/empty.webp",
-        "low": "assets/characters/world/boat/low.webp",
-        "calm": "assets/characters/world/boat/calm.webp",
-        "happy": "assets/characters/world/boat/happy.webp",
-        "excited": "assets/characters/world/boat/excited.webp"
-      }
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
     },
     {
       "id": "letter-a",
       "displayName": "Letter A",
       "family": "world",
-      "states": {
-        "empty": "assets/characters/world/letter-a/empty.webp",
-        "low": "assets/characters/world/letter-a/low.webp",
-        "calm": "assets/characters/world/letter-a/calm.webp",
-        "happy": "assets/characters/world/letter-a/happy.webp",
-        "excited": "assets/characters/world/letter-a/excited.webp"
-      }
-    },
-    {
-      "id": "cupcake",
-      "displayName": "Cupcake",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/cupcake/empty.webp",
-        "low": "assets/characters/world/cupcake/low.webp",
-        "calm": "assets/characters/world/cupcake/calm.webp",
-        "happy": "assets/characters/world/cupcake/happy.webp",
-        "excited": "assets/characters/world/cupcake/excited.webp"
-      }
-    },
-    {
-      "id": "soccer-ball",
-      "displayName": "Soccer Ball",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/soccer-ball/empty.webp",
-        "low": "assets/characters/world/soccer-ball/low.webp",
-        "calm": "assets/characters/world/soccer-ball/calm.webp",
-        "happy": "assets/characters/world/soccer-ball/happy.webp",
-        "excited": "assets/characters/world/soccer-ball/excited.webp"
-      }
-    },
-    {
-      "id": "pencil",
-      "displayName": "Pencil",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/pencil/empty.webp",
-        "low": "assets/characters/world/pencil/low.webp",
-        "calm": "assets/characters/world/pencil/calm.webp",
-        "happy": "assets/characters/world/pencil/happy.webp",
-        "excited": "assets/characters/world/pencil/excited.webp"
-      }
-    },
-    {
-      "id": "house",
-      "displayName": "House",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/house/empty.webp",
-        "low": "assets/characters/world/house/low.webp",
-        "calm": "assets/characters/world/house/calm.webp",
-        "happy": "assets/characters/world/house/happy.webp",
-        "excited": "assets/characters/world/house/excited.webp"
-      }
-    },
-    {
-      "id": "tree",
-      "displayName": "Tree",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/tree/empty.webp",
-        "low": "assets/characters/world/tree/low.webp",
-        "calm": "assets/characters/world/tree/calm.webp",
-        "happy": "assets/characters/world/tree/happy.webp",
-        "excited": "assets/characters/world/tree/excited.webp"
-      }
-    },
-    {
-      "id": "train",
-      "displayName": "Train",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/train/empty.webp",
-        "low": "assets/characters/world/train/low.webp",
-        "calm": "assets/characters/world/train/calm.webp",
-        "happy": "assets/characters/world/train/happy.webp",
-        "excited": "assets/characters/world/train/excited.webp"
-      }
-    },
-    {
-      "id": "car",
-      "displayName": "Car",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/car/empty.webp",
-        "low": "assets/characters/world/car/low.webp",
-        "calm": "assets/characters/world/car/calm.webp",
-        "happy": "assets/characters/world/car/happy.webp",
-        "excited": "assets/characters/world/car/excited.webp"
-      }
-    },
-    {
-      "id": "helicopter",
-      "displayName": "Helicopter",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/helicopter/empty.webp",
-        "low": "assets/characters/world/helicopter/low.webp",
-        "calm": "assets/characters/world/helicopter/calm.webp",
-        "happy": "assets/characters/world/helicopter/happy.webp",
-        "excited": "assets/characters/world/helicopter/excited.webp"
-      }
-    },
-    {
-      "id": "robot",
-      "displayName": "Robot",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/robot/empty.webp",
-        "low": "assets/characters/world/robot/low.webp",
-        "calm": "assets/characters/world/robot/calm.webp",
-        "happy": "assets/characters/world/robot/happy.webp",
-        "excited": "assets/characters/world/robot/excited.webp"
-      }
-    },
-    {
-      "id": "apple",
-      "displayName": "Apple",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/apple/empty.webp",
-        "low": "assets/characters/world/apple/low.webp",
-        "calm": "assets/characters/world/apple/calm.webp",
-        "happy": "assets/characters/world/apple/happy.webp",
-        "excited": "assets/characters/world/apple/excited.webp"
-      }
-    },
-    {
-      "id": "lion",
-      "displayName": "Lion",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/lion/empty.webp",
-        "low": "assets/characters/world/lion/low.webp",
-        "calm": "assets/characters/world/lion/calm.webp",
-        "happy": "assets/characters/world/lion/happy.webp",
-        "excited": "assets/characters/world/lion/excited.webp"
-      }
-    },
-    {
-      "id": "monkey",
-      "displayName": "Monkey",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/monkey/empty.webp",
-        "low": "assets/characters/world/monkey/low.webp",
-        "calm": "assets/characters/world/monkey/calm.webp",
-        "happy": "assets/characters/world/monkey/happy.webp",
-        "excited": "assets/characters/world/monkey/excited.webp"
-      }
-    },
-    {
-      "id": "turtle",
-      "displayName": "Turtle",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/turtle/empty.webp",
-        "low": "assets/characters/world/turtle/low.webp",
-        "calm": "assets/characters/world/turtle/calm.webp",
-        "happy": "assets/characters/world/turtle/happy.webp",
-        "excited": "assets/characters/world/turtle/excited.webp"
-      }
-    },
-    {
-      "id": "clownfish",
-      "displayName": "Clownfish",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/clownfish/empty.webp",
-        "low": "assets/characters/world/clownfish/low.webp",
-        "calm": "assets/characters/world/clownfish/calm.webp",
-        "happy": "assets/characters/world/clownfish/happy.webp",
-        "excited": "assets/characters/world/clownfish/excited.webp"
-      }
-    },
-    {
-      "id": "rocket",
-      "displayName": "Rocket",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/rocket/empty.webp",
-        "low": "assets/characters/world/rocket/low.webp",
-        "calm": "assets/characters/world/rocket/calm.webp",
-        "happy": "assets/characters/world/rocket/happy.webp",
-        "excited": "assets/characters/world/rocket/excited.webp"
-      }
-    },
-    {
-      "id": "star",
-      "displayName": "Star",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/star/empty.webp",
-        "low": "assets/characters/world/star/low.webp",
-        "calm": "assets/characters/world/star/calm.webp",
-        "happy": "assets/characters/world/star/happy.webp",
-        "excited": "assets/characters/world/star/excited.webp"
-      }
-    },
-    {
-      "id": "sun",
-      "displayName": "Sun",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/sun/empty.webp",
-        "low": "assets/characters/world/sun/low.webp",
-        "calm": "assets/characters/world/sun/calm.webp",
-        "happy": "assets/characters/world/sun/happy.webp",
-        "excited": "assets/characters/world/sun/excited.webp"
-      }
-    },
-    {
-      "id": "cloud",
-      "displayName": "Cloud",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/cloud/empty.webp",
-        "low": "assets/characters/world/cloud/low.webp",
-        "calm": "assets/characters/world/cloud/calm.webp",
-        "happy": "assets/characters/world/cloud/happy.webp",
-        "excited": "assets/characters/world/cloud/excited.webp"
-      }
-    },
-    {
-      "id": "rainbow",
-      "displayName": "Rainbow",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/rainbow/empty.webp",
-        "low": "assets/characters/world/rainbow/low.webp",
-        "calm": "assets/characters/world/rainbow/calm.webp",
-        "happy": "assets/characters/world/rainbow/happy.webp",
-        "excited": "assets/characters/world/rainbow/excited.webp"
-      }
-    },
-    {
-      "id": "dinosaur",
-      "displayName": "Dinosaur",
-      "family": "world",
-      "states": {
-        "empty": "assets/characters/world/dinosaur/empty.webp",
-        "low": "assets/characters/world/dinosaur/low.webp",
-        "calm": "assets/characters/world/dinosaur/calm.webp",
-        "happy": "assets/characters/world/dinosaur/happy.webp",
-        "excited": "assets/characters/world/dinosaur/excited.webp"
-      }
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
     }
   ],
-  "missing": []
+  "pilot": [
+    {
+      "id": "battery-buddy",
+      "displayName": "Battery Buddy",
+      "family": "world",
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+    },
+    {
+      "id": "elephant",
+      "displayName": "Elephant",
+      "family": "world",
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+    },
+    {
+      "id": "double-decker",
+      "displayName": "Double-decker Bus",
+      "family": "world",
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+    },
+    {
+      "id": "plane",
+      "displayName": "Plane",
+      "family": "world",
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+    },
+    {
+      "id": "boat",
+      "displayName": "Boat",
+      "family": "world",
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+    },
+    {
+      "id": "letter-a",
+      "displayName": "Letter A",
+      "family": "world",
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+    },
+    {
+      "id": "leon",
+      "displayName": "Leon",
+      "family": "guide",
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+    },
+    {
+      "id": "zaya",
+      "displayName": "Zaya",
+      "family": "guide",
+      "status": "needs-regeneration",
+      "states": {},
+      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+    }
+  ]
 }

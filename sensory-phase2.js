@@ -1,49 +1,81 @@
 'use strict';
 
-  const characterProfiles = {
-    battery: { name: 'Battery Buddy', sprite: 'sprite-battery', empty: 'Battery Buddy is resting. Its energy is empty.' },
-    elephant: { name: 'Ellie Elephant', sprite: 'sprite-elephant', empty: 'Ellie is lying low and resting her big body.' },
-    bus: { name: 'Leon Bus', sprite: 'sprite-bus', empty: 'Leon Bus is parked with sleepy lights.' },
-    plane: { name: 'Sky Plane', sprite: 'sprite-plane', empty: 'Sky Plane is resting safely on the runway.' },
-    boat: { name: 'Bobby Boat', sprite: 'sprite-boat', empty: 'Bobby Boat is quiet at the dock.' },
-    letter: { name: 'Amazing A', sprite: 'sprite-letter', empty: 'Amazing A is resting before the next word.' }
+  const fallbackSprites = {
+    'battery-buddy': 'sprite-battery',
+    elephant: 'sprite-elephant',
+    'double-decker': 'sprite-bus',
+    plane: 'sprite-plane',
+    boat: 'sprite-boat',
+    'letter-a': 'sprite-letter'
   };
 
   const worldSprite = $('#worldSprite');
   const glyphCharacter = $('#glyphCharacter');
   const glyphPack = $('#glyphPack');
+  const energyCharacterImage = $('#energyCharacterImage');
   const glyphColours = ['#348de3', '#4daf5a', '#f28b35', '#8270d5', '#df5f97', '#168fa2'];
+  let characterRegistry = null;
+
+  fetch('data/character-assets.json')
+    .then((response) => response.ok ? response.json() : null)
+    .then((registry) => {
+      characterRegistry = registry;
+      renderCharacterWorld({ announce: false });
+    })
+    .catch(() => {
+      characterRegistry = null;
+    });
 
   function selectedCharacter() {
-    if (state.character === 'letter') {
-      const isNumber = /[0-9]/.test(state.glyph);
-      return { ...characterProfiles.letter, name: `${isNumber ? 'Number' : 'Letter'} ${state.glyph}`, empty: `${state.glyph} is resting before the next adventure.` };
-    }
-    return characterProfiles[state.character] || characterProfiles.battery;
+    const id = window.LeonSalCharacters.normalizeCharacterId(state.character, state.glyph);
+    return {
+      id,
+      family: window.LeonSalCharacters.familyForCharacter(id),
+      name: window.LeonSalCharacters.displayNameForCharacter(id),
+      sprite: fallbackSprites[id] || ''
+    };
   }
 
   function renderCharacterWorld(options = {}) {
     const profile = selectedCharacter();
-    worldSprite.className = `world-sprite sprite ${profile.sprite}`;
-    const glyphMode = state.character === 'letter';
+    const canonicalProfile = window.LeonSalCharacters.energyProfile(state.energy, profile.id);
+    const artworkRecord = window.LeonSalCharacters.findRecord(characterRegistry, profile.family, profile.id);
+    const artworkPath = artworkRecord?.status === 'approved' ? artworkRecord.states?.[canonicalProfile.state] : '';
+    if (artworkPath && !/source-safe-keeping|rejected-character-crops-v1/.test(artworkPath)) {
+      energyCharacterImage.src = artworkPath;
+      energyCharacterImage.alt = `${profile.name} ${canonicalProfile.label}`;
+      energyCharacterImage.hidden = false;
+      elements.characterStage.classList.add('has-production-art');
+    } else {
+      energyCharacterImage.removeAttribute('src');
+      energyCharacterImage.alt = '';
+      energyCharacterImage.hidden = true;
+      elements.characterStage.classList.remove('has-production-art');
+    }
+    worldSprite.className = profile.sprite ? `world-sprite sprite ${profile.sprite}` : 'world-sprite';
+    const glyphMode = profile.family === 'alphabet' || profile.family === 'number';
     elements.energyBuddy.classList.toggle('is-glyph', glyphMode);
     glyphCharacter.querySelector('b').textContent = state.glyph;
     glyphCharacter.style.setProperty('--glyph-colour', glyphColours[(state.glyph.charCodeAt(0) || 0) % glyphColours.length]);
-    elements.dashBuddy.className = glyphMode ? 'dash-buddy is-glyph' : `dash-buddy sprite ${profile.sprite}`;
-    elements.dashBuddy.textContent = glyphMode ? state.glyph : '';
+    elements.dashBuddy.className = glyphMode || !profile.sprite ? 'dash-buddy is-glyph' : `dash-buddy sprite ${profile.sprite}`;
+    elements.dashBuddy.textContent = glyphMode || !profile.sprite ? (glyphMode ? state.glyph : profile.name.charAt(0)) : '';
     $$('.character-choice').forEach((button) => {
-      const selected = button.dataset.character === state.character;
+      const selected = window.LeonSalCharacters.normalizeCharacterId(button.dataset.character) === profile.id;
       button.classList.toggle('is-selected', selected);
       button.setAttribute('aria-pressed', String(selected));
     });
-    if (state.energy <= 5) elements.energyMessage.textContent = profile.empty;
-    else if (state.energy >= 85) elements.energyMessage.textContent = `${profile.name} is fully charged, bright and ready to help.`;
+    elements.characterStage.dataset.characterId = profile.id;
+    elements.characterStage.dataset.characterFamily = profile.family;
+    elements.characterStage.dataset.energyState = canonicalProfile.state;
+    elements.energyState.textContent = canonicalProfile.label;
+    elements.energyMessage.textContent = canonicalProfile.message;
+    elements.energySlider.setAttribute('aria-valuetext', `${canonicalProfile.label}, ${Math.round(state.energy)} percent, ${profile.name}`);
     if (options.announce !== false) announce(`${profile.name} selected.`);
   }
 
   $$('.character-choice').forEach((button) => {
     button.addEventListener('click', () => {
-      state.character = button.dataset.character;
+      state.character = window.LeonSalCharacters.normalizeCharacterId(button.dataset.character);
       saveState();
       renderCharacterWorld();
       playTone('tap');
@@ -65,7 +97,7 @@
       button.style.setProperty('--glyph-colour', glyphColours[index % glyphColours.length]);
       button.setAttribute('aria-label', `Choose ${pack === 'letters' ? 'letter' : 'number'} ${glyph}`);
       button.addEventListener('click', () => {
-        state.character = 'letter';
+        state.character = pack === 'letters' ? `letter-${glyph.toLowerCase()}` : `number-${glyph}`;
         state.glyph = glyph;
         saveState();
         renderGlyphPack(pack);

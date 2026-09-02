@@ -94,13 +94,14 @@
       <div class="battery-grid">
         <div class="character-stage" id="characterStage">
           <span class="sky-symbol" id="skySymbol" aria-hidden="true">☀️</span>
+          <img id="energyCharacterImage" class="energy-character-image" alt="" decoding="async" hidden>
           <div class="ground-shadow" aria-hidden="true"></div>
           <div class="world-character" id="energyBuddy" aria-hidden="true">
-            <span class="world-sprite sprite sprite-battery" id="worldSprite"></span>
+            <span class="world-sprite" id="worldSprite"></span>
             <span class="glyph-character" id="glyphCharacter"><b>A</b><i>•‿•</i></span>
             <span class="sleep-cloud" id="sleepCloud">z · z · Z</span>
-            <span class="energy-number" id="energyNumber">68%</span>
           </div>
+          <span class="energy-number" id="energyNumber">68%</span>
         </div>
 
         <div class="energy-controls">
@@ -347,6 +348,7 @@
   </footer>
 
   <div class="sr-only" id="liveRegion" aria-live="polite" aria-atomic="true"></div>
+  <script src="js/characters.js" defer></script>
   <script src="sensory-core.js" defer></script>
   <script src="sensory-games.js" defer></script>
   <script src="sensory-trail.js" defer></script>

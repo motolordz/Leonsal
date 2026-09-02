@@ -587,3 +587,23 @@
   position: relative;
   z-index: 6;
 }
+
+.energy-character-image {
+  display: block;
+  position: relative;
+  z-index: 2;
+  max-width: min(82vw, 520px);
+  max-height: clamp(220px, 42vw, 520px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.energy-character-image[hidden] {
+  display: none;
+}
+
+.character-stage.has-production-art .world-character {
+  display: none;
+}

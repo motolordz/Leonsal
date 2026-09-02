@@ -3,17 +3,6 @@
 
   var states = ["empty", "low", "calm", "happy", "excited"];
   var registryPromise = null;
-  var lastEnergyPercent = 68;
-  var selectedCharacter = { family: "world", id: "battery-buddy" };
-
-  function stateFromPercent(percent) {
-    var value = Math.max(0, Math.min(100, Number(percent) || 0));
-    if (value < 20) return "empty";
-    if (value < 40) return "low";
-    if (value < 65) return "calm";
-    if (value < 90) return "happy";
-    return "excited";
-  }
 
   function loadRegistry() {
     if (!registryPromise) {
@@ -39,6 +28,7 @@
 
   function setRealImage(target, record, state, label) {
     if (!target || !record || !record.states || !record.states[state]) return false;
+    if (/source-safe-keeping|rejected-character-crops-v1/.test(record.states[state])) return false;
     target.classList.add("ls-real-art-host");
     target.dataset.realCharacterId = record.id;
     target.dataset.realState = state;
@@ -83,9 +73,11 @@
     var energyNumber = document.getElementById("energyNumber");
 
     function render() {
-      var state = stateFromPercent(slider ? slider.value : lastEnergyPercent);
-      var list = selectedCharacter.family === "guide" ? registry.guides : registry.world;
-      var record = byId(list, selectedCharacter.id);
+      var appState = window.leonSalState || {};
+      var characterId = window.LeonSalCharacters.normalizeCharacterId(appState.character || "battery-buddy", appState.glyph);
+      var family = window.LeonSalCharacters.familyForCharacter(characterId);
+      var state = window.LeonSalCharacters.stateFromPercent(slider ? slider.value : appState.energy);
+      var record = window.LeonSalCharacters.findRecord(registry, family, characterId);
       preload(record);
       setRealImage(worldSprite, record, state, (record && record.displayName) + " " + state);
       setRealImage(dashBuddy, record, state, (record && record.displayName) + " " + state);
@@ -102,20 +94,12 @@
         setRealImage(icon, record, "calm", record.displayName + " thumbnail");
       }
       button.addEventListener("click", function () {
-        selectedCharacter = {
-          family: button.dataset.character === "leon" || button.dataset.character === "zaya" ? "guide" : "world",
-          id: map[button.dataset.character] || selectedCharacter.id
-        };
         render();
       });
     });
 
     if (slider) {
-      lastEnergyPercent = slider.value;
-      slider.addEventListener("input", function () {
-        lastEnergyPercent = slider.value;
-        render();
-      });
+      slider.addEventListener("input", render);
     }
     render();
   }

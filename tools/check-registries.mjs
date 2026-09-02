@@ -61,6 +61,9 @@ for (const record of world) {
 
 for (const family of ["guides", "alphabet", "numbers", "world"]) {
   for (const record of characterAssets[family] || []) {
+    if (record.status && record.status !== "approved") {
+      continue;
+    }
     const keys = Object.keys(record.states || {}).sort();
     if (keys.join(",") !== canonicalStates.slice().sort().join(",")) {
       failures.push(`${family}: ${record.id} must expose exactly ${canonicalStates.join(", ")}`);
