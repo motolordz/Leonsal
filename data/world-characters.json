@@ -1,0 +1,22 @@
+[
+  {"id":"world-sun","displayName":"Sun","family":"world","learningRoles":["day","weather","routine"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-moon","displayName":"Moon","family":"world","learningRoles":["night","sleep","calm"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-cloud","displayName":"Cloud","family":"world","learningRoles":["weather","breathing"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-rainbow","displayName":"Rainbow","family":"world","learningRoles":["colours","sequencing","hope"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-rocket","displayName":"Rocket","family":"world","learningRoles":["space","goals"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-earth","displayName":"Earth","family":"world","learningRoles":["geography","environment"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-robot","displayName":"Robot","family":"world","learningRoles":["coding","patterns"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-magnifier","displayName":"Magnifying Glass","family":"world","learningRoles":["observation","discovery"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-pencil","displayName":"Pencil","family":"world","learningRoles":["writing","mark-making"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-book","displayName":"Book","family":"world","learningRoles":["reading","stories"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-paintbrush","displayName":"Paintbrush","family":"world","learningRoles":["art","creativity"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-music-note","displayName":"Musical Note","family":"world","learningRoles":["rhythm","music"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-clock","displayName":"Clock","family":"world","learningRoles":["time","routine"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-calendar","displayName":"Calendar","family":"world","learningRoles":["days","months","events"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-puzzle","displayName":"Puzzle Piece","family":"world","learningRoles":["problem solving"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-water","displayName":"Water Droplet","family":"world","learningRoles":["science","hydration","nature"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-tree","displayName":"Tree","family":"world","learningRoles":["seasons","growth","environment"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-train","displayName":"Train","family":"world","learningRoles":["ordering","journeys","movement"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-dinosaur","displayName":"Dinosaur","family":"world","learningRoles":["history","fossils","imaginative play"],"states":["empty","low","calm","happy","excited"]},
+  {"id":"world-treasure","displayName":"Treasure Chest","family":"world","learningRoles":["earned discovery","lesson completion"],"states":["empty","low","calm","happy","excited"]}
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "number-merge",
+    "title": "Number Merge",
+    "route": "number-merge.html",
+    "status": "current",
+    "learningArea": "numbers",
+    "characterFamilies": ["number", "guide"],
+    "showInUniverse": true
+  },
+  {
+    "id": "alphabet-adventure",
+    "title": "Alphabet Adventure",
+    "route": "alphabet-adventure.html",
+    "status": "current",
+    "learningArea": "letters",
+    "characterFamilies": ["alphabet", "guide"],
+    "showInUniverse": true
+  },
+  {
+    "id": "shape-builder",
+    "title": "Shape Builder",
+    "route": "shape-builder.html",
+    "status": "current",
+    "learningArea": "shapes",
+    "characterFamilies": ["world", "guide"],
+    "showInUniverse": true
+  },
+  {
+    "id": "planet-pals",
+    "title": "Planet Pals",
+    "route": "planet-pals.html",
+    "status": "planned",
+    "learningArea": "space",
+    "characterFamilies": ["planet", "guide"],
+    "showInUniverse": false
+  }
+]

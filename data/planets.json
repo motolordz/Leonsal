@@ -1,0 +1,142 @@
+[
+  {
+    "id": "sun",
+    "displayName": "Sun",
+    "astronomy": {
+      "name": "Sun",
+      "type": "star",
+      "systemRole": "center of the Solar System"
+    },
+    "personality": {
+      "tone": "warm and steady",
+      "learningRole": "day, light, routines, and careful observation"
+    },
+    "characterId": "planet-sun"
+  },
+  {
+    "id": "mercury",
+    "displayName": "Mercury",
+    "astronomy": {
+      "name": "Mercury",
+      "type": "planet",
+      "systemRole": "planet in the Solar System"
+    },
+    "personality": {
+      "tone": "quick and curious",
+      "learningRole": "noticing, comparing, and sequencing"
+    },
+    "characterId": "planet-mercury"
+  },
+  {
+    "id": "venus",
+    "displayName": "Venus",
+    "astronomy": {
+      "name": "Venus",
+      "type": "planet",
+      "systemRole": "planet in the Solar System"
+    },
+    "personality": {
+      "tone": "bright and thoughtful",
+      "learningRole": "patterns, observation, and descriptive language"
+    },
+    "characterId": "planet-venus"
+  },
+  {
+    "id": "earth",
+    "displayName": "Earth",
+    "astronomy": {
+      "name": "Earth",
+      "type": "planet",
+      "systemRole": "planet in the Solar System"
+    },
+    "personality": {
+      "tone": "kind and caring",
+      "learningRole": "home, nature, maps, and caring for places"
+    },
+    "characterId": "planet-earth"
+  },
+  {
+    "id": "mars",
+    "displayName": "Mars",
+    "astronomy": {
+      "name": "Mars",
+      "type": "planet",
+      "systemRole": "planet in the Solar System"
+    },
+    "personality": {
+      "tone": "brave and patient",
+      "learningRole": "exploration, questions, and comparing"
+    },
+    "characterId": "planet-mars"
+  },
+  {
+    "id": "jupiter",
+    "displayName": "Jupiter",
+    "astronomy": {
+      "name": "Jupiter",
+      "type": "planet",
+      "systemRole": "planet in the Solar System"
+    },
+    "personality": {
+      "tone": "big-hearted and encouraging",
+      "learningRole": "grouping, scale, and turn-taking"
+    },
+    "characterId": "planet-jupiter"
+  },
+  {
+    "id": "saturn",
+    "displayName": "Saturn",
+    "astronomy": {
+      "name": "Saturn",
+      "type": "planet",
+      "systemRole": "planet in the Solar System"
+    },
+    "personality": {
+      "tone": "gentle and balanced",
+      "learningRole": "circles, order, and careful movement"
+    },
+    "characterId": "planet-saturn"
+  },
+  {
+    "id": "uranus",
+    "displayName": "Uranus",
+    "astronomy": {
+      "name": "Uranus",
+      "type": "planet",
+      "systemRole": "planet in the Solar System"
+    },
+    "personality": {
+      "tone": "calm and imaginative",
+      "learningRole": "different perspectives and gentle discovery"
+    },
+    "characterId": "planet-uranus"
+  },
+  {
+    "id": "neptune",
+    "displayName": "Neptune",
+    "astronomy": {
+      "name": "Neptune",
+      "type": "planet",
+      "systemRole": "planet in the Solar System"
+    },
+    "personality": {
+      "tone": "quiet and focused",
+      "learningRole": "listening, focus, and far-away thinking"
+    },
+    "characterId": "planet-neptune"
+  },
+  {
+    "id": "moon",
+    "displayName": "Moon",
+    "astronomy": {
+      "name": "Moon",
+      "type": "natural satellite",
+      "systemRole": "Earth's natural satellite"
+    },
+    "personality": {
+      "tone": "soft and restful",
+      "learningRole": "night, rest, calm transitions, and routines"
+    },
+    "characterId": "planet-moon"
+  }
+]

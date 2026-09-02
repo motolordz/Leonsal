@@ -1,0 +1,51 @@
+{
+  "states": ["empty", "low", "calm", "happy", "excited"],
+  "families": ["guide", "world", "alphabet", "number", "planet"],
+  "guides": [
+    {
+      "id": "guide-leon",
+      "displayName": "Leon",
+      "family": "guide",
+      "role": "primary sibling guide",
+      "requiredNameText": "LEON",
+      "status": "source-reference",
+      "sourceReferences": [
+        "assets/source-safe-keeping/learning-universe-foundation/03-leon-five-energy-states.jpg",
+        "assets/source-safe-keeping/character-reference-sheets/09-leon-zaya-base-character-reference.jpg"
+      ]
+    },
+    {
+      "id": "guide-zaya",
+      "displayName": "Zaya",
+      "family": "guide",
+      "role": "primary sibling guide",
+      "requiredNameText": "ZAYA",
+      "status": "source-reference",
+      "sourceReferences": [
+        "assets/source-safe-keeping/learning-universe-foundation/04-zaya-five-energy-states.jpg",
+        "assets/source-safe-keeping/character-reference-sheets/09-leon-zaya-base-character-reference.jpg"
+      ]
+    }
+  ],
+  "planetCharacters": [
+    "planet-sun",
+    "planet-mercury",
+    "planet-venus",
+    "planet-earth",
+    "planet-mars",
+    "planet-jupiter",
+    "planet-saturn",
+    "planet-uranus",
+    "planet-neptune",
+    "planet-moon"
+  ],
+  "assetRoots": {
+    "planet": "assets/characters/planets/",
+    "sourceReferences": "assets/source-safe-keeping/"
+  },
+  "notes": [
+    "Source JPG contact sheets are preserved for review and provenance only.",
+    "Production game code must use individual transparent character assets when approved.",
+    "Planet astronomy fields store identity facts separately from personality fields."
+  ]
+}
