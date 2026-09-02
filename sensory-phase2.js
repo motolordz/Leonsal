@@ -95,7 +95,7 @@
       button.className = `glyph-choice${state.character === 'letter' && state.glyph === glyph ? ' is-selected' : ''}`;
       button.textContent = glyph;
       button.style.setProperty('--glyph-colour', glyphColours[index % glyphColours.length]);
-      button.setAttribute('aria-label', `Choose ${pack === 'letters' ? 'letter' : 'number'} ${glyph}`);
+      button.setAttribute('aria-label', `Choose ${pack === 'letters' ? 'letter' : 'number'} ${glyph}. Approved character artwork is pending.`);
       button.addEventListener('click', () => {
         state.character = pack === 'letters' ? `letter-${glyph.toLowerCase()}` : `number-${glyph}`;
         state.glyph = glyph;

@@ -35,6 +35,19 @@ body.night-mode .character-choice.is-selected { background: #213657; }
   background-repeat: no-repeat;
 }
 .character-choice .sprite { width: 100%; aspect-ratio: 1; margin: 0 auto 3px; }
+.character-choice .artwork-needed {
+  display: grid;
+  place-items: center;
+  width: min(100%, 132px);
+  aspect-ratio: 1;
+  margin: 0 auto 3px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f4f8ff, #fff8df);
+  border: 3px dashed #b9cce8;
+  color: var(--navy);
+  font-size: clamp(2rem, 8vw, 4.4rem);
+  font-weight: 1000;
+}
 .sprite-battery { background-position: 0% 0%; }
 .sprite-elephant { background-position: 50% 0%; }
 .sprite-bus { background-position: 100% 0%; }
