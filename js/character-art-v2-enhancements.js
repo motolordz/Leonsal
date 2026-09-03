@@ -63,16 +63,22 @@
     });
   }
 
-  function renderDash(detail) {
+  function stageDetail() {
+    const stage = document.getElementById('characterStage');
+    return {
+      id: stage?.dataset.characterId || window.leonSalState?.character || 'battery-buddy',
+      state: stage?.dataset.energyState ||
+        window.LeonSalCharacters?.stateFromPercent?.(window.leonSalState?.energy ?? 68) ||
+        'calm'
+    };
+  }
+
+  function renderDash(detail = stageDetail()) {
     const dash = document.getElementById('dashBuddy');
     if (!dash || !registry) return;
 
-    const selected = detail?.id || window.leonSalState?.character || 'battery-buddy';
-    const stateName = detail?.state ||
-      window.LeonSalCharacters?.stateFromPercent?.(window.leonSalState?.energy ?? 68) ||
-      'calm';
-    const record = recordFor(selected);
-    const path = approvedPath(record, stateName);
+    const record = recordFor(detail.id);
+    const path = approvedPath(record, detail.state);
 
     if (!path) {
       dash.classList.remove('has-production-art-v2');
@@ -80,6 +86,8 @@
       dash.style.removeProperty('background-size');
       dash.style.removeProperty('background-position');
       dash.style.removeProperty('background-repeat');
+      delete dash.dataset.characterId;
+      delete dash.dataset.characterState;
       return;
     }
 
@@ -95,11 +103,11 @@
     dash.style.setProperty('background-position', 'center', 'important');
     dash.style.setProperty('background-repeat', 'no-repeat', 'important');
     dash.dataset.characterId = record.id;
-    dash.dataset.characterState = stateName;
+    dash.dataset.characterState = detail.state;
   }
 
-  function preloadCurrentCharacter(detail) {
-    const record = recordFor(detail?.id || window.leonSalState?.character || 'battery-buddy');
+  function preloadCurrentCharacter(detail = stageDetail()) {
+    const record = recordFor(detail.id);
     if (!record || record.status !== 'approved') return;
     Object.values(record.states || {}).forEach((path) => {
       const image = new Image();
@@ -107,11 +115,27 @@
     });
   }
 
+  function syncFromStage() {
+    const detail = stageDetail();
+    renderDash(detail);
+    preloadCurrentCharacter(detail);
+  }
+
   function onCharacterChange(event) {
-    const detail = event.detail || {};
+    const detail = event.detail || stageDetail();
     renderThumbnails();
     renderDash(detail);
     preloadCurrentCharacter(detail);
+  }
+
+  function observeCanonicalStage() {
+    const stage = document.getElementById('characterStage');
+    if (!stage) return;
+    const observer = new MutationObserver(syncFromStage);
+    observer.observe(stage, {
+      attributes: true,
+      attributeFilter: ['data-character-id', 'data-energy-state']
+    });
   }
 
   async function boot() {
@@ -120,8 +144,8 @@
       if (!response.ok) throw new Error(`Character registry returned ${response.status}`);
       registry = await response.json();
       renderThumbnails();
-      renderDash();
-      preloadCurrentCharacter();
+      syncFromStage();
+      observeCanonicalStage();
       window.addEventListener('leonsal:characterchange', onCharacterChange);
     } catch (error) {
       console.error('LeonSal character-art v2 enhancement failed:', error);
