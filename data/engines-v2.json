@@ -1,0 +1,605 @@
+{
+  "version": 1,
+  "generatedFrom": "LEONSAL V2 engine library phase 2",
+  "engines": [
+    {
+      "id": "input",
+      "name": "Input Engine",
+      "capabilities": [
+        "Pointer/touch/mouse/pen capture",
+        "drag",
+        "tap",
+        "hold"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "motion-spring",
+      "name": "Motion/Spring Engine",
+      "capabilities": [
+        "rAF loop",
+        "delta time",
+        "easing",
+        "spring interpolation"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "hold-to-breathe"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "state-machine",
+      "name": "State Machine Engine",
+      "capabilities": [
+        "Explicit state machines and canonical energy states"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "sensory-settings",
+      "name": "Sensory Settings Engine",
+      "capabilities": [
+        "Motion",
+        "sound",
+        "vibration",
+        "calm mode",
+        "particles",
+        "reduced motion"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "audio",
+      "name": "Audio Engine",
+      "capabilities": [
+        "User-triggered tones",
+        "mute",
+        "stop",
+        "repeat-ready playback"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "tap"
+      ],
+      "supportedGameTemplates": [],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "particle",
+      "name": "Particle Engine",
+      "capabilities": [
+        "Bounded bubbles",
+        "stars",
+        "sparkles",
+        "rain",
+        "fireflies"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "quiet-bubble-garden",
+        "firefly-catch",
+        "snow-globe",
+        "star-shower"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 80,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "trail-drawing",
+      "name": "Trail/Drawing Engine",
+      "capabilities": [
+        "High-DPI touch trails",
+        "interpolation",
+        "fading tails"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "finger-light-trail"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "gauge-fill",
+      "name": "Gauge/Fill Engine",
+      "capabilities": [
+        "Continuous 0-100 fills",
+        "SVG gauges",
+        "battery states"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "my-energy-battery"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "drag-snap",
+      "name": "Drag/Snap Engine",
+      "capabilities": [
+        "Snapping",
+        "drop zones",
+        "callbacks",
+        "tap alternative"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "number-merge"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "reward",
+      "name": "Reward Engine",
+      "capabilities": [
+        "Stars",
+        "badges",
+        "calm celebrations",
+        "completion reactions"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "trace",
+      "name": "Trace Engine",
+      "capabilities": [
+        "Path",
+        "letter",
+        "number",
+        "shape",
+        "road tracing with tolerance"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "letter-tracing",
+        "number-tracing",
+        "shape-tracing"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "sort-match",
+      "name": "Sort/Match Engine",
+      "capabilities": [
+        "Category",
+        "colour",
+        "shape",
+        "object matching with tap or drag"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "colour-match",
+        "big-small",
+        "sort-it",
+        "animal-habitats"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "sequence",
+      "name": "Sequence Engine",
+      "capabilities": [
+        "First/next/last",
+        "routines",
+        "days",
+        "story order"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "alphabet-adventure",
+        "pattern-builder",
+        "days-week",
+        "months-year",
+        "transport-adventure"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "orbit",
+      "name": "Orbit Engine",
+      "capabilities": [
+        "Circular/orbital motion",
+        "drag-to-orbit",
+        "speed scaling"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "planet-pals"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "build-assembly",
+      "name": "Build/Assembly Engine",
+      "capabilities": [
+        "Shapes into pictures",
+        "puzzles",
+        "snap points"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "shape-builder",
+        "build-solar-system"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "rhythm",
+      "name": "Rhythm Engine",
+      "capabilities": [
+        "Tap pulse",
+        "repeat pattern",
+        "visual beat",
+        "optional sound"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "balance-tilt",
+      "name": "Balance/Tilt Engine",
+      "capabilities": [
+        "Pointer-first balancing",
+        "optional device orientation"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "cause-effect",
+      "name": "Cause-and-Effect Engine",
+      "capabilities": [
+        "Switches",
+        "levers",
+        "charge activation",
+        "transformations"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "dash-to-charging-dock",
+        "growing-garden",
+        "weather-world"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "time-cycle",
+      "name": "Time/Cycle Engine",
+      "capabilities": [
+        "Day/night",
+        "clock",
+        "weekdays",
+        "months",
+        "seasons",
+        "timelines"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "day-night",
+        "seasons",
+        "first-clock"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 0,
+        "mobileViewport": "390x844"
+      }
+    },
+    {
+      "id": "calm-world",
+      "name": "Calm World Engine",
+      "capabilities": [
+        "Ambient rain",
+        "clouds",
+        "aquarium",
+        "stars",
+        "breathing scenes"
+      ],
+      "sensorySettings": [
+        "reduced-motion",
+        "calm-mode",
+        "sound-off",
+        "vibration-off",
+        "cleanup"
+      ],
+      "inputModes": [
+        "touch",
+        "mouse",
+        "pen"
+      ],
+      "supportedGameTemplates": [
+        "calm-rain-window"
+      ],
+      "performanceBudget": {
+        "targetFps": 60,
+        "maxParticles": 80,
+        "mobileViewport": "390x844"
+      }
+    }
+  ]
+}

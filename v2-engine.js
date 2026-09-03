@@ -498,11 +498,24 @@ const LeonSalV2 = (() => {
   }
 
   class DragDropEngine {
-    constructor() { this.items = new Map(); }
+    constructor(options = {}) {
+      this.items = new Map();
+      this.snapDistance = options.snapDistance || 42;
+    }
     register(item, zone, callbacks = {}) {
       this.items.set(item, { zone, callbacks });
       item.addEventListener('click', () => callbacks.select?.(item));
       zone.addEventListener('click', () => callbacks.drop?.(item, zone));
+    }
+    nearest(point, zones) {
+      let best = null;
+      for (const zone of zones) {
+        const rect = zone.getBoundingClientRect();
+        const center = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+        const distance = Math.hypot(point.x - center.x, point.y - center.y);
+        if (!best || distance < best.distance) best = { zone, distance };
+      }
+      return best && best.distance <= this.snapDistance ? best.zone : null;
     }
   }
 
@@ -519,6 +532,173 @@ const LeonSalV2 = (() => {
     }
   }
 
+  class TraceEngine extends EventBus {
+    constructor(canvas, motion, settings, options = {}) {
+      super();
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.motion = motion;
+      this.settings = settings;
+      this.path = options.path || [];
+      this.tolerance = options.tolerance || 34;
+      this.progress = 0;
+      this.points = [];
+      this.resize();
+      window.addEventListener('resize', () => this.resize());
+      this.draw();
+    }
+    resize() {
+      const rect = this.canvas.getBoundingClientRect();
+      const scale = Math.min(2, window.devicePixelRatio || 1);
+      this.canvas.width = Math.max(1, Math.round(rect.width * scale));
+      this.canvas.height = Math.max(1, Math.round(rect.height * scale));
+      this.ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    }
+    setPath(pathPoints) {
+      this.path = pathPoints;
+      this.reset();
+    }
+    reset() {
+      this.progress = 0;
+      this.points = [];
+      this.draw();
+    }
+    addPoint(x, y) {
+      const target = this.path[Math.min(this.progress, this.path.length - 1)];
+      if (!target) return { complete: true, near: true, progress: 1 };
+      const distance = Math.hypot(x - target.x, y - target.y);
+      const near = distance <= this.tolerance;
+      this.points.push({ x, y, near, age: 0 });
+      if (near) this.progress = Math.min(this.path.length, this.progress + 1);
+      this.draw();
+      const complete = this.progress >= this.path.length;
+      if (complete) this.emit('complete', { progress: 1 });
+      return { complete, near, progress: this.path.length ? this.progress / this.path.length : 1 };
+    }
+    draw() {
+      const rect = this.canvas.getBoundingClientRect();
+      this.ctx.clearRect(0, 0, rect.width, rect.height);
+      this.ctx.lineCap = 'round';
+      this.ctx.lineJoin = 'round';
+      if (this.path.length > 1) {
+        this.ctx.strokeStyle = 'rgba(255,255,255,.8)';
+        this.ctx.lineWidth = this.tolerance * 2;
+        this.ctx.beginPath();
+        this.path.forEach((p, i) => i ? this.ctx.lineTo(p.x, p.y) : this.ctx.moveTo(p.x, p.y));
+        this.ctx.stroke();
+        this.ctx.strokeStyle = '#2f91e8';
+        this.ctx.lineWidth = 16;
+        this.ctx.stroke();
+      }
+      if (this.points.length > 1) {
+        this.ctx.strokeStyle = '#45bd6b';
+        this.ctx.lineWidth = 18;
+        this.ctx.shadowBlur = this.settings.value.calmMode ? 0 : 18;
+        this.ctx.shadowColor = 'rgba(69,189,107,.52)';
+        this.ctx.beginPath();
+        this.points.forEach((p, i) => i ? this.ctx.lineTo(p.x, p.y) : this.ctx.moveTo(p.x, p.y));
+        this.ctx.stroke();
+        this.ctx.shadowBlur = 0;
+      }
+    }
+  }
+
+  class SortMatchEngine extends EventBus {
+    constructor() { super(); this.matches = new Map(); }
+    register(itemId, categoryId) { this.matches.set(itemId, categoryId); }
+    check(itemId, categoryId) {
+      const matched = this.matches.get(itemId) === categoryId;
+      this.emit(matched ? 'match' : 'try-again', { itemId, categoryId });
+      return matched;
+    }
+  }
+
+  class SequenceEngine extends EventBus {
+    constructor(items = []) { super(); this.items = items; this.index = 0; }
+    current() { return this.items[this.index]; }
+    next() { this.index = clamp(this.index + 1, 0, Math.max(0, this.items.length - 1)); this.emit('change', { item: this.current(), index: this.index }); return this.current(); }
+    previous() { this.index = clamp(this.index - 1, 0, Math.max(0, this.items.length - 1)); this.emit('change', { item: this.current(), index: this.index }); return this.current(); }
+    reset() { this.index = 0; this.emit('change', { item: this.current(), index: this.index }); }
+  }
+
+  class OrbitEngine extends EventBus {
+    constructor(motion, settings) { super(); this.motion = motion; this.settings = settings; this.items = new Set(); this.remove = null; }
+    add(item) {
+      const next = { angle: 0, speed: .45, radius: 100, ...item };
+      next.baseSpeed = next.baseSpeed || next.speed;
+      this.items.add(next);
+      this.start();
+    }
+    start() { if (this.remove) return; this.remove = this.motion.add((dt) => this.step(dt)); }
+    step(dt) {
+      for (const item of this.items) {
+        if (this.settings.allowsMotion()) item.angle += item.speed * dt;
+        item.x = item.cx + Math.cos(item.angle) * item.radius;
+        item.y = item.cy + Math.sin(item.angle) * item.radius;
+        item.update?.(item);
+      }
+    }
+    setSpeed(scale) { for (const item of this.items) item.speed = item.baseSpeed * scale; }
+    destroy() { this.remove?.(); this.remove = null; this.items.clear(); }
+  }
+
+  class BuildAssemblyEngine extends EventBus {
+    constructor(points = []) { super(); this.points = points; this.placed = new Set(); }
+    snap(pieceId, x, y) {
+      const point = this.points.find((candidate) => candidate.id === pieceId);
+      if (!point) return null;
+      const near = Math.hypot(point.x - x, point.y - y) <= (point.tolerance || 36);
+      if (near) this.placed.add(pieceId);
+      this.emit(near ? 'snap' : 'miss', { pieceId, point });
+      return near ? point : null;
+    }
+    complete() { return this.placed.size >= this.points.length; }
+  }
+
+  class RhythmEngine extends EventBus {
+    constructor(pattern = []) { super(); this.pattern = pattern; this.index = 0; }
+    tap(value) {
+      const expected = this.pattern[this.index];
+      const matched = expected === value;
+      this.index = matched ? (this.index + 1) % this.pattern.length : 0;
+      this.emit(matched ? 'beat' : 'reset', { value, expected, index: this.index });
+      return matched;
+    }
+  }
+
+  class BalanceTiltEngine extends EventBus {
+    constructor(settings) { super(); this.settings = settings; this.x = 0; this.y = 0; }
+    setPointer(point, rect) {
+      this.x = clamp(((point.x - rect.left) / rect.width - .5) * 2, -1, 1);
+      this.y = clamp(((point.y - rect.top) / rect.height - .5) * 2, -1, 1);
+      this.emit('tilt', { x: this.x, y: this.y });
+    }
+  }
+
+  class CauseEffectEngine extends EventBus {
+    constructor() { super(); this.effects = new Map(); }
+    connect(cause, effect) { this.effects.set(cause, effect); }
+    trigger(cause, data = {}) {
+      const effect = this.effects.get(cause);
+      const result = effect?.(data);
+      this.emit('effect', { cause, result });
+      return result;
+    }
+  }
+
+  class TimeCycleEngine extends EventBus {
+    constructor(items = []) { super(); this.sequence = new SequenceEngine(items); }
+    set(index) { this.sequence.index = clamp(index, 0, Math.max(0, this.sequence.items.length - 1)); this.emit('cycle', { item: this.sequence.current(), index: this.sequence.index }); }
+  }
+
+  class CalmWorldEngine {
+    constructor(canvas, motion, settings) {
+      this.particles = new ParticleEngine(canvas, motion, settings);
+    }
+    rain(count = 28) { this.particles.seed('bubbles', count); this.particles.start('bubbles'); }
+    destroy() { this.particles.destroy(); }
+  }
+
   return {
     EventBus,
     SensorySettings,
@@ -531,6 +711,16 @@ const LeonSalV2 = (() => {
     GaugeBattery,
     DragDropEngine,
     RewardEngine,
+    TraceEngine,
+    SortMatchEngine,
+    SequenceEngine,
+    OrbitEngine,
+    BuildAssemblyEngine,
+    RhythmEngine,
+    BalanceTiltEngine,
+    CauseEffectEngine,
+    TimeCycleEngine,
+    CalmWorldEngine,
     SettingsPanel,
     clamp,
     lerp,

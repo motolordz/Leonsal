@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trace Engine</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <div class="game-title"><strong>Trace Engine</strong><span>Follow the glowing path.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+    <section class="game-scene trace-world" aria-label="Trace path demonstration">
+      <canvas id="traceCanvas" class="trace-canvas"></canvas>
+      <p class="scene-status" id="status">Trace the big loop.</p>
+      <div class="floating-controls"><button class="scene-button" id="reset" type="button">Reset</button></div>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const canvas = document.querySelector('#traceCanvas');
+    const status = document.querySelector('#status');
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+    function makePath() {
+      const rect = canvas.getBoundingClientRect();
+      const points = [];
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      const rx = rect.width * .28;
+      const ry = rect.height * .23;
+      for (let i = 0; i < 72; i += 1) {
+        const a = -Math.PI / 2 + i / 71 * Math.PI * 2;
+        points.push({ x: cx + Math.cos(a) * rx, y: cy + Math.sin(a) * ry });
+      }
+      return points;
+    }
+    const trace = new LeonSalV2.TraceEngine(canvas, motion, settings, { path: [], tolerance: 32 });
+    function reset() { trace.setPath(makePath()); status.textContent = 'Trace the big loop.'; }
+    new LeonSalV2.InputEngine(canvas).onPointer({
+      down: ({ x, y }) => add(x, y),
+      move: ({ x, y }) => add(x, y)
+    });
+    function add(x, y) {
+      const rect = canvas.getBoundingClientRect();
+      const result = trace.addPoint(x - rect.left, y - rect.top);
+      status.textContent = result.complete ? 'Loop complete.' : result.near ? 'Keep tracing.' : 'Come back to the glow.';
+    }
+    document.querySelector('#reset').addEventListener('click', reset);
+    window.addEventListener('resize', reset);
+    reset();
+  </script>
+</body>
+</html>

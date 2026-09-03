@@ -1,0 +1,605 @@
+{
+  "version": 1,
+  "total": 30,
+  "proceduralCapableCount": 28,
+  "games": [
+    {
+      "order": 1,
+      "id": "my-energy-battery",
+      "title": "My Energy Battery",
+      "category": "SENSORY / REGULATION",
+      "purpose": "self-awareness energy check",
+      "primaryEngine": "gauge-fill",
+      "secondaryEngines": [
+        "input",
+        "motion-spring",
+        "sensory-settings"
+      ],
+      "interaction": "drag/swipe energy fill",
+      "visualWorld": "large expressive SVG battery",
+      "progression": "free exploration",
+      "reward": "gentle sparkle",
+      "calmMode": "reduced glow/particles",
+      "reducedMotion": "state changes without tilt",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 2,
+      "id": "dash-to-charging-dock",
+      "title": "Dash to Charging Dock",
+      "category": "SENSORY / REGULATION",
+      "purpose": "cause and effect charging routine",
+      "primaryEngine": "cause-effect",
+      "secondaryEngines": [
+        "motion-spring",
+        "gauge-fill",
+        "state-machine"
+      ],
+      "interaction": "tap/drag travel then dock charge",
+      "visualWorld": "path to charging station",
+      "progression": "travel, dock, charge, activate",
+      "reward": "helper lights",
+      "calmMode": "less bounce and beam",
+      "reducedMotion": "instant/gentle state changes",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 3,
+      "id": "quiet-bubble-garden",
+      "title": "Quiet Bubble Garden",
+      "category": "SENSORY / REGULATION",
+      "purpose": "calm touch response",
+      "primaryEngine": "particle",
+      "secondaryEngines": [
+        "input",
+        "sensory-settings"
+      ],
+      "interaction": "tap bubbles",
+      "visualWorld": "dreamy bubble garden",
+      "progression": "free play density modes",
+      "reward": "soft pops",
+      "calmMode": "fewer particles",
+      "reducedMotion": "slow/no drift",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 4,
+      "id": "finger-light-trail",
+      "title": "Finger Light Trail",
+      "category": "SENSORY / REGULATION",
+      "purpose": "visual sensory drawing",
+      "primaryEngine": "trail-drawing",
+      "secondaryEngines": [
+        "input",
+        "motion-spring"
+      ],
+      "interaction": "draw with finger/pen",
+      "visualWorld": "dark safe glow canvas",
+      "progression": "free drawing modes",
+      "reward": "glow fade",
+      "calmMode": "shorter trails",
+      "reducedMotion": "no emission drift",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 5,
+      "id": "hold-to-breathe",
+      "title": "Hold to Breathe",
+      "category": "SENSORY / REGULATION",
+      "purpose": "self-paced regulation",
+      "primaryEngine": "motion-spring",
+      "secondaryEngines": [
+        "input",
+        "sensory-settings"
+      ],
+      "interaction": "press and release",
+      "visualWorld": "living orb world",
+      "progression": "hold grows, release settles",
+      "reward": "soft halo",
+      "calmMode": "no particles",
+      "reducedMotion": "instant scale state",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 6,
+      "id": "firefly-catch",
+      "title": "Firefly Catch",
+      "category": "SENSORY / REGULATION",
+      "purpose": "gentle tracking and tap",
+      "primaryEngine": "particle",
+      "secondaryEngines": [
+        "input",
+        "calm-world"
+      ],
+      "interaction": "tap drifting lights",
+      "visualWorld": "evening garden",
+      "progression": "free catch no timer",
+      "reward": "glow pulse",
+      "calmMode": "fewer lights",
+      "reducedMotion": "minimal drift",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 7,
+      "id": "calm-rain-window",
+      "title": "Calm Rain Window",
+      "category": "SENSORY / REGULATION",
+      "purpose": "ambient regulation",
+      "primaryEngine": "calm-world",
+      "secondaryEngines": [
+        "particle",
+        "cause-effect"
+      ],
+      "interaction": "tap window/rain",
+      "visualWorld": "cozy rain window",
+      "progression": "change rain gently",
+      "reward": "window glow",
+      "calmMode": "light rain only",
+      "reducedMotion": "static rain marks",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 8,
+      "id": "snow-globe",
+      "title": "Snow Globe",
+      "category": "SENSORY / REGULATION",
+      "purpose": "contained visual cause/effect",
+      "primaryEngine": "particle",
+      "secondaryEngines": [
+        "balance-tilt",
+        "calm-world"
+      ],
+      "interaction": "tilt/drag globe",
+      "visualWorld": "soft snow globe",
+      "progression": "shake then settle",
+      "reward": "sparkle settle",
+      "calmMode": "slow flakes",
+      "reducedMotion": "static flakes",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 9,
+      "id": "star-shower",
+      "title": "Star Shower",
+      "category": "SENSORY / REGULATION",
+      "purpose": "gentle visual reward",
+      "primaryEngine": "particle",
+      "secondaryEngines": [
+        "trail-drawing",
+        "reward"
+      ],
+      "interaction": "tap stars",
+      "visualWorld": "night sky",
+      "progression": "free shower patterns",
+      "reward": "soft star bursts",
+      "calmMode": "few stars",
+      "reducedMotion": "fade only",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 10,
+      "id": "growing-garden",
+      "title": "Growing Garden",
+      "category": "SENSORY / REGULATION",
+      "purpose": "touch to grow",
+      "primaryEngine": "cause-effect",
+      "secondaryEngines": [
+        "time-cycle",
+        "particle"
+      ],
+      "interaction": "water/tap plants",
+      "visualWorld": "garden bed",
+      "progression": "seed to sprout to flower",
+      "reward": "flower bloom",
+      "calmMode": "no burst",
+      "reducedMotion": "state swap only",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 11,
+      "id": "number-merge",
+      "title": "Number Merge",
+      "category": "EARLY LEARNING",
+      "purpose": "early arithmetic composition",
+      "primaryEngine": "drag-snap",
+      "secondaryEngines": [
+        "gauge-fill",
+        "reward"
+      ],
+      "interaction": "drag/tap merge numbers",
+      "visualWorld": "number play mat",
+      "progression": "values combine upward",
+      "reward": "badge and glow",
+      "calmMode": "subtle glow",
+      "reducedMotion": "no bounce",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 12,
+      "id": "alphabet-adventure",
+      "title": "Alphabet Adventure",
+      "category": "EARLY LEARNING",
+      "purpose": "letter recognition A-Z",
+      "primaryEngine": "sequence",
+      "secondaryEngines": [
+        "audio",
+        "reward"
+      ],
+      "interaction": "tap letters in order",
+      "visualWorld": "letter path world",
+      "progression": "A-Z journey",
+      "reward": "letter celebration",
+      "calmMode": "no confetti",
+      "reducedMotion": "instant feedback",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 13,
+      "id": "shape-builder",
+      "title": "Shape Builder",
+      "category": "EARLY LEARNING",
+      "purpose": "shape composition",
+      "primaryEngine": "build-assembly",
+      "secondaryEngines": [
+        "drag-snap",
+        "reward"
+      ],
+      "interaction": "snap shapes",
+      "visualWorld": "maker table",
+      "progression": "build picture",
+      "reward": "complete picture glow",
+      "calmMode": "small glow",
+      "reducedMotion": "no animated snap",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 14,
+      "id": "letter-tracing",
+      "title": "Letter Tracing",
+      "category": "EARLY LEARNING",
+      "purpose": "letter formation",
+      "primaryEngine": "trace",
+      "secondaryEngines": [
+        "trail-drawing",
+        "reward"
+      ],
+      "interaction": "trace letter path",
+      "visualWorld": "large tactile letter",
+      "progression": "one letter at a time",
+      "reward": "gentle sparkle",
+      "calmMode": "no particles",
+      "reducedMotion": "static progress",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 15,
+      "id": "number-tracing",
+      "title": "Number Tracing",
+      "category": "EARLY LEARNING",
+      "purpose": "numeral formation",
+      "primaryEngine": "trace",
+      "secondaryEngines": [
+        "trail-drawing",
+        "reward"
+      ],
+      "interaction": "trace number path",
+      "visualWorld": "large numeral world",
+      "progression": "1-10",
+      "reward": "gentle sparkle",
+      "calmMode": "no particles",
+      "reducedMotion": "static progress",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 16,
+      "id": "shape-tracing",
+      "title": "Shape Tracing",
+      "category": "EARLY LEARNING",
+      "purpose": "shape outlines",
+      "primaryEngine": "trace",
+      "secondaryEngines": [
+        "build-assembly"
+      ],
+      "interaction": "trace outlines",
+      "visualWorld": "shape canvas",
+      "progression": "circle to complex shapes",
+      "reward": "shape fill",
+      "calmMode": "no particles",
+      "reducedMotion": "static fill",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 17,
+      "id": "colour-match",
+      "title": "Colour Match",
+      "category": "EARLY LEARNING",
+      "purpose": "colour recognition",
+      "primaryEngine": "sort-match",
+      "secondaryEngines": [
+        "drag-snap",
+        "reward"
+      ],
+      "interaction": "tap/drag colour items",
+      "visualWorld": "paint table",
+      "progression": "match sets",
+      "reward": "paint splash",
+      "calmMode": "no splash",
+      "reducedMotion": "colour + labels",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 18,
+      "id": "big-small",
+      "title": "Big & Small",
+      "category": "EARLY LEARNING",
+      "purpose": "size comparison",
+      "primaryEngine": "sort-match",
+      "secondaryEngines": [
+        "sequence"
+      ],
+      "interaction": "sort by size",
+      "visualWorld": "toy shelf",
+      "progression": "compare pairs",
+      "reward": "shelf glow",
+      "calmMode": "low motion",
+      "reducedMotion": "no movement",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 19,
+      "id": "pattern-builder",
+      "title": "Pattern Builder",
+      "category": "EARLY LEARNING",
+      "purpose": "repeat patterns",
+      "primaryEngine": "sequence",
+      "secondaryEngines": [
+        "sort-match",
+        "rhythm"
+      ],
+      "interaction": "tap next item",
+      "visualWorld": "pattern ribbon",
+      "progression": "AB to ABC",
+      "reward": "pattern lights",
+      "calmMode": "no pulse",
+      "reducedMotion": "static highlights",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 20,
+      "id": "sort-it",
+      "title": "Sort It",
+      "category": "EARLY LEARNING",
+      "purpose": "classification",
+      "primaryEngine": "sort-match",
+      "secondaryEngines": [
+        "drag-snap",
+        "reward"
+      ],
+      "interaction": "sort objects",
+      "visualWorld": "sorting baskets",
+      "progression": "categories grow",
+      "reward": "basket glow",
+      "calmMode": "low particles",
+      "reducedMotion": "static feedback",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 21,
+      "id": "planet-pals",
+      "title": "Planet Pals",
+      "category": "WORLD / TIME / SCIENCE",
+      "purpose": "planet discovery",
+      "primaryEngine": "orbit",
+      "secondaryEngines": [
+        "sequence",
+        "cause-effect"
+      ],
+      "interaction": "tap/drag planets",
+      "visualWorld": "space scene",
+      "progression": "visit planets",
+      "reward": "orbit glow",
+      "calmMode": "slow orbit",
+      "reducedMotion": "static planets",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 22,
+      "id": "build-solar-system",
+      "title": "Build the Solar System",
+      "category": "WORLD / TIME / SCIENCE",
+      "purpose": "solar order",
+      "primaryEngine": "build-assembly",
+      "secondaryEngines": [
+        "orbit",
+        "drag-snap"
+      ],
+      "interaction": "snap planets into orbit",
+      "visualWorld": "solar system mat",
+      "progression": "inner to outer",
+      "reward": "orbit starts",
+      "calmMode": "slow orbit",
+      "reducedMotion": "no orbit",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 23,
+      "id": "day-night",
+      "title": "Day & Night",
+      "category": "WORLD / TIME / SCIENCE",
+      "purpose": "daily cycle",
+      "primaryEngine": "time-cycle",
+      "secondaryEngines": [
+        "cause-effect",
+        "orbit"
+      ],
+      "interaction": "drag sun/moon",
+      "visualWorld": "sky cycle",
+      "progression": "morning to night",
+      "reward": "sky transition",
+      "calmMode": "soft transition",
+      "reducedMotion": "instant states",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 24,
+      "id": "days-week",
+      "title": "Days of the Week",
+      "category": "WORLD / TIME / SCIENCE",
+      "purpose": "weekday order",
+      "primaryEngine": "sequence",
+      "secondaryEngines": [
+        "rhythm",
+        "reward"
+      ],
+      "interaction": "tap next day",
+      "visualWorld": "calendar path",
+      "progression": "Monday-Sunday",
+      "reward": "calendar glow",
+      "calmMode": "no bounce",
+      "reducedMotion": "static order",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 25,
+      "id": "months-year",
+      "title": "Months of the Year",
+      "category": "WORLD / TIME / SCIENCE",
+      "purpose": "month order",
+      "primaryEngine": "sequence",
+      "secondaryEngines": [
+        "time-cycle"
+      ],
+      "interaction": "tap/scroll months",
+      "visualWorld": "year wheel",
+      "progression": "Jan-Dec",
+      "reward": "season colour",
+      "calmMode": "no spin",
+      "reducedMotion": "static list",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 26,
+      "id": "seasons",
+      "title": "Seasons",
+      "category": "WORLD / TIME / SCIENCE",
+      "purpose": "seasonal change",
+      "primaryEngine": "time-cycle",
+      "secondaryEngines": [
+        "cause-effect",
+        "particle"
+      ],
+      "interaction": "tap season",
+      "visualWorld": "tree/weather world",
+      "progression": "spring-summer-autumn-winter",
+      "reward": "world changes",
+      "calmMode": "fewer particles",
+      "reducedMotion": "instant scene",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 27,
+      "id": "first-clock",
+      "title": "My First Clock",
+      "category": "WORLD / TIME / SCIENCE",
+      "purpose": "clock reading",
+      "primaryEngine": "time-cycle",
+      "secondaryEngines": [
+        "cause-effect"
+      ],
+      "interaction": "move clock hands",
+      "visualWorld": "friendly clock",
+      "progression": "hours then half-hours",
+      "reward": "chime optional",
+      "calmMode": "no chime",
+      "reducedMotion": "static hands",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 28,
+      "id": "weather-world",
+      "title": "Weather World",
+      "category": "WORLD / TIME / SCIENCE",
+      "purpose": "weather observation",
+      "primaryEngine": "cause-effect",
+      "secondaryEngines": [
+        "particle",
+        "calm-world"
+      ],
+      "interaction": "choose weather",
+      "visualWorld": "sky station",
+      "progression": "sun/cloud/rain/snow",
+      "reward": "weather changes",
+      "calmMode": "low particles",
+      "reducedMotion": "static weather",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": true
+    },
+    {
+      "order": 29,
+      "id": "animal-habitats",
+      "title": "Animal Habitats",
+      "category": "WORLD / TIME / SCIENCE",
+      "purpose": "habitat matching",
+      "primaryEngine": "sort-match",
+      "secondaryEngines": [
+        "drag-snap",
+        "reward"
+      ],
+      "interaction": "match animals/habitats",
+      "visualWorld": "habitat map",
+      "progression": "forest/ocean/desert/polar",
+      "reward": "habitat glow",
+      "calmMode": "no confetti",
+      "reducedMotion": "static match",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": false
+    },
+    {
+      "order": 30,
+      "id": "transport-adventure",
+      "title": "Transport Adventure",
+      "category": "WORLD / TIME / SCIENCE",
+      "purpose": "transport movement",
+      "primaryEngine": "sequence",
+      "secondaryEngines": [
+        "cause-effect",
+        "motion-spring"
+      ],
+      "interaction": "choose transport route",
+      "visualWorld": "roads/rails/sky/water",
+      "progression": "route journeys",
+      "reward": "arrival glow",
+      "calmMode": "slow motion",
+      "reducedMotion": "position states",
+      "finalCharacterArtRequired": false,
+      "canShipWithProceduralGraphics": false
+    }
+  ]
+}

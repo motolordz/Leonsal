@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orbit Engine</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <div class="game-title"><strong>Orbit Engine</strong><span>Planets glide in calm circles.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+    <section class="game-scene orbit-world" id="stage" aria-label="Orbit engine demonstration">
+      <div class="orbit-star" aria-hidden="true"></div>
+      <div class="orbit-ring ring-a" aria-hidden="true"></div>
+      <div class="orbit-ring ring-b" aria-hidden="true"></div>
+      <div class="planet planet-a" id="planetA"></div>
+      <div class="planet planet-b" id="planetB"></div>
+      <div class="floating-controls">
+        <button class="mode-pill" data-speed="0.35" type="button">Slow</button>
+        <button class="mode-pill" data-speed="1" type="button" aria-pressed="true">Orbit</button>
+        <button class="mode-pill" data-speed="1.8" type="button">Fast</button>
+      </div>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const orbit = new LeonSalV2.OrbitEngine(motion, settings);
+    const stage = document.querySelector('#stage');
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+    function setup() {
+      orbit.destroy();
+      const rect = stage.getBoundingClientRect();
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      orbit.add({ cx, cy, radius: Math.min(rect.width, rect.height) * .22, speed: .55, angle: .4, update: (item) => document.querySelector('#planetA').style.transform = `translate(${item.x}px, ${item.y}px) translate(-50%, -50%)` });
+      orbit.add({ cx, cy, radius: Math.min(rect.width, rect.height) * .34, speed: -.34, angle: 2.2, update: (item) => document.querySelector('#planetB').style.transform = `translate(${item.x}px, ${item.y}px) translate(-50%, -50%)` });
+    }
+    document.querySelectorAll('[data-speed]').forEach((button) => button.addEventListener('click', () => {
+      document.querySelectorAll('[data-speed]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      orbit.setSpeed(Number(button.dataset.speed));
+    }));
+    window.addEventListener('resize', setup);
+    setup();
+  </script>
+</body>
+</html>

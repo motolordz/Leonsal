@@ -1,0 +1,394 @@
+# LeonSal 30 Game Map
+
+This is an implementation map only. Games 6-30 are not implemented in this batch.
+
+## 1. My Energy Battery
+- Category: SENSORY / REGULATION
+- Purpose: self-awareness energy check
+- Primary engine: gauge-fill
+- Secondary engines: input, motion-spring, sensory-settings
+- Interaction: drag/swipe energy fill
+- Visual world: large expressive SVG battery
+- Progression: free exploration
+- Reward: gentle sparkle
+- Calm mode: reduced glow/particles
+- Reduced motion: state changes without tilt
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 2. Dash to Charging Dock
+- Category: SENSORY / REGULATION
+- Purpose: cause and effect charging routine
+- Primary engine: cause-effect
+- Secondary engines: motion-spring, gauge-fill, state-machine
+- Interaction: tap/drag travel then dock charge
+- Visual world: path to charging station
+- Progression: travel, dock, charge, activate
+- Reward: helper lights
+- Calm mode: less bounce and beam
+- Reduced motion: instant/gentle state changes
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 3. Quiet Bubble Garden
+- Category: SENSORY / REGULATION
+- Purpose: calm touch response
+- Primary engine: particle
+- Secondary engines: input, sensory-settings
+- Interaction: tap bubbles
+- Visual world: dreamy bubble garden
+- Progression: free play density modes
+- Reward: soft pops
+- Calm mode: fewer particles
+- Reduced motion: slow/no drift
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 4. Finger Light Trail
+- Category: SENSORY / REGULATION
+- Purpose: visual sensory drawing
+- Primary engine: trail-drawing
+- Secondary engines: input, motion-spring
+- Interaction: draw with finger/pen
+- Visual world: dark safe glow canvas
+- Progression: free drawing modes
+- Reward: glow fade
+- Calm mode: shorter trails
+- Reduced motion: no emission drift
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 5. Hold to Breathe
+- Category: SENSORY / REGULATION
+- Purpose: self-paced regulation
+- Primary engine: motion-spring
+- Secondary engines: input, sensory-settings
+- Interaction: press and release
+- Visual world: living orb world
+- Progression: hold grows, release settles
+- Reward: soft halo
+- Calm mode: no particles
+- Reduced motion: instant scale state
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 6. Firefly Catch
+- Category: SENSORY / REGULATION
+- Purpose: gentle tracking and tap
+- Primary engine: particle
+- Secondary engines: input, calm-world
+- Interaction: tap drifting lights
+- Visual world: evening garden
+- Progression: free catch no timer
+- Reward: glow pulse
+- Calm mode: fewer lights
+- Reduced motion: minimal drift
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 7. Calm Rain Window
+- Category: SENSORY / REGULATION
+- Purpose: ambient regulation
+- Primary engine: calm-world
+- Secondary engines: particle, cause-effect
+- Interaction: tap window/rain
+- Visual world: cozy rain window
+- Progression: change rain gently
+- Reward: window glow
+- Calm mode: light rain only
+- Reduced motion: static rain marks
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 8. Snow Globe
+- Category: SENSORY / REGULATION
+- Purpose: contained visual cause/effect
+- Primary engine: particle
+- Secondary engines: balance-tilt, calm-world
+- Interaction: tilt/drag globe
+- Visual world: soft snow globe
+- Progression: shake then settle
+- Reward: sparkle settle
+- Calm mode: slow flakes
+- Reduced motion: static flakes
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 9. Star Shower
+- Category: SENSORY / REGULATION
+- Purpose: gentle visual reward
+- Primary engine: particle
+- Secondary engines: trail-drawing, reward
+- Interaction: tap stars
+- Visual world: night sky
+- Progression: free shower patterns
+- Reward: soft star bursts
+- Calm mode: few stars
+- Reduced motion: fade only
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 10. Growing Garden
+- Category: SENSORY / REGULATION
+- Purpose: touch to grow
+- Primary engine: cause-effect
+- Secondary engines: time-cycle, particle
+- Interaction: water/tap plants
+- Visual world: garden bed
+- Progression: seed to sprout to flower
+- Reward: flower bloom
+- Calm mode: no burst
+- Reduced motion: state swap only
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 11. Number Merge
+- Category: EARLY LEARNING
+- Purpose: early arithmetic composition
+- Primary engine: drag-snap
+- Secondary engines: gauge-fill, reward
+- Interaction: drag/tap merge numbers
+- Visual world: number play mat
+- Progression: values combine upward
+- Reward: badge and glow
+- Calm mode: subtle glow
+- Reduced motion: no bounce
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 12. Alphabet Adventure
+- Category: EARLY LEARNING
+- Purpose: letter recognition A-Z
+- Primary engine: sequence
+- Secondary engines: audio, reward
+- Interaction: tap letters in order
+- Visual world: letter path world
+- Progression: A-Z journey
+- Reward: letter celebration
+- Calm mode: no confetti
+- Reduced motion: instant feedback
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 13. Shape Builder
+- Category: EARLY LEARNING
+- Purpose: shape composition
+- Primary engine: build-assembly
+- Secondary engines: drag-snap, reward
+- Interaction: snap shapes
+- Visual world: maker table
+- Progression: build picture
+- Reward: complete picture glow
+- Calm mode: small glow
+- Reduced motion: no animated snap
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 14. Letter Tracing
+- Category: EARLY LEARNING
+- Purpose: letter formation
+- Primary engine: trace
+- Secondary engines: trail-drawing, reward
+- Interaction: trace letter path
+- Visual world: large tactile letter
+- Progression: one letter at a time
+- Reward: gentle sparkle
+- Calm mode: no particles
+- Reduced motion: static progress
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 15. Number Tracing
+- Category: EARLY LEARNING
+- Purpose: numeral formation
+- Primary engine: trace
+- Secondary engines: trail-drawing, reward
+- Interaction: trace number path
+- Visual world: large numeral world
+- Progression: 1-10
+- Reward: gentle sparkle
+- Calm mode: no particles
+- Reduced motion: static progress
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 16. Shape Tracing
+- Category: EARLY LEARNING
+- Purpose: shape outlines
+- Primary engine: trace
+- Secondary engines: build-assembly
+- Interaction: trace outlines
+- Visual world: shape canvas
+- Progression: circle to complex shapes
+- Reward: shape fill
+- Calm mode: no particles
+- Reduced motion: static fill
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 17. Colour Match
+- Category: EARLY LEARNING
+- Purpose: colour recognition
+- Primary engine: sort-match
+- Secondary engines: drag-snap, reward
+- Interaction: tap/drag colour items
+- Visual world: paint table
+- Progression: match sets
+- Reward: paint splash
+- Calm mode: no splash
+- Reduced motion: colour + labels
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 18. Big & Small
+- Category: EARLY LEARNING
+- Purpose: size comparison
+- Primary engine: sort-match
+- Secondary engines: sequence
+- Interaction: sort by size
+- Visual world: toy shelf
+- Progression: compare pairs
+- Reward: shelf glow
+- Calm mode: low motion
+- Reduced motion: no movement
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 19. Pattern Builder
+- Category: EARLY LEARNING
+- Purpose: repeat patterns
+- Primary engine: sequence
+- Secondary engines: sort-match, rhythm
+- Interaction: tap next item
+- Visual world: pattern ribbon
+- Progression: AB to ABC
+- Reward: pattern lights
+- Calm mode: no pulse
+- Reduced motion: static highlights
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 20. Sort It
+- Category: EARLY LEARNING
+- Purpose: classification
+- Primary engine: sort-match
+- Secondary engines: drag-snap, reward
+- Interaction: sort objects
+- Visual world: sorting baskets
+- Progression: categories grow
+- Reward: basket glow
+- Calm mode: low particles
+- Reduced motion: static feedback
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 21. Planet Pals
+- Category: WORLD / TIME / SCIENCE
+- Purpose: planet discovery
+- Primary engine: orbit
+- Secondary engines: sequence, cause-effect
+- Interaction: tap/drag planets
+- Visual world: space scene
+- Progression: visit planets
+- Reward: orbit glow
+- Calm mode: slow orbit
+- Reduced motion: static planets
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 22. Build the Solar System
+- Category: WORLD / TIME / SCIENCE
+- Purpose: solar order
+- Primary engine: build-assembly
+- Secondary engines: orbit, drag-snap
+- Interaction: snap planets into orbit
+- Visual world: solar system mat
+- Progression: inner to outer
+- Reward: orbit starts
+- Calm mode: slow orbit
+- Reduced motion: no orbit
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 23. Day & Night
+- Category: WORLD / TIME / SCIENCE
+- Purpose: daily cycle
+- Primary engine: time-cycle
+- Secondary engines: cause-effect, orbit
+- Interaction: drag sun/moon
+- Visual world: sky cycle
+- Progression: morning to night
+- Reward: sky transition
+- Calm mode: soft transition
+- Reduced motion: instant states
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 24. Days of the Week
+- Category: WORLD / TIME / SCIENCE
+- Purpose: weekday order
+- Primary engine: sequence
+- Secondary engines: rhythm, reward
+- Interaction: tap next day
+- Visual world: calendar path
+- Progression: Monday-Sunday
+- Reward: calendar glow
+- Calm mode: no bounce
+- Reduced motion: static order
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 25. Months of the Year
+- Category: WORLD / TIME / SCIENCE
+- Purpose: month order
+- Primary engine: sequence
+- Secondary engines: time-cycle
+- Interaction: tap/scroll months
+- Visual world: year wheel
+- Progression: Jan-Dec
+- Reward: season colour
+- Calm mode: no spin
+- Reduced motion: static list
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 26. Seasons
+- Category: WORLD / TIME / SCIENCE
+- Purpose: seasonal change
+- Primary engine: time-cycle
+- Secondary engines: cause-effect, particle
+- Interaction: tap season
+- Visual world: tree/weather world
+- Progression: spring-summer-autumn-winter
+- Reward: world changes
+- Calm mode: fewer particles
+- Reduced motion: instant scene
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 27. My First Clock
+- Category: WORLD / TIME / SCIENCE
+- Purpose: clock reading
+- Primary engine: time-cycle
+- Secondary engines: cause-effect
+- Interaction: move clock hands
+- Visual world: friendly clock
+- Progression: hours then half-hours
+- Reward: chime optional
+- Calm mode: no chime
+- Reduced motion: static hands
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 28. Weather World
+- Category: WORLD / TIME / SCIENCE
+- Purpose: weather observation
+- Primary engine: cause-effect
+- Secondary engines: particle, calm-world
+- Interaction: choose weather
+- Visual world: sky station
+- Progression: sun/cloud/rain/snow
+- Reward: weather changes
+- Calm mode: low particles
+- Reduced motion: static weather
+- Final character art required: no
+- Can ship using procedural graphics: yes
+## 29. Animal Habitats
+- Category: WORLD / TIME / SCIENCE
+- Purpose: habitat matching
+- Primary engine: sort-match
+- Secondary engines: drag-snap, reward
+- Interaction: match animals/habitats
+- Visual world: habitat map
+- Progression: forest/ocean/desert/polar
+- Reward: habitat glow
+- Calm mode: no confetti
+- Reduced motion: static match
+- Final character art required: no
+- Can ship using procedural graphics: no
+## 30. Transport Adventure
+- Category: WORLD / TIME / SCIENCE
+- Purpose: transport movement
+- Primary engine: sequence
+- Secondary engines: cause-effect, motion-spring
+- Interaction: choose transport route
+- Visual world: roads/rails/sky/water
+- Progression: route journeys
+- Reward: arrival glow
+- Calm mode: slow motion
+- Reduced motion: position states
+- Final character art required: no
+- Can ship using procedural graphics: no

@@ -58,7 +58,9 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
-    function render(value) {
+    let pendingEnergy = 0;
+    let renderFrame = 0;
+    function drawBattery(value) {
       const next = LeonSalV2.clamp(Number(value), 0, 100);
       const result = gauge.set(next);
       track.style.setProperty('--track-fill', `${next}%`);
@@ -68,6 +70,14 @@
       scene.style.setProperty('--battery-tilt', `${-5 + next * .07}deg`);
       scene.style.setProperty('--battery-lift', `${10 - next * .12}px`);
       status.textContent = result.label;
+    }
+    function render(value) {
+      pendingEnergy = value;
+      if (renderFrame) return;
+      renderFrame = requestAnimationFrame(() => {
+        renderFrame = 0;
+        drawBattery(pendingEnergy);
+      });
     }
     function valueFromPoint(x) {
       const rect = track.getBoundingClientRect();
@@ -84,7 +94,7 @@
       if (event.key === 'Home') render(0);
       if (event.key === 'End') render(100);
     });
-    render(0);
+    drawBattery(0);
   </script>
 </body>
 </html>

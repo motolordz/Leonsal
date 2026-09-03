@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-09-03T22:20:49.136Z",
+  "viewport": "390x844",
+  "fps": {
+    "battery": {
+      "average": 61,
+      "worst": 53
+    },
+    "dash": {
+      "average": 60,
+      "worst": 53
+    },
+    "trace": {
+      "average": 61,
+      "worst": 53
+    },
+    "orbit": {
+      "average": 60,
+      "worst": 54
+    },
+    "causeEffect": {
+      "average": 61,
+      "worst": 53
+    }
+  }
+}

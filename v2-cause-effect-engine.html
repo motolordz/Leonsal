@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cause and Effect Engine</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <div class="game-title"><strong>Cause and Effect</strong><span>Tap a switch and watch the world respond.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+    <section class="game-scene cause-world" id="stage" aria-label="Cause and effect demonstration">
+      <div class="cause-house" id="house"><span></span></div>
+      <div class="cause-sun" id="sun"></div>
+      <div class="cause-garden" id="garden"></div>
+      <div class="floating-controls cause-controls">
+        <button class="scene-button" data-cause="light" type="button">Light</button>
+        <button class="scene-button" data-cause="grow" type="button">Grow</button>
+        <button class="scene-button" data-cause="reset" type="button">Reset</button>
+      </div>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const engine = new LeonSalV2.CauseEffectEngine();
+    const stage = document.querySelector('#stage');
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+    engine.connect('light', () => stage.dataset.light = 'true');
+    engine.connect('grow', () => stage.dataset.grow = 'true');
+    engine.connect('reset', () => { stage.dataset.light = 'false'; stage.dataset.grow = 'false'; });
+    document.querySelectorAll('[data-cause]').forEach((button) => button.addEventListener('click', () => engine.trigger(button.dataset.cause)));
+    engine.trigger('reset');
+  </script>
+</body>
+</html>

@@ -16,12 +16,16 @@
     </header>
     <section class="game-scene dash-world" id="stage" aria-label="Dash to the charging dock">
       <div class="dash-sky" aria-hidden="true"></div>
+      <div class="dash-hills" aria-hidden="true"></div>
       <div class="helper-lamp" id="helper" data-active="false" aria-hidden="true"></div>
       <div class="dash-path-new" id="path" aria-hidden="true"></div>
       <div class="charge-beam" id="beam" aria-hidden="true"></div>
+      <div class="dock-cable" id="cable" aria-hidden="true"></div>
       <div class="energy-buddy" id="runner" data-state="empty" aria-label="Energy buddy">
+        <span class="energy-buddy-aura"></span>
         <span class="energy-buddy-arm left"></span><span class="energy-buddy-arm right"></span>
         <span class="energy-buddy-body"></span>
+        <span class="energy-buddy-cheek left"></span><span class="energy-buddy-cheek right"></span>
         <span class="energy-buddy-eye left"></span><span class="energy-buddy-eye right"></span>
         <span class="energy-buddy-mouth"></span>
         <span class="energy-buddy-foot left"></span><span class="energy-buddy-foot right"></span>
@@ -73,6 +77,7 @@
       stage.style.setProperty('--eye-open', String(.42 + energy / 170));
       stage.style.setProperty('--beam-alpha', charging ? String(.25 + energy / 135) : '0');
       beam.style.width = charging ? `${Math.max(90, travelDistance() * .55)}px` : '0px';
+      cable.dataset.connected = String(charging || charged);
       dock.dataset.charging = String(charging);
     }
     function setPosition(value) {
