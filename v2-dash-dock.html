@@ -9,14 +9,15 @@
 <body>
   <main class="v2-shell">
     <header class="v2-topbar">
-      <div><h1>Dash to Charging Dock</h1><p>Position and energy are separate values.</p></div>
-      <a class="v2-home" href="index.html" aria-label="Home">⌂</a>
+      <div><h1>Dash to Charging Dock</h1><p>Move to the dock first, then charge up.</p></div>
+      <a class="v2-home" href="v2-proof-lab.html" aria-label="Proof lab">Lab</a>
     </header>
     <section class="v2-settings" id="settings"></section>
     <section class="v2-stage" id="stage" aria-label="Dash proof">
       <div class="dash-track"></div>
-      <div class="dash-runner" id="runner" data-state="empty">0</div>
+      <div class="dash-runner" id="runner" data-state="empty"><span class="dash-mouth"></span></div>
       <div class="dash-dock">DOCK</div>
+      <div class="dash-helper" id="helper" data-active="false">Lamp</div>
     </section>
     <section class="v2-controls">
       <svg class="battery-svg" viewBox="0 0 430 90" role="img" aria-label="Charging battery">
@@ -42,19 +43,14 @@
     const audio = new LeonSalV2.AudioEngine(settings);
     const gauge = new LeonSalV2.GaugeBattery(document.querySelector('.battery-svg'));
     const runner = document.querySelector('#runner');
+    const helper = document.querySelector('#helper');
     const position = document.querySelector('#position');
     const status = document.querySelector('#status');
     let dashPosition = 0;
     let energy = 0;
     let charging = false;
     let charged = false;
-    function renderSettings() {
-      document.querySelector('#settings').innerHTML = ['motion','sound','vibration','calmMode','confetti'].map((key) => `<button type="button" data-key="${key}" aria-pressed="${Boolean(settings.value[key])}">${key}</button>`).join('');
-      document.querySelectorAll('[data-key]').forEach((button) => button.addEventListener('click', () => {
-        settings.set({ [button.dataset.key]: !settings.value[button.dataset.key] });
-        renderSettings();
-      }));
-    }
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
     function render() {
       const stage = document.querySelector('#stage').getBoundingClientRect();
       const runnerWidth = runner.getBoundingClientRect().width || 74;
@@ -64,7 +60,8 @@
       position.value = String(Math.round(dashPosition));
       const state = LeonSalV2.stateForEnergy(energy);
       runner.dataset.state = state;
-      runner.textContent = Math.round(energy);
+      runner.dataset.energy = String(Math.round(energy));
+      runner.style.setProperty('--dash-scale', charging && settings.allowsMotion() ? 1.08 : 1);
       gauge.set(energy);
     }
     function setPosition(value) {
@@ -88,6 +85,7 @@
         charging = false;
         render();
         status.textContent = 'Fully charged!';
+        helper.dataset.active = 'true';
         audio.tone('success');
       }});
     }
@@ -96,6 +94,7 @@
       energy = 0;
       charging = false;
       charged = false;
+      helper.dataset.active = 'false';
       status.textContent = 'Battery empty — reach the charging dock.';
       render();
     }
@@ -104,7 +103,6 @@
     document.querySelector('#right').addEventListener('click', () => { audio.tone('tap'); setPosition(dashPosition + 10); });
     document.querySelector('#reset').addEventListener('click', reset);
     window.addEventListener('resize', render);
-    renderSettings();
     reset();
   </script>
 </body>

@@ -10,10 +10,10 @@
   <main class="v2-shell">
     <header class="v2-topbar">
       <div>
-        <h1>Bubble Garden</h1>
-        <p>Tap, click or pen-tap bubbles with bounded particles.</p>
+        <h1>Quiet Bubble Garden</h1>
+        <p>Pop drifting bubbles at your own pace.</p>
       </div>
-      <a class="v2-home" href="index.html" aria-label="Back home">⌂</a>
+      <a class="v2-home" href="v2-proof-lab.html" aria-label="Proof lab">Lab</a>
     </header>
     <section class="v2-settings" id="settings" aria-label="Sensory settings"></section>
     <section class="v2-stage" aria-label="Bubble garden play area">
@@ -22,7 +22,15 @@
     <section class="v2-controls">
       <div class="control-row">
         <button id="reset" class="primary" type="button">Reset bubbles</button>
-        <button id="density" type="button">Gentle density</button>
+        <div class="segmented" aria-label="Bubble count">
+          <button data-density="few" type="button">Few</button>
+          <button data-density="normal" type="button" aria-pressed="true">Normal</button>
+          <button data-density="many" type="button">Many</button>
+        </div>
+        <div class="segmented" aria-label="Bubble speed">
+          <button data-speed="slow" type="button">Slow</button>
+          <button data-speed="normal" type="button" aria-pressed="true">Normal</button>
+        </div>
       </div>
       <p class="v2-status" id="status">Bubbles are drifting gently.</p>
     </section>
@@ -35,18 +43,15 @@
     const canvas = document.querySelector('#canvas');
     const status = document.querySelector('#status');
     const particles = new LeonSalV2.ParticleEngine(canvas, motion, settings);
-    let gentle = true;
-    function renderSettings() {
-      document.querySelector('#settings').innerHTML = ['motion','sound','vibration','calmMode','confetti'].map((key) => `<button type="button" data-key="${key}" aria-pressed="${Boolean(settings.value[key])}">${key}</button>`).join('');
-      document.querySelectorAll('[data-key]').forEach((button) => button.addEventListener('click', () => {
-        settings.set({ [button.dataset.key]: !settings.value[button.dataset.key] });
-        particles.seed(gentle ? 24 : 42);
-        renderSettings();
-      }));
-    }
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
+    let density = 'normal';
+    let speed = 'normal';
+    const counts = { few: 12, normal: 24, many: 42 };
     function reset() {
-      particles.seed(gentle ? 24 : 42);
-      status.textContent = gentle ? 'Bubbles are drifting gently.' : 'More bubbles are ready to pop.';
+      particles.seed('bubbles', counts[density]);
+      const speedFactor = speed === 'slow' ? 0.45 : 1;
+      particles.items.forEach((item) => { item.vx *= speedFactor; item.vy *= speedFactor; });
+      status.textContent = 'Bubbles are ready.';
     }
     new LeonSalV2.InputEngine(canvas).onPointer({
       down: ({ x, y }) => {
@@ -57,12 +62,16 @@
       }
     });
     document.querySelector('#reset').addEventListener('click', reset);
-    document.querySelector('#density').addEventListener('click', () => {
-      gentle = !gentle;
-      document.querySelector('#density').textContent = gentle ? 'Gentle density' : 'More bubbles';
+    document.querySelectorAll('[data-density]').forEach((button) => button.addEventListener('click', () => {
+      density = button.dataset.density;
+      document.querySelectorAll('[data-density]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
       reset();
-    });
-    renderSettings();
+    }));
+    document.querySelectorAll('[data-speed]').forEach((button) => button.addEventListener('click', () => {
+      speed = button.dataset.speed;
+      document.querySelectorAll('[data-speed]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      reset();
+    }));
     reset();
     particles.start('bubbles');
   </script>

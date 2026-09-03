@@ -71,6 +71,34 @@ const LeonSalV2 = (() => {
     }
   }
 
+  class SettingsPanel {
+    constructor(host, settings, options = {}) {
+      this.host = host;
+      this.settings = settings;
+      this.keys = options.keys || ['motion', 'sound', 'vibration', 'calmMode'];
+      this.labels = {
+        motion: 'Motion',
+        sound: 'Sound',
+        vibration: 'Vibration',
+        calmMode: 'Calm Mode',
+        confetti: 'Confetti'
+      };
+      this.render();
+    }
+    render() {
+      this.host.innerHTML = this.keys.map((key) => {
+        const pressed = Boolean(this.settings.value[key]);
+        return `<button class="v2-setting-pill" type="button" data-key="${key}" aria-pressed="${pressed}"><span></span>${this.labels[key] || key}</button>`;
+      }).join('');
+      this.host.querySelectorAll('[data-key]').forEach((button) => {
+        button.addEventListener('click', () => {
+          this.settings.set({ [button.dataset.key]: !this.settings.value[button.dataset.key] });
+          this.render();
+        });
+      });
+    }
+  }
+
   class MotionEngine extends EventBus {
     constructor(settings) {
       super();
@@ -238,7 +266,16 @@ const LeonSalV2 = (() => {
       const state = stateForEnergy(value);
       this.fill?.setAttribute('width', String(3.12 * value));
       this.fill?.setAttribute('fill', { empty: '#ef6f66', low: '#f29b48', calm: '#f3d24f', happy: '#4aa8ff', excited: '#45c56b' }[state]);
-      if (this.face) this.face.textContent = { empty: '–', low: '•︵•', calm: '•‿•', happy: '◠‿◠', excited: '★‿★' }[state];
+      if (this.face) {
+        const mouths = {
+          empty: 'M174 138 Q198 120 222 138',
+          low: 'M176 137 Q198 128 220 137',
+          calm: 'M176 132 Q198 142 220 132',
+          happy: 'M174 130 Q198 150 222 130',
+          excited: 'M170 128 Q198 154 226 128'
+        };
+        this.face.setAttribute('d', mouths[state]);
+      }
       if (this.label) this.label.textContent = `${Math.round(value)}%`;
       this.svg.dataset.energyState = state;
       return { value, state, label: stateLabels[state] };
@@ -287,11 +324,14 @@ const LeonSalV2 = (() => {
           item.x += item.vx * dt;
           item.y += item.vy * dt;
         }
+        item.age = (item.age || 0) + dt;
+        if (item.type === 'sparkle') item.life = Math.max(0, 0.7 - item.age);
         if (item.y < -item.r) item.y = rect.height + item.r;
+        if (item.life <= 0) continue;
         this.ctx.globalAlpha = item.life;
         this.ctx.beginPath();
         this.ctx.arc(item.x, item.y, item.r, 0, Math.PI * 2);
-        this.ctx.fillStyle = item.type === 'stars' ? '#ffd94e' : `hsl(${item.hue} 90% 74%)`;
+        this.ctx.fillStyle = item.type === 'stars' || item.type === 'sparkle' ? '#ffd94e' : `hsl(${item.hue} 90% 74%)`;
         this.ctx.fill();
         this.ctx.strokeStyle = 'rgba(255,255,255,.8)';
         this.ctx.lineWidth = 2;
@@ -300,8 +340,25 @@ const LeonSalV2 = (() => {
       this.ctx.globalAlpha = 1;
     }
     popAt(x, y) {
-      const hit = this.items.find((item) => Math.hypot(item.x - x, item.y - y) <= item.r + 10);
-      if (hit) hit.y = -999;
+      const index = this.items.findIndex((item) => Math.hypot(item.x - x, item.y - y) <= item.r + 12);
+      if (index < 0) return false;
+      const hit = this.items[index];
+      this.items.splice(index, 1);
+      const burstCount = this.settings.value.calmMode ? 0 : 6;
+      for (let i = 0; i < burstCount; i += 1) {
+        const angle = (Math.PI * 2 * i) / burstCount;
+        this.items.push({
+          type: 'sparkle',
+          x: hit.x,
+          y: hit.y,
+          r: 3 + Math.random() * 4,
+          vx: Math.cos(angle) * (34 + Math.random() * 28),
+          vy: Math.sin(angle) * (34 + Math.random() * 28),
+          life: 0.7,
+          age: 0,
+          hue: hit.hue
+        });
+      }
       return Boolean(hit);
     }
     destroy() {
@@ -318,6 +375,7 @@ const LeonSalV2 = (() => {
       this.settings = settings;
       this.points = [];
       this.maxPoints = 72;
+      this.mode = 'light';
       this.remove = this.motion.add((dt) => this.tick(dt));
       this.resize();
     }
@@ -357,14 +415,26 @@ const LeonSalV2 = (() => {
         const a = this.points[i - 1];
         const b = this.points[i];
         this.ctx.globalAlpha = clamp(1 - b.age / 2.4, 0, 1);
-        this.ctx.strokeStyle = this.settings.value.calmMode ? '#4aa8ff' : '#ffd84d';
-        this.ctx.lineWidth = this.settings.value.calmMode ? 7 : 11;
+        this.ctx.strokeStyle = this.colorFor(i);
+        this.ctx.lineWidth = this.mode === 'stars' ? 8 : (this.settings.value.calmMode ? 7 : 11);
         this.ctx.beginPath();
         this.ctx.moveTo(a.x, a.y);
         this.ctx.lineTo(b.x, b.y);
         this.ctx.stroke();
+        if (this.mode === 'stars' && i % 8 === 0 && !this.settings.value.calmMode) {
+          this.ctx.fillStyle = '#fff3a6';
+          this.ctx.beginPath();
+          this.ctx.arc(b.x, b.y, 3, 0, Math.PI * 2);
+          this.ctx.fill();
+        }
       }
       this.ctx.globalAlpha = 1;
+    }
+    colorFor(index) {
+      if (this.settings.value.calmMode) return '#4aa8ff';
+      if (this.mode === 'rainbow') return `hsl(${(index * 12) % 360} 92% 60%)`;
+      if (this.mode === 'stars') return '#ffd84d';
+      return '#64d6ff';
     }
     clear() {
       this.points = [];
@@ -410,6 +480,7 @@ const LeonSalV2 = (() => {
     GaugeBattery,
     DragDropEngine,
     RewardEngine,
+    SettingsPanel,
     clamp,
     lerp,
     easeOutCubic,

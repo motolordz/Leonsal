@@ -13,7 +13,7 @@
         <h1>Finger Light Trail</h1>
         <p>Draw a smooth high-DPI trail with pointer, touch, mouse or pen.</p>
       </div>
-      <a class="v2-home" href="index.html" aria-label="Back home">⌂</a>
+      <a class="v2-home" href="v2-proof-lab.html" aria-label="Proof lab">Lab</a>
     </header>
     <section class="v2-settings" id="settings" aria-label="Sensory settings"></section>
     <section class="v2-stage" aria-label="Light trail drawing area">
@@ -22,7 +22,11 @@
     <section class="v2-controls">
       <div class="control-row">
         <button id="clear" class="primary" type="button">Clear trail</button>
-        <button id="short" type="button">Short trail</button>
+        <div class="segmented" aria-label="Trail style">
+          <button data-trail="light" type="button" aria-pressed="true">Light</button>
+          <button data-trail="rainbow" type="button">Rainbow</button>
+          <button data-trail="stars" type="button">Stars</button>
+        </div>
       </div>
       <p class="v2-status" id="status">Touch and move to make a light trail.</p>
     </section>
@@ -34,14 +38,7 @@
     const canvas = document.querySelector('#canvas');
     const status = document.querySelector('#status');
     const trail = new LeonSalV2.TrailEngine(canvas, motion, settings);
-    let short = false;
-    function renderSettings() {
-      document.querySelector('#settings').innerHTML = ['motion','sound','vibration','calmMode','confetti'].map((key) => `<button type="button" data-key="${key}" aria-pressed="${Boolean(settings.value[key])}">${key}</button>`).join('');
-      document.querySelectorAll('[data-key]').forEach((button) => button.addEventListener('click', () => {
-        settings.set({ [button.dataset.key]: !settings.value[button.dataset.key] });
-        renderSettings();
-      }));
-    }
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
     function point(eventPoint) {
       const rect = canvas.getBoundingClientRect();
       trail.addPoint(eventPoint.x - rect.left, eventPoint.y - rect.top);
@@ -49,12 +46,11 @@
     }
     new LeonSalV2.InputEngine(canvas).onPointer({ down: point, move: point, up: () => { status.textContent = 'Trail is settling.'; } });
     document.querySelector('#clear').addEventListener('click', () => { trail.clear(); status.textContent = 'Trail cleared.'; });
-    document.querySelector('#short').addEventListener('click', () => {
-      short = !short;
-      trail.maxPoints = short ? 28 : 72;
-      document.querySelector('#short').textContent = short ? 'Long trail' : 'Short trail';
-    });
-    renderSettings();
+    document.querySelectorAll('[data-trail]').forEach((button) => button.addEventListener('click', () => {
+      trail.mode = button.dataset.trail;
+      document.querySelectorAll('[data-trail]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      status.textContent = `${button.textContent} trail selected.`;
+    }));
   </script>
 </body>
 </html>

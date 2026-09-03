@@ -13,11 +13,12 @@
         <h1>Hold to Breathe</h1>
         <p>Press and hold to expand, release to settle.</p>
       </div>
-      <a class="v2-home" href="index.html" aria-label="Back home">⌂</a>
+      <a class="v2-home" href="v2-proof-lab.html" aria-label="Proof lab">Lab</a>
     </header>
     <section class="v2-settings" id="settings" aria-label="Sensory settings"></section>
     <section class="v2-stage" id="stage" aria-label="Breathing hold area">
       <div class="breath-orb" id="orb" aria-hidden="true"></div>
+      <div class="breath-copy"><span>Hold to grow</span><span>Release to settle</span></div>
     </section>
     <section class="v2-controls">
       <div class="control-row">
@@ -37,13 +38,7 @@
     let scale = 1;
     let velocity = 0;
     let target = 1;
-    function renderSettings() {
-      document.querySelector('#settings').innerHTML = ['motion','sound','vibration','calmMode','confetti'].map((key) => `<button type="button" data-key="${key}" aria-pressed="${Boolean(settings.value[key])}">${key}</button>`).join('');
-      document.querySelectorAll('[data-key]').forEach((button) => button.addEventListener('click', () => {
-        settings.set({ [button.dataset.key]: !settings.value[button.dataset.key] });
-        renderSettings();
-      }));
-    }
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
     function setTarget(next, label) {
       target = next;
       status.textContent = label;
@@ -65,7 +60,6 @@
     document.querySelector('#expand').addEventListener('pointerdown', () => setTarget(1.55, 'Breathing space is expanding.'));
     document.querySelector('#expand').addEventListener('pointerup', () => setTarget(1, 'Breathing space is settling.'));
     document.querySelector('#settle').addEventListener('click', () => setTarget(1, 'Breathing space is settled.'));
-    renderSettings();
   </script>
 </body>
 </html>

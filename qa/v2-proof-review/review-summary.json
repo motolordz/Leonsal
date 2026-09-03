@@ -1,0 +1,269 @@
+{
+  "layouts": [
+    {
+      "vpName": "mobile-390",
+      "route": "v2-proof-lab.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": true,
+      "delta": 639
+    },
+    {
+      "vpName": "mobile-390",
+      "route": "v2-energy-battery.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "mobile-390",
+      "route": "v2-dash-dock.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "mobile-390",
+      "route": "v2-bubble-garden.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "mobile-390",
+      "route": "v2-light-trail.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "mobile-390",
+      "route": "v2-hold-to-breathe.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "mobile-430",
+      "route": "v2-proof-lab.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": true,
+      "delta": 551
+    },
+    {
+      "vpName": "mobile-430",
+      "route": "v2-energy-battery.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "mobile-430",
+      "route": "v2-dash-dock.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "mobile-430",
+      "route": "v2-bubble-garden.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "mobile-430",
+      "route": "v2-light-trail.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "mobile-430",
+      "route": "v2-hold-to-breathe.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "tablet",
+      "route": "v2-proof-lab.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "tablet",
+      "route": "v2-energy-battery.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "tablet",
+      "route": "v2-dash-dock.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "tablet",
+      "route": "v2-bubble-garden.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "tablet",
+      "route": "v2-light-trail.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "tablet",
+      "route": "v2-hold-to-breathe.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "desktop",
+      "route": "v2-proof-lab.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "desktop",
+      "route": "v2-energy-battery.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "desktop",
+      "route": "v2-dash-dock.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "desktop",
+      "route": "v2-bubble-garden.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "desktop",
+      "route": "v2-light-trail.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    },
+    {
+      "vpName": "desktop",
+      "route": "v2-hold-to-breathe.html",
+      "errors": [],
+      "horizontalScroll": false,
+      "verticalOverflow": false,
+      "delta": 0
+    }
+  ],
+  "proofs": [
+    {
+      "name": "battery",
+      "route": "v2-energy-battery.html",
+      "fps": 61,
+      "worstObservedFrameRate": 53,
+      "longTasks": 0,
+      "proof": {
+        "state": "excited",
+        "value": "100"
+      },
+      "errors": []
+    },
+    {
+      "name": "dash",
+      "route": "v2-dash-dock.html",
+      "fps": 61,
+      "worstObservedFrameRate": 53,
+      "longTasks": 0,
+      "proof": {
+        "position": "95",
+        "energy": "100",
+        "state": "excited",
+        "helper": "true",
+        "status": "Fully charged!"
+      },
+      "errors": []
+    },
+    {
+      "name": "bubbles",
+      "route": "v2-bubble-garden.html",
+      "fps": 61,
+      "worstObservedFrameRate": 57,
+      "longTasks": 0,
+      "proof": {
+        "status": "Bubble popped.",
+        "count": 47
+      },
+      "errors": []
+    },
+    {
+      "name": "trail",
+      "route": "v2-light-trail.html",
+      "fps": 61,
+      "worstObservedFrameRate": 53,
+      "longTasks": 0,
+      "proof": {
+        "status": "Trail is settling.",
+        "mode": "rainbow",
+        "points": 39
+      },
+      "errors": []
+    },
+    {
+      "name": "breathe",
+      "route": "v2-hold-to-breathe.html",
+      "fps": 60,
+      "worstObservedFrameRate": 57,
+      "longTasks": 0,
+      "proof": {
+        "scale": "1.5518553236240733",
+        "status": "Breathing space is settling."
+      },
+      "errors": []
+    }
+  ],
+  "recordings": [
+    "qa/v2-proof-review/recordings/battery-mobile-390.webm",
+    "qa/v2-proof-review/recordings/dash-mobile-390.webm",
+    "qa/v2-proof-review/recordings/bubbles-mobile-390.webm",
+    "qa/v2-proof-review/recordings/trail-mobile-390.webm",
+    "qa/v2-proof-review/recordings/breathe-mobile-390.webm"
+  ]
+}
