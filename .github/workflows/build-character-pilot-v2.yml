@@ -57,6 +57,18 @@ jobs:
       - name: Build and pixel-verify 40 transparent PNG assets
         run: python tools/build-character-pilot-v2.py
 
+      - name: Upload visual QA package
+        uses: actions/upload-artifact@v4
+        with:
+          name: leonsal-character-pilot-v2-qa
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            assets/characters-v2/pilot-qa/pilot-40-checkerboard.jpg
+            assets/characters-v2/leon/*.png
+            assets/characters-v2/zaya/*.png
+            assets/characters-v2/world/**/*.png
+
       - name: Commit generated production assets
         run: |
           git config user.name "github-actions[bot]"
