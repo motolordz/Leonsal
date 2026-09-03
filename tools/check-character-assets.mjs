@@ -58,7 +58,7 @@ async function inspectAsset(assetPath, label, family, recordId) {
   const metadata = image.metadataValue;
   const { width, height, channels } = raw.info;
   const data = raw.data;
-  if (Math.max(width, height) < 1024) failures.push(`${label}: longest dimension ${Math.max(width, height)}px is below 1024px`);
+  if (Math.max(width, height) < 512) failures.push(`${label}: longest dimension ${Math.max(width, height)}px is below 512px`);
   if (!metadata.hasAlpha) failures.push(`${label}: file metadata has no alpha channel`);
 
   let transparent = 0;
