@@ -12,6 +12,7 @@ const families = ["guides", "alphabet", "numbers", "world"];
 const failures = [];
 const warnings = [];
 let checked = 0;
+let pendingReview = 0;
 
 function hash(buffer) {
   return crypto.createHash("sha256").update(buffer).digest("hex");
@@ -104,6 +105,31 @@ async function inspectAsset(assetPath, label, family, recordId) {
   };
 }
 
+async function inspectReviewAsset(assetPath, label, family, recordId) {
+  if (!assetPath) {
+    failures.push(`${label}: missing review asset path`);
+    return;
+  }
+  if (/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(assetPath)) {
+    failures.push(`${label}: review asset points at blocked source/QA path ${assetPath}`);
+  }
+  if (!assetPath.includes(expectedPathFragment(family, recordId))) {
+    failures.push(`${label}: path does not match registry family/id: ${assetPath}`);
+  }
+
+  const fullPath = path.join(root, assetPath);
+  if (!fs.existsSync(fullPath)) {
+    failures.push(`${label}: missing file ${assetPath}`);
+    return;
+  }
+
+  try {
+    await sharp(fullPath, { failOn: "error" }).metadata();
+  } catch (error) {
+    failures.push(`${label}: review image does not decode (${error.message})`);
+  }
+}
+
 function signatureDistance(a, b) {
   const length = Math.min(a.length, b.length);
   if (!length) return 0;
@@ -115,6 +141,19 @@ function signatureDistance(a, b) {
 for (const family of families) {
   for (const record of registry[family] || []) {
     if (record.status && record.status !== "approved") {
+      if (Object.keys(record.states || {}).length > 0) {
+        failures.push(`${family}/${record.id}: ${record.status} record exposes runtime states`);
+      }
+      if (record.status === "pending-art") {
+        const reviewKeys = Object.keys(record.reviewStates || {}).sort();
+        if (reviewKeys.length > 0 && reviewKeys.join(",") !== requiredStates.slice().sort().join(",")) {
+          failures.push(`${family}/${record.id}: pending-art review set must contain exactly ${requiredStates.join(", ")}`);
+        }
+        for (const state of reviewKeys) {
+          await inspectReviewAsset(record.reviewStates[state], `${family}/${record.id}/${state}`, family, record.id);
+          pendingReview += 1;
+        }
+      }
       warnings.push(`${family}/${record.id}: ${record.status}; skipped production alpha verification`);
       continue;
     }
@@ -155,6 +194,7 @@ if (failures.length > 0) {
 }
 
 console.log(`Character asset alpha check passed for ${checked} approved production assets.`);
+console.log(`Pending/review character asset count: ${pendingReview}.`);
 if (warnings.length) {
   console.log("Skipped non-approved records:");
   for (const warning of warnings) console.log(`- ${warning}`);

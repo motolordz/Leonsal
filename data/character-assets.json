@@ -12,31 +12,33 @@
       "id": "leon",
       "displayName": "Leon",
       "family": "guide",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/leon/empty.png",
         "low": "assets/characters-v2/leon/low.png",
         "calm": "assets/characters-v2/leon/calm.png",
         "happy": "assets/characters-v2/leon/happy.png",
         "excited": "assets/characters-v2/leon/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "zaya",
       "displayName": "Zaya",
       "family": "guide",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/zaya/empty.png",
         "low": "assets/characters-v2/zaya/low.png",
         "calm": "assets/characters-v2/zaya/calm.png",
         "happy": "assets/characters-v2/zaya/happy.png",
         "excited": "assets/characters-v2/zaya/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     }
   ],
   "alphabet": [],
@@ -46,91 +48,97 @@
       "id": "battery-buddy",
       "displayName": "Battery Buddy",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/battery-buddy/empty.png",
         "low": "assets/characters-v2/world/battery-buddy/low.png",
         "calm": "assets/characters-v2/world/battery-buddy/calm.png",
         "happy": "assets/characters-v2/world/battery-buddy/happy.png",
         "excited": "assets/characters-v2/world/battery-buddy/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "elephant",
       "displayName": "Elephant",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/elephant/empty.png",
         "low": "assets/characters-v2/world/elephant/low.png",
         "calm": "assets/characters-v2/world/elephant/calm.png",
         "happy": "assets/characters-v2/world/elephant/happy.png",
         "excited": "assets/characters-v2/world/elephant/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "double-decker",
       "displayName": "Double-decker Bus",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/double-decker/empty.png",
         "low": "assets/characters-v2/world/double-decker/low.png",
         "calm": "assets/characters-v2/world/double-decker/calm.png",
         "happy": "assets/characters-v2/world/double-decker/happy.png",
         "excited": "assets/characters-v2/world/double-decker/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "plane",
       "displayName": "Plane",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/plane/empty.png",
         "low": "assets/characters-v2/world/plane/low.png",
         "calm": "assets/characters-v2/world/plane/calm.png",
         "happy": "assets/characters-v2/world/plane/happy.png",
         "excited": "assets/characters-v2/world/plane/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "boat",
       "displayName": "Boat",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/boat/empty.png",
         "low": "assets/characters-v2/world/boat/low.png",
         "calm": "assets/characters-v2/world/boat/calm.png",
         "happy": "assets/characters-v2/world/boat/happy.png",
         "excited": "assets/characters-v2/world/boat/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "letter-a",
       "displayName": "Letter A",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/letter-a/empty.png",
         "low": "assets/characters-v2/world/letter-a/low.png",
         "calm": "assets/characters-v2/world/letter-a/calm.png",
         "happy": "assets/characters-v2/world/letter-a/happy.png",
         "excited": "assets/characters-v2/world/letter-a/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     }
   ],
   "pilot": [
@@ -138,121 +146,129 @@
       "id": "leon",
       "displayName": "Leon",
       "family": "guide",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/leon/empty.png",
         "low": "assets/characters-v2/leon/low.png",
         "calm": "assets/characters-v2/leon/calm.png",
         "happy": "assets/characters-v2/leon/happy.png",
         "excited": "assets/characters-v2/leon/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "zaya",
       "displayName": "Zaya",
       "family": "guide",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/zaya/empty.png",
         "low": "assets/characters-v2/zaya/low.png",
         "calm": "assets/characters-v2/zaya/calm.png",
         "happy": "assets/characters-v2/zaya/happy.png",
         "excited": "assets/characters-v2/zaya/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "battery-buddy",
       "displayName": "Battery Buddy",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/battery-buddy/empty.png",
         "low": "assets/characters-v2/world/battery-buddy/low.png",
         "calm": "assets/characters-v2/world/battery-buddy/calm.png",
         "happy": "assets/characters-v2/world/battery-buddy/happy.png",
         "excited": "assets/characters-v2/world/battery-buddy/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "elephant",
       "displayName": "Elephant",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/elephant/empty.png",
         "low": "assets/characters-v2/world/elephant/low.png",
         "calm": "assets/characters-v2/world/elephant/calm.png",
         "happy": "assets/characters-v2/world/elephant/happy.png",
         "excited": "assets/characters-v2/world/elephant/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "double-decker",
       "displayName": "Double-decker Bus",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/double-decker/empty.png",
         "low": "assets/characters-v2/world/double-decker/low.png",
         "calm": "assets/characters-v2/world/double-decker/calm.png",
         "happy": "assets/characters-v2/world/double-decker/happy.png",
         "excited": "assets/characters-v2/world/double-decker/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "plane",
       "displayName": "Plane",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/plane/empty.png",
         "low": "assets/characters-v2/world/plane/low.png",
         "calm": "assets/characters-v2/world/plane/calm.png",
         "happy": "assets/characters-v2/world/plane/happy.png",
         "excited": "assets/characters-v2/world/plane/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "boat",
       "displayName": "Boat",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/boat/empty.png",
         "low": "assets/characters-v2/world/boat/low.png",
         "calm": "assets/characters-v2/world/boat/calm.png",
         "happy": "assets/characters-v2/world/boat/happy.png",
         "excited": "assets/characters-v2/world/boat/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     },
     {
       "id": "letter-a",
       "displayName": "Letter A",
       "family": "world",
-      "status": "approved",
-      "format": "png-rgba",
-      "states": {
+      "status": "pending-art",
+      "format": "png-rgba-review",
+      "states": {},
+      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "reviewStates": {
         "empty": "assets/characters-v2/world/letter-a/empty.png",
         "low": "assets/characters-v2/world/letter-a/low.png",
         "calm": "assets/characters-v2/world/letter-a/calm.png",
         "happy": "assets/characters-v2/world/letter-a/happy.png",
         "excited": "assets/characters-v2/world/letter-a/excited.png"
-      },
-      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+      }
     }
   ],
   "statuses": [
@@ -260,7 +276,7 @@
     "pending-art",
     "rejected"
   ],
-  "runtimeRule": "Only records with status approved may resolve state paths into runtime image sources. pending-art and rejected records must expose empty runtime states and use procedural fallback components. Approved paths must not point into source-safe-keeping, review-only, QA, contact-sheet, or rejected folders.",
+  "runtimeRule": "Only records with status approved may resolve state paths into runtime image sources. pending-art and rejected records must expose empty runtime states and use procedural fallback components. Review-only paths may be retained under reviewStates for QA/reference, but production rendering must ignore them. Approved paths must not point into source-safe-keeping, review-only, QA, contact-sheet, or rejected folders.",
   "missing": [
     {
       "families": [
@@ -271,5 +287,6 @@
       "status": "needs-approved-individual-transparent-masters",
       "notes": "Review sheets are not production sprites and remain blocked from runtime until separately approved."
     }
-  ]
+  ],
+  "approvalGate": "No character asset may be production-approved until owner visual approval. pending-art reviewStates are QA/reference only and must not resolve into runtime image sources."
 }

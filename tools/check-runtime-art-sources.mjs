@@ -8,6 +8,8 @@ const families = ["guides", "alphabet", "numbers", "world", "pilot"];
 const states = ["empty", "low", "calm", "happy", "excited"];
 const forbidden = /source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/i;
 const failures = [];
+let approvedRuntimeAssets = 0;
+let pendingReviewAssets = 0;
 
 for (const family of families) {
   for (const record of registry[family] || []) {
@@ -15,11 +17,18 @@ for (const family of families) {
     if (record.status !== "approved" && Object.keys(recordStates).length > 0) {
       failures.push(`${family}/${record.id}: ${record.status || "unapproved"} record exposes runtime states`);
     }
+    if (record.status !== "approved") {
+      for (const [state, assetPath] of Object.entries(record.reviewStates || {})) {
+        if (forbidden.test(assetPath)) failures.push(`${family}/${record.id}/${state}: blocked review path ${assetPath}`);
+        if (family !== "pilot") pendingReviewAssets += 1;
+      }
+    }
     if (record.status === "approved") {
       for (const state of states) {
         const assetPath = recordStates[state];
         if (!assetPath) failures.push(`${family}/${record.id}: approved record missing ${state}`);
         if (assetPath && forbidden.test(assetPath)) failures.push(`${family}/${record.id}/${state}: forbidden runtime path ${assetPath}`);
+        if (assetPath) approvedRuntimeAssets += 1;
       }
     }
   }
@@ -31,4 +40,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("Runtime art source check passed: only approved records may expose runtime image paths.");
+console.log(`Runtime art source check passed: ${approvedRuntimeAssets} approved runtime assets, ${pendingReviewAssets} pending review assets.`);
