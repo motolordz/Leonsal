@@ -30,7 +30,7 @@ async function inspectAsset(assetPath, label, family, recordId) {
     failures.push(`${label}: missing asset path`);
     return null;
   }
-  if (/source-safe-keeping|rejected-character-crops-v1/.test(assetPath)) {
+  if (/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(assetPath)) {
     failures.push(`${label}: production registry points at rejected/source path ${assetPath}`);
   }
   if (!assetPath.includes(expectedPathFragment(family, recordId))) {
@@ -90,7 +90,26 @@ async function inspectAsset(assetPath, label, family, recordId) {
   if (minX <= 0 || minY <= 0 || maxX >= width - 1 || maxY >= height - 1) failures.push(`${label}: subject touches canvas edge`);
   if (nonTransparent && opaqueWhiteGrey / nonTransparent > 0.72) failures.push(`${label}: appears to be mostly opaque white/grey background`);
 
-  return { width, height, hash: hash(fs.readFileSync(fullPath)), perceptual: `${Math.round(minX/8)}:${Math.round(minY/8)}:${Math.round(maxX/8)}:${Math.round(maxY/8)}` };
+  const signatureBuffer = await sharp(fullPath)
+    .ensureAlpha()
+    .resize({ width: 32, height: 32, fit: "contain" })
+    .raw()
+    .toBuffer();
+
+  return {
+    width,
+    height,
+    hash: hash(fs.readFileSync(fullPath)),
+    signature: signatureBuffer,
+  };
+}
+
+function signatureDistance(a, b) {
+  const length = Math.min(a.length, b.length);
+  if (!length) return 0;
+  let total = 0;
+  for (let index = 0; index < length; index += 1) total += Math.abs(a[index] - b[index]);
+  return total / length;
 }
 
 for (const family of families) {
@@ -115,8 +134,13 @@ for (const family of families) {
     }
     const hashes = new Set(inspected.map((item) => item.hash));
     if (hashes.size !== inspected.length) failures.push(`${family}/${record.id}: at least two state files are byte-identical`);
-    const perceptual = new Set(inspected.map((item) => item.perceptual));
-    if (perceptual.size < Math.min(3, inspected.length)) failures.push(`${family}/${record.id}: state files appear perceptually too similar`);
+    let distinctPairs = 0;
+    for (let a = 0; a < inspected.length; a += 1) {
+      for (let b = a + 1; b < inspected.length; b += 1) {
+        if (signatureDistance(inspected[a].signature, inspected[b].signature) > 1.2) distinctPairs += 1;
+      }
+    }
+    if (distinctPairs < 4) failures.push(`${family}/${record.id}: state files appear perceptually too similar`);
   }
 }
 

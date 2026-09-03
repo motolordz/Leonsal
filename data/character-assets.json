@@ -255,6 +255,12 @@
       "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
     }
   ],
+  "statuses": [
+    "approved",
+    "pending-art",
+    "rejected"
+  ],
+  "runtimeRule": "Only records with status approved may resolve state paths into runtime image sources. pending-art and rejected records must expose empty runtime states and use procedural fallback components. Approved paths must not point into source-safe-keeping, review-only, QA, contact-sheet, or rejected folders.",
   "missing": [
     {
       "families": [

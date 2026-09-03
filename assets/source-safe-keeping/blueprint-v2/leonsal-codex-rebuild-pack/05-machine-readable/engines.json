@@ -1,0 +1,381 @@
+[
+  {
+    "id": "character-state-engine",
+    "name": "Character State & Animation Engine",
+    "primaryTech": [
+      "Rive state machines",
+      "fallback sprite atlas"
+    ],
+    "purpose": "One reusable character runtime for Leon, Zaya, letters, numbers and world mascots.",
+    "inputs": [
+      "characterId",
+      "energy:0-100",
+      "emotion",
+      "outfit",
+      "action",
+      "motionPreference"
+    ],
+    "outputs": [
+      "visual state",
+      "aria description",
+      "animation event"
+    ],
+    "sensoryRules": [
+      "pause/settle when motion is off",
+      "no flashing",
+      "state remains understandable without motion"
+    ],
+    "usedBy": [
+      "energy-battery-lab",
+      "charging-dock-dash",
+      "emotion-body-check-in",
+      "routine-builder",
+      "planet-pals"
+    ]
+  },
+  {
+    "id": "energy-svg-engine",
+    "name": "Procedural Energy/Battery Engine",
+    "primaryTech": [
+      "SVG",
+      "Web Animations API",
+      "requestAnimationFrame"
+    ],
+    "purpose": "Crisp battery fill, drain, dock charge, faces and state transitions without relying on static PNG frames.",
+    "inputs": [
+      "energy",
+      "position",
+      "dockContact",
+      "chargeRate",
+      "drainRate"
+    ],
+    "outputs": [
+      "continuous fill",
+      "canonical energy state",
+      "charge events"
+    ],
+    "sensoryRules": [
+      "no automatic charge",
+      "motion and energy remain separate",
+      "reduced-motion swaps state without bounce"
+    ],
+    "usedBy": [
+      "energy-battery-lab",
+      "charging-dock-dash",
+      "breathing-orb"
+    ]
+  },
+  {
+    "id": "particle-play-engine",
+    "name": "Particle & Ambient Sensory Engine",
+    "primaryTech": [
+      "PixiJS WebGL",
+      "Canvas fallback",
+      "object pools"
+    ],
+    "purpose": "Bubbles, fireflies, stars, rain, snow, sparkles and calm colour flow.",
+    "inputs": [
+      "pointer input",
+      "intensity",
+      "speed",
+      "particle cap",
+      "calmMode"
+    ],
+    "outputs": [
+      "particles",
+      "pop/splash events"
+    ],
+    "sensoryRules": [
+      "user-controlled intensity",
+      "strict particle caps",
+      "no strobe effects"
+    ],
+    "usedBy": [
+      "bubble-garden",
+      "rainmaker",
+      "firefly-field",
+      "calm-colour-flow",
+      "weather-lab"
+    ]
+  },
+  {
+    "id": "trail-drawing-engine",
+    "name": "Trail, Tracing & Drawing Engine",
+    "primaryTech": [
+      "Canvas 2D",
+      "Pointer Events",
+      "path smoothing"
+    ],
+    "purpose": "Finger trails, free drawing, letter tracing and shape tracing.",
+    "inputs": [
+      "pointer path",
+      "brush size",
+      "colour",
+      "guide path"
+    ],
+    "outputs": [
+      "smoothed stroke",
+      "completion score",
+      "saved drawing"
+    ],
+    "sensoryRules": [
+      "no timer by default",
+      "pressure optional",
+      "clear/reset always visible"
+    ],
+    "usedBy": [
+      "light-trail",
+      "trace-the-letter",
+      "shape-snap-builder",
+      "safe-space-builder"
+    ]
+  },
+  {
+    "id": "drag-snap-engine",
+    "name": "Drag, Tap & Snap Engine",
+    "primaryTech": [
+      "Pointer Events",
+      "DOM/SVG or Phaser"
+    ],
+    "purpose": "Move objects, snap to targets and provide tap-tap alternatives to dragging.",
+    "inputs": [
+      "item",
+      "target",
+      "tolerance",
+      "assistMode"
+    ],
+    "outputs": [
+      "snap",
+      "gentle correction",
+      "completion"
+    ],
+    "sensoryRules": [
+      "drag never mandatory",
+      "large targets",
+      "no harsh failure animation"
+    ],
+    "usedBy": [
+      "shape-snap-builder",
+      "sort-and-pack",
+      "routine-builder",
+      "day-train",
+      "month-wheel",
+      "planet-pals"
+    ]
+  },
+  {
+    "id": "sort-match-engine",
+    "name": "Sort, Match & Categorise Engine",
+    "primaryTech": [
+      "Phaser scene",
+      "data-driven rules"
+    ],
+    "purpose": "Reusable matching and sorting rounds for letters, numbers, shapes, animals, seasons and habitats.",
+    "inputs": [
+      "items",
+      "groups",
+      "difficulty",
+      "distractorCount"
+    ],
+    "outputs": [
+      "match events",
+      "round completion",
+      "hints"
+    ],
+    "sensoryRules": [
+      "one instruction at a time",
+      "optional spoken prompt",
+      "consistent target positions"
+    ],
+    "usedBy": [
+      "letter-sound-hunt",
+      "sort-and-pack",
+      "weather-lab",
+      "planet-pals",
+      "emotion-body-check-in"
+    ]
+  },
+  {
+    "id": "memory-engine",
+    "name": "Memory Card Engine",
+    "primaryTech": [
+      "Phaser scene",
+      "DOM accessible mirror"
+    ],
+    "purpose": "Pairs, sequence recall and visual memory with adjustable board size.",
+    "inputs": [
+      "deck",
+      "boardSize",
+      "previewTime"
+    ],
+    "outputs": [
+      "flip state",
+      "match state",
+      "completion"
+    ],
+    "sensoryRules": [
+      "no countdown by default",
+      "cards stay still",
+      "motion can be disabled"
+    ],
+    "usedBy": [
+      "memory-garden",
+      "alphabet-adventure",
+      "planet-pals"
+    ]
+  },
+  {
+    "id": "sequence-routine-engine",
+    "name": "Sequence, Calendar & Routine Engine",
+    "primaryTech": [
+      "DOM/SVG",
+      "drag-snap engine",
+      "timeline state machine"
+    ],
+    "purpose": "First-then, daily routines, days, months, story order and timelines.",
+    "inputs": [
+      "steps",
+      "currentStep",
+      "choiceMode",
+      "timeContext"
+    ],
+    "outputs": [
+      "ordered sequence",
+      "visual schedule",
+      "next-step cue"
+    ],
+    "sensoryRules": [
+      "predictable layout",
+      "finished state visible",
+      "what-happens-next always shown"
+    ],
+    "usedBy": [
+      "routine-builder",
+      "day-train",
+      "month-wheel",
+      "story-sequence"
+    ]
+  },
+  {
+    "id": "physics-engine",
+    "name": "Gentle Physics & Balance Engine",
+    "primaryTech": [
+      "Phaser Arcade/Matter physics",
+      "fixed timestep"
+    ],
+    "purpose": "Stacking, balance, rolling, ramps and cause-and-effect.",
+    "inputs": [
+      "objects",
+      "gravity",
+      "collision rules",
+      "assist level"
+    ],
+    "outputs": [
+      "collision",
+      "balance",
+      "success"
+    ],
+    "sensoryRules": [
+      "slow default physics",
+      "no chaotic screen shake",
+      "reset without penalty"
+    ],
+    "usedBy": [
+      "number-merge",
+      "balance-scale",
+      "count-and-catch"
+    ]
+  },
+  {
+    "id": "audio-learning-engine",
+    "name": "Audio, Rhythm & Phonics Engine",
+    "primaryTech": [
+      "Howler.js",
+      "Web Audio API",
+      "audio sprites"
+    ],
+    "purpose": "Reliable user-triggered sounds, letter sounds, rhythm cues and volume-controlled feedback.",
+    "inputs": [
+      "soundId",
+      "volume",
+      "rate",
+      "pan",
+      "voicePreference"
+    ],
+    "outputs": [
+      "audio events",
+      "captions/visual cue"
+    ],
+    "sensoryRules": [
+      "sound off by default for sensory mode",
+      "no autoplay",
+      "master volume and repeat controls"
+    ],
+    "usedBy": [
+      "alphabet-adventure",
+      "letter-sound-hunt",
+      "rhyming-river",
+      "sensory-soundboard"
+    ]
+  },
+  {
+    "id": "breathing-pacing-engine",
+    "name": "Breathing & Pacing Engine",
+    "primaryTech": [
+      "SVG",
+      "Web Animations API",
+      "requestAnimationFrame"
+    ],
+    "purpose": "Child-controlled expand/settle pacing without forced clinical claims.",
+    "inputs": [
+      "hold state",
+      "duration",
+      "motion preference"
+    ],
+    "outputs": [
+      "progress",
+      "visual size",
+      "optional tone"
+    ],
+    "sensoryRules": [
+      "never starts automatically",
+      "release always available",
+      "calm mode slows transitions"
+    ],
+    "usedBy": [
+      "breathing-orb",
+      "emotion-body-check-in"
+    ]
+  },
+  {
+    "id": "world-shell-engine",
+    "name": "World Hub, Game Shell & Progress Engine",
+    "primaryTech": [
+      "Vite",
+      "TypeScript",
+      "semantic DOM",
+      "PWA service worker"
+    ],
+    "purpose": "Fast route loading, game lifecycle, settings, local progress, rewards and a consistent home/back flow.",
+    "inputs": [
+      "gameId",
+      "profile",
+      "settings",
+      "progress"
+    ],
+    "outputs": [
+      "route",
+      "game mount",
+      "saved completion",
+      "badges"
+    ],
+    "sensoryRules": [
+      "no long scrolling during play",
+      "settings do not obscure stage",
+      "one task per screen"
+    ],
+    "usedBy": [
+      "all-games"
+    ]
+  }
+]

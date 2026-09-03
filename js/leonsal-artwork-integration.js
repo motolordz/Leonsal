@@ -28,7 +28,7 @@
 
   function setRealImage(target, record, state, label) {
     if (!target || !record || !record.states || !record.states[state]) return false;
-    if (/source-safe-keeping|rejected-character-crops-v1/.test(record.states[state])) return false;
+    if (/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(record.states[state])) return false;
     target.classList.add("ls-real-art-host");
     target.dataset.realCharacterId = record.id;
     target.dataset.realState = state;

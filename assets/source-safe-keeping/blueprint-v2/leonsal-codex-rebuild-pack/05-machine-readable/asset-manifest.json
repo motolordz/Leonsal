@@ -1,0 +1,949 @@
+[
+  {
+    "path": "01-source-images/contact-sheets/leonsal_generated_png_reference_contact_sheet.jpg",
+    "sizeBytes": 833035,
+    "sha256": "bf95ce0dc80081be24cc3f7294c9ea74ee5024a301c6f7eccc446901dffdaf15",
+    "width": 960,
+    "height": 2745,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/contact-sheets/leonsal_uploaded_source_contact_sheet.jpg",
+    "sizeBytes": 461757,
+    "sha256": "f545dabc3703c41993e072659a627ce5fb182b26a84a9cebe8364f11d6434a17",
+    "width": 1080,
+    "height": 1560,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/1D8ABB11-C5AB-424F-A45A-64811C7C8B7B.jpeg",
+    "sizeBytes": 434338,
+    "sha256": "af37791f3e8fd4ca43cd7e2433270c6032397caeb742445e64ac5164b82ab14a",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/3D99BDA2-0292-4C98-BBD8-8D06C75C5E17.jpeg",
+    "sizeBytes": 825681,
+    "sha256": "d0754ed87d646fcc3cde6c0d89ae508eaf26d2c754661778b00ce29d841776d2",
+    "width": 1054,
+    "height": 1492,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/6C5D46AB-C7CC-4E4B-A6C7-132056E7F09D.jpeg",
+    "sizeBytes": 493435,
+    "sha256": "058e6258984478dc36d7c889aad4e956e9462c0d98088b239e119abb049e01c7",
+    "width": 1491,
+    "height": 1055,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/76CD8121-35F8-4FF6-B708-BB9EA1D76BBF(1).jpeg",
+    "sizeBytes": 610247,
+    "sha256": "16b519c9f3ccb09af804584312ea19903b85250f4dcb80551c1d18cd4f1d3e3b",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/76CD8121-35F8-4FF6-B708-BB9EA1D76BBF.jpeg",
+    "sizeBytes": 610247,
+    "sha256": "16b519c9f3ccb09af804584312ea19903b85250f4dcb80551c1d18cd4f1d3e3b",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/789DA229-5C1B-4337-81C1-96B312D039F5.jpeg",
+    "sizeBytes": 527166,
+    "sha256": "e0a5ab928cd4348a7463f197cc1a60cec92e9e474e58889c3aa7c3517175156c",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/818DB5C4-D8E6-4785-8389-9AB284CB50C8.jpeg",
+    "sizeBytes": 414838,
+    "sha256": "9f31e282ff5b66f12449dc7bbda8d25703a808d2e76b08d33ce386578f536a01",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/819FCA7A-2ABB-4A19-855F-3C4FFC2220C7.jpeg",
+    "sizeBytes": 444491,
+    "sha256": "22ae0f0e62b740db39a6c521b0c06579083121bf3a2a447694d8a817ea55d260",
+    "width": 1122,
+    "height": 1402,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/CF8DD583-5FB0-436D-9A33-33C96FA1B0C8.jpeg",
+    "sizeBytes": 511477,
+    "sha256": "16feafd89a427ba849ec269c7d010bc76c559e17c398d7b10ca925de9647d398",
+    "width": 1122,
+    "height": 1402,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/D29CEAFD-66D9-4FC9-AC25-A0363026FFF3.jpeg",
+    "sizeBytes": 586605,
+    "sha256": "f428137b40b6c0991607260c6000ae5a57fcdba2ab60e1a2f7f83fbb92d87a45",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/D83CD169-88DA-4976-91F3-8B93CFB81544.jpeg",
+    "sizeBytes": 765578,
+    "sha256": "3804562a1021c06fde1ad39301c8fa8a54797392af850ecc02653978865dc2b2",
+    "width": 1054,
+    "height": 1492,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/E265E6A3-7012-4E2F-B45A-F3C960E2265F.jpeg",
+    "sizeBytes": 486365,
+    "sha256": "c1114a942fae9f7e7827a1b663eaf1c0d3b726c6350a20ac6836060e322fe798",
+    "width": 1122,
+    "height": 1402,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/E6290689-BBE6-450B-AFDD-4B41839FA1D5.jpeg",
+    "sizeBytes": 510029,
+    "sha256": "55e4a4de2b1e0f73b590f44af81f79bf81169ac2b05fc6aec3de1c302fb4c366",
+    "width": 1491,
+    "height": 1055,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/original-uploaded-jpegs/E7797F3D-C097-4CC0-BBAA-DD9D4AE36A08.jpeg",
+    "sizeBytes": 463430,
+    "sha256": "e288345760136cdbcb5277dae94ad30561075b82cb19b5279010f7239a8c07e7",
+    "width": 1122,
+    "height": 1402,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_bright_clean_5_row_grid_poster_compilation_imag.png",
+    "sizeBytes": 2230699,
+    "sha256": "9072e9d9a8688b1f6d2ec49c6ab39ec65c199ed56ab58982dac238e23355a445",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_bright_clean_vector_3d_cartoon_illustration_she.png",
+    "sizeBytes": 2252588,
+    "sha256": "a398ea8a2502a18c379f1346e0adedfaa7a4cfdae96c8f4e227f559e24420ada",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_bright_colorful_3d_cartoon_logo_banner_illustra.png",
+    "sizeBytes": 1693368,
+    "sha256": "4f4b7545875a278830e8000443f2b8e6ce07d4b8ebb4be75b759c7f093a34356",
+    "width": 1402,
+    "height": 1122,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_bright_colorful_cartoon_style_kids_education_b.png",
+    "sizeBytes": 2009751,
+    "sha256": "eada0a8932ed8007e73f52469f5a6febf43312d53af605825c08f19671223c69",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_bright_colorful_high_energy_cartoon_banner_h.png",
+    "sizeBytes": 2135741,
+    "sha256": "36bdb9a7453e7ffe6eb4aaa067ce94e1a3207437e069f8095bf1f6c41ee63ff3",
+    "width": 1672,
+    "height": 941,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_bright_colorful_infographic_character_chart.png",
+    "sizeBytes": 1780599,
+    "sha256": "2c960c580dbb08d33e3ca29c4e9cd049b6620d9aa26d97f0d6bf8bf559078419",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_bright_colorful_infographic_character_chart_ima.png",
+    "sizeBytes": 1916892,
+    "sha256": "1002178e3608af17d8fa948bd8df71e08eb207dbf660d9c0d5e22f648fd9c7d6",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_bright_colorful_kids_themed_promotional_logo_a.png",
+    "sizeBytes": 1605927,
+    "sha256": "def40e7739c63b9ec74d8b5ddedb06a2b0ac7bc5c91d58092eaa63269ad27e42",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_bright_high_resolution_cartoon_illustration_s.png",
+    "sizeBytes": 1926379,
+    "sha256": "d8e57c127b638a4b22faff90320d04604635940adfea2bfa1597285d22f41a29",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_clean_infographic_character_chart_image_on_a_w.png",
+    "sizeBytes": 1907543,
+    "sha256": "d5249fc7d2fdc7393d2f1bd756b48b79e12aabbf316e3542add185c09b541967",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_clean_infographic_chart_style_image_on_a_white.png",
+    "sizeBytes": 1584999,
+    "sha256": "e9b652d3671f9f0fea6a95ee519c56837b8f26bed23d4d4529106d343c1b1b47",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_collection_of_eight_full_body_4k_high_definiti.png",
+    "sizeBytes": 2846751,
+    "sha256": "5bed38caad25e17cc57ab1257a428bde320a8dee02d7732da4ae1f1ab8934f73",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "hasAlpha": true
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_colorful_2d_digital_illustration_serves_as_the.png",
+    "sizeBytes": 2650278,
+    "sha256": "daf26cba63c31495b57f50eea55c5d8932b303ae4742a9fd44d6a2c08c4279d9",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "hasAlpha": true
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_colorful_high_quality_cartoon_illustration_bann.png",
+    "sizeBytes": 2015242,
+    "sha256": "00366647061cb8a39f743278e864be98e37aa9e2763309534313592bb78ee50d",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_digital_2d_logo_for_leonsal.com_an_educational.png",
+    "sizeBytes": 2591125,
+    "sha256": "121d4d5d4a4f1b3e14b400118a9916f2a73ef0f5bebf169f9de75d81d30a22d2",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "hasAlpha": true
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/a_digital_illustration_in_cartoon_style_is_a_promo.png",
+    "sizeBytes": 2692355,
+    "sha256": "d2d10be9f254cc723ba99a8506119b27bcd55cced85cbd31dad94fe7c3a0d88d",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "hasAlpha": true
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/battery_buddy_charge_mood_character_sheet.png",
+    "sizeBytes": 1231265,
+    "sha256": "4a0caabf8509eed038239c297e999d269583da0810dff03dd2e1ad5f3e075a60",
+    "width": 1122,
+    "height": 1402,
+    "mode": "RGBA",
+    "hasAlpha": true
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/colourful_character_energy_mood_chart.png",
+    "sizeBytes": 1725602,
+    "sha256": "6d497be58c9397d88a11f12326434d103d698db65b255fa710eec1e73cb2cf2a",
+    "width": 941,
+    "height": 1672,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/colourful_mascot_energy_sprite_sheet.png",
+    "sizeBytes": 1825052,
+    "sha256": "38caf8d48e5963e07225ff5631948883ba107dd78ca615debe8245c927453468",
+    "width": 1122,
+    "height": 1402,
+    "mode": "RGBA",
+    "hasAlpha": true
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/cute_mascot_energy_states_chart.png",
+    "sizeBytes": 1909863,
+    "sha256": "5cf55afd89e055ce3980e9cccbce1ba88944f731f6fa173f15b87deafad0aebf",
+    "width": 1055,
+    "height": 1491,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/glossy_cartoon_energy_emotion_chart.png",
+    "sizeBytes": 1646983,
+    "sha256": "377de3fcd4740ae6fa0ddd3f57295434c50e89cbac1d4ebb826e2550756f5cc6",
+    "width": 1122,
+    "height": 1402,
+    "mode": "RGBA",
+    "hasAlpha": true
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/glossy_character_energy_state_grid.png",
+    "sizeBytes": 1998872,
+    "sha256": "7d4138c187c7c6511edc9d71d23c082d8f0f5ed0b797eb56db89d37a542bfa4b",
+    "width": 1122,
+    "height": 1402,
+    "mode": "RGBA",
+    "hasAlpha": true
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/imagegen.png",
+    "sizeBytes": 1590910,
+    "sha256": "d2138012f5bdaf74fb8f8a0099da180ce0bfcd90714c6921d656147789dfebbd",
+    "width": 1491,
+    "height": 1055,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/kawaii_energy_chart_sticker_sheet.png",
+    "sizeBytes": 1768064,
+    "sha256": "916d8dd7d2e50ede1a4d83561fe8deb32561ce9f9d276366debf2edce54ef1a8",
+    "width": 1122,
+    "height": 1402,
+    "mode": "RGBA",
+    "hasAlpha": true
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/leon_s_five_energy_states.png",
+    "sizeBytes": 1590910,
+    "sha256": "d2138012f5bdaf74fb8f8a0099da180ce0bfcd90714c6921d656147789dfebbd",
+    "width": 1491,
+    "height": 1055,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/mascot_energy_states_chart.png",
+    "sizeBytes": 2116660,
+    "sha256": "e026c0acc71d79084eeca8b12c4c504a7353b2c7d08c3388e78f7bc9efe7b72c",
+    "width": 1122,
+    "height": 1402,
+    "mode": "RGBA",
+    "hasAlpha": true
+  },
+  {
+    "path": "01-source-images/prior-generated-png-references/zaya_s_five_energy_states_chart.png",
+    "sizeBytes": 1739264,
+    "sha256": "783db168138b065724ae2fb0d27498f036c378706a5a7c6e65578ed1a66b86f5",
+    "width": 1491,
+    "height": 1055,
+    "mode": "RGB",
+    "hasAlpha": false
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/leon/calm.png",
+    "sizeBytes": 146369,
+    "sha256": "f6cf435400c6e47b9e903df4d337d601fb4f7445e2a49657a337f4d62827fd7b",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.784828
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/leon/empty.png",
+    "sizeBytes": 248330,
+    "sha256": "931863d48a15e3e68836f412f56e3a320191985f16c1fc6136002778d140ddb7",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.503426
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/leon/excited.png",
+    "sizeBytes": 198338,
+    "sha256": "de84b336666b341d42269b2fb759bd8e602fd44273ca46573b76e6e7e0be50ec",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.711758
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/leon/happy.png",
+    "sizeBytes": 157340,
+    "sha256": "ed8e0c7c1cb25744dd3e1459c0226955440ab3f7e9219df111f11661f4ee0936",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.775951
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/leon/low.png",
+    "sizeBytes": 160760,
+    "sha256": "5c9a4507687067d6676c42127deca6d0f22b84b26c04e51e4f4d1efc33d9b70b",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.743027
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/battery-buddy/calm.png",
+    "sizeBytes": 163673,
+    "sha256": "b621541cda9279d2df6fdf4c93922b09b7f88a9e8cb6f4724a3053bc37de4bad",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.68824
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/battery-buddy/empty.png",
+    "sizeBytes": 134026,
+    "sha256": "3b8ce5b5f098c55ee2924b620cb97302e12d87add7492c81944fc379fb42bb27",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.747177
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/battery-buddy/excited.png",
+    "sizeBytes": 184043,
+    "sha256": "2f2281978b86097fcc38f53370029557113248409f4ef6f7e76c7938059e000a",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.691132
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/battery-buddy/happy.png",
+    "sizeBytes": 189553,
+    "sha256": "2110174961c4320ebdc82ea1410f41388987a20e47766f29068a2e2ff7f8bd4f",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.657036
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/battery-buddy/low.png",
+    "sizeBytes": 194523,
+    "sha256": "d94b3b56aec21a5f442f1bb1ac59b13dfa7271ccd0571c097ca26a7744709782",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.606472
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/boat/calm.png",
+    "sizeBytes": 221665,
+    "sha256": "e8419894a8868d57a46d066ecdd3b4acf929769417d1e7c17d72eb4bcf68ed22",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.550056
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/boat/empty.png",
+    "sizeBytes": 151247,
+    "sha256": "bebe3263be1e4ec91ef51a576c8961772653a019a612341e49a9572253b4675c",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.711166
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/boat/excited.png",
+    "sizeBytes": 267509,
+    "sha256": "ff243aeb3e5517c4d47147ada39614657514f26dcbfa7c8a810109a4f9769bf7",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.50032
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/boat/happy.png",
+    "sizeBytes": 258037,
+    "sha256": "1ca333a403a45a1d70d593a35328ce68d26f0190780efcb67515be00695882ca",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.508289
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/boat/low.png",
+    "sizeBytes": 194217,
+    "sha256": "f759025c64848aa2b3ec6b8d81bece035a44b89a0cf337caa64be401bddc9dd5",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.583378
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/double-decker/calm.png",
+    "sizeBytes": 242177,
+    "sha256": "93f6d6e20a27612a984e411d6d312506398126370f7e06b5135719d3fed7a428",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.42997
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/double-decker/empty.png",
+    "sizeBytes": 158551,
+    "sha256": "bb52226284566ab80c758dadb74eeef62d0e9c14159d5b580c6df49431f0d9e5",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.678238
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/double-decker/excited.png",
+    "sizeBytes": 258249,
+    "sha256": "bb8c6c9a0ee8b0c01e6ac4522a929f3a30b17ba475c094d16fe9c1bd7d5984a2",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.515587
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/double-decker/happy.png",
+    "sizeBytes": 232620,
+    "sha256": "86f8f1faa176d5d6e2bafffd0bd196fc82a9567208caa2d7651d0353131357bf",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.500984
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/double-decker/low.png",
+    "sizeBytes": 236055,
+    "sha256": "5a0baf208959d7006b275fc3f78f5b7761e32fd02f48d62aa7ac4aa6f23f502b",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.422588
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/elephant/calm.png",
+    "sizeBytes": 210966,
+    "sha256": "dc4248ee3d76be222a58f1ea1a876d023fe6da0a31ea6212b43c22c190551ed0",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.538006
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/elephant/empty.png",
+    "sizeBytes": 131852,
+    "sha256": "abd544f0b4b31e9df9a3759ec58fc17d5ee703b7c6bdbacb36772eb9018bc062",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.718418
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/elephant/excited.png",
+    "sizeBytes": 238775,
+    "sha256": "e85001c014d48d486a3f0b204c18f7a09fa30fe13a189215400df4391bd62ad5",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.549667
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/elephant/happy.png",
+    "sizeBytes": 220545,
+    "sha256": "40e4194e65fea2628ba42b35325ec6081fea69c52f26270f9e27d12425a8e740",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.54353
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/elephant/low.png",
+    "sizeBytes": 207345,
+    "sha256": "46eb52f1fa0fab0d53b09ef2e9223457061d7ce243e0c74c55960703bde4fc6a",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.504276
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/letter-a/calm.png",
+    "sizeBytes": 186992,
+    "sha256": "c0c214204c097c030fc4a8108834a801215e45619726a7805a16fd09bf70cccf",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.595154
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/letter-a/empty.png",
+    "sizeBytes": 170288,
+    "sha256": "668d130002ba576e8a5f9a52c8685e152bada716ae45289412ae698460f7c0aa",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.590214
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/letter-a/excited.png",
+    "sizeBytes": 242714,
+    "sha256": "1c9fa326859c85a693a7514d18a7ae4dc027de497882a682075a961686ed7b46",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.566273
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/letter-a/happy.png",
+    "sizeBytes": 181251,
+    "sha256": "cbe05918f23b4830e1c0d867aaf8bcd7cc28bb40d3e67916c2091f85e7a5a87b",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.664387
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/letter-a/low.png",
+    "sizeBytes": 176879,
+    "sha256": "68ac3cd507519b7c0ee96dcf736018db117759df0493e9a27099b10130c93c67",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.619656
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/plane/calm.png",
+    "sizeBytes": 185498,
+    "sha256": "006ecdc267116ee5c475a60e6d9573729a42fe8f3a25b6c4a9ad87e9eb9d48ca",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.650925
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/plane/empty.png",
+    "sizeBytes": 125970,
+    "sha256": "c60abd0faca25bda2f36da2f6548e0a35639e28e8dc3696d89196e219f891a41",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.76918
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/plane/excited.png",
+    "sizeBytes": 193758,
+    "sha256": "779035570483e27179185d5583d262563e373b8e55be7343bda71d890227bec0",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.654995
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/plane/happy.png",
+    "sizeBytes": 193193,
+    "sha256": "5183bdb786be055aee1cddcc4aab36ece264b15623362b70bd4108205f591c36",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.607635
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/world/plane/low.png",
+    "sizeBytes": 157587,
+    "sha256": "4a08571ec9873e11d9590179e12327a9e42ddf054f5deb390968cb6189296b14",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.696369
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/zaya/calm.png",
+    "sizeBytes": 164078,
+    "sha256": "ac465bdba4f53cb41a8bb054702b02cd9c17d9d7deaa787a1071f58b5eb93ffc",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.762814
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/zaya/empty.png",
+    "sizeBytes": 255760,
+    "sha256": "6b6c125dbfb3133774e75715bf0ca0dd84adaa19fb40e3edefb4d999e1d2a80b",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.519547
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/zaya/excited.png",
+    "sizeBytes": 218987,
+    "sha256": "c5e700c1c292681e9fdd9db9db4c05a9210c0627a181f3d4f4d6933ad9ef70f8",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.687668
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/zaya/happy.png",
+    "sizeBytes": 178135,
+    "sha256": "2cf961fe606edea0dceeca6bcc0d09de32fee6d309420ea43aa99e7d94dbf1ac",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.746723
+  },
+  {
+    "path": "02-current-pilot-pngs-review-only/zaya/low.png",
+    "sizeBytes": 165411,
+    "sha256": "0629dfd9d59797792e034c3411abe638364fd41b731844b10e35b40a5dd30c1d",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "hasAlpha": true,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixelFraction": 0.743267
+  }
+]

@@ -1,0 +1,641 @@
+[
+  {
+    "id": "energy-battery-lab",
+    "title": "My Energy Battery Lab",
+    "world": "Sensory & Regulation",
+    "age": "3-8",
+    "engineIds": [
+      "energy-svg-engine",
+      "character-state-engine"
+    ],
+    "interaction": "Swipe or tap to change a procedural battery and character energy state.",
+    "learning": [
+      "energy scale",
+      "cause and effect",
+      "self-awareness"
+    ],
+    "sensory": [
+      "no shame labels",
+      "motion/sound optional",
+      "continuous fill"
+    ],
+    "mvp": "Battery smoothly drains/fills; character state follows one canonical 0-100 scale."
+  },
+  {
+    "id": "charging-dock-dash",
+    "title": "Dash to the Charging Dock",
+    "world": "Sensory & Regulation",
+    "age": "3-8",
+    "engineIds": [
+      "energy-svg-engine",
+      "drag-snap-engine",
+      "character-state-engine"
+    ],
+    "interaction": "Move an empty character to the dock; only dock contact begins charging.",
+    "learning": [
+      "sequencing",
+      "cause and effect",
+      "energy routines"
+    ],
+    "sensory": [
+      "tap buttons as drag alternative",
+      "no automatic movement",
+      "calm charge mode"
+    ],
+    "mvp": "Position and energy are separate; start is 0%; dock animates 0\u2192100%."
+  },
+  {
+    "id": "bubble-garden",
+    "title": "Quiet Bubble Garden",
+    "world": "Sensory & Regulation",
+    "age": "3-8",
+    "engineIds": [
+      "particle-play-engine"
+    ],
+    "interaction": "Tap or swipe through floating bubbles with adjustable speed and quantity.",
+    "learning": [
+      "visual tracking",
+      "cause and effect",
+      "choice"
+    ],
+    "sensory": [
+      "no timer",
+      "low-density calm mode",
+      "sound optional"
+    ],
+    "mvp": "Stable 60fps on iPhone; object pooling; bubble count and speed controls."
+  },
+  {
+    "id": "light-trail",
+    "title": "Finger Light Trail",
+    "world": "Sensory & Regulation",
+    "age": "3-8",
+    "engineIds": [
+      "trail-drawing-engine"
+    ],
+    "interaction": "Draw glowing trails with finger, mouse or pen.",
+    "learning": [
+      "fine motor",
+      "creative expression",
+      "tracking"
+    ],
+    "sensory": [
+      "clear button always visible",
+      "no score",
+      "brush intensity control"
+    ],
+    "mvp": "Smooth path interpolation, high-DPI canvas and no page scrolling while drawing."
+  },
+  {
+    "id": "breathing-orb",
+    "title": "Hold to Breathe",
+    "world": "Sensory & Regulation",
+    "age": "4-8",
+    "engineIds": [
+      "breathing-pacing-engine",
+      "energy-svg-engine"
+    ],
+    "interaction": "Press and hold to expand; release to settle.",
+    "learning": [
+      "pacing",
+      "body awareness",
+      "controlled interaction"
+    ],
+    "sensory": [
+      "never autostarts",
+      "no medical claims",
+      "reduced motion supported"
+    ],
+    "mvp": "Child controls every cycle and can stop instantly."
+  },
+  {
+    "id": "calm-colour-flow",
+    "title": "Calm Colour Flow",
+    "world": "Sensory & Regulation",
+    "age": "3-8",
+    "engineIds": [
+      "particle-play-engine"
+    ],
+    "interaction": "Drag colours into one another to create slow liquid-like gradients.",
+    "learning": [
+      "colour mixing",
+      "prediction",
+      "creative play"
+    ],
+    "sensory": [
+      "slow mode default",
+      "no flashing",
+      "intensity slider"
+    ],
+    "mvp": "Procedural flow field with bounded particle count."
+  },
+  {
+    "id": "rainmaker",
+    "title": "Rainmaker Window",
+    "world": "Sensory & Regulation",
+    "age": "3-8",
+    "engineIds": [
+      "particle-play-engine",
+      "audio-learning-engine"
+    ],
+    "interaction": "Tap clouds to add rain; swipe to move wind.",
+    "learning": [
+      "weather",
+      "cause and effect",
+      "direction"
+    ],
+    "sensory": [
+      "volume capped",
+      "visual-only mode",
+      "no lightning by default"
+    ],
+    "mvp": "Rain density and sound independently controllable."
+  },
+  {
+    "id": "firefly-field",
+    "title": "Firefly Field",
+    "world": "Sensory & Regulation",
+    "age": "3-8",
+    "engineIds": [
+      "particle-play-engine"
+    ],
+    "interaction": "Guide slow glowing fireflies with touch.",
+    "learning": [
+      "visual attention",
+      "direction",
+      "gentle tracking"
+    ],
+    "sensory": [
+      "darkness level control",
+      "no rapid flashes",
+      "calm density cap"
+    ],
+    "mvp": "Soft glow with luminance limits and reduced-motion freeze mode."
+  },
+  {
+    "id": "sensory-soundboard",
+    "title": "My Sound Choices",
+    "world": "Sensory & Regulation",
+    "age": "3-8",
+    "engineIds": [
+      "audio-learning-engine"
+    ],
+    "interaction": "Tap clear sound tiles; control volume and stop all sounds instantly.",
+    "learning": [
+      "sound discrimination",
+      "choice",
+      "communication"
+    ],
+    "sensory": [
+      "no autoplay",
+      "master stop",
+      "visual captions"
+    ],
+    "mvp": "Every sound user-triggered; stop button works immediately."
+  },
+  {
+    "id": "safe-space-builder",
+    "title": "Build My Calm Space",
+    "world": "Sensory & Regulation",
+    "age": "4-8",
+    "engineIds": [
+      "drag-snap-engine",
+      "trail-drawing-engine"
+    ],
+    "interaction": "Place preferred items into a room and save a visual choice board.",
+    "learning": [
+      "communication",
+      "planning",
+      "personal preference"
+    ],
+    "sensory": [
+      "no correct answer",
+      "predictable layout",
+      "simple choices"
+    ],
+    "mvp": "Child can create, reset and locally save a calm-space picture."
+  },
+  {
+    "id": "number-merge",
+    "title": "Number Merge Playground",
+    "world": "Maths & Logic",
+    "age": "4-8",
+    "engineIds": [
+      "physics-engine",
+      "character-state-engine"
+    ],
+    "interaction": "Combine number blocks and see totals form visually.",
+    "learning": [
+      "addition",
+      "place value",
+      "number magnitude"
+    ],
+    "sensory": [
+      "slow physics",
+      "no timer",
+      "repeatable"
+    ],
+    "mvp": "Supports values beyond 10 without giant DOM blocks or layout failure."
+  },
+  {
+    "id": "count-and-catch",
+    "title": "Count & Catch",
+    "world": "Maths & Logic",
+    "age": "3-7",
+    "engineIds": [
+      "physics-engine",
+      "sort-match-engine"
+    ],
+    "interaction": "Catch the requested number of falling objects.",
+    "learning": [
+      "counting",
+      "one-to-one correspondence"
+    ],
+    "sensory": [
+      "speed tiers",
+      "pause anytime",
+      "minimal distractors"
+    ],
+    "mvp": "1-10 rounds with adjustable speed and no penalty for misses."
+  },
+  {
+    "id": "number-line-hop",
+    "title": "Number Line Hop",
+    "world": "Maths & Logic",
+    "age": "4-8",
+    "engineIds": [
+      "drag-snap-engine",
+      "character-state-engine"
+    ],
+    "interaction": "Tap or drag Leon along a number line.",
+    "learning": [
+      "number order",
+      "addition",
+      "subtraction"
+    ],
+    "sensory": [
+      "single-step controls",
+      "motion optional"
+    ],
+    "mvp": "Tap arrows work without dragging; number line remains stable."
+  },
+  {
+    "id": "shape-snap-builder",
+    "title": "Shape Snap Builder",
+    "world": "Maths & Logic",
+    "age": "3-7",
+    "engineIds": [
+      "drag-snap-engine",
+      "trail-drawing-engine"
+    ],
+    "interaction": "Drag or tap shapes into a picture.",
+    "learning": [
+      "2D shapes",
+      "spatial reasoning",
+      "composition"
+    ],
+    "sensory": [
+      "large targets",
+      "tap-tap alternative",
+      "gentle snap"
+    ],
+    "mvp": "House roof is above the body; six complete pictures are visually coherent."
+  },
+  {
+    "id": "pattern-path",
+    "title": "Pattern Path",
+    "world": "Maths & Logic",
+    "age": "4-8",
+    "engineIds": [
+      "sort-match-engine"
+    ],
+    "interaction": "Choose what comes next in a visual or movement pattern.",
+    "learning": [
+      "patterns",
+      "prediction",
+      "reasoning"
+    ],
+    "sensory": [
+      "one row at a time",
+      "no shaking on error"
+    ],
+    "mvp": "AB, AAB, ABB and ABC patterns with clear difficulty progression."
+  },
+  {
+    "id": "sort-and-pack",
+    "title": "Sort & Pack",
+    "world": "Maths & Logic",
+    "age": "3-7",
+    "engineIds": [
+      "sort-match-engine",
+      "drag-snap-engine"
+    ],
+    "interaction": "Sort objects by colour, size, shape or category.",
+    "learning": [
+      "classification",
+      "comparison",
+      "vocabulary"
+    ],
+    "sensory": [
+      "consistent bins",
+      "tap alternative",
+      "few distractors"
+    ],
+    "mvp": "Data-driven categories; 3-bin maximum for early levels."
+  },
+  {
+    "id": "balance-scale",
+    "title": "Balance the Scale",
+    "world": "Maths & Logic",
+    "age": "5-8",
+    "engineIds": [
+      "physics-engine"
+    ],
+    "interaction": "Place objects on a seesaw scale to balance quantities.",
+    "learning": [
+      "mass",
+      "equality",
+      "number bonds"
+    ],
+    "sensory": [
+      "slow damping",
+      "no sudden bounce"
+    ],
+    "mvp": "Deterministic physics and visual equality cue."
+  },
+  {
+    "id": "memory-garden",
+    "title": "Memory Garden",
+    "world": "Maths & Logic",
+    "age": "3-8",
+    "engineIds": [
+      "memory-engine"
+    ],
+    "interaction": "Match pairs on calm garden cards.",
+    "learning": [
+      "visual memory",
+      "matching",
+      "turn-taking"
+    ],
+    "sensory": [
+      "2x2 starting board",
+      "no timer",
+      "motion off option"
+    ],
+    "mvp": "Board sizes 2x2, 3x4 and 4x4 with stable card positions."
+  },
+  {
+    "id": "alphabet-adventure",
+    "title": "Alphabet Adventure",
+    "world": "Literacy",
+    "age": "3-7",
+    "engineIds": [
+      "sort-match-engine",
+      "character-state-engine",
+      "audio-learning-engine"
+    ],
+    "interaction": "Explore letters, hear sounds and complete short rounds.",
+    "learning": [
+      "letter recognition",
+      "letter-sound association"
+    ],
+    "sensory": [
+      "voice repeat",
+      "sound optional",
+      "one letter focus"
+    ],
+    "mvp": "A-Z order, clear glyphs, no robotic fallback voice when quality voice unavailable."
+  },
+  {
+    "id": "letter-sound-hunt",
+    "title": "Letter Sound Hunt",
+    "world": "Literacy",
+    "age": "4-7",
+    "engineIds": [
+      "sort-match-engine",
+      "audio-learning-engine"
+    ],
+    "interaction": "Find pictures beginning with the target sound.",
+    "learning": [
+      "phonemic awareness",
+      "vocabulary"
+    ],
+    "sensory": [
+      "three choices maximum early",
+      "repeat prompt"
+    ],
+    "mvp": "Human-reviewed sound mapping and Australian-English audio set."
+  },
+  {
+    "id": "trace-the-letter",
+    "title": "Trace the Letter",
+    "world": "Literacy",
+    "age": "4-7",
+    "engineIds": [
+      "trail-drawing-engine",
+      "character-state-engine"
+    ],
+    "interaction": "Trace large upper- and lowercase letters with guided paths.",
+    "learning": [
+      "letter formation",
+      "fine motor"
+    ],
+    "sensory": [
+      "wide tolerance",
+      "no forced speed",
+      "left/right hand friendly"
+    ],
+    "mvp": "Path order cues, free retry and trace overlay that can be hidden."
+  },
+  {
+    "id": "rhyming-river",
+    "title": "Rhyming River",
+    "world": "Literacy",
+    "age": "4-8",
+    "engineIds": [
+      "sort-match-engine",
+      "audio-learning-engine"
+    ],
+    "interaction": "Send matching rhyme boats down the same river path.",
+    "learning": [
+      "rhyme",
+      "listening",
+      "word families"
+    ],
+    "sensory": [
+      "sound repeat",
+      "visual picture support"
+    ],
+    "mvp": "Curated rhyme sets and clear non-rhyme distractors."
+  },
+  {
+    "id": "word-builder",
+    "title": "Word Builder",
+    "world": "Literacy",
+    "age": "5-8",
+    "engineIds": [
+      "drag-snap-engine",
+      "audio-learning-engine"
+    ],
+    "interaction": "Arrange letters to build short words.",
+    "learning": [
+      "blending",
+      "spelling",
+      "CVC words"
+    ],
+    "sensory": [
+      "letter tiles stay fixed until moved",
+      "optional sound-by-sound mode"
+    ],
+    "mvp": "Curated CVC progression and read-aloud on completion."
+  },
+  {
+    "id": "story-sequence",
+    "title": "Story Sequence",
+    "world": "Literacy",
+    "age": "4-8",
+    "engineIds": [
+      "sequence-routine-engine"
+    ],
+    "interaction": "Put three to five picture cards in order.",
+    "learning": [
+      "narrative order",
+      "before/after",
+      "comprehension"
+    ],
+    "sensory": [
+      "predictable card slots",
+      "no time pressure"
+    ],
+    "mvp": "Tap-tap ordering plus drag; spoken captions optional."
+  },
+  {
+    "id": "day-train",
+    "title": "Day Train",
+    "world": "Time, World & Life",
+    "age": "4-7",
+    "engineIds": [
+      "sequence-routine-engine",
+      "drag-snap-engine"
+    ],
+    "interaction": "Put Monday to Sunday carriages in order.",
+    "learning": [
+      "days of week",
+      "before/after"
+    ],
+    "sensory": [
+      "same colours across sessions",
+      "one missing day mode"
+    ],
+    "mvp": "Full order and next/previous-day modes."
+  },
+  {
+    "id": "month-wheel",
+    "title": "Month Wheel",
+    "world": "Time, World & Life",
+    "age": "5-8",
+    "engineIds": [
+      "sequence-routine-engine",
+      "drag-snap-engine"
+    ],
+    "interaction": "Turn a wheel and place months in sequence.",
+    "learning": [
+      "months",
+      "calendar cycle",
+      "seasons"
+    ],
+    "sensory": [
+      "slow wheel",
+      "tap arrows alternative"
+    ],
+    "mvp": "January-December order and birthday-month mode."
+  },
+  {
+    "id": "weather-lab",
+    "title": "Weather Lab",
+    "world": "Time, World & Life",
+    "age": "3-8",
+    "engineIds": [
+      "particle-play-engine",
+      "sort-match-engine"
+    ],
+    "interaction": "Create sun, cloud, rain and wind, then match clothing or activity choices.",
+    "learning": [
+      "weather",
+      "observation",
+      "cause and effect"
+    ],
+    "sensory": [
+      "no thunder by default",
+      "weather intensity control"
+    ],
+    "mvp": "Four safe weather modes with no flashing lightning."
+  },
+  {
+    "id": "planet-pals",
+    "title": "Leon's Planet Pals",
+    "world": "Time, World & Life",
+    "age": "4-8",
+    "engineIds": [
+      "world-shell-engine",
+      "sort-match-engine",
+      "character-state-engine"
+    ],
+    "interaction": "Explore, identify and order the eight planets.",
+    "learning": [
+      "solar system",
+      "planet names",
+      "order from Sun"
+    ],
+    "sensory": [
+      "not-to-scale label where needed",
+      "slow orbit mode"
+    ],
+    "mvp": "Explorer, Find the Planet and Planet Parade modes with verified facts."
+  },
+  {
+    "id": "emotion-body-check-in",
+    "title": "How Do I Feel?",
+    "world": "Time, World & Life",
+    "age": "3-8",
+    "engineIds": [
+      "character-state-engine",
+      "sort-match-engine",
+      "breathing-pacing-engine"
+    ],
+    "interaction": "Choose a feeling/body need and receive optional child-led activity choices.",
+    "learning": [
+      "emotion recognition",
+      "communication",
+      "self-advocacy"
+    ],
+    "sensory": [
+      "not diagnostic",
+      "no scoring",
+      "grown-up help prompts"
+    ],
+    "mvp": "Visual choice board works without sound, reading or animation."
+  },
+  {
+    "id": "routine-builder",
+    "title": "My Routine Builder",
+    "world": "Time, World & Life",
+    "age": "3-8",
+    "engineIds": [
+      "sequence-routine-engine",
+      "drag-snap-engine"
+    ],
+    "interaction": "Create first-then-finished routines for morning, learning, outings and bedtime.",
+    "learning": [
+      "sequencing",
+      "transition preparation",
+      "independence"
+    ],
+    "sensory": [
+      "finished box",
+      "what happens next",
+      "custom photo support later"
+    ],
+    "mvp": "Three-step visual routine with local save and reset."
+  }
+]

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#eef7ff">
+<title>LeonSal V2 — Smooth Sensory Engine Showcase</title>
+<style>
+:root{
+  --ink:#10213d;--muted:#5d6d86;--blue:#2f8de4;--green:#42b86b;--yellow:#ffd54b;
+  --orange:#ff9b42;--red:#ef6761;--purple:#866fe0;--teal:#31b8ae;--line:#d9e6f5;
+  --surface:#fff;--page:#eef7ff;--shadow:0 14px 36px rgba(24,57,98,.14);
+  --radius:24px;--motion:1;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:ui-rounded,"SF Pro Rounded","Nunito",system-ui,-apple-system,sans-serif;color:var(--ink);background:linear-gradient(180deg,#eaf5ff,#fffaf0)}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{width:min(100% - 24px,1050px);margin:auto;padding:16px 0 48px}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(238,247,255,.92);backdrop-filter:blur(14px);padding:12px 0;border-bottom:1px solid rgba(16,33,61,.08)}
+.topbar-inner{width:min(100% - 24px,1050px);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:1000;font-size:1.15rem}.brand-badge{display:grid;place-items:center;width:44px;height:44px;border-radius:16px;background:linear-gradient(145deg,var(--yellow),var(--orange));box-shadow:0 7px 0 #e58425;font-size:1.4rem}
+.settings{display:flex;gap:8px;flex-wrap:wrap}.toggle{min-height:46px;padding:8px 13px;border:2px solid var(--line);border-radius:16px;background:#fff;color:var(--ink);font-weight:900}.toggle[aria-pressed="true"]{border-color:var(--blue);background:#eaf5ff}
+.hero{padding:24px 4px 12px}.hero h1{margin:0;font-size:clamp(2rem,6vw,3.4rem);line-height:1}.hero p{max-width:720px;color:var(--muted);font-weight:720;line-height:1.55}
+.tabs{display:flex;gap:8px;overflow:auto;padding:5px 2px 12px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{flex:0 0 auto;min-height:50px;padding:10px 18px;border:2px solid var(--line);border-radius:18px;background:#fff;color:var(--ink);font-weight:950}.tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.panel{display:none;background:rgba(255,255,255,.88);border:2px solid var(--line);border-radius:30px;box-shadow:var(--shadow);padding:clamp(14px,3vw,28px)}.panel.active{display:block}.panel h2{margin-top:0}.sub{color:var(--muted);font-weight:720;line-height:1.45}
+.engine-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}@media(max-width:760px){.engine-grid{grid-template-columns:1fr}}
+.stage{position:relative;min-height:360px;border:3px solid var(--line);border-radius:28px;overflow:hidden;background:linear-gradient(180deg,#eaf7ff 0 70%,#e6f5df 70%);touch-action:none}
+.road{position:absolute;left:4%;right:4%;bottom:52px;height:6px;background:repeating-linear-gradient(90deg,#aab8c8 0 24px,transparent 24px 43px);opacity:.7}.dock{position:absolute;right:5%;bottom:28px;width:100px;height:128px;border:7px solid var(--ink);border-radius:30px 30px 18px 18px;background:linear-gradient(180deg,#ffd65c,#ff9f48);display:grid;place-items:center;font-size:2.6rem;box-shadow:0 14px 28px rgba(16,33,61,.18)}.dock small{position:absolute;bottom:10px;font-size:.78rem;letter-spacing:.12em;font-weight:1000}
+.battery-svg{position:absolute;left:6%;bottom:42px;width:125px;height:178px;transform:translateX(var(--x,0px));transition:transform calc(220ms * var(--motion)) cubic-bezier(.2,.8,.2,1);overflow:visible;filter:drop-shadow(0 12px 9px rgba(16,33,61,.18))}
+.battery-svg .character{transform-origin:65px 145px;transition:transform calc(300ms * var(--motion)) ease}.battery-svg[data-state="empty"] .character{transform:translateY(18px) rotate(8deg) scale(.9)}.battery-svg[data-state="low"] .character{transform:translateY(8px) rotate(3deg) scale(.95)}.battery-svg[data-state="happy"] .character{transform:translateY(-5px) rotate(-2deg)}.battery-svg[data-state="excited"] .character{animation:jump 650ms ease-in-out infinite alternate}.motion-off .battery-svg[data-state="excited"] .character{animation:none}
+@keyframes jump{to{transform:translateY(-12px) rotate(3deg)}}
+.controls{display:grid;gap:12px}.card{border:2px solid var(--line);border-radius:20px;background:#fff;padding:14px}.status{font-weight:950;font-size:1.08rem}.message{color:var(--muted);font-weight:720;line-height:1.45;margin:.35rem 0 0}.meter{height:24px;border:3px solid var(--ink);border-radius:999px;overflow:hidden;background:#e7edf6}.meter>span{display:block;height:100%;width:var(--energy,0%);background:linear-gradient(90deg,var(--red),var(--yellow),var(--green));transition:width calc(180ms * var(--motion)) linear}
+.range-labels{display:flex;justify-content:space-between;font-size:.78rem;font-weight:900;color:var(--muted)}input[type=range]{width:100%;height:48px;accent-color:var(--blue)}
+.btnrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{min-height:52px;border:2px solid var(--line);border-radius:17px;background:#fff;color:var(--ink);font-weight:950}.btn.primary{background:#e8f4ff;border-color:var(--blue)}.btn.warn{background:#fff5ed;border-color:var(--orange)}
+.canvas-wrap{position:relative;border:3px solid var(--line);border-radius:26px;overflow:hidden;background:linear-gradient(180deg,#e7f7ff,#fefefe);min-height:440px}.canvas-wrap canvas{display:block;width:100%;height:440px;touch-action:none}
+.engine-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.chip{min-height:44px;border:2px solid var(--line);border-radius:15px;background:#fff;padding:8px 13px;font-weight:900}.chip.active{border-color:var(--purple);background:#f1eeff}
+.breathe-area{display:grid;place-items:center;min-height:460px;border:3px solid var(--line);border-radius:28px;background:radial-gradient(circle at 50% 50%,#effdfb,#eaf5ff)}.orb{width:min(64vw,280px);aspect-ratio:1;border:0;border-radius:50%;background:conic-gradient(var(--teal) var(--progress,0%),#dbe9f4 0);display:grid;place-items:center;box-shadow:0 24px 60px rgba(49,184,174,.25);transform:scale(var(--scale,1));transition:transform 80ms linear;touch-action:none}.orb::before{content:"";position:absolute;width:calc(min(64vw,280px) - 30px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#fff,#d8faf4);box-shadow:inset 0 0 0 3px rgba(255,255,255,.8)}.orb span,.orb strong{position:relative;z-index:1}.orb span{font-weight:900}.orb strong{font-size:2rem}
+.shape-board{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:620px){.shape-board{grid-template-columns:1fr}}.shape-tray,.shape-targets{min-height:340px;border:3px solid var(--line);border-radius:26px;background:#f8fbff;padding:18px;display:flex;gap:16px;align-content:flex-start;justify-content:center;flex-wrap:wrap}.shape,.target{width:90px;height:90px;display:grid;place-items:center;touch-action:none;user-select:none}.shape{filter:drop-shadow(0 8px 8px rgba(16,33,61,.16));cursor:grab}.shape.selected{outline:5px solid var(--yellow);outline-offset:6px;border-radius:18px}.circle{border-radius:50%;background:var(--red)}.square{border-radius:14px;background:var(--blue)}.triangle{width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:90px solid var(--yellow)}.target{border:4px dashed #a7b9ce;border-radius:20px;color:var(--muted);font-weight:900}.target.filled{border-style:solid;background:#ecf8ee;color:var(--green)}
+.note{margin-top:14px;padding:12px 14px;border-radius:16px;background:#fff8d8;color:#5a4a13;font-weight:760;line-height:1.45}
+@media(max-width:520px){.app{width:min(100% - 14px,1050px)}.topbar-inner{width:min(100% - 14px,1050px)}.settings{width:100%}.toggle{flex:1;padding-inline:8px;font-size:.88rem}.panel{border-radius:24px}.stage{min-height:330px}.dock{width:82px;height:112px}.battery-svg{width:112px}}
+@media(prefers-reduced-motion:reduce){:root{--motion:0}.battery-svg[data-state="excited"] .character{animation:none!important}*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner">
+  <div class="brand"><span class="brand-badge">★</span><span>LeonSal V2 Engine Lab</span></div>
+  <div class="settings">
+    <button id="motionToggle" class="toggle" aria-pressed="true">Motion on</button>
+    <button id="soundToggle" class="toggle" aria-pressed="false">Sound off</button>
+    <button id="calmToggle" class="toggle" aria-pressed="false">Calm mode off</button>
+  </div>
+</div></div>
+<main class="app">
+  <section class="hero"><h1>Smooth, interactive—not image swaps.</h1><p>This standalone prototype demonstrates the reusable engine approach LeonSal should use: procedural SVG, Canvas animation, pointer input, state machines and sensory controls.</p></section>
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-tab="battery">🔋 Energy</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="bubbles">🫧 Bubbles</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="trail">✨ Light Trail</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="breathe">🌬️ Breathe</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="shapes">🔷 Shape Snap</button>
+  </nav>
+
+  <section id="battery" class="panel active" role="tabpanel">
+    <h2>Energy + Charging Dock Engine</h2><p class="sub">Position and energy are separate. The character starts empty, stays empty while travelling, and charges only after touching the dock.</p>
+    <div class="engine-grid">
+      <div class="stage" id="batteryStage">
+        <div class="road"></div><div class="dock">⚡<small>DOCK</small></div>
+        <svg id="batteryCharacter" class="battery-svg" data-state="empty" viewBox="0 0 130 180" aria-label="Empty battery character" role="img">
+          <defs><clipPath id="bodyClip"><rect x="22" y="22" width="86" height="120" rx="24"/></clipPath></defs>
+          <g class="character">
+            <ellipse cx="65" cy="157" rx="45" ry="10" fill="rgba(16,33,61,.15)"/>
+            <g id="arms"><path id="armL" d="M24 78 C7 72,8 52,18 46" fill="none" stroke="#10213d" stroke-width="10" stroke-linecap="round"/><path id="armR" d="M106 78 C123 72,122 52,112 46" fill="none" stroke="#10213d" stroke-width="10" stroke-linecap="round"/></g>
+            <rect x="22" y="22" width="86" height="120" rx="24" fill="#fff" stroke="#10213d" stroke-width="7"/>
+            <rect id="batteryFill" x="22" y="142" width="86" height="0" fill="#ef6761" clip-path="url(#bodyClip)"/>
+            <rect x="48" y="8" width="34" height="18" rx="6" fill="#8d99aa" stroke="#10213d" stroke-width="6"/>
+            <g id="face">
+              <ellipse id="eyeL" cx="48" cy="71" rx="8" ry="12" fill="#fff" stroke="#10213d" stroke-width="4"/><ellipse id="eyeR" cx="82" cy="71" rx="8" ry="12" fill="#fff" stroke="#10213d" stroke-width="4"/>
+              <circle id="pupilL" cx="49" cy="75" r="3.5" fill="#10213d"/><circle id="pupilR" cx="83" cy="75" r="3.5" fill="#10213d"/>
+              <path id="mouth" d="M52 100 Q65 92 78 100" fill="none" stroke="#10213d" stroke-width="5" stroke-linecap="round"/>
+            </g>
+            <path d="M70 84 L58 106 H68 L61 127 L84 100 H72 Z" fill="#ffd54b" stroke="#10213d" stroke-width="2"/>
+            <path id="legL" d="M48 138 V157" stroke="#10213d" stroke-width="11" stroke-linecap="round"/><path id="legR" d="M82 138 V157" stroke="#10213d" stroke-width="11" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+      <div class="controls">
+        <div class="card"><div id="energyStatus" class="status">Empty / Sleepy · 0%</div><p id="energyMessage" class="message">Move to the dock. Travelling does not charge the battery.</p></div>
+        <div class="card"><div class="range-labels"><span>Start</span><span>Dock</span></div><input id="positionSlider" aria-label="Move battery toward dock" type="range" min="0" max="100" value="0"><div class="btnrow"><button id="moveLeft" class="btn">← Left</button><button id="moveRight" class="btn primary">Right →</button></div></div>
+        <div class="card"><div class="range-labels"><span>Empty</span><span>Full</span></div><div class="meter"><span id="energyMeter"></span></div><div class="btnrow" style="margin-top:12px"><button id="resetBattery" class="btn warn">Start again</button><button id="demoCharge" class="btn">Dock demo</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bubbles" class="panel" role="tabpanel"><h2>Bubble Particle Engine</h2><p class="sub">Tap, swipe and pop. Canvas objects are animated by one requestAnimationFrame loop, with object pooling and a calmer mode.</p><div class="canvas-wrap"><canvas id="bubbleCanvas" aria-label="Interactive floating bubbles"></canvas></div><div class="engine-toolbar"><button id="resetBubbles" class="chip">New bubbles</button><span id="bubbleCount" class="chip">0 popped</span></div></section>
+
+  <section id="trail" class="panel" role="tabpanel"><h2>Finger Light Trail Engine</h2><p class="sub">Pointer Events support mouse, finger and pen. The path is smoothed instead of connecting harsh straight segments.</p><div class="engine-toolbar"><button class="chip trailColour active" data-colour="#2f8de4">Blue</button><button class="chip trailColour" data-colour="#ee5f9d">Pink</button><button class="chip trailColour" data-colour="#42b86b">Green</button><button id="clearTrail" class="chip">Clear</button></div><div class="canvas-wrap"><canvas id="trailCanvas" aria-label="Finger light drawing trail"></canvas></div></section>
+
+  <section id="breathe" class="panel" role="tabpanel"><h2>Breathing Pace Engine</h2><p class="sub">Press and hold to expand; release to settle. It never starts automatically, and motion can be paused globally.</p><div class="breathe-area"><button id="breatheOrb" class="orb"><span id="breatheText">Press and hold</span><strong id="breatheValue">0%</strong></button></div></section>
+
+  <section id="shapes" class="panel" role="tabpanel"><h2>Drag-or-Tap Shape Snap Engine</h2><p class="sub">Drag is available, but not required: tap a shape, then tap a matching target. This supports children who find precise dragging difficult.</p><div class="shape-board"><div id="shapeTray" class="shape-tray" aria-label="Shapes"><div class="shape circle" data-shape="circle" role="button" tabindex="0" aria-label="Circle"></div><div class="shape square" data-shape="square" role="button" tabindex="0" aria-label="Square"></div><div class="shape triangle" data-shape="triangle" role="button" tabindex="0" aria-label="Triangle"></div></div><div class="shape-targets"><button class="target" data-target="circle">Circle</button><button class="target" data-target="square">Square</button><button class="target" data-target="triangle">Triangle</button></div></div><p id="shapeStatus" class="note">Choose a shape, then match it.</p></section>
+</main>
+<script>
+(() => {
+'use strict';
+const root=document.documentElement;
+const prefersReduced=matchMedia('(prefers-reduced-motion: reduce)');
+const settings={motion:!prefersReduced.matches,sound:false,calm:false};
+const q=(s,r=document)=>r.querySelector(s), qa=(s,r=document)=>[...r.querySelectorAll(s)];
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+let audio;
+function tone(freq=440,dur=.12){if(!settings.sound)return;try{audio=audio||new(window.AudioContext||window.webkitAudioContext)();const o=audio.createOscillator(),g=audio.createGain(),t=audio.currentTime;o.frequency.value=freq;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.045,t+.015);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+dur+.02)}catch{}}
+function toggleButton(id,key,on,off){const b=q(id);b.addEventListener('click',()=>{settings[key]=!settings[key];b.setAttribute('aria-pressed',String(settings[key]));b.textContent=settings[key]?on:off;document.body.classList.toggle('motion-off',!settings.motion);if(key==='calm') resetBubbles();tone(settings[key]?520:300)})}
+toggleButton('#motionToggle','motion','Motion on','Motion paused');toggleButton('#soundToggle','sound','Sound on','Sound off');toggleButton('#calmToggle','calm','Calm mode on','Calm mode off');
+qa('.tab').forEach(t=>t.addEventListener('click',()=>{qa('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===t)));qa('.panel').forEach(p=>p.classList.toggle('active',p.id===t.dataset.tab));if(t.dataset.tab==='bubbles') resizeCanvas(bubbleCanvas);if(t.dataset.tab==='trail') resizeCanvas(trailCanvas);tone(360)}));
+
+// Battery engine
+const stage=q('#batteryStage'),battery=q('#batteryCharacter'),pos=q('#positionSlider'),fill=q('#batteryFill'),meter=q('#energyMeter'),status=q('#energyStatus'),msg=q('#energyMessage');
+let energy=0,charging=false;
+function stateFor(v){return v<20?'empty':v<40?'low':v<65?'calm':v<90?'happy':'excited'}
+function stateLabel(s){return({empty:'Empty / Sleepy',low:'Low Energy',calm:'Calm / Ready',happy:'Happy / Active',excited:'Full / Excited'})[s]}
+function colourFor(v){if(v<20)return'#ef6761';if(v<40)return'#ff9b42';if(v<65)return'#ffd54b';if(v<90)return'#2f8de4';return'#42b86b'}
+function renderEnergy(){const s=stateFor(energy),c=colourFor(energy);battery.dataset.state=s;battery.setAttribute('aria-label',`${stateLabel(s)} battery, ${Math.round(energy)} percent`);fill.setAttribute('y',String(142-1.2*energy));fill.setAttribute('height',String(1.2*energy));fill.setAttribute('fill',c);meter.style.width=`${energy}%`;root.style.setProperty('--energy',`${energy}%`);status.textContent=`${stateLabel(s)} · ${Math.round(energy)}%`;const eyes=[q('#eyeL'),q('#eyeR')],pupils=[q('#pupilL'),q('#pupilR')],mouth=q('#mouth');if(s==='empty'){eyes.forEach(e=>{e.setAttribute('ry','2');e.setAttribute('cy','77')});pupils.forEach(p=>p.style.display='none');mouth.setAttribute('d','M54 102 Q65 96 76 102')}else if(s==='low'){eyes.forEach(e=>{e.setAttribute('ry','8');e.setAttribute('cy','74')});pupils.forEach(p=>p.style.display='');mouth.setAttribute('d','M54 103 Q65 95 76 103')}else{eyes.forEach(e=>{e.setAttribute('ry','12');e.setAttribute('cy','71')});pupils.forEach(p=>p.style.display='');mouth.setAttribute('d',s==='calm'?'M55 99 Q65 106 75 99':'M50 97 Q65 116 80 97')};if(!charging)msg.textContent=energy===0?'Move to the dock. Travelling does not charge the battery.':energy===100?'Fully charged and ready!':'Charging happens only at the dock.'}
+function renderPosition(){const max=Math.max(0,stage.clientWidth-235),x=max*(+pos.value/100);battery.style.setProperty('--x',`${x}px`);if(+pos.value>=94&&!charging)chargeAtDock()}
+function setPosition(v){pos.value=clamp(v,0,100);renderPosition()}
+function resetBattery(){charging=false;energy=0;pos.disabled=false;setPosition(0);renderEnergy();msg.textContent='Battery empty. Move to the dock to charge.'}
+function chargeAtDock(){charging=true;pos.disabled=true;const startEnergy=energy,start=performance.now(),duration=settings.motion?2200:0;msg.textContent='Connected to dock — charging…';tone(520,.2);const step=now=>{const p=duration?clamp((now-start)/duration,0,1):1;energy=startEnergy+(100-startEnergy)*(1-Math.pow(1-p,3));renderEnergy();if(p<1)requestAnimationFrame(step);else{energy=100;renderEnergy();charging=false;msg.textContent='Fully charged! Press Start again for a new empty round.';tone(700,.3)}};requestAnimationFrame(step)}
+pos.addEventListener('input',renderPosition);q('#moveLeft').onclick=()=>setPosition(+pos.value-12);q('#moveRight').onclick=()=>setPosition(+pos.value+12);q('#resetBattery').onclick=resetBattery;q('#demoCharge').onclick=()=>setPosition(100);new ResizeObserver(renderPosition).observe(stage);resetBattery();
+
+// Canvas utilities
+function resizeCanvas(canvas){const r=canvas.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);if(canvas.width!==Math.round(r.width*dpr)||canvas.height!==Math.round(r.height*dpr)){canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);canvas._dpr=dpr}}
+// Bubbles
+const bubbleCanvas=q('#bubbleCanvas'),bctx=bubbleCanvas.getContext('2d');let bubbles=[],popped=0,last=0;
+function resetBubbles(){resizeCanvas(bubbleCanvas);const n=settings.calm?10:22,b=bubbleCanvas.getBoundingClientRect();bubbles=Array.from({length:n},(_,i)=>({x:Math.random()*b.width,y:Math.random()*b.height,r:18+Math.random()*30,vx:(Math.random()-.5)*(settings.calm?10:28),vy:-(8+Math.random()*(settings.calm?12:28)),h:(i*47)%360,alive:true}));popped=0;q('#bubbleCount').textContent='0 popped'}
+function bubbleFrame(t){resizeCanvas(bubbleCanvas);const dpr=bubbleCanvas._dpr||1,rect=bubbleCanvas.getBoundingClientRect(),dt=Math.min(.04,(t-last||16)/1000);last=t;bctx.setTransform(dpr,0,0,dpr,0,0);bctx.clearRect(0,0,rect.width,rect.height);for(const b of bubbles){if(!b.alive)continue;if(settings.motion){b.x+=b.vx*dt;b.y+=b.vy*dt;if(b.y<-b.r)b.y=rect.height+b.r;if(b.x<-b.r)b.x=rect.width+b.r;if(b.x>rect.width+b.r)b.x=-b.r}const g=bctx.createRadialGradient(b.x-b.r*.3,b.y-b.r*.35,2,b.x,b.y,b.r);g.addColorStop(0,'rgba(255,255,255,.9)');g.addColorStop(.2,`hsla(${b.h},85%,72%,.75)`);g.addColorStop(1,`hsla(${b.h},85%,55%,.25)`);bctx.fillStyle=g;bctx.strokeStyle='rgba(255,255,255,.9)';bctx.lineWidth=3;bctx.beginPath();bctx.arc(b.x,b.y,b.r,0,Math.PI*2);bctx.fill();bctx.stroke()}requestAnimationFrame(bubbleFrame)}
+bubbleCanvas.addEventListener('pointerdown',e=>{const r=bubbleCanvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;let hit=null;for(const b of bubbles){if(b.alive&&Math.hypot(x-b.x,y-b.y)<=b.r){hit=b;break}}if(hit){hit.alive=false;popped++;q('#bubbleCount').textContent=`${popped} popped`;tone(500+Math.random()*180,.08)}});q('#resetBubbles').onclick=resetBubbles;resetBubbles();requestAnimationFrame(bubbleFrame);
+
+// Trail
+const trailCanvas=q('#trailCanvas'),tctx=trailCanvas.getContext('2d');let drawing=false,points=[],trailColour='#2f8de4';
+function trailPos(e){const r=trailCanvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
+function drawTrail(){resizeCanvas(trailCanvas);const d=trailCanvas._dpr||1;tctx.setTransform(d,0,0,d,0,0);if(points.length<2)return;const a=points[points.length-2],b=points[points.length-1];tctx.lineCap='round';tctx.lineJoin='round';tctx.strokeStyle=trailColour;tctx.shadowColor=trailColour;tctx.shadowBlur=settings.calm?4:12;tctx.lineWidth=settings.calm?9:14;tctx.beginPath();tctx.moveTo(a.x,a.y);tctx.quadraticCurveTo(a.x,a.y,(a.x+b.x)/2,(a.y+b.y)/2);tctx.stroke()}
+trailCanvas.addEventListener('pointerdown',e=>{drawing=true;trailCanvas.setPointerCapture(e.pointerId);points=[trailPos(e)];tone(330,.05)});trailCanvas.addEventListener('pointermove',e=>{if(!drawing)return;points.push(trailPos(e));drawTrail()});trailCanvas.addEventListener('pointerup',()=>drawing=false);q('#clearTrail').onclick=()=>{resizeCanvas(trailCanvas);tctx.clearRect(0,0,trailCanvas.width,trailCanvas.height)};qa('.trailColour').forEach(b=>b.onclick=()=>{qa('.trailColour').forEach(x=>x.classList.toggle('active',x===b));trailColour=b.dataset.colour});resizeCanvas(trailCanvas);
+
+// Breathe
+const orb=q('#breatheOrb'),breatheValue=q('#breatheValue'),breatheText=q('#breatheText');let holding=false,breath=0,breathLast=0;
+function breatheFrame(t){const dt=Math.min(.05,(t-breathLast||16)/1000);breathLast=t;const target=holding?100:0;const rate=holding?25:22;breath+=Math.sign(target-breath)*Math.min(Math.abs(target-breath),rate*dt);const effective=settings.motion?breath:(holding?100:0);orb.style.setProperty('--progress',`${effective}%`);orb.style.setProperty('--scale',String(1+effective*.0022));breatheValue.textContent=`${Math.round(effective)}%`;breatheText.textContent=holding?'Breathe in slowly':'Press and hold';requestAnimationFrame(breatheFrame)}
+['pointerdown','keydown'].forEach(type=>orb.addEventListener(type,e=>{if(type==='keydown'&&![' ','Enter'].includes(e.key))return;holding=true;orb.setPointerCapture?.(e.pointerId);tone(280,.08)}));['pointerup','pointercancel','keyup','blur'].forEach(type=>orb.addEventListener(type,()=>holding=false));requestAnimationFrame(breatheFrame);
+
+// Shape snap with tap alternative
+let selectedShape=null;qa('.shape').forEach(s=>{const select=()=>{selectedShape=s.dataset.shape;qa('.shape').forEach(x=>x.classList.toggle('selected',x===s));q('#shapeStatus').textContent=`${selectedShape} selected. Tap the matching target.`;tone(360)};s.addEventListener('click',select);s.addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();select()}})});qa('.target').forEach(t=>t.addEventListener('click',()=>{if(!selectedShape){q('#shapeStatus').textContent='Choose a shape first.';return}if(t.dataset.target===selectedShape){t.classList.add('filled');t.textContent='Matched ✓';q('#shapeStatus').textContent=`Great match: ${selectedShape}.`;qa('.shape').find(s=>s.dataset.shape===selectedShape)?.remove();selectedShape=null;tone(700,.2)}else{q('#shapeStatus').textContent='Gentle try again — choose the same shape.';tone(240,.1)}}));
+})();
+</script>
+</body>
+</html>

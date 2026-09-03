@@ -42,7 +42,7 @@
     const canonicalProfile = window.LeonSalCharacters.energyProfile(state.energy, profile.id);
     const artworkRecord = window.LeonSalCharacters.findRecord(characterRegistry, profile.family, profile.id);
     const artworkPath = artworkRecord?.status === 'approved' ? artworkRecord.states?.[canonicalProfile.state] : '';
-    if (artworkPath && !/source-safe-keeping|rejected-character-crops-v1/.test(artworkPath)) {
+    if (artworkPath && !/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(artworkPath)) {
       energyCharacterImage.src = artworkPath;
       energyCharacterImage.alt = `${profile.name} ${canonicalProfile.label}`;
       energyCharacterImage.hidden = false;
@@ -69,7 +69,7 @@
     elements.energyBuddy.classList.toggle('is-glyph', glyphMode);
     glyphCharacter.querySelector('b').textContent = state.glyph;
     glyphCharacter.style.setProperty('--glyph-colour', glyphColours[(state.glyph.charCodeAt(0) || 0) % glyphColours.length]);
-    if (artworkPath && !/source-safe-keeping|rejected-character-crops-v1/.test(artworkPath)) {
+    if (artworkPath && !/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(artworkPath)) {
       elements.dashBuddy.className = 'dash-buddy has-production-art';
       Array.from(elements.dashBuddy.childNodes).forEach((node) => {
         if (node !== dashCharacterImage) node.remove();
