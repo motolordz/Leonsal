@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeonSal V2 Proof — My Energy Battery</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body>
+  <main class="v2-shell">
+    <header class="v2-topbar">
+      <div><h1>My Energy Battery</h1><p>Procedural SVG gauge with continuous energy.</p></div>
+      <a class="v2-home" href="index.html" aria-label="Home">⌂</a>
+    </header>
+    <section class="v2-settings" id="settings"></section>
+    <section class="v2-stage battery-proof" aria-label="Energy battery proof">
+      <svg class="battery-svg" viewBox="0 0 430 220" role="img" aria-labelledby="batteryTitle batteryDesc">
+        <title id="batteryTitle">Interactive energy battery</title>
+        <desc id="batteryDesc">A continuous battery gauge from empty to full.</desc>
+        <rect x="28" y="48" width="340" height="124" rx="34" fill="#fff" stroke="#132343" stroke-width="10"/>
+        <rect x="374" y="82" width="34" height="56" rx="12" fill="#132343"/>
+        <rect data-fill x="42" y="62" width="0" height="96" rx="24" fill="#ef6f66"/>
+        <text data-face x="198" y="122" text-anchor="middle" font-size="42" font-weight="900" fill="#132343">–</text>
+        <text data-label x="198" y="205" text-anchor="middle" font-size="26" font-weight="900" fill="#132343">0%</text>
+      </svg>
+    </section>
+    <section class="v2-controls">
+      <div class="control-row">
+        <button id="empty" type="button">Empty</button>
+        <input id="energy" type="range" min="0" max="100" value="0">
+        <button id="full" class="primary" type="button">Full</button>
+      </div>
+      <p class="v2-status" id="status">Empty / Sleepy</p>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const audio = new LeonSalV2.AudioEngine(settings);
+    const gauge = new LeonSalV2.GaugeBattery(document.querySelector('.battery-svg'));
+    const input = document.querySelector('#energy');
+    const status = document.querySelector('#status');
+    function renderSettings() {
+      document.querySelector('#settings').innerHTML = ['motion','sound','vibration','calmMode','confetti'].map((key) => `<button type="button" data-key="${key}" aria-pressed="${Boolean(settings.value[key])}">${key}</button>`).join('');
+      document.querySelectorAll('[data-key]').forEach((button) => button.addEventListener('click', () => {
+        settings.set({ [button.dataset.key]: !settings.value[button.dataset.key] });
+        renderSettings();
+      }));
+    }
+    function setEnergy(value, animate = true) {
+      const from = Number(input.value);
+      const to = LeonSalV2.clamp(Number(value), 0, 100);
+      motion.tween({ from, to, duration: animate ? 520 : 0, onUpdate: (next) => {
+        input.value = String(Math.round(next));
+        const result = gauge.set(next);
+        status.textContent = result.label;
+      }});
+    }
+    input.addEventListener('input', () => setEnergy(input.value, false));
+    document.querySelector('#empty').addEventListener('click', () => { audio.tone('tap'); setEnergy(0); });
+    document.querySelector('#full').addEventListener('click', () => { audio.tone('success'); setEnergy(100); });
+    renderSettings();
+    setEnergy(0, false);
+  </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeonSal V2 Proof — Dash to Charging Dock</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body>
+  <main class="v2-shell">
+    <header class="v2-topbar">
+      <div><h1>Dash to Charging Dock</h1><p>Position and energy are separate values.</p></div>
+      <a class="v2-home" href="index.html" aria-label="Home">⌂</a>
+    </header>
+    <section class="v2-settings" id="settings"></section>
+    <section class="v2-stage" id="stage" aria-label="Dash proof">
+      <div class="dash-track"></div>
+      <div class="dash-runner" id="runner" data-state="empty">0</div>
+      <div class="dash-dock">DOCK</div>
+    </section>
+    <section class="v2-controls">
+      <svg class="battery-svg" viewBox="0 0 430 90" role="img" aria-label="Charging battery">
+        <rect x="28" y="18" width="340" height="46" rx="18" fill="#fff" stroke="#132343" stroke-width="7"/>
+        <rect x="374" y="31" width="30" height="20" rx="7" fill="#132343"/>
+        <rect data-fill x="40" y="30" width="0" height="22" rx="10" fill="#ef6f66"/>
+        <text data-face x="198" y="51" text-anchor="middle" font-size="22" font-weight="900" fill="#132343">–</text>
+        <text data-label x="198" y="84" text-anchor="middle" font-size="16" font-weight="900" fill="#132343">0%</text>
+      </svg>
+      <div class="control-row">
+        <button id="left" type="button">Move left</button>
+        <input id="position" type="range" min="0" max="100" value="0">
+        <button id="right" class="primary" type="button">Move right</button>
+        <button id="reset" type="button">Start again</button>
+      </div>
+      <p class="v2-status" id="status">Battery empty — reach the charging dock.</p>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const audio = new LeonSalV2.AudioEngine(settings);
+    const gauge = new LeonSalV2.GaugeBattery(document.querySelector('.battery-svg'));
+    const runner = document.querySelector('#runner');
+    const position = document.querySelector('#position');
+    const status = document.querySelector('#status');
+    let dashPosition = 0;
+    let energy = 0;
+    let charging = false;
+    let charged = false;
+    function renderSettings() {
+      document.querySelector('#settings').innerHTML = ['motion','sound','vibration','calmMode','confetti'].map((key) => `<button type="button" data-key="${key}" aria-pressed="${Boolean(settings.value[key])}">${key}</button>`).join('');
+      document.querySelectorAll('[data-key]').forEach((button) => button.addEventListener('click', () => {
+        settings.set({ [button.dataset.key]: !settings.value[button.dataset.key] });
+        renderSettings();
+      }));
+    }
+    function render() {
+      const stage = document.querySelector('#stage').getBoundingClientRect();
+      const runnerWidth = runner.getBoundingClientRect().width || 74;
+      const dockWidth = document.querySelector('.dash-dock').getBoundingClientRect().width || 96;
+      const travel = Math.max(0, stage.width - runnerWidth - dockWidth - 50);
+      document.documentElement.style.setProperty('--dash-x', `${travel * dashPosition / 100}px`);
+      position.value = String(Math.round(dashPosition));
+      const state = LeonSalV2.stateForEnergy(energy);
+      runner.dataset.state = state;
+      runner.textContent = Math.round(energy);
+      gauge.set(energy);
+    }
+    function setPosition(value) {
+      if (charging) return;
+      dashPosition = LeonSalV2.clamp(Number(value), 0, 100);
+      if (!charged) energy = 0;
+      render();
+      if (dashPosition >= 95) charge();
+      else status.textContent = dashPosition === 0 ? 'Battery empty — reach the charging dock.' : 'Keep going to the charging dock!';
+    }
+    function charge() {
+      if (charging || charged) return;
+      charging = true;
+      status.textContent = 'Charging…';
+      motion.tween({ from: 0, to: 100, duration: 1800, onUpdate: (value) => {
+        energy = value;
+        render();
+      }, onComplete: () => {
+        energy = 100;
+        charged = true;
+        charging = false;
+        render();
+        status.textContent = 'Fully charged!';
+        audio.tone('success');
+      }});
+    }
+    function reset() {
+      dashPosition = 0;
+      energy = 0;
+      charging = false;
+      charged = false;
+      status.textContent = 'Battery empty — reach the charging dock.';
+      render();
+    }
+    position.addEventListener('input', () => setPosition(position.value));
+    document.querySelector('#left').addEventListener('click', () => { audio.tone('tap'); setPosition(dashPosition - 10); });
+    document.querySelector('#right').addEventListener('click', () => { audio.tone('tap'); setPosition(dashPosition + 10); });
+    document.querySelector('#reset').addEventListener('click', reset);
+    window.addEventListener('resize', render);
+    renderSettings();
+    reset();
+  </script>
+</body>
+</html>

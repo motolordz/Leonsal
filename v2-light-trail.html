@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finger Light Trail Engine Proof</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body>
+  <main class="v2-shell">
+    <header class="v2-topbar">
+      <div>
+        <h1>Finger Light Trail</h1>
+        <p>Draw a smooth high-DPI trail with pointer, touch, mouse or pen.</p>
+      </div>
+      <a class="v2-home" href="index.html" aria-label="Back home">⌂</a>
+    </header>
+    <section class="v2-settings" id="settings" aria-label="Sensory settings"></section>
+    <section class="v2-stage" aria-label="Light trail drawing area">
+      <canvas class="trail-canvas" id="canvas"></canvas>
+    </section>
+    <section class="v2-controls">
+      <div class="control-row">
+        <button id="clear" class="primary" type="button">Clear trail</button>
+        <button id="short" type="button">Short trail</button>
+      </div>
+      <p class="v2-status" id="status">Touch and move to make a light trail.</p>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const canvas = document.querySelector('#canvas');
+    const status = document.querySelector('#status');
+    const trail = new LeonSalV2.TrailEngine(canvas, motion, settings);
+    let short = false;
+    function renderSettings() {
+      document.querySelector('#settings').innerHTML = ['motion','sound','vibration','calmMode','confetti'].map((key) => `<button type="button" data-key="${key}" aria-pressed="${Boolean(settings.value[key])}">${key}</button>`).join('');
+      document.querySelectorAll('[data-key]').forEach((button) => button.addEventListener('click', () => {
+        settings.set({ [button.dataset.key]: !settings.value[button.dataset.key] });
+        renderSettings();
+      }));
+    }
+    function point(eventPoint) {
+      const rect = canvas.getBoundingClientRect();
+      trail.addPoint(eventPoint.x - rect.left, eventPoint.y - rect.top);
+      status.textContent = 'Trail is following your movement.';
+    }
+    new LeonSalV2.InputEngine(canvas).onPointer({ down: point, move: point, up: () => { status.textContent = 'Trail is settling.'; } });
+    document.querySelector('#clear').addEventListener('click', () => { trail.clear(); status.textContent = 'Trail cleared.'; });
+    document.querySelector('#short').addEventListener('click', () => {
+      short = !short;
+      trail.maxPoints = short ? 28 : 72;
+      document.querySelector('#short').textContent = short ? 'Long trail' : 'Short trail';
+    });
+    renderSettings();
+  </script>
+</body>
+</html>

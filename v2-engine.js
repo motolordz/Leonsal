@@ -1,0 +1,419 @@
+'use strict';
+
+const LeonSalV2 = (() => {
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const stateForEnergy = (energy) => {
+    const value = clamp(Number(energy) || 0, 0, 100);
+    if (value < 20) return 'empty';
+    if (value < 40) return 'low';
+    if (value < 65) return 'calm';
+    if (value < 90) return 'happy';
+    return 'excited';
+  };
+  const stateLabels = {
+    empty: 'Empty / Sleepy',
+    low: 'Low Energy',
+    calm: 'Calm / Ready',
+    happy: 'Happy / Active',
+    excited: 'Full / Excited'
+  };
+  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+  const lerp = (a, b, t) => a + ((b - a) * t);
+
+  class EventBus extends EventTarget {
+    emit(type, detail = {}) { this.dispatchEvent(new CustomEvent(type, { detail })); }
+    on(type, handler) {
+      this.addEventListener(type, handler);
+      return () => this.removeEventListener(type, handler);
+    }
+  }
+
+  class SensorySettings extends EventBus {
+    constructor(key = 'leonsal-v2-settings') {
+      super();
+      this.key = key;
+      this.value = {
+        motion: !prefersReducedMotion.matches,
+        sound: false,
+        vibration: false,
+        calmMode: false,
+        particles: 'gentle',
+        confetti: false,
+        reducedMotion: prefersReducedMotion.matches
+      };
+      this.load();
+      prefersReducedMotion.addEventListener?.('change', () => {
+        this.set({ reducedMotion: prefersReducedMotion.matches, motion: !prefersReducedMotion.matches && this.value.motion });
+      });
+    }
+    load() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(this.key) || '{}');
+        this.value = { ...this.value, ...saved, reducedMotion: prefersReducedMotion.matches };
+      } catch (_error) {
+        /* Preferences are optional. */
+      }
+    }
+    save() {
+      try { localStorage.setItem(this.key, JSON.stringify(this.value)); } catch (_error) { /* optional */ }
+    }
+    set(patch) {
+      this.value = { ...this.value, ...patch };
+      this.save();
+      this.emit('settings-change', this.value);
+    }
+    allowsMotion() { return this.value.motion && !this.value.reducedMotion; }
+    particleCount(base) {
+      if (this.value.calmMode || this.value.particles === 'off') return 0;
+      if (this.value.particles === 'low') return Math.ceil(base * 0.4);
+      return base;
+    }
+  }
+
+  class MotionEngine extends EventBus {
+    constructor(settings) {
+      super();
+      this.settings = settings;
+      this.items = new Set();
+      this.frame = 0;
+      this.last = 0;
+    }
+    add(step) {
+      this.items.add(step);
+      this.start();
+      return () => this.items.delete(step);
+    }
+    start() {
+      if (this.frame) return;
+      this.last = performance.now();
+      const tick = (now) => {
+        const dt = Math.min(0.05, (now - this.last) / 1000);
+        this.last = now;
+        for (const step of this.items) step(dt, now);
+        this.frame = this.items.size ? requestAnimationFrame(tick) : 0;
+      };
+      this.frame = requestAnimationFrame(tick);
+    }
+    stop() {
+      if (this.frame) cancelAnimationFrame(this.frame);
+      this.frame = 0;
+      this.items.clear();
+    }
+    tween({ from = 0, to = 1, duration = 600, onUpdate, onComplete }) {
+      if (!this.settings.allowsMotion() || duration <= 0) {
+        onUpdate?.(to);
+        onComplete?.();
+        return () => {};
+      }
+      const start = performance.now();
+      const remove = this.add((_dt, now) => {
+        const t = clamp((now - start) / duration, 0, 1);
+        onUpdate?.(lerp(from, to, easeOutCubic(t)));
+        if (t >= 1) {
+          remove();
+          onComplete?.();
+        }
+      });
+      return remove;
+    }
+    spring(current, target, velocity, stiffness = 260, damping = 28, dt = 1 / 60) {
+      const force = (target - current) * stiffness;
+      const nextVelocity = (velocity + force * dt) * Math.exp(-damping * dt);
+      return { value: current + nextVelocity * dt, velocity: nextVelocity };
+    }
+  }
+
+  class StateMachine extends EventBus {
+    constructor(initial, transitions) {
+      super();
+      this.state = initial;
+      this.transitions = transitions;
+    }
+    send(event, data = {}) {
+      const transition = this.transitions[this.state]?.[event];
+      if (!transition) return false;
+      this.state = typeof transition === 'function' ? transition(data) : transition;
+      this.emit('state-change', { state: this.state, event, data });
+      return true;
+    }
+  }
+
+  class AudioEngine {
+    constructor(settings) {
+      this.settings = settings;
+      this.ctx = null;
+      this.nodes = new Set();
+    }
+    ensure() {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return null;
+      this.ctx ||= new Ctx();
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+      return this.ctx;
+    }
+    tone(type = 'tap') {
+      if (!this.settings.value.sound) return;
+      const ctx = this.ensure();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const now = ctx.currentTime;
+      osc.frequency.value = type === 'success' ? 520 : 360;
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.045, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.2);
+      this.nodes.add(osc);
+      osc.onended = () => this.nodes.delete(osc);
+    }
+    stop() {
+      for (const node of this.nodes) {
+        try { node.stop(); } catch (_error) { /* already stopped */ }
+      }
+      this.nodes.clear();
+    }
+  }
+
+  class InputEngine {
+    constructor(host) {
+      this.host = host;
+      this.cleanups = [];
+    }
+    onPointer({ down, move, up, holdMs = 520, hold }) {
+      let active = null;
+      let holdTimer = 0;
+      const point = (event) => ({ x: event.clientX, y: event.clientY, id: event.pointerId, event });
+      const clearHold = () => {
+        window.clearTimeout(holdTimer);
+        holdTimer = 0;
+      };
+      const onDown = (event) => {
+        active = event.pointerId;
+        this.host.setPointerCapture?.(active);
+        down?.(point(event));
+        clearHold();
+        if (hold) holdTimer = window.setTimeout(() => hold(point(event)), holdMs);
+      };
+      const onMove = (event) => {
+        if (active !== event.pointerId) return;
+        move?.(point(event));
+      };
+      const onUp = (event) => {
+        if (active !== event.pointerId) return;
+        clearHold();
+        up?.(point(event));
+        active = null;
+      };
+      this.host.addEventListener('pointerdown', onDown);
+      this.host.addEventListener('pointermove', onMove);
+      this.host.addEventListener('pointerup', onUp);
+      this.host.addEventListener('pointercancel', onUp);
+      this.cleanups.push(() => {
+        clearHold();
+        this.host.removeEventListener('pointerdown', onDown);
+        this.host.removeEventListener('pointermove', onMove);
+        this.host.removeEventListener('pointerup', onUp);
+        this.host.removeEventListener('pointercancel', onUp);
+      });
+    }
+    destroy() {
+      this.cleanups.splice(0).forEach((cleanup) => cleanup());
+    }
+  }
+
+  class GaugeBattery {
+    constructor(svg) {
+      this.svg = svg;
+      this.fill = svg.querySelector('[data-fill]');
+      this.face = svg.querySelector('[data-face]');
+      this.label = svg.querySelector('[data-label]');
+      this.set(0);
+    }
+    set(energy) {
+      const value = clamp(Number(energy) || 0, 0, 100);
+      const state = stateForEnergy(value);
+      this.fill?.setAttribute('width', String(3.12 * value));
+      this.fill?.setAttribute('fill', { empty: '#ef6f66', low: '#f29b48', calm: '#f3d24f', happy: '#4aa8ff', excited: '#45c56b' }[state]);
+      if (this.face) this.face.textContent = { empty: '–', low: '•︵•', calm: '•‿•', happy: '◠‿◠', excited: '★‿★' }[state];
+      if (this.label) this.label.textContent = `${Math.round(value)}%`;
+      this.svg.dataset.energyState = state;
+      return { value, state, label: stateLabels[state] };
+    }
+  }
+
+  class ParticleEngine {
+    constructor(canvas, motion, settings) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.motion = motion;
+      this.settings = settings;
+      this.items = [];
+      this.remove = null;
+    }
+    resize() {
+      const rect = this.canvas.getBoundingClientRect();
+      const scale = Math.min(2, window.devicePixelRatio || 1);
+      this.canvas.width = Math.max(1, Math.round(rect.width * scale));
+      this.canvas.height = Math.max(1, Math.round(rect.height * scale));
+      this.ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    }
+    seed(type = 'bubbles', count = 24) {
+      this.resize();
+      const rect = this.canvas.getBoundingClientRect();
+      this.items = Array.from({ length: this.settings.particleCount(count) }, () => ({
+        type,
+        x: Math.random() * rect.width,
+        y: Math.random() * rect.height,
+        r: 8 + Math.random() * 18,
+        vx: -8 + Math.random() * 16,
+        vy: -16 - Math.random() * 24,
+        life: 0.4 + Math.random() * 0.8,
+        hue: 190 + Math.random() * 80
+      }));
+    }
+    start(type = 'bubbles') {
+      this.seed(type);
+      this.remove = this.motion.add((dt) => this.step(dt));
+    }
+    step(dt) {
+      const rect = this.canvas.getBoundingClientRect();
+      this.ctx.clearRect(0, 0, rect.width, rect.height);
+      for (const item of this.items) {
+        if (this.settings.allowsMotion()) {
+          item.x += item.vx * dt;
+          item.y += item.vy * dt;
+        }
+        if (item.y < -item.r) item.y = rect.height + item.r;
+        this.ctx.globalAlpha = item.life;
+        this.ctx.beginPath();
+        this.ctx.arc(item.x, item.y, item.r, 0, Math.PI * 2);
+        this.ctx.fillStyle = item.type === 'stars' ? '#ffd94e' : `hsl(${item.hue} 90% 74%)`;
+        this.ctx.fill();
+        this.ctx.strokeStyle = 'rgba(255,255,255,.8)';
+        this.ctx.lineWidth = 2;
+        this.ctx.stroke();
+      }
+      this.ctx.globalAlpha = 1;
+    }
+    popAt(x, y) {
+      const hit = this.items.find((item) => Math.hypot(item.x - x, item.y - y) <= item.r + 10);
+      if (hit) hit.y = -999;
+      return Boolean(hit);
+    }
+    destroy() {
+      this.remove?.();
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+  }
+
+  class TrailEngine {
+    constructor(canvas, motion, settings) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.motion = motion;
+      this.settings = settings;
+      this.points = [];
+      this.maxPoints = 72;
+      this.remove = this.motion.add((dt) => this.tick(dt));
+      this.resize();
+    }
+    resize() {
+      const rect = this.canvas.getBoundingClientRect();
+      const scale = Math.min(2, window.devicePixelRatio || 1);
+      this.canvas.width = Math.max(1, Math.round(rect.width * scale));
+      this.canvas.height = Math.max(1, Math.round(rect.height * scale));
+      this.ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    }
+    addPoint(x, y) {
+      const last = this.points[this.points.length - 1];
+      if (last) {
+        const distance = Math.hypot(x - last.x, y - last.y);
+        const steps = Math.max(1, Math.ceil(distance / 8));
+        for (let i = 1; i <= steps; i += 1) {
+          this.points.push({ x: lerp(last.x, x, i / steps), y: lerp(last.y, y, i / steps), age: 0 });
+        }
+      } else {
+        this.points.push({ x, y, age: 0 });
+      }
+      const max = this.settings.value.calmMode ? Math.min(this.maxPoints, 36) : this.maxPoints;
+      if (this.points.length > max) this.points.splice(0, this.points.length - max);
+      this.draw();
+    }
+    tick(dt) {
+      this.points.forEach((point) => { point.age += dt; });
+      this.points = this.points.filter((point) => point.age < 2.4);
+      this.draw();
+    }
+    draw() {
+      const rect = this.canvas.getBoundingClientRect();
+      this.ctx.clearRect(0, 0, rect.width, rect.height);
+      this.ctx.lineCap = 'round';
+      this.ctx.lineJoin = 'round';
+      for (let i = 1; i < this.points.length; i += 1) {
+        const a = this.points[i - 1];
+        const b = this.points[i];
+        this.ctx.globalAlpha = clamp(1 - b.age / 2.4, 0, 1);
+        this.ctx.strokeStyle = this.settings.value.calmMode ? '#4aa8ff' : '#ffd84d';
+        this.ctx.lineWidth = this.settings.value.calmMode ? 7 : 11;
+        this.ctx.beginPath();
+        this.ctx.moveTo(a.x, a.y);
+        this.ctx.lineTo(b.x, b.y);
+        this.ctx.stroke();
+      }
+      this.ctx.globalAlpha = 1;
+    }
+    clear() {
+      this.points = [];
+      this.draw();
+    }
+    destroy() {
+      this.remove?.();
+      this.clear();
+    }
+  }
+
+  class DragDropEngine {
+    constructor() { this.items = new Map(); }
+    register(item, zone, callbacks = {}) {
+      this.items.set(item, { zone, callbacks });
+      item.addEventListener('click', () => callbacks.select?.(item));
+      zone.addEventListener('click', () => callbacks.drop?.(item, zone));
+    }
+  }
+
+  class RewardEngine {
+    constructor(settings, particles, audio) {
+      this.settings = settings;
+      this.particles = particles;
+      this.audio = audio;
+    }
+    success(message = 'Complete') {
+      this.audio.tone('success');
+      if (this.settings.value.confetti && !this.settings.value.calmMode) this.particles?.seed('stars', 18);
+      return message;
+    }
+  }
+
+  return {
+    EventBus,
+    SensorySettings,
+    MotionEngine,
+    StateMachine,
+    AudioEngine,
+    InputEngine,
+    ParticleEngine,
+    TrailEngine,
+    GaugeBattery,
+    DragDropEngine,
+    RewardEngine,
+    clamp,
+    lerp,
+    easeOutCubic,
+    stateForEnergy,
+    stateLabels
+  };
+})();

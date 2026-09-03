@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hold to Breathe Engine Proof</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body>
+  <main class="v2-shell">
+    <header class="v2-topbar">
+      <div>
+        <h1>Hold to Breathe</h1>
+        <p>Press and hold to expand, release to settle.</p>
+      </div>
+      <a class="v2-home" href="index.html" aria-label="Back home">⌂</a>
+    </header>
+    <section class="v2-settings" id="settings" aria-label="Sensory settings"></section>
+    <section class="v2-stage" id="stage" aria-label="Breathing hold area">
+      <div class="breath-orb" id="orb" aria-hidden="true"></div>
+    </section>
+    <section class="v2-controls">
+      <div class="control-row">
+        <button id="settle" class="primary" type="button">Settle</button>
+        <button id="expand" type="button">Expand</button>
+      </div>
+      <p class="v2-status" id="status">Hold anywhere in the stage.</p>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const stage = document.querySelector('#stage');
+    const orb = document.querySelector('#orb');
+    const status = document.querySelector('#status');
+    let scale = 1;
+    let velocity = 0;
+    let target = 1;
+    function renderSettings() {
+      document.querySelector('#settings').innerHTML = ['motion','sound','vibration','calmMode','confetti'].map((key) => `<button type="button" data-key="${key}" aria-pressed="${Boolean(settings.value[key])}">${key}</button>`).join('');
+      document.querySelectorAll('[data-key]').forEach((button) => button.addEventListener('click', () => {
+        settings.set({ [button.dataset.key]: !settings.value[button.dataset.key] });
+        renderSettings();
+      }));
+    }
+    function setTarget(next, label) {
+      target = next;
+      status.textContent = label;
+      if (!settings.allowsMotion()) {
+        scale = target;
+        orb.style.setProperty('--breath-scale', String(scale));
+      }
+    }
+    motion.add((dt) => {
+      const next = motion.spring(scale, target, velocity, 190, 22, dt);
+      scale = next.value;
+      velocity = next.velocity;
+      orb.style.setProperty('--breath-scale', String(LeonSalV2.clamp(scale, 0.75, 1.65)));
+    });
+    new LeonSalV2.InputEngine(stage).onPointer({
+      down: () => setTarget(1.55, 'Breathing space is expanding.'),
+      up: () => setTarget(1, 'Breathing space is settling.')
+    });
+    document.querySelector('#expand').addEventListener('pointerdown', () => setTarget(1.55, 'Breathing space is expanding.'));
+    document.querySelector('#expand').addEventListener('pointerup', () => setTarget(1, 'Breathing space is settling.'));
+    document.querySelector('#settle').addEventListener('click', () => setTarget(1, 'Breathing space is settled.'));
+    renderSettings();
+  </script>
+</body>
+</html>

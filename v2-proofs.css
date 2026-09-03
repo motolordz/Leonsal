@@ -1,0 +1,222 @@
+:root {
+  color-scheme: light;
+  --ink: #132343;
+  --muted: #5c6d8c;
+  --line: #cfe1f6;
+  --panel: #ffffff;
+  --soft: #eef7ff;
+  --blue: #2f91e8;
+  --green: #45bd6b;
+  --yellow: #ffd84d;
+  --orange: #ff9d3b;
+  --red: #ef6f66;
+  --shadow: 0 18px 38px rgba(32, 70, 120, .14);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eef7ff 0%, #fff8dc 100%);
+  color: var(--ink);
+  font-family: ui-rounded, "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.v2-shell {
+  width: min(1120px, calc(100% - 28px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 18px 0 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.v2-topbar, .v2-settings, .v2-stage, .v2-controls {
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .88);
+  box-shadow: var(--shadow);
+}
+
+.v2-topbar {
+  min-height: 72px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.v2-topbar h1 {
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  letter-spacing: 0;
+}
+
+.v2-topbar p, .v2-status {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.v2-home {
+  min-width: 48px;
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 1000;
+  text-decoration: none;
+}
+
+.v2-settings {
+  padding: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.v2-settings button, .v2-controls button {
+  min-height: 46px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.v2-settings button[aria-pressed="true"], .v2-controls button.primary {
+  border-color: var(--blue);
+  background: #eaf5ff;
+}
+
+.v2-stage {
+  position: relative;
+  min-height: min(62vh, 560px);
+  overflow: hidden;
+  padding: 18px;
+  touch-action: none;
+}
+
+.v2-stage canvas, .v2-stage svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.battery-proof {
+  display: grid;
+  place-items: center;
+}
+
+.battery-svg {
+  max-width: 640px;
+  max-height: 360px;
+}
+
+.dash-track {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 82px;
+  height: 12px;
+  border-radius: 999px;
+  background: #dcecff;
+}
+
+.dash-runner {
+  position: absolute;
+  left: 28px;
+  bottom: 106px;
+  width: 74px;
+  height: 74px;
+  transform: translateX(var(--dash-x, 0px));
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  background: var(--red);
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 1000;
+  box-shadow: var(--shadow);
+}
+
+.dash-runner[data-state="low"] { background: var(--orange); }
+.dash-runner[data-state="calm"] { background: var(--yellow); color: var(--ink); }
+.dash-runner[data-state="happy"] { background: var(--blue); }
+.dash-runner[data-state="excited"] { background: var(--green); }
+
+.dash-dock {
+  position: absolute;
+  right: 24px;
+  bottom: 104px;
+  width: 96px;
+  height: 92px;
+  border: 3px solid var(--green);
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: #effff2;
+  font-weight: 1000;
+}
+
+.bubble-canvas, .trail-canvas {
+  height: min(52vh, 480px);
+  min-height: 360px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #eaf7ff, #ffffff);
+}
+
+.breath-orb {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 160px;
+  height: 160px;
+  transform: translate(-50%, -50%) scale(var(--breath-scale, 1));
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff 0 14%, #83d8ff 15% 58%, #2f91e8 59% 100%);
+  box-shadow: 0 0 0 18px rgba(47, 145, 232, .12), var(--shadow);
+}
+
+.v2-controls {
+  padding: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.control-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.control-row input[type="range"] {
+  flex: 1 1 220px;
+  min-height: 44px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 520px) {
+  .v2-shell { width: min(100% - 18px, 420px); }
+  .v2-stage { min-height: 430px; padding: 12px; }
+  .v2-topbar { align-items: flex-start; }
+  .dash-runner { width: 64px; height: 64px; }
+  .dash-dock { width: 78px; height: 78px; font-size: .86rem; }
+}
