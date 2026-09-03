@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "states": [
     "empty",
     "low",
@@ -11,17 +12,31 @@
       "id": "leon",
       "displayName": "Leon",
       "family": "guide",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/leon/empty.png",
+        "low": "assets/characters-v2/leon/low.png",
+        "calm": "assets/characters-v2/leon/calm.png",
+        "happy": "assets/characters-v2/leon/happy.png",
+        "excited": "assets/characters-v2/leon/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
     },
     {
       "id": "zaya",
       "displayName": "Zaya",
       "family": "guide",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/zaya/empty.png",
+        "low": "assets/characters-v2/zaya/low.png",
+        "calm": "assets/characters-v2/zaya/calm.png",
+        "happy": "assets/characters-v2/zaya/happy.png",
+        "excited": "assets/characters-v2/zaya/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
     }
   ],
   "alphabet": [],
@@ -31,115 +46,224 @@
       "id": "battery-buddy",
       "displayName": "Battery Buddy",
       "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/battery-buddy/empty.png",
+        "low": "assets/characters-v2/world/battery-buddy/low.png",
+        "calm": "assets/characters-v2/world/battery-buddy/calm.png",
+        "happy": "assets/characters-v2/world/battery-buddy/happy.png",
+        "excited": "assets/characters-v2/world/battery-buddy/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
     },
     {
       "id": "elephant",
       "displayName": "Elephant",
       "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/elephant/empty.png",
+        "low": "assets/characters-v2/world/elephant/low.png",
+        "calm": "assets/characters-v2/world/elephant/calm.png",
+        "happy": "assets/characters-v2/world/elephant/happy.png",
+        "excited": "assets/characters-v2/world/elephant/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
     },
     {
       "id": "double-decker",
       "displayName": "Double-decker Bus",
       "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/double-decker/empty.png",
+        "low": "assets/characters-v2/world/double-decker/low.png",
+        "calm": "assets/characters-v2/world/double-decker/calm.png",
+        "happy": "assets/characters-v2/world/double-decker/happy.png",
+        "excited": "assets/characters-v2/world/double-decker/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
     },
     {
       "id": "plane",
       "displayName": "Plane",
       "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/plane/empty.png",
+        "low": "assets/characters-v2/world/plane/low.png",
+        "calm": "assets/characters-v2/world/plane/calm.png",
+        "happy": "assets/characters-v2/world/plane/happy.png",
+        "excited": "assets/characters-v2/world/plane/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
     },
     {
       "id": "boat",
       "displayName": "Boat",
       "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/boat/empty.png",
+        "low": "assets/characters-v2/world/boat/low.png",
+        "calm": "assets/characters-v2/world/boat/calm.png",
+        "happy": "assets/characters-v2/world/boat/happy.png",
+        "excited": "assets/characters-v2/world/boat/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
     },
     {
       "id": "letter-a",
       "displayName": "Letter A",
       "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/letter-a/empty.png",
+        "low": "assets/characters-v2/world/letter-a/low.png",
+        "calm": "assets/characters-v2/world/letter-a/calm.png",
+        "happy": "assets/characters-v2/world/letter-a/happy.png",
+        "excited": "assets/characters-v2/world/letter-a/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
     }
   ],
   "pilot": [
     {
-      "id": "battery-buddy",
-      "displayName": "Battery Buddy",
-      "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
-    },
-    {
-      "id": "elephant",
-      "displayName": "Elephant",
-      "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
-    },
-    {
-      "id": "double-decker",
-      "displayName": "Double-decker Bus",
-      "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
-    },
-    {
-      "id": "plane",
-      "displayName": "Plane",
-      "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
-    },
-    {
-      "id": "boat",
-      "displayName": "Boat",
-      "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
-    },
-    {
-      "id": "letter-a",
-      "displayName": "Letter A",
-      "family": "world",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
-    },
-    {
       "id": "leon",
       "displayName": "Leon",
       "family": "guide",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/leon/empty.png",
+        "low": "assets/characters-v2/leon/low.png",
+        "calm": "assets/characters-v2/leon/calm.png",
+        "happy": "assets/characters-v2/leon/happy.png",
+        "excited": "assets/characters-v2/leon/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
     },
     {
       "id": "zaya",
       "displayName": "Zaya",
       "family": "guide",
-      "status": "needs-regeneration",
-      "states": {},
-      "notes": "No approved transparent RGBA master is available. Do not render contact-sheet crops at runtime."
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/zaya/empty.png",
+        "low": "assets/characters-v2/zaya/low.png",
+        "calm": "assets/characters-v2/zaya/calm.png",
+        "happy": "assets/characters-v2/zaya/happy.png",
+        "excited": "assets/characters-v2/zaya/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+    },
+    {
+      "id": "battery-buddy",
+      "displayName": "Battery Buddy",
+      "family": "world",
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/battery-buddy/empty.png",
+        "low": "assets/characters-v2/world/battery-buddy/low.png",
+        "calm": "assets/characters-v2/world/battery-buddy/calm.png",
+        "happy": "assets/characters-v2/world/battery-buddy/happy.png",
+        "excited": "assets/characters-v2/world/battery-buddy/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+    },
+    {
+      "id": "elephant",
+      "displayName": "Elephant",
+      "family": "world",
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/elephant/empty.png",
+        "low": "assets/characters-v2/world/elephant/low.png",
+        "calm": "assets/characters-v2/world/elephant/calm.png",
+        "happy": "assets/characters-v2/world/elephant/happy.png",
+        "excited": "assets/characters-v2/world/elephant/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+    },
+    {
+      "id": "double-decker",
+      "displayName": "Double-decker Bus",
+      "family": "world",
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/double-decker/empty.png",
+        "low": "assets/characters-v2/world/double-decker/low.png",
+        "calm": "assets/characters-v2/world/double-decker/calm.png",
+        "happy": "assets/characters-v2/world/double-decker/happy.png",
+        "excited": "assets/characters-v2/world/double-decker/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+    },
+    {
+      "id": "plane",
+      "displayName": "Plane",
+      "family": "world",
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/plane/empty.png",
+        "low": "assets/characters-v2/world/plane/low.png",
+        "calm": "assets/characters-v2/world/plane/calm.png",
+        "happy": "assets/characters-v2/world/plane/happy.png",
+        "excited": "assets/characters-v2/world/plane/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+    },
+    {
+      "id": "boat",
+      "displayName": "Boat",
+      "family": "world",
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/boat/empty.png",
+        "low": "assets/characters-v2/world/boat/low.png",
+        "calm": "assets/characters-v2/world/boat/calm.png",
+        "happy": "assets/characters-v2/world/boat/happy.png",
+        "excited": "assets/characters-v2/world/boat/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+    },
+    {
+      "id": "letter-a",
+      "displayName": "Letter A",
+      "family": "world",
+      "status": "approved",
+      "format": "png-rgba",
+      "states": {
+        "empty": "assets/characters-v2/world/letter-a/empty.png",
+        "low": "assets/characters-v2/world/letter-a/low.png",
+        "calm": "assets/characters-v2/world/letter-a/calm.png",
+        "happy": "assets/characters-v2/world/letter-a/happy.png",
+        "excited": "assets/characters-v2/world/letter-a/excited.png"
+      },
+      "notes": "Individual transparent five-state pilot asset generated from the user-approved source sheet and pixel-verified."
+    }
+  ],
+  "missing": [
+    {
+      "families": [
+        "alphabet-a-z",
+        "numbers-1-10",
+        "remaining-world-characters"
+      ],
+      "status": "needs-approved-individual-transparent-masters",
+      "notes": "Review sheets are not production sprites and remain blocked from runtime until separately approved."
     }
   ]
 }
