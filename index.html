@@ -220,10 +220,12 @@
         </div>
         <div class="dash-lane" id="dashLane" aria-hidden="true">
           <div class="lane-dots"></div>
-          <div class="dash-buddy sprite sprite-battery" id="dashBuddy"></div>
+          <div class="dash-buddy sprite sprite-battery" id="dashBuddy">
+            <img id="dashCharacterImage" class="dash-character-image" alt="" decoding="async" hidden>
+          </div>
           <div class="charge-dock"><span>⚡</span><small>DOCK</small></div>
         </div>
-        <label class="sr-only" for="dashSlider">Move Bolt toward the charging dock</label>
+        <label class="sr-only" for="dashSlider">Move your character toward the charging dock</label>
         <input id="dashSlider" class="dash-slider" type="range" min="0" max="100" step="1" value="0">
         <div class="dock-meter" aria-label="Charging progress"><span id="dockMeterFill"></span><strong id="dockMeterLabel">Ready to travel</strong></div>
         <div class="power-helpers" role="group" aria-label="Choose something to help power">
@@ -237,7 +239,7 @@
           <button class="game-button" id="dashReset" type="button">Start again</button>
           <button class="game-button primary" id="dashRight" type="button">Move right →</button>
         </div>
-        <p class="game-status" id="dashStatus" aria-live="polite">Your character is low on energy and ready to visit the dock.</p>
+        <p class="game-status" id="dashStatus" aria-live="polite">Battery empty — reach the charging dock.</p>
       </div>
 
       <div class="activity-panel" id="panel-bubbles" role="tabpanel" aria-labelledby="tab-bubbles" tabindex="0" hidden>

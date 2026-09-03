@@ -1,6 +1,13 @@
 'use strict';
   // Dash to Dock
   let dashDocked = false;
+  let dashCharging = false;
+  let dashCharged = false;
+  window.leonSalDash = {
+    position: 0,
+    charging: false,
+    charged: false
+  };
 
   function dashTravelDistance() {
     const lane = elements.dashLane;
@@ -14,28 +21,49 @@
 
   function updateDash(value, options = {}) {
     const amount = clamp(Number(value) || 0, 0, 100);
+    window.leonSalDash.position = amount;
     elements.dashSlider.value = String(amount);
     elements.root.style.setProperty('--dash-position', `${amount}%`);
     elements.root.style.setProperty('--dash-x', `${dashTravelDistance() * amount / 100}px`);
     elements.dashSlider.setAttribute('aria-valuetext', `${Math.round(amount)} percent of the way to the charging dock`);
 
-    if (amount >= 94) {
-      elements.dashStatus.textContent = dashDocked ? 'Bolt is at the charging dock.' : 'Bolt reached the charging dock!';
+    if (amount >= 95) {
+      elements.dashStatus.textContent = dashDocked ? 'Charging…' : 'Reached the charging dock.';
       if (!dashDocked && options.award !== false) {
         dashDocked = true;
-        setEnergy(state.energy + 15);
-        playTone('success');
-        vibrate([18, 45, 18]);
-        announce('Bolt reached the dock and gained 15 battery energy.');
+        document.dispatchEvent(new CustomEvent('leonsal:dash-docked', { detail: { position: amount } }));
       }
     } else {
       if (amount < 84) dashDocked = false;
-      if (amount <= 2) elements.dashStatus.textContent = 'Bolt is at the start.';
-      else if (amount < 45) elements.dashStatus.textContent = 'Bolt is moving toward the dock.';
-      else if (amount < 84) elements.dashStatus.textContent = 'More than halfway. Keep moving when ready.';
+      if (!dashCharging) {
+        if (amount <= 2) elements.dashStatus.textContent = 'Battery empty — reach the charging dock.';
+        else if (amount < 94) elements.dashStatus.textContent = 'Keep going to the charging dock!';
+      }
+      if (amount < 84 && !dashCharging && !dashCharged) {
+        setEnergy(0, { persist: false });
+        if (typeof renderCharacterWorld === 'function') renderCharacterWorld({ announce: false });
+      }
+      if (amount < 84) dashDocked = false;
+      if (dashCharging) return;
+      if (amount <= 2) elements.dashStatus.textContent = 'Battery empty — reach the charging dock.';
+      else if (amount < 45) elements.dashStatus.textContent = 'Keep going to the charging dock!';
+      else if (amount < 84) elements.dashStatus.textContent = 'Keep going to the charging dock!';
       else elements.dashStatus.textContent = 'The charging dock is very close.';
     }
   }
+
+  function setDashCharging(charging) {
+    dashCharging = Boolean(charging);
+    window.leonSalDash.charging = dashCharging;
+  }
+
+  function setDashCharged(charged) {
+    dashCharged = Boolean(charged);
+    window.leonSalDash.charged = dashCharged;
+  }
+
+  window.setLeonSalDashCharging = setDashCharging;
+  window.setLeonSalDashCharged = setDashCharged;
 
   elements.dashSlider.addEventListener('input', (event) => updateDash(event.currentTarget.value));
   elements.dashSlider.addEventListener('change', () => {
@@ -54,8 +82,12 @@
   });
   elements.dashReset.addEventListener('click', () => {
     dashDocked = false;
+    setDashCharging(false);
+    setDashCharged(false);
+    setEnergy(0, { persist: false });
     updateDash(0, { award: false });
-    announce('Dash returned to the start.');
+    if (typeof renderCharacterWorld === 'function') renderCharacterWorld({ announce: false });
+    announce('Battery empty. Start at the left and reach the charging dock.');
   });
 
   // Quiet Bubbles
@@ -278,4 +310,3 @@
     announce('A new three-shape pattern is ready.');
   }
   elements.newPattern.addEventListener('click', newPattern);
-

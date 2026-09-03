@@ -13,6 +13,7 @@
   const glyphCharacter = $('#glyphCharacter');
   const glyphPack = $('#glyphPack');
   const energyCharacterImage = $('#energyCharacterImage');
+  const dashCharacterImage = $('#dashCharacterImage');
   const glyphColours = ['#348de3', '#4daf5a', '#f28b35', '#8270d5', '#df5f97', '#168fa2'];
   let characterRegistry = null;
 
@@ -46,19 +47,38 @@
       energyCharacterImage.alt = `${profile.name} ${canonicalProfile.label}`;
       energyCharacterImage.hidden = false;
       elements.characterStage.classList.add('has-production-art');
+      if (dashCharacterImage) {
+        if (!elements.dashBuddy.contains(dashCharacterImage)) elements.dashBuddy.replaceChildren(dashCharacterImage);
+        dashCharacterImage.src = artworkPath;
+        dashCharacterImage.alt = `${profile.name} ${canonicalProfile.label}`;
+        dashCharacterImage.hidden = false;
+      }
     } else {
       energyCharacterImage.removeAttribute('src');
       energyCharacterImage.alt = '';
       energyCharacterImage.hidden = true;
       elements.characterStage.classList.remove('has-production-art');
+      if (dashCharacterImage) {
+        dashCharacterImage.removeAttribute('src');
+        dashCharacterImage.alt = '';
+        dashCharacterImage.hidden = true;
+      }
     }
     worldSprite.className = profile.sprite ? `world-sprite sprite ${profile.sprite}` : 'world-sprite';
     const glyphMode = profile.family === 'alphabet' || profile.family === 'number';
     elements.energyBuddy.classList.toggle('is-glyph', glyphMode);
     glyphCharacter.querySelector('b').textContent = state.glyph;
     glyphCharacter.style.setProperty('--glyph-colour', glyphColours[(state.glyph.charCodeAt(0) || 0) % glyphColours.length]);
-    elements.dashBuddy.className = glyphMode || !profile.sprite ? 'dash-buddy is-glyph' : `dash-buddy sprite ${profile.sprite}`;
-    elements.dashBuddy.textContent = glyphMode || !profile.sprite ? (glyphMode ? state.glyph : profile.name.charAt(0)) : '';
+    if (artworkPath && !/source-safe-keeping|rejected-character-crops-v1/.test(artworkPath)) {
+      elements.dashBuddy.className = 'dash-buddy has-production-art';
+      Array.from(elements.dashBuddy.childNodes).forEach((node) => {
+        if (node !== dashCharacterImage) node.remove();
+      });
+    } else {
+      elements.dashBuddy.className = glyphMode || !profile.sprite ? 'dash-buddy is-glyph' : `dash-buddy sprite ${profile.sprite}`;
+      if (dashCharacterImage) dashCharacterImage.hidden = true;
+      elements.dashBuddy.textContent = glyphMode || !profile.sprite ? (glyphMode ? state.glyph : profile.name.charAt(0)) : '';
+    }
     $$('.character-choice').forEach((button) => {
       const selected = window.LeonSalCharacters.normalizeCharacterId(button.dataset.character) === profile.id;
       button.classList.toggle('is-selected', selected);
@@ -215,14 +235,14 @@
     });
   });
 
-  // Charging Dock 2.0: travel -> charge -> power a helper -> gentle energy drain -> ready again.
+  // Charging Dock 2.0: position and energy are separate values.
   const dockMeterFill = $('#dockMeterFill');
   const dockMeterLabel = $('#dockMeterLabel');
   const helperButtons = $$('.power-helpers button');
   let selectedHelper = 'lamp';
   let powerCycleBusy = false;
   let chargeFrame = 0;
-  let drainFrame = 0;
+  let helperTimer = 0;
 
   helperButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -243,50 +263,51 @@
     elements.dashRight.disabled = disabled;
   }
 
-  function beginHelperDrain(helperButton) {
-    window.cancelAnimationFrame(drainFrame);
-    const start = performance.now();
-    const duration = state.motion && !prefersReducedMotion.matches ? 16000 : 900;
-    helperButton.classList.add('is-powered');
-    elements.dashStatus.textContent = `${helperButton.textContent.trim()} is glowing while your character shares energy.`;
+  function showDockEmpty() {
+    dockMeterFill.style.width = '0%';
+    dockMeterLabel.textContent = 'Battery empty';
+    elements.dashStatus.textContent = 'Battery empty — reach the charging dock.';
+    setEnergy(0, { persist: false });
+    renderCharacterWorld({ announce: false });
+  }
 
-    const drain = (now) => {
-      const progress = clamp((now - start) / duration, 0, 1);
-      setEnergy(100 - (progress * 55), { persist: false });
+  function powerSelectedHelper() {
+    const helperButton = helperButtons.find((button) => button.dataset.helper === selectedHelper) || helperButtons[0];
+    helperButton.classList.add('is-powered');
+    elements.dashStatus.textContent = 'Fully charged!';
+    dockMeterFill.style.width = '100%';
+    dockMeterLabel.textContent = 'Fully charged!';
+    window.setLeonSalDashCharged?.(true);
+    window.clearTimeout(helperTimer);
+    helperTimer = window.setTimeout(() => {
+      helperButton.classList.remove('is-powered');
+      updateDash(0, { award: false });
+      setEnergy(100);
       renderCharacterWorld({ announce: false });
-      dockMeterFill.style.width = `${Math.round(100 - (progress * 55))}%`;
-      dockMeterLabel.textContent = `Helping ${helperButton.textContent.trim()} · ${Math.round(100 - (progress * 55))}% left`;
-      if (progress < 1) drainFrame = window.requestAnimationFrame(drain);
-      else {
-        setEnergy(45);
-        saveState();
-        helperButton.classList.remove('is-powered');
-        dockMeterLabel.textContent = 'Ready to recharge';
-        elements.dashStatus.textContent = 'Energy was shared. Visit the dock again whenever you want.';
-        powerCycleBusy = false;
-        setDockControlsDisabled(false);
-      }
-    };
-    drainFrame = window.requestAnimationFrame(drain);
+      elements.dashStatus.textContent = `${helperButton.textContent.trim()} is powered. Start again when ready.`;
+      powerCycleBusy = false;
+      window.setLeonSalDashCharging?.(false);
+      setDockControlsDisabled(false);
+    }, state.motion && !prefersReducedMotion.matches ? 1200 : 150);
   }
 
   function beginSmartCharge() {
     if (powerCycleBusy) return;
     powerCycleBusy = true;
     window.cancelAnimationFrame(chargeFrame);
-    window.cancelAnimationFrame(drainFrame);
     helperButtons.forEach((button) => button.classList.remove('is-powered'));
+    window.setLeonSalDashCharging?.(true);
     setDockControlsDisabled(true);
     const profile = selectedCharacter();
     const start = performance.now();
     const duration = state.motion && !prefersReducedMotion.matches ? 2300 : 150;
-    elements.dashStatus.textContent = `${profile.name} clicked into the dock. Charging gently…`;
+    elements.dashStatus.textContent = 'Charging…';
     playTone('success');
     vibrate([15, 40, 15]);
 
     const charge = (now) => {
       const progress = clamp((now - start) / duration, 0, 1);
-      const amount = Math.round(12 + (progress * 88));
+      const amount = Math.round(progress * 100);
       dockMeterFill.style.width = `${amount}%`;
       dockMeterLabel.textContent = amount >= 100 ? 'Fully charged!' : `Charging · ${amount}%`;
       setEnergy(amount, { persist: false });
@@ -296,31 +317,38 @@
         setEnergy(100);
         saveState();
         playTone('success');
-        elements.dashStatus.textContent = `${profile.name} is full of energy and popping back to help!`;
-        window.setTimeout(() => {
-          elements.dashReset.click();
-          const helperButton = helperButtons.find((button) => button.dataset.helper === selectedHelper) || helperButtons[0];
-          beginHelperDrain(helperButton);
-        }, state.motion ? 850 : 50);
+        renderCharacterWorld({ announce: false });
+        elements.dashStatus.textContent = 'Fully charged!';
+        powerSelectedHelper();
       }
     };
     chargeFrame = window.requestAnimationFrame(charge);
   }
 
   function checkForDock() {
-    if (Number(elements.dashSlider.value) >= 94) beginSmartCharge();
+    if (Number(elements.dashSlider.value) >= 95) beginSmartCharge();
   }
+  document.addEventListener('leonsal:dash-docked', beginSmartCharge);
   elements.dashSlider.addEventListener('input', checkForDock);
   elements.dashRight.addEventListener('click', () => window.setTimeout(checkForDock, 0));
   elements.dashLeft.addEventListener('click', () => window.setTimeout(checkForDock, 0));
   elements.dashReset.addEventListener('click', () => {
+    window.cancelAnimationFrame(chargeFrame);
+    window.clearTimeout(helperTimer);
+    powerCycleBusy = false;
+    window.setLeonSalDashCharging?.(false);
+    window.setLeonSalDashCharged?.(false);
+    setDockControlsDisabled(false);
+    helperButtons.forEach((button) => button.classList.remove('is-powered'));
+    showDockEmpty();
     if (!powerCycleBusy) {
-      dockMeterFill.style.width = '12%';
-      dockMeterLabel.textContent = 'Ready to travel · 12%';
+      dockMeterFill.style.width = '0%';
+      dockMeterLabel.textContent = 'Battery empty';
     }
   });
 
-  dockMeterFill.style.width = '12%';
-  dockMeterLabel.textContent = 'Ready to travel · 12%';
+  dockMeterFill.style.width = '0%';
+  dockMeterLabel.textContent = 'Battery empty';
   renderGlyphPack(/[0-9]/.test(state.glyph) ? 'numbers' : 'letters');
+  setEnergy(0, { persist: false });
   renderCharacterWorld({ announce: false });
