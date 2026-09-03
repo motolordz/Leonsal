@@ -1,0 +1,44 @@
+/* Approved individual transparent artwork only. */
+.character-choice {
+  overflow: hidden;
+}
+
+.character-choice-art-v2 {
+  display: block;
+  width: 100%;
+  height: 94px;
+  margin: 0 auto 5px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.character-choice.has-production-thumbnail-v2 > .sprite,
+.character-choice.has-production-thumbnail-v2 > .artwork-needed {
+  display: none !important;
+}
+
+.dash-buddy.has-production-art-v2 {
+  width: 92px !important;
+  height: 92px !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.dash-buddy.has-production-art-v2::before,
+.dash-buddy.has-production-art-v2::after {
+  display: none !important;
+}
+
+@media (max-width: 620px) {
+  .character-choice-art-v2 {
+    height: 76px;
+  }
+
+  .dash-buddy.has-production-art-v2 {
+    width: 72px !important;
+    height: 72px !important;
+  }
+}
