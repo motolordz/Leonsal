@@ -3,37 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LeonSal V2 Proof — Dash to Charging Dock</title>
+  <title>Dash to Charging Dock</title>
   <link rel="stylesheet" href="v2-proofs.css">
 </head>
-<body>
-  <main class="v2-shell">
-    <header class="v2-topbar">
-      <div><h1>Dash to Charging Dock</h1><p>Move to the dock first, then charge up.</p></div>
-      <a class="v2-home" href="v2-proof-lab.html" aria-label="Proof lab">Lab</a>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <div class="game-title"><strong>Dash to Charging Dock</strong><span>Travel first. Charge at the dock.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
     </header>
-    <section class="v2-settings" id="settings"></section>
-    <section class="v2-stage" id="stage" aria-label="Dash proof">
-      <div class="dash-track"></div>
-      <div class="dash-runner" id="runner" data-state="empty"><span class="dash-mouth"></span></div>
-      <div class="dash-dock">DOCK</div>
-      <div class="dash-helper" id="helper" data-active="false">Lamp</div>
-    </section>
-    <section class="v2-controls">
-      <svg class="battery-svg" viewBox="0 0 430 90" role="img" aria-label="Charging battery">
-        <rect x="28" y="18" width="340" height="46" rx="18" fill="#fff" stroke="#132343" stroke-width="7"/>
-        <rect x="374" y="31" width="30" height="20" rx="7" fill="#132343"/>
-        <rect data-fill x="40" y="30" width="0" height="22" rx="10" fill="#ef6f66"/>
-        <text data-face x="198" y="51" text-anchor="middle" font-size="22" font-weight="900" fill="#132343">–</text>
-        <text data-label x="198" y="84" text-anchor="middle" font-size="16" font-weight="900" fill="#132343">0%</text>
-      </svg>
-      <div class="control-row">
-        <button id="left" type="button">Move left</button>
-        <input id="position" type="range" min="0" max="100" value="0">
-        <button id="right" class="primary" type="button">Move right</button>
-        <button id="reset" type="button">Start again</button>
+    <section class="game-scene dash-world" id="stage" aria-label="Dash to the charging dock">
+      <div class="dash-sky" aria-hidden="true"></div>
+      <div class="helper-lamp" id="helper" data-active="false" aria-hidden="true"></div>
+      <div class="dash-path-new" id="path" aria-hidden="true"></div>
+      <div class="charge-beam" id="beam" aria-hidden="true"></div>
+      <div class="energy-buddy" id="runner" data-state="empty" aria-label="Energy buddy">
+        <span class="energy-buddy-arm left"></span><span class="energy-buddy-arm right"></span>
+        <span class="energy-buddy-body"></span>
+        <span class="energy-buddy-eye left"></span><span class="energy-buddy-eye right"></span>
+        <span class="energy-buddy-mouth"></span>
+        <span class="energy-buddy-foot left"></span><span class="energy-buddy-foot right"></span>
       </div>
-      <p class="v2-status" id="status">Battery empty — reach the charging dock.</p>
+      <div class="charging-dock" id="dock" data-charging="false" aria-label="Charging dock"></div>
+      <p class="scene-status" id="status">Battery empty — reach the charging dock.</p>
+      <div class="floating-controls">
+        <button id="left" class="scene-button" type="button">Left</button>
+        <button id="right" class="scene-button" type="button">Move right</button>
+        <button id="reset" class="scene-button" type="button">Start again</button>
+      </div>
     </section>
   </main>
   <script src="v2-engine.js"></script>
@@ -41,28 +40,40 @@
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
     const audio = new LeonSalV2.AudioEngine(settings);
-    const gauge = new LeonSalV2.GaugeBattery(document.querySelector('.battery-svg'));
+    const stage = document.querySelector('#stage');
     const runner = document.querySelector('#runner');
+    const dock = document.querySelector('#dock');
     const helper = document.querySelector('#helper');
-    const position = document.querySelector('#position');
+    const beam = document.querySelector('#beam');
     const status = document.querySelector('#status');
     let dashPosition = 0;
     let energy = 0;
     let charging = false;
     let charged = false;
+    let walkTime = 0;
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+    function travelDistance() {
+      const stageRect = stage.getBoundingClientRect();
+      const runnerRect = runner.getBoundingClientRect();
+      const dockRect = dock.getBoundingClientRect();
+      return Math.max(0, stageRect.width - runnerRect.width - dockRect.width - 54);
+    }
     function render() {
-      const stage = document.querySelector('#stage').getBoundingClientRect();
-      const runnerWidth = runner.getBoundingClientRect().width || 74;
-      const dockWidth = document.querySelector('.dash-dock').getBoundingClientRect().width || 96;
-      const travel = Math.max(0, stage.width - runnerWidth - dockWidth - 50);
-      document.documentElement.style.setProperty('--dash-x', `${travel * dashPosition / 100}px`);
-      position.value = String(Math.round(dashPosition));
       const state = LeonSalV2.stateForEnergy(energy);
       runner.dataset.state = state;
-      runner.dataset.energy = String(Math.round(energy));
-      runner.style.setProperty('--dash-scale', charging && settings.allowsMotion() ? 1.08 : 1);
-      gauge.set(energy);
+      stage.style.setProperty('--dash-x', `${travelDistance() * dashPosition / 100}px`);
+      stage.style.setProperty('--dash-scale', charging && settings.allowsMotion() ? '1.08' : '1');
+      stage.style.setProperty('--buddy-hue', String(6 + energy * 1.1));
+      stage.style.setProperty('--eye-open', String(.42 + energy / 170));
+      stage.style.setProperty('--beam-alpha', charging ? String(.25 + energy / 135) : '0');
+      beam.style.width = charging ? `${Math.max(90, travelDistance() * .55)}px` : '0px';
+      dock.dataset.charging = String(charging);
     }
     function setPosition(value) {
       if (charging) return;
@@ -72,20 +83,26 @@
       if (dashPosition >= 95) charge();
       else status.textContent = dashPosition === 0 ? 'Battery empty — reach the charging dock.' : 'Keep going to the charging dock!';
     }
+    function stepRight(delta) {
+      const from = dashPosition;
+      const to = LeonSalV2.clamp(from + delta, 0, 100);
+      motion.tween({ from, to, duration: 360, onUpdate: (value) => setPosition(value) });
+    }
     function charge() {
       if (charging || charged) return;
+      dashPosition = 100;
       charging = true;
       status.textContent = 'Charging…';
-      motion.tween({ from: 0, to: 100, duration: 1800, onUpdate: (value) => {
+      motion.tween({ from: 0, to: 100, duration: 1900, onUpdate: (value) => {
         energy = value;
         render();
       }, onComplete: () => {
         energy = 100;
         charged = true;
         charging = false;
-        render();
-        status.textContent = 'Fully charged!';
         helper.dataset.active = 'true';
+        status.textContent = 'Fully charged!';
+        render();
         audio.tone('success');
       }});
     }
@@ -98,9 +115,22 @@
       status.textContent = 'Battery empty — reach the charging dock.';
       render();
     }
-    position.addEventListener('input', () => setPosition(position.value));
-    document.querySelector('#left').addEventListener('click', () => { audio.tone('tap'); setPosition(dashPosition - 10); });
-    document.querySelector('#right').addEventListener('click', () => { audio.tone('tap'); setPosition(dashPosition + 10); });
+    motion.add((dt) => {
+      walkTime += dt;
+      const moving = dashPosition > 0 && dashPosition < 100 && !charging && settings.allowsMotion();
+      stage.style.setProperty('--buddy-hop', moving ? `${Math.sin(walkTime * 10) * -5}px` : '0px');
+      stage.style.setProperty('--arm-angle', moving ? `${18 + Math.sin(walkTime * 9) * 14}deg` : '18deg');
+      stage.style.setProperty('--foot-a', moving ? `${Math.sin(walkTime * 12) * 5}px` : '0px');
+      stage.style.setProperty('--foot-b', moving ? `${Math.sin(walkTime * 12 + Math.PI) * 5}px` : '0px');
+    });
+    new LeonSalV2.InputEngine(stage).onPointer({
+      down: ({ x }) => {
+        const rect = stage.getBoundingClientRect();
+        if (x > rect.left + rect.width * .42) stepRight(18);
+      }
+    });
+    document.querySelector('#left').addEventListener('click', () => { audio.tone('tap'); stepRight(-15); });
+    document.querySelector('#right').addEventListener('click', () => { audio.tone('tap'); stepRight(18); });
     document.querySelector('#reset').addEventListener('click', reset);
     window.addEventListener('resize', render);
     reset();

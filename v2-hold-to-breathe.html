@@ -3,29 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hold to Breathe Engine Proof</title>
+  <title>Hold to Breathe</title>
   <link rel="stylesheet" href="v2-proofs.css">
 </head>
-<body>
-  <main class="v2-shell">
-    <header class="v2-topbar">
-      <div>
-        <h1>Hold to Breathe</h1>
-        <p>Press and hold to expand, release to settle.</p>
-      </div>
-      <a class="v2-home" href="v2-proof-lab.html" aria-label="Proof lab">Lab</a>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <div class="game-title"><strong>Hold to Breathe</strong><span>Hold to grow. Release to settle.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
     </header>
-    <section class="v2-settings" id="settings" aria-label="Sensory settings"></section>
-    <section class="v2-stage" id="stage" aria-label="Breathing hold area">
-      <div class="breath-orb" id="orb" aria-hidden="true"></div>
-      <div class="breath-copy"><span>Hold to grow</span><span>Release to settle</span></div>
-    </section>
-    <section class="v2-controls">
-      <div class="control-row">
-        <button id="settle" class="primary" type="button">Settle</button>
-        <button id="expand" type="button">Expand</button>
+    <section class="game-scene breathe-world" id="stage" aria-label="Breathing hold area">
+      <div class="premium-orb" id="orb" aria-hidden="true"></div>
+      <div class="breath-prompt"><span>Hold to grow</span><span>Release to settle</span></div>
+      <div class="floating-controls">
+        <button id="settle" class="scene-button" type="button">Settle</button>
+        <button id="expand" class="scene-button" type="button">Expand</button>
       </div>
-      <p class="v2-status" id="status">Hold anywhere in the stage.</p>
     </section>
   </main>
   <script src="v2-engine.js"></script>
@@ -34,32 +29,33 @@
     const motion = new LeonSalV2.MotionEngine(settings);
     const stage = document.querySelector('#stage');
     const orb = document.querySelector('#orb');
-    const status = document.querySelector('#status');
     let scale = 1;
     let velocity = 0;
     let target = 1;
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
-    function setTarget(next, label) {
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+    function setTarget(next) {
       target = next;
-      status.textContent = label;
       if (!settings.allowsMotion()) {
         scale = target;
         orb.style.setProperty('--breath-scale', String(scale));
       }
     }
     motion.add((dt) => {
-      const next = motion.spring(scale, target, velocity, 190, 22, dt);
+      const next = motion.spring(scale, target, velocity, 165, 20, dt);
       scale = next.value;
       velocity = next.velocity;
-      orb.style.setProperty('--breath-scale', String(LeonSalV2.clamp(scale, 0.75, 1.65)));
+      orb.style.setProperty('--breath-scale', String(LeonSalV2.clamp(scale, 0.82, 1.62)));
     });
-    new LeonSalV2.InputEngine(stage).onPointer({
-      down: () => setTarget(1.55, 'Breathing space is expanding.'),
-      up: () => setTarget(1, 'Breathing space is settling.')
-    });
-    document.querySelector('#expand').addEventListener('pointerdown', () => setTarget(1.55, 'Breathing space is expanding.'));
-    document.querySelector('#expand').addEventListener('pointerup', () => setTarget(1, 'Breathing space is settling.'));
-    document.querySelector('#settle').addEventListener('click', () => setTarget(1, 'Breathing space is settled.'));
+    new LeonSalV2.InputEngine(stage).onPointer({ down: () => setTarget(1.55), up: () => setTarget(1) });
+    document.querySelector('#expand').addEventListener('pointerdown', () => setTarget(1.55));
+    document.querySelector('#expand').addEventListener('pointerup', () => setTarget(1));
+    document.querySelector('#settle').addEventListener('click', () => setTarget(1));
   </script>
 </body>
 </html>

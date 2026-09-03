@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-09-03T21:33:45.880Z",
+  "viewport": "390x844",
+  "fps": {
+    "battery": {
+      "average": 60,
+      "worst": 30
+    },
+    "dash": {
+      "average": 60,
+      "worst": 53
+    },
+    "bubbles": {
+      "average": 60,
+      "worst": 56
+    },
+    "trail": {
+      "average": 60,
+      "worst": 53
+    },
+    "breathe": {
+      "average": 60,
+      "worst": 53
+    }
+  },
+  "note": "Battery recording regenerated to capture a true 100% endpoint."
+}

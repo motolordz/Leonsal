@@ -3,65 +3,88 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LeonSal V2 Proof — My Energy Battery</title>
+  <title>My Energy Battery</title>
   <link rel="stylesheet" href="v2-proofs.css">
 </head>
-<body>
-  <main class="v2-shell">
-    <header class="v2-topbar">
-      <div><h1>My Energy Battery</h1><p>Slide from empty to full and watch the battery respond.</p></div>
-      <a class="v2-home" href="v2-proof-lab.html" aria-label="Proof lab">Lab</a>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <div class="game-title"><strong>My Energy Battery</strong><span>Swipe the energy track.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
     </header>
-    <section class="v2-settings" id="settings"></section>
-    <section class="v2-stage battery-proof" aria-label="Energy battery proof">
-      <svg class="battery-svg" viewBox="0 0 430 220" role="img" aria-labelledby="batteryTitle batteryDesc">
+    <section class="game-scene energy-world" id="scene" aria-label="Interactive energy battery">
+      <p class="scene-status" id="status">Empty / Sleepy</p>
+      <div class="energy-glow" id="glow" aria-hidden="true"></div>
+      <div class="energy-pad" aria-hidden="true"></div>
+      <svg class="big-battery" id="batterySvg" viewBox="0 0 430 300" role="img" aria-labelledby="batteryTitle batteryDesc">
         <title id="batteryTitle">Interactive energy battery</title>
         <desc id="batteryDesc">A continuous battery gauge from empty to full.</desc>
         <g class="battery-spark">
-          <circle cx="72" cy="30" r="8" fill="#ffd84d"/>
-          <circle cx="344" cy="188" r="10" fill="#ffd84d"/>
-          <path d="M356 26l10 20 21 3-15 15 4 21-20-10-19 10 4-21-15-15 21-3z" fill="#ffd84d"/>
+          <circle cx="64" cy="58" r="8" fill="#ffd84d"/>
+          <circle cx="354" cy="246" r="10" fill="#ffd84d"/>
+          <path d="M356 36l10 20 21 3-15 15 4 21-20-10-19 10 4-21-15-15 21-3z" fill="#ffd84d"/>
         </g>
-        <rect x="28" y="48" width="340" height="124" rx="34" fill="#fff" stroke="#132343" stroke-width="10"/>
-        <rect x="374" y="82" width="34" height="56" rx="12" fill="#132343"/>
-        <rect data-fill x="42" y="62" width="0" height="96" rx="24" fill="#ef6f66"/>
-        <circle class="battery-face-eye" cx="160" cy="108" r="10" fill="#132343"/>
-        <circle class="battery-face-eye" cx="236" cy="108" r="10" fill="#132343"/>
-        <path data-face d="M174 132 Q198 148 222 132" fill="none" stroke="#132343" stroke-width="8" stroke-linecap="round"/>
-        <text data-label x="198" y="205" text-anchor="middle" font-size="26" font-weight="900" fill="#132343">0%</text>
+        <g class="battery-shell-tilt" id="batteryTilt">
+          <rect x="34" y="70" width="330" height="150" rx="42" fill="#fff" stroke="#132343" stroke-width="12"/>
+          <rect x="370" y="112" width="34" height="66" rx="13" fill="#132343"/>
+          <clipPath id="batteryClip"><rect x="52" y="88" width="294" height="114" rx="30"/></clipPath>
+          <rect x="52" y="88" width="294" height="114" rx="30" fill="#edf3fb"/>
+          <rect data-fill x="52" y="88" width="0" height="114" rx="30" fill="#ef6f66" clip-path="url(#batteryClip)"/>
+          <circle class="battery-face-eye" cx="164" cy="140" r="12" fill="#132343"/>
+          <circle class="battery-face-eye" cx="238" cy="140" r="12" fill="#132343"/>
+          <path data-face d="M176 174 Q201 154 226 174" fill="none" stroke="#132343" stroke-width="9" stroke-linecap="round"/>
+          <text data-label x="200" y="266" text-anchor="middle" font-size="28" font-weight="900" fill="#132343">0%</text>
+        </g>
       </svg>
-    </section>
-    <section class="v2-controls">
-      <div class="control-row">
-        <button id="empty" type="button">Empty</button>
-        <input id="energy" type="range" min="0" max="100" value="0">
-        <button id="full" class="primary" type="button">Full</button>
+      <div class="energy-track" id="energyTrack" role="slider" aria-label="Energy level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+        <div class="energy-track-fill"></div>
+        <div class="energy-thumb"></div>
       </div>
-      <p class="v2-status" id="status">Empty / Sleepy</p>
     </section>
   </main>
   <script src="v2-engine.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
-    const motion = new LeonSalV2.MotionEngine(settings);
-    const audio = new LeonSalV2.AudioEngine(settings);
-    const gauge = new LeonSalV2.GaugeBattery(document.querySelector('.battery-svg'));
-    const input = document.querySelector('#energy');
+    const gauge = new LeonSalV2.GaugeBattery(document.querySelector('#batterySvg'));
+    const track = document.querySelector('#energyTrack');
+    const scene = document.querySelector('#scene');
     const status = document.querySelector('#status');
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
-    function setEnergy(value, animate = true) {
-      const from = Number(input.value);
-      const to = LeonSalV2.clamp(Number(value), 0, 100);
-      motion.tween({ from, to, duration: animate ? 520 : 0, onUpdate: (next) => {
-        input.value = String(Math.round(next));
-        const result = gauge.set(next);
-        status.textContent = result.label;
-      }});
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+    function render(value) {
+      const next = LeonSalV2.clamp(Number(value), 0, 100);
+      const result = gauge.set(next);
+      track.style.setProperty('--track-fill', `${next}%`);
+      track.style.setProperty('--track-thumb', `${8 + (next * .84)}%`);
+      track.setAttribute('aria-valuenow', String(Math.round(next)));
+      scene.style.setProperty('--energy-glow', String(.06 + next / 160));
+      scene.style.setProperty('--battery-tilt', `${-5 + next * .07}deg`);
+      scene.style.setProperty('--battery-lift', `${10 - next * .12}px`);
+      status.textContent = result.label;
     }
-    input.addEventListener('input', () => setEnergy(input.value, false));
-    document.querySelector('#empty').addEventListener('click', () => { audio.tone('tap'); setEnergy(0); });
-    document.querySelector('#full').addEventListener('click', () => { audio.tone('success'); setEnergy(100); });
-    setEnergy(0, false);
+    function valueFromPoint(x) {
+      const rect = track.getBoundingClientRect();
+      return LeonSalV2.clamp(((x - rect.left) / rect.width) * 100, 0, 100);
+    }
+    new LeonSalV2.InputEngine(track).onPointer({
+      down: ({ x }) => render(valueFromPoint(x)),
+      move: ({ x }) => render(valueFromPoint(x))
+    });
+    track.addEventListener('keydown', (event) => {
+      const current = Number(track.getAttribute('aria-valuenow'));
+      if (event.key === 'ArrowLeft') render(current - 5);
+      if (event.key === 'ArrowRight') render(current + 5);
+      if (event.key === 'Home') render(0);
+      if (event.key === 'End') render(100);
+    });
+    render(0);
   </script>
 </body>
 </html>

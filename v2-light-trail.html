@@ -3,32 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Finger Light Trail Engine Proof</title>
+  <title>Finger Light Trail</title>
   <link rel="stylesheet" href="v2-proofs.css">
 </head>
-<body>
-  <main class="v2-shell">
-    <header class="v2-topbar">
-      <div>
-        <h1>Finger Light Trail</h1>
-        <p>Draw a smooth high-DPI trail with pointer, touch, mouse or pen.</p>
-      </div>
-      <a class="v2-home" href="v2-proof-lab.html" aria-label="Proof lab">Lab</a>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <div class="game-title"><strong>Finger Light Trail</strong><span>Draw with light.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
     </header>
-    <section class="v2-settings" id="settings" aria-label="Sensory settings"></section>
-    <section class="v2-stage" aria-label="Light trail drawing area">
-      <canvas class="trail-canvas" id="canvas"></canvas>
-    </section>
-    <section class="v2-controls">
-      <div class="control-row">
-        <button id="clear" class="primary" type="button">Clear trail</button>
-        <div class="segmented" aria-label="Trail style">
-          <button data-trail="light" type="button" aria-pressed="true">Light</button>
-          <button data-trail="rainbow" type="button">Rainbow</button>
-          <button data-trail="stars" type="button">Stars</button>
-        </div>
+    <section class="game-scene trail-world" aria-label="Light trail drawing area">
+      <div class="trail-starscape" aria-hidden="true"></div>
+      <canvas class="trail-canvas premium" id="canvas"></canvas>
+      <p class="scene-status" id="status">Touch and move to make a light trail.</p>
+      <div class="floating-controls trail-controls">
+        <button id="clear" class="scene-button" type="button">Clear</button>
+        <button class="mode-pill" data-trail="light" type="button" aria-pressed="true">Light</button>
+        <button class="mode-pill" data-trail="rainbow" type="button">Rainbow</button>
+        <button class="mode-pill" data-trail="stars" type="button">Stars</button>
       </div>
-      <p class="v2-status" id="status">Touch and move to make a light trail.</p>
     </section>
   </main>
   <script src="v2-engine.js"></script>
@@ -39,17 +34,23 @@
     const status = document.querySelector('#status');
     const trail = new LeonSalV2.TrailEngine(canvas, motion, settings);
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
     function point(eventPoint) {
       const rect = canvas.getBoundingClientRect();
       trail.addPoint(eventPoint.x - rect.left, eventPoint.y - rect.top);
-      status.textContent = 'Trail is following your movement.';
+      status.textContent = 'Light is following your finger.';
     }
-    new LeonSalV2.InputEngine(canvas).onPointer({ down: point, move: point, up: () => { status.textContent = 'Trail is settling.'; } });
-    document.querySelector('#clear').addEventListener('click', () => { trail.clear(); status.textContent = 'Trail cleared.'; });
+    new LeonSalV2.InputEngine(canvas).onPointer({ down: point, move: point, up: () => { status.textContent = 'The light is settling.'; } });
+    document.querySelector('#clear').addEventListener('click', () => { trail.clear(); status.textContent = 'Touch and move to make a light trail.'; });
     document.querySelectorAll('[data-trail]').forEach((button) => button.addEventListener('click', () => {
       trail.mode = button.dataset.trail;
       document.querySelectorAll('[data-trail]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-      status.textContent = `${button.textContent} trail selected.`;
+      status.textContent = `${button.textContent} trail.`;
     }));
   </script>
 </body>

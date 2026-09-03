@@ -305,10 +305,12 @@ const LeonSalV2 = (() => {
         type,
         x: Math.random() * rect.width,
         y: Math.random() * rect.height,
-        r: 8 + Math.random() * 18,
-        vx: -8 + Math.random() * 16,
-        vy: -16 - Math.random() * 24,
-        life: 0.4 + Math.random() * 0.8,
+        r: 14 + Math.random() * 34,
+        vx: -10 + Math.random() * 20,
+        vy: -10 - Math.random() * 24,
+        life: 0.52 + Math.random() * 0.38,
+        wobble: Math.random() * Math.PI * 2,
+        depth: 0.62 + Math.random() * 0.5,
         hue: 190 + Math.random() * 80
       }));
     }
@@ -321,7 +323,8 @@ const LeonSalV2 = (() => {
       this.ctx.clearRect(0, 0, rect.width, rect.height);
       for (const item of this.items) {
         if (this.settings.allowsMotion()) {
-          item.x += item.vx * dt;
+          item.wobble = (item.wobble || 0) + dt * 1.8;
+          item.x += (item.vx + Math.sin(item.wobble) * 9) * dt;
           item.y += item.vy * dt;
         }
         item.age = (item.age || 0) + dt;
@@ -331,11 +334,26 @@ const LeonSalV2 = (() => {
         this.ctx.globalAlpha = item.life;
         this.ctx.beginPath();
         this.ctx.arc(item.x, item.y, item.r, 0, Math.PI * 2);
-        this.ctx.fillStyle = item.type === 'stars' || item.type === 'sparkle' ? '#ffd94e' : `hsl(${item.hue} 90% 74%)`;
+        if (item.type === 'stars' || item.type === 'sparkle') {
+          this.ctx.fillStyle = '#ffd94e';
+        } else {
+          const gradient = this.ctx.createRadialGradient(item.x - item.r * .35, item.y - item.r * .35, item.r * .08, item.x, item.y, item.r);
+          gradient.addColorStop(0, 'rgba(255,255,255,.95)');
+          gradient.addColorStop(.24, `hsla(${item.hue} 95% 78% / .62)`);
+          gradient.addColorStop(1, `hsla(${item.hue + 34} 92% 58% / .18)`);
+          this.ctx.fillStyle = gradient;
+        }
         this.ctx.fill();
-        this.ctx.strokeStyle = 'rgba(255,255,255,.8)';
-        this.ctx.lineWidth = 2;
+        this.ctx.strokeStyle = item.type === 'sparkle' ? 'rgba(255,255,255,.75)' : 'rgba(255,255,255,.86)';
+        this.ctx.lineWidth = item.type === 'sparkle' ? 1.5 : 2.5;
         this.ctx.stroke();
+        if (item.type !== 'sparkle') {
+          this.ctx.globalAlpha = item.life * .8;
+          this.ctx.beginPath();
+          this.ctx.arc(item.x - item.r * .28, item.y - item.r * .3, Math.max(3, item.r * .18), 0, Math.PI * 2);
+          this.ctx.fillStyle = 'rgba(255,255,255,.9)';
+          this.ctx.fill();
+        }
       }
       this.ctx.globalAlpha = 1;
     }
@@ -351,7 +369,7 @@ const LeonSalV2 = (() => {
           type: 'sparkle',
           x: hit.x,
           y: hit.y,
-          r: 3 + Math.random() * 4,
+          r: 3 + Math.random() * 5,
           vx: Math.cos(angle) * (34 + Math.random() * 28),
           vy: Math.sin(angle) * (34 + Math.random() * 28),
           life: 0.7,
@@ -376,6 +394,7 @@ const LeonSalV2 = (() => {
       this.points = [];
       this.maxPoints = 72;
       this.mode = 'light';
+      this.emitters = [];
       this.remove = this.motion.add((dt) => this.tick(dt));
       this.resize();
     }
@@ -399,11 +418,22 @@ const LeonSalV2 = (() => {
       }
       const max = this.settings.value.calmMode ? Math.min(this.maxPoints, 36) : this.maxPoints;
       if (this.points.length > max) this.points.splice(0, this.points.length - max);
+      if (!this.settings.value.calmMode) this.emit(x, y);
       this.draw();
+    }
+    emit(x, y) {
+      if (this.mode === 'stars') {
+        this.emitters.push({ x, y, age: 0, life: 1.1, size: 3 + Math.random() * 5, hue: 48 });
+      } else if (this.mode === 'rainbow' && Math.random() > .45) {
+        this.emitters.push({ x, y, age: 0, life: .72, size: 2 + Math.random() * 4, hue: Math.random() * 360 });
+      }
+      if (this.emitters.length > 80) this.emitters.splice(0, this.emitters.length - 80);
     }
     tick(dt) {
       this.points.forEach((point) => { point.age += dt; });
       this.points = this.points.filter((point) => point.age < 2.4);
+      this.emitters.forEach((item) => { item.age += dt; item.y -= dt * 10; });
+      this.emitters = this.emitters.filter((item) => item.age < item.life);
       this.draw();
     }
     draw() {
@@ -411,22 +441,43 @@ const LeonSalV2 = (() => {
       this.ctx.clearRect(0, 0, rect.width, rect.height);
       this.ctx.lineCap = 'round';
       this.ctx.lineJoin = 'round';
-      for (let i = 1; i < this.points.length; i += 1) {
-        const a = this.points[i - 1];
-        const b = this.points[i];
-        this.ctx.globalAlpha = clamp(1 - b.age / 2.4, 0, 1);
-        this.ctx.strokeStyle = this.colorFor(i);
-        this.ctx.lineWidth = this.mode === 'stars' ? 8 : (this.settings.value.calmMode ? 7 : 11);
-        this.ctx.beginPath();
-        this.ctx.moveTo(a.x, a.y);
-        this.ctx.lineTo(b.x, b.y);
-        this.ctx.stroke();
-        if (this.mode === 'stars' && i % 8 === 0 && !this.settings.value.calmMode) {
-          this.ctx.fillStyle = '#fff3a6';
+      for (const width of [30, 18, 8]) {
+        this.ctx.lineCap = 'round';
+        this.ctx.lineJoin = 'round';
+        this.ctx.shadowBlur = width === 8 ? 16 : 30;
+        this.ctx.shadowColor = this.mode === 'rainbow' ? 'rgba(120,220,255,.9)' : this.mode === 'stars' ? 'rgba(255,216,77,.9)' : 'rgba(100,214,255,.95)';
+        for (let i = 1; i < this.points.length; i += 1) {
+          const a = this.points[i - 1];
+          const b = this.points[i];
+          this.ctx.globalAlpha = clamp(1 - b.age / 2.4, 0, 1) * (width === 8 ? 1 : .22);
+          this.ctx.strokeStyle = this.colorFor(i);
+          this.ctx.lineWidth = this.settings.value.calmMode ? Math.max(5, width * .45) : width;
           this.ctx.beginPath();
-          this.ctx.arc(b.x, b.y, 3, 0, Math.PI * 2);
-          this.ctx.fill();
+          const midX = (a.x + b.x) / 2;
+          const midY = (a.y + b.y) / 2;
+          this.ctx.moveTo(a.x, a.y);
+          this.ctx.quadraticCurveTo(a.x, a.y, midX, midY);
+          this.ctx.stroke();
         }
+      }
+      this.ctx.shadowBlur = 0;
+      for (const item of this.emitters) {
+        const alpha = clamp(1 - item.age / item.life, 0, 1);
+        this.ctx.globalAlpha = alpha;
+        this.ctx.fillStyle = this.mode === 'rainbow' ? `hsl(${item.hue} 95% 68%)` : '#fff3a6';
+        this.ctx.beginPath();
+        if (this.mode === 'stars') {
+          for (let p = 0; p < 10; p += 1) {
+            const radius = p % 2 ? item.size * .45 : item.size;
+            const angle = -Math.PI / 2 + p * Math.PI / 5;
+            const px = item.x + Math.cos(angle) * radius;
+            const py = item.y + Math.sin(angle) * radius;
+            if (p === 0) this.ctx.moveTo(px, py); else this.ctx.lineTo(px, py);
+          }
+        } else {
+          this.ctx.arc(item.x, item.y, item.size, 0, Math.PI * 2);
+        }
+        this.ctx.fill();
       }
       this.ctx.globalAlpha = 1;
     }

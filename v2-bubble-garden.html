@@ -3,36 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bubble Garden Engine Proof</title>
+  <title>Quiet Bubble Garden</title>
   <link rel="stylesheet" href="v2-proofs.css">
 </head>
-<body>
-  <main class="v2-shell">
-    <header class="v2-topbar">
-      <div>
-        <h1>Quiet Bubble Garden</h1>
-        <p>Pop drifting bubbles at your own pace.</p>
-      </div>
-      <a class="v2-home" href="v2-proof-lab.html" aria-label="Proof lab">Lab</a>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <div class="game-title"><strong>Quiet Bubble Garden</strong><span>Tap bubbles at your own pace.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
     </header>
-    <section class="v2-settings" id="settings" aria-label="Sensory settings"></section>
-    <section class="v2-stage" aria-label="Bubble garden play area">
-      <canvas class="bubble-canvas" id="canvas"></canvas>
-    </section>
-    <section class="v2-controls">
-      <div class="control-row">
-        <button id="reset" class="primary" type="button">Reset bubbles</button>
-        <div class="segmented" aria-label="Bubble count">
-          <button data-density="few" type="button">Few</button>
-          <button data-density="normal" type="button" aria-pressed="true">Normal</button>
-          <button data-density="many" type="button">Many</button>
-        </div>
-        <div class="segmented" aria-label="Bubble speed">
-          <button data-speed="slow" type="button">Slow</button>
-          <button data-speed="normal" type="button" aria-pressed="true">Normal</button>
-        </div>
+    <section class="game-scene bubble-world" aria-label="Bubble garden play area">
+      <canvas class="bubble-canvas premium" id="canvas"></canvas>
+      <div class="bubble-plants" aria-hidden="true"></div>
+      <p class="scene-status" id="status">Bubbles are drifting gently.</p>
+      <div class="drawer-controls">
+        <button id="reset" class="scene-button" type="button">Reset</button>
+        <button class="mode-pill" data-density="few" type="button">Few</button>
+        <button class="mode-pill" data-density="normal" type="button" aria-pressed="true">Normal</button>
+        <button class="mode-pill" data-density="many" type="button">Many</button>
+        <button class="mode-pill" data-speed="slow" type="button">Slow</button>
+        <button class="mode-pill" data-speed="normal" type="button" aria-pressed="true">Drift</button>
       </div>
-      <p class="v2-status" id="status">Bubbles are drifting gently.</p>
     </section>
   </main>
   <script src="v2-engine.js"></script>
@@ -43,21 +36,27 @@
     const canvas = document.querySelector('#canvas');
     const status = document.querySelector('#status');
     const particles = new LeonSalV2.ParticleEngine(canvas, motion, settings);
-    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
     let density = 'normal';
     let speed = 'normal';
-    const counts = { few: 12, normal: 24, many: 42 };
+    const counts = { few: 14, normal: 28, many: 46 };
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
     function reset() {
       particles.seed('bubbles', counts[density]);
-      const speedFactor = speed === 'slow' ? 0.45 : 1;
+      const speedFactor = speed === 'slow' ? 0.42 : 1;
       particles.items.forEach((item) => { item.vx *= speedFactor; item.vy *= speedFactor; });
-      status.textContent = 'Bubbles are ready.';
+      status.textContent = 'Bubbles are drifting gently.';
     }
     new LeonSalV2.InputEngine(canvas).onPointer({
       down: ({ x, y }) => {
         const rect = canvas.getBoundingClientRect();
-        const popped = particles.popAt(x - rect.left, y - rect.top, 54);
-        status.textContent = popped ? 'Bubble popped.' : 'Try another bubble.';
+        const popped = particles.popAt(x - rect.left, y - rect.top, 58);
+        status.textContent = popped ? 'Pop.' : 'Bubbles are drifting gently.';
         if (popped) audio.tone('tap');
       }
     });
