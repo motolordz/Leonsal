@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LeonSal V2 Engine Contract",
+  "type": "object",
+  "required": [
+    "version",
+    "counts",
+    "engines"
+  ],
+  "properties": {
+    "version": {
+      "type": "number"
+    },
+    "authority": {
+      "type": "string"
+    },
+    "counts": {
+      "type": "object"
+    },
+    "engines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "contractStatus",
+          "capabilities"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "contractStatus": {
+            "enum": [
+              "implemented-proof",
+              "specified-only"
+            ]
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

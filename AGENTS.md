@@ -8,6 +8,10 @@ The mission is to create a joyful, safe, inclusive educational world in which ch
 
 Any nested `AGENTS.md` may add stricter subject-specific requirements but may not weaken or contradict this file. When instructions conflict, child safety, accessibility, factual teaching integrity, and this root file prevail.
 
+Authoritative subordinate specifications:
+
+- `docs/LEONSAL_INTERACTION_ENGINE_BIBLE.md` governs the V2 reusable interaction engine architecture and engine-contract registry.
+
 Work must read this file before planning or implementation. A visual feature is not complete merely because an image has been placed on a page; it must be integrated into the relevant learning interaction, responsive layout, accessibility path, asset registry, and tests.
 
 ## 2. Product Soul
