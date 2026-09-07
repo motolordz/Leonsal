@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "BAT-FACE-001",
+      "status": "open",
+      "severity": "P1",
+      "summary": "Battery face visual correction remains required.",
+      "acceptance": [
+        "eyes aligned and symmetrical",
+        "face centred relative to actual battery body",
+        "mouth centred correctly",
+        "natural child-friendly smile",
+        "no crooked or sideways smile",
+        "no floating facial components",
+        "empty state sleepy/tired, not distressed",
+        "full state friendly energetic smile"
+      ],
+      "complete": false
+    },
+    {
+      "id": "DASH-ENERGY-001",
+      "status": "contract-preserved",
+      "severity": "P0-invariant",
+      "summary": "Dash position and energy lifecycle must remain separated.",
+      "acceptance": [
+        "travel changes position only",
+        "energy stays 0 before dock contact",
+        "dock contact begins charging",
+        "charging progresses empty to low to calm to happy to excited",
+        "new round resets energy and position"
+      ],
+      "complete": true
+    }
+  ]
+}

@@ -11,6 +11,7 @@ Any nested `AGENTS.md` may add stricter subject-specific requirements but may no
 Authoritative subordinate specifications:
 
 - `docs/LEONSAL_INTERACTION_ENGINE_BIBLE.md` governs the V2 reusable interaction engine architecture and engine-contract registry.
+- `docs/LEONSAL_SENSORY_EXPERIENCE_BIBLE.md` governs sensory experience defaults, no-pressure interaction, shared preference ceilings, and sensory catalogue boundaries.
 
 Work must read this file before planning or implementation. A visual feature is not complete merely because an image has been placed on a page; it must be integrated into the relevant learning interaction, responsive layout, accessibility path, asset registry, and tests.
 

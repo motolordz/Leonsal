@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "authority": "docs/LEONSAL_SENSORY_MIXER_SPEC.md subordinate to AGENTS.md",
+  "implementationStatus": "specified-only",
+  "savedWorldRule": "Saved worlds may request effects only within current global sensory limits and may never override stronger preferences.",
+  "globalPreferencePrecedence": [
+    "reduced-motion",
+    "calm-mode",
+    "sound",
+    "vibration",
+    "particles",
+    "speed",
+    "motion"
+  ],
+  "examples": [
+    {
+      "preference": "sound-off",
+      "presetRequest": "ocean-audio",
+      "result": "silent"
+    },
+    {
+      "preference": "reduced-motion-on",
+      "presetRequest": "full-motion-stars",
+      "result": "reduced-motion-safe stars or static equivalent"
+    }
+  ],
+  "presetFields": [
+    "id",
+    "name",
+    "visualTheme",
+    "motionRequest",
+    "soundRequest",
+    "particleRequest",
+    "speedRequest",
+    "calmCompatible",
+    "reducedMotionFallback",
+    "exitAlwaysAvailable"
+  ]
+}

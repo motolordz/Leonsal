@@ -1,0 +1,579 @@
+{
+  "version": 1,
+  "authority": "docs/LEONSAL_SENSORY_EXPERIENCE_BIBLE.md subordinate to AGENTS.md",
+  "catalogueStatus": "catalogue-only",
+  "completedGameCount": 0,
+  "conceptCount": 56,
+  "canonicalPreferenceConcepts": [
+    "motion",
+    "sound",
+    "particles",
+    "speed",
+    "vibration",
+    "calm-mode",
+    "reduced-motion"
+  ],
+  "noInferenceRule": "Do not infer autism subtype, emotional state, medical state, dysregulation, or sensory-seeking/avoiding labels from behaviour.",
+  "concepts": [
+    {
+      "id": "quiet-bubble-garden",
+      "name": "Bubbles",
+      "purpose": "Tap or glide through gentle translucent bubbles.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "finger-light-trail",
+      "name": "Light Trail",
+      "purpose": "Draw fading glowing trails with touch, mouse, or pen.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "hold-to-breathe",
+      "name": "Breathing Orb",
+      "purpose": "Hold to grow and release to settle without a required pace.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "calm-rain-window",
+      "name": "Rain Window",
+      "purpose": "Watch and touch slow rain paths on a window.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "firefly-catch",
+      "name": "Fireflies",
+      "purpose": "Invite glowing fireflies into jars or safe resting spots.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "snow-globe",
+      "name": "Snow Globe",
+      "purpose": "Shake or tap to stir slow snow and then watch it settle.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "star-shower",
+      "name": "Star Shower",
+      "purpose": "Touch stars that fall gently and fade.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "growing-garden",
+      "name": "Growing Garden",
+      "purpose": "Water seeds and watch plants grow at a calm pace.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "ocean-waves",
+      "name": "Ocean Waves",
+      "purpose": "Make soft waves and ripples.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "cloud-drift",
+      "name": "Cloud Drift",
+      "purpose": "Move clouds through a quiet sky.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "aquarium-calm",
+      "name": "Aquarium",
+      "purpose": "Guide bubbles and watch fish-like procedural shapes drift.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "moon-glow",
+      "name": "Moon Glow",
+      "purpose": "Change night sky brightness and soft moon halos.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "colour-flow",
+      "name": "Colour Flow",
+      "purpose": "Blend colours with slow flowing gradients.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "sand-tray",
+      "name": "Sand Tray",
+      "purpose": "Trace shapes in a soft digital sand surface.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "leaf-fall",
+      "name": "Leaf Fall",
+      "purpose": "Move falling leaves with gentle touch.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "visual-chimes",
+      "name": "Visual Chimes",
+      "purpose": "Tap hanging shapes for optional soft sound and visible ripples.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "lava-lamp",
+      "name": "Glow Lamp",
+      "purpose": "Watch slow floating blobs within bounded motion.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "kaleidoscope-soft",
+      "name": "Kaleidoscope",
+      "purpose": "Create symmetrical colour patterns without flashing.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "rhythm-pulse",
+      "name": "Rhythm Pulse",
+      "purpose": "Tap a visible beat with sound optional.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "water-ripples",
+      "name": "Water Ripples",
+      "purpose": "Create expanding rings from touch points.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "garden-watering",
+      "name": "Garden Watering",
+      "purpose": "Pour water and see growth or sparkle response.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "cozy-lamp",
+      "name": "Cozy Lamp",
+      "purpose": "Switch a warm lamp on and off.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "day-night-sky",
+      "name": "Day Night Sky",
+      "purpose": "Slide gently between morning, day, evening, and night.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "shape-sorting-calm",
+      "name": "Shape Sorting Calm",
+      "purpose": "Sort shapes without a timer or failure state.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "trace-glow",
+      "name": "Trace Glow",
+      "purpose": "Follow tolerant paths with glowing feedback.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "sticker-calm-space",
+      "name": "Calm Sticker Space",
+      "purpose": "Place and move stickers in a no-pressure scene.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "sound-choice-board",
+      "name": "Sound Choice Board",
+      "purpose": "Choose optional gentle audio icons that remain muted when sound is off.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "texture-path",
+      "name": "Texture Path",
+      "purpose": "Move across visual textures with no sensory inference.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "slow-maze",
+      "name": "Slow Maze",
+      "purpose": "Guide an object through a gentle maze with no penalty.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "orbit-watch",
+      "name": "Orbit Watch",
+      "purpose": "Move objects around circular paths.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "planet-drift",
+      "name": "Planet Drift",
+      "purpose": "Place planets and watch calm orbital motion.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "weather-window",
+      "name": "Weather Window",
+      "purpose": "Choose rain, cloud, sun, or snow within sensory limits.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "seasons-tree",
+      "name": "Seasons Tree",
+      "purpose": "Change a tree through seasonal states.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "rainbow-order",
+      "name": "Rainbow Order",
+      "purpose": "Arrange colours with calm completion feedback.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "quiet-train",
+      "name": "Quiet Train",
+      "purpose": "Move a train along a track at selected speed.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "transport-glide",
+      "name": "Transport Glide",
+      "purpose": "Guide vehicles along paths without pressure.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "animal-habitat-calm",
+      "name": "Animal Habitat Calm",
+      "purpose": "Match animals to homes with tap alternatives.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "lantern-glow",
+      "name": "Lantern Glow",
+      "purpose": "Grow and dim a soft safe light.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "breathing-cloud",
+      "name": "Breathing Cloud",
+      "purpose": "Hold to expand a cloud and release to settle.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "jellyfish-drift",
+      "name": "Jellyfish Drift",
+      "purpose": "Watch soft floating forms with low particle counts.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "bubble-wrap-tap",
+      "name": "Bubble Wrap Tap",
+      "purpose": "Tap soft circles for immediate low-intensity pop feedback.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "paint-flow",
+      "name": "Paint Flow",
+      "purpose": "Drag colour streams that blend smoothly.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "symmetry-garden",
+      "name": "Symmetry Garden",
+      "purpose": "Place abstract shapes with mirrored layout guidance.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "pebble-balance",
+      "name": "Pebble Balance",
+      "purpose": "Stack rounded shapes with gentle physics.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "counting-stars",
+      "name": "Counting Stars",
+      "purpose": "Touch stars and see calm quantity feedback.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "routine-cards",
+      "name": "Routine Cards",
+      "purpose": "Arrange visual routine steps with no forced completion.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "feeling-cards",
+      "name": "Feeling Cards",
+      "purpose": "Choose emotion cards without diagnosis or scoring.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "soft-sparkles",
+      "name": "Soft Sparkles",
+      "purpose": "Create sparse fading sparkle fields.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "meadow-breeze",
+      "name": "Meadow Breeze",
+      "purpose": "Move grass and flowers with a slow breeze.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "underwater-lights",
+      "name": "Underwater Lights",
+      "purpose": "Touch soft lights beneath water.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "comet-trails",
+      "name": "Comet Trails",
+      "purpose": "Guide slow comets with fading tails.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "music-notes-visual",
+      "name": "Music Notes Visual",
+      "purpose": "Create visible notes with optional muted sound.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "hand-pressure-pad",
+      "name": "Pressure Pad",
+      "purpose": "Press and hold to change size or colour gently.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "cozy-reading",
+      "name": "Cozy Reading",
+      "purpose": "Turn pages or reveal story objects slowly.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "shape-garden",
+      "name": "Shape Garden",
+      "purpose": "Grow scenes from selected shapes.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    },
+    {
+      "id": "calm-counting",
+      "name": "Calm Counting",
+      "purpose": "Count objects at a chosen pace without a timer.",
+      "status": "catalogue-only",
+      "completedGame": false,
+      "pressureDefault": "none",
+      "requiresFinalCharacterArt": false,
+      "globalPreferenceCeiling": true
+    }
+  ]
+}

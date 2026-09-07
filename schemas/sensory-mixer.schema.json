@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LeonSal Sensory Mixer Preset",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "globalPreferenceCeiling",
+    "exitAlwaysAvailable"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "globalPreferenceCeiling": {
+      "const": true
+    },
+    "exitAlwaysAvailable": {
+      "const": true
+    },
+    "motionRequest": {
+      "type": "string"
+    },
+    "soundRequest": {
+      "type": "string"
+    },
+    "particleRequest": {
+      "type": "string"
+    },
+    "reducedMotionFallback": {
+      "type": "string"
+    }
+  }
+}
