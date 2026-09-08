@@ -1,0 +1,32 @@
+{
+  "evidenceSha": "2eb0cefced5b19679b2c5fc3c568fe58c891ad48",
+  "sourceReference": "assets/source-safe-keeping/approved-character-sheets-v2/battery-five-state-v3-source.png",
+  "visualInspection": {
+    "empty": "pass: same Battery Buddy identity, nearly empty red energy, closed sleepy eyes, tired/resting expression without frightened or distressed cues",
+    "low": "pass: same character, orange low energy, waking/gently tired expression, small friendly smile",
+    "calm": "pass: same character, yellow half energy, awake neutral-friendly face, balanced centered expression",
+    "happy": "pass: same character, green energy, clear friendly smile, brighter active presentation",
+    "excited": "pass: same character, full cyan energy, awake eyes, friendly energetic smile, restrained rays only"
+  },
+  "identityConsistency": "pass: matching body proportions, cap, outline, eye/cheek style, and silhouette family across all five states",
+  "transparency": "pass: true RGBA/alpha masters, transparent corners, no rectangular background",
+  "contamination": "pass: one character only; no baked percentages, labels, logo, source-sheet text, neighboring batteries, or chart material in production masters",
+  "face": "pass: eyes are naturally symmetrical, face sits on the body, mouth is centered, no crooked/sideways smile or floating components observed",
+  "mobile": "pass: 390x844 screenshots show stable Battery layout across 0/25/50/75/100 with no resize jump or drift",
+  "continuousFill": "pass: v2 Battery remains procedural continuous 0-100 fill; five masters are state anchors and registry assets, not replacing interaction motion",
+  "performance": {
+    "frames": 84,
+    "averageFps": 71.2,
+    "worstObservedFps": 56.5,
+    "fifthPercentileFps": 57.8
+  },
+  "finalEvidence": [
+    "qa/battery-production-v3/FINAL-OWNER-READY/battery-five-final.png",
+    "qa/battery-production-v3/FINAL-OWNER-READY/battery-mobile-five-states.png",
+    "qa/battery-production-v3/FINAL-OWNER-READY/visual-acceptance.json",
+    "qa/battery-production-v3/FINAL-OWNER-READY/battery-silhouette-overlay.png"
+  ],
+  "registryDecision": "Battery Buddy approved only; all other character artwork remains pending/review.",
+  "approvedAssetCount": 5,
+  "pendingReviewAssetCount": 35
+}

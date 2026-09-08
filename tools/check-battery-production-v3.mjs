@@ -125,11 +125,19 @@ if (distinctPairs < 8) failures.push("Battery states are not visually distinct e
 const registry = JSON.parse(await fs.readFile(path.join(root, "data/character-assets.json"), "utf8"));
 const battery = registry.world.find((record) => record.id === "battery-buddy");
 if (!battery) failures.push("Battery Buddy registry record is missing");
-if (battery?.status !== "pending-art") failures.push(`Battery Buddy status must remain pending-art, got ${battery?.status}`);
-if (Object.keys(battery?.states || {}).length !== 0) failures.push("Battery Buddy must not expose runtime states before owner approval");
+if (battery?.status !== "approved") failures.push(`Battery Buddy status must be approved after final owner acceptance, got ${battery?.status}`);
 for (const state of states) {
   const expected = `assets/characters-v2/battery/${state}/web.webp`;
-  if (battery?.reviewStates?.[state] !== expected) failures.push(`Battery Buddy ${state} review path must be ${expected}`);
+  const expectedMaster = `assets/characters-v2/battery/${state}/master.png`;
+  if (battery?.states?.[state] !== expected) failures.push(`Battery Buddy ${state} runtime path must be ${expected}`);
+  if (battery?.masterStates?.[state] !== expectedMaster) failures.push(`Battery Buddy ${state} master path must be ${expectedMaster}`);
+}
+for (const section of ["guides", "alphabet", "numbers", "world"]) {
+  for (const record of registry[section] || []) {
+    if (record.id !== "battery-buddy" && record.status === "approved") {
+      failures.push(`${section}/${record.id}: only Battery Buddy may be approved in this gate`);
+    }
+  }
 }
 
 await fs.mkdir(path.join(root, "qa/battery-production-v3"), { recursive: true });
@@ -148,4 +156,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("Battery production v3 check passed: 5 PNG masters and 5 WebP derivatives are transparent, padded, distinct, and registry-gated as pending-art.");
+console.log("Battery production v3 check passed: 5 PNG masters and 5 WebP derivatives are transparent, padded, distinct, and approved for Battery Buddy only.");

@@ -48,24 +48,28 @@
       "id": "battery-buddy",
       "displayName": "Battery Buddy",
       "family": "world",
-      "status": "pending-art",
-      "format": "png-rgba-production-review-v3",
-      "states": {},
-      "notes": "PENDING OWNER VISUAL APPROVAL. Battery v3 individual transparent masters and WebP derivatives passed technical QA, but remain review-only until owner approval. Runtime must use the procedural continuous Battery fallback until approved.",
-      "reviewStates": {
+      "status": "approved",
+      "format": "png-rgba-production-v3",
+      "states": {
         "empty": "assets/characters-v2/battery/empty/web.webp",
         "low": "assets/characters-v2/battery/low/web.webp",
         "calm": "assets/characters-v2/battery/calm/web.webp",
         "happy": "assets/characters-v2/battery/happy/web.webp",
         "excited": "assets/characters-v2/battery/excited/web.webp"
       },
-      "reviewMasters": {
+      "notes": "OWNER VISUAL ACCEPTED Battery v3 artwork. Five individual transparent production masters and WebP derivatives are approved for Battery Buddy only. Other character artwork remains pending/review.",
+      "masterStates": {
         "empty": "assets/characters-v2/battery/empty/master.png",
         "low": "assets/characters-v2/battery/low/master.png",
         "calm": "assets/characters-v2/battery/calm/master.png",
         "happy": "assets/characters-v2/battery/happy/master.png",
         "excited": "assets/characters-v2/battery/excited/master.png"
-      }
+      },
+      "evidence": [
+        "qa/battery-production-v3/FINAL-OWNER-READY/battery-five-final.png",
+        "qa/battery-production-v3/FINAL-OWNER-READY/battery-mobile-five-states.png",
+        "qa/battery-production-v3/FINAL-OWNER-READY/visual-acceptance.json"
+      ]
     },
     {
       "id": "elephant",
