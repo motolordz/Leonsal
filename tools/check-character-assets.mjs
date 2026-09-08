@@ -8,7 +8,7 @@ const root = process.cwd();
 const registryPath = path.join(root, "data", "character-assets.json");
 const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
 const requiredStates = ["empty", "low", "calm", "happy", "excited"];
-const families = ["guides", "alphabet", "numbers", "world"];
+const families = ["guides", "alphabet", "numbers", "world", "planets"];
 const failures = [];
 const warnings = [];
 let checked = 0;
@@ -21,9 +21,10 @@ function hash(buffer) {
 function expectedPathFragment(family, recordId) {
   if (family === "world" && recordId === "battery-buddy") return "/characters-v2/battery/";
   if (family === "guides") return `/characters-v2/${recordId}/`;
-  if (family === "world") return `/characters-v2/world/${recordId}/`;
+  if (family === "world") return `/characters-v2/world/${recordId.replace(/^world-/, "")}/`;
   if (family === "alphabet") return `/characters-v2/alphabet/${recordId.replace("letter-", "")}/`;
   if (family === "numbers") return `/characters-v2/numbers/${recordId.replace("number-", "")}/`;
+  if (family === "planets") return "/characters-v2/planets/";
   return "/characters-v2/";
 }
 

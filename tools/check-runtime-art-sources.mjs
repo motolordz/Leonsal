@@ -4,7 +4,7 @@ import process from "node:process";
 
 const root = process.cwd();
 const registry = JSON.parse(fs.readFileSync(path.join(root, "data", "character-assets.json"), "utf8"));
-const families = ["guides", "alphabet", "numbers", "world", "pilot"];
+const families = ["guides", "alphabet", "numbers", "world", "planets", "pilot"];
 const states = ["empty", "low", "calm", "happy", "excited"];
 const forbidden = /source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/i;
 const failures = [];

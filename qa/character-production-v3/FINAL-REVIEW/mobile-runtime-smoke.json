@@ -1,0 +1,107 @@
+{
+  "url": "http://127.0.0.1:4174/index.html",
+  "viewport": "390x844",
+  "errors": [],
+  "results": {
+    "battery-0": {
+      "stageCharacter": "battery-buddy",
+      "stageState": "empty",
+      "realSrc": "assets/characters-v2/battery/empty/web.webp",
+      "glyphHidden": true,
+      "glyphText": "B•‿•",
+      "spriteHidden": true,
+      "spriteClass": "world-sprite sprite sprite-battery",
+      "message": "Battery Buddy is resting. Its energy is empty."
+    },
+    "battery-25": {
+      "stageCharacter": "battery-buddy",
+      "stageState": "low",
+      "realSrc": "assets/characters-v2/battery/low/web.webp",
+      "glyphHidden": true,
+      "glyphText": "B•‿•",
+      "spriteHidden": true,
+      "spriteClass": "world-sprite sprite sprite-battery",
+      "message": "Battery Buddy has low energy and may need a gentle moment."
+    },
+    "battery-50": {
+      "stageCharacter": "battery-buddy",
+      "stageState": "calm",
+      "realSrc": "assets/characters-v2/battery/calm/web.webp",
+      "glyphHidden": true,
+      "glyphText": "B•‿•",
+      "spriteHidden": true,
+      "spriteClass": "world-sprite sprite sprite-battery",
+      "message": "Battery Buddy is calm, ready and balanced."
+    },
+    "battery-75": {
+      "stageCharacter": "battery-buddy",
+      "stageState": "happy",
+      "realSrc": "assets/characters-v2/battery/happy/web.webp",
+      "glyphHidden": true,
+      "glyphText": "B•‿•",
+      "spriteHidden": true,
+      "spriteClass": "world-sprite sprite sprite-battery",
+      "message": "Battery Buddy is happy, active and ready to play."
+    },
+    "battery-100": {
+      "stageCharacter": "battery-buddy",
+      "stageState": "excited",
+      "realSrc": "assets/characters-v2/battery/excited/web.webp",
+      "glyphHidden": true,
+      "glyphText": "B•‿•",
+      "spriteHidden": true,
+      "spriteClass": "world-sprite sprite sprite-battery",
+      "message": "Battery Buddy is fully charged and excited."
+    },
+    "leon-50": {
+      "stageCharacter": "leon",
+      "stageState": "calm",
+      "realSrc": null,
+      "glyphHidden": false,
+      "glyphText": "L•‿•",
+      "spriteHidden": true,
+      "spriteClass": "world-sprite",
+      "message": "Leon is calm, ready and balanced."
+    },
+    "zaya-50": {
+      "stageCharacter": "zaya",
+      "stageState": "calm",
+      "realSrc": null,
+      "glyphHidden": false,
+      "glyphText": "Z•‿•",
+      "spriteHidden": true,
+      "spriteClass": "world-sprite",
+      "message": "Zaya is calm, ready and balanced."
+    },
+    "letter-50": {
+      "stageCharacter": "letter-a",
+      "stageState": "calm",
+      "realSrc": null,
+      "glyphHidden": true,
+      "glyphText": "L•‿•",
+      "spriteHidden": false,
+      "spriteClass": "world-sprite sprite sprite-letter",
+      "message": "Letter A is calm, ready and balanced."
+    },
+    "elephant-50": {
+      "stageCharacter": "elephant",
+      "stageState": "calm",
+      "realSrc": null,
+      "glyphHidden": true,
+      "glyphText": "E•‿•",
+      "spriteHidden": false,
+      "spriteClass": "world-sprite sprite sprite-elephant",
+      "message": "Elephant is calm, ready and balanced."
+    },
+    "plane-50": {
+      "stageCharacter": "plane",
+      "stageState": "calm",
+      "realSrc": null,
+      "glyphHidden": true,
+      "glyphText": "P•‿•",
+      "spriteHidden": false,
+      "spriteClass": "world-sprite sprite sprite-plane",
+      "message": "Plane is calm, ready and balanced."
+    }
+  }
+}

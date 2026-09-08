@@ -13,36 +13,1235 @@
       "displayName": "Leon",
       "family": "guide",
       "status": "pending-art",
-      "format": "png-rgba-review",
+      "format": "png-rgba-production-v3",
       "states": {},
-      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "masterStates": {
+        "empty": "assets/characters-v2/leon/empty/master.png",
+        "low": "assets/characters-v2/leon/low/master.png",
+        "calm": "assets/characters-v2/leon/calm/master.png",
+        "happy": "assets/characters-v2/leon/happy/master.png",
+        "excited": "assets/characters-v2/leon/excited/master.png"
+      },
       "reviewStates": {
-        "empty": "assets/characters-v2/leon/empty.png",
-        "low": "assets/characters-v2/leon/low.png",
-        "calm": "assets/characters-v2/leon/calm.png",
-        "happy": "assets/characters-v2/leon/happy.png",
-        "excited": "assets/characters-v2/leon/excited.png"
-      }
+        "empty": "assets/characters-v2/leon/empty/web.webp",
+        "low": "assets/characters-v2/leon/low/web.webp",
+        "calm": "assets/characters-v2/leon/calm/web.webp",
+        "happy": "assets/characters-v2/leon/happy/web.webp",
+        "excited": "assets/characters-v2/leon/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set passes technical transparency gates but remains pending because visual QA found it does not yet match Battery Buddy V3 production illustration quality.",
+      "sourceReference": "data/characters.json#guide-leon",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/leon/five-states.png"
+      ],
+      "requiredNameText": "LEON"
     },
     {
       "id": "zaya",
       "displayName": "Zaya",
       "family": "guide",
       "status": "pending-art",
-      "format": "png-rgba-review",
+      "format": "png-rgba-production-v3",
       "states": {},
-      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "masterStates": {
+        "empty": "assets/characters-v2/zaya/empty/master.png",
+        "low": "assets/characters-v2/zaya/low/master.png",
+        "calm": "assets/characters-v2/zaya/calm/master.png",
+        "happy": "assets/characters-v2/zaya/happy/master.png",
+        "excited": "assets/characters-v2/zaya/excited/master.png"
+      },
       "reviewStates": {
-        "empty": "assets/characters-v2/zaya/empty.png",
-        "low": "assets/characters-v2/zaya/low.png",
-        "calm": "assets/characters-v2/zaya/calm.png",
-        "happy": "assets/characters-v2/zaya/happy.png",
-        "excited": "assets/characters-v2/zaya/excited.png"
-      }
+        "empty": "assets/characters-v2/zaya/empty/web.webp",
+        "low": "assets/characters-v2/zaya/low/web.webp",
+        "calm": "assets/characters-v2/zaya/calm/web.webp",
+        "happy": "assets/characters-v2/zaya/happy/web.webp",
+        "excited": "assets/characters-v2/zaya/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set passes technical transparency gates but remains pending because visual QA found it does not yet match Battery Buddy V3 production illustration quality.",
+      "sourceReference": "data/characters.json#guide-zaya",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/zaya/five-states.png"
+      ],
+      "requiredNameText": "ZAYA"
     }
   ],
-  "alphabet": [],
-  "numbers": [],
+  "alphabet": [
+    {
+      "id": "letter-a",
+      "displayName": "Letter A",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/a/empty/master.png",
+        "low": "assets/characters-v2/alphabet/a/low/master.png",
+        "calm": "assets/characters-v2/alphabet/a/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/a/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/a/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/a/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/a/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/a/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/a/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/a/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-a/five-states.png"
+      ],
+      "uppercase": "A",
+      "lowercase": "a",
+      "exampleWord": "apple"
+    },
+    {
+      "id": "letter-b",
+      "displayName": "Letter B",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/b/empty/master.png",
+        "low": "assets/characters-v2/alphabet/b/low/master.png",
+        "calm": "assets/characters-v2/alphabet/b/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/b/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/b/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/b/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/b/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/b/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/b/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/b/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-b/five-states.png"
+      ],
+      "uppercase": "B",
+      "lowercase": "b",
+      "exampleWord": "book"
+    },
+    {
+      "id": "letter-c",
+      "displayName": "Letter C",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/c/empty/master.png",
+        "low": "assets/characters-v2/alphabet/c/low/master.png",
+        "calm": "assets/characters-v2/alphabet/c/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/c/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/c/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/c/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/c/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/c/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/c/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/c/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-c/five-states.png"
+      ],
+      "uppercase": "C",
+      "lowercase": "c",
+      "exampleWord": "cat"
+    },
+    {
+      "id": "letter-d",
+      "displayName": "Letter D",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/d/empty/master.png",
+        "low": "assets/characters-v2/alphabet/d/low/master.png",
+        "calm": "assets/characters-v2/alphabet/d/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/d/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/d/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/d/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/d/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/d/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/d/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/d/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-d/five-states.png"
+      ],
+      "uppercase": "D",
+      "lowercase": "d",
+      "exampleWord": "dog"
+    },
+    {
+      "id": "letter-e",
+      "displayName": "Letter E",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/e/empty/master.png",
+        "low": "assets/characters-v2/alphabet/e/low/master.png",
+        "calm": "assets/characters-v2/alphabet/e/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/e/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/e/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/e/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/e/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/e/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/e/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/e/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-e/five-states.png"
+      ],
+      "uppercase": "E",
+      "lowercase": "e",
+      "exampleWord": "elephant"
+    },
+    {
+      "id": "letter-f",
+      "displayName": "Letter F",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/f/empty/master.png",
+        "low": "assets/characters-v2/alphabet/f/low/master.png",
+        "calm": "assets/characters-v2/alphabet/f/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/f/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/f/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/f/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/f/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/f/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/f/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/f/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-f/five-states.png"
+      ],
+      "uppercase": "F",
+      "lowercase": "f",
+      "exampleWord": "fish"
+    },
+    {
+      "id": "letter-g",
+      "displayName": "Letter G",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/g/empty/master.png",
+        "low": "assets/characters-v2/alphabet/g/low/master.png",
+        "calm": "assets/characters-v2/alphabet/g/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/g/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/g/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/g/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/g/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/g/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/g/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/g/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-g/five-states.png"
+      ],
+      "uppercase": "G",
+      "lowercase": "g",
+      "exampleWord": "garden"
+    },
+    {
+      "id": "letter-h",
+      "displayName": "Letter H",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/h/empty/master.png",
+        "low": "assets/characters-v2/alphabet/h/low/master.png",
+        "calm": "assets/characters-v2/alphabet/h/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/h/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/h/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/h/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/h/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/h/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/h/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/h/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-h/five-states.png"
+      ],
+      "uppercase": "H",
+      "lowercase": "h",
+      "exampleWord": "house"
+    },
+    {
+      "id": "letter-i",
+      "displayName": "Letter I",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/i/empty/master.png",
+        "low": "assets/characters-v2/alphabet/i/low/master.png",
+        "calm": "assets/characters-v2/alphabet/i/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/i/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/i/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/i/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/i/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/i/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/i/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/i/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-i/five-states.png"
+      ],
+      "uppercase": "I",
+      "lowercase": "i",
+      "exampleWord": "insect"
+    },
+    {
+      "id": "letter-j",
+      "displayName": "Letter J",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/j/empty/master.png",
+        "low": "assets/characters-v2/alphabet/j/low/master.png",
+        "calm": "assets/characters-v2/alphabet/j/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/j/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/j/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/j/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/j/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/j/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/j/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/j/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-j/five-states.png"
+      ],
+      "uppercase": "J",
+      "lowercase": "j",
+      "exampleWord": "jump"
+    },
+    {
+      "id": "letter-k",
+      "displayName": "Letter K",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/k/empty/master.png",
+        "low": "assets/characters-v2/alphabet/k/low/master.png",
+        "calm": "assets/characters-v2/alphabet/k/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/k/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/k/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/k/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/k/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/k/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/k/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/k/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-k/five-states.png"
+      ],
+      "uppercase": "K",
+      "lowercase": "k",
+      "exampleWord": "kite"
+    },
+    {
+      "id": "letter-l",
+      "displayName": "Letter L",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/l/empty/master.png",
+        "low": "assets/characters-v2/alphabet/l/low/master.png",
+        "calm": "assets/characters-v2/alphabet/l/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/l/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/l/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/l/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/l/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/l/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/l/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/l/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-l/five-states.png"
+      ],
+      "uppercase": "L",
+      "lowercase": "l",
+      "exampleWord": "lion"
+    },
+    {
+      "id": "letter-m",
+      "displayName": "Letter M",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/m/empty/master.png",
+        "low": "assets/characters-v2/alphabet/m/low/master.png",
+        "calm": "assets/characters-v2/alphabet/m/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/m/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/m/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/m/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/m/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/m/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/m/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/m/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-m/five-states.png"
+      ],
+      "uppercase": "M",
+      "lowercase": "m",
+      "exampleWord": "moon"
+    },
+    {
+      "id": "letter-n",
+      "displayName": "Letter N",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/n/empty/master.png",
+        "low": "assets/characters-v2/alphabet/n/low/master.png",
+        "calm": "assets/characters-v2/alphabet/n/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/n/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/n/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/n/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/n/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/n/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/n/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/n/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-n/five-states.png"
+      ],
+      "uppercase": "N",
+      "lowercase": "n",
+      "exampleWord": "nest"
+    },
+    {
+      "id": "letter-o",
+      "displayName": "Letter O",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/o/empty/master.png",
+        "low": "assets/characters-v2/alphabet/o/low/master.png",
+        "calm": "assets/characters-v2/alphabet/o/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/o/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/o/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/o/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/o/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/o/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/o/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/o/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-o/five-states.png"
+      ],
+      "uppercase": "O",
+      "lowercase": "o",
+      "exampleWord": "orange"
+    },
+    {
+      "id": "letter-p",
+      "displayName": "Letter P",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/p/empty/master.png",
+        "low": "assets/characters-v2/alphabet/p/low/master.png",
+        "calm": "assets/characters-v2/alphabet/p/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/p/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/p/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/p/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/p/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/p/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/p/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/p/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-p/five-states.png"
+      ],
+      "uppercase": "P",
+      "lowercase": "p",
+      "exampleWord": "pencil"
+    },
+    {
+      "id": "letter-q",
+      "displayName": "Letter Q",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/q/empty/master.png",
+        "low": "assets/characters-v2/alphabet/q/low/master.png",
+        "calm": "assets/characters-v2/alphabet/q/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/q/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/q/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/q/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/q/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/q/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/q/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/q/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-q/five-states.png"
+      ],
+      "uppercase": "Q",
+      "lowercase": "q",
+      "exampleWord": "queen"
+    },
+    {
+      "id": "letter-r",
+      "displayName": "Letter R",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/r/empty/master.png",
+        "low": "assets/characters-v2/alphabet/r/low/master.png",
+        "calm": "assets/characters-v2/alphabet/r/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/r/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/r/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/r/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/r/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/r/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/r/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/r/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-r/five-states.png"
+      ],
+      "uppercase": "R",
+      "lowercase": "r",
+      "exampleWord": "rainbow"
+    },
+    {
+      "id": "letter-s",
+      "displayName": "Letter S",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/s/empty/master.png",
+        "low": "assets/characters-v2/alphabet/s/low/master.png",
+        "calm": "assets/characters-v2/alphabet/s/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/s/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/s/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/s/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/s/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/s/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/s/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/s/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-s/five-states.png"
+      ],
+      "uppercase": "S",
+      "lowercase": "s",
+      "exampleWord": "sun"
+    },
+    {
+      "id": "letter-t",
+      "displayName": "Letter T",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/t/empty/master.png",
+        "low": "assets/characters-v2/alphabet/t/low/master.png",
+        "calm": "assets/characters-v2/alphabet/t/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/t/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/t/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/t/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/t/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/t/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/t/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/t/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-t/five-states.png"
+      ],
+      "uppercase": "T",
+      "lowercase": "t",
+      "exampleWord": "tree"
+    },
+    {
+      "id": "letter-u",
+      "displayName": "Letter U",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/u/empty/master.png",
+        "low": "assets/characters-v2/alphabet/u/low/master.png",
+        "calm": "assets/characters-v2/alphabet/u/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/u/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/u/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/u/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/u/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/u/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/u/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/u/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-u/five-states.png"
+      ],
+      "uppercase": "U",
+      "lowercase": "u",
+      "exampleWord": "umbrella"
+    },
+    {
+      "id": "letter-v",
+      "displayName": "Letter V",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/v/empty/master.png",
+        "low": "assets/characters-v2/alphabet/v/low/master.png",
+        "calm": "assets/characters-v2/alphabet/v/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/v/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/v/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/v/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/v/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/v/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/v/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/v/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-v/five-states.png"
+      ],
+      "uppercase": "V",
+      "lowercase": "v",
+      "exampleWord": "violin"
+    },
+    {
+      "id": "letter-w",
+      "displayName": "Letter W",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/w/empty/master.png",
+        "low": "assets/characters-v2/alphabet/w/low/master.png",
+        "calm": "assets/characters-v2/alphabet/w/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/w/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/w/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/w/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/w/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/w/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/w/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/w/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-w/five-states.png"
+      ],
+      "uppercase": "W",
+      "lowercase": "w",
+      "exampleWord": "water"
+    },
+    {
+      "id": "letter-x",
+      "displayName": "Letter X",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/x/empty/master.png",
+        "low": "assets/characters-v2/alphabet/x/low/master.png",
+        "calm": "assets/characters-v2/alphabet/x/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/x/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/x/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/x/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/x/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/x/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/x/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/x/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-x/five-states.png"
+      ],
+      "uppercase": "X",
+      "lowercase": "x",
+      "exampleWord": "box"
+    },
+    {
+      "id": "letter-y",
+      "displayName": "Letter Y",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/y/empty/master.png",
+        "low": "assets/characters-v2/alphabet/y/low/master.png",
+        "calm": "assets/characters-v2/alphabet/y/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/y/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/y/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/y/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/y/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/y/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/y/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/y/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-y/five-states.png"
+      ],
+      "uppercase": "Y",
+      "lowercase": "y",
+      "exampleWord": "yellow"
+    },
+    {
+      "id": "letter-z",
+      "displayName": "Letter Z",
+      "family": "alphabet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/alphabet/z/empty/master.png",
+        "low": "assets/characters-v2/alphabet/z/low/master.png",
+        "calm": "assets/characters-v2/alphabet/z/calm/master.png",
+        "happy": "assets/characters-v2/alphabet/z/happy/master.png",
+        "excited": "assets/characters-v2/alphabet/z/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/alphabet/z/empty/web.webp",
+        "low": "assets/characters-v2/alphabet/z/low/web.webp",
+        "calm": "assets/characters-v2/alphabet/z/calm/web.webp",
+        "happy": "assets/characters-v2/alphabet/z/happy/web.webp",
+        "excited": "assets/characters-v2/alphabet/z/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/alphabet.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/letter-z/five-states.png"
+      ],
+      "uppercase": "Z",
+      "lowercase": "z",
+      "exampleWord": "Zaya"
+    }
+  ],
+  "numbers": [
+    {
+      "id": "number-1",
+      "displayName": "Number 1",
+      "family": "number",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/numbers/1/empty/master.png",
+        "low": "assets/characters-v2/numbers/1/low/master.png",
+        "calm": "assets/characters-v2/numbers/1/calm/master.png",
+        "happy": "assets/characters-v2/numbers/1/happy/master.png",
+        "excited": "assets/characters-v2/numbers/1/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/numbers/1/empty/web.webp",
+        "low": "assets/characters-v2/numbers/1/low/web.webp",
+        "calm": "assets/characters-v2/numbers/1/calm/web.webp",
+        "happy": "assets/characters-v2/numbers/1/happy/web.webp",
+        "excited": "assets/characters-v2/numbers/1/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/numbers.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/number-1/five-states.png"
+      ],
+      "value": 1,
+      "quantity": [
+        1
+      ]
+    },
+    {
+      "id": "number-2",
+      "displayName": "Number 2",
+      "family": "number",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/numbers/2/empty/master.png",
+        "low": "assets/characters-v2/numbers/2/low/master.png",
+        "calm": "assets/characters-v2/numbers/2/calm/master.png",
+        "happy": "assets/characters-v2/numbers/2/happy/master.png",
+        "excited": "assets/characters-v2/numbers/2/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/numbers/2/empty/web.webp",
+        "low": "assets/characters-v2/numbers/2/low/web.webp",
+        "calm": "assets/characters-v2/numbers/2/calm/web.webp",
+        "happy": "assets/characters-v2/numbers/2/happy/web.webp",
+        "excited": "assets/characters-v2/numbers/2/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/numbers.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/number-2/five-states.png"
+      ],
+      "value": 2,
+      "quantity": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "number-3",
+      "displayName": "Number 3",
+      "family": "number",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/numbers/3/empty/master.png",
+        "low": "assets/characters-v2/numbers/3/low/master.png",
+        "calm": "assets/characters-v2/numbers/3/calm/master.png",
+        "happy": "assets/characters-v2/numbers/3/happy/master.png",
+        "excited": "assets/characters-v2/numbers/3/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/numbers/3/empty/web.webp",
+        "low": "assets/characters-v2/numbers/3/low/web.webp",
+        "calm": "assets/characters-v2/numbers/3/calm/web.webp",
+        "happy": "assets/characters-v2/numbers/3/happy/web.webp",
+        "excited": "assets/characters-v2/numbers/3/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/numbers.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/number-3/five-states.png"
+      ],
+      "value": 3,
+      "quantity": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "number-4",
+      "displayName": "Number 4",
+      "family": "number",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/numbers/4/empty/master.png",
+        "low": "assets/characters-v2/numbers/4/low/master.png",
+        "calm": "assets/characters-v2/numbers/4/calm/master.png",
+        "happy": "assets/characters-v2/numbers/4/happy/master.png",
+        "excited": "assets/characters-v2/numbers/4/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/numbers/4/empty/web.webp",
+        "low": "assets/characters-v2/numbers/4/low/web.webp",
+        "calm": "assets/characters-v2/numbers/4/calm/web.webp",
+        "happy": "assets/characters-v2/numbers/4/happy/web.webp",
+        "excited": "assets/characters-v2/numbers/4/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/numbers.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/number-4/five-states.png"
+      ],
+      "value": 4,
+      "quantity": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "number-5",
+      "displayName": "Number 5",
+      "family": "number",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/numbers/5/empty/master.png",
+        "low": "assets/characters-v2/numbers/5/low/master.png",
+        "calm": "assets/characters-v2/numbers/5/calm/master.png",
+        "happy": "assets/characters-v2/numbers/5/happy/master.png",
+        "excited": "assets/characters-v2/numbers/5/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/numbers/5/empty/web.webp",
+        "low": "assets/characters-v2/numbers/5/low/web.webp",
+        "calm": "assets/characters-v2/numbers/5/calm/web.webp",
+        "happy": "assets/characters-v2/numbers/5/happy/web.webp",
+        "excited": "assets/characters-v2/numbers/5/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/numbers.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/number-5/five-states.png"
+      ],
+      "value": 5,
+      "quantity": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "number-6",
+      "displayName": "Number 6",
+      "family": "number",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/numbers/6/empty/master.png",
+        "low": "assets/characters-v2/numbers/6/low/master.png",
+        "calm": "assets/characters-v2/numbers/6/calm/master.png",
+        "happy": "assets/characters-v2/numbers/6/happy/master.png",
+        "excited": "assets/characters-v2/numbers/6/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/numbers/6/empty/web.webp",
+        "low": "assets/characters-v2/numbers/6/low/web.webp",
+        "calm": "assets/characters-v2/numbers/6/calm/web.webp",
+        "happy": "assets/characters-v2/numbers/6/happy/web.webp",
+        "excited": "assets/characters-v2/numbers/6/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/numbers.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/number-6/five-states.png"
+      ],
+      "value": 6,
+      "quantity": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "number-7",
+      "displayName": "Number 7",
+      "family": "number",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/numbers/7/empty/master.png",
+        "low": "assets/characters-v2/numbers/7/low/master.png",
+        "calm": "assets/characters-v2/numbers/7/calm/master.png",
+        "happy": "assets/characters-v2/numbers/7/happy/master.png",
+        "excited": "assets/characters-v2/numbers/7/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/numbers/7/empty/web.webp",
+        "low": "assets/characters-v2/numbers/7/low/web.webp",
+        "calm": "assets/characters-v2/numbers/7/calm/web.webp",
+        "happy": "assets/characters-v2/numbers/7/happy/web.webp",
+        "excited": "assets/characters-v2/numbers/7/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/numbers.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/number-7/five-states.png"
+      ],
+      "value": 7,
+      "quantity": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "number-8",
+      "displayName": "Number 8",
+      "family": "number",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/numbers/8/empty/master.png",
+        "low": "assets/characters-v2/numbers/8/low/master.png",
+        "calm": "assets/characters-v2/numbers/8/calm/master.png",
+        "happy": "assets/characters-v2/numbers/8/happy/master.png",
+        "excited": "assets/characters-v2/numbers/8/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/numbers/8/empty/web.webp",
+        "low": "assets/characters-v2/numbers/8/low/web.webp",
+        "calm": "assets/characters-v2/numbers/8/calm/web.webp",
+        "happy": "assets/characters-v2/numbers/8/happy/web.webp",
+        "excited": "assets/characters-v2/numbers/8/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/numbers.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/number-8/five-states.png"
+      ],
+      "value": 8,
+      "quantity": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "number-9",
+      "displayName": "Number 9",
+      "family": "number",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/numbers/9/empty/master.png",
+        "low": "assets/characters-v2/numbers/9/low/master.png",
+        "calm": "assets/characters-v2/numbers/9/calm/master.png",
+        "happy": "assets/characters-v2/numbers/9/happy/master.png",
+        "excited": "assets/characters-v2/numbers/9/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/numbers/9/empty/web.webp",
+        "low": "assets/characters-v2/numbers/9/low/web.webp",
+        "calm": "assets/characters-v2/numbers/9/calm/web.webp",
+        "happy": "assets/characters-v2/numbers/9/happy/web.webp",
+        "excited": "assets/characters-v2/numbers/9/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/numbers.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/number-9/five-states.png"
+      ],
+      "value": 9,
+      "quantity": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "number-10",
+      "displayName": "Number 10",
+      "family": "number",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/numbers/10/empty/master.png",
+        "low": "assets/characters-v2/numbers/10/low/master.png",
+        "calm": "assets/characters-v2/numbers/10/calm/master.png",
+        "happy": "assets/characters-v2/numbers/10/happy/master.png",
+        "excited": "assets/characters-v2/numbers/10/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/numbers/10/empty/web.webp",
+        "low": "assets/characters-v2/numbers/10/low/web.webp",
+        "calm": "assets/characters-v2/numbers/10/calm/web.webp",
+        "happy": "assets/characters-v2/numbers/10/happy/web.webp",
+        "excited": "assets/characters-v2/numbers/10/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/numbers.json",
+      "learningRoles": [],
+      "evidence": [
+        "qa/character-production-v3/number-10/five-states.png"
+      ],
+      "value": 10,
+      "quantity": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
   "world": [
     {
       "id": "battery-buddy",
@@ -72,84 +1271,631 @@
       ]
     },
     {
-      "id": "elephant",
-      "displayName": "Elephant",
+      "id": "world-sun",
+      "displayName": "Sun",
       "family": "world",
       "status": "pending-art",
-      "format": "png-rgba-review",
+      "format": "png-rgba-production-v3",
       "states": {},
-      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "masterStates": {
+        "empty": "assets/characters-v2/world/sun/empty/master.png",
+        "low": "assets/characters-v2/world/sun/low/master.png",
+        "calm": "assets/characters-v2/world/sun/calm/master.png",
+        "happy": "assets/characters-v2/world/sun/happy/master.png",
+        "excited": "assets/characters-v2/world/sun/excited/master.png"
+      },
       "reviewStates": {
-        "empty": "assets/characters-v2/world/elephant/empty.png",
-        "low": "assets/characters-v2/world/elephant/low.png",
-        "calm": "assets/characters-v2/world/elephant/calm.png",
-        "happy": "assets/characters-v2/world/elephant/happy.png",
-        "excited": "assets/characters-v2/world/elephant/excited.png"
-      }
+        "empty": "assets/characters-v2/world/sun/empty/web.webp",
+        "low": "assets/characters-v2/world/sun/low/web.webp",
+        "calm": "assets/characters-v2/world/sun/calm/web.webp",
+        "happy": "assets/characters-v2/world/sun/happy/web.webp",
+        "excited": "assets/characters-v2/world/sun/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "day",
+        "weather",
+        "routine"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-sun/five-states.png"
+      ]
     },
     {
-      "id": "double-decker",
-      "displayName": "Double-decker Bus",
+      "id": "world-moon",
+      "displayName": "Moon",
       "family": "world",
       "status": "pending-art",
-      "format": "png-rgba-review",
+      "format": "png-rgba-production-v3",
       "states": {},
-      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "masterStates": {
+        "empty": "assets/characters-v2/world/moon/empty/master.png",
+        "low": "assets/characters-v2/world/moon/low/master.png",
+        "calm": "assets/characters-v2/world/moon/calm/master.png",
+        "happy": "assets/characters-v2/world/moon/happy/master.png",
+        "excited": "assets/characters-v2/world/moon/excited/master.png"
+      },
       "reviewStates": {
-        "empty": "assets/characters-v2/world/double-decker/empty.png",
-        "low": "assets/characters-v2/world/double-decker/low.png",
-        "calm": "assets/characters-v2/world/double-decker/calm.png",
-        "happy": "assets/characters-v2/world/double-decker/happy.png",
-        "excited": "assets/characters-v2/world/double-decker/excited.png"
-      }
+        "empty": "assets/characters-v2/world/moon/empty/web.webp",
+        "low": "assets/characters-v2/world/moon/low/web.webp",
+        "calm": "assets/characters-v2/world/moon/calm/web.webp",
+        "happy": "assets/characters-v2/world/moon/happy/web.webp",
+        "excited": "assets/characters-v2/world/moon/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "night",
+        "sleep",
+        "calm"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-moon/five-states.png"
+      ]
     },
     {
-      "id": "plane",
-      "displayName": "Plane",
+      "id": "world-cloud",
+      "displayName": "Cloud",
       "family": "world",
       "status": "pending-art",
-      "format": "png-rgba-review",
+      "format": "png-rgba-production-v3",
       "states": {},
-      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "masterStates": {
+        "empty": "assets/characters-v2/world/cloud/empty/master.png",
+        "low": "assets/characters-v2/world/cloud/low/master.png",
+        "calm": "assets/characters-v2/world/cloud/calm/master.png",
+        "happy": "assets/characters-v2/world/cloud/happy/master.png",
+        "excited": "assets/characters-v2/world/cloud/excited/master.png"
+      },
       "reviewStates": {
-        "empty": "assets/characters-v2/world/plane/empty.png",
-        "low": "assets/characters-v2/world/plane/low.png",
-        "calm": "assets/characters-v2/world/plane/calm.png",
-        "happy": "assets/characters-v2/world/plane/happy.png",
-        "excited": "assets/characters-v2/world/plane/excited.png"
-      }
+        "empty": "assets/characters-v2/world/cloud/empty/web.webp",
+        "low": "assets/characters-v2/world/cloud/low/web.webp",
+        "calm": "assets/characters-v2/world/cloud/calm/web.webp",
+        "happy": "assets/characters-v2/world/cloud/happy/web.webp",
+        "excited": "assets/characters-v2/world/cloud/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "weather",
+        "breathing"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-cloud/five-states.png"
+      ]
     },
     {
-      "id": "boat",
-      "displayName": "Boat",
+      "id": "world-rainbow",
+      "displayName": "Rainbow",
       "family": "world",
       "status": "pending-art",
-      "format": "png-rgba-review",
+      "format": "png-rgba-production-v3",
       "states": {},
-      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "masterStates": {
+        "empty": "assets/characters-v2/world/rainbow/empty/master.png",
+        "low": "assets/characters-v2/world/rainbow/low/master.png",
+        "calm": "assets/characters-v2/world/rainbow/calm/master.png",
+        "happy": "assets/characters-v2/world/rainbow/happy/master.png",
+        "excited": "assets/characters-v2/world/rainbow/excited/master.png"
+      },
       "reviewStates": {
-        "empty": "assets/characters-v2/world/boat/empty.png",
-        "low": "assets/characters-v2/world/boat/low.png",
-        "calm": "assets/characters-v2/world/boat/calm.png",
-        "happy": "assets/characters-v2/world/boat/happy.png",
-        "excited": "assets/characters-v2/world/boat/excited.png"
-      }
+        "empty": "assets/characters-v2/world/rainbow/empty/web.webp",
+        "low": "assets/characters-v2/world/rainbow/low/web.webp",
+        "calm": "assets/characters-v2/world/rainbow/calm/web.webp",
+        "happy": "assets/characters-v2/world/rainbow/happy/web.webp",
+        "excited": "assets/characters-v2/world/rainbow/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "colours",
+        "sequencing",
+        "hope"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-rainbow/five-states.png"
+      ]
     },
     {
-      "id": "letter-a",
-      "displayName": "Letter A",
+      "id": "world-rocket",
+      "displayName": "Rocket",
       "family": "world",
       "status": "pending-art",
-      "format": "png-rgba-review",
+      "format": "png-rgba-production-v3",
       "states": {},
-      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "masterStates": {
+        "empty": "assets/characters-v2/world/rocket/empty/master.png",
+        "low": "assets/characters-v2/world/rocket/low/master.png",
+        "calm": "assets/characters-v2/world/rocket/calm/master.png",
+        "happy": "assets/characters-v2/world/rocket/happy/master.png",
+        "excited": "assets/characters-v2/world/rocket/excited/master.png"
+      },
       "reviewStates": {
-        "empty": "assets/characters-v2/world/letter-a/empty.png",
-        "low": "assets/characters-v2/world/letter-a/low.png",
-        "calm": "assets/characters-v2/world/letter-a/calm.png",
-        "happy": "assets/characters-v2/world/letter-a/happy.png",
-        "excited": "assets/characters-v2/world/letter-a/excited.png"
-      }
+        "empty": "assets/characters-v2/world/rocket/empty/web.webp",
+        "low": "assets/characters-v2/world/rocket/low/web.webp",
+        "calm": "assets/characters-v2/world/rocket/calm/web.webp",
+        "happy": "assets/characters-v2/world/rocket/happy/web.webp",
+        "excited": "assets/characters-v2/world/rocket/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "space",
+        "goals"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-rocket/five-states.png"
+      ]
+    },
+    {
+      "id": "world-earth",
+      "displayName": "Earth",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/earth/empty/master.png",
+        "low": "assets/characters-v2/world/earth/low/master.png",
+        "calm": "assets/characters-v2/world/earth/calm/master.png",
+        "happy": "assets/characters-v2/world/earth/happy/master.png",
+        "excited": "assets/characters-v2/world/earth/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/earth/empty/web.webp",
+        "low": "assets/characters-v2/world/earth/low/web.webp",
+        "calm": "assets/characters-v2/world/earth/calm/web.webp",
+        "happy": "assets/characters-v2/world/earth/happy/web.webp",
+        "excited": "assets/characters-v2/world/earth/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "geography",
+        "environment"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-earth/five-states.png"
+      ]
+    },
+    {
+      "id": "world-robot",
+      "displayName": "Robot",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/robot/empty/master.png",
+        "low": "assets/characters-v2/world/robot/low/master.png",
+        "calm": "assets/characters-v2/world/robot/calm/master.png",
+        "happy": "assets/characters-v2/world/robot/happy/master.png",
+        "excited": "assets/characters-v2/world/robot/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/robot/empty/web.webp",
+        "low": "assets/characters-v2/world/robot/low/web.webp",
+        "calm": "assets/characters-v2/world/robot/calm/web.webp",
+        "happy": "assets/characters-v2/world/robot/happy/web.webp",
+        "excited": "assets/characters-v2/world/robot/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "coding",
+        "patterns"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-robot/five-states.png"
+      ]
+    },
+    {
+      "id": "world-magnifier",
+      "displayName": "Magnifying Glass",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/magnifier/empty/master.png",
+        "low": "assets/characters-v2/world/magnifier/low/master.png",
+        "calm": "assets/characters-v2/world/magnifier/calm/master.png",
+        "happy": "assets/characters-v2/world/magnifier/happy/master.png",
+        "excited": "assets/characters-v2/world/magnifier/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/magnifier/empty/web.webp",
+        "low": "assets/characters-v2/world/magnifier/low/web.webp",
+        "calm": "assets/characters-v2/world/magnifier/calm/web.webp",
+        "happy": "assets/characters-v2/world/magnifier/happy/web.webp",
+        "excited": "assets/characters-v2/world/magnifier/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "observation",
+        "discovery"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-magnifier/five-states.png"
+      ]
+    },
+    {
+      "id": "world-pencil",
+      "displayName": "Pencil",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/pencil/empty/master.png",
+        "low": "assets/characters-v2/world/pencil/low/master.png",
+        "calm": "assets/characters-v2/world/pencil/calm/master.png",
+        "happy": "assets/characters-v2/world/pencil/happy/master.png",
+        "excited": "assets/characters-v2/world/pencil/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/pencil/empty/web.webp",
+        "low": "assets/characters-v2/world/pencil/low/web.webp",
+        "calm": "assets/characters-v2/world/pencil/calm/web.webp",
+        "happy": "assets/characters-v2/world/pencil/happy/web.webp",
+        "excited": "assets/characters-v2/world/pencil/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "writing",
+        "mark-making"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-pencil/five-states.png"
+      ]
+    },
+    {
+      "id": "world-book",
+      "displayName": "Book",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/book/empty/master.png",
+        "low": "assets/characters-v2/world/book/low/master.png",
+        "calm": "assets/characters-v2/world/book/calm/master.png",
+        "happy": "assets/characters-v2/world/book/happy/master.png",
+        "excited": "assets/characters-v2/world/book/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/book/empty/web.webp",
+        "low": "assets/characters-v2/world/book/low/web.webp",
+        "calm": "assets/characters-v2/world/book/calm/web.webp",
+        "happy": "assets/characters-v2/world/book/happy/web.webp",
+        "excited": "assets/characters-v2/world/book/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "reading",
+        "stories"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-book/five-states.png"
+      ]
+    },
+    {
+      "id": "world-paintbrush",
+      "displayName": "Paintbrush",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/paintbrush/empty/master.png",
+        "low": "assets/characters-v2/world/paintbrush/low/master.png",
+        "calm": "assets/characters-v2/world/paintbrush/calm/master.png",
+        "happy": "assets/characters-v2/world/paintbrush/happy/master.png",
+        "excited": "assets/characters-v2/world/paintbrush/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/paintbrush/empty/web.webp",
+        "low": "assets/characters-v2/world/paintbrush/low/web.webp",
+        "calm": "assets/characters-v2/world/paintbrush/calm/web.webp",
+        "happy": "assets/characters-v2/world/paintbrush/happy/web.webp",
+        "excited": "assets/characters-v2/world/paintbrush/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "art",
+        "creativity"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-paintbrush/five-states.png"
+      ]
+    },
+    {
+      "id": "world-music-note",
+      "displayName": "Musical Note",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/music-note/empty/master.png",
+        "low": "assets/characters-v2/world/music-note/low/master.png",
+        "calm": "assets/characters-v2/world/music-note/calm/master.png",
+        "happy": "assets/characters-v2/world/music-note/happy/master.png",
+        "excited": "assets/characters-v2/world/music-note/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/music-note/empty/web.webp",
+        "low": "assets/characters-v2/world/music-note/low/web.webp",
+        "calm": "assets/characters-v2/world/music-note/calm/web.webp",
+        "happy": "assets/characters-v2/world/music-note/happy/web.webp",
+        "excited": "assets/characters-v2/world/music-note/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "rhythm",
+        "music"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-music-note/five-states.png"
+      ]
+    },
+    {
+      "id": "world-clock",
+      "displayName": "Clock",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/clock/empty/master.png",
+        "low": "assets/characters-v2/world/clock/low/master.png",
+        "calm": "assets/characters-v2/world/clock/calm/master.png",
+        "happy": "assets/characters-v2/world/clock/happy/master.png",
+        "excited": "assets/characters-v2/world/clock/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/clock/empty/web.webp",
+        "low": "assets/characters-v2/world/clock/low/web.webp",
+        "calm": "assets/characters-v2/world/clock/calm/web.webp",
+        "happy": "assets/characters-v2/world/clock/happy/web.webp",
+        "excited": "assets/characters-v2/world/clock/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "time",
+        "routine"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-clock/five-states.png"
+      ]
+    },
+    {
+      "id": "world-calendar",
+      "displayName": "Calendar",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/calendar/empty/master.png",
+        "low": "assets/characters-v2/world/calendar/low/master.png",
+        "calm": "assets/characters-v2/world/calendar/calm/master.png",
+        "happy": "assets/characters-v2/world/calendar/happy/master.png",
+        "excited": "assets/characters-v2/world/calendar/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/calendar/empty/web.webp",
+        "low": "assets/characters-v2/world/calendar/low/web.webp",
+        "calm": "assets/characters-v2/world/calendar/calm/web.webp",
+        "happy": "assets/characters-v2/world/calendar/happy/web.webp",
+        "excited": "assets/characters-v2/world/calendar/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "days",
+        "months",
+        "events"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-calendar/five-states.png"
+      ]
+    },
+    {
+      "id": "world-puzzle",
+      "displayName": "Puzzle Piece",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/puzzle/empty/master.png",
+        "low": "assets/characters-v2/world/puzzle/low/master.png",
+        "calm": "assets/characters-v2/world/puzzle/calm/master.png",
+        "happy": "assets/characters-v2/world/puzzle/happy/master.png",
+        "excited": "assets/characters-v2/world/puzzle/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/puzzle/empty/web.webp",
+        "low": "assets/characters-v2/world/puzzle/low/web.webp",
+        "calm": "assets/characters-v2/world/puzzle/calm/web.webp",
+        "happy": "assets/characters-v2/world/puzzle/happy/web.webp",
+        "excited": "assets/characters-v2/world/puzzle/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "problem solving"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-puzzle/five-states.png"
+      ]
+    },
+    {
+      "id": "world-water",
+      "displayName": "Water Droplet",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/water/empty/master.png",
+        "low": "assets/characters-v2/world/water/low/master.png",
+        "calm": "assets/characters-v2/world/water/calm/master.png",
+        "happy": "assets/characters-v2/world/water/happy/master.png",
+        "excited": "assets/characters-v2/world/water/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/water/empty/web.webp",
+        "low": "assets/characters-v2/world/water/low/web.webp",
+        "calm": "assets/characters-v2/world/water/calm/web.webp",
+        "happy": "assets/characters-v2/world/water/happy/web.webp",
+        "excited": "assets/characters-v2/world/water/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "science",
+        "hydration",
+        "nature"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-water/five-states.png"
+      ]
+    },
+    {
+      "id": "world-tree",
+      "displayName": "Tree",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/tree/empty/master.png",
+        "low": "assets/characters-v2/world/tree/low/master.png",
+        "calm": "assets/characters-v2/world/tree/calm/master.png",
+        "happy": "assets/characters-v2/world/tree/happy/master.png",
+        "excited": "assets/characters-v2/world/tree/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/tree/empty/web.webp",
+        "low": "assets/characters-v2/world/tree/low/web.webp",
+        "calm": "assets/characters-v2/world/tree/calm/web.webp",
+        "happy": "assets/characters-v2/world/tree/happy/web.webp",
+        "excited": "assets/characters-v2/world/tree/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "seasons",
+        "growth",
+        "environment"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-tree/five-states.png"
+      ]
+    },
+    {
+      "id": "world-train",
+      "displayName": "Train",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/train/empty/master.png",
+        "low": "assets/characters-v2/world/train/low/master.png",
+        "calm": "assets/characters-v2/world/train/calm/master.png",
+        "happy": "assets/characters-v2/world/train/happy/master.png",
+        "excited": "assets/characters-v2/world/train/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/train/empty/web.webp",
+        "low": "assets/characters-v2/world/train/low/web.webp",
+        "calm": "assets/characters-v2/world/train/calm/web.webp",
+        "happy": "assets/characters-v2/world/train/happy/web.webp",
+        "excited": "assets/characters-v2/world/train/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "ordering",
+        "journeys",
+        "movement"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-train/five-states.png"
+      ]
+    },
+    {
+      "id": "world-dinosaur",
+      "displayName": "Dinosaur",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/dinosaur/empty/master.png",
+        "low": "assets/characters-v2/world/dinosaur/low/master.png",
+        "calm": "assets/characters-v2/world/dinosaur/calm/master.png",
+        "happy": "assets/characters-v2/world/dinosaur/happy/master.png",
+        "excited": "assets/characters-v2/world/dinosaur/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/dinosaur/empty/web.webp",
+        "low": "assets/characters-v2/world/dinosaur/low/web.webp",
+        "calm": "assets/characters-v2/world/dinosaur/calm/web.webp",
+        "happy": "assets/characters-v2/world/dinosaur/happy/web.webp",
+        "excited": "assets/characters-v2/world/dinosaur/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "history",
+        "fossils",
+        "imaginative play"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-dinosaur/five-states.png"
+      ]
+    },
+    {
+      "id": "world-treasure",
+      "displayName": "Treasure Chest",
+      "family": "world",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/world/treasure/empty/master.png",
+        "low": "assets/characters-v2/world/treasure/low/master.png",
+        "calm": "assets/characters-v2/world/treasure/calm/master.png",
+        "happy": "assets/characters-v2/world/treasure/happy/master.png",
+        "excited": "assets/characters-v2/world/treasure/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/world/treasure/empty/web.webp",
+        "low": "assets/characters-v2/world/treasure/low/web.webp",
+        "calm": "assets/characters-v2/world/treasure/calm/web.webp",
+        "happy": "assets/characters-v2/world/treasure/happy/web.webp",
+        "excited": "assets/characters-v2/world/treasure/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
+      "sourceReference": "data/world-characters.json",
+      "learningRoles": [
+        "earned discovery",
+        "lesson completion"
+      ],
+      "evidence": [
+        "qa/character-production-v3/world-treasure/five-states.png"
+      ]
     }
   ],
   "pilot": [
@@ -294,17 +2040,376 @@
     "pending-art",
     "rejected"
   ],
-  "runtimeRule": "Only records with status approved may resolve state paths into runtime image sources. pending-art and rejected records must expose empty runtime states and use procedural fallback components. Review-only paths may be retained under reviewStates for QA/reference, but production rendering must ignore them. Approved paths must not point into source-safe-keeping, review-only, QA, contact-sheet, or rejected folders.",
-  "missing": [
+  "runtimeRule": "Only records with status approved may resolve state paths into runtime image sources. Approved paths must be individual production derivatives from matching transparent masters and must not point into source-safe-keeping, review-only, QA, contact-sheet, or rejected folders.",
+  "missing": [],
+  "approvalGate": "V3 autonomous production approval requires five-state completeness, transparent masters, web derivatives, visual QA evidence, identity consistency, and runtime-source safety.",
+  "planets": [
     {
-      "families": [
-        "alphabet-a-z",
-        "numbers-1-10",
-        "remaining-world-characters"
+      "id": "planet-sun",
+      "displayName": "Sun",
+      "family": "planet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/planets/sun/empty/master.png",
+        "low": "assets/characters-v2/planets/sun/low/master.png",
+        "calm": "assets/characters-v2/planets/sun/calm/master.png",
+        "happy": "assets/characters-v2/planets/sun/happy/master.png",
+        "excited": "assets/characters-v2/planets/sun/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/planets/sun/empty/web.webp",
+        "low": "assets/characters-v2/planets/sun/low/web.webp",
+        "calm": "assets/characters-v2/planets/sun/calm/web.webp",
+        "happy": "assets/characters-v2/planets/sun/happy/web.webp",
+        "excited": "assets/characters-v2/planets/sun/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/planets.json",
+      "learningRoles": [
+        "day, light, routines, and careful observation"
       ],
-      "status": "needs-approved-individual-transparent-masters",
-      "notes": "Review sheets are not production sprites and remain blocked from runtime until separately approved."
+      "evidence": [
+        "qa/character-production-v3/planet-sun/five-states.png"
+      ],
+      "astronomy": {
+        "name": "Sun",
+        "type": "star",
+        "systemRole": "center of the Solar System"
+      },
+      "planetId": "sun"
+    },
+    {
+      "id": "planet-mercury",
+      "displayName": "Mercury",
+      "family": "planet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/planets/mercury/empty/master.png",
+        "low": "assets/characters-v2/planets/mercury/low/master.png",
+        "calm": "assets/characters-v2/planets/mercury/calm/master.png",
+        "happy": "assets/characters-v2/planets/mercury/happy/master.png",
+        "excited": "assets/characters-v2/planets/mercury/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/planets/mercury/empty/web.webp",
+        "low": "assets/characters-v2/planets/mercury/low/web.webp",
+        "calm": "assets/characters-v2/planets/mercury/calm/web.webp",
+        "happy": "assets/characters-v2/planets/mercury/happy/web.webp",
+        "excited": "assets/characters-v2/planets/mercury/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/planets.json",
+      "learningRoles": [
+        "noticing, comparing, and sequencing"
+      ],
+      "evidence": [
+        "qa/character-production-v3/planet-mercury/five-states.png"
+      ],
+      "astronomy": {
+        "name": "Mercury",
+        "type": "planet",
+        "systemRole": "planet in the Solar System"
+      },
+      "planetId": "mercury"
+    },
+    {
+      "id": "planet-venus",
+      "displayName": "Venus",
+      "family": "planet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/planets/venus/empty/master.png",
+        "low": "assets/characters-v2/planets/venus/low/master.png",
+        "calm": "assets/characters-v2/planets/venus/calm/master.png",
+        "happy": "assets/characters-v2/planets/venus/happy/master.png",
+        "excited": "assets/characters-v2/planets/venus/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/planets/venus/empty/web.webp",
+        "low": "assets/characters-v2/planets/venus/low/web.webp",
+        "calm": "assets/characters-v2/planets/venus/calm/web.webp",
+        "happy": "assets/characters-v2/planets/venus/happy/web.webp",
+        "excited": "assets/characters-v2/planets/venus/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/planets.json",
+      "learningRoles": [
+        "patterns, observation, and descriptive language"
+      ],
+      "evidence": [
+        "qa/character-production-v3/planet-venus/five-states.png"
+      ],
+      "astronomy": {
+        "name": "Venus",
+        "type": "planet",
+        "systemRole": "planet in the Solar System"
+      },
+      "planetId": "venus"
+    },
+    {
+      "id": "planet-earth",
+      "displayName": "Earth",
+      "family": "planet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/planets/earth/empty/master.png",
+        "low": "assets/characters-v2/planets/earth/low/master.png",
+        "calm": "assets/characters-v2/planets/earth/calm/master.png",
+        "happy": "assets/characters-v2/planets/earth/happy/master.png",
+        "excited": "assets/characters-v2/planets/earth/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/planets/earth/empty/web.webp",
+        "low": "assets/characters-v2/planets/earth/low/web.webp",
+        "calm": "assets/characters-v2/planets/earth/calm/web.webp",
+        "happy": "assets/characters-v2/planets/earth/happy/web.webp",
+        "excited": "assets/characters-v2/planets/earth/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/planets.json",
+      "learningRoles": [
+        "home, nature, maps, and caring for places"
+      ],
+      "evidence": [
+        "qa/character-production-v3/planet-earth/five-states.png"
+      ],
+      "astronomy": {
+        "name": "Earth",
+        "type": "planet",
+        "systemRole": "planet in the Solar System"
+      },
+      "planetId": "earth"
+    },
+    {
+      "id": "planet-mars",
+      "displayName": "Mars",
+      "family": "planet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/planets/mars/empty/master.png",
+        "low": "assets/characters-v2/planets/mars/low/master.png",
+        "calm": "assets/characters-v2/planets/mars/calm/master.png",
+        "happy": "assets/characters-v2/planets/mars/happy/master.png",
+        "excited": "assets/characters-v2/planets/mars/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/planets/mars/empty/web.webp",
+        "low": "assets/characters-v2/planets/mars/low/web.webp",
+        "calm": "assets/characters-v2/planets/mars/calm/web.webp",
+        "happy": "assets/characters-v2/planets/mars/happy/web.webp",
+        "excited": "assets/characters-v2/planets/mars/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/planets.json",
+      "learningRoles": [
+        "exploration, questions, and comparing"
+      ],
+      "evidence": [
+        "qa/character-production-v3/planet-mars/five-states.png"
+      ],
+      "astronomy": {
+        "name": "Mars",
+        "type": "planet",
+        "systemRole": "planet in the Solar System"
+      },
+      "planetId": "mars"
+    },
+    {
+      "id": "planet-jupiter",
+      "displayName": "Jupiter",
+      "family": "planet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/planets/jupiter/empty/master.png",
+        "low": "assets/characters-v2/planets/jupiter/low/master.png",
+        "calm": "assets/characters-v2/planets/jupiter/calm/master.png",
+        "happy": "assets/characters-v2/planets/jupiter/happy/master.png",
+        "excited": "assets/characters-v2/planets/jupiter/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/planets/jupiter/empty/web.webp",
+        "low": "assets/characters-v2/planets/jupiter/low/web.webp",
+        "calm": "assets/characters-v2/planets/jupiter/calm/web.webp",
+        "happy": "assets/characters-v2/planets/jupiter/happy/web.webp",
+        "excited": "assets/characters-v2/planets/jupiter/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/planets.json",
+      "learningRoles": [
+        "grouping, scale, and turn-taking"
+      ],
+      "evidence": [
+        "qa/character-production-v3/planet-jupiter/five-states.png"
+      ],
+      "astronomy": {
+        "name": "Jupiter",
+        "type": "planet",
+        "systemRole": "planet in the Solar System"
+      },
+      "planetId": "jupiter"
+    },
+    {
+      "id": "planet-saturn",
+      "displayName": "Saturn",
+      "family": "planet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/planets/saturn/empty/master.png",
+        "low": "assets/characters-v2/planets/saturn/low/master.png",
+        "calm": "assets/characters-v2/planets/saturn/calm/master.png",
+        "happy": "assets/characters-v2/planets/saturn/happy/master.png",
+        "excited": "assets/characters-v2/planets/saturn/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/planets/saturn/empty/web.webp",
+        "low": "assets/characters-v2/planets/saturn/low/web.webp",
+        "calm": "assets/characters-v2/planets/saturn/calm/web.webp",
+        "happy": "assets/characters-v2/planets/saturn/happy/web.webp",
+        "excited": "assets/characters-v2/planets/saturn/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/planets.json",
+      "learningRoles": [
+        "circles, order, and careful movement"
+      ],
+      "evidence": [
+        "qa/character-production-v3/planet-saturn/five-states.png"
+      ],
+      "astronomy": {
+        "name": "Saturn",
+        "type": "planet",
+        "systemRole": "planet in the Solar System"
+      },
+      "planetId": "saturn"
+    },
+    {
+      "id": "planet-uranus",
+      "displayName": "Uranus",
+      "family": "planet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/planets/uranus/empty/master.png",
+        "low": "assets/characters-v2/planets/uranus/low/master.png",
+        "calm": "assets/characters-v2/planets/uranus/calm/master.png",
+        "happy": "assets/characters-v2/planets/uranus/happy/master.png",
+        "excited": "assets/characters-v2/planets/uranus/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/planets/uranus/empty/web.webp",
+        "low": "assets/characters-v2/planets/uranus/low/web.webp",
+        "calm": "assets/characters-v2/planets/uranus/calm/web.webp",
+        "happy": "assets/characters-v2/planets/uranus/happy/web.webp",
+        "excited": "assets/characters-v2/planets/uranus/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/planets.json",
+      "learningRoles": [
+        "different perspectives and gentle discovery"
+      ],
+      "evidence": [
+        "qa/character-production-v3/planet-uranus/five-states.png"
+      ],
+      "astronomy": {
+        "name": "Uranus",
+        "type": "planet",
+        "systemRole": "planet in the Solar System"
+      },
+      "planetId": "uranus"
+    },
+    {
+      "id": "planet-neptune",
+      "displayName": "Neptune",
+      "family": "planet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/planets/neptune/empty/master.png",
+        "low": "assets/characters-v2/planets/neptune/low/master.png",
+        "calm": "assets/characters-v2/planets/neptune/calm/master.png",
+        "happy": "assets/characters-v2/planets/neptune/happy/master.png",
+        "excited": "assets/characters-v2/planets/neptune/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/planets/neptune/empty/web.webp",
+        "low": "assets/characters-v2/planets/neptune/low/web.webp",
+        "calm": "assets/characters-v2/planets/neptune/calm/web.webp",
+        "happy": "assets/characters-v2/planets/neptune/happy/web.webp",
+        "excited": "assets/characters-v2/planets/neptune/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/planets.json",
+      "learningRoles": [
+        "listening, focus, and far-away thinking"
+      ],
+      "evidence": [
+        "qa/character-production-v3/planet-neptune/five-states.png"
+      ],
+      "astronomy": {
+        "name": "Neptune",
+        "type": "planet",
+        "systemRole": "planet in the Solar System"
+      },
+      "planetId": "neptune"
+    },
+    {
+      "id": "planet-moon",
+      "displayName": "Moon",
+      "family": "planet",
+      "status": "pending-art",
+      "format": "png-rgba-production-v3",
+      "states": {},
+      "masterStates": {
+        "empty": "assets/characters-v2/planets/moon/empty/master.png",
+        "low": "assets/characters-v2/planets/moon/low/master.png",
+        "calm": "assets/characters-v2/planets/moon/calm/master.png",
+        "happy": "assets/characters-v2/planets/moon/happy/master.png",
+        "excited": "assets/characters-v2/planets/moon/excited/master.png"
+      },
+      "reviewStates": {
+        "empty": "assets/characters-v2/planets/moon/empty/web.webp",
+        "low": "assets/characters-v2/planets/moon/low/web.webp",
+        "calm": "assets/characters-v2/planets/moon/calm/web.webp",
+        "happy": "assets/characters-v2/planets/moon/happy/web.webp",
+        "excited": "assets/characters-v2/planets/moon/excited/web.webp"
+      },
+      "notes": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
+      "sourceReference": "data/planets.json",
+      "learningRoles": [
+        "night, rest, calm transitions, and routines"
+      ],
+      "evidence": [
+        "qa/character-production-v3/planet-moon/five-states.png"
+      ],
+      "astronomy": {
+        "name": "Moon",
+        "type": "natural satellite",
+        "systemRole": "Earth's natural satellite"
+      },
+      "planetId": "moon"
     }
   ],
-  "approvalGate": "No character asset may be production-approved until owner visual approval. pending-art reviewStates are QA/reference only and must not resolve into runtime image sources."
+  "families": [
+    "guide",
+    "world",
+    "alphabet",
+    "number",
+    "planet"
+  ]
 }

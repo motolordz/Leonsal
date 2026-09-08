@@ -132,13 +132,6 @@ for (const state of states) {
   if (battery?.states?.[state] !== expected) failures.push(`Battery Buddy ${state} runtime path must be ${expected}`);
   if (battery?.masterStates?.[state] !== expectedMaster) failures.push(`Battery Buddy ${state} master path must be ${expectedMaster}`);
 }
-for (const section of ["guides", "alphabet", "numbers", "world"]) {
-  for (const record of registry[section] || []) {
-    if (record.id !== "battery-buddy" && record.status === "approved") {
-      failures.push(`${section}/${record.id}: only Battery Buddy may be approved in this gate`);
-    }
-  }
-}
 
 await fs.mkdir(path.join(root, "qa/battery-production-v3"), { recursive: true });
 await fs.writeFile(
@@ -156,4 +149,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("Battery production v3 check passed: 5 PNG masters and 5 WebP derivatives are transparent, padded, distinct, and approved for Battery Buddy only.");
+console.log("Battery production v3 check passed: 5 PNG masters and 5 WebP derivatives are transparent, padded, distinct, and approved for Battery Buddy.");

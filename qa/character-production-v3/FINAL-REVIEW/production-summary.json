@@ -1,0 +1,12 @@
+{
+  "approvedCharacterCount": 1,
+  "approvedStateAssetCount": 5,
+  "families": {
+    "guides": 0,
+    "alphabet": 0,
+    "numbers": 0,
+    "world": 1,
+    "planets": 0
+  },
+  "failures": []
+}

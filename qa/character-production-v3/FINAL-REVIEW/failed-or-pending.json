@@ -1,0 +1,891 @@
+{
+  "pendingCharacterCount": 68,
+  "pendingStateAssetCount": 340,
+  "rejected": [],
+  "pending": [
+    {
+      "id": "leon",
+      "family": "guide",
+      "displayName": "Leon",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/leon/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set passes technical transparency gates but remains pending because visual QA found it does not yet match Battery Buddy V3 production illustration quality."
+    },
+    {
+      "id": "zaya",
+      "family": "guide",
+      "displayName": "Zaya",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/zaya/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set passes technical transparency gates but remains pending because visual QA found it does not yet match Battery Buddy V3 production illustration quality."
+    },
+    {
+      "id": "letter-a",
+      "family": "alphabet",
+      "displayName": "Letter A",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-a/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-b",
+      "family": "alphabet",
+      "displayName": "Letter B",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-b/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-c",
+      "family": "alphabet",
+      "displayName": "Letter C",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-c/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-d",
+      "family": "alphabet",
+      "displayName": "Letter D",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-d/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-e",
+      "family": "alphabet",
+      "displayName": "Letter E",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-e/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-f",
+      "family": "alphabet",
+      "displayName": "Letter F",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-f/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-g",
+      "family": "alphabet",
+      "displayName": "Letter G",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-g/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-h",
+      "family": "alphabet",
+      "displayName": "Letter H",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-h/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-i",
+      "family": "alphabet",
+      "displayName": "Letter I",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-i/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-j",
+      "family": "alphabet",
+      "displayName": "Letter J",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-j/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-k",
+      "family": "alphabet",
+      "displayName": "Letter K",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-k/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-l",
+      "family": "alphabet",
+      "displayName": "Letter L",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-l/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-m",
+      "family": "alphabet",
+      "displayName": "Letter M",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-m/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-n",
+      "family": "alphabet",
+      "displayName": "Letter N",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-n/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-o",
+      "family": "alphabet",
+      "displayName": "Letter O",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-o/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-p",
+      "family": "alphabet",
+      "displayName": "Letter P",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-p/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-q",
+      "family": "alphabet",
+      "displayName": "Letter Q",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-q/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-r",
+      "family": "alphabet",
+      "displayName": "Letter R",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-r/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-s",
+      "family": "alphabet",
+      "displayName": "Letter S",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-s/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-t",
+      "family": "alphabet",
+      "displayName": "Letter T",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-t/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-u",
+      "family": "alphabet",
+      "displayName": "Letter U",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-u/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-v",
+      "family": "alphabet",
+      "displayName": "Letter V",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-v/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-w",
+      "family": "alphabet",
+      "displayName": "Letter W",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-w/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-x",
+      "family": "alphabet",
+      "displayName": "Letter X",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-x/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-y",
+      "family": "alphabet",
+      "displayName": "Letter Y",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-y/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "letter-z",
+      "family": "alphabet",
+      "displayName": "Letter Z",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/letter-z/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "number-1",
+      "family": "number",
+      "displayName": "Number 1",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/number-1/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "number-2",
+      "family": "number",
+      "displayName": "Number 2",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/number-2/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "number-3",
+      "family": "number",
+      "displayName": "Number 3",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/number-3/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "number-4",
+      "family": "number",
+      "displayName": "Number 4",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/number-4/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "number-5",
+      "family": "number",
+      "displayName": "Number 5",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/number-5/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "number-6",
+      "family": "number",
+      "displayName": "Number 6",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/number-6/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "number-7",
+      "family": "number",
+      "displayName": "Number 7",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/number-7/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "number-8",
+      "family": "number",
+      "displayName": "Number 8",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/number-8/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "number-9",
+      "family": "number",
+      "displayName": "Number 9",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/number-9/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "number-10",
+      "family": "number",
+      "displayName": "Number 10",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/number-10/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "world-sun",
+      "family": "world",
+      "displayName": "Sun",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-sun/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-moon",
+      "family": "world",
+      "displayName": "Moon",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-moon/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-cloud",
+      "family": "world",
+      "displayName": "Cloud",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-cloud/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-rainbow",
+      "family": "world",
+      "displayName": "Rainbow",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-rainbow/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-rocket",
+      "family": "world",
+      "displayName": "Rocket",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-rocket/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-earth",
+      "family": "world",
+      "displayName": "Earth",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-earth/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-robot",
+      "family": "world",
+      "displayName": "Robot",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-robot/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-magnifier",
+      "family": "world",
+      "displayName": "Magnifying Glass",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-magnifier/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-pencil",
+      "family": "world",
+      "displayName": "Pencil",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-pencil/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-book",
+      "family": "world",
+      "displayName": "Book",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-book/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-paintbrush",
+      "family": "world",
+      "displayName": "Paintbrush",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-paintbrush/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-music-note",
+      "family": "world",
+      "displayName": "Musical Note",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-music-note/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-clock",
+      "family": "world",
+      "displayName": "Clock",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-clock/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-calendar",
+      "family": "world",
+      "displayName": "Calendar",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-calendar/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-puzzle",
+      "family": "world",
+      "displayName": "Puzzle Piece",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-puzzle/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-water",
+      "family": "world",
+      "displayName": "Water Droplet",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-water/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-tree",
+      "family": "world",
+      "displayName": "Tree",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-tree/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-train",
+      "family": "world",
+      "displayName": "Train",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-train/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-dinosaur",
+      "family": "world",
+      "displayName": "Dinosaur",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-dinosaur/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "world-treasure",
+      "family": "world",
+      "displayName": "Treasure Chest",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/world-treasure/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality."
+    },
+    {
+      "id": "planet-sun",
+      "family": "planet",
+      "displayName": "Sun",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/planet-sun/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "planet-mercury",
+      "family": "planet",
+      "displayName": "Mercury",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/planet-mercury/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "planet-venus",
+      "family": "planet",
+      "displayName": "Venus",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/planet-venus/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "planet-earth",
+      "family": "planet",
+      "displayName": "Earth",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/planet-earth/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "planet-mars",
+      "family": "planet",
+      "displayName": "Mars",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/planet-mars/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "planet-jupiter",
+      "family": "planet",
+      "displayName": "Jupiter",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/planet-jupiter/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "planet-saturn",
+      "family": "planet",
+      "displayName": "Saturn",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/planet-saturn/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "planet-uranus",
+      "family": "planet",
+      "displayName": "Uranus",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/planet-uranus/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "planet-neptune",
+      "family": "planet",
+      "displayName": "Neptune",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/planet-neptune/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
+    },
+    {
+      "id": "planet-moon",
+      "family": "planet",
+      "displayName": "Moon",
+      "status": "pending-art",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/character-production-v3/planet-moon/five-states.png"
+      ],
+      "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
+    }
+  ]
+}

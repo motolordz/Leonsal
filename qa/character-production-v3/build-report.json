@@ -1,0 +1,632 @@
+{
+  "builtAt": "2026-09-08T10:21:35.023Z",
+  "states": [
+    "empty",
+    "low",
+    "calm",
+    "happy",
+    "excited"
+  ],
+  "built": [
+    {
+      "id": "leon",
+      "displayName": "Leon",
+      "nameText": "LEON",
+      "color": "#2685e8",
+      "hair": "#2b1b13",
+      "skin": "#f5b17e",
+      "family": "guides",
+      "root": "assets/characters-v2/leon",
+      "sourceReference": "data/characters.json#guide-leon",
+      "characterId": "leon",
+      "contactSheet": "qa/character-production-v3/leon/five-states.png"
+    },
+    {
+      "id": "zaya",
+      "displayName": "Zaya",
+      "nameText": "ZAYA",
+      "color": "#f15aa4",
+      "hair": "#4b2a1b",
+      "skin": "#d99166",
+      "family": "guides",
+      "root": "assets/characters-v2/zaya",
+      "sourceReference": "data/characters.json#guide-zaya",
+      "characterId": "zaya",
+      "contactSheet": "qa/character-production-v3/zaya/five-states.png"
+    },
+    {
+      "id": "letter-a",
+      "characterId": "letter-a",
+      "displayName": "Letter A",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/a",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-a/five-states.png"
+    },
+    {
+      "id": "letter-b",
+      "characterId": "letter-b",
+      "displayName": "Letter B",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/b",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-b/five-states.png"
+    },
+    {
+      "id": "letter-c",
+      "characterId": "letter-c",
+      "displayName": "Letter C",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/c",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-c/five-states.png"
+    },
+    {
+      "id": "letter-d",
+      "characterId": "letter-d",
+      "displayName": "Letter D",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/d",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-d/five-states.png"
+    },
+    {
+      "id": "letter-e",
+      "characterId": "letter-e",
+      "displayName": "Letter E",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/e",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-e/five-states.png"
+    },
+    {
+      "id": "letter-f",
+      "characterId": "letter-f",
+      "displayName": "Letter F",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/f",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-f/five-states.png"
+    },
+    {
+      "id": "letter-g",
+      "characterId": "letter-g",
+      "displayName": "Letter G",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/g",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-g/five-states.png"
+    },
+    {
+      "id": "letter-h",
+      "characterId": "letter-h",
+      "displayName": "Letter H",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/h",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-h/five-states.png"
+    },
+    {
+      "id": "letter-i",
+      "characterId": "letter-i",
+      "displayName": "Letter I",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/i",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-i/five-states.png"
+    },
+    {
+      "id": "letter-j",
+      "characterId": "letter-j",
+      "displayName": "Letter J",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/j",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-j/five-states.png"
+    },
+    {
+      "id": "letter-k",
+      "characterId": "letter-k",
+      "displayName": "Letter K",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/k",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-k/five-states.png"
+    },
+    {
+      "id": "letter-l",
+      "characterId": "letter-l",
+      "displayName": "Letter L",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/l",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-l/five-states.png"
+    },
+    {
+      "id": "letter-m",
+      "characterId": "letter-m",
+      "displayName": "Letter M",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/m",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-m/five-states.png"
+    },
+    {
+      "id": "letter-n",
+      "characterId": "letter-n",
+      "displayName": "Letter N",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/n",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-n/five-states.png"
+    },
+    {
+      "id": "letter-o",
+      "characterId": "letter-o",
+      "displayName": "Letter O",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/o",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-o/five-states.png"
+    },
+    {
+      "id": "letter-p",
+      "characterId": "letter-p",
+      "displayName": "Letter P",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/p",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-p/five-states.png"
+    },
+    {
+      "id": "letter-q",
+      "characterId": "letter-q",
+      "displayName": "Letter Q",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/q",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-q/five-states.png"
+    },
+    {
+      "id": "letter-r",
+      "characterId": "letter-r",
+      "displayName": "Letter R",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/r",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-r/five-states.png"
+    },
+    {
+      "id": "letter-s",
+      "characterId": "letter-s",
+      "displayName": "Letter S",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/s",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-s/five-states.png"
+    },
+    {
+      "id": "letter-t",
+      "characterId": "letter-t",
+      "displayName": "Letter T",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/t",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-t/five-states.png"
+    },
+    {
+      "id": "letter-u",
+      "characterId": "letter-u",
+      "displayName": "Letter U",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/u",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-u/five-states.png"
+    },
+    {
+      "id": "letter-v",
+      "characterId": "letter-v",
+      "displayName": "Letter V",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/v",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-v/five-states.png"
+    },
+    {
+      "id": "letter-w",
+      "characterId": "letter-w",
+      "displayName": "Letter W",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/w",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-w/five-states.png"
+    },
+    {
+      "id": "letter-x",
+      "characterId": "letter-x",
+      "displayName": "Letter X",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/x",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-x/five-states.png"
+    },
+    {
+      "id": "letter-y",
+      "characterId": "letter-y",
+      "displayName": "Letter Y",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/y",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-y/five-states.png"
+    },
+    {
+      "id": "letter-z",
+      "characterId": "letter-z",
+      "displayName": "Letter Z",
+      "family": "alphabet",
+      "root": "assets/characters-v2/alphabet/z",
+      "sourceReference": "data/alphabet.json",
+      "contactSheet": "qa/character-production-v3/letter-z/five-states.png"
+    },
+    {
+      "id": "number-1",
+      "characterId": "number-1",
+      "displayName": "Number 1",
+      "family": "numbers",
+      "root": "assets/characters-v2/numbers/1",
+      "sourceReference": "data/numbers.json",
+      "contactSheet": "qa/character-production-v3/number-1/five-states.png"
+    },
+    {
+      "id": "number-2",
+      "characterId": "number-2",
+      "displayName": "Number 2",
+      "family": "numbers",
+      "root": "assets/characters-v2/numbers/2",
+      "sourceReference": "data/numbers.json",
+      "contactSheet": "qa/character-production-v3/number-2/five-states.png"
+    },
+    {
+      "id": "number-3",
+      "characterId": "number-3",
+      "displayName": "Number 3",
+      "family": "numbers",
+      "root": "assets/characters-v2/numbers/3",
+      "sourceReference": "data/numbers.json",
+      "contactSheet": "qa/character-production-v3/number-3/five-states.png"
+    },
+    {
+      "id": "number-4",
+      "characterId": "number-4",
+      "displayName": "Number 4",
+      "family": "numbers",
+      "root": "assets/characters-v2/numbers/4",
+      "sourceReference": "data/numbers.json",
+      "contactSheet": "qa/character-production-v3/number-4/five-states.png"
+    },
+    {
+      "id": "number-5",
+      "characterId": "number-5",
+      "displayName": "Number 5",
+      "family": "numbers",
+      "root": "assets/characters-v2/numbers/5",
+      "sourceReference": "data/numbers.json",
+      "contactSheet": "qa/character-production-v3/number-5/five-states.png"
+    },
+    {
+      "id": "number-6",
+      "characterId": "number-6",
+      "displayName": "Number 6",
+      "family": "numbers",
+      "root": "assets/characters-v2/numbers/6",
+      "sourceReference": "data/numbers.json",
+      "contactSheet": "qa/character-production-v3/number-6/five-states.png"
+    },
+    {
+      "id": "number-7",
+      "characterId": "number-7",
+      "displayName": "Number 7",
+      "family": "numbers",
+      "root": "assets/characters-v2/numbers/7",
+      "sourceReference": "data/numbers.json",
+      "contactSheet": "qa/character-production-v3/number-7/five-states.png"
+    },
+    {
+      "id": "number-8",
+      "characterId": "number-8",
+      "displayName": "Number 8",
+      "family": "numbers",
+      "root": "assets/characters-v2/numbers/8",
+      "sourceReference": "data/numbers.json",
+      "contactSheet": "qa/character-production-v3/number-8/five-states.png"
+    },
+    {
+      "id": "number-9",
+      "characterId": "number-9",
+      "displayName": "Number 9",
+      "family": "numbers",
+      "root": "assets/characters-v2/numbers/9",
+      "sourceReference": "data/numbers.json",
+      "contactSheet": "qa/character-production-v3/number-9/five-states.png"
+    },
+    {
+      "id": "number-10",
+      "characterId": "number-10",
+      "displayName": "Number 10",
+      "family": "numbers",
+      "root": "assets/characters-v2/numbers/10",
+      "sourceReference": "data/numbers.json",
+      "contactSheet": "qa/character-production-v3/number-10/five-states.png"
+    },
+    {
+      "id": "world-sun",
+      "characterId": "world-sun",
+      "displayName": "Sun",
+      "family": "world",
+      "root": "assets/characters-v2/world/sun",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-sun/five-states.png"
+    },
+    {
+      "id": "world-moon",
+      "characterId": "world-moon",
+      "displayName": "Moon",
+      "family": "world",
+      "root": "assets/characters-v2/world/moon",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-moon/five-states.png"
+    },
+    {
+      "id": "world-cloud",
+      "characterId": "world-cloud",
+      "displayName": "Cloud",
+      "family": "world",
+      "root": "assets/characters-v2/world/cloud",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-cloud/five-states.png"
+    },
+    {
+      "id": "world-rainbow",
+      "characterId": "world-rainbow",
+      "displayName": "Rainbow",
+      "family": "world",
+      "root": "assets/characters-v2/world/rainbow",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-rainbow/five-states.png"
+    },
+    {
+      "id": "world-rocket",
+      "characterId": "world-rocket",
+      "displayName": "Rocket",
+      "family": "world",
+      "root": "assets/characters-v2/world/rocket",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-rocket/five-states.png"
+    },
+    {
+      "id": "world-earth",
+      "characterId": "world-earth",
+      "displayName": "Earth",
+      "family": "world",
+      "root": "assets/characters-v2/world/earth",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-earth/five-states.png"
+    },
+    {
+      "id": "world-robot",
+      "characterId": "world-robot",
+      "displayName": "Robot",
+      "family": "world",
+      "root": "assets/characters-v2/world/robot",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-robot/five-states.png"
+    },
+    {
+      "id": "world-magnifier",
+      "characterId": "world-magnifier",
+      "displayName": "Magnifying Glass",
+      "family": "world",
+      "root": "assets/characters-v2/world/magnifier",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-magnifier/five-states.png"
+    },
+    {
+      "id": "world-pencil",
+      "characterId": "world-pencil",
+      "displayName": "Pencil",
+      "family": "world",
+      "root": "assets/characters-v2/world/pencil",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-pencil/five-states.png"
+    },
+    {
+      "id": "world-book",
+      "characterId": "world-book",
+      "displayName": "Book",
+      "family": "world",
+      "root": "assets/characters-v2/world/book",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-book/five-states.png"
+    },
+    {
+      "id": "world-paintbrush",
+      "characterId": "world-paintbrush",
+      "displayName": "Paintbrush",
+      "family": "world",
+      "root": "assets/characters-v2/world/paintbrush",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-paintbrush/five-states.png"
+    },
+    {
+      "id": "world-music-note",
+      "characterId": "world-music-note",
+      "displayName": "Musical Note",
+      "family": "world",
+      "root": "assets/characters-v2/world/music-note",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-music-note/five-states.png"
+    },
+    {
+      "id": "world-clock",
+      "characterId": "world-clock",
+      "displayName": "Clock",
+      "family": "world",
+      "root": "assets/characters-v2/world/clock",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-clock/five-states.png"
+    },
+    {
+      "id": "world-calendar",
+      "characterId": "world-calendar",
+      "displayName": "Calendar",
+      "family": "world",
+      "root": "assets/characters-v2/world/calendar",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-calendar/five-states.png"
+    },
+    {
+      "id": "world-puzzle",
+      "characterId": "world-puzzle",
+      "displayName": "Puzzle Piece",
+      "family": "world",
+      "root": "assets/characters-v2/world/puzzle",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-puzzle/five-states.png"
+    },
+    {
+      "id": "world-water",
+      "characterId": "world-water",
+      "displayName": "Water Droplet",
+      "family": "world",
+      "root": "assets/characters-v2/world/water",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-water/five-states.png"
+    },
+    {
+      "id": "world-tree",
+      "characterId": "world-tree",
+      "displayName": "Tree",
+      "family": "world",
+      "root": "assets/characters-v2/world/tree",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-tree/five-states.png"
+    },
+    {
+      "id": "world-train",
+      "characterId": "world-train",
+      "displayName": "Train",
+      "family": "world",
+      "root": "assets/characters-v2/world/train",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-train/five-states.png"
+    },
+    {
+      "id": "world-dinosaur",
+      "characterId": "world-dinosaur",
+      "displayName": "Dinosaur",
+      "family": "world",
+      "root": "assets/characters-v2/world/dinosaur",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-dinosaur/five-states.png"
+    },
+    {
+      "id": "world-treasure",
+      "characterId": "world-treasure",
+      "displayName": "Treasure Chest",
+      "family": "world",
+      "root": "assets/characters-v2/world/treasure",
+      "sourceReference": "data/world-characters.json",
+      "contactSheet": "qa/character-production-v3/world-treasure/five-states.png"
+    },
+    {
+      "id": "planet-sun",
+      "characterId": "planet-sun",
+      "displayName": "Sun",
+      "family": "planet",
+      "root": "assets/characters-v2/planets/sun",
+      "sourceReference": "data/planets.json",
+      "contactSheet": "qa/character-production-v3/planet-sun/five-states.png"
+    },
+    {
+      "id": "planet-mercury",
+      "characterId": "planet-mercury",
+      "displayName": "Mercury",
+      "family": "planet",
+      "root": "assets/characters-v2/planets/mercury",
+      "sourceReference": "data/planets.json",
+      "contactSheet": "qa/character-production-v3/planet-mercury/five-states.png"
+    },
+    {
+      "id": "planet-venus",
+      "characterId": "planet-venus",
+      "displayName": "Venus",
+      "family": "planet",
+      "root": "assets/characters-v2/planets/venus",
+      "sourceReference": "data/planets.json",
+      "contactSheet": "qa/character-production-v3/planet-venus/five-states.png"
+    },
+    {
+      "id": "planet-earth",
+      "characterId": "planet-earth",
+      "displayName": "Earth",
+      "family": "planet",
+      "root": "assets/characters-v2/planets/earth",
+      "sourceReference": "data/planets.json",
+      "contactSheet": "qa/character-production-v3/planet-earth/five-states.png"
+    },
+    {
+      "id": "planet-mars",
+      "characterId": "planet-mars",
+      "displayName": "Mars",
+      "family": "planet",
+      "root": "assets/characters-v2/planets/mars",
+      "sourceReference": "data/planets.json",
+      "contactSheet": "qa/character-production-v3/planet-mars/five-states.png"
+    },
+    {
+      "id": "planet-jupiter",
+      "characterId": "planet-jupiter",
+      "displayName": "Jupiter",
+      "family": "planet",
+      "root": "assets/characters-v2/planets/jupiter",
+      "sourceReference": "data/planets.json",
+      "contactSheet": "qa/character-production-v3/planet-jupiter/five-states.png"
+    },
+    {
+      "id": "planet-saturn",
+      "characterId": "planet-saturn",
+      "displayName": "Saturn",
+      "family": "planet",
+      "root": "assets/characters-v2/planets/saturn",
+      "sourceReference": "data/planets.json",
+      "contactSheet": "qa/character-production-v3/planet-saturn/five-states.png"
+    },
+    {
+      "id": "planet-uranus",
+      "characterId": "planet-uranus",
+      "displayName": "Uranus",
+      "family": "planet",
+      "root": "assets/characters-v2/planets/uranus",
+      "sourceReference": "data/planets.json",
+      "contactSheet": "qa/character-production-v3/planet-uranus/five-states.png"
+    },
+    {
+      "id": "planet-neptune",
+      "characterId": "planet-neptune",
+      "displayName": "Neptune",
+      "family": "planet",
+      "root": "assets/characters-v2/planets/neptune",
+      "sourceReference": "data/planets.json",
+      "contactSheet": "qa/character-production-v3/planet-neptune/five-states.png"
+    },
+    {
+      "id": "planet-moon",
+      "characterId": "planet-moon",
+      "displayName": "Moon",
+      "family": "planet",
+      "root": "assets/characters-v2/planets/moon",
+      "sourceReference": "data/planets.json",
+      "contactSheet": "qa/character-production-v3/planet-moon/five-states.png"
+    }
+  ]
+}

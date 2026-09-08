@@ -66,10 +66,14 @@
     }
     worldSprite.className = profile.sprite ? `world-sprite sprite ${profile.sprite}` : 'world-sprite';
     const glyphMode = profile.family === 'alphabet' || profile.family === 'number';
+    const hasApprovedArtwork = artworkPath && !/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(artworkPath);
+    const fallbackSymbol = glyphMode ? state.glyph : profile.name.charAt(0);
     elements.energyBuddy.classList.toggle('is-glyph', glyphMode);
-    glyphCharacter.querySelector('b').textContent = state.glyph;
+    glyphCharacter.querySelector('b').textContent = fallbackSymbol;
     glyphCharacter.style.setProperty('--glyph-colour', glyphColours[(state.glyph.charCodeAt(0) || 0) % glyphColours.length]);
-    if (artworkPath && !/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(artworkPath)) {
+    glyphCharacter.hidden = hasApprovedArtwork || Boolean(profile.sprite);
+    worldSprite.hidden = hasApprovedArtwork || !profile.sprite;
+    if (hasApprovedArtwork) {
       elements.dashBuddy.className = 'dash-buddy has-production-art';
       Array.from(elements.dashBuddy.childNodes).forEach((node) => {
         if (node !== dashCharacterImage) node.remove();
@@ -77,7 +81,7 @@
     } else {
       elements.dashBuddy.className = glyphMode || !profile.sprite ? 'dash-buddy is-glyph' : `dash-buddy sprite ${profile.sprite}`;
       if (dashCharacterImage) dashCharacterImage.hidden = true;
-      elements.dashBuddy.textContent = glyphMode || !profile.sprite ? (glyphMode ? state.glyph : profile.name.charAt(0)) : '';
+      elements.dashBuddy.textContent = glyphMode || !profile.sprite ? fallbackSymbol : '';
     }
     $$('.character-choice').forEach((button) => {
       const selected = window.LeonSalCharacters.normalizeCharacterId(button.dataset.character) === profile.id;

@@ -1,0 +1,21 @@
+{
+  "approvedCharacterCount": 1,
+  "approvedStateAssetCount": 5,
+  "approved": [
+    {
+      "id": "battery-buddy",
+      "family": "world",
+      "displayName": "Battery Buddy",
+      "status": "approved",
+      "states": 5,
+      "width": 2048,
+      "height": 2048,
+      "evidence": [
+        "qa/battery-production-v3/FINAL-OWNER-READY/battery-five-final.png",
+        "qa/battery-production-v3/FINAL-OWNER-READY/battery-mobile-five-states.png",
+        "qa/battery-production-v3/FINAL-OWNER-READY/visual-acceptance.json"
+      ],
+      "reason": "OWNER VISUAL ACCEPTED Battery v3 artwork. Five individual transparent production masters and WebP derivatives are approved for Battery Buddy only. Other character artwork remains pending/review."
+    }
+  ]
+}

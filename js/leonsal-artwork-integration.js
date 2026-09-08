@@ -27,7 +27,7 @@
   }
 
   function setRealImage(target, record, state, label) {
-    if (!target || !record || !record.states || !record.states[state]) return false;
+    if (!target || !record || record.status !== "approved" || !record.states || !record.states[state]) return false;
     if (/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(record.states[state])) return false;
     target.classList.add("ls-real-art-host");
     target.dataset.realCharacterId = record.id;
@@ -47,7 +47,7 @@
   }
 
   function preload(record) {
-    if (!record || !record.states) return;
+    if (!record || record.status !== "approved" || !record.states) return;
     states.forEach(function (state) {
       var img = new Image();
       img.src = record.states[state];
