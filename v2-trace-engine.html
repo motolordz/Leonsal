@@ -17,7 +17,10 @@
     <section class="game-scene trace-world" aria-label="Trace path demonstration">
       <canvas id="traceCanvas" class="trace-canvas"></canvas>
       <p class="scene-status" id="status">Trace the big loop.</p>
-      <div class="floating-controls"><button class="scene-button" id="reset" type="button">Reset</button></div>
+      <div class="floating-controls">
+        <button class="scene-button" id="step" type="button">Step</button>
+        <button class="scene-button" id="reset" type="button">Reset</button>
+      </div>
     </section>
   </main>
   <script src="v2-engine.js"></script>
@@ -57,8 +60,26 @@
       const result = trace.addPoint(x - rect.left, y - rect.top);
       status.textContent = result.complete ? 'Loop complete.' : result.near ? 'Keep tracing.' : 'Come back to the glow.';
     }
+    document.querySelector('#step').addEventListener('click', () => {
+      const point = trace.path[Math.min(trace.progress, trace.path.length - 1)];
+      if (!point) return;
+      const result = trace.addPoint(point.x, point.y);
+      status.textContent = result.complete ? 'Loop complete.' : 'Keep tracing.';
+    });
     document.querySelector('#reset').addEventListener('click', reset);
     window.addEventListener('resize', reset);
+    window.__traceProofState = () => ({
+      progress: trace.progress,
+      complete: trace.progress >= trace.path.length,
+      pathLength: trace.path.length,
+      hasTapAlternative: Boolean(document.querySelector('#step')),
+      reducedMotion: settings.value.reducedMotion,
+      calmMode: settings.value.calmMode
+    });
+    window.__traceProofCleanup = () => {
+      trace.destroy();
+      motion.stop();
+    };
     reset();
   </script>
 </body>

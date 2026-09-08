@@ -55,6 +55,8 @@
     let charging = false;
     let charged = false;
     let walkTime = 0;
+    let travelCancel = null;
+    let chargeCancel = null;
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
     document.querySelector('#settingsToggle').addEventListener('click', () => {
       const panel = document.querySelector('#settings');
@@ -89,22 +91,27 @@
       else status.textContent = dashPosition === 0 ? 'Battery empty — reach the charging dock.' : 'Keep going to the charging dock!';
     }
     function stepRight(delta) {
+      travelCancel?.();
       const from = dashPosition;
       const to = LeonSalV2.clamp(from + delta, 0, 100);
-      motion.tween({ from, to, duration: 360, onUpdate: (value) => setPosition(value) });
+      travelCancel = motion.tween({ from, to, duration: 360, onUpdate: (value) => setPosition(value), onComplete: () => { travelCancel = null; } });
     }
     function charge() {
       if (charging || charged) return;
+      travelCancel?.();
+      travelCancel = null;
       dashPosition = 100;
       charging = true;
       status.textContent = 'Charging…';
-      motion.tween({ from: 0, to: 100, duration: 1900, onUpdate: (value) => {
+      chargeCancel?.();
+      chargeCancel = motion.tween({ from: 0, to: 100, duration: 1900, onUpdate: (value) => {
         energy = value;
         render();
       }, onComplete: () => {
         energy = 100;
         charged = true;
         charging = false;
+        chargeCancel = null;
         helper.dataset.active = 'true';
         status.textContent = 'Fully charged!';
         render();
@@ -112,6 +119,10 @@
       }});
     }
     function reset() {
+      travelCancel?.();
+      chargeCancel?.();
+      travelCancel = null;
+      chargeCancel = null;
       dashPosition = 0;
       energy = 0;
       charging = false;
@@ -138,6 +149,17 @@
     document.querySelector('#right').addEventListener('click', () => { audio.tone('tap'); stepRight(18); });
     document.querySelector('#reset').addEventListener('click', reset);
     window.addEventListener('resize', render);
+    window.__dashDockSetPosition = setPosition;
+    window.__dashDockReset = reset;
+    window.__dashDockState = () => ({
+      dashPosition,
+      energy,
+      charging,
+      charged,
+      state: runner.dataset.state,
+      helperActive: helper.dataset.active,
+      status: status.textContent
+    });
     reset();
   </script>
 </body>

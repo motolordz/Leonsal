@@ -259,26 +259,54 @@ const LeonSalV2 = (() => {
       this.fill = svg.querySelector('[data-fill]');
       this.face = svg.querySelector('[data-face]');
       this.label = svg.querySelector('[data-label]');
+      this.eyes = Array.from(svg.querySelectorAll('[data-eye]'));
+      this.body = { x: 52, y: 88, width: 294, height: 114 };
       this.set(0);
+    }
+    faceGeometry(state) {
+      const body = this.body;
+      const cx = body.x + body.width / 2;
+      const eyeY = body.y + body.height * (state === 'empty' ? 0.39 : 0.37);
+      const eyeGap = body.width * 0.13;
+      const eyeRadius = body.height * 0.105;
+      const mouthY = body.y + body.height * 0.66;
+      const halfMouth = body.width * ({ empty: 0.055, excited: 0.106 }[state] || 0.092);
+      const mouthLift = {
+        empty: 2,
+        low: -7,
+        calm: 8,
+        happy: 18,
+        excited: 24
+      }[state];
+      return {
+        cx,
+        leftEye: { cx: cx - eyeGap, cy: eyeY, r: eyeRadius },
+        rightEye: { cx: cx + eyeGap, cy: eyeY, r: eyeRadius },
+        mouth: {
+          d: `M${cx - halfMouth} ${mouthY} Q${cx} ${mouthY + mouthLift} ${cx + halfMouth} ${mouthY}`
+        }
+      };
     }
     set(energy) {
       const value = clamp(Number(energy) || 0, 0, 100);
       const state = stateForEnergy(value);
       this.fill?.setAttribute('width', String(3.12 * value));
       this.fill?.setAttribute('fill', { empty: '#ef6f66', low: '#f29b48', calm: '#f3d24f', happy: '#4aa8ff', excited: '#45c56b' }[state]);
+      const geometry = this.faceGeometry(state);
+      if (this.eyes.length >= 2) {
+        this.eyes[0].setAttribute('cx', String(geometry.leftEye.cx));
+        this.eyes[0].setAttribute('cy', String(geometry.leftEye.cy));
+        this.eyes[0].setAttribute('r', String(geometry.leftEye.r));
+        this.eyes[1].setAttribute('cx', String(geometry.rightEye.cx));
+        this.eyes[1].setAttribute('cy', String(geometry.rightEye.cy));
+        this.eyes[1].setAttribute('r', String(geometry.rightEye.r));
+      }
       if (this.face) {
-        const mouths = {
-          empty: 'M174 138 Q198 120 222 138',
-          low: 'M176 137 Q198 128 220 137',
-          calm: 'M176 132 Q198 142 220 132',
-          happy: 'M174 130 Q198 150 222 130',
-          excited: 'M170 128 Q198 154 226 128'
-        };
-        this.face.setAttribute('d', mouths[state]);
+        this.face.setAttribute('d', geometry.mouth.d);
       }
       if (this.label) this.label.textContent = `${Math.round(value)}%`;
       this.svg.dataset.energyState = state;
-      return { value, state, label: stateLabels[state] };
+      return { value, state, label: stateLabels[state], geometry };
     }
   }
 
@@ -544,7 +572,8 @@ const LeonSalV2 = (() => {
       this.progress = 0;
       this.points = [];
       this.resize();
-      window.addEventListener('resize', () => this.resize());
+      this.resizeHandler = () => this.resize();
+      window.addEventListener('resize', this.resizeHandler);
       this.draw();
     }
     resize() {
@@ -601,6 +630,10 @@ const LeonSalV2 = (() => {
         this.ctx.shadowBlur = 0;
       }
     }
+    destroy() {
+      window.removeEventListener('resize', this.resizeHandler);
+      this.reset();
+    }
   }
 
   class SortMatchEngine extends EventBus {
@@ -622,7 +655,7 @@ const LeonSalV2 = (() => {
   }
 
   class OrbitEngine extends EventBus {
-    constructor(motion, settings) { super(); this.motion = motion; this.settings = settings; this.items = new Set(); this.remove = null; }
+    constructor(motion, settings) { super(); this.motion = motion; this.settings = settings; this.items = new Set(); this.remove = null; this.speedScale = 1; }
     add(item) {
       const next = { angle: 0, speed: .45, radius: 100, ...item };
       next.baseSpeed = next.baseSpeed || next.speed;
@@ -638,7 +671,7 @@ const LeonSalV2 = (() => {
         item.update?.(item);
       }
     }
-    setSpeed(scale) { for (const item of this.items) item.speed = item.baseSpeed * scale; }
+    setSpeed(scale) { this.speedScale = scale; for (const item of this.items) item.speed = item.baseSpeed * scale; }
     destroy() { this.remove?.(); this.remove = null; this.items.clear(); }
   }
 
@@ -684,6 +717,7 @@ const LeonSalV2 = (() => {
       this.emit('effect', { cause, result });
       return result;
     }
+    destroy() { this.effects.clear(); }
   }
 
   class TimeCycleEngine extends EventBus {

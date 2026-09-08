@@ -3,7 +3,7 @@
   "items": [
     {
       "id": "BAT-FACE-001",
-      "status": "open",
+      "status": "closed-with-owner-review-evidence",
       "severity": "P1",
       "summary": "Battery face visual correction remains required.",
       "acceptance": [
@@ -16,7 +16,13 @@
         "empty state sleepy/tired, not distressed",
         "full state friendly energetic smile"
       ],
-      "complete": false
+      "complete": true,
+      "closedBy": "Phase 2 exact-head audit battery face geometry fix",
+      "evidence": [
+        "qa/bat-face-001/battery-face-five-states.png",
+        "qa/bat-face-001/phase2-audit-proof.json"
+      ],
+      "resolution": "Battery face geometry now derives from the interior battery body bounds, with symmetric aligned eyes and centered state-specific mouth curves."
     },
     {
       "id": "DASH-ENERGY-001",

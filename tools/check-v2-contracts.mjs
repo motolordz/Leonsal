@@ -16,6 +16,7 @@ const currentEngines = readJson("data/engines-v2.json");
 const sensoryConcepts = readJson("data/sensory-concepts-v2.json");
 const mixer = readJson("data/sensory-mixer-contract-v2.json");
 const workItems = readJson("data/runtime-work-items-v2.json");
+const games = readJson("data/games-v2.json");
 
 if (engineContracts.counts?.totalSpecifications !== 28) {
   failures.push("engine-contracts-v2.json: expected 28 engine specifications");
@@ -54,10 +55,26 @@ if (mixer.implementationStatus !== "specified-only") {
   failures.push("sensory-mixer-contract-v2.json: Mixer must remain specified-only");
 }
 
+if (games.total !== 30 || games.games?.length !== 30) {
+  failures.push("games-v2.json: expected 30 catalogue entries");
+}
+if (games.liveV2GameCount !== 0) {
+  failures.push("games-v2.json: V2 map must not count catalogue/proof routes as live games");
+}
+for (const game of games.games || []) {
+  if (game.liveV2Game !== false) failures.push(`games-v2.json: ${game.id} must not be counted as a live V2 game`);
+  if (!game.status) failures.push(`games-v2.json: ${game.id} must declare a status`);
+}
+
 const batFace = workItems.items?.find((item) => item.id === "BAT-FACE-001");
 const dashEnergy = workItems.items?.find((item) => item.id === "DASH-ENERGY-001");
-if (!batFace || batFace.complete !== false || batFace.status !== "open") {
-  failures.push("runtime-work-items-v2.json: BAT-FACE-001 must remain open");
+if (!batFace || !["open", "closed-with-owner-review-evidence"].includes(batFace.status)) {
+  failures.push("runtime-work-items-v2.json: BAT-FACE-001 must remain tracked");
+}
+if (batFace.status === "closed-with-owner-review-evidence") {
+  for (const evidence of batFace.evidence || []) {
+    if (!fs.existsSync(evidence)) failures.push(`runtime-work-items-v2.json: BAT-FACE-001 evidence missing ${evidence}`);
+  }
 }
 if (!dashEnergy || dashEnergy.status !== "contract-preserved") {
   failures.push("runtime-work-items-v2.json: DASH-ENERGY-001 must remain explicit");

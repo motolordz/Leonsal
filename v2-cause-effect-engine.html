@@ -41,6 +41,15 @@
     engine.connect('grow', () => stage.dataset.grow = 'true');
     engine.connect('reset', () => { stage.dataset.light = 'false'; stage.dataset.grow = 'false'; });
     document.querySelectorAll('[data-cause]').forEach((button) => button.addEventListener('click', () => engine.trigger(button.dataset.cause)));
+    window.__causeEffectProofState = () => ({
+      light: stage.dataset.light,
+      grow: stage.dataset.grow,
+      registeredEffects: engine.effects.size,
+      deterministicReset: stage.dataset.light === 'false' && stage.dataset.grow === 'false',
+      reducedMotion: settings.value.reducedMotion,
+      calmMode: settings.value.calmMode
+    });
+    window.__causeEffectProofCleanup = () => engine.destroy();
     engine.trigger('reset');
   </script>
 </body>

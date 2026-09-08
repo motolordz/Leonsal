@@ -1,0 +1,192 @@
+{
+  "viewport": "390x844",
+  "battery": [
+    {
+      "energy": 0,
+      "state": "empty",
+      "label": "Empty / Sleepy",
+      "leftEye": {
+        "cx": 160.78,
+        "cy": 132.46,
+        "r": 11.969999999999999
+      },
+      "rightEye": {
+        "cx": 237.22,
+        "cy": 132.46,
+        "r": 11.969999999999999
+      },
+      "mouth": "M182.82999999999998 163.24 Q199 165.24 215.17000000000002 163.24",
+      "screenshot": "qa/bat-face-001/battery-0.png"
+    },
+    {
+      "energy": 25,
+      "state": "low",
+      "label": "Low Energy",
+      "leftEye": {
+        "cx": 160.78,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "rightEye": {
+        "cx": 237.22,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "mouth": "M171.952 163.24 Q199 156.24 226.048 163.24",
+      "screenshot": "qa/bat-face-001/battery-25.png"
+    },
+    {
+      "energy": 50,
+      "state": "calm",
+      "label": "Calm / Ready",
+      "leftEye": {
+        "cx": 160.78,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "rightEye": {
+        "cx": 237.22,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "mouth": "M171.952 163.24 Q199 171.24 226.048 163.24",
+      "screenshot": "qa/bat-face-001/battery-50.png"
+    },
+    {
+      "energy": 75,
+      "state": "happy",
+      "label": "Happy / Active",
+      "leftEye": {
+        "cx": 160.78,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "rightEye": {
+        "cx": 237.22,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "mouth": "M171.952 163.24 Q199 181.24 226.048 163.24",
+      "screenshot": "qa/bat-face-001/battery-75.png"
+    },
+    {
+      "energy": 100,
+      "state": "excited",
+      "label": "Full / Excited",
+      "leftEye": {
+        "cx": 160.78,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "rightEye": {
+        "cx": 237.22,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "mouth": "M167.836 163.24 Q199 187.24 230.164 163.24",
+      "screenshot": "qa/bat-face-001/battery-100.png"
+    }
+  ],
+  "dash": {
+    "start": {
+      "dashPosition": 0,
+      "energy": 0,
+      "charging": false,
+      "charged": false,
+      "state": "empty",
+      "helperActive": "false",
+      "status": "Battery empty — reach the charging dock."
+    },
+    "travel": {
+      "dashPosition": 50,
+      "energy": 0,
+      "charging": false,
+      "charged": false,
+      "state": "empty",
+      "helperActive": "false",
+      "status": "Keep going to the charging dock!"
+    },
+    "full": {
+      "dashPosition": 100,
+      "energy": 100,
+      "charging": false,
+      "charged": true,
+      "state": "excited",
+      "helperActive": "true",
+      "status": "Fully charged!"
+    },
+    "reset": {
+      "dashPosition": 0,
+      "energy": 0,
+      "charging": false,
+      "charged": false,
+      "state": "empty",
+      "helperActive": "false",
+      "status": "Battery empty — reach the charging dock."
+    },
+    "resetDuringCharge": {
+      "dashPosition": 0,
+      "energy": 0,
+      "charging": false,
+      "charged": false,
+      "state": "empty",
+      "helperActive": "false",
+      "status": "Battery empty — reach the charging dock."
+    }
+  },
+  "trace": {
+    "afterStep": {
+      "progress": 1,
+      "complete": false,
+      "pathLength": 72,
+      "hasTapAlternative": true,
+      "reducedMotion": false,
+      "calmMode": false
+    },
+    "afterCleanup": "cleanup-called"
+  },
+  "orbit": {
+    "start": {
+      "itemCount": 2,
+      "speedScale": 1,
+      "reducedMotion": false,
+      "calmMode": false,
+      "educationalScaleNote": true
+    },
+    "fast": {
+      "itemCount": 2,
+      "speedScale": 1.8,
+      "reducedMotion": false,
+      "calmMode": false,
+      "educationalScaleNote": true
+    },
+    "afterCleanup": "cleanup-called"
+  },
+  "causeEffect": {
+    "active": {
+      "light": "true",
+      "grow": "true",
+      "registeredEffects": 3,
+      "deterministicReset": false,
+      "reducedMotion": false,
+      "calmMode": false
+    },
+    "reset": {
+      "light": "false",
+      "grow": "false",
+      "registeredEffects": 3,
+      "deterministicReset": true,
+      "reducedMotion": false,
+      "calmMode": false
+    },
+    "afterCleanup": {
+      "light": "false",
+      "grow": "false",
+      "registeredEffects": 0,
+      "deterministicReset": true,
+      "reducedMotion": false,
+      "calmMode": false
+    }
+  },
+  "failures": []
+}

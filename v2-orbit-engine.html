@@ -20,6 +20,7 @@
       <div class="orbit-ring ring-b" aria-hidden="true"></div>
       <div class="planet planet-a" id="planetA"></div>
       <div class="planet planet-b" id="planetB"></div>
+      <p class="scene-status orbit-note">A simple learning orbit, not real space size.</p>
       <div class="floating-controls">
         <button class="mode-pill" data-speed="0.35" type="button">Slow</button>
         <button class="mode-pill" data-speed="1" type="button" aria-pressed="true">Orbit</button>
@@ -53,6 +54,17 @@
       orbit.setSpeed(Number(button.dataset.speed));
     }));
     window.addEventListener('resize', setup);
+    window.__orbitProofState = () => ({
+      itemCount: orbit.items.size,
+      speedScale: orbit.speedScale,
+      reducedMotion: settings.value.reducedMotion,
+      calmMode: settings.value.calmMode,
+      educationalScaleNote: Boolean(document.querySelector('.orbit-note')?.textContent.includes('not real space size'))
+    });
+    window.__orbitProofCleanup = () => {
+      orbit.destroy();
+      motion.stop();
+    };
     setup();
   </script>
 </body>
