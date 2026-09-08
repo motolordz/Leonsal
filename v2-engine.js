@@ -291,7 +291,7 @@ const LeonSalV2 = (() => {
       const value = clamp(Number(energy) || 0, 0, 100);
       const state = stateForEnergy(value);
       this.fill?.setAttribute('width', String(3.12 * value));
-      this.fill?.setAttribute('fill', { empty: '#ef6f66', low: '#f29b48', calm: '#f3d24f', happy: '#4aa8ff', excited: '#45c56b' }[state]);
+      this.fill?.setAttribute('fill', { empty: '#ef6f66', low: '#f29b48', calm: '#f3d24f', happy: '#45c56b', excited: '#1fc9f5' }[state]);
       const geometry = this.faceGeometry(state);
       if (this.eyes.length >= 2) {
         this.eyes[0].setAttribute('cx', String(geometry.leftEye.cx));

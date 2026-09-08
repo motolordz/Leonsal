@@ -1,0 +1,114 @@
+{
+  "viewport": "390x844",
+  "screenshots": [
+    "qa/battery-production-v3/mobile/battery-0.png",
+    "qa/battery-production-v3/mobile/battery-25.png",
+    "qa/battery-production-v3/mobile/battery-50.png",
+    "qa/battery-production-v3/mobile/battery-75.png",
+    "qa/battery-production-v3/mobile/battery-100.png"
+  ],
+  "states": [
+    {
+      "energy": 0,
+      "canonicalState": "empty",
+      "status": "Empty / Sleepy",
+      "fillWidth": 0,
+      "fillColor": "#ef6f66",
+      "leftEye": {
+        "cx": 160.78,
+        "cy": 132.46,
+        "r": 11.969999999999999
+      },
+      "rightEye": {
+        "cx": 237.22,
+        "cy": 132.46,
+        "r": 11.969999999999999
+      },
+      "mouth": "M182.82999999999998 163.24 Q199 165.24 215.17000000000002 163.24",
+      "sceneHeight": 756
+    },
+    {
+      "energy": 25,
+      "canonicalState": "low",
+      "status": "Low Energy",
+      "fillWidth": 78,
+      "fillColor": "#f29b48",
+      "leftEye": {
+        "cx": 160.78,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "rightEye": {
+        "cx": 237.22,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "mouth": "M171.952 163.24 Q199 156.24 226.048 163.24",
+      "sceneHeight": 756
+    },
+    {
+      "energy": 50,
+      "canonicalState": "calm",
+      "status": "Calm / Ready",
+      "fillWidth": 156,
+      "fillColor": "#f3d24f",
+      "leftEye": {
+        "cx": 160.78,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "rightEye": {
+        "cx": 237.22,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "mouth": "M171.952 163.24 Q199 171.24 226.048 163.24",
+      "sceneHeight": 756
+    },
+    {
+      "energy": 75,
+      "canonicalState": "happy",
+      "status": "Happy / Active",
+      "fillWidth": 234,
+      "fillColor": "#45c56b",
+      "leftEye": {
+        "cx": 160.78,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "rightEye": {
+        "cx": 237.22,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "mouth": "M171.952 163.24 Q199 181.24 226.048 163.24",
+      "sceneHeight": 756
+    },
+    {
+      "energy": 100,
+      "canonicalState": "excited",
+      "status": "Full / Excited",
+      "fillWidth": 312,
+      "fillColor": "#1fc9f5",
+      "leftEye": {
+        "cx": 160.78,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "rightEye": {
+        "cx": 237.22,
+        "cy": 130.18,
+        "r": 11.969999999999999
+      },
+      "mouth": "M167.836 163.24 Q199 187.24 230.164 163.24",
+      "sceneHeight": 756
+    }
+  ],
+  "performance": {
+    "frames": 84,
+    "averageFps": 63.6,
+    "worstObservedFps": 56.5,
+    "fifthPercentileFps": 56.8
+  },
+  "failures": []
+}

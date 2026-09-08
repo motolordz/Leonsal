@@ -49,15 +49,22 @@
       "displayName": "Battery Buddy",
       "family": "world",
       "status": "pending-art",
-      "format": "png-rgba-review",
+      "format": "png-rgba-production-review-v3",
       "states": {},
-      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "notes": "PENDING OWNER VISUAL APPROVAL. Battery v3 individual transparent masters and WebP derivatives passed technical QA, but remain review-only until owner approval. Runtime must use the procedural continuous Battery fallback until approved.",
       "reviewStates": {
-        "empty": "assets/characters-v2/world/battery-buddy/empty.png",
-        "low": "assets/characters-v2/world/battery-buddy/low.png",
-        "calm": "assets/characters-v2/world/battery-buddy/calm.png",
-        "happy": "assets/characters-v2/world/battery-buddy/happy.png",
-        "excited": "assets/characters-v2/world/battery-buddy/excited.png"
+        "empty": "assets/characters-v2/battery/empty/web.webp",
+        "low": "assets/characters-v2/battery/low/web.webp",
+        "calm": "assets/characters-v2/battery/calm/web.webp",
+        "happy": "assets/characters-v2/battery/happy/web.webp",
+        "excited": "assets/characters-v2/battery/excited/web.webp"
+      },
+      "reviewMasters": {
+        "empty": "assets/characters-v2/battery/empty/master.png",
+        "low": "assets/characters-v2/battery/low/master.png",
+        "calm": "assets/characters-v2/battery/calm/master.png",
+        "happy": "assets/characters-v2/battery/happy/master.png",
+        "excited": "assets/characters-v2/battery/excited/master.png"
       }
     },
     {
@@ -179,15 +186,22 @@
       "displayName": "Battery Buddy",
       "family": "world",
       "status": "pending-art",
-      "format": "png-rgba-review",
+      "format": "png-rgba-production-review-v3",
       "states": {},
-      "notes": "REVIEW_ONLY / NOT_PRODUCTION_APPROVED. Transparent pilot PNG retained for QA/reference only pending owner visual approval. Runtime must use the procedural fallback until this asset is approved.",
+      "notes": "PENDING OWNER VISUAL APPROVAL. Battery v3 individual transparent masters and WebP derivatives passed technical QA, but remain review-only until owner approval. Runtime must use the procedural continuous Battery fallback until approved.",
       "reviewStates": {
-        "empty": "assets/characters-v2/world/battery-buddy/empty.png",
-        "low": "assets/characters-v2/world/battery-buddy/low.png",
-        "calm": "assets/characters-v2/world/battery-buddy/calm.png",
-        "happy": "assets/characters-v2/world/battery-buddy/happy.png",
-        "excited": "assets/characters-v2/world/battery-buddy/excited.png"
+        "empty": "assets/characters-v2/battery/empty/web.webp",
+        "low": "assets/characters-v2/battery/low/web.webp",
+        "calm": "assets/characters-v2/battery/calm/web.webp",
+        "happy": "assets/characters-v2/battery/happy/web.webp",
+        "excited": "assets/characters-v2/battery/excited/web.webp"
+      },
+      "reviewMasters": {
+        "empty": "assets/characters-v2/battery/empty/master.png",
+        "low": "assets/characters-v2/battery/low/master.png",
+        "calm": "assets/characters-v2/battery/calm/master.png",
+        "happy": "assets/characters-v2/battery/happy/master.png",
+        "excited": "assets/characters-v2/battery/excited/master.png"
       }
     },
     {

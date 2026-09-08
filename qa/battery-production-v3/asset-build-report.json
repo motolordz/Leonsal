@@ -1,0 +1,131 @@
+{
+  "sourceImage": "/var/folders/ns/grw4d6nd0997k04xk218hv0r0000gn/T/codex-clipboard-0a33daa8-70a1-439d-9158-b2f056f87fbf.png",
+  "sourceOut": "assets/source-safe-keeping/approved-character-sheets-v2/battery-five-state-v3-source.png",
+  "written": [
+    {
+      "state": "empty",
+      "percent": 0,
+      "masterPath": "assets/characters-v2/battery/empty/master.png",
+      "webPath": "assets/characters-v2/battery/empty/web.webp",
+      "dimensions": {
+        "format": "png",
+        "mediaType": "image/png",
+        "width": 2048,
+        "height": 2048,
+        "space": "srgb",
+        "channels": 4,
+        "depth": "uchar",
+        "density": 72,
+        "isProgressive": false,
+        "isPalette": false,
+        "bitsPerSample": 8,
+        "hasProfile": false,
+        "hasAlpha": true,
+        "autoOrient": {
+          "width": 2048,
+          "height": 2048
+        }
+      }
+    },
+    {
+      "state": "low",
+      "percent": 25,
+      "masterPath": "assets/characters-v2/battery/low/master.png",
+      "webPath": "assets/characters-v2/battery/low/web.webp",
+      "dimensions": {
+        "format": "png",
+        "mediaType": "image/png",
+        "width": 2048,
+        "height": 2048,
+        "space": "srgb",
+        "channels": 4,
+        "depth": "uchar",
+        "density": 72,
+        "isProgressive": false,
+        "isPalette": false,
+        "bitsPerSample": 8,
+        "hasProfile": false,
+        "hasAlpha": true,
+        "autoOrient": {
+          "width": 2048,
+          "height": 2048
+        }
+      }
+    },
+    {
+      "state": "calm",
+      "percent": 50,
+      "masterPath": "assets/characters-v2/battery/calm/master.png",
+      "webPath": "assets/characters-v2/battery/calm/web.webp",
+      "dimensions": {
+        "format": "png",
+        "mediaType": "image/png",
+        "width": 2048,
+        "height": 2048,
+        "space": "srgb",
+        "channels": 4,
+        "depth": "uchar",
+        "density": 72,
+        "isProgressive": false,
+        "isPalette": false,
+        "bitsPerSample": 8,
+        "hasProfile": false,
+        "hasAlpha": true,
+        "autoOrient": {
+          "width": 2048,
+          "height": 2048
+        }
+      }
+    },
+    {
+      "state": "happy",
+      "percent": 75,
+      "masterPath": "assets/characters-v2/battery/happy/master.png",
+      "webPath": "assets/characters-v2/battery/happy/web.webp",
+      "dimensions": {
+        "format": "png",
+        "mediaType": "image/png",
+        "width": 2048,
+        "height": 2048,
+        "space": "srgb",
+        "channels": 4,
+        "depth": "uchar",
+        "density": 72,
+        "isProgressive": false,
+        "isPalette": false,
+        "bitsPerSample": 8,
+        "hasProfile": false,
+        "hasAlpha": true,
+        "autoOrient": {
+          "width": 2048,
+          "height": 2048
+        }
+      }
+    },
+    {
+      "state": "excited",
+      "percent": 100,
+      "masterPath": "assets/characters-v2/battery/excited/master.png",
+      "webPath": "assets/characters-v2/battery/excited/web.webp",
+      "dimensions": {
+        "format": "png",
+        "mediaType": "image/png",
+        "width": 2048,
+        "height": 2048,
+        "space": "srgb",
+        "channels": 4,
+        "depth": "uchar",
+        "density": 72,
+        "isProgressive": false,
+        "isPalette": false,
+        "bitsPerSample": 8,
+        "hasProfile": false,
+        "hasAlpha": true,
+        "autoOrient": {
+          "width": 2048,
+          "height": 2048
+        }
+      }
+    }
+  ]
+}

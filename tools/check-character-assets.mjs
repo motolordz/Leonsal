@@ -19,6 +19,7 @@ function hash(buffer) {
 }
 
 function expectedPathFragment(family, recordId) {
+  if (family === "world" && recordId === "battery-buddy") return "/characters-v2/battery/";
   if (family === "guides") return `/characters-v2/${recordId}/`;
   if (family === "world") return `/characters-v2/world/${recordId}/`;
   if (family === "alphabet") return `/characters-v2/alphabet/${recordId.replace("letter-", "")}/`;

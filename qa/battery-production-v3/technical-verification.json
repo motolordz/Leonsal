@@ -1,0 +1,156 @@
+{
+  "checkedAt": "2026-09-08T08:43:04.366Z",
+  "failures": [],
+  "assets": [
+    {
+      "state": "empty",
+      "kind": "master",
+      "path": "assets/characters-v2/battery/empty/master.png",
+      "width": 2048,
+      "height": 2048,
+      "hash": "860a85d89e40db361825eb759506adae41239800ebd4360d70882e349117b608",
+      "bbox": {
+        "minX": 375,
+        "minY": 204,
+        "maxX": 1672,
+        "maxY": 1761
+      },
+      "transparentPixels": 2377017
+    },
+    {
+      "state": "empty",
+      "kind": "web",
+      "path": "assets/characters-v2/battery/empty/web.webp",
+      "width": 2048,
+      "height": 2048,
+      "hash": "484733a190b790ad11b81c483cb26cce2e1e7e574fccb6f5ca65843bca97f7d9",
+      "bbox": {
+        "minX": 375,
+        "minY": 204,
+        "maxX": 1672,
+        "maxY": 1761
+      },
+      "transparentPixels": 2377017
+    },
+    {
+      "state": "low",
+      "kind": "master",
+      "path": "assets/characters-v2/battery/low/master.png",
+      "width": 2048,
+      "height": 2048,
+      "hash": "e1bd201e0e27aacb5e69a6043d9a344047c7c2d2435cf9fb36546f57baf456a5",
+      "bbox": {
+        "minX": 375,
+        "minY": 204,
+        "maxX": 1672,
+        "maxY": 1761
+      },
+      "transparentPixels": 2377017
+    },
+    {
+      "state": "low",
+      "kind": "web",
+      "path": "assets/characters-v2/battery/low/web.webp",
+      "width": 2048,
+      "height": 2048,
+      "hash": "e637cc1ac7412776b83ec14003c0d9f94836e0a79f1b246dd0cabfb6776fd3a7",
+      "bbox": {
+        "minX": 375,
+        "minY": 204,
+        "maxX": 1672,
+        "maxY": 1761
+      },
+      "transparentPixels": 2377017
+    },
+    {
+      "state": "calm",
+      "kind": "master",
+      "path": "assets/characters-v2/battery/calm/master.png",
+      "width": 2048,
+      "height": 2048,
+      "hash": "1fa691aea83c6cbdd6c3739d22672b6cf22cb5376319bb9cf834ac418e4d5a2d",
+      "bbox": {
+        "minX": 375,
+        "minY": 204,
+        "maxX": 1672,
+        "maxY": 1761
+      },
+      "transparentPixels": 2377017
+    },
+    {
+      "state": "calm",
+      "kind": "web",
+      "path": "assets/characters-v2/battery/calm/web.webp",
+      "width": 2048,
+      "height": 2048,
+      "hash": "9fa78eeb8a2ad2cdc426383df9887853a1c18d3f58bf5a43e3b1b699cead7222",
+      "bbox": {
+        "minX": 375,
+        "minY": 204,
+        "maxX": 1672,
+        "maxY": 1761
+      },
+      "transparentPixels": 2377017
+    },
+    {
+      "state": "happy",
+      "kind": "master",
+      "path": "assets/characters-v2/battery/happy/master.png",
+      "width": 2048,
+      "height": 2048,
+      "hash": "96d4170d49a6b08a3fd4a6e2bfa2df677b8e10a755be4e9e5a10a01e54b42bdf",
+      "bbox": {
+        "minX": 375,
+        "minY": 204,
+        "maxX": 1672,
+        "maxY": 1761
+      },
+      "transparentPixels": 2377017
+    },
+    {
+      "state": "happy",
+      "kind": "web",
+      "path": "assets/characters-v2/battery/happy/web.webp",
+      "width": 2048,
+      "height": 2048,
+      "hash": "9f8ffc197736c99d18b240501e7f0a7380de22a3b5a378bea1ef1700049d8fdc",
+      "bbox": {
+        "minX": 375,
+        "minY": 204,
+        "maxX": 1672,
+        "maxY": 1761
+      },
+      "transparentPixels": 2377017
+    },
+    {
+      "state": "excited",
+      "kind": "master",
+      "path": "assets/characters-v2/battery/excited/master.png",
+      "width": 2048,
+      "height": 2048,
+      "hash": "e420af6f19a1a01430fe56a6370680fd38722b378cc34f14e4f28f6ca475f5e9",
+      "bbox": {
+        "minX": 263,
+        "minY": 204,
+        "maxX": 1784,
+        "maxY": 1761
+      },
+      "transparentPixels": 2367939
+    },
+    {
+      "state": "excited",
+      "kind": "web",
+      "path": "assets/characters-v2/battery/excited/web.webp",
+      "width": 2048,
+      "height": 2048,
+      "hash": "d0733c2a2f22dc45882dfa203982273d40de0ec4093eb76c0599ab603c8f51c3",
+      "bbox": {
+        "minX": 263,
+        "minY": 204,
+        "maxX": 1784,
+        "maxY": 1761
+      },
+      "transparentPixels": 2367939
+    }
+  ]
+}
