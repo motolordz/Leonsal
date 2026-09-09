@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "fixtures": {
+    "nearIdenticalStatesRejected": true,
+    "fullyTransparentRejected": true,
+    "wrongDerivativeRejected": true
+  }
+}

@@ -1,122 +1,200 @@
+import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
 const root = process.cwd();
 const states = ["empty", "low", "calm", "happy", "excited"];
-const registryPath = path.join(root, "data/character-assets.json");
-const alphabet = JSON.parse(await fs.readFile(path.join(root, "data/alphabet.json"), "utf8"));
-const numbers = JSON.parse(await fs.readFile(path.join(root, "data/numbers.json"), "utf8"));
-const world = JSON.parse(await fs.readFile(path.join(root, "data/world-characters.json"), "utf8"));
-const planets = JSON.parse(await fs.readFile(path.join(root, "data/planets.json"), "utf8"));
+const registryPath = process.env.LEONSAL_REGISTRY_PATH || path.join(root, "data/character-assets.json");
+const defaultRegistryPath = path.join(root, "data/character-assets.json");
+const finalReviewDir = registryPath === defaultRegistryPath
+  ? path.join(root, "qa/character-production-v3/FINAL-REVIEW")
+  : path.join(path.dirname(registryPath), "FINAL-REVIEW");
 
-function stateMap(assetRoot, file = "web.webp") {
-  return Object.fromEntries(states.map((state) => [state, `${assetRoot}/${state}/${file}`]));
+function parseArgs(argv) {
+  const args = {};
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (!arg.startsWith("--")) continue;
+    const key = arg.slice(2);
+    const next = argv[index + 1];
+    if (!next || next.startsWith("--")) {
+      args[key] = true;
+    } else {
+      args[key] = next;
+      index += 1;
+    }
+  }
+  return args;
 }
 
-async function dimensions(assetRoot) {
-  const meta = await sharp(path.join(root, assetRoot, "empty", "master.png")).metadata();
-  return { width: meta.width, height: meta.height };
-}
-
-function characterRecord({ id, displayName, family, assetRoot, sourceReference, learningRoles = [], status = "approved", notes, extra = {} }) {
-  const approved = status === "approved";
-  return {
-    id,
-    displayName,
-    family,
-    status,
-    format: "png-rgba-production-v3",
-    states: approved ? stateMap(assetRoot, "web.webp") : {},
-    masterStates: stateMap(assetRoot, "master.png"),
-    ...(approved ? {} : { reviewStates: stateMap(assetRoot, "web.webp") }),
-    notes: notes || "Autonomous production V3 asset: transparent individual five-state master set generated from canonical repository identity/reference data and passed objective QA gates.",
-    sourceReference,
-    learningRoles,
-    evidence: [`qa/character-production-v3/${id}/five-states.png`],
-    ...extra
-  };
-}
-
-const data = JSON.parse(await fs.readFile(registryPath, "utf8"));
-const battery = data.world.find((record) => record.id === "battery-buddy");
-if (!battery || battery.status !== "approved") throw new Error("Battery Buddy V3 must already be approved before registering the full library.");
-
-data.guides = [
-  characterRecord({ id: "leon", displayName: "Leon", family: "guide", assetRoot: "assets/characters-v2/leon", sourceReference: "data/characters.json#guide-leon", status: "pending-art", notes: "Generated V3 review asset set passes technical transparency gates but remains pending because visual QA found it does not yet match Battery Buddy V3 production illustration quality.", extra: { requiredNameText: "LEON" } }),
-  characterRecord({ id: "zaya", displayName: "Zaya", family: "guide", assetRoot: "assets/characters-v2/zaya", sourceReference: "data/characters.json#guide-zaya", status: "pending-art", notes: "Generated V3 review asset set passes technical transparency gates but remains pending because visual QA found it does not yet match Battery Buddy V3 production illustration quality.", extra: { requiredNameText: "ZAYA" } })
-];
-
-data.alphabet = alphabet.map((item) => characterRecord({
-  id: item.id,
-  displayName: `Letter ${item.uppercase}`,
-  family: "alphabet",
-  assetRoot: `assets/characters-v2/alphabet/${item.id.replace("letter-", "")}`,
-  sourceReference: "data/alphabet.json",
-  status: "pending-art",
-  notes: "Generated V3 review asset set is transparent and legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
-  extra: { uppercase: item.uppercase, lowercase: item.lowercase, exampleWord: item.exampleWord }
-}));
-
-data.numbers = numbers.map((item) => characterRecord({
-  id: item.id,
-  displayName: `Number ${item.value}`,
-  family: "number",
-  assetRoot: `assets/characters-v2/numbers/${item.value}`,
-  sourceReference: "data/numbers.json",
-  status: "pending-art",
-  notes: "Generated V3 review asset set is transparent and numerically legible, but remains pending because it is procedural review artwork rather than Battery Buddy V3-level production illustration.",
-  extra: { value: item.value, quantity: item.quantity }
-}));
-
-const batteryRecord = data.world.find((record) => record.id === "battery-buddy");
-const worldRecords = world.map((item) => {
-  if (item.id === "world-battery" || item.id === "battery-buddy") return batteryRecord;
-  const simpleId = item.id.replace(/^world-/, "");
-  return characterRecord({
-    id: item.id,
-    displayName: item.displayName,
-    family: "world",
-    assetRoot: `assets/characters-v2/world/${simpleId}`,
-    sourceReference: "data/world-characters.json",
-    status: "pending-art",
-    notes: "Generated V3 review asset set is transparent and single-character, but remains pending because visual QA found the simplified procedural world artwork below Battery Buddy V3 production quality.",
-    learningRoles: item.learningRoles || []
-  });
-});
-data.world = worldRecords.some((record) => record.id === "battery-buddy") ? worldRecords : [batteryRecord, ...worldRecords];
-
-data.planets = planets.map((item) => characterRecord({
-  id: item.characterId,
-  displayName: item.displayName,
-  family: "planet",
-  assetRoot: `assets/characters-v2/planets/${item.id}`,
-  sourceReference: "data/planets.json",
-  status: "pending-art",
-  notes: "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration.",
-  learningRoles: [item.personality?.learningRole].filter(Boolean),
-  extra: { astronomy: item.astronomy, planetId: item.id }
-}));
-
-data.families = ["guide", "world", "alphabet", "number", "planet"];
-data.statuses = ["approved", "pending-art", "rejected"];
-data.runtimeRule = "Only records with status approved may resolve state paths into runtime image sources. Approved paths must be individual production derivatives from matching transparent masters and must not point into source-safe-keeping, review-only, QA, contact-sheet, or rejected folders.";
-data.approvalGate = "V3 autonomous production approval requires five-state completeness, transparent masters, web derivatives, visual QA evidence, identity consistency, and runtime-source safety.";
-data.missing = [];
-
-const approved = [];
-const pending = [];
-for (const family of ["guides", "alphabet", "numbers", "world", "planets"]) {
-  for (const record of data[family] || []) {
-    const assetRoot = Object.values(record.masterStates || {})[0]?.replace(/\/empty\/master\.png$/, "");
-    const dim = assetRoot ? await dimensions(assetRoot) : {};
-    const target = record.status === "approved" ? approved : pending;
-    target.push({ id: record.id, family: record.family, displayName: record.displayName, status: record.status, states: states.length, ...dim, evidence: record.evidence, reason: record.notes });
+async function exists(filePath) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
   }
 }
 
-await fs.mkdir(path.join(root, "qa/character-production-v3/FINAL-REVIEW"), { recursive: true });
-await fs.writeFile(path.join(root, "qa/character-production-v3/FINAL-REVIEW/approved-assets.json"), JSON.stringify({ approvedCharacterCount: approved.length, approvedStateAssetCount: approved.length * states.length, approved }, null, 2));
-await fs.writeFile(path.join(root, "qa/character-production-v3/FINAL-REVIEW/failed-or-pending.json"), JSON.stringify({ pendingCharacterCount: pending.length, pendingStateAssetCount: pending.length * states.length, rejected: [], pending }, null, 2));
+async function sha256(filePath) {
+  return crypto.createHash("sha256").update(await fs.readFile(filePath)).digest("hex");
+}
+
+function relativePath(filePath) {
+  return path.relative(root, filePath).split(path.sep).join("/");
+}
+
+function stateMap(assetRoot, file) {
+  return Object.fromEntries(states.map((state) => [state, `${assetRoot}/${state}/${file}`]));
+}
+
+function allRecords(data) {
+  return ["guides", "alphabet", "numbers", "world", "planets"].flatMap((family) => data[family] || []);
+}
+
+function findRecord(data, target) {
+  for (const family of ["guides", "alphabet", "numbers", "world", "planets"]) {
+    const index = (data[family] || []).findIndex((record) => record.id === target);
+    if (index >= 0) return { family, index, record: data[family][index] };
+  }
+  return null;
+}
+
+async function inspectStateAssets(assetRoot) {
+  const inspected = {};
+  for (const state of states) {
+    const master = path.join(root, assetRoot, state, "master.png");
+    const web = path.join(root, assetRoot, state, "web.webp");
+    if (!(await exists(master))) throw new Error(`Missing master for ${assetRoot}/${state}`);
+    if (!(await exists(web))) throw new Error(`Missing web derivative for ${assetRoot}/${state}`);
+    const meta = await sharp(master).metadata();
+    inspected[state] = {
+      masterPath: relativePath(master),
+      webPath: relativePath(web),
+      width: meta.width,
+      height: meta.height,
+      hasAlpha: Boolean(meta.hasAlpha),
+      masterSha256: await sha256(master),
+      webSha256: await sha256(web)
+    };
+  }
+  return inspected;
+}
+
+async function assertApprovalEvidence(args, inspected) {
+  if (!args["approval-evidence"]) {
+    throw new Error("Approved assets require --approval-evidence. Technical validation alone cannot create production approval.");
+  }
+  const evidencePath = path.resolve(root, args["approval-evidence"]);
+  if (!(await exists(evidencePath))) throw new Error(`Approval evidence does not exist: ${args["approval-evidence"]}`);
+  return {
+    path: relativePath(evidencePath),
+    sha256: await sha256(evidencePath),
+    assetHashes: Object.fromEntries(states.map((state) => [state, {
+      masterSha256: inspected[state].masterSha256,
+      webSha256: inspected[state].webSha256
+    }]))
+  };
+}
+
+async function recordDimensions(record) {
+  const masterPath = record.masterStates?.empty;
+  if (!masterPath) return {};
+  try {
+    const meta = await sharp(path.join(root, masterPath)).metadata();
+    return { width: meta.width, height: meta.height };
+  } catch {
+    return {};
+  }
+}
+
+async function summarize(data) {
+  const approved = [];
+  const pending = [];
+  const rejected = [];
+  for (const record of allRecords(data)) {
+    const target = record.status === "approved" ? approved : record.status === "rejected" ? rejected : pending;
+    const stateSource = record.status === "approved" ? record.states || {} : record.reviewStates || record.masterStates || {};
+    target.push({
+      id: record.id,
+      family: record.family,
+      displayName: record.displayName,
+      status: record.status,
+      states: Object.keys(stateSource).length,
+      ...(await recordDimensions(record)),
+      evidence: record.evidence || [],
+      reason: record.notes || ""
+    });
+  }
+  return { approved, pending, rejected };
+}
+
+async function writeReports(data) {
+  const { approved, pending, rejected } = await summarize(data);
+  await fs.mkdir(finalReviewDir, { recursive: true });
+  await fs.writeFile(path.join(finalReviewDir, "approved-assets.json"), JSON.stringify({
+    approvedCharacterCount: approved.length,
+    approvedStateAssetCount: approved.reduce((total, record) => total + record.states, 0),
+    approved
+  }, null, 2));
+  await fs.writeFile(path.join(finalReviewDir, "failed-or-pending.json"), JSON.stringify({
+    pendingCharacterCount: pending.length,
+    pendingStateAssetCount: pending.reduce((total, record) => total + record.states, 0),
+    rejectedCharacterCount: rejected.length,
+    rejectedStateAssetCount: rejected.reduce((total, record) => total + record.states, 0),
+    pending,
+    rejected
+  }, null, 2));
+}
+
+const args = parseArgs(process.argv.slice(2));
+const data = JSON.parse(await fs.readFile(registryPath, "utf8"));
+
+if (!args.target) {
+  await writeReports(data);
+  console.log("No --target supplied. Registry preserved; refreshed approval summary reports only.");
+  process.exit(0);
+}
+
+const location = findRecord(data, args.target);
+if (!location) throw new Error(`Unknown character id: ${args.target}`);
+
+const status = args.status || "pending-art";
+if (!["approved", "pending-art", "rejected"].includes(status)) throw new Error(`Unsupported status: ${status}`);
+const assetRoot = args["asset-root"] || Object.values(location.record.masterStates || {})[0]?.replace(/\/empty\/master\.png$/, "");
+if (!assetRoot) throw new Error(`Missing --asset-root for ${args.target}`);
+
+const inspected = await inspectStateAssets(assetRoot);
+const updated = {
+  ...location.record,
+  family: args.family || location.record.family,
+  displayName: args["display-name"] || location.record.displayName,
+  status,
+  format: status === "approved" ? "png-rgba-production-v3" : location.record.format || "png-rgba-review-v3",
+  states: status === "approved" ? stateMap(assetRoot, "web.webp") : {},
+  masterStates: stateMap(assetRoot, "master.png"),
+  evidence: [args.evidence || `qa/character-production-v3/${args.target}/five-states.png`],
+  notes: args.notes || (status === "approved"
+    ? "Approved production V3 asset set. Approval is bound to exact reviewed asset hashes and evidence."
+    : status === "rejected"
+      ? "Rejected for production runtime. Files may remain for review history only."
+      : "Pending visual/owner approval. Runtime must resolve fallback, not these review assets."),
+  approval: status === "approved" ? await assertApprovalEvidence(args, inspected) : undefined
+};
+
+if (status === "approved") {
+  delete updated.reviewStates;
+} else {
+  updated.states = {};
+  updated.reviewStates = stateMap(assetRoot, "web.webp");
+  delete updated.approval;
+}
+
+data[location.family][location.index] = updated;
+data.runtimeRule = "Only records with status approved may resolve state paths into runtime image sources. Pending-art and rejected records must expose no runtime state paths and must never load source-safe-keeping, review-only, QA, contact-sheet, or rejected assets.";
+data.approvalGate = "Production approval requires exact evidence, bound asset hashes, five-state completeness, transparent masters, matching web derivatives, visual QA, identity consistency, runtime-source safety, and owner/autonomous gate authorization for the specific asset version.";
+
 await fs.writeFile(registryPath, JSON.stringify(data, null, 2) + "\n");
-console.log(`Registered ${approved.length} approved characters (${approved.length * states.length} approved state assets) and ${pending.length} pending/review characters (${pending.length * states.length} pending state assets).`);
+await writeReports(data);
+console.log(`Registered ${args.target} as ${status}.`);

@@ -11,6 +11,7 @@ const forbidden = /source-safe-keeping|rejected-character-crops-v1|review-only|p
 const failures = [];
 const approved = [];
 const pathOwners = new Map();
+const batteryHashes = new Set();
 
 const hash = (buffer) => crypto.createHash("sha256").update(buffer).digest("hex");
 
@@ -46,17 +47,19 @@ async function inspect(assetPath, label, { master = false } = {}) {
   const data = raw.data;
   const corners = [3, ((width - 1) * channels) + 3, (((height - 1) * width) * channels) + 3, (((height * width) - 1) * channels) + 3].map((idx) => data[idx]);
   if (corners.some((alpha) => alpha >= 8)) failures.push(`${label}: corner alpha is not transparent`);
-  let minX = width, minY = height, maxX = -1, maxY = -1, transparent = 0;
+  let minX = width, minY = height, maxX = -1, maxY = -1, transparent = 0, opaque = 0;
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
       const alpha = data[(y * width + x) * channels + 3];
       if (alpha < 8) transparent += 1;
       if (alpha > 24) {
+        opaque += 1;
         minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
       }
     }
   }
   if (!transparent) failures.push(`${label}: no transparent pixels`);
+  if (!opaque) failures.push(`${label}: asset is fully transparent/empty`);
   const pad = master ? 70 : 10;
   if (minX < pad || minY < pad || width - maxX < pad || height - maxY < pad) failures.push(`${label}: insufficient transparent safe padding`);
   const signature = await sharp(buffer).ensureAlpha().resize({ width: 40, height: 40, fit: "contain" }).raw().toBuffer();
@@ -85,18 +88,23 @@ for (const family of families) {
       const masterPath = record.masterStates?.[state] || "";
       if (record.id !== "battery-buddy" && /\/battery\//.test(runtimePath + masterPath)) failures.push(`${family}/${record.id}/${state}: non-Battery record references Battery path`);
       const masterResult = await inspect(masterPath, `${family}/${record.id}/${state}/master`, { master: true });
-      await inspect(runtimePath, `${family}/${record.id}/${state}/web`);
+      const webResult = await inspect(runtimePath, `${family}/${record.id}/${state}/web`);
       if (masterResult) {
         signatures.push(masterResult.signature);
         hashes.push(masterResult.hash);
+        if (record.id === "battery-buddy") batteryHashes.add(masterResult.hash);
+        if (record.id !== "battery-buddy" && batteryHashes.has(masterResult.hash)) failures.push(`${family}/${record.id}/${state}: copied Battery master bytes`);
+      }
+      if (masterResult && webResult && distance(masterResult.signature, webResult.signature) > 20) {
+        failures.push(`${family}/${record.id}/${state}: web derivative does not visually correspond to master`);
       }
     }
     if (new Set(hashes).size !== hashes.length) failures.push(`${family}/${record.id}: duplicate master bytes across states`);
-    let distinct = 0;
-    for (let i = 0; i < signatures.length; i += 1) {
-      for (let j = i + 1; j < signatures.length; j += 1) if (distance(signatures[i], signatures[j]) > 1.2) distinct += 1;
+    let adjacentDistinct = 0;
+    for (let i = 1; i < signatures.length; i += 1) {
+      if (distance(signatures[i - 1], signatures[i]) > 1.2) adjacentDistinct += 1;
     }
-    if (distinct < 4) failures.push(`${family}/${record.id}: states are not visually distinct enough`);
+    if (adjacentDistinct < states.length - 1) failures.push(`${family}/${record.id}: adjacent energy states are not visually distinct enough`);
   }
 }
 
@@ -110,10 +118,10 @@ fs.mkdirSync(path.join(root, "qa/character-production-v3/FINAL-REVIEW"), { recur
 fs.writeFileSync(path.join(root, "qa/character-production-v3/FINAL-REVIEW/production-summary.json"), JSON.stringify({ ...summary, failures }, null, 2) + "\n");
 
 if (failures.length) {
-  console.error("Complete character library v3 check failed:");
+  console.error("Approved character subset v3 check failed:");
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log(`Complete character library v3 check passed: ${summary.approvedCharacterCount} characters, ${summary.approvedStateAssetCount} approved state assets.`);
+console.log(`Approved character subset v3 check passed: ${summary.approvedCharacterCount} characters, ${summary.approvedStateAssetCount} approved state assets.`);
 console.log(`Family counts: ${JSON.stringify(summary.families)}`);

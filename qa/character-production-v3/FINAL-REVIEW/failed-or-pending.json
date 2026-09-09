@@ -1,7 +1,8 @@
 {
   "pendingCharacterCount": 68,
   "pendingStateAssetCount": 340,
-  "rejected": [],
+  "rejectedCharacterCount": 0,
+  "rejectedStateAssetCount": 0,
   "pending": [
     {
       "id": "leon",
@@ -887,5 +888,6 @@
       ],
       "reason": "Generated V3 review asset set preserves planet identity and transparency, but remains pending because it is not Battery Buddy V3-level production illustration."
     }
-  ]
+  ],
+  "rejected": []
 }

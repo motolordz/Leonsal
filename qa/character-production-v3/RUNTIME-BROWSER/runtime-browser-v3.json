@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "viewports": [
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "screenshot": "qa/character-production-v3/RUNTIME-BROWSER/phone-battery-and-fallback.png"
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "screenshot": "qa/character-production-v3/RUNTIME-BROWSER/tablet-battery-and-fallback.png"
+    },
+    {
+      "name": "desktop",
+      "width": 1280,
+      "height": 800,
+      "screenshot": "qa/character-production-v3/RUNTIME-BROWSER/desktop-battery-and-fallback.png"
+    }
+  ],
+  "forbiddenRequests": []
+}

@@ -16,6 +16,8 @@
   const dashCharacterImage = $('#dashCharacterImage');
   const glyphColours = ['#348de3', '#4daf5a', '#f28b35', '#8270d5', '#df5f97', '#168fa2'];
   let characterRegistry = null;
+  let lastArtworkPath = '';
+  let failedArtworkPath = '';
 
   fetch('data/character-assets.json')
     .then((response) => response.ok ? response.json() : null)
@@ -42,7 +44,9 @@
     const canonicalProfile = window.LeonSalCharacters.energyProfile(state.energy, profile.id);
     const artworkRecord = window.LeonSalCharacters.findRecord(characterRegistry, profile.family, profile.id);
     const artworkPath = artworkRecord?.status === 'approved' ? artworkRecord.states?.[canonicalProfile.state] : '';
-    if (artworkPath && !/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(artworkPath)) {
+    const artworkAllowed = artworkPath && artworkPath !== failedArtworkPath && !/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(artworkPath);
+    if (artworkAllowed) {
+      lastArtworkPath = artworkPath;
       energyCharacterImage.src = artworkPath;
       energyCharacterImage.alt = `${profile.name} ${canonicalProfile.label}`;
       energyCharacterImage.hidden = false;
@@ -66,7 +70,7 @@
     }
     worldSprite.className = profile.sprite ? `world-sprite sprite ${profile.sprite}` : 'world-sprite';
     const glyphMode = profile.family === 'alphabet' || profile.family === 'number';
-    const hasApprovedArtwork = artworkPath && !/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(artworkPath);
+    const hasApprovedArtwork = artworkAllowed;
     const fallbackSymbol = glyphMode ? state.glyph : profile.name.charAt(0);
     elements.energyBuddy.classList.toggle('is-glyph', glyphMode);
     glyphCharacter.querySelector('b').textContent = fallbackSymbol;
@@ -96,6 +100,11 @@
     elements.energySlider.setAttribute('aria-valuetext', `${canonicalProfile.label}, ${Math.round(state.energy)} percent, ${profile.name}`);
     if (options.announce !== false) announce(`${profile.name} selected.`);
   }
+
+  energyCharacterImage.addEventListener('error', () => {
+    failedArtworkPath = lastArtworkPath;
+    renderCharacterWorld({ announce: false });
+  });
 
   $$('.character-choice').forEach((button) => {
     button.addEventListener('click', () => {

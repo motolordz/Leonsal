@@ -1,0 +1,39 @@
+{
+  "creativeToolAvailable": true,
+  "productionApproval": "none",
+  "newApprovedCharacters": 0,
+  "reviewOnlyCharacters": [
+    "leon",
+    "zaya"
+  ],
+  "candidates": [
+    {
+      "id": "leon",
+      "file": "assets/characters-v2/_staging/leon-zaya-method-pilot/leon-calm-candidate-v1.png",
+      "reference": "assets/source-safe-keeping/approved-character-sheets-v2/leon-five-state-large.jpg",
+      "promptResult": "Generated candidate is style-useful but failed production transparency because a dark backdrop/glow is present.",
+      "width": 1024,
+      "height": 1536,
+      "format": "png",
+      "hasAlpha": true,
+      "transparentPixelRatio": 0.6628837585449219,
+      "transparentCorners": true,
+      "productionStatus": "review-only-method-proof",
+      "approved": false
+    },
+    {
+      "id": "zaya",
+      "file": "assets/characters-v2/_staging/leon-zaya-method-pilot/zaya-calm-candidate-v1.png",
+      "reference": "assets/source-safe-keeping/approved-character-sheets-v2/zaya-five-state-large.jpg",
+      "promptResult": "Generated candidate is style-useful but failed production transparency because the checkerboard is baked into the pixels.",
+      "width": 1024,
+      "height": 1536,
+      "format": "png",
+      "hasAlpha": false,
+      "transparentPixelRatio": 0,
+      "transparentCorners": false,
+      "productionStatus": "review-only-method-proof",
+      "approved": false
+    }
+  ]
+}

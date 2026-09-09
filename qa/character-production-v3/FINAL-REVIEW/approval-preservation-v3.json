@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "batteryHashes": {
+    "assets/characters-v2/battery/empty/master.png": "860a85d89e40db361825eb759506adae41239800ebd4360d70882e349117b608",
+    "assets/characters-v2/battery/empty/web.webp": "484733a190b790ad11b81c483cb26cce2e1e7e574fccb6f5ca65843bca97f7d9",
+    "assets/characters-v2/battery/low/master.png": "e1bd201e0e27aacb5e69a6043d9a344047c7c2d2435cf9fb36546f57baf456a5",
+    "assets/characters-v2/battery/low/web.webp": "e637cc1ac7412776b83ec14003c0d9f94836e0a79f1b246dd0cabfb6776fd3a7",
+    "assets/characters-v2/battery/calm/master.png": "1fa691aea83c6cbdd6c3739d22672b6cf22cb5376319bb9cf834ac418e4d5a2d",
+    "assets/characters-v2/battery/calm/web.webp": "9fa78eeb8a2ad2cdc426383df9887853a1c18d3f58bf5a43e3b1b699cead7222",
+    "assets/characters-v2/battery/happy/master.png": "96d4170d49a6b08a3fd4a6e2bfa2df677b8e10a755be4e9e5a10a01e54b42bdf",
+    "assets/characters-v2/battery/happy/web.webp": "9f8ffc197736c99d18b240501e7f0a7380de22a3b5a378bea1ef1700049d8fdc",
+    "assets/characters-v2/battery/excited/master.png": "e420af6f19a1a01430fe56a6370680fd38722b378cc34f14e4f28f6ca475f5e9",
+    "assets/characters-v2/battery/excited/web.webp": "d0733c2a2f22dc45882dfa203982273d40de0ec4093eb76c0599ab603c8f51c3"
+  },
+  "assertions": [
+    "report-only registration preserves registry",
+    "report-only registration is idempotent",
+    "approved registration requires approval evidence",
+    "pending-art exposes no runtime states",
+    "Battery approval and bytes are unchanged"
+  ]
+}
