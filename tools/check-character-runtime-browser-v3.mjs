@@ -88,10 +88,13 @@ async function assertBattery(page, value, state) {
     naturalWidth: img.naturalWidth,
     naturalHeight: img.naturalHeight,
     rect: img.getBoundingClientRect().toJSON(),
+    stageRect: document.querySelector("#characterStage").getBoundingClientRect().toJSON(),
     stage: document.querySelector("#characterStage")?.dataset,
     fallbackGlyphHidden: document.querySelector("#glyphCharacter")?.hidden,
     fallbackSpriteHidden: document.querySelector("#worldSprite")?.hidden
   }));
+  const a = result.rect, b = result.stageRect;
+  if (a.left < b.left - 2 || a.top < b.top - 2 || a.right > b.right + 2 || a.bottom > b.bottom + 2) throw new Error('Approved image exceeds stage bounds');
   if (result.hidden) throw new Error(`Battery ${value}% image is hidden`);
   if (!result.src.includes(`assets/characters-v2/battery/${state}/web.webp`)) throw new Error(`Battery ${value}% uses wrong source: ${result.src}`);
   if (result.naturalWidth <= 0 || result.naturalHeight <= 0) throw new Error(`Battery ${value}% image did not decode`);
@@ -127,17 +130,24 @@ async function main() {
   const server = await createServer();
   const port = server.address().port;
   const browser = await chromium.launch();
-  const summary = { passed: true, viewports: [], forbiddenRequests: [] };
+  const summary = { passed: true, viewports: [], forbiddenRequests: [], pageErrors: [] };
+  const registry = JSON.parse(fs.readFileSync(path.join(root, 'data/character-assets.json'), 'utf8'));
+  const reviewPaths = new Set(['guides','alphabet','numbers','world','planets'].flatMap(family => (registry[family] || []).filter(record => record.status !== 'approved').flatMap(record => Object.values(record.reviewStates || {}))));
   try {
     for (const viewport of viewports) {
       const context = await browser.newContext({ viewport, reducedMotion: "reduce" });
       const page = await context.newPage();
+      page.on('pageerror', error => summary.pageErrors.push(error.message));
       page.on("request", (request) => {
         const url = request.url();
+        if (reviewPaths.has(new URL(url).pathname.slice(1))) summary.forbiddenRequests.push(url);
         if (/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|\/qa\//i.test(url)) summary.forbiddenRequests.push(url);
       });
       await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: "networkidle" });
-      for (const item of states) await assertBattery(page, item.value, item.state);
+      for (const item of states) {
+        await assertBattery(page, item.value, item.state);
+        await page.locator('#characterStage').screenshot({path: path.join(outDir, `${viewport.name}-battery-${item.state}.png`)});
+      }
       await assertPendingFallback(page, "zaya", 50);
       await assertPendingFallback(page, "leon", 50);
       await assertPendingFallback(page, "elephant", 50);
@@ -146,7 +156,11 @@ async function main() {
       await assertBattery(page, 100, "excited");
       await assertPendingFallback(page, "zaya", 25);
       await assertBattery(page, 0, "empty");
-      await page.locator("#energyCharacterImage").dispatchEvent("error");
+      // Fail an actual next-state network load, rather than dispatching a synthetic error.
+      await assertBattery(page, 25, 'low');
+      await context.route('**/assets/characters-v2/battery/empty/web.webp', route => route.abort());
+      await setEnergy(page, 0);
+      await page.waitForFunction(() => document.querySelector('#energyCharacterImage')?.hidden === true);
       await page.waitForTimeout(80);
       const afterError = await page.evaluate(() => ({
         hidden: document.querySelector("#energyCharacterImage")?.hidden,
@@ -161,6 +175,7 @@ async function main() {
       summary.viewports.push({ ...viewport, screenshot: path.relative(root, screenshot) });
       await context.close();
     }
+    if (summary.pageErrors.length) throw new Error(summary.pageErrors.join('; '));
     if (summary.forbiddenRequests.length) throw new Error(`Forbidden runtime art request(s): ${summary.forbiddenRequests.join(", ")}`);
   } finally {
     await browser.close();

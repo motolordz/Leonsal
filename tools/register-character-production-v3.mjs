@@ -1,3 +1,4 @@
+import { verifyApprovalEvidence } from './character-approval-evidence.mjs';
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -88,14 +89,7 @@ async function assertApprovalEvidence(args, inspected) {
   }
   const evidencePath = path.resolve(root, args["approval-evidence"]);
   if (!(await exists(evidencePath))) throw new Error(`Approval evidence does not exist: ${args["approval-evidence"]}`);
-  return {
-    path: relativePath(evidencePath),
-    sha256: await sha256(evidencePath),
-    assetHashes: Object.fromEntries(states.map((state) => [state, {
-      masterSha256: inspected[state].masterSha256,
-      webSha256: inspected[state].webSha256
-    }]))
-  };
+  return verifyApprovalEvidence(root, args["approval-evidence"], args.target, inspected, args["asset-version"]);
 }
 
 async function recordDimensions(record) {

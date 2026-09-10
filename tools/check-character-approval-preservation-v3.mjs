@@ -71,6 +71,23 @@ assert(Object.keys(leon.reviewStates || {}).length === states.length, "Pending L
 assert(battery.status === "approved", "Battery approval was changed");
 assert(Object.keys(battery.states || {}).length === states.length, "Battery runtime states were not preserved");
 
+
+const unrelatedBefore = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+for (const family of ['guides','alphabet','numbers','world','planets']) {
+  for (const original of unrelatedBefore[family] || []) {
+    if (original.id === 'leon') continue;
+    assert(JSON.stringify(original) === JSON.stringify(tempData[family].find(record => record.id === original.id)), `Unrelated record changed: ${original.id}`);
+  }
+}
+const pendingBytes = fs.readFileSync(tempRegistry, 'utf8');
+const repeated = run(['tools/register-character-production-v3.mjs','--target','leon','--asset-root','assets/characters-v2/leon','--evidence','qa/character-production-v3/leon/five-states.png'], {LEONSAL_REGISTRY_PATH:tempRegistry});
+assert(repeated.status === 0, 'Repeated pending registration failed');
+assert(fs.readFileSync(tempRegistry,'utf8') === pendingBytes, 'Targeted registration is not idempotent');
+const arbitraryEvidence = path.join(tempDir,'arbitrary-evidence.txt');
+fs.writeFileSync(arbitraryEvidence,'This is not an approval.');
+const arbitrary = run(['tools/register-character-production-v3.mjs','--target','leon','--status','approved','--asset-root','assets/characters-v2/leon','--approval-evidence',arbitraryEvidence], {LEONSAL_REGISTRY_PATH:tempRegistry});
+assert(arbitrary.status !== 0, 'Arbitrary existing file incorrectly granted approval');
+
 const afterBattery = Object.fromEntries(batteryFiles.map((file) => [file, sha256(file)]));
 assert(JSON.stringify(beforeBattery) === JSON.stringify(afterBattery), "Battery master/derivative bytes changed");
 assert(originalTempHash === crypto.createHash("sha256").update(fs.readFileSync(registryPath)).digest("hex"), "Live registry changed during preservation test");

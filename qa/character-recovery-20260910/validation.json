@@ -1,0 +1,72 @@
+[
+  {
+    "command": "node --check v2-engine.js",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "command": "node tools/check-internal-links.mjs",
+    "exitCode": 0,
+    "output": "Internal link check passed for 4 game routes.\n"
+  },
+  {
+    "command": "node tools/check-registries.mjs",
+    "exitCode": 0,
+    "output": "Registry check passed for alphabet, numbers, planets, and world characters.\n"
+  },
+  {
+    "command": "node tools/check-character-assets.mjs",
+    "exitCode": 0,
+    "output": "Character asset alpha check passed for 5 approved production assets.\nPending/review character asset count: 340.\nSkipped non-approved records:\n- guides/leon: pending-art; skipped production alpha verification\n- guides/zaya: pending-art; skipped production alpha verification\n- alphabet/letter-a: pending-art; skipped production alpha verification\n- alphabet/letter-b: pending-art; skipped production alpha verification\n- alphabet/letter-c: pending-art; skipped production alpha verification\n- alphabet/letter-d: pending-art; skipped production alpha verification\n- alphabet/letter-e: pending-art; skipped production alpha verification\n- alphabet/letter-f: pending-art; skipped production alpha verification\n- alphabet/letter-g: pending-art; skipped production alpha verification\n- alphabet/letter-h: pending-art; skipped production alpha verification\n- alphabet/letter-i: pending-art; skipped production alpha verification\n- alphabet/letter-j: pending-art; skipped production alpha verification\n- alphabet/letter-k: pending-art; skipped production alpha verification\n- alphabet/letter-l: pending-art; skipped production alpha verification\n- alphabet/letter-m: pending-art; skipped production alpha verification\n- alphabet/letter-n: pending-art; skipped production alpha verification\n- alphabet/letter-o: pending-art; skipped production alpha verification\n- alphabet/letter-p: pending-art; skipped production alpha verification\n- alphabet/letter-q: pending-art; skipped production alpha verification\n- alphabet/letter-r: pending-art; skipped production alpha verification\n- alphabet/letter-s: pending-art; skipped production alpha verification\n- alphabet/letter-t: pending-art; skipped production alpha verification\n- alphabet/letter-u: pending-art; skipped production alpha verification\n- alphabet/letter-v: pending-art; skipped production alpha verification\n- alphabet/letter-w: pending-art; skipped production alpha verification\n- alphabet/letter-x: pending-art; skipped production alpha verification\n- alphabet/letter-y: pending-art; skipped production alpha verification\n- alphabet/letter-z: pending-art; skipped production alpha verification\n- numbers/number-1: pending-art; skipped production alpha verification\n- numbers/number-2: pending-art; skipped production alpha verification\n- numbers/number-3: pending-art; skipped production alpha verification\n- numbers/number-4: pending-art; skipped production alpha verification\n- numbers/number-5: pending-art; skipped production alpha verification\n- numbers/number-6: pending-art; skipped production alpha verification\n- numbers/number-7: pending-art; skipped production alpha verification\n- numbers/number-8: pending-art; skipped production alpha verification\n- numbers/number-9: pending-art; skipped production alpha verification\n- numbers/number-10: pending-art; skipped production alpha verification\n- world/world-sun: pending-art; skipped production alpha verification\n- world/world-moon: pending-art; skipped production alpha verification\n- world/world-cloud: pending-art; skipped production alpha verification\n- world/world-rainbow: pending-art; skipped production alpha verification\n- world/world-rocket: pending-art; skipped production alpha verification\n- world/world-earth: pending-art; skipped production alpha verification\n- world/world-robot: pending-art; skipped production alpha verification\n- world/world-magnifier: pending-art; skipped production alpha verification\n- world/world-pencil: pending-art; skipped production alpha verification\n- world/world-book: pending-art; skipped production alpha verification\n- world/world-paintbrush: pending-art; skipped production alpha verification\n- world/world-music-note: pending-art; skipped production alpha verification\n- world/world-clock: pending-art; skipped production alpha verification\n- world/world-calendar: pending-art; skipped production alpha verification\n- world/world-puzzle: pending-art; skipped production alpha verification\n- world/world-water: pending-art; skipped production alpha verification\n- world/world-tree: pending-art; skipped production alpha verification\n- world/world-train: pending-art; skipped production alpha verification\n- world/world-dinosaur: pending-art; skipped production alpha verification\n- world/world-treasure: pending-art; skipped production alpha verification\n- planets/planet-sun: pending-art; skipped production alpha verification\n- planets/planet-mercury: pending-art; skipped production alpha verification\n- planets/planet-venus: pending-art; skipped production alpha verification\n- planets/planet-earth: pending-art; skipped production alpha verification\n- planets/planet-mars: pending-art; skipped production alpha verification\n- planets/planet-jupiter: pending-art; skipped production alpha verification\n- planets/planet-saturn: pending-art; skipped production alpha verification\n- planets/planet-uranus: pending-art; skipped production alpha verification\n- planets/planet-neptune: pending-art; skipped production alpha verification\n- planets/planet-moon: pending-art; skipped production alpha verification\n"
+  },
+  {
+    "command": "node tools/check-runtime-art-sources.mjs",
+    "exitCode": 0,
+    "output": "Runtime art source check passed: 5 approved runtime assets, 340 pending review assets.\n"
+  },
+  {
+    "command": "node tools/check-v2-contracts.mjs",
+    "exitCode": 0,
+    "output": "V2 contract check passed: 28 engine specs, 56 sensory catalogue concepts, Mixer specified-only.\n"
+  },
+  {
+    "command": "node tools/check-battery-dash-v2.mjs",
+    "exitCode": 0,
+    "output": "Battery/Dash V2 check passed: face geometry is body-centered and Dash position/energy lifecycle invariants are present.\n"
+  },
+  {
+    "command": "node tools/check-battery-production-v3.mjs",
+    "exitCode": 0,
+    "output": "Battery production v3 check passed: 5 PNG masters and 5 WebP derivatives are transparent, padded, distinct, and approved for Battery Buddy.\n"
+  },
+  {
+    "command": "node tools/check-complete-character-library-v3.mjs",
+    "exitCode": 0,
+    "output": "Approved character subset v3 check passed: 1 characters, 5 approved state assets.\nFamily counts: {\"guides\":0,\"alphabet\":0,\"numbers\":0,\"world\":1,\"planets\":0}\n"
+  },
+  {
+    "command": "node tools/check-character-approval-preservation-v3.mjs",
+    "exitCode": 0,
+    "output": "Character approval preservation v3 check passed.\n"
+  },
+  {
+    "command": "node tools/check-character-evidence-binding.mjs",
+    "exitCode": 0,
+    "output": "Evidence binding passed: exact fixture accepted; wrong character/version, stale hashes and changed bytes rejected.\n"
+  },
+  {
+    "command": "node tools/check-character-integrity-regressions-v3.mjs",
+    "exitCode": 0,
+    "output": "Character integrity regression fixtures passed.\n"
+  },
+  {
+    "command": "node tools/check-character-library-completeness-v3.mjs",
+    "exitCode": 1,
+    "output": "Full character library completeness failed as expected: 1/69 characters production-approved.\nPending: 68; missing: 0; incomplete: 0\n"
+  },
+  {
+    "command": "node tools/check-character-runtime-browser-v3.mjs",
+    "exitCode": 0,
+    "output": "Passed after recovery: phone/tablet/desktop, active state screenshots, bounds, real network load failure."
+  }
+]

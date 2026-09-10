@@ -1,3 +1,4 @@
+import { pixelDistance as distance, statesAreDistinct } from './character-integrity-metrics.mjs';
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
@@ -11,7 +12,7 @@ const forbidden = /source-safe-keeping|rejected-character-crops-v1|review-only|p
 const failures = [];
 const approved = [];
 const pathOwners = new Map();
-const batteryHashes = new Set();
+const batteryHashes = new Set(await Promise.all(states.map(async state => crypto.createHash('sha256').update(await sharp(path.join(root, `assets/characters-v2/battery/${state}/master.png`)).ensureAlpha().raw().toBuffer()).digest('hex'))));
 
 const hash = (buffer) => crypto.createHash("sha256").update(buffer).digest("hex");
 
@@ -63,15 +64,9 @@ async function inspect(assetPath, label, { master = false } = {}) {
   const pad = master ? 70 : 10;
   if (minX < pad || minY < pad || width - maxX < pad || height - maxY < pad) failures.push(`${label}: insufficient transparent safe padding`);
   const signature = await sharp(buffer).ensureAlpha().resize({ width: 40, height: 40, fit: "contain" }).raw().toBuffer();
-  return { width, height, hash: hash(buffer), signature };
+  return { width, height, hash: hash(raw.data), signature };
 }
 
-function distance(a, b) {
-  let total = 0;
-  const length = Math.min(a.length, b.length);
-  for (let i = 0; i < length; i += 1) total += Math.abs(a[i] - b[i]);
-  return total / Math.max(1, length);
-}
 
 for (const family of families) {
   for (const record of registry[family] || []) {
@@ -93,18 +88,14 @@ for (const family of families) {
         signatures.push(masterResult.signature);
         hashes.push(masterResult.hash);
         if (record.id === "battery-buddy") batteryHashes.add(masterResult.hash);
-        if (record.id !== "battery-buddy" && batteryHashes.has(masterResult.hash)) failures.push(`${family}/${record.id}/${state}: copied Battery master bytes`);
+        if (record.id !== "battery-buddy" && batteryHashes.has(masterResult.hash)) failures.push(`${family}/${record.id}/${state}: copied Battery master pixels`);
       }
       if (masterResult && webResult && distance(masterResult.signature, webResult.signature) > 20) {
         failures.push(`${family}/${record.id}/${state}: web derivative does not visually correspond to master`);
       }
     }
-    if (new Set(hashes).size !== hashes.length) failures.push(`${family}/${record.id}: duplicate master bytes across states`);
-    let adjacentDistinct = 0;
-    for (let i = 1; i < signatures.length; i += 1) {
-      if (distance(signatures[i - 1], signatures[i]) > 1.2) adjacentDistinct += 1;
-    }
-    if (adjacentDistinct < states.length - 1) failures.push(`${family}/${record.id}: adjacent energy states are not visually distinct enough`);
+    if (new Set(hashes).size !== hashes.length) failures.push(`${family}/${record.id}: duplicate decoded master pixels across states`);
+    if (!statesAreDistinct(signatures)) failures.push(`${family}/${record.id}: energy states are duplicated or adjacent states are not visually distinct enough`);
   }
 }
 

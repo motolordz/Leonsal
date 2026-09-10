@@ -1,3 +1,4 @@
+import { pixelDistance as distance, statesAreDistinct } from './character-integrity-metrics.mjs';
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -20,12 +21,6 @@ async function signature(file) {
   return sharp(file).ensureAlpha().resize({ width: 48, height: 48, fit: "contain" }).raw().toBuffer();
 }
 
-function distance(a, b) {
-  let total = 0;
-  for (let index = 0; index < Math.min(a.length, b.length); index += 1) total += Math.abs(a[index] - b[index]);
-  return total / Math.max(1, Math.min(a.length, b.length));
-}
-
 async function nonTransparentPixels(file) {
   const raw = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const { data, info } = raw;
@@ -39,11 +34,7 @@ async function nonTransparentPixels(file) {
 async function stateDistinctEnough(files) {
   const signatures = [];
   for (const file of files) signatures.push(await signature(file));
-  let adjacentDistinct = 0;
-  for (let i = 1; i < signatures.length; i += 1) {
-    if (distance(signatures[i - 1], signatures[i]) > 1.2) adjacentDistinct += 1;
-  }
-  return adjacentDistinct >= files.length - 1;
+  return statesAreDistinct(signatures);
 }
 
 async function main() {

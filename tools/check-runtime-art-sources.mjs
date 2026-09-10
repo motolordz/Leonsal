@@ -1,3 +1,4 @@
+import { verifyRegisteredApproval } from './character-approval-evidence.mjs';
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -24,6 +25,11 @@ for (const family of families) {
       }
     }
     if (record.status === "approved") {
+      // Battery retains its pre-existing approval format and dedicated byte/visual checks.
+      if (record.id !== 'battery-buddy') {
+        try { verifyRegisteredApproval(root, record); }
+        catch (error) { failures.push(`${family}/${record.id}: ${error.message}`); }
+      }
       for (const state of states) {
         const assetPath = recordStates[state];
         if (!assetPath) failures.push(`${family}/${record.id}: approved record missing ${state}`);

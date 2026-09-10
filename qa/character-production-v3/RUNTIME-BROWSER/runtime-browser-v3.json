@@ -20,5 +20,6 @@
       "screenshot": "qa/character-production-v3/RUNTIME-BROWSER/desktop-battery-and-fallback.png"
     }
   ],
-  "forbiddenRequests": []
+  "forbiddenRequests": [],
+  "pageErrors": []
 }

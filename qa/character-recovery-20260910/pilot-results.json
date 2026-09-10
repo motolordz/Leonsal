@@ -1,0 +1,42 @@
+{
+  "newProductionApprovedCharacters": 0,
+  "reviewOnlyCharacters": 2,
+  "candidates": [
+    {
+      "id": "leon",
+      "master": "assets/characters-v2/_staging/recovery-20260910/leon-calm-candidate.png",
+      "web": "assets/characters-v2/_staging/recovery-20260910/leon-calm-candidate.web.webp",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": false,
+      "status": "rejected-for-production-review-only",
+      "nameTextVisuallyVerified": "LEON",
+      "sha256": "d83d2f11c0e56b4d1f1812cbe96b2d23f3d88453df0175cedff900c4fd2db131",
+      "defects": [
+        "baked-in-checkerboard",
+        "below-2048-pixel-master-minimum",
+        "canonical-identity-not-owner-approved"
+      ],
+      "creativeTool": "built-in image_gen",
+      "sourceReference": "assets/source-safe-keeping/recovery-20260910/character-library-reference.png"
+    },
+    {
+      "id": "zaya",
+      "master": "assets/characters-v2/_staging/recovery-20260910/zaya-calm-candidate.png",
+      "web": "assets/characters-v2/_staging/recovery-20260910/zaya-calm-candidate.web.webp",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": false,
+      "status": "rejected-for-production-review-only",
+      "nameTextVisuallyVerified": "ZAYA",
+      "sha256": "32b627cff36c8c67b986f9f07964709dfa54be57e2535c0ce3042a71e6311090",
+      "defects": [
+        "baked-in-checkerboard",
+        "below-2048-pixel-master-minimum",
+        "canonical-identity-not-owner-approved"
+      ],
+      "creativeTool": "built-in image_gen",
+      "sourceReference": "assets/source-safe-keeping/recovery-20260910/zaya-five-state-reference.png"
+    }
+  ]
+}
