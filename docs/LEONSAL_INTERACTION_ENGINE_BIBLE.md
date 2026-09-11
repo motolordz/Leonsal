@@ -68,6 +68,6 @@ Engine code must use registries and must not load blocked runtime paths. Charact
 
 ## Open Runtime Work Items
 
-`BAT-FACE-001` remains open. The Battery face needs visual correction before production acceptance.
+`BAT-FACE-001` is closed in `data/runtime-work-items-v2.json` with the recorded face-geometry review evidence. This closure does not approve other character artwork or complete the character library.
 
 `DASH-ENERGY-001` remains a required invariant: travel changes position only; energy stays 0 until dock contact; charging progresses to 100 after dock contact; Start Again resets position and energy.

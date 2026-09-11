@@ -9,7 +9,7 @@
 <body class="v2-experience">
   <main class="game-shell">
     <header class="game-topbar">
-      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
       <div class="game-title"><strong>Quiet Bubble Garden</strong><span>Tap bubbles at your own pace.</span></div>
       <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
       <div class="settings-popover" id="settings"></div>
@@ -19,6 +19,7 @@
       <div class="bubble-plants" aria-hidden="true"></div>
       <p class="scene-status" id="status">Bubbles are drifting gently.</p>
       <div class="drawer-controls">
+        <button id="popBubble" class="scene-button" type="button">Pop a bubble</button>
         <button id="reset" class="scene-button" type="button">Reset</button>
         <button class="mode-pill" data-density="few" type="button">Few</button>
         <button class="mode-pill" data-density="normal" type="button" aria-pressed="true">Normal</button>
@@ -29,6 +30,7 @@
     </section>
   </main>
   <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -71,8 +73,16 @@
       document.querySelectorAll('[data-speed]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
       reset();
     }));
+    document.querySelector('#popBubble').addEventListener('click', () => {
+      const bubble = particles.items.find((item) => item.type === 'bubbles');
+      if (bubble) { particles.popAt(bubble.x, bubble.y); status.textContent = 'Pop.'; audio.tone('tap'); }
+      else status.textContent = 'All bubbles popped. Choose Reset to play again.';
+    });
+    settings.on('settings-change', reset);
+    window.addEventListener('resize', reset);
     reset();
     particles.start('bubbles');
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], reset: reset });
   </script>
 </body>
 </html>

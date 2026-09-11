@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "status": "review-only",
+  "productionApproved": false,
+  "character": {
+    "id": "elephant-recovery",
+    "name": "Elephant",
+    "notes": "Supplied individual poses, preserved at their original resolution. 1254 px sources are below the required 2048 px production master size. Calm/happy differentiation and alpha edges await visual review.",
+    "states": {
+      "empty": {
+        "src": "assets/character-review/elephant/empty.webp",
+        "source": "assets/source-safe-keeping/recovery-20260910/elephant-empty.png",
+        "width": 1254,
+        "height": 1254,
+        "sourceSha256": "5762b570e89b3becbc09b2a540144a76ebbd3c57a38f9c5c1c152ada6891ee2d"
+      },
+      "low": {
+        "src": "assets/character-review/elephant/low.webp",
+        "source": "assets/source-safe-keeping/recovery-20260910/elephant-low.png",
+        "width": 1254,
+        "height": 1254,
+        "sourceSha256": "9e0c4d501be90d1d49da8841db1f36e0c0ccdaa37b2f3ac16fb4755cdd730355"
+      },
+      "calm": {
+        "src": "assets/character-review/elephant/calm.webp",
+        "source": "assets/source-safe-keeping/recovery-20260910/elephant-calm-candidate.png",
+        "width": 1254,
+        "height": 1254,
+        "sourceSha256": "ad004abb6a46d4d8615a6884db5574756df1b94a06e3014aedf3c8fcf0bd9c97"
+      },
+      "happy": {
+        "src": "assets/character-review/elephant/happy.webp",
+        "source": "assets/source-safe-keeping/recovery-20260910/elephant-happy.png",
+        "width": 1254,
+        "height": 1254,
+        "sourceSha256": "5de4a16ade18046d7c7fbff4287246d0ee63589fbaff264d7c4a4b92d959c124"
+      },
+      "excited": {
+        "src": "assets/character-review/elephant/excited.webp",
+        "source": "assets/source-safe-keeping/recovery-20260910/elephant-excited.png",
+        "width": 1254,
+        "height": 1254,
+        "sourceSha256": "cd5123c194520893382c721f9dc8d9209eb8eb8c4eed0b83e79d57ff4bd335f9"
+      }
+    }
+  },
+  "references": [
+    {
+      "name": "Zaya — supplied five-state reference",
+      "src": "assets/source-safe-keeping/recovery-20260910/zaya-five-state-reference.png",
+      "notes": "Reference sheet only. Individual masters and canonical identity are still required."
+    },
+    {
+      "name": "LeonSal — collection direction",
+      "src": "assets/source-safe-keeping/recovery-20260910/character-library-reference.png",
+      "notes": "Collection reference only; it is not a set of approved production sprites."
+    }
+  ]
+}

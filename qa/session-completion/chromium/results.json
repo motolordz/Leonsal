@@ -1,0 +1,58 @@
+{
+  "browser": "chromium",
+  "passed": true,
+  "results": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true,
+      "coverage": [
+        "navigation",
+        "pause-finish-resume",
+        "settings-keyboard-focus",
+        "dash-lifecycle",
+        "bubble-keyboard-density",
+        "trail-keyboard",
+        "OS-reduced-motion",
+        "breathing-keyboard"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "passed": true,
+      "coverage": [
+        "navigation",
+        "pause-finish-resume",
+        "settings-keyboard-focus",
+        "dash-lifecycle",
+        "bubble-keyboard-density",
+        "trail-keyboard",
+        "OS-reduced-motion",
+        "breathing-keyboard"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "passed": true,
+      "coverage": [
+        "navigation",
+        "pause-finish-resume",
+        "settings-keyboard-focus",
+        "dash-lifecycle",
+        "bubble-keyboard-density",
+        "trail-keyboard",
+        "OS-reduced-motion",
+        "breathing-keyboard"
+      ]
+    }
+  ],
+  "errors": []
+}

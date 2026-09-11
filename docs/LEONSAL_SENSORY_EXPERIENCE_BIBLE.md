@@ -24,6 +24,6 @@ Runtime must not load `source-safe-keeping`, rejected assets, QA sheets, contact
 
 ## Open Runtime Work Items
 
-`BAT-FACE-001` remains open and must not be marked complete by documentation adoption.
+`BAT-FACE-001` is closed with the evidence recorded in `data/runtime-work-items-v2.json`. Documentation adoption alone is not approval evidence; the remaining character-library gates still apply.
 
 `DASH-ENERGY-001` remains a preserved lifecycle invariant for Dash to Charging Dock.

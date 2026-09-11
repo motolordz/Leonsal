@@ -9,7 +9,7 @@
 <body class="v2-experience">
   <main class="game-shell">
     <header class="game-topbar">
-      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
       <div class="game-title"><strong>Dash to Charging Dock</strong><span>Travel first. Charge at the dock.</span></div>
       <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
       <div class="settings-popover" id="settings"></div>
@@ -40,6 +40,7 @@
     </section>
   </main>
   <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -49,6 +50,7 @@
     const dock = document.querySelector('#dock');
     const helper = document.querySelector('#helper');
     const beam = document.querySelector('#beam');
+    const cable = document.querySelector('#cable');
     const status = document.querySelector('#status');
     let dashPosition = 0;
     let energy = 0;
@@ -161,6 +163,7 @@
       status: status.textContent
     });
     reset();
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], reset: reset });
   </script>
 </body>
 </html>

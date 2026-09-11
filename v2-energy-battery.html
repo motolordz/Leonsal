@@ -9,7 +9,7 @@
 <body class="v2-experience">
   <main class="game-shell">
     <header class="game-topbar">
-      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
       <div class="game-title"><strong>My Energy Battery</strong><span>Swipe the energy track.</span></div>
       <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
       <div class="settings-popover" id="settings"></div>
@@ -45,6 +45,7 @@
     </section>
   </main>
   <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const gauge = new LeonSalV2.GaugeBattery(document.querySelector('#batterySvg'));
@@ -88,6 +89,7 @@
       move: ({ x }) => render(valueFromPoint(x))
     });
     track.addEventListener('keydown', (event) => {
+      if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) event.preventDefault();
       const current = Number(track.getAttribute('aria-valuenow'));
       if (event.key === 'ArrowLeft') render(current - 5);
       if (event.key === 'ArrowRight') render(current + 5);
@@ -95,6 +97,7 @@
       if (event.key === 'End') render(100);
     });
     drawBattery(0);
+    const gameShell = new LeonSalGameShell({ settings, motions: [], audio: [], reset: () => drawBattery(0) });
   </script>
 </body>
 </html>

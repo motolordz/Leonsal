@@ -9,14 +9,14 @@
 <body class="v2-experience">
   <main class="game-shell">
     <header class="game-topbar">
-      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
       <div class="game-title"><strong>Finger Light Trail</strong><span>Draw with light.</span></div>
       <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
       <div class="settings-popover" id="settings"></div>
     </header>
     <section class="game-scene trail-world" aria-label="Light trail drawing area">
       <div class="trail-starscape" aria-hidden="true"></div>
-      <canvas class="trail-canvas premium" id="canvas"></canvas>
+      <canvas class="trail-canvas premium" id="canvas" tabindex="0" aria-label="Light drawing. Use arrow keys to draw, or touch and move."></canvas>
       <p class="scene-status" id="status">Touch and move to make a light trail.</p>
       <div class="floating-controls trail-controls">
         <button id="clear" class="scene-button" type="button">Clear</button>
@@ -27,6 +27,7 @@
     </section>
   </main>
   <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -46,12 +47,26 @@
       status.textContent = 'Light is following your finger.';
     }
     new LeonSalV2.InputEngine(canvas).onPointer({ down: point, move: point, up: () => { status.textContent = 'The light is settling.'; } });
+    let keyboardPoint = { x: 100, y: 100 };
+    canvas.addEventListener('keydown', (event) => {
+      const directions = { ArrowLeft: [-18, 0], ArrowRight: [18, 0], ArrowUp: [0, -18], ArrowDown: [0, 18] };
+      if (!directions[event.key]) return;
+      event.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      keyboardPoint.x = LeonSalV2.clamp(keyboardPoint.x + directions[event.key][0], 0, rect.width);
+      keyboardPoint.y = LeonSalV2.clamp(keyboardPoint.y + directions[event.key][1], 0, rect.height);
+      trail.addPoint(keyboardPoint.x, keyboardPoint.y);
+      status.textContent = 'Drawing with arrow keys.';
+    });
+    settings.on('settings-change', () => { if (!settings.allowsMotion() || settings.value.calmMode || settings.value.particles === 'off') trail.emitters = []; trail.draw(); });
+    window.addEventListener('resize', () => trail.resize());
     document.querySelector('#clear').addEventListener('click', () => { trail.clear(); status.textContent = 'Touch and move to make a light trail.'; });
     document.querySelectorAll('[data-trail]').forEach((button) => button.addEventListener('click', () => {
       trail.mode = button.dataset.trail;
       document.querySelectorAll('[data-trail]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
       status.textContent = `${button.textContent} trail.`;
     }));
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], reset: () => trail.clear() });
   </script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <body class="v2-experience">
   <main class="game-shell">
     <header class="game-topbar">
-      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
       <div class="game-title"><strong>Hold to Breathe</strong><span>Hold to grow. Release to settle.</span></div>
       <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
       <div class="settings-popover" id="settings"></div>
@@ -24,6 +24,7 @@
     </section>
   </main>
   <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -46,16 +47,19 @@
         orb.style.setProperty('--breath-scale', String(scale));
       }
     }
+    settings.on('settings-change', () => { if (!settings.allowsMotion()) { scale = target; velocity = 0; orb.style.setProperty('--breath-scale', String(scale)); } });
     motion.add((dt) => {
+      if (!settings.allowsMotion()) return;
       const next = motion.spring(scale, target, velocity, 165, 20, dt);
       scale = next.value;
       velocity = next.velocity;
       orb.style.setProperty('--breath-scale', String(LeonSalV2.clamp(scale, 0.82, 1.62)));
     });
     new LeonSalV2.InputEngine(stage).onPointer({ down: () => setTarget(1.55), up: () => setTarget(1) });
-    document.querySelector('#expand').addEventListener('pointerdown', () => setTarget(1.55));
-    document.querySelector('#expand').addEventListener('pointerup', () => setTarget(1));
+    document.querySelector('#expand').addEventListener('click', () => setTarget(1.55));
+    document.addEventListener('leonsal-pause', () => setTarget(1));
     document.querySelector('#settle').addEventListener('click', () => setTarget(1));
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], reset: () => setTarget(1) });
   </script>
 </body>
 </html>

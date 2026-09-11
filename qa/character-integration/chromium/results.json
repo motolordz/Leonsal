@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "browser": "chromium",
+  "widths": [
+    390,
+    768,
+    1280
+  ],
+  "checks": [
+    "approved-only home",
+    "no review gameplay requests",
+    "five poses",
+    "keyboard",
+    "dark background",
+    "references",
+    "network failure recovery",
+    "pending record fallback"
+  ],
+  "errors": []
+}

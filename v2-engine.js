@@ -44,13 +44,13 @@ const LeonSalV2 = (() => {
       };
       this.load();
       prefersReducedMotion.addEventListener?.('change', () => {
-        this.set({ reducedMotion: prefersReducedMotion.matches, motion: !prefersReducedMotion.matches && this.value.motion });
+        this.set({ reducedMotion: prefersReducedMotion.matches });
       });
     }
     load() {
       try {
         const saved = JSON.parse(localStorage.getItem(this.key) || '{}');
-        this.value = { ...this.value, ...saved, reducedMotion: prefersReducedMotion.matches };
+        this.applyValidated(saved);
       } catch (_error) {
         /* Preferences are optional. */
       }
@@ -58,12 +58,20 @@ const LeonSalV2 = (() => {
     save() {
       try { localStorage.setItem(this.key, JSON.stringify(this.value)); } catch (_error) { /* optional */ }
     }
+    applyValidated(patch) {
+      if (!patch || typeof patch !== 'object') return;
+      for (const key of ['motion', 'sound', 'vibration', 'calmMode', 'confetti', 'reducedMotion']) {
+        if (typeof patch[key] === 'boolean') this.value[key] = patch[key];
+      }
+      if (['off', 'low', 'gentle'].includes(patch.particles)) this.value.particles = patch.particles;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.value.reducedMotion = true;
+    }
     set(patch) {
-      this.value = { ...this.value, ...patch };
+      this.applyValidated(patch);
       this.save();
       this.emit('settings-change', this.value);
     }
-    allowsMotion() { return this.value.motion && !this.value.reducedMotion; }
+    allowsMotion() { return this.value.motion && !this.value.reducedMotion && !window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
     particleCount(base) {
       if (this.value.calmMode || this.value.particles === 'off') return 0;
       if (this.value.particles === 'low') return Math.ceil(base * 0.4);
@@ -84,7 +92,14 @@ const LeonSalV2 = (() => {
         confetti: 'Confetti'
       };
       this.render();
+      this.unsubscribe = settings.on('settings-change', () => this.update());
     }
+    update() {
+      this.host.querySelectorAll('[data-key]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(Boolean(this.settings.value[button.dataset.key])));
+      });
+    }
+    destroy() { this.unsubscribe?.(); this.host.replaceChildren(); }
     render() {
       this.host.innerHTML = this.keys.map((key) => {
         const pressed = Boolean(this.settings.value[key]);
@@ -93,7 +108,7 @@ const LeonSalV2 = (() => {
       this.host.querySelectorAll('[data-key]').forEach((button) => {
         button.addEventListener('click', () => {
           this.settings.set({ [button.dataset.key]: !this.settings.value[button.dataset.key] });
-          this.render();
+          this.update();
         });
       });
     }
@@ -106,6 +121,7 @@ const LeonSalV2 = (() => {
       this.items = new Set();
       this.frame = 0;
       this.last = 0;
+      this.paused = false;
     }
     add(step) {
       this.items.add(step);
@@ -113,16 +129,22 @@ const LeonSalV2 = (() => {
       return () => this.items.delete(step);
     }
     start() {
-      if (this.frame) return;
+      if (this.frame || this.paused) return;
       this.last = performance.now();
       const tick = (now) => {
         const dt = Math.min(0.05, (now - this.last) / 1000);
         this.last = now;
         for (const step of this.items) step(dt, now);
-        this.frame = this.items.size ? requestAnimationFrame(tick) : 0;
+        this.frame = !this.paused && this.items.size ? requestAnimationFrame(tick) : 0;
       };
       this.frame = requestAnimationFrame(tick);
     }
+    pause() {
+      this.paused = true;
+      if (this.frame) cancelAnimationFrame(this.frame);
+      this.frame = 0;
+    }
+    resume() { this.paused = false; if (this.items.size) this.start(); }
     stop() {
       if (this.frame) cancelAnimationFrame(this.frame);
       this.frame = 0;
@@ -134,9 +156,10 @@ const LeonSalV2 = (() => {
         onComplete?.();
         return () => {};
       }
-      const start = performance.now();
-      const remove = this.add((_dt, now) => {
-        const t = clamp((now - start) / duration, 0, 1);
+      let elapsed = 0;
+      const remove = this.add((dt) => {
+        elapsed += dt * 1000;
+        const t = this.settings.allowsMotion() ? clamp(elapsed / duration, 0, 1) : 1;
         onUpdate?.(lerp(from, to, easeOutCubic(t)));
         if (t >= 1) {
           remove();
@@ -172,6 +195,7 @@ const LeonSalV2 = (() => {
       this.settings = settings;
       this.ctx = null;
       this.nodes = new Set();
+      this.unsubscribe = settings.on('settings-change', () => { if (!settings.value.sound) this.stop(); });
     }
     ensure() {
       const Ctx = window.AudioContext || window.webkitAudioContext;
@@ -220,6 +244,7 @@ const LeonSalV2 = (() => {
         holdTimer = 0;
       };
       const onDown = (event) => {
+        if (active !== null || event.button > 0 || event.target.closest?.('button, a, input, select, textarea')) return;
         active = event.pointerId;
         this.host.setPointerCapture?.(active);
         down?.(point(event));
@@ -240,12 +265,14 @@ const LeonSalV2 = (() => {
       this.host.addEventListener('pointermove', onMove);
       this.host.addEventListener('pointerup', onUp);
       this.host.addEventListener('pointercancel', onUp);
+      this.host.addEventListener('lostpointercapture', onUp);
       this.cleanups.push(() => {
         clearHold();
         this.host.removeEventListener('pointerdown', onDown);
         this.host.removeEventListener('pointermove', onMove);
         this.host.removeEventListener('pointerup', onUp);
         this.host.removeEventListener('pointercancel', onUp);
+        this.host.removeEventListener('lostpointercapture', onUp);
       });
     }
     destroy() {
@@ -329,7 +356,8 @@ const LeonSalV2 = (() => {
     seed(type = 'bubbles', count = 24) {
       this.resize();
       const rect = this.canvas.getBoundingClientRect();
-      this.items = Array.from({ length: this.settings.particleCount(count) }, () => ({
+      const visibleCount = type === 'bubbles' && (this.settings.value.calmMode || this.settings.value.particles === 'off') ? Math.min(6, count) : this.settings.particleCount(count);
+      this.items = Array.from({ length: visibleCount }, () => ({
         type,
         x: Math.random() * rect.width,
         y: Math.random() * rect.height,
@@ -343,12 +371,14 @@ const LeonSalV2 = (() => {
       }));
     }
     start(type = 'bubbles') {
-      this.seed(type);
+      if (!this.items.length) this.seed(type);
+      this.remove?.();
       this.remove = this.motion.add((dt) => this.step(dt));
     }
     step(dt) {
       const rect = this.canvas.getBoundingClientRect();
       this.ctx.clearRect(0, 0, rect.width, rect.height);
+      this.items = this.items.filter((item) => item.life > 0);
       for (const item of this.items) {
         if (this.settings.allowsMotion()) {
           item.wobble = (item.wobble || 0) + dt * 1.8;
@@ -386,11 +416,11 @@ const LeonSalV2 = (() => {
       this.ctx.globalAlpha = 1;
     }
     popAt(x, y) {
-      const index = this.items.findIndex((item) => Math.hypot(item.x - x, item.y - y) <= item.r + 12);
+      const index = this.items.findIndex((item) => item.type !== 'sparkle' && Math.hypot(item.x - x, item.y - y) <= item.r + 12);
       if (index < 0) return false;
       const hit = this.items[index];
       this.items.splice(index, 1);
-      const burstCount = this.settings.value.calmMode ? 0 : 6;
+      const burstCount = this.settings.allowsMotion() ? this.settings.particleCount(6) : 0;
       for (let i = 0; i < burstCount; i += 1) {
         const angle = (Math.PI * 2 * i) / burstCount;
         this.items.push({
@@ -446,7 +476,7 @@ const LeonSalV2 = (() => {
       }
       const max = this.settings.value.calmMode ? Math.min(this.maxPoints, 36) : this.maxPoints;
       if (this.points.length > max) this.points.splice(0, this.points.length - max);
-      if (!this.settings.value.calmMode) this.emit(x, y);
+      if (this.settings.allowsMotion() && this.settings.particleCount(1)) this.emit(x, y);
       this.draw();
     }
     emit(x, y) {
@@ -460,7 +490,7 @@ const LeonSalV2 = (() => {
     tick(dt) {
       this.points.forEach((point) => { point.age += dt; });
       this.points = this.points.filter((point) => point.age < 2.4);
-      this.emitters.forEach((item) => { item.age += dt; item.y -= dt * 10; });
+      this.emitters.forEach((item) => { item.age += dt; if (this.settings.allowsMotion()) item.y -= dt * 10; });
       this.emitters = this.emitters.filter((item) => item.age < item.life);
       this.draw();
     }
