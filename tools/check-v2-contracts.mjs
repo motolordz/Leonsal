@@ -24,8 +24,11 @@ if (engineContracts.counts?.totalSpecifications !== 28) {
 if (engineContracts.counts?.implementedProof !== 20) {
   failures.push("engine-contracts-v2.json: expected 20 implemented-proof engines");
 }
-if (engineContracts.counts?.specifiedOnly !== 8) {
-  failures.push("engine-contracts-v2.json: expected 8 specified-only engines");
+if (engineContracts.counts?.implementedFoundation !== 8) {
+  failures.push("engine-contracts-v2.json: expected 8 implemented-foundation engines");
+}
+if (engineContracts.counts?.specifiedOnly !== 0) {
+  failures.push("engine-contracts-v2.json: expected 0 specified-only engines after foundation implementation");
 }
 
 const currentIds = currentEngines.engines.map((engine) => engine.id);
@@ -35,8 +38,12 @@ if (JSON.stringify(currentIds) !== JSON.stringify(contractFirst20)) {
 }
 
 const specOnly = engineContracts.engines.filter((engine) => engine.contractStatus === "specified-only");
-if (specOnly.length !== 8) {
+if (specOnly.length !== 0) {
   failures.push("engine-contracts-v2.json: specified-only engine count mismatch");
+}
+const foundation = engineContracts.engines.filter((engine) => engine.contractStatus === "implemented-foundation");
+if (foundation.length !== 8) {
+  failures.push("engine-contracts-v2.json: implemented-foundation engine count mismatch");
 }
 
 if (sensoryConcepts.conceptCount !== 56 || sensoryConcepts.concepts?.length !== 56) {
@@ -86,4 +93,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("V2 contract check passed: 28 engine specs, 56 sensory catalogue concepts, Mixer specified-only.");
+console.log("V2 contract check passed: 28 engine specs, 8 foundation engines, 56 sensory catalogue concepts, Mixer specified-only.");

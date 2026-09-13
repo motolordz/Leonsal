@@ -26,7 +26,8 @@
   "counts": {
     "totalSpecifications": 28,
     "implementedProof": 20,
-    "specifiedOnly": 8
+    "specifiedOnly": 0,
+    "implementedFoundation": 8
   },
   "engines": [
     {
@@ -671,8 +672,8 @@
     {
       "id": "memory-recall",
       "name": "Memory/Recall Engine",
-      "contractStatus": "specified-only",
-      "implementationNote": "Part B architecture contract only. Not implemented or shippable as a completed game engine.",
+      "contractStatus": "implemented-foundation",
+      "implementationNote": "Reusable foundation primitive implemented in v2-engine.js and covered by tools/check-v2-foundation-engines.mjs. Not a completed game and not owner-accepted proof artwork.",
       "capabilities": [
         "matching pairs, object permanence, gentle recall loops"
       ],
@@ -701,8 +702,8 @@
     {
       "id": "physics-play",
       "name": "Physics Play Engine",
-      "contractStatus": "specified-only",
-      "implementationNote": "Part B architecture contract only. Not implemented or shippable as a completed game engine.",
+      "contractStatus": "implemented-foundation",
+      "implementationNote": "Reusable foundation primitive implemented in v2-engine.js and covered by tools/check-v2-foundation-engines.mjs. Not a completed game and not owner-accepted proof artwork.",
       "capabilities": [
         "gravity, rolling, floating, soft collision, bounded forces"
       ],
@@ -731,8 +732,8 @@
     {
       "id": "character-state-animation",
       "name": "Character State Animation Engine",
-      "contractStatus": "specified-only",
-      "implementationNote": "Part B architecture contract only. Not implemented or shippable as a completed game engine.",
+      "contractStatus": "implemented-foundation",
+      "implementationNote": "Reusable foundation primitive implemented in v2-engine.js and covered by tools/check-v2-foundation-engines.mjs. Not a completed game and not owner-accepted proof artwork.",
       "capabilities": [
         "approved character state playback, pose transitions, fallback-only when art is pending"
       ],
@@ -761,8 +762,8 @@
     {
       "id": "world-shell-progress",
       "name": "World Shell Progress Engine",
-      "contractStatus": "specified-only",
-      "implementationNote": "Part B architecture contract only. Not implemented or shippable as a completed game engine.",
+      "contractStatus": "implemented-foundation",
+      "implementationNote": "Reusable foundation primitive implemented in v2-engine.js and covered by tools/check-v2-foundation-engines.mjs. Not a completed game and not owner-accepted proof artwork.",
       "capabilities": [
         "map shells, gentle progression, no pressure completion"
       ],
@@ -791,8 +792,8 @@
     {
       "id": "asset-loader",
       "name": "Asset Loader Engine",
-      "contractStatus": "specified-only",
-      "implementationNote": "Part B architecture contract only. Not implemented or shippable as a completed game engine.",
+      "contractStatus": "implemented-foundation",
+      "implementationNote": "Reusable foundation primitive implemented in v2-engine.js and covered by tools/check-v2-foundation-engines.mjs. Not a completed game and not owner-accepted proof artwork.",
       "capabilities": [
         "manifest-driven loading, rights/status filtering, no blocked runtime paths"
       ],
@@ -821,8 +822,8 @@
     {
       "id": "performance-monitor",
       "name": "Performance Monitor Engine",
-      "contractStatus": "specified-only",
-      "implementationNote": "Part B architecture contract only. Not implemented or shippable as a completed game engine.",
+      "contractStatus": "implemented-foundation",
+      "implementationNote": "Reusable foundation primitive implemented in v2-engine.js and covered by tools/check-v2-foundation-engines.mjs. Not a completed game and not owner-accepted proof artwork.",
       "capabilities": [
         "frame sampling, long-task observation, particle budget reporting"
       ],
@@ -851,8 +852,8 @@
     {
       "id": "profile-progress-store",
       "name": "Profile Progress Store Engine",
-      "contractStatus": "specified-only",
-      "implementationNote": "Part B architecture contract only. Not implemented or shippable as a completed game engine.",
+      "contractStatus": "implemented-foundation",
+      "implementationNote": "Reusable foundation primitive implemented in v2-engine.js and covered by tools/check-v2-foundation-engines.mjs. Not a completed game and not owner-accepted proof artwork.",
       "capabilities": [
         "local child-safe progress preferences without medical inference"
       ],
@@ -881,8 +882,8 @@
     {
       "id": "hint-feedback",
       "name": "Hint/Feedback Engine",
-      "contractStatus": "specified-only",
-      "implementationNote": "Part B architecture contract only. Not implemented or shippable as a completed game engine.",
+      "contractStatus": "implemented-foundation",
+      "implementationNote": "Reusable foundation primitive implemented in v2-engine.js and covered by tools/check-v2-foundation-engines.mjs. Not a completed game and not owner-accepted proof artwork.",
       "capabilities": [
         "specific gentle hints, no shaming, retry and alternative input paths"
       ],

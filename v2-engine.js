@@ -763,6 +763,303 @@ const LeonSalV2 = (() => {
     destroy() { this.particles.destroy(); }
   }
 
+  class MemoryRecallEngine extends EventBus {
+    constructor(items = []) {
+      super();
+      this.items = items.map((item, index) => ({ ...item, index, revealed: false, matched: false }));
+      this.open = [];
+      this.attempts = 0;
+    }
+    reveal(index) {
+      const item = this.items[index];
+      if (!item || item.matched || item.revealed || this.open.length >= 2) return { changed: false };
+      item.revealed = true;
+      this.open.push(item);
+      this.emit('reveal', { item });
+      if (this.open.length === 2) return this.check();
+      return { changed: true, waiting: true, item };
+    }
+    check() {
+      this.attempts += 1;
+      const [a, b] = this.open;
+      const matched = Boolean(a && b && a.pairId === b.pairId && a.index !== b.index);
+      if (matched) {
+        a.matched = true;
+        b.matched = true;
+        this.open = [];
+      }
+      const result = { matched, complete: this.complete(), items: [a, b].filter(Boolean) };
+      this.emit(matched ? 'match' : 'try-again', result);
+      return result;
+    }
+    hideOpen() {
+      for (const item of this.open) item.revealed = false;
+      this.open = [];
+      this.emit('hide-open');
+    }
+    complete() { return this.items.length > 0 && this.items.every((item) => item.matched); }
+    reset() {
+      this.items.forEach((item) => { item.revealed = false; item.matched = false; });
+      this.open = [];
+      this.attempts = 0;
+      this.emit('reset');
+    }
+  }
+
+  class PhysicsPlayEngine extends EventBus {
+    constructor(motion, settings, bounds = { width: 390, height: 600 }) {
+      super();
+      this.motion = motion;
+      this.settings = settings;
+      this.bounds = bounds;
+      this.items = new Set();
+      this.gravity = 420;
+      this.remove = null;
+    }
+    add(item) {
+      const next = { x: 0, y: 0, vx: 0, vy: 0, radius: 24, bounce: 0.42, ...item };
+      this.items.add(next);
+      this.start();
+      return next;
+    }
+    setBounds(bounds) { this.bounds = { ...this.bounds, ...bounds }; }
+    start() { if (!this.remove) this.remove = this.motion.add((dt) => this.step(dt)); }
+    step(dt) {
+      if (!this.settings.allowsMotion()) return;
+      const speed = this.settings.value.calmMode ? 0.45 : 1;
+      for (const item of this.items) {
+        item.vy += this.gravity * dt * speed;
+        item.x += item.vx * dt * speed;
+        item.y += item.vy * dt * speed;
+        const maxX = this.bounds.width - item.radius;
+        const maxY = this.bounds.height - item.radius;
+        if (item.x < item.radius || item.x > maxX) {
+          item.x = clamp(item.x, item.radius, maxX);
+          item.vx *= -item.bounce;
+        }
+        if (item.y < item.radius || item.y > maxY) {
+          item.y = clamp(item.y, item.radius, maxY);
+          item.vy *= -item.bounce;
+        }
+      }
+      this.emit('step', { items: [...this.items] });
+    }
+    applyForce(item, force = {}) {
+      if (!this.items.has(item)) return false;
+      item.vx += force.x || 0;
+      item.vy += force.y || 0;
+      this.emit('force', { item, force });
+      return true;
+    }
+    reset() {
+      this.items.clear();
+      this.emit('reset');
+    }
+    destroy() {
+      this.remove?.();
+      this.remove = null;
+      this.items.clear();
+    }
+  }
+
+  class CharacterStateAnimationEngine extends EventBus {
+    constructor(resolver, settings) {
+      super();
+      this.resolver = resolver;
+      this.settings = settings;
+      this.current = null;
+    }
+    set({ characterId, energy, state, element }) {
+      const resolvedState = state || stateForEnergy(energy);
+      const asset = this.resolver?.(characterId, resolvedState) || null;
+      this.current = { characterId, state: resolvedState, asset };
+      if (element) {
+        element.dataset.characterId = characterId;
+        element.dataset.energyState = resolvedState;
+        if (asset?.approved && asset.src) {
+          element.hidden = false;
+          element.src = asset.src;
+        } else {
+          element.hidden = true;
+          element.removeAttribute('src');
+        }
+      }
+      this.emit('state-change', this.current);
+      return this.current;
+    }
+  }
+
+  class WorldShellProgressEngine extends EventBus {
+    constructor(steps = []) {
+      super();
+      this.steps = steps;
+      this.index = 0;
+      this.finished = false;
+    }
+    current() { return this.steps[this.index] || null; }
+    next() {
+      if (this.finished) return this.current();
+      this.index = clamp(this.index + 1, 0, Math.max(0, this.steps.length - 1));
+      this.emit('progress', { index: this.index, step: this.current(), complete: this.complete() });
+      return this.current();
+    }
+    complete() { return this.steps.length > 0 && this.index >= this.steps.length - 1; }
+    finish() {
+      this.finished = true;
+      this.emit('finished', { index: this.index, step: this.current() });
+    }
+    reset() {
+      this.index = 0;
+      this.finished = false;
+      this.emit('reset', { step: this.current() });
+    }
+  }
+
+  class AssetLoaderEngine extends EventBus {
+    constructor(options = {}) {
+      super();
+      this.forbidden = options.forbidden || /source-safe-keeping|rejected|review-only|pilot-qa|contact-sheet|\/qa\//i;
+      this.cache = new Map();
+    }
+    canResolve(record) {
+      return Boolean(record?.status === 'approved' && record.webPath && !this.forbidden.test(record.webPath));
+    }
+    resolve(record) {
+      if (!this.canResolve(record)) {
+        this.emit('blocked', { id: record?.id || record?.characterId, status: record?.status });
+        return null;
+      }
+      return record.webPath;
+    }
+    preload(src) {
+      if (!src || this.forbidden.test(src)) return Promise.resolve(null);
+      if (this.cache.has(src)) return this.cache.get(src);
+      const promise = new Promise((resolve) => {
+        const image = new Image();
+        image.decoding = 'async';
+        image.onload = () => resolve(image);
+        image.onerror = () => resolve(null);
+        image.src = src;
+      });
+      this.cache.set(src, promise);
+      return promise;
+    }
+    clear() { this.cache.clear(); }
+  }
+
+  class PerformanceMonitorEngine extends EventBus {
+    constructor(motion) {
+      super();
+      this.motion = motion;
+      this.samples = [];
+      this.longTasks = [];
+      this.remove = null;
+      this.observer = null;
+    }
+    start() {
+      if (!this.remove && this.motion) {
+        this.remove = this.motion.add((dt) => {
+          if (dt <= 0) return;
+          const fps = 1 / dt;
+          this.samples.push(fps);
+          if (this.samples.length > 180) this.samples.shift();
+          this.emit('sample', this.summary());
+        });
+      }
+      if (!this.observer && 'PerformanceObserver' in window) {
+        try {
+          this.observer = new PerformanceObserver((list) => {
+            this.longTasks.push(...list.getEntries().map((entry) => ({ duration: entry.duration, startTime: entry.startTime })));
+            if (this.longTasks.length > 30) this.longTasks.splice(0, this.longTasks.length - 30);
+          });
+          this.observer.observe({ entryTypes: ['longtask'] });
+        } catch (_error) {
+          this.observer = null;
+        }
+      }
+    }
+    summary() {
+      const samples = this.samples;
+      const avg = samples.length ? samples.reduce((sum, fps) => sum + fps, 0) / samples.length : 0;
+      const worst = samples.length ? Math.min(...samples) : 0;
+      return { averageFps: avg, worstFps: worst, sampleCount: samples.length, longTaskCount: this.longTasks.length };
+    }
+    stop() {
+      this.remove?.();
+      this.remove = null;
+      this.observer?.disconnect();
+      this.observer = null;
+    }
+    reset() {
+      this.samples = [];
+      this.longTasks = [];
+      this.emit('reset');
+    }
+  }
+
+  class ProfileProgressStoreEngine extends EventBus {
+    constructor(key = 'leonsal-v2-profile-progress') {
+      super();
+      this.key = key;
+      this.value = { preferences: {}, progress: {}, finished: [] };
+      this.load();
+    }
+    load() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(this.key) || '{}');
+        if (saved && typeof saved === 'object') this.value = { ...this.value, ...saved };
+      } catch (_error) {
+        /* Local progress is optional. */
+      }
+    }
+    save() {
+      try { localStorage.setItem(this.key, JSON.stringify(this.value)); } catch (_error) { /* optional */ }
+      this.emit('save', this.value);
+    }
+    setPreference(key, value) {
+      this.value.preferences[key] = value;
+      this.save();
+    }
+    record(gameId, data = {}) {
+      this.value.progress[gameId] = { ...(this.value.progress[gameId] || {}), ...data, updatedAt: new Date().toISOString() };
+      this.save();
+    }
+    markFinished(gameId) {
+      if (!this.value.finished.includes(gameId)) this.value.finished.push(gameId);
+      this.save();
+    }
+    clear() {
+      this.value = { preferences: {}, progress: {}, finished: [] };
+      this.save();
+    }
+  }
+
+  class HintFeedbackEngine extends EventBus {
+    constructor(options = {}) {
+      super();
+      this.messages = options.messages || {};
+      this.neutral = options.neutral || 'Try another way.';
+      this.history = [];
+    }
+    hint(key = 'default', data = {}) {
+      const message = this.messages[key] || this.neutral;
+      const result = { type: 'hint', key, message, data };
+      this.history.push(result);
+      this.emit('hint', result);
+      return result;
+    }
+    success(message = 'You did it.', data = {}) {
+      const result = { type: 'success', message, data };
+      this.history.push(result);
+      this.emit('success', result);
+      return result;
+    }
+    reset() {
+      this.history = [];
+      this.emit('reset');
+    }
+  }
+
   return {
     EventBus,
     SensorySettings,
@@ -785,6 +1082,14 @@ const LeonSalV2 = (() => {
     CauseEffectEngine,
     TimeCycleEngine,
     CalmWorldEngine,
+    MemoryRecallEngine,
+    PhysicsPlayEngine,
+    CharacterStateAnimationEngine,
+    WorldShellProgressEngine,
+    AssetLoaderEngine,
+    PerformanceMonitorEngine,
+    ProfileProgressStoreEngine,
+    HintFeedbackEngine,
     SettingsPanel,
     clamp,
     lerp,
