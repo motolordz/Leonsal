@@ -36,9 +36,14 @@ const LeonSalV2 = (() => {
       this.value = {
         motion: !prefersReducedMotion.matches,
         sound: false,
+        voice: false,
+        music: false,
         vibration: false,
         calmMode: false,
         particles: 'gentle',
+        speed: 'normal',
+        contrast: 'standard',
+        pace: 'self-paced',
         confetti: false,
         reducedMotion: prefersReducedMotion.matches
       };
@@ -60,10 +65,13 @@ const LeonSalV2 = (() => {
     }
     applyValidated(patch) {
       if (!patch || typeof patch !== 'object') return;
-      for (const key of ['motion', 'sound', 'vibration', 'calmMode', 'confetti', 'reducedMotion']) {
+      for (const key of ['motion', 'sound', 'voice', 'music', 'vibration', 'calmMode', 'confetti', 'reducedMotion']) {
         if (typeof patch[key] === 'boolean') this.value[key] = patch[key];
       }
       if (['off', 'low', 'gentle'].includes(patch.particles)) this.value.particles = patch.particles;
+      if (['slow', 'normal', 'lively'].includes(patch.speed)) this.value.speed = patch.speed;
+      if (['standard', 'strong'].includes(patch.contrast)) this.value.contrast = patch.contrast;
+      if (['self-paced', 'guided'].includes(patch.pace)) this.value.pace = patch.pace;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.value.reducedMotion = true;
     }
     set(patch) {
@@ -72,6 +80,11 @@ const LeonSalV2 = (() => {
       this.emit('settings-change', this.value);
     }
     allowsMotion() { return this.value.motion && !this.value.reducedMotion && !window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+    speedFactor() {
+      if (!this.allowsMotion()) return 0;
+      if (this.value.calmMode) return 0.55;
+      return { slow: 0.65, normal: 1, lively: 1.18 }[this.value.speed] || 1;
+    }
     particleCount(base) {
       if (this.value.calmMode || this.value.particles === 'off') return 0;
       if (this.value.particles === 'low') return Math.ceil(base * 0.4);
@@ -87,27 +100,55 @@ const LeonSalV2 = (() => {
       this.labels = {
         motion: 'Motion',
         sound: 'Sound',
+        voice: 'Voice',
+        music: 'Music',
         vibration: 'Vibration',
         calmMode: 'Calm Mode',
+        particles: 'Particles',
+        speed: 'Speed',
+        contrast: 'Contrast',
+        pace: 'Pace',
         confetti: 'Confetti'
+      };
+      this.choices = {
+        particles: ['gentle', 'low', 'off'],
+        speed: ['normal', 'slow', 'lively'],
+        contrast: ['standard', 'strong'],
+        pace: ['self-paced', 'guided']
       };
       this.render();
       this.unsubscribe = settings.on('settings-change', () => this.update());
     }
     update() {
       this.host.querySelectorAll('[data-key]').forEach((button) => {
-        button.setAttribute('aria-pressed', String(Boolean(this.settings.value[button.dataset.key])));
+        const key = button.dataset.key;
+        const value = this.settings.value[key];
+        const isChoice = this.choices[key];
+        button.setAttribute('aria-pressed', String(isChoice ? value !== this.choices[key][0] : Boolean(value)));
+        button.querySelector('em')?.replaceChildren(document.createTextNode(this.valueLabel(key, value)));
       });
     }
     destroy() { this.unsubscribe?.(); this.host.replaceChildren(); }
+    valueLabel(key, value) {
+      if (typeof value === 'boolean') return value ? 'On' : 'Off';
+      return String(value).split('-').map(part => part[0].toUpperCase() + part.slice(1)).join(' ');
+    }
     render() {
       this.host.innerHTML = this.keys.map((key) => {
-        const pressed = Boolean(this.settings.value[key]);
-        return `<button class="v2-setting-pill" type="button" data-key="${key}" aria-pressed="${pressed}"><span></span>${this.labels[key] || key}</button>`;
+        const value = this.settings.value[key];
+        const pressed = this.choices[key] ? value !== this.choices[key][0] : Boolean(value);
+        return `<button class="v2-setting-pill" type="button" data-key="${key}" aria-pressed="${pressed}"><span></span>${this.labels[key] || key}<em>${this.valueLabel(key, value)}</em></button>`;
       }).join('');
       this.host.querySelectorAll('[data-key]').forEach((button) => {
         button.addEventListener('click', () => {
-          this.settings.set({ [button.dataset.key]: !this.settings.value[button.dataset.key] });
+          const key = button.dataset.key;
+          if (this.choices[key]) {
+            const choices = this.choices[key];
+            const index = choices.indexOf(this.settings.value[key]);
+            this.settings.set({ [key]: choices[(index + 1) % choices.length] });
+          } else {
+            this.settings.set({ [key]: !this.settings.value[key] });
+          }
           this.update();
         });
       });

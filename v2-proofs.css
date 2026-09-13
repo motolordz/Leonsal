@@ -530,6 +530,14 @@ body.v2-hub {
   font: inherit;
   font-weight: 900;
 }
+.v2-setting-pill em {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: .72rem;
+  font-style: normal;
+  font-weight: 850;
+}
 .hub-settings-popover .v2-setting-pill span {
   display: inline-block;
   width: 10px;
@@ -540,6 +548,17 @@ body.v2-hub {
 }
 .hub-settings-popover .v2-setting-pill[aria-pressed="true"] { background: #eaf5ff; border-color: var(--blue); }
 .hub-settings-popover .v2-setting-pill[aria-pressed="true"] span { background: var(--green); }
+body[data-contrast="strong"] {
+  --ink: #07192f;
+  --muted: #24384f;
+  --line: #7894b8;
+}
+body[data-contrast="strong"] .world-game,
+body[data-contrast="strong"] .need-card,
+body[data-contrast="strong"] .hub-character-panel,
+body[data-contrast="strong"] .game-topbar {
+  border: 3px solid rgba(7,25,47,.22);
+}
 
 .hub-welcome {
   min-height: clamp(560px, 88svh, 780px);

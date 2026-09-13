@@ -5,11 +5,13 @@
   const toggle = document.getElementById('hubSettingsButton');
   if (!host || !toggle || typeof LeonSalV2 === 'undefined') return;
   const settings = new LeonSalV2.SensorySettings();
-  new LeonSalV2.SettingsPanel(host, settings, { keys: ['motion', 'sound', 'vibration', 'calmMode'] });
+  new LeonSalV2.SettingsPanel(host, settings, { keys: ['motion', 'sound', 'voice', 'music', 'vibration', 'calmMode', 'particles', 'speed', 'contrast', 'pace'] });
 
   const apply = () => {
     document.body.dataset.motion = settings.allowsMotion() ? 'on' : 'off';
     document.body.dataset.calm = String(settings.value.calmMode);
+    document.body.dataset.contrast = settings.value.contrast;
+    document.body.dataset.speed = settings.value.speed;
   };
   apply();
   settings.on('settings-change', apply);

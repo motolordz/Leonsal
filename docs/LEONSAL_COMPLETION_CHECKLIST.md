@@ -39,7 +39,7 @@ These changes remain preview work. They do not approve character art, claim prod
 
 - [ ] Reconcile the static proof architecture with the adopted Vite/TypeScript modular build target; pin test/build dependencies and add reproducible lockfile/CI.
 - [ ] Complete full game-module preload/mount/start/pause/resume/reset/settings/destroy lifecycle, resource ownership, and repeat-route cleanup tests. The current shared session wrapper handles pause/finish but is not the entire module architecture.
-- [ ] Unify legacy and V2 sensory preference stores, including independent voice/music/sound levels, haptic settings, speed, particles, contrast and pace. Current V2 boolean controls are not the complete global specification.
+- [ ] Unify legacy and V2 sensory preference stores. V2 now validates and exposes motion, sound, voice, music, vibration, calm mode, particles, speed, contrast and pace, but independent audio levels and legacy-store migration are still outstanding.
 - [x] Implement and verify eight foundation engine contracts: memory-recall, physics-play, character-state-animation, world-shell-progress, asset-loader, performance-monitor, profile-progress-store, hint-feedback. These are foundation primitives, not completed games.
 - [ ] Complete parent/profile/local progress controls, error recovery and offline behaviour with no false saved/mastery claims.
 - [ ] Implement Sensory Mixer using global preference ceilings; presets do not count as games.
