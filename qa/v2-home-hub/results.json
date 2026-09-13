@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "viewports": [
+    390,
+    768,
+    1280
+  ],
+  "checks": [
+    "hub loaded",
+    "five sensory games",
+    "three engine proofs",
+    "settings popover",
+    "no horizontal overflow",
+    "no review-art requests"
+  ],
+  "errors": []
+}

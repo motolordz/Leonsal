@@ -23,7 +23,7 @@ try {
   const requests=[];page.on('request',r=>requests.push(r.url()));
   await page.goto(base+'/v2-home.html');
   await page.waitForSelector('[data-approved-character] img');
-  assert.match(await page.locator('[data-approved-character] img').getAttribute('src'),/battery\/happy\/web.webp$/);
+  assert(await page.locator('[data-approved-character] img').evaluateAll(images => images.every(img => /battery\/happy\/web.webp$/.test(img.getAttribute('src') || ''))));
   for(const route of ['energy-battery','dash-dock','bubble-garden','light-trail','hold-to-breathe']) await page.goto(`${base}/v2-${route}.html`);
   assert(!requests.some(url=>/character-review|source-safe-keeping|_staging/.test(url)),'Review art leaked into gameplay');
   await page.goto(base+'/character-review.html');
@@ -72,7 +72,7 @@ try {
  assert(await page.locator('#characterImage').isHidden());
  await page.getByRole('button',{name:'Calm',exact:true}).click();await page.waitForSelector('#characterImage:not([hidden])');
  await page.route('**/data/character-assets.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify({world:[{id:'battery-buddy',status:'pending-art',states:{happy:'assets/character-review/elephant/happy.webp'}}]})}));
- await page.goto(base+'/v2-home.html');await page.waitForLoadState('networkidle');assert.equal(await page.locator('[data-approved-character] img').count(),0);assert(await page.locator('.home-battery').isVisible());
+ await page.goto(base+'/v2-home.html');await page.waitForLoadState('networkidle');assert.equal(await page.locator('[data-approved-character] img').count(),0);assert(await page.locator('.home-battery').first().isVisible());
  assert.deepEqual(errors,[]);await fs.writeFile(`${out}/results.json`,JSON.stringify({passed:true,browser:name,widths:[390,768,1280],checks:['approved-only home','no review gameplay requests','five poses','keyboard','dark background','references','network failure recovery','pending record fallback'],errors},null,2)+'\n');
  console.log(`${name}: character integration checks passed`);
 } finally {await browser.close();await new Promise(resolve=>server.close(resolve));}
