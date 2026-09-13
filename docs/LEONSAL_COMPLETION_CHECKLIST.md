@@ -32,6 +32,7 @@
 - [x] Suppress trail/bubble decoration when motion/particle preferences disallow it.
 - [x] Correct stale BAT-FACE-001 documentation against recorded work-item evidence.
 - [x] Add reusable browser checks and screenshots, preserving approved Battery artwork and registry bytes.
+- [x] Add local-only V2 activity notes for caregiver review: visits and Finished sessions are recorded without scores, grades or mastery claims.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 
@@ -41,7 +42,7 @@ These changes remain preview work. They do not approve character art, claim prod
 - [ ] Complete full game-module preload/mount/start/pause/resume/reset/settings/destroy lifecycle, resource ownership, and repeat-route cleanup tests. The current shared session wrapper handles pause/finish but is not the entire module architecture.
 - [x] Bridge legacy and V2 sensory preference stores for core controls. V2 now validates and exposes motion, sound, voice, music, vibration, calm mode, particles, speed, contrast and pace; the legacy home reads/writes shared motion, sound, vibration and contrast settings. Independent audio levels and deeper profile migration remain outstanding.
 - [x] Implement and verify eight foundation engine contracts: memory-recall, physics-play, character-state-animation, world-shell-progress, asset-loader, performance-monitor, profile-progress-store, hint-feedback. These are foundation primitives, not completed games.
-- [ ] Complete parent/profile/local progress controls, error recovery and offline behaviour with no false saved/mastery claims.
+- [ ] Complete parent/profile controls, error recovery and offline behaviour. Local V2 activity notes now avoid false saved/mastery claims, but multi-profile caregiver controls are not complete.
 - [ ] Implement Sensory Mixer using global preference ceilings; presets do not count as games.
 - [ ] Verify repeated route transitions, background suspension, resource cleanup, performance/long tasks, full accessibility and physical iPhone Safari. Viewport emulation is not physical-device evidence.
 

@@ -4,11 +4,17 @@
 class LeonSalGameShell {
   static sensoryKeys = ['motion', 'sound', 'voice', 'music', 'vibration', 'calmMode', 'particles', 'speed', 'contrast', 'pace'];
 
-  constructor({ settings, motions = [], audio = [], reset }) {
+  static routeGameId() {
+    return location.pathname.split('/').pop().replace(/^v2-/, '').replace(/\.html$/, '') || 'v2-game';
+  }
+
+  constructor({ settings, motions = [], audio = [], reset, gameId = document.body.dataset.gameId || LeonSalGameShell.routeGameId() }) {
     this.settings = settings;
     this.motions = motions;
     this.audio = audio;
     this.reset = reset;
+    this.gameId = gameId;
+    this.profile = typeof LeonSalV2 !== 'undefined' ? new LeonSalV2.ProfileProgressStoreEngine() : null;
     this.paused = false;
     this.scene = document.querySelector('.game-scene');
     this.settingsPanel = document.querySelector('#settings');
@@ -47,6 +53,7 @@ class LeonSalGameShell {
     }, options);
     this.unsubscribe = settings.on('settings-change', () => this.applySettings());
     this.applySettings();
+    this.profile?.record(this.gameId, { visits: ((this.profile.value.progress[this.gameId]?.visits || 0) + 1) });
   }
   closeSettings(focus = false) {
     if (!this.settingsPanel) return;
@@ -70,6 +77,7 @@ class LeonSalGameShell {
     document.body.dataset.paused = 'true';
     this.dialog.querySelector('h2').textContent = finished ? 'All done for now' : 'Take your time';
     this.dialog.querySelector('p').textContent = finished ? 'You can play again or choose something else.' : 'Stay here as long as you like.';
+    if (finished) this.profile?.markFinished(this.gameId);
     this.closeSettings();
     if (!this.dialog.open) this.dialog.showModal();
   }

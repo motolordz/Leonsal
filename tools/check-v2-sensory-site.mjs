@@ -88,6 +88,17 @@ async function main() {
     assert(!requests.some((url) => /source-safe-keeping|qa\/|contact-sheet|rejected/i.test(url)), `${route} requested blocked art/evidence path`);
 
     if (route === 'v2-home.html') {
+      await page.evaluate(() => {
+        localStorage.setItem('leonsal-v2-profile-progress', JSON.stringify({
+          preferences: {},
+          progress: { 'bubble-garden': { visits: 2, updatedAt: new Date().toISOString() } },
+          finished: ['bubble-garden']
+        }));
+      });
+      await page.reload({ waitUntil: 'networkidle' });
+      assert(await page.getByText('Local activity notes').isVisible(), 'V2 home missing local progress panel');
+      assert(await page.locator('#progressSummary').getByText('Quiet Bubble Garden').isVisible(), 'V2 home did not render local progress entry');
+      assert(await page.getByText(/not scores, grades or mastery/i).isVisible(), 'V2 home local progress copy implies assessment');
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 5);
@@ -101,6 +112,14 @@ async function main() {
       assert(await page.locator('.session-controls').isVisible(), `${route} missing session controls`);
       assert(await page.getByRole('button', { name: 'Pause' }).isVisible(), `${route} missing Pause`);
       assert(await page.getByRole('button', { name: 'Finished' }).isVisible(), `${route} missing Finished`);
+      if (route === 'v2-energy-battery.html') {
+        await page.getByRole('button', { name: 'Finished' }).click();
+        assert(await page.getByText('All done for now').isVisible(), `${route} did not show Finished dialog`);
+        const profile = await page.evaluate(() => JSON.parse(localStorage.getItem('leonsal-v2-profile-progress') || '{}'));
+        assert.equal(profile.progress?.['energy-battery']?.visits, 1, `${route} did not record a local visit`);
+        assert(profile.finished?.includes('energy-battery'), `${route} did not record Finished locally`);
+        await page.getByRole('button', { name: 'Keep playing' }).click();
+      }
     }
 
     if (route === 'v2-bubble-garden.html') {
