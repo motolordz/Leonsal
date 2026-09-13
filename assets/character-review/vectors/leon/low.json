@@ -1,0 +1,17 @@
+{
+  "character": "leon",
+  "state": "low",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/leon/low.png",
+  "sourceSha256": "3f19e851a08b2818ba41f565a29632603c97c73187902cfe03bbcdf167ec9817",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/leon/low.svg",
+  "svgSha256": "3603bb89c0af39d314b94e01f99fec6910f9eff5cf0c7ee795377ce818b632c7",
+  "pathCount": 9184,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

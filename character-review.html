@@ -10,7 +10,27 @@
   <main class="world-shell review-shell">
     <header class="world-header"><a class="wordmark" href="v2-home.html">Leon<span>Sal</span></a><a href="v2-home.html">Back to activities</a></header>
     <p class="review-badge">Internal artwork review · For parents and creators</p>
-    <h1>Meet Elephant.</h1><p>Explore the five supplied poses at your own pace. These images are candidates for review and are not approved gameplay artwork.</p>
+    <h1>Meet the characters.</h1><p>Explore the supplied poses at your own pace. These images are candidates for review and are not approved gameplay artwork.</p>
+    <section class="character-playground" aria-labelledby="playgroundTitle">
+      <div class="playground-copy">
+        <h2 id="playgroundTitle">Character motion preview</h2>
+        <p>Leon and Zaya can run, wave and play in the same world while the selected character keeps its own state artwork.</p>
+      </div>
+      <div class="playground-scene" aria-label="Leon and Zaya running in a play space">
+        <img class="runner runner-leon" data-runner="leon" alt="Leon running" decoding="async">
+        <img class="runner runner-zaya" data-runner="zaya" alt="Zaya running" decoding="async">
+        <span class="play-ball" aria-hidden="true"></span>
+        <span class="play-hoop" aria-hidden="true"></span>
+        <span class="play-ground" aria-hidden="true"></span>
+      </div>
+      <div class="character-cards" id="characterCards" aria-label="Supplied character cards"></div>
+    </section>
+    <label for="reviewCharacter">Character</label>
+    <select id="reviewCharacter" style="min-height:48px;font:inherit;margin:12px 0 24px;padding:8px 16px" aria-label="Choose a character"></select>
+    <label for="artFormat">Artwork</label>
+    <select id="artFormat" style="min-height:48px;font:inherit;margin:12px 0 24px;padding:8px 16px">
+      <option value="vector">Vector SVG</option><option value="original">Original image</option>
+    </select>
     <section class="review-workbench" aria-label="Five energy poses">
       <div class="review-stage" id="reviewStage"><img id="characterImage" hidden alt=""><p id="imageStatus" role="status">Loading the supplied artwork…</p></div>
       <div class="review-controls">

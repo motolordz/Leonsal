@@ -1,0 +1,17 @@
+{
+  "character": "elephant",
+  "state": "happy",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/elephant/happy.png",
+  "sourceSha256": "39e48ce0c89150b9a79843f7decd8b0b4bb722b209b83414bba1b12d2d29a97e",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/elephant/happy.svg",
+  "svgSha256": "d1224af872ccb9f17908aee71a43df146afad1147bd199f97f2d804fac2ed18e",
+  "pathCount": 8612,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

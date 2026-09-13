@@ -1,0 +1,10 @@
+{
+  "character": "leon",
+  "state": "empty",
+  "status": "rejected",
+  "method": "Authored SVG eyelids and relaxed mouth on the traced low-energy body",
+  "source": "assets/character-review/vectors/leon/low.svg",
+  "asset": "assets/character-review/vectors/leon/empty-candidate.svg",
+  "productionApproved": false,
+  "visualVerdict": "Rejected: visible flat eyelid/mouth patches do not match the supplied shaded face. Never expose through a runtime or review state resolver."
+}

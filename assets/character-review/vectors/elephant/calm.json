@@ -1,0 +1,17 @@
+{
+  "character": "elephant",
+  "state": "calm",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/elephant/calm.png",
+  "sourceSha256": "4de8829a4590ee9c974a4f1d906f5e8751c3dc7e2e8d05b2003614eced2c58af",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/elephant/calm.svg",
+  "svgSha256": "fd5eeeabd35c103c8751f77e89f36ec02ff2ac5cd00685e95ee95dfd839f7de9",
+  "pathCount": 8670,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

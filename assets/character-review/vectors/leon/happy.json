@@ -1,0 +1,17 @@
+{
+  "character": "leon",
+  "state": "happy",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/leon/happy.png",
+  "sourceSha256": "fc2b6ba6303b0cadc9c25a5f58250d777f8635b5abc8c0d4c3ddabf9569b8909",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/leon/happy.svg",
+  "svgSha256": "b12853eb02c85a52843e06a5b1923271c6b856fb23827a0c6cc69b0309024ccc",
+  "pathCount": 7621,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

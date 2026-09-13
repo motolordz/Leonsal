@@ -1,0 +1,17 @@
+{
+  "character": "leon",
+  "state": "calm",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/leon/calm.png",
+  "sourceSha256": "68c446c9cc16cdb61ded29b4e7588804cf7c4c82cdb222ab71de2b0215645a40",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/leon/calm.svg",
+  "svgSha256": "bf5f727dd9ee70b02b598352ad0ac26dab639fd7da9278bd8adbc57882642f67",
+  "pathCount": 7651,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

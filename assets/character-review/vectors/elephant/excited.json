@@ -1,0 +1,17 @@
+{
+  "character": "elephant",
+  "state": "excited",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/elephant/excited.png",
+  "sourceSha256": "b6509c0a9029c0747a172bfc09c3ba76e1a3d90aa4cf0ca7bcfe9c88feaaf2d1",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/elephant/excited.svg",
+  "svgSha256": "51f42df753219c4560986ba727171f5c7d4712c8fd6f2f989fbdc10f00edd73e",
+  "pathCount": 8442,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

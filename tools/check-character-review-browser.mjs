@@ -4,7 +4,7 @@ import http from 'node:http';
 import path from 'node:path';
 import { chromium, webkit } from 'playwright';
 const root=process.cwd(), name=process.env.LEONSAL_TEST_BROWSER || 'chromium';
-const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.webp':'image/webp','.png':'image/png'};
+const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml'};
 const server=http.createServer(async(req,res)=>{
  const file=path.resolve(root,'.'+new URL(req.url,'http://localhost').pathname);
  if(!file.startsWith(root+path.sep)) return res.writeHead(403).end();
@@ -18,7 +18,7 @@ const out=`qa/character-integration/${name}`;await fs.mkdir(out,{recursive:true}
 const errors=[];
 try {
  for(const width of [390,768,1280]) {
-  const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
+  const context=await browser.newContext({viewport:{width,height:width===390?844:900},reducedMotion:'reduce'});
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
   const requests=[];page.on('request',r=>requests.push(r.url()));
   await page.goto(base+'/v2-home.html');
@@ -29,21 +29,43 @@ try {
   await page.goto(base+'/character-review.html');
   await page.waitForSelector('#characterImage:not([hidden])');
   assert(await page.getByText('Internal artwork review', {exact:false}).isVisible());
-  for(const state of ['empty','low','calm','happy','excited']) {
-   await page.locator(`[data-state="${state}"]`).filter({hasNot:page.locator('img')}).first().click();
-   await page.waitForFunction(s=>{const img=document.querySelector('#characterImage');return !img.hidden && img.dataset.state===s && img.complete && img.naturalWidth===1254;},state);
+  assert.equal(await page.locator('.character-card').count(),3);
+  assert.equal(await page.locator('[data-runner="leon"]').evaluate(img=>img.getAttribute('src').endsWith('/leon/happy.svg')),true);
+  assert.equal(await page.locator('[data-runner="zaya"]').evaluate(img=>img.getAttribute('src').endsWith('/zaya/excited.svg')),true);
+  assert.equal(await page.evaluate(()=>Array.from(document.styleSheets).every(sheet=>Array.from(sheet.cssRules || []).every(rule=>!String(rule.cssText).includes('scaleX(-1)')))),true);
+  for(const character of ['elephant','zaya','leon']) {
+   await page.selectOption('#reviewCharacter',character);
+   assert(await page.locator(`.character-card[data-character="${character}"]`).evaluate(card=>card.classList.contains('is-active')));
+   for(const state of ['empty','low','calm','happy','excited']) {
+   await page.locator(`button[data-state="${state}"]`).click();
+   if(character==='leon' && state==='empty') {
+    await page.getByText("Leon's empty artwork has not been supplied.",{exact:true}).waitFor();
+    assert(await page.locator('#characterImage').isHidden());
+    assert.equal(await page.locator('#characterImage').getAttribute('src'),null);
+    continue;
+   }
+   await page.waitForFunction(({state,character})=>{const img=document.querySelector('#characterImage');return !img.hidden && img.dataset.state===state && img.dataset.character===character && img.dataset.format==='vector' && img.complete && img.naturalWidth===1254;},{state,character});
    assert.equal(await page.locator(`button[data-state="${state}"]`).getAttribute('aria-pressed'),'true');
+   }
+   await page.screenshot({path:`${out}/${character}-${width}.png`,fullPage:true});
   }
+  await page.selectOption('#reviewCharacter','elephant');
+  const retainedEnergy=await page.locator('#energy').inputValue();
+  await page.selectOption('#artFormat','original');
+  await page.waitForFunction(()=>document.querySelector('#characterImage').dataset.format==='original');
+  assert.equal(await page.locator('#energy').inputValue(),retainedEnergy);
+  await page.selectOption('#artFormat','vector');
+  await page.waitForFunction(()=>document.querySelector('#characterImage').dataset.format==='vector');
   await page.locator('#energy').focus();await page.keyboard.press('Home');
   await page.waitForFunction(()=>document.querySelector('#characterImage').dataset.state==='empty');
   await page.locator('#darkBackground').check();assert(await page.locator('#reviewStage').evaluate(el=>el.classList.contains('dark')));
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await page.screenshot({path:`${out}/review-${width}.png`,fullPage:true});
-  await page.locator('summary').click();await page.waitForSelector('#referenceImages img');assert.equal(await page.locator('#referenceImages img').count(),2);
+  await page.locator('summary').click();await page.waitForSelector('#referenceImages img');assert.equal(await page.locator('#referenceImages img').count(),3);
   await context.close();
  }
  const page=await browser.newPage();
- await page.route('**/assets/character-review/elephant/low.webp',route=>route.abort());
+ await page.route('**/assets/character-review/vectors/elephant/low.svg',route=>route.abort());
  await page.goto(base+'/character-review.html');await page.waitForSelector('#characterImage:not([hidden])');
  await page.getByRole('button',{name:'Low',exact:true}).click();
  await page.getByText('This pose could not load.',{exact:false}).waitFor();

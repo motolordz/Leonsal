@@ -1,0 +1,17 @@
+{
+  "character": "elephant",
+  "state": "low",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/elephant/low.png",
+  "sourceSha256": "64ea39d63c1631b1d00a51ece007919a56f147a4b26017036a7e1ac212371d78",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/elephant/low.svg",
+  "svgSha256": "c6dec9ab72aa0c621745749e1d7d4e539a596ad94d3d6f506045eab9a9ea57a4",
+  "pathCount": 6976,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

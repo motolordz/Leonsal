@@ -1,0 +1,17 @@
+{
+  "character": "zaya",
+  "state": "calm",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/zaya/calm.png",
+  "sourceSha256": "e9dfaeb36f5cb0a3f0aed4a7969f1a68a32bff02eb4538024394bb81233a1231",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/zaya/calm.svg",
+  "svgSha256": "a795448aab692b1ec04c6c6e68b218e8c0e6fb03d3c3f20f2750c1087618188d",
+  "pathCount": 10170,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

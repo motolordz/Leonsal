@@ -1,0 +1,17 @@
+{
+  "character": "leon",
+  "state": "excited",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/leon/excited.png",
+  "sourceSha256": "9b9331b046ca45fe4a6f72b34f0cc13a014a3ddb9fceb31cf7a679506ef35242",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/leon/excited.svg",
+  "svgSha256": "1b1199487a85e5c6cdf2ad40ca04254dd4ffe51638e7df811330f743f84da13d",
+  "pathCount": 9226,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

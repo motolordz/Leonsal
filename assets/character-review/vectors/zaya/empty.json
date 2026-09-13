@@ -1,0 +1,17 @@
+{
+  "character": "zaya",
+  "state": "empty",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/zaya/empty.png",
+  "sourceSha256": "8f51e17676e2a8c9c4c2c4719b18398a635836fb0cc2fb810b94ec3c6f40a821",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/zaya/empty.svg",
+  "svgSha256": "c093ab6fa1979c02bffcc8ca2237368cd3da38774282cdd9e3ee349848fec6a2",
+  "pathCount": 19579,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

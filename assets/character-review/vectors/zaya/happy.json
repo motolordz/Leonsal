@@ -1,0 +1,17 @@
+{
+  "character": "zaya",
+  "state": "happy",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/zaya/happy.png",
+  "sourceSha256": "f6c99e8fde3429c8188c90f7fc108214f33871c69fcf2d2b3ebf3ca7ddc984a5",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/zaya/happy.svg",
+  "svgSha256": "e4abb4da608325bec542d3bd0b143c676d87e130852b6b8b08862b9c03beac88",
+  "pathCount": 10371,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

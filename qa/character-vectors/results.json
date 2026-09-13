@@ -1,0 +1,295 @@
+{
+  "method": "VTracer spline tracing from supplied individual PNGs; not newly authored HD masters",
+  "productionApproval": false,
+  "passed": true,
+  "total": 14,
+  "results": [
+    {
+      "character": "elephant",
+      "state": "empty",
+      "vectorSrc": "assets/character-review/vectors/elephant/empty.svg",
+      "bytes": 6851604,
+      "pathCount": 12206,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "df6e7414650066b9da9506d485d8e773f97bf72e5293e992e4e0b1fe51804ba1",
+      "status": "review-only"
+    },
+    {
+      "character": "elephant",
+      "state": "low",
+      "vectorSrc": "assets/character-review/vectors/elephant/low.svg",
+      "bytes": 4256424,
+      "pathCount": 6976,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "c6dec9ab72aa0c621745749e1d7d4e539a596ad94d3d6f506045eab9a9ea57a4",
+      "status": "review-only"
+    },
+    {
+      "character": "elephant",
+      "state": "calm",
+      "vectorSrc": "assets/character-review/vectors/elephant/calm.svg",
+      "bytes": 5163346,
+      "pathCount": 8670,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "fd5eeeabd35c103c8751f77e89f36ec02ff2ac5cd00685e95ee95dfd839f7de9",
+      "status": "review-only"
+    },
+    {
+      "character": "elephant",
+      "state": "happy",
+      "vectorSrc": "assets/character-review/vectors/elephant/happy.svg",
+      "bytes": 5081135,
+      "pathCount": 8612,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "d1224af872ccb9f17908aee71a43df146afad1147bd199f97f2d804fac2ed18e",
+      "status": "review-only"
+    },
+    {
+      "character": "elephant",
+      "state": "excited",
+      "vectorSrc": "assets/character-review/vectors/elephant/excited.svg",
+      "bytes": 4924027,
+      "pathCount": 8442,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "51f42df753219c4560986ba727171f5c7d4712c8fd6f2f989fbdc10f00edd73e",
+      "status": "review-only"
+    },
+    {
+      "character": "zaya",
+      "state": "empty",
+      "vectorSrc": "assets/character-review/vectors/zaya/empty.svg",
+      "bytes": 9253841,
+      "pathCount": 19579,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "c093ab6fa1979c02bffcc8ca2237368cd3da38774282cdd9e3ee349848fec6a2",
+      "status": "review-only"
+    },
+    {
+      "character": "zaya",
+      "state": "low",
+      "vectorSrc": "assets/character-review/vectors/zaya/low.svg",
+      "bytes": 5164109,
+      "pathCount": 11923,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "5a45ff0edf1f2d735f798fbecd67c2cc3cf89437c1a3f8cb4a2fe20c0f6a3385",
+      "status": "review-only"
+    },
+    {
+      "character": "zaya",
+      "state": "calm",
+      "vectorSrc": "assets/character-review/vectors/zaya/calm.svg",
+      "bytes": 4353503,
+      "pathCount": 10170,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "a795448aab692b1ec04c6c6e68b218e8c0e6fb03d3c3f20f2750c1087618188d",
+      "status": "review-only"
+    },
+    {
+      "character": "zaya",
+      "state": "happy",
+      "vectorSrc": "assets/character-review/vectors/zaya/happy.svg",
+      "bytes": 4349015,
+      "pathCount": 10371,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "e4abb4da608325bec542d3bd0b143c676d87e130852b6b8b08862b9c03beac88",
+      "status": "review-only"
+    },
+    {
+      "character": "zaya",
+      "state": "excited",
+      "vectorSrc": "assets/character-review/vectors/zaya/excited.svg",
+      "bytes": 4994574,
+      "pathCount": 11468,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "5f3927ba8314bfcea99d5de1ea7378fe76dcd272120244fa94572e5b02ce6c0d",
+      "status": "review-only"
+    },
+    {
+      "character": "leon",
+      "state": "low",
+      "vectorSrc": "assets/character-review/vectors/leon/low.svg",
+      "bytes": 4007109,
+      "pathCount": 9184,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "3603bb89c0af39d314b94e01f99fec6910f9eff5cf0c7ee795377ce818b632c7",
+      "status": "review-only"
+    },
+    {
+      "character": "leon",
+      "state": "calm",
+      "vectorSrc": "assets/character-review/vectors/leon/calm.svg",
+      "bytes": 3356015,
+      "pathCount": 7651,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "bf5f727dd9ee70b02b598352ad0ac26dab639fd7da9278bd8adbc57882642f67",
+      "status": "review-only"
+    },
+    {
+      "character": "leon",
+      "state": "happy",
+      "vectorSrc": "assets/character-review/vectors/leon/happy.svg",
+      "bytes": 3226116,
+      "pathCount": 7621,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "b12853eb02c85a52843e06a5b1923271c6b856fb23827a0c6cc69b0309024ccc",
+      "status": "review-only"
+    },
+    {
+      "character": "leon",
+      "state": "excited",
+      "vectorSrc": "assets/character-review/vectors/leon/excited.svg",
+      "bytes": 4143587,
+      "pathCount": 9226,
+      "rasterEmbeddings": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedDimensions": [
+        512,
+        512
+      ],
+      "sha256": "1b1199487a85e5c6cdf2ad40ca04254dd4ffe51638e7df811330f743f84da13d",
+      "status": "review-only"
+    }
+  ],
+  "pending": [
+    "Leon empty pose",
+    "Guide uppercase clothing names",
+    "Rigged walking/running poses",
+    "Lion individual assets and vector states",
+    "Production visual approval"
+  ]
+}

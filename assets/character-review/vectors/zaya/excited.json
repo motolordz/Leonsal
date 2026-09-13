@@ -1,0 +1,17 @@
+{
+  "character": "zaya",
+  "state": "excited",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/zaya/excited.png",
+  "sourceSha256": "dee38a0889064d718e39fb095bbe0f9893241e0a3e778437f1470723e64e5a4f",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/zaya/excited.svg",
+  "svgSha256": "5f3927ba8314bfcea99d5de1ea7378fe76dcd272120244fa94572e5b02ce6c0d",
+  "pathCount": 11468,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}

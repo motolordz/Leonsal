@@ -1,0 +1,17 @@
+{
+  "character": "zaya",
+  "state": "low",
+  "status": "review-only",
+  "source": "assets/source-safe-keeping/supplied-20260911/zaya/low.png",
+  "sourceSha256": "85bb1ffb6d2cd71866b73216b959213fd55812aa43d49eb6a7d263bdf16fb613",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "method": "vtracer-0.6.15-spline-paths",
+  "svg": "assets/character-review/vectors/zaya/low.svg",
+  "svgSha256": "5a45ff0edf1f2d735f798fbecd67c2cc3cf89437c1a3f8cb4a2fe20c0f6a3385",
+  "pathCount": 11923,
+  "rasterEmbeddings": 0,
+  "productionApproved": false
+}
