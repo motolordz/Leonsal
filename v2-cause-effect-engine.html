@@ -9,7 +9,7 @@
 <body class="v2-experience">
   <main class="game-shell">
     <header class="game-topbar">
-      <a class="icon-button" href="v2-proof-lab.html" aria-label="Back to proof hub">‹</a>
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
       <div class="game-title"><strong>Cause and Effect</strong><span>Tap a switch and watch the world respond.</span></div>
       <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
       <div class="settings-popover" id="settings"></div>
@@ -26,6 +26,7 @@
     </section>
   </main>
   <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const engine = new LeonSalV2.CauseEffectEngine();
@@ -49,7 +50,11 @@
       reducedMotion: settings.value.reducedMotion,
       calmMode: settings.value.calmMode
     });
-    window.__causeEffectProofCleanup = () => engine.destroy();
+    const gameShell = new LeonSalGameShell({ settings, motions: [], audio: [], reset: () => engine.trigger('reset') });
+    window.__causeEffectProofCleanup = () => {
+      engine.destroy();
+      gameShell.destroy();
+    };
     engine.trigger('reset');
   </script>
 </body>
