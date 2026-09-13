@@ -10,13 +10,17 @@
       "passed": true,
       "coverage": [
         "navigation",
-        "pause-finish-resume",
+        "need-picker",
+        "pause-finish-resume-all-routes",
         "settings-keyboard-focus",
         "dash-lifecycle",
         "bubble-keyboard-density",
         "trail-keyboard",
         "OS-reduced-motion",
-        "breathing-keyboard"
+        "breathing-keyboard",
+        "trace-step-alternative",
+        "orbit-educational-scale-note",
+        "cause-effect-reset"
       ]
     },
     {
@@ -27,13 +31,17 @@
       "passed": true,
       "coverage": [
         "navigation",
-        "pause-finish-resume",
+        "need-picker",
+        "pause-finish-resume-all-routes",
         "settings-keyboard-focus",
         "dash-lifecycle",
         "bubble-keyboard-density",
         "trail-keyboard",
         "OS-reduced-motion",
-        "breathing-keyboard"
+        "breathing-keyboard",
+        "trace-step-alternative",
+        "orbit-educational-scale-note",
+        "cause-effect-reset"
       ]
     },
     {
@@ -44,13 +52,17 @@
       "passed": true,
       "coverage": [
         "navigation",
-        "pause-finish-resume",
+        "need-picker",
+        "pause-finish-resume-all-routes",
         "settings-keyboard-focus",
         "dash-lifecycle",
         "bubble-keyboard-density",
         "trail-keyboard",
         "OS-reduced-motion",
-        "breathing-keyboard"
+        "breathing-keyboard",
+        "trace-step-alternative",
+        "orbit-educational-scale-note",
+        "cause-effect-reset"
       ]
     }
   ],

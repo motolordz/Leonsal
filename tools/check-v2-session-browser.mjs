@@ -21,6 +21,16 @@ const base = `http://127.0.0.1:${server.address().port}`;
 const browser = await ({chromium,webkit}[browserName]).launch();
 const failures = [];
 const results = [];
+const playableRoutes = [
+  'energy-battery',
+  'dash-dock',
+  'bubble-garden',
+  'light-trail',
+  'hold-to-breathe',
+  'trace-engine',
+  'orbit-engine',
+  'cause-effect-engine'
+];
 try {
   for (const viewport of [{width:390,height:844}, {width:768,height:1024}, {width:1280,height:800}]) {
     const context = await browser.newContext({viewport});
@@ -28,17 +38,20 @@ try {
     page.on('pageerror', error => failures.push(error.message));
     page.on('response', response => { if(response.status() >= 400) failures.push(`${response.status()} ${response.url()}`); });
     await page.goto(base+'/v2-home.html');
-    assert.equal(await page.locator('.world-game').count(), 5);
+    assert.equal(await page.locator('.hub-game-grid .world-game').count(), 5);
+    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
+    assert.equal(await page.locator('.need-card').count(), 4);
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
-    for (const route of ['energy-battery','dash-dock','bubble-garden','light-trail','hold-to-breathe']) {
+    for (const route of playableRoutes) {
       await page.goto(`${base}/v2-${route}.html`);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${route}: horizontal overflow`);
       await page.getByRole('button',{name:'Pause',exact:true}).click();
       assert(await page.locator('.session-dialog').isVisible());
       assert(await page.locator('.game-scene').evaluate(el=>el.inert));
-      if(route!=='energy-battery') assert.equal(await page.evaluate(()=>motion.frame),0);
+      assert.equal(await page.locator('body').getAttribute('data-paused'),'true');
       await page.keyboard.press('Escape');
       assert.equal(await page.locator('.game-scene').evaluate(el=>el.inert),false);
+      assert.equal(await page.locator('body').getAttribute('data-paused'),'false');
       await page.getByRole('button',{name:'Finished',exact:true}).click();
       await page.getByRole('button',{name:'Start again',exact:true}).last().click();
       await page.getByRole('button',{name:'Sensory settings',exact:true}).click();
@@ -89,7 +102,17 @@ try {
     assert.equal(await page.evaluate(()=>scale),1.55);
     await page.getByRole('button',{name:'Settle',exact:true}).click();
     assert.equal(await page.evaluate(()=>scale),1);
-    results.push({viewport,passed:true,coverage:['navigation','pause-finish-resume','settings-keyboard-focus','dash-lifecycle','bubble-keyboard-density','trail-keyboard','OS-reduced-motion','breathing-keyboard']});
+    await page.goto(base+'/v2-trace-engine.html');
+    await page.getByRole('button',{name:'Step',exact:true}).click();
+    assert((await page.evaluate(()=>window.__traceProofState().progress))>0);
+    await page.goto(base+'/v2-orbit-engine.html');
+    assert.equal(await page.evaluate(()=>window.__orbitProofState().educationalScaleNote),true);
+    await page.goto(base+'/v2-cause-effect-engine.html');
+    await page.getByRole('button',{name:'Light',exact:true}).click();
+    await page.getByRole('button',{name:'Grow',exact:true}).click();
+    await page.getByRole('button',{name:'Reset',exact:true}).click();
+    assert.equal(await page.evaluate(()=>window.__causeEffectProofState().deterministicReset),true);
+    results.push({viewport,passed:true,coverage:['navigation','need-picker','pause-finish-resume-all-routes','settings-keyboard-focus','dash-lifecycle','bubble-keyboard-density','trail-keyboard','OS-reduced-motion','breathing-keyboard','trace-step-alternative','orbit-educational-scale-note','cause-effect-reset']});
     await context.close();
   }
   assert.deepEqual(failures,[]);
