@@ -19,5 +19,9 @@
     "speedFactor": 0,
     "particleCount": 0
   },
-  "checkedSettings": 10
+  "checkedSettings": 10,
+  "legacyBridge": {
+    "readV2": true,
+    "writesV2": true
+  }
 }

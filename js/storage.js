@@ -3,6 +3,7 @@
 
   var KEY = "leonsal.progress.v1";
   var SETTINGS_KEY = "leonsal.settings.v1";
+  var V2_SETTINGS_KEY = "leonsal-v2-settings";
 
   var defaults = {
     motion: true,
@@ -23,6 +24,27 @@
     }
   }
 
+  function fromV2Settings(settings) {
+    var result = {};
+    ["motion", "sound", "voice", "vibration", "reducedMotion", "calmMode", "confetti"].forEach(function (key) {
+      if (typeof settings[key] === "boolean") result[key] = settings[key];
+    });
+    return result;
+  }
+
+  function toV2Settings(settings) {
+    var existing = readJson(V2_SETTINGS_KEY, {});
+    return Object.assign({}, existing, {
+      motion: Boolean(settings.motion),
+      sound: Boolean(settings.sound),
+      voice: Boolean(settings.voice),
+      vibration: Boolean(settings.vibration),
+      reducedMotion: Boolean(settings.reducedMotion),
+      calmMode: Boolean(settings.calmMode),
+      confetti: Boolean(settings.confetti)
+    });
+  }
+
   function writeJson(key, value) {
     try {
       if (global.localStorage) {
@@ -35,12 +57,13 @@
   }
 
   function getSettings() {
-    return Object.assign({}, defaults, readJson(SETTINGS_KEY, {}));
+    return Object.assign({}, defaults, readJson(SETTINGS_KEY, {}), fromV2Settings(readJson(V2_SETTINGS_KEY, {})));
   }
 
   function saveSettings(nextSettings) {
     var settings = Object.assign({}, getSettings(), nextSettings || {});
     writeJson(SETTINGS_KEY, settings);
+    writeJson(V2_SETTINGS_KEY, toV2Settings(settings));
     global.dispatchEvent(new CustomEvent("leonsal:settings", { detail: settings }));
     return settings;
   }

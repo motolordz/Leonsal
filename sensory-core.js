@@ -1,6 +1,7 @@
 'use strict';
 
   const STORAGE_KEY = 'leonsal-sensory-v1';
+  const V2_SETTINGS_KEY = 'leonsal-v2-settings';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const defaults = {
     energy: 68,
@@ -62,9 +63,36 @@
     resetAll: $('#resetAll')
   };
 
+  function loadV2Settings() {
+    try {
+      return JSON.parse(window.localStorage.getItem(V2_SETTINGS_KEY) || '{}');
+    } catch (_error) {
+      return {};
+    }
+  }
+
+  function saveV2Settings() {
+    const existing = loadV2Settings();
+    const next = {
+      ...existing,
+      motion: state.motion,
+      sound: state.sound,
+      vibration: state.haptic,
+      contrast: state.contrast ? 'strong' : 'standard',
+      reducedMotion: prefersReducedMotion.matches || Boolean(existing.reducedMotion)
+    };
+    try {
+      window.localStorage.setItem(V2_SETTINGS_KEY, JSON.stringify(next));
+      window.dispatchEvent(new CustomEvent('leonsal:v2-settings-bridge', { detail: next }));
+    } catch (_error) {
+      // Settings remain optional; play still works without persistent storage.
+    }
+  }
+
   function loadState() {
     try {
       const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '{}');
+      const v2 = loadV2Settings();
       const savedCharacter = String(saved.character || '');
       const validCharacter = ['battery', 'battery-buddy', 'elephant', 'bus', 'double-decker', 'plane', 'boat', 'letter', 'letter-a', 'leon', 'zaya'].includes(savedCharacter) ||
         /^letter-[a-z]$/.test(savedCharacter) ||
@@ -73,10 +101,10 @@
       return {
         energy: clamp(Number.isFinite(Number(saved.energy)) ? Number(saved.energy) : defaults.energy, 0, 100),
         routine: saved.routine === 'night' ? 'night' : 'day',
-        motion: typeof saved.motion === 'boolean' ? saved.motion : defaults.motion,
-        sound: typeof saved.sound === 'boolean' ? saved.sound : defaults.sound,
-        haptic: typeof saved.haptic === 'boolean' ? saved.haptic : defaults.haptic,
-        contrast: typeof saved.contrast === 'boolean' ? saved.contrast : defaults.contrast,
+        motion: typeof v2.motion === 'boolean' ? v2.motion : (typeof saved.motion === 'boolean' ? saved.motion : defaults.motion),
+        sound: typeof v2.sound === 'boolean' ? v2.sound : (typeof saved.sound === 'boolean' ? saved.sound : defaults.sound),
+        haptic: typeof v2.vibration === 'boolean' ? v2.vibration : (typeof saved.haptic === 'boolean' ? saved.haptic : defaults.haptic),
+        contrast: ['strong', 'standard'].includes(v2.contrast) ? v2.contrast === 'strong' : (typeof saved.contrast === 'boolean' ? saved.contrast : defaults.contrast),
         feeling: ['calm', 'wiggly', 'tired', 'big', 'sad', 'angry', 'hungry', 'thirsty', 'loud', 'sore', 'toilet', 'worried'].includes(saved.feeling) ? saved.feeling : null,
         character: validCharacter ? savedCharacter : 'battery',
         glyph: /^([A-Z]|10|[1-9])$/.test(saved.glyph || '') ? saved.glyph : 'A'
@@ -98,6 +126,7 @@
     } catch (_error) {
       // The experience still works when private browsing blocks storage.
     }
+    saveV2Settings();
   }
 
   function announce(message) {

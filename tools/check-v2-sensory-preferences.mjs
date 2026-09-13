@@ -82,7 +82,33 @@ async function main() {
     await speed.click();
     assert.match(await speed.textContent(), /Slow/);
     await page.screenshot({ path: `${out}/v2-home-settings-390.png`, fullPage: true });
-    await fs.writeFile(`${out}/results.json`, JSON.stringify({ passed: true, engineResult, checkedSettings: 10 }, null, 2) + '\n');
+    await page.evaluate(() => {
+      localStorage.setItem('leonsal-v2-settings', JSON.stringify({
+        motion: true,
+        sound: true,
+        vibration: true,
+        contrast: 'strong',
+        reducedMotion: false
+      }));
+      localStorage.removeItem('leonsal-sensory-v1');
+    });
+    await page.goto(`http://127.0.0.1:${server.address().port}/index.html`, { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#motionToggle').getAttribute('aria-checked'), 'true', 'Legacy home did not read V2 motion setting');
+    assert.equal(await page.locator('#soundToggle').getAttribute('aria-checked'), 'true', 'Legacy home did not read V2 sound setting');
+    assert.equal(await page.locator('#hapticToggle').getAttribute('aria-checked'), 'true', 'Legacy home did not read V2 vibration setting');
+    assert(await page.locator('body.high-contrast').count(), 'Legacy home did not apply V2 strong contrast setting');
+    await page.locator('#soundToggle').click();
+    await page.locator('#hapticToggle').click();
+    const bridged = await page.evaluate(() => JSON.parse(localStorage.getItem('leonsal-v2-settings') || '{}'));
+    assert.equal(bridged.sound, false, 'Legacy sound toggle did not update V2 settings');
+    assert.equal(bridged.vibration, false, 'Legacy vibration toggle did not update V2 settings');
+
+    await fs.writeFile(`${out}/results.json`, JSON.stringify({
+      passed: true,
+      engineResult,
+      checkedSettings: 10,
+      legacyBridge: { readV2: true, writesV2: true }
+    }, null, 2) + '\n');
     console.log('V2 sensory preference checks passed.');
     await context.close();
   } finally {
