@@ -147,6 +147,13 @@ async function main() {
       assert.equal(state.registeredEffects, 3);
     }
 
+    if (route !== 'v2-home.html') {
+      await page.evaluate(() => window.__leonSalActiveGameShell?.destroy());
+      assert.equal(await page.locator('.session-controls').count(), 0, `${route} session controls survived shell destroy`);
+      assert.equal(await page.locator('.session-dialog').count(), 0, `${route} session dialog survived shell destroy`);
+      assert.equal(await page.locator('body').getAttribute('data-paused'), 'false', `${route} did not clear paused state on shell destroy`);
+    }
+
     results.push({ route, passed: true });
     await context.close();
   }

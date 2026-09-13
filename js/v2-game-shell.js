@@ -14,8 +14,11 @@ class LeonSalGameShell {
     this.settingsPanel = document.querySelector('#settings');
     this.settingsToggle = document.querySelector('#settingsToggle');
     this.controller = new AbortController();
+    window.__leonSalActiveGameShell?.destroy?.();
+    window.__leonSalActiveGameShell = this;
     const options = { signal: this.controller.signal };
     const bar = document.createElement('nav');
+    this.controls = bar;
     bar.className = 'session-controls';
     bar.setAttribute('aria-label', 'Game controls');
     bar.innerHTML = '<a href="v2-home.html">Home</a><button type="button" data-session-pause>Pause</button><button type="button" data-session-finish>Finished</button>';
@@ -84,6 +87,12 @@ class LeonSalGameShell {
     this.unsubscribe?.();
     this.motions.forEach((motion) => motion.stop());
     this.audio.forEach((audio) => audio.stop());
+    this.scene.inert = false;
+    document.body.dataset.paused = 'false';
+    this.controls.remove();
+    if (this.dialog.open) this.dialog.close();
     this.dialog.remove();
+    document.dispatchEvent(new Event('leonsal-destroy'));
+    if (window.__leonSalActiveGameShell === this) window.__leonSalActiveGameShell = null;
   }
 }
