@@ -31,7 +31,7 @@
     const settings = new LeonSalV2.SensorySettings();
     const engine = new LeonSalV2.CauseEffectEngine();
     const stage = document.querySelector('#stage');
-    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
     document.querySelector('#settingsToggle').addEventListener('click', () => {
       const panel = document.querySelector('#settings');
       const open = panel.dataset.open !== 'true';

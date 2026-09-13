@@ -35,7 +35,7 @@
     const motion = new LeonSalV2.MotionEngine(settings);
     const orbit = new LeonSalV2.OrbitEngine(motion, settings);
     const stage = document.querySelector('#stage');
-    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings);
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
     document.querySelector('#settingsToggle').addEventListener('click', () => {
       const panel = document.querySelector('#settings');
       const open = panel.dataset.open !== 'true';

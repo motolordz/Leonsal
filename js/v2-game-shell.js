@@ -2,6 +2,8 @@
 
 // Shared no-pressure lifecycle for the five flagship previews.
 class LeonSalGameShell {
+  static sensoryKeys = ['motion', 'sound', 'voice', 'music', 'vibration', 'calmMode', 'particles', 'speed', 'contrast', 'pace'];
+
   constructor({ settings, motions = [], audio = [], reset }) {
     this.settings = settings;
     this.motions = motions;
@@ -52,6 +54,8 @@ class LeonSalGameShell {
   applySettings() {
     document.body.dataset.motion = this.settings.allowsMotion() ? 'on' : 'off';
     document.body.dataset.calm = String(this.settings.value.calmMode);
+    document.body.dataset.contrast = this.settings.value.contrast;
+    document.body.dataset.speed = this.settings.value.speed;
   }
   pause(finished = false) {
     if (!this.paused) this.previousFocus = document.activeElement;

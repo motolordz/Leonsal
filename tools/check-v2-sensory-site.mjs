@@ -95,6 +95,7 @@ async function main() {
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
+      assert.equal(await page.locator('#settings [data-key]').count(), 10, `${route} does not expose the full shared sensory settings panel`);
       await page.keyboard.press('Escape');
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'false', `${route} settings did not close`);
       assert(await page.locator('.session-controls').isVisible(), `${route} missing session controls`);
