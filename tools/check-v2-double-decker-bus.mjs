@@ -63,7 +63,14 @@ async function main() {
     let state = await page.evaluate(() => window.__doubleDeckerBusProofState());
     assert.equal(state.bus, 'hong-kong');
     assert.equal(state.speed, 'super-speed');
+    assert.equal(state.destination, 'Harbour');
+    assert.equal(state.routeMark, 'HK');
     assert(state.effectiveSpeed > 18, 'Super speed should be faster than slow before calm mode');
+    await page.getByRole('button', { name: 'Night Bus', exact: true }).click();
+    state = await page.evaluate(() => window.__doubleDeckerBusProofState());
+    assert.equal(state.bus, 'night');
+    assert.equal(state.destination, 'Home');
+    assert.equal(state.routeMark, 'Nite');
     await page.evaluate(() => settings.set({ calmMode: true }));
     state = await page.evaluate(() => window.__doubleDeckerBusProofState());
     assert(state.effectiveSpeed <= 18, 'Calm mode must cap the bus at slow speed');
@@ -86,6 +93,8 @@ async function main() {
     assert.equal(state.bus, 'uk');
     assert.equal(state.speed, 'medium');
     assert.equal(state.progress, 0);
+    assert.equal(state.destination, 'Park');
+    assert.equal(state.routeMark, 'UK');
     await page.screenshot({ path: `${out}/double-decker-bus-390.png`, fullPage: true });
     await fs.writeFile(`${out}/results.json`, JSON.stringify({ passed: true, viewport: { width: 390, height: 844 }, geometry, checks: ['three bus types', 'five speed modes', 'journey landmarks', 'park milestone', 'library milestone', 'finish milestone', 'skyline depth', 'arrival lights', 'calm speed cap', 'reduced-motion static completion', 'reset restores defaults', 'no horizontal overflow'], consoleErrors: failures }, null, 2) + '\n');
     assert.equal(failures.length, 0, `Console errors: ${failures.join('; ')}`);

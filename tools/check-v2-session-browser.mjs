@@ -352,6 +352,8 @@ try {
     await page.getByRole('button',{name:'Super speed',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__doubleDeckerBusProofState().bus),'hong-kong');
     assert.equal(await page.evaluate(()=>window.__doubleDeckerBusProofState().speed),'super-speed');
+    assert.equal(await page.evaluate(()=>window.__doubleDeckerBusProofState().destination),'Harbour');
+    assert.equal(await page.evaluate(()=>window.__doubleDeckerBusProofState().routeMark),'HK');
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert((await page.evaluate(()=>window.__doubleDeckerBusProofState().effectiveSpeed))<=18);
     await page.goto(base+'/v2-light-trail.html');

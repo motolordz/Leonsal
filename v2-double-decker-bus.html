@@ -32,9 +32,11 @@
         </span>
         <span class="double-bus" id="bus" role="button" tabindex="0" aria-label="Start the selected bus journey">
           <span class="bus-destination" id="busDestination">Park</span>
+          <span class="bus-route-mark" id="busRouteMark">UK</span>
           <span class="bus-motion-lines"></span>
           <span class="bus-deck top-deck"></span>
           <span class="bus-deck lower-deck"></span>
+          <span class="bus-side-stripe"></span>
           <span class="bus-face"></span>
           <span class="bus-wheel front-wheel"></span>
           <span class="bus-wheel back-wheel"></span>
@@ -70,6 +72,7 @@
     const world = document.querySelector('#world');
     const bus = document.querySelector('#bus');
     const destination = document.querySelector('#busDestination');
+    const routeMark = document.querySelector('#busRouteMark');
     const status = document.querySelector('#status');
     const speedFactors = {
       'super-slow': 10,
@@ -89,6 +92,16 @@
       uk: 'UK Bus',
       'hong-kong': 'Hong Kong Bus',
       night: 'Night Bus'
+    };
+    const busDestinations = {
+      uk: 'Park',
+      'hong-kong': 'Harbour',
+      night: 'Home'
+    };
+    const busRouteMarks = {
+      uk: 'UK',
+      'hong-kong': 'HK',
+      night: 'Nite'
     };
     let selectedBus = 'uk';
     let selectedSpeed = 'medium';
@@ -167,7 +180,8 @@
     function setBus(nextBus) {
       selectedBus = nextBus;
       world.dataset.bus = selectedBus;
-      if (destination) destination.textContent = selectedBus === 'hong-kong' ? 'Harbour' : selectedBus === 'night' ? 'Home' : 'Park';
+      if (destination) destination.textContent = busDestinations[selectedBus] || 'Park';
+      if (routeMark) routeMark.textContent = busRouteMarks[selectedBus] || 'Bus';
       updateButtons();
       status.textContent = `${busName()} is ready at ${speedLabels[selectedSpeed]} speed.`;
     }
@@ -243,6 +257,8 @@
       milestone: lastMilestone,
       hasCharacterRenderer: [...document.querySelectorAll('.bus-choice')].every((button) => Boolean(button.querySelector('.procedural-character-svg.character-family-world'))),
       hasTapAlternative: true,
+      destination: destination?.textContent || '',
+      routeMark: routeMark?.textContent || '',
       calmMode: settings.value.calmMode,
       reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()
     });

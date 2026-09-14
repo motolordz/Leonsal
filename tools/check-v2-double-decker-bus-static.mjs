@@ -27,13 +27,21 @@ for (const text of [
   'data-speed-dot="super-slow"',
   'bus.addEventListener(\'click\'',
   "event.key === 'Enter' || event.key === ' '",
-  "destination.textContent = selectedBus === 'hong-kong' ? 'Harbour'"
+  'const busDestinations',
+  'const busRouteMarks',
+  'destination.textContent = busDestinations[selectedBus]',
+  'routeMark.textContent = busRouteMarks[selectedBus]',
+  'destination: destination?.textContent',
+  'routeMark: routeMark?.textContent'
 ]) {
   assert(html.includes(text), `Double-decker bus missing interaction/sensory contract: ${text}`);
 }
 
-for (const selector of ['.bus-choice-row', '.bus-speed-row', '.double-bus', '.bus-landmark', '.bus-city', '.bus-lights', '.speed-ribbon', '.bus-destination', '.bus-motion-lines']) {
+for (const selector of ['.bus-choice-row', '.bus-speed-row', '.double-bus', '.bus-landmark', '.bus-city', '.bus-lights', '.speed-ribbon', '.bus-destination', '.bus-route-mark', '.bus-side-stripe', '.bus-motion-lines']) {
   assert(css.includes(selector), `Double-decker bus missing visual CSS: ${selector}`);
+}
+for (const selector of ['.bus-world[data-bus="uk"] .double-bus', '.bus-world[data-bus="hong-kong"] .bus-side-stripe', '.bus-world[data-bus="night"] .bus-route-mark']) {
+  assert(css.includes(selector), `Double-decker bus missing bus-specific visual treatment: ${selector}`);
 }
 assert(css.includes('@media (max-width: 760px)'), 'Double-decker bus must have mobile layout rules');
 assert(css.includes('.bus-choice,.bus-speed { min-width: 0; min-height: 48px'), 'Bus choices must keep touch-sized mobile controls');

@@ -2510,15 +2510,17 @@ body[data-motion="off"] .transport-choice { transition: none; }
 .speed-ribbon i:nth-child(4) { left: 71%; }
 .speed-ribbon i:nth-child(5) { left: 92%; }
 .speed-ribbon i[data-active="true"] { transform: translate(-50%,-50%) scale(1.35); background: #facc15; }
-.double-bus { --progress: 0%; position: absolute; left: calc(13% + (var(--progress) * .72)); bottom: 27%; z-index: 5; width: min(42vw, 250px); height: min(26vw, 155px); max-height: 170px; border-radius: 24px 28px 18px 18px; transform: translateX(-50%); background: linear-gradient(180deg, #ef4444 0 49%, #dc2626 50% 100%); box-shadow: inset 0 -14px 0 rgba(19,35,67,.13), 0 24px 38px rgba(19,35,67,.2); transition: background .22s ease; pointer-events: auto; cursor: pointer; touch-action: manipulation; }
+.double-bus { --progress: 0%; position: absolute; left: calc(13% + (var(--progress) * .72)); bottom: 27%; z-index: 5; width: min(42vw, 250px); height: min(26vw, 155px); max-height: 170px; border-radius: 24px 28px 18px 18px; transform: translateX(-50%); background: linear-gradient(180deg, #ef4444 0 49%, #dc2626 50% 100%); box-shadow: inset 0 -14px 0 rgba(19,35,67,.13), 0 24px 38px rgba(19,35,67,.2); transition: background .22s ease, box-shadow .22s ease; pointer-events: auto; cursor: pointer; touch-action: manipulation; }
 .double-bus::before { content: ""; position: absolute; left: 10%; right: 10%; top: 11%; height: 58%; border-radius: 12px; background: repeating-linear-gradient(90deg, #dbeafe 0 13%, transparent 13% 17%); box-shadow: inset 0 -8px 0 rgba(19,35,67,.08); }
 .double-bus:focus-visible { outline: 5px solid rgba(250,204,21,.72); outline-offset: 8px; }
 .bus-destination { position: absolute; left: 34%; right: 34%; top: 5%; z-index: 2; min-height: 22px; display: grid; place-items: center; border-radius: 7px; background: #173356; color: #fff; font-size: .58rem; font-weight: 1000; letter-spacing: 0; }
+.bus-route-mark { position: absolute; left: 7%; top: 8%; z-index: 3; min-width: 30px; min-height: 22px; padding: 0 5px; display: grid; place-items: center; border-radius: 8px; background: rgba(255,255,255,.92); color: #173356; font-size: .54rem; font-weight: 1000; box-shadow: inset 0 -4px 0 rgba(19,35,67,.08); }
 .bus-motion-lines { position: absolute; right: 100%; top: 25%; width: 70px; height: 66px; opacity: 0; pointer-events: none; background: repeating-linear-gradient(180deg, transparent 0 12px, rgba(255,255,255,.78) 12px 17px, transparent 17px 25px); border-radius: 999px; transform: translateX(14px); }
 .double-bus[data-moving="true"] .bus-motion-lines { opacity: .7; animation: busMotionLines .42s linear infinite; }
 .bus-deck { position: absolute; left: 9%; right: 9%; height: 4px; border-radius: 999px; background: rgba(255,255,255,.45); }
 .top-deck { top: 45%; }
 .lower-deck { top: 71%; }
+.bus-side-stripe { position: absolute; left: 8%; right: 8%; bottom: 29%; height: 8px; border-radius: 999px; background: rgba(255,255,255,.78); box-shadow: 0 19px 0 rgba(250,204,21,.85); }
 .bus-face { position: absolute; left: 50%; bottom: 19%; width: 46px; height: 22px; transform: translateX(-50%); border-radius: 0 0 999px 999px; border-bottom: 5px solid rgba(255,255,255,.9); }
 .bus-face::before { content: ""; position: absolute; left: -26px; top: -21px; width: 11px; aspect-ratio: 1; border-radius: 50%; background: #173356; box-shadow: 60px 0 0 #173356; }
 .bus-wheel { position: absolute; bottom: -13px; width: 28px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #e5e7eb 0 25%, #173356 26% 100%); }
@@ -2526,10 +2528,17 @@ body[data-motion="off"] .transport-choice { transition: none; }
 .back-wheel { left: 16%; }
 .double-bus[data-moving="true"] .bus-wheel { animation: busWheelSpin .65s linear infinite; }
 .double-bus[data-moving="true"] { animation: busBob .9s ease-in-out infinite; }
-.bus-world[data-bus="hong-kong"] .double-bus { background: linear-gradient(180deg, #22c55e 0 49%, #16a34a 50% 100%); }
+.bus-world[data-bus="uk"] .double-bus { background: linear-gradient(180deg, #ef4444 0 49%, #dc2626 50% 100%); }
+.bus-world[data-bus="uk"] .bus-side-stripe { background: rgba(255,255,255,.86); box-shadow: 0 19px 0 rgba(250,204,21,.86); }
+.bus-world[data-bus="hong-kong"] .double-bus { border-radius: 19px 19px 28px 28px; background: linear-gradient(180deg, #16a34a 0 38%, #facc15 39% 45%, #22c55e 46% 100%); box-shadow: inset 0 -14px 0 rgba(19,35,67,.13), 0 24px 38px rgba(22,163,74,.22); }
+.bus-world[data-bus="hong-kong"] .double-bus::before { background: repeating-linear-gradient(90deg, #dffafe 0 11%, transparent 11% 15%); }
+.bus-world[data-bus="hong-kong"] .bus-side-stripe { background: rgba(255,255,255,.82); box-shadow: 0 19px 0 rgba(14,165,233,.7); }
 .bus-world[data-bus="hong-kong"] .bus-road::after { background: repeating-linear-gradient(90deg, #fef3c7 0 28px, transparent 28px 52px); }
 .bus-world[data-bus="night"] { background: linear-gradient(180deg, #1e3a8a, #334155 56%, #475569 57%); color: #fff; }
 .bus-world[data-bus="night"] .double-bus { background: linear-gradient(180deg, #2563eb 0 49%, #1d4ed8 50% 100%); box-shadow: 0 0 38px rgba(96,165,250,.34), inset 0 -14px 0 rgba(19,35,67,.16); }
+.bus-world[data-bus="night"] .double-bus::before { background: repeating-linear-gradient(90deg, #fef9c3 0 13%, transparent 13% 17%); }
+.bus-world[data-bus="night"] .bus-side-stripe { background: rgba(191,219,254,.72); box-shadow: 0 19px 0 rgba(253,224,71,.82); }
+.bus-world[data-bus="night"] .bus-route-mark { background: #fef3c7; color: #173356; }
 .bus-world[data-bus="night"] .bus-sun { opacity: .18; }
 .bus-world[data-bus="night"] .bus-city,
 .bus-world[data-bus="night"] .bus-landmark { background: rgba(219,234,254,.76); }
