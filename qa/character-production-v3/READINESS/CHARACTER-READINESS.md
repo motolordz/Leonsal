@@ -8,6 +8,14 @@ This report separates artwork that exists for review from artwork approved for p
 - Supplied review characters: 3
 - Supplied review state assets: 14
 
+## Family Status
+
+- guide: 0/2 approved; 10 pending state slots; top blocker: guide clothing/name text needs production cleanup
+- alphabet: 0/26 approved; 130 pending state slots; top blocker: not approved for production runtime
+- number: 0/10 approved; 50 pending state slots; top blocker: not approved for production runtime
+- world: 1/21 approved; 100 pending state slots; top blocker: not approved for production runtime
+- planet: 0/10 approved; 50 pending state slots; top blocker: not approved for production runtime
+
 ## Immediate Blockers
 
 - Leon: not approved for production runtime; supplied source intake has 4/5 states; guide clothing/name text needs production cleanup; supplied source is below 2048 px production master requirement; Leon empty generation attempts failed real-alpha gate; visual quality below Battery Buddy V3 precedent

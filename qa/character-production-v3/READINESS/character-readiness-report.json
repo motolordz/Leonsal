@@ -18,6 +18,102 @@
       "qa/character-production-v3/leon/failed-generated-empty/report.json"
     ]
   },
+  "familySummary": {
+    "guide": {
+      "characterCount": 2,
+      "approvedCharacters": 0,
+      "pendingCharacters": 2,
+      "approvedRuntimeStateAssets": 0,
+      "pendingStateSlots": 10,
+      "suppliedReviewStateAssets": 9,
+      "topBlockers": [
+        {
+          "blocker": "guide clothing/name text needs production cleanup",
+          "count": 2
+        },
+        {
+          "blocker": "not approved for production runtime",
+          "count": 2
+        },
+        {
+          "blocker": "supplied source is below 2048 px production master requirement",
+          "count": 2
+        },
+        {
+          "blocker": "visual quality below Battery Buddy V3 precedent",
+          "count": 2
+        },
+        {
+          "blocker": "Leon empty generation attempts failed real-alpha gate",
+          "count": 1
+        }
+      ]
+    },
+    "alphabet": {
+      "characterCount": 26,
+      "approvedCharacters": 0,
+      "pendingCharacters": 26,
+      "approvedRuntimeStateAssets": 0,
+      "pendingStateSlots": 130,
+      "suppliedReviewStateAssets": 0,
+      "topBlockers": [
+        {
+          "blocker": "not approved for production runtime",
+          "count": 26
+        },
+        {
+          "blocker": "visual quality below Battery Buddy V3 precedent",
+          "count": 26
+        }
+      ]
+    },
+    "number": {
+      "characterCount": 10,
+      "approvedCharacters": 0,
+      "pendingCharacters": 10,
+      "approvedRuntimeStateAssets": 0,
+      "pendingStateSlots": 50,
+      "suppliedReviewStateAssets": 0,
+      "topBlockers": [
+        {
+          "blocker": "not approved for production runtime",
+          "count": 10
+        },
+        {
+          "blocker": "visual quality below Battery Buddy V3 precedent",
+          "count": 10
+        }
+      ]
+    },
+    "world": {
+      "characterCount": 21,
+      "approvedCharacters": 1,
+      "pendingCharacters": 20,
+      "approvedRuntimeStateAssets": 5,
+      "pendingStateSlots": 100,
+      "suppliedReviewStateAssets": 0,
+      "topBlockers": [
+        {
+          "blocker": "not approved for production runtime",
+          "count": 20
+        }
+      ]
+    },
+    "planet": {
+      "characterCount": 10,
+      "approvedCharacters": 0,
+      "pendingCharacters": 10,
+      "approvedRuntimeStateAssets": 0,
+      "pendingStateSlots": 50,
+      "suppliedReviewStateAssets": 0,
+      "topBlockers": [
+        {
+          "blocker": "not approved for production runtime",
+          "count": 10
+        }
+      ]
+    }
+  },
   "characters": [
     {
       "id": "leon",

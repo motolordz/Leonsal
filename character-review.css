@@ -157,6 +157,17 @@
   font-size: .92rem;
   line-height: 1.45;
 }
+.candidate-library .family-status-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-left: 0;
+  list-style: none;
+}
+.candidate-library .family-status-list li {
+  padding: 10px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.74);
+  border: 1px solid #d8ddf3;
+}
 .production-batches {
   margin-top: 14px;
   padding: 14px;

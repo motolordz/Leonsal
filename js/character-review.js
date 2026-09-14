@@ -68,12 +68,15 @@
         if (!reportResponse.ok) throw new Error('Readiness report unavailable');
         const report = await reportResponse.json();
         const summary = report.summary || {};
+        const familyRows = Object.entries(report.familySummary || {})
+          .map(([family, item]) => `<li><b>${family}</b>: ${item.approvedCharacters}/${item.characterCount} approved · ${item.pendingStateSlots} pending state slots</li>`)
+          .join('');
         const blockers = (report.characters || [])
           .filter(item => item.blockers?.length)
           .slice(0, 4)
           .map(item => `<li><b>${item.displayName}</b>: ${item.blockers[0]}</li>`)
           .join('');
-        candidateLibrary.innerHTML = `<article><strong>${summary.pendingCharacters || 0}</strong><span>pending generated characters</span></article><article><strong>${(summary.pendingCharacters || 0) * 5}</strong><span>pending generated state slots</span></article><article><strong>${summary.pendingGeneratedVectorSources || 0}</strong><span>preserved vector sources</span></article><p><b>Candidate library:</b> Generated SVG-backed candidates are inspectable, but gameplay still resolves only approved art.</p><ul>${blockers}</ul>`;
+        candidateLibrary.innerHTML = `<article><strong>${summary.pendingCharacters || 0}</strong><span>pending generated characters</span></article><article><strong>${(summary.pendingCharacters || 0) * 5}</strong><span>pending generated state slots</span></article><article><strong>${summary.pendingGeneratedVectorSources || 0}</strong><span>preserved vector sources</span></article><p><b>Candidate library:</b> Generated SVG-backed candidates are inspectable, but gameplay still resolves only approved art.</p><ul class="family-status-list">${familyRows}</ul><ul>${blockers}</ul>`;
       } catch {
         candidateLibrary.innerHTML = '<p>Candidate readiness report could not load. Registry checks still enforce approved-only runtime art.</p>';
       }

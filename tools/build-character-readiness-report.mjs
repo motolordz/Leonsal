@@ -49,6 +49,28 @@ const characters = registryRecords.map((record) => {
   };
 });
 
+const familySummary = Object.fromEntries(["guide", "alphabet", "number", "world", "planet"].map((family) => {
+  const items = characters.filter((record) => record.family === family);
+  const blockerCounts = new Map();
+  for (const item of items) {
+    for (const blocker of item.blockers) blockerCounts.set(blocker, (blockerCounts.get(blocker) || 0) + 1);
+  }
+  return [family, {
+    characterCount: items.length,
+    approvedCharacters: items.filter((record) => record.status === "approved").length,
+    pendingCharacters: items.filter((record) => record.status !== "approved").length,
+    approvedRuntimeStateAssets: items.reduce((total, record) => total + record.productionRuntimeStates, 0),
+    pendingStateSlots: items
+      .filter((record) => record.status !== "approved")
+      .reduce((total, record) => total + record.registryStateSlots, 0),
+    suppliedReviewStateAssets: items.reduce((total, record) => total + record.suppliedReviewStates, 0),
+    topBlockers: [...blockerCounts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, 5)
+      .map(([blocker, count]) => ({ blocker, count }))
+  }];
+}));
+
 const summary = {
   approvedCharacters: characters.filter((record) => record.status === "approved").length,
   approvedRuntimeStateAssets: characters.reduce((total, record) => total + record.productionRuntimeStates, 0),
@@ -71,6 +93,7 @@ await fs.writeFile(path.join(outputDir, "character-readiness-report.json"), JSON
   schemaVersion: 1,
   productionRule: registry.runtimeRule,
   summary,
+  familySummary,
   characters
 }, null, 2) + "\n");
 
@@ -84,6 +107,10 @@ await fs.writeFile(path.join(outputDir, "CHARACTER-READINESS.md"), [
   `- Pending characters: ${summary.pendingCharacters}`,
   `- Supplied review characters: ${summary.suppliedReviewCharacters}`,
   `- Supplied review state assets: ${summary.suppliedReviewStateAssets}`,
+  "",
+  "## Family Status",
+  "",
+  ...Object.entries(familySummary).map(([family, item]) => `- ${family}: ${item.approvedCharacters}/${item.characterCount} approved; ${item.pendingStateSlots} pending state slots; top blocker: ${item.topBlockers[0]?.blocker || "none"}`),
   "",
   "## Immediate Blockers",
   "",

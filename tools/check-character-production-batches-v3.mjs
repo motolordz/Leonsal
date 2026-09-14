@@ -18,6 +18,11 @@ assert.equal(approved[0].id, "battery-buddy", "Battery Buddy must be the only ap
 assert.equal(pending.length, 68, "Expected 68 pending production characters");
 assert.equal(readiness.summary.approvedRuntimeStateAssets, 5, "Only Battery Buddy's five states may be runtime approved");
 assert.equal(readiness.summary.pendingGeneratedVectorSources, 340, "Expected 340 generated SVG-backed pending state sources");
+assert.equal(readiness.familySummary?.guide?.pendingCharacters, 2, "Guide family summary must keep Leon and Zaya pending");
+assert.equal(readiness.familySummary?.alphabet?.pendingStateSlots, 130, "Alphabet family summary must include 130 pending state slots");
+assert.equal(readiness.familySummary?.number?.pendingStateSlots, 50, "Number family summary must include 50 pending state slots");
+assert.equal(readiness.familySummary?.world?.approvedRuntimeStateAssets, 5, "World family summary must include only Battery runtime assets");
+assert.equal(readiness.familySummary?.planet?.pendingStateSlots, 50, "Planet family summary must include 50 pending state slots");
 assert(/Only records with status approved/i.test(batchReport.runtimeRule), "Runtime rule must require approved status");
 for (const blocked of ["source-safe-keeping", "review-only", "QA", "contact-sheet", "rejected"]) {
   assert(batchReport.runtimeRule.includes(blocked), `Runtime rule must explicitly block ${blocked}`);
