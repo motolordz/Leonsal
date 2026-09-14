@@ -1,0 +1,1101 @@
+{
+  "schemaVersion": 1,
+  "productionRule": "Only records with status approved may resolve state paths into runtime image sources. Approved paths must be individual production derivatives from matching transparent masters and must not point into source-safe-keeping, review-only, QA, contact-sheet, or rejected folders.",
+  "summary": {
+    "approvedCharacters": 1,
+    "approvedRuntimeStateAssets": 5,
+    "pendingCharacters": 68,
+    "suppliedReviewCharacters": 3,
+    "suppliedReviewStateAssets": 14,
+    "missingSuppliedStates": [
+      {
+        "character": "leon",
+        "state": "empty"
+      }
+    ],
+    "failedGeneratedAttempts": [
+      "qa/character-production-v3/leon/failed-generated-empty/report.json"
+    ]
+  },
+  "characters": [
+    {
+      "id": "leon",
+      "displayName": "Leon",
+      "family": "guide",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 4,
+      "evidence": [
+        "qa/character-production-v3/leon/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "supplied source intake has 4/5 states",
+        "guide clothing/name text needs production cleanup",
+        "supplied source is below 2048 px production master requirement",
+        "Leon empty generation attempts failed real-alpha gate",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "zaya",
+      "displayName": "Zaya",
+      "family": "guide",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 5,
+      "evidence": [
+        "qa/character-production-v3/zaya/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "guide clothing/name text needs production cleanup",
+        "supplied source is below 2048 px production master requirement",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-a",
+      "displayName": "Letter A",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-a/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-b",
+      "displayName": "Letter B",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-b/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-c",
+      "displayName": "Letter C",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-c/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-d",
+      "displayName": "Letter D",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-d/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-e",
+      "displayName": "Letter E",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-e/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-f",
+      "displayName": "Letter F",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-f/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-g",
+      "displayName": "Letter G",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-g/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-h",
+      "displayName": "Letter H",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-h/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-i",
+      "displayName": "Letter I",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-i/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-j",
+      "displayName": "Letter J",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-j/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-k",
+      "displayName": "Letter K",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-k/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-l",
+      "displayName": "Letter L",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-l/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-m",
+      "displayName": "Letter M",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-m/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-n",
+      "displayName": "Letter N",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-n/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-o",
+      "displayName": "Letter O",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-o/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-p",
+      "displayName": "Letter P",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-p/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-q",
+      "displayName": "Letter Q",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-q/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-r",
+      "displayName": "Letter R",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-r/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-s",
+      "displayName": "Letter S",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-s/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-t",
+      "displayName": "Letter T",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-t/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-u",
+      "displayName": "Letter U",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-u/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-v",
+      "displayName": "Letter V",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-v/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-w",
+      "displayName": "Letter W",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-w/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-x",
+      "displayName": "Letter X",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-x/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-y",
+      "displayName": "Letter Y",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-y/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "letter-z",
+      "displayName": "Letter Z",
+      "family": "alphabet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/letter-z/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "number-1",
+      "displayName": "Number 1",
+      "family": "number",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/number-1/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "number-2",
+      "displayName": "Number 2",
+      "family": "number",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/number-2/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "number-3",
+      "displayName": "Number 3",
+      "family": "number",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/number-3/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "number-4",
+      "displayName": "Number 4",
+      "family": "number",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/number-4/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "number-5",
+      "displayName": "Number 5",
+      "family": "number",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/number-5/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "number-6",
+      "displayName": "Number 6",
+      "family": "number",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/number-6/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "number-7",
+      "displayName": "Number 7",
+      "family": "number",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/number-7/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "number-8",
+      "displayName": "Number 8",
+      "family": "number",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/number-8/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "number-9",
+      "displayName": "Number 9",
+      "family": "number",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/number-9/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "number-10",
+      "displayName": "Number 10",
+      "family": "number",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/number-10/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ]
+    },
+    {
+      "id": "battery-buddy",
+      "displayName": "Battery Buddy",
+      "family": "world",
+      "status": "approved",
+      "productionRuntimeStates": 5,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/battery-production-v3/FINAL-OWNER-READY/battery-five-final.png",
+        "qa/battery-production-v3/FINAL-OWNER-READY/battery-mobile-five-states.png",
+        "qa/battery-production-v3/FINAL-OWNER-READY/visual-acceptance.json"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "world-sun",
+      "displayName": "Sun",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-sun/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-moon",
+      "displayName": "Moon",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-moon/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-cloud",
+      "displayName": "Cloud",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-cloud/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-rainbow",
+      "displayName": "Rainbow",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-rainbow/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-rocket",
+      "displayName": "Rocket",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-rocket/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-earth",
+      "displayName": "Earth",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-earth/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-robot",
+      "displayName": "Robot",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-robot/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-magnifier",
+      "displayName": "Magnifying Glass",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-magnifier/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-pencil",
+      "displayName": "Pencil",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-pencil/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-book",
+      "displayName": "Book",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-book/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-paintbrush",
+      "displayName": "Paintbrush",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-paintbrush/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-music-note",
+      "displayName": "Musical Note",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-music-note/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-clock",
+      "displayName": "Clock",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-clock/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-calendar",
+      "displayName": "Calendar",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-calendar/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-puzzle",
+      "displayName": "Puzzle Piece",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-puzzle/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-water",
+      "displayName": "Water Droplet",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-water/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-tree",
+      "displayName": "Tree",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-tree/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-train",
+      "displayName": "Train",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-train/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-dinosaur",
+      "displayName": "Dinosaur",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-dinosaur/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "world-treasure",
+      "displayName": "Treasure Chest",
+      "family": "world",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/world-treasure/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "planet-sun",
+      "displayName": "Sun",
+      "family": "planet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/planet-sun/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "planet-mercury",
+      "displayName": "Mercury",
+      "family": "planet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/planet-mercury/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "planet-venus",
+      "displayName": "Venus",
+      "family": "planet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/planet-venus/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "planet-earth",
+      "displayName": "Earth",
+      "family": "planet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/planet-earth/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "planet-mars",
+      "displayName": "Mars",
+      "family": "planet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/planet-mars/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "planet-jupiter",
+      "displayName": "Jupiter",
+      "family": "planet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/planet-jupiter/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "planet-saturn",
+      "displayName": "Saturn",
+      "family": "planet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/planet-saturn/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "planet-uranus",
+      "displayName": "Uranus",
+      "family": "planet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/planet-uranus/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "planet-neptune",
+      "displayName": "Neptune",
+      "family": "planet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/planet-neptune/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    },
+    {
+      "id": "planet-moon",
+      "displayName": "Moon",
+      "family": "planet",
+      "status": "pending-art",
+      "productionRuntimeStates": 0,
+      "registryStateSlots": 5,
+      "suppliedReviewStates": 0,
+      "evidence": [
+        "qa/character-production-v3/planet-moon/five-states.png"
+      ],
+      "blockers": [
+        "not approved for production runtime"
+      ]
+    }
+  ]
+}
