@@ -146,12 +146,15 @@ try {
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert((await page.evaluate(()=>window.__growingGardenProofState().plants))<=3);
     await page.goto(base+'/v2-number-merge.html');
+    assert((await page.locator('.number-buddy .procedural-character-svg').count())>=5);
     await page.locator('.number-buddy').nth(0).click();
     await page.locator('.number-buddy').nth(1).click();
+    assert((await page.locator('.number-result .procedural-character-svg.character-state-excited').count())===1);
     assert.equal(await page.evaluate(()=>{const state=window.__numberMergeProofState();return state.result===state.selected[0]+state.selected[1];}),true);
     await page.getByRole('button',{name:'Clear',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__numberMergeProofState().result),null);
     await page.goto(base+'/v2-alphabet-adventure.html');
+    assert.equal(await page.locator('.big-letter .procedural-character-svg.character-family-alphabet').count(),1);
     assert.equal(await page.locator('.letter-chip').count(),26);
     await page.getByRole('button',{name:'Next',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__alphabetAdventureProofState().letter),'B');

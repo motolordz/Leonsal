@@ -43,6 +43,7 @@
 
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -58,6 +59,20 @@
     let result = null;
     let mode = 'small';
     let pulse = 0;
+
+    function numberRecord(value) {
+      return {
+        id: `number-${value}`,
+        displayName: `Number ${value}`,
+        family: 'number'
+      };
+    }
+
+    function renderNumberCharacter(value, state = 'calm') {
+      const renderer = window.LeonSalCharacterRenderer;
+      if (!renderer) return document.createTextNode(String(value));
+      return renderer.makeCharacter(numberRecord(value), state, { decorative: false });
+    }
 
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
     document.querySelector('#settingsToggle').addEventListener('click', () => {
@@ -79,7 +94,7 @@
         button.type = 'button';
         button.dataset.value = String(value);
         button.style.setProperty('--hue', String((index * 48 + value * 17) % 360));
-        button.textContent = String(value);
+        button.replaceChildren(renderNumberCharacter(value, 'calm'));
         button.addEventListener('click', () => choose(value, button));
         dragDrop.register(button, mat, { select: () => choose(value, button) });
         mat.append(button);
@@ -119,9 +134,9 @@
     }
 
     function update() {
-      firstSlot.textContent = selected[0] ?? '?';
-      secondSlot.textContent = selected[1] ?? '?';
-      resultSlot.textContent = result ?? '?';
+      firstSlot.replaceChildren(selected[0] ? renderNumberCharacter(selected[0], 'happy') : document.createTextNode('?'));
+      secondSlot.replaceChildren(selected[1] ? renderNumberCharacter(selected[1], 'happy') : document.createTextNode('?'));
+      resultSlot.replaceChildren(result ? renderNumberCharacter(result, 'excited') : document.createTextNode('?'));
       mergeButton.disabled = selected.length < 2;
       resultSlot.dataset.ready = String(result !== null);
     }

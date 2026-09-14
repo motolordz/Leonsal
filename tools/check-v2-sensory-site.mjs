@@ -217,15 +217,18 @@ async function main() {
       assert(calmState.plants <= 3, 'Growing Garden calm mode did not reduce plant count');
     }
     if (route === 'v2-number-merge.html') {
+      assert((await page.locator('.number-buddy .procedural-character-svg').count()) >= 5, 'Number Merge must render number characters through the shared renderer');
       await page.locator('.number-buddy').nth(0).click();
       await page.locator('.number-buddy').nth(1).click();
       const state = await page.evaluate(() => window.__numberMergeProofState?.());
       assert.equal(state.result, state.selected[0] + state.selected[1], 'Number Merge did not combine selected numbers');
+      assert.equal(await page.locator('.number-result .procedural-character-svg.character-state-excited').count(), 1, 'Number Merge result must render an excited number character');
       await page.getByRole('button', { name: 'Clear' }).click();
       const cleared = await page.evaluate(() => window.__numberMergeProofState?.());
       assert.equal(cleared.result, null, 'Number Merge clear did not reset result');
     }
     if (route === 'v2-alphabet-adventure.html') {
+      assert.equal(await page.locator('.big-letter .procedural-character-svg.character-family-alphabet').count(), 1, 'Alphabet Adventure must render the active letter through the shared renderer');
       assert.equal(await page.locator('.letter-chip').count(), 26, 'Alphabet Adventure does not expose A-Z');
       await page.getByRole('button', { name: 'Next' }).click();
       let state = await page.evaluate(() => window.__alphabetAdventureProofState?.());

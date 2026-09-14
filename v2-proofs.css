@@ -1834,10 +1834,12 @@ body[data-calm="true"] .hub-art {
 .number-sky { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 20% 18%, rgba(255,255,255,.86) 0 6%, transparent 7%), radial-gradient(circle at 78% 24%, rgba(255,255,255,.72) 0 8%, transparent 9%), radial-gradient(ellipse at 50% 100%, rgba(86,177,108,.42), transparent 42%); }
 .number-equation { position: relative; z-index: 2; align-self: end; display: flex; align-items: center; justify-content: center; gap: clamp(8px, 3vw, 18px); min-height: 128px; padding: 10px; font-weight: 950; color: #173356; }
 .number-slot, .number-result { display: grid; place-items: center; width: clamp(62px, 18vw, 112px); aspect-ratio: 1; border-radius: 28px; background: rgba(255,255,255,.82); box-shadow: inset 0 -8px 0 rgba(43,90,136,.08), 0 18px 28px rgba(43,90,136,.12); font-size: clamp(2rem, 9vw, 4.4rem); }
+.number-slot .procedural-character-svg, .number-result .procedural-character-svg { width: 92%; height: 92%; }
 .number-result[data-ready="true"] { color: #0f6e3a; background: linear-gradient(180deg, #fff, #d8ffd9); }
 .number-symbol { font-size: clamp(1.9rem, 7vw, 3.4rem); }
 .number-mat { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(5, minmax(48px, 1fr)); gap: clamp(8px, 2.5vw, 14px); width: min(560px, 100%); margin: 0 auto; padding: 14px; border-radius: 32px; background: rgba(255,255,255,.46); box-shadow: inset 0 0 0 1px rgba(255,255,255,.8); }
 .number-buddy { min-height: 76px; border: 0; border-radius: 26px; color: #fff; font: inherit; font-size: clamp(1.8rem, 8vw, 3rem); font-weight: 950; text-shadow: 0 2px 0 rgba(19,35,67,.28); background: radial-gradient(circle at 35% 28%, rgba(255,255,255,.95) 0 11%, transparent 12%), linear-gradient(160deg, hsl(var(--hue, 205) 92% 64%), hsl(calc(var(--hue, 205) + 35) 82% 48%)); box-shadow: inset 0 -8px 0 rgba(19,35,67,.16), 0 14px 22px rgba(43,90,136,.18); cursor: pointer; }
+.number-buddy .procedural-character-svg { width: min(74px, 96%); height: min(74px, 96%); filter: drop-shadow(0 8px 8px rgba(19,35,67,.18)); }
 .number-buddy[data-selected="true"] { outline: 5px solid rgba(255,216,77,.92); transform: translateY(-4px); }
 .number-buddy:active { transform: translateY(2px) scale(.97); }
 .number-world .scene-status { position: relative; z-index: 3; color: rgba(19,35,67,.82); background: rgba(255,255,255,.86); }
@@ -1845,6 +1847,7 @@ body[data-calm="true"] .hub-art {
 .alphabet-world { display: grid; grid-template-rows: 1fr auto; gap: 14px; overflow: hidden; padding-bottom: 106px; background: radial-gradient(circle at 18% 18%, rgba(255,255,255,.9) 0 8%, transparent 9%), radial-gradient(circle at 82% 20%, rgba(255,255,255,.76) 0 10%, transparent 11%), linear-gradient(180deg, #e4f7ff, #fff4d3 56%, #f3e9ff); }
 .letter-stage { position: relative; z-index: 2; display: grid; place-items: center; align-content: center; min-height: 320px; color: #173356; }
 .big-letter { display: grid; place-items: center; width: min(62vw, 260px); aspect-ratio: 1; border-radius: 34%; color: #fff; font-size: clamp(7rem, 34vw, 12rem); font-weight: 950; text-shadow: 0 5px 0 rgba(19,35,67,.24); background: radial-gradient(circle at 31% 25%, rgba(255,255,255,.9) 0 9%, transparent 10%), linear-gradient(145deg, #ff78b7, #6edbff 45%, #ffe875); box-shadow: inset 0 -18px 0 rgba(19,35,67,.12), 0 26px 40px rgba(43,90,136,.18); }
+.big-letter .procedural-character-svg { width: 96%; height: 96%; }
 .letter-stage p { margin: 12px 0 0; padding: 10px 18px; border-radius: 999px; background: rgba(255,255,255,.76); font-size: 1.35rem; font-weight: 950; }
 .alphabet-path { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(13, 1fr); gap: 7px; width: min(760px, 100%); margin: 0 auto; padding: 12px; border-radius: 28px; background: rgba(255,255,255,.54); }
 .letter-chip { min-height: 44px; border: 0; border-radius: 15px; color: #fff; font: inherit; font-weight: 950; background: linear-gradient(145deg, hsl(var(--hue, 205) 92% 64%), hsl(calc(var(--hue, 205) + 30) 82% 48%)); box-shadow: inset 0 -5px 0 rgba(19,35,67,.16), 0 8px 12px rgba(43,90,136,.12); cursor: pointer; }
