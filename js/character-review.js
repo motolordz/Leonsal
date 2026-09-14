@@ -25,6 +25,7 @@
     const sourceIntake = document.getElementById('sourceIntake');
     const candidateLibrary = document.getElementById('candidateLibrary');
     const productionBatches = document.getElementById('productionBatches');
+    const familyEvidence = document.getElementById('familyEvidence');
     const reviewFilters = [...document.querySelectorAll('[data-review-filter]')];
     let reviewFilter = 'all';
     const stateName = state => state[0].toUpperCase() + state.slice(1);
@@ -88,6 +89,18 @@
       } catch {
         productionBatches.innerHTML = '<p>Production batch report could not load.</p>';
       }
+    };
+    const renderFamilyEvidence = () => {
+      if (!familyEvidence) return;
+      const sheets = [
+        ['Guides', 'Leon and Zaya five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/leon-zaya-five-states.png'],
+        ['Alphabet', 'A-Z five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/alphabet-five-states.png'],
+        ['Numbers', '1-10 five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/numbers-five-states.png'],
+        ['World', 'World character five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/world-characters-five-states.png'],
+        ['Planets', 'Planet five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/planets-five-states.png'],
+        ['Full library', 'Complete pending library sheet', 'qa/character-production-v3/FINAL-REVIEW/leonsal-complete-character-library.png']
+      ];
+      familyEvidence.innerHTML = `<p><b>Family evidence:</b> Open the generated review sheets. These remain QA evidence, not gameplay assets.</p><div>${sheets.map(([family, label, href]) => `<a href="${href}"><strong>${family}</strong><span>${label}</span></a>`).join('')}</div>`;
     };
     const renderProductionTruth = async () => {
       if (!productionTruth) return;
@@ -185,6 +198,7 @@
     renderSourceIntake();
     renderCandidateLibrary();
     renderProductionBatches();
+    renderFamilyEvidence();
     renderReadiness();
     function renderRunners() {
       const leon = characters.find(item => item.id === 'leon');

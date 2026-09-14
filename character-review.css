@@ -193,6 +193,45 @@
   font-size: .84rem;
   font-weight: 850;
 }
+.family-evidence {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid #d9e7ee;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255,255,255,.88), rgba(237, 250, 246, .92));
+}
+.family-evidence p {
+  margin: 0 0 12px;
+  color: #173b67;
+  font-weight: 850;
+}
+.family-evidence div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.family-evidence a {
+  display: grid;
+  gap: 4px;
+  min-height: 76px;
+  align-content: center;
+  padding: 12px;
+  border-radius: 18px;
+  background: #fff;
+  color: #173b67;
+  text-decoration: none;
+  border: 1px solid #d1e4ee;
+  box-shadow: 0 8px 18px rgba(24, 67, 114, .08);
+}
+.family-evidence a:focus-visible {
+  outline: 4px solid rgba(255, 199, 64, .72);
+  outline-offset: 3px;
+}
+.family-evidence a span {
+  color: #566a82;
+  font-size: .84rem;
+  font-weight: 850;
+}
 .review-summary article {
   min-height: 82px;
   display: grid;
