@@ -49,6 +49,7 @@ assert(rendererLikeVehicle(), 'Shared renderer must classify double-decker as a 
 assert(rendererLikeCharacters(), 'Shared renderer must classify Battery Buddy and Dinosaur as distinct character bodies');
 assert(rendererLikeWorldSet(), 'Shared renderer must give core world characters distinct procedural bodies');
 assert(rendererLikeObjectSet(), 'Shared renderer must give learning object characters distinct procedural bodies');
+assert(rendererLikeTransportSet(), 'Shared renderer must give transport and discovery characters distinct procedural bodies');
 for (const text of ['new LeonSalV2.AssetLoaderEngine', 'loader.resolve', 'record?.states?.[state]']) {
   assert(approvedLoader.includes(text), `Approved character loader must use shared asset loader: ${text}`);
 }
@@ -57,7 +58,7 @@ assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet/i.test(
 function rendererLikeVehicle() {
   const renderer = fs.readFileSync('js/v2-character-renderer.js', 'utf8');
   const characterWorld = fs.readFileSync('js/v2-character-world.js', 'utf8');
-  return /bus\|train\|double-decker/.test(renderer) && /bus\|train\|double-decker/.test(characterWorld);
+  return /bus\|double-decker/.test(renderer) && /bus\|train\|double-decker/.test(characterWorld);
 }
 
 function rendererLikeCharacters() {
@@ -75,6 +76,12 @@ function rendererLikeWorldSet() {
 function rendererLikeObjectSet() {
   const renderer = fs.readFileSync('js/v2-character-renderer.js', 'utf8');
   return ['clock-body', 'calendar-body', 'pencil-body', 'book-body', 'paintbrush-body', 'music-body', 'water-body', 'treasure-body']
+    .every(bodyClass => renderer.includes(bodyClass));
+}
+
+function rendererLikeTransportSet() {
+  const renderer = fs.readFileSync('js/v2-character-renderer.js', 'utf8');
+  return ['earth-body', 'robot-body', 'magnifier-body', 'puzzle-body', 'train-body', 'plane-body', 'boat-body']
     .every(bodyClass => renderer.includes(bodyClass));
 }
 

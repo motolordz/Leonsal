@@ -56,6 +56,13 @@
     if (/sun/.test(id) && !/^planet-/.test(id)) return 'sun';
     if (/rocket/.test(id)) return 'rocket';
     if (/tree/.test(id)) return 'tree';
+    if (/earth/.test(id)) return 'earth';
+    if (/robot/.test(id)) return 'robot';
+    if (/magnifier/.test(id)) return 'magnifier';
+    if (/puzzle/.test(id)) return 'puzzle';
+    if (/train/.test(id)) return 'train';
+    if (/plane/.test(id)) return 'plane';
+    if (/boat/.test(id)) return 'boat';
     if (/clock/.test(id)) return 'clock';
     if (/calendar/.test(id)) return 'calendar';
     if (/pencil/.test(id)) return 'pencil';
@@ -68,8 +75,8 @@
     if (/battery/.test(id)) return 'battery';
     if (/dinosaur/.test(id)) return 'dinosaur';
     if (/owl|fish|lizard|penguin/.test(id)) return 'animal';
-    if (/bus|train|double-decker/.test(id)) return 'vehicle';
-    if (/plane|rocket|boat/.test(id)) return 'transport';
+    if (/bus|double-decker/.test(id)) return 'vehicle';
+    if (/rocket/.test(id)) return 'transport';
     if (/sun|moon|earth|planet|mercury|venus|mars|jupiter|saturn|uranus|neptune/.test(id)) return 'planet';
     if (/cloud|rainbow|water|tree/.test(id)) return 'nature';
     if (/robot|magnifier|pencil|book|paintbrush|music|clock|calendar|puzzle|treasure/.test(id)) return 'object';
@@ -209,6 +216,27 @@
     }
     if (kind === 'tree') {
       return `<g class="character-body tree-body"><path d="M100 124 h22 l12 54 h-46z" fill="#9a6739" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><circle cx="83" cy="96" r="34" class="body"/><circle cx="117" cy="76" r="40" class="body"/><circle cx="145" cy="105" r="34" class="body"/><path d="M86 135 q25 14 55 0" fill="none" stroke="#fff" stroke-width="9" opacity=".28"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="155" cy="121" r="9" class="cheek"/></g>`;
+    }
+    if (kind === 'earth') {
+      return `<g class="character-body earth-body"><circle cx="110" cy="108" r="60" class="body"/><path d="M78 84 q22 -24 44 -7 q-18 18 7 31 q-20 13 -42 0 q-20 -10 -9 -24zM133 126 q24 -17 43 4 q-12 27 -48 27 q-13 -17 5 -31z" fill="#45bd6b" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M58 111 q50 20 104 0" fill="none" stroke="#fff" stroke-width="8" opacity=".28"/><circle cx="76" cy="123" r="9" class="cheek"/><circle cx="159" cy="123" r="9" class="cheek"/></g>`;
+    }
+    if (kind === 'robot') {
+      return `<g class="character-body robot-body"><rect x="58" y="65" width="104" height="96" rx="26" class="body"/><rect x="82" y="43" width="56" height="24" rx="12" fill="${accent}" stroke="#173356" stroke-width="5"/><path d="M110 43 v-20" stroke="#173356" stroke-width="7" stroke-linecap="round"/><circle cx="110" cy="20" r="8" fill="${accent}" stroke="#173356" stroke-width="4"/><rect x="76" y="120" width="68" height="18" rx="9" fill="#fff" opacity=".75"/><circle cx="76" cy="113" r="8" class="cheek"/><circle cx="159" cy="113" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'magnifier') {
+      return `<g class="character-body magnifier-body"><circle cx="94" cy="91" r="48" fill="#dff5ff" stroke="#173356" stroke-width="12"/><path d="M130 127 l49 49" stroke="${primary}" stroke-width="19" stroke-linecap="round"/><path d="M130 127 l49 49" stroke="#173356" stroke-width="7" stroke-linecap="round" opacity=".42"/><circle cx="72" cy="112" r="8" class="cheek"/><circle cx="117" cy="112" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'puzzle') {
+      return `<g class="character-body puzzle-body"><path d="M68 58 h32 q-4 22 15 22 q19 0 15 -22 h32 v38 q-22 -5 -22 14 q0 20 22 16 v38 h-38 q4 -23 -15 -23 q-20 0 -16 23 h-35 v-38 q23 4 23 -16 q0 -19 -23 -14z" class="body"/><circle cx="82" cy="122" r="8" class="cheek"/><circle cx="151" cy="122" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'train') {
+      return `<g class="character-body train-body"><rect x="45" y="90" width="122" height="62" rx="18" class="body"/><rect x="62" y="62" width="58" height="38" rx="12" fill="${accent}" stroke="#173356" stroke-width="5"/><rect x="71" y="73" width="38" height="20" rx="7" fill="#dff5ff"/><path d="M47 126 h118" stroke="#fff" stroke-width="8" opacity=".55"/><circle cx="72" cy="158" r="15" fill="#173356"/><circle cx="139" cy="158" r="15" fill="#173356"/><path d="M151 79 q20 -18 35 2" fill="none" stroke="${secondary}" stroke-width="9" stroke-linecap="round"/><circle cx="78" cy="122" r="8" class="cheek"/><circle cx="148" cy="122" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'plane') {
+      return `<g class="character-body plane-body"><path d="M38 119 q62 -58 145 -13 q-38 42 -145 13z" class="body"/><path d="M98 79 l26 -42 q16 38 6 71zM101 132 l18 42 q20 -30 15 -55z" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><circle cx="157" cy="103" r="12" fill="#dff5ff" stroke="#173356" stroke-width="5"/><circle cx="76" cy="121" r="8" class="cheek"/><circle cx="137" cy="114" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'boat') {
+      return `<g class="character-body boat-body"><path d="M48 125 h127 q-12 45 -64 51 q-48 -5 -63 -51z" class="body"/><path d="M110 54 v70" stroke="#173356" stroke-width="8" stroke-linecap="round"/><path d="M111 60 q40 19 46 62 h-46z" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><path d="M107 68 q-34 15 -43 54 h43z" fill="#fff" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><circle cx="79" cy="135" r="8" class="cheek"/><circle cx="146" cy="135" r="8" class="cheek"/></g>`;
     }
     if (kind === 'clock') {
       return `<g class="character-body clock-body"><circle cx="110" cy="108" r="60" class="body"/><circle cx="110" cy="108" r="45" fill="#fff" opacity=".9" stroke="#173356" stroke-width="5"/><path d="M110 108 v-28M110 108 l28 18" stroke="#173356" stroke-width="8" stroke-linecap="round"/><circle cx="76" cy="124" r="9" class="cheek"/><circle cx="159" cy="124" r="9" class="cheek"/></g>`;
