@@ -1012,6 +1012,22 @@ body[data-contrast="strong"] .game-topbar {
   transform: rotate(-28deg);
 }
 
+.landing-runner[data-svg-guide="true"] {
+  background: transparent;
+  filter: drop-shadow(0 18px 20px rgba(19, 35, 67, .18));
+}
+.landing-runner[data-svg-guide="true"]::before,
+.landing-runner[data-svg-guide="true"]::after,
+.landing-runner[data-svg-guide="true"] > span {
+  display: none;
+}
+.landing-runner .home-guide-svg {
+  position: absolute;
+  inset: -24% -35% -16%;
+  width: 170%;
+  height: 152%;
+}
+
 .runner-leon {
   left: 9%;
   animation: landingRunLeon 6.5s ease-in-out infinite;
@@ -2440,6 +2456,14 @@ body[data-calm="true"] .connection-status { transition: none; }
   .world-game h3 { margin: 2px 0 6px; }
   .world-game p { margin: 0 0 8px; font-size: .85rem; line-height: 1.4; }
   .world-game .play-label { margin: 0; font-size: .9rem; }
+  .v2-hub .hub-game-grid,
+  .v2-hub .hub-engine-grid { display: flex; }
+  .v2-hub .hub-game-grid .world-game,
+  .v2-hub .hub-engine-grid .world-game {
+    display: grid;
+    flex: 0 0 min(82vw, 330px);
+    min-height: 318px;
+  }
   .home-battery { width: 62px; height: 38px; border-width: 4px; border-radius: 10px; }
   .home-battery:after { top: 9px; right: -9px; width: 5px; height: 14px; }
   .home-dock { width: 54px; height: 44px; border-width: 4px; }

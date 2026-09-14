@@ -58,7 +58,8 @@ try {
       assert.equal(await page.locator('.hub-engine-grid').evaluate(element => getComputedStyle(element).display), 'flex');
       assert(await page.locator('.hub-engine-grid').evaluate(element => element.scrollWidth > element.clientWidth), 'Learning activity carousel should be horizontally scrollable on phone');
     }
-    assert(await page.getByRole('link', { name: /open character review/i }).isVisible());
+    assert(await page.getByRole('link', { name: /open character world/i }).isVisible());
+    assert(await page.getByRole('link', { name: /internal art review/i }).isVisible());
     await page.getByRole('button', { name: 'Settings' }).click();
     assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
     await page.keyboard.press('Escape');
