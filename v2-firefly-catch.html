@@ -18,6 +18,7 @@
     <section class="game-scene firefly-world" aria-label="Firefly catch play area">
       <canvas class="firefly-canvas" id="fireflyCanvas" aria-label="Firefly garden. Tap, click, or press near a firefly to make a soft glow."></canvas>
       <div class="firefly-meadow" aria-hidden="true"></div>
+      <div class="ambient-character firefly-helper" id="fireflyHelper" aria-hidden="true"></div>
       <p class="scene-status" id="status">Fireflies are drifting.</p>
       <div class="drawer-controls">
         <button id="catchOne" class="scene-button" type="button">Glow one</button>
@@ -30,6 +31,7 @@
 
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -37,6 +39,7 @@
     const canvas = document.querySelector('#fireflyCanvas');
     const ctx = canvas.getContext('2d');
     const status = document.querySelector('#status');
+    const fireflyHelper = document.querySelector('#fireflyHelper');
     let mode = 'normal';
     let fireflies = [];
     let glows = [];
@@ -48,6 +51,12 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+
+    function renderHelper(state = 'calm') {
+      const renderer = window.LeonSalCharacterRenderer;
+      fireflyHelper.replaceChildren();
+      if (renderer) fireflyHelper.append(renderer.makeCharacter({ id: 'world-moon', displayName: 'Moon', family: 'world', registryGroup: 'world' }, state, { decorative: true }));
+    }
 
     function resize() {
       const rect = canvas.getBoundingClientRect();
@@ -88,6 +97,7 @@
       glows.push({ x: hit.x, y: hit.y, age: 0, life: settings.allowsMotion() ? 0.9 : 0.45 });
       status.textContent = 'Soft glow.';
       audio.tone('tap');
+      renderHelper('happy');
       return true;
     }
 
@@ -165,7 +175,7 @@
       const first = fireflies[0];
       if (first) catchAt(first.x, first.y);
     });
-    document.querySelector('#reset').addEventListener('click', () => { glows = []; seed(); status.textContent = 'Fireflies are drifting.'; });
+    document.querySelector('#reset').addEventListener('click', () => { glows = []; seed(); renderHelper(); status.textContent = 'Fireflies are drifting.'; });
     document.querySelectorAll('[data-fireflies]').forEach((button) => button.addEventListener('click', () => {
       mode = button.dataset.fireflies;
       document.querySelectorAll('[data-fireflies]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
@@ -174,8 +184,9 @@
     settings.on('settings-change', seed);
     window.addEventListener('resize', resize);
     resize();
-    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], resources: [{ destroy: removeTick }], reset: () => { glows = []; seed(); }, gameId: 'firefly-catch' });
-    window.__fireflyProofState = () => ({ mode, fireflies: fireflies.length, glows: glows.length, motion: settings.allowsMotion(), calmMode: settings.value.calmMode });
+    renderHelper();
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], resources: [{ destroy: removeTick }], reset: () => { glows = []; seed(); renderHelper(); }, gameId: 'firefly-catch' });
+    window.__fireflyProofState = () => ({ mode, fireflies: fireflies.length, glows: glows.length, hasCharacterRenderer: Boolean(fireflyHelper.querySelector('.procedural-character-svg.character-family-world')), motion: settings.allowsMotion(), calmMode: settings.value.calmMode });
   </script>
 </body>
 </html>

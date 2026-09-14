@@ -1804,6 +1804,10 @@ body[data-calm="true"] .hub-art {
 .firefly-meadow::before { content: ""; position: absolute; left: 8%; right: 8%; bottom: 14%; height: 52px; background-image: linear-gradient(104deg, transparent 0 45%, rgba(178, 235, 145, .86) 46% 51%, transparent 52%); background-size: 18px 52px; opacity: .64; }
 .firefly-world .scene-status { background: rgba(255, 255, 255, .86); }
 .firefly-world .drawer-controls { z-index: 4; }
+.ambient-character { position: absolute; z-index: 3; pointer-events: none; filter: drop-shadow(0 16px 18px rgba(19,35,67,.18)); }
+.ambient-character .procedural-character-svg { width: 100%; height: 100%; }
+.firefly-helper { right: clamp(14px, 5vw, 44px); top: clamp(78px, 12vh, 126px); width: clamp(90px, 22vw, 136px); aspect-ratio: 1; opacity: .9; }
+.rain-helper { left: clamp(18px, 6vw, 52px); top: clamp(76px, 13vh, 128px); width: clamp(90px, 22vw, 132px); aspect-ratio: 1; opacity: .9; }
 
 .snow-world { display: grid; place-items: center; padding: 0; background: radial-gradient(circle at 50% 22%, rgba(255,255,255,.92), transparent 24%), linear-gradient(180deg, #d8f2ff, #fff5df); }
 .snow-canvas { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; touch-action: none; z-index: 4; }
@@ -1828,6 +1832,7 @@ body[data-calm="true"] .hub-art {
 .garden-world { padding: 0; overflow: hidden; background: #b9f2ff; }
 .garden-canvas { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; touch-action: none; z-index: 1; }
 .garden-sun { position: absolute; right: 10%; top: 10%; width: 86px; height: 86px; border-radius: 999px; background: radial-gradient(circle, #fff8a8 0 36%, #ffd65d 37% 72%, rgba(255,214,93,0) 73%); filter: drop-shadow(0 0 22px rgba(255,214,93,.45)); pointer-events: none; z-index: 2; }
+.garden-helper { left: clamp(14px, 5vw, 44px); bottom: clamp(96px, 15vh, 150px); width: clamp(96px, 24vw, 150px); aspect-ratio: 1; }
 .garden-world .scene-status { color: rgba(19,35,67,.82); background: rgba(255,255,255,.86); z-index: 4; }
 .garden-world .drawer-controls { z-index: 5; }
 .number-world { display: grid; grid-template-rows: 1fr auto auto; gap: 18px; overflow: hidden; padding-bottom: 104px; background: linear-gradient(180deg, #dff6ff, #fff2c8 58%, #d8f5dc); }

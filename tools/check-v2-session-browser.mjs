@@ -121,11 +121,13 @@ try {
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert.equal(await page.evaluate(()=>particles.items.length),6);
     await page.goto(base+'/v2-firefly-catch.html');
+    assert.equal(await page.evaluate(()=>window.__fireflyProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Glow one',exact:true}).click();
     assert((await page.evaluate(()=>window.__fireflyProofState().glows))>0);
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert((await page.evaluate(()=>window.__fireflyProofState().fireflies))<=6);
     await page.goto(base+'/v2-calm-rain-window.html');
+    assert.equal(await page.evaluate(()=>window.__rainProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Ripple',exact:true}).click();
     assert((await page.evaluate(()=>window.__rainProofState().ripples))>0);
     await page.evaluate(()=>settings.set({calmMode:true}));
@@ -141,6 +143,7 @@ try {
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert((await page.evaluate(()=>window.__starShowerProofState().maxStars))<=5);
     await page.goto(base+'/v2-growing-garden.html');
+    assert.equal(await page.evaluate(()=>window.__growingGardenProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Water',exact:true}).click();
     assert((await page.evaluate(()=>window.__growingGardenProofState().grown))>0);
     await page.evaluate(()=>settings.set({calmMode:true}));

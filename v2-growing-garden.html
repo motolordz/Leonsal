@@ -18,6 +18,7 @@
     <section class="game-scene garden-world" aria-label="Growing garden play area">
       <canvas class="garden-canvas" id="gardenCanvas" aria-label="Growing garden. Tap, click, or press the garden to water a seed and watch it grow."></canvas>
       <div class="garden-sun" aria-hidden="true"></div>
+      <div class="ambient-character garden-helper" id="gardenHelper" aria-hidden="true"></div>
       <p class="scene-status" id="status">Seeds are resting.</p>
       <div class="drawer-controls">
         <button id="waterOne" class="scene-button" type="button">Water</button>
@@ -31,6 +32,7 @@
 
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -38,6 +40,7 @@
     const canvas = document.querySelector('#gardenCanvas');
     const ctx = canvas.getContext('2d');
     const status = document.querySelector('#status');
+    const gardenHelper = document.querySelector('#gardenHelper');
     let mode = 'few';
     let plants = [];
     let drops = [];
@@ -51,6 +54,20 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+
+    function helperState() {
+      const grown = plants.filter((plant) => plant.target > 0).length;
+      if (plants.length && plants.every((plant) => plant.target >= 1)) return 'excited';
+      if (grown >= 2) return 'happy';
+      if (grown >= 1) return 'calm';
+      return 'low';
+    }
+
+    function renderHelper() {
+      const renderer = window.LeonSalCharacterRenderer;
+      gardenHelper.replaceChildren();
+      if (renderer) gardenHelper.append(renderer.makeCharacter({ id: 'world-tree', displayName: 'Tree', family: 'world', registryGroup: 'world' }, helperState(), { decorative: true }));
+    }
 
     function plantCount() {
       if (settings.value.calmMode) return 3;
@@ -85,6 +102,7 @@
       sparkles = [];
       status.textContent = 'Seeds are resting.';
       draw(0);
+      renderHelper();
     }
 
     function nearestPlant(x) {
@@ -110,6 +128,7 @@
       }
       status.textContent = plant.target >= 1 ? 'Flower blooming.' : 'Growing gently.';
       audio.tone('tap');
+      renderHelper();
     }
 
     function bloomAll() {
@@ -123,6 +142,7 @@
       }
       status.textContent = 'Garden blooming.';
       audio.tone('success');
+      renderHelper();
     }
 
     function drawPlant(plant, dt) {
@@ -235,8 +255,9 @@
     settings.on('settings-change', resetPlants);
     window.addEventListener('resize', resize);
     resize();
+    renderHelper();
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], resources: [{ destroy: removeTick }], reset: resetPlants, gameId: 'growing-garden' });
-    window.__growingGardenProofState = () => ({ mode, plants: plants.length, grown: plants.filter((plant) => plant.target > 0).length, blooms: plants.filter((plant) => plant.target >= 1).length, drops: drops.length, calmMode: settings.value.calmMode, motion: settings.allowsMotion() });
+    window.__growingGardenProofState = () => ({ mode, plants: plants.length, grown: plants.filter((plant) => plant.target > 0).length, blooms: plants.filter((plant) => plant.target >= 1).length, drops: drops.length, hasCharacterRenderer: Boolean(gardenHelper.querySelector('.procedural-character-svg.character-family-world')), calmMode: settings.value.calmMode, motion: settings.allowsMotion() });
   </script>
 </body>
 </html>
