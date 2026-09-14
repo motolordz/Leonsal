@@ -22,6 +22,7 @@
     const readinessGrid = document.getElementById('readinessGrid');
     const reviewSummary = document.getElementById('reviewSummary');
     const productionTruth = document.getElementById('productionTruth');
+    const sourceIntake = document.getElementById('sourceIntake');
     const reviewFilters = [...document.querySelectorAll('[data-review-filter]')];
     let reviewFilter = 'all';
     const stateName = state => state[0].toUpperCase() + state.slice(1);
@@ -42,6 +43,21 @@
     };
     const registryGroups = registry => ['guides', 'alphabet', 'numbers', 'world', 'planets']
       .flatMap(group => (registry[group] || []).map(item => ({ ...item, registryGroup: group })));
+    const renderSourceIntake = () => {
+      if (!sourceIntake) return;
+      const requiredStates = ['empty', 'low', 'calm', 'happy', 'excited'];
+      const sourceAssets = characters.reduce((sum, item) => sum + Object.values(item.states || {}).filter(asset => asset.source).length, 0);
+      const vectorAssets = characters.reduce((sum, item) => sum + Object.values(item.states || {}).filter(asset => asset.vectorSrc).length, 0);
+      const missing = characters.flatMap(item => requiredStates
+        .filter(state => !item.states[state])
+        .map(state => `${item.name} ${stateName(state)}`));
+      const blockers = [
+        missing.length ? `${missing.length} missing state${missing.length === 1 ? '' : 's'}` : null,
+        'review-only sources below production master size',
+        'guide clothing/name treatment still needs production cleanup'
+      ].filter(Boolean);
+      sourceIntake.innerHTML = `<article><strong>${sourceAssets}</strong><span>supplied transparent source poses</span></article><article><strong>${vectorAssets}</strong><span>review SVG derivatives</span></article><article><strong>${missing.length}</strong><span>missing five-state slots</span></article><p><b>Next production blockers:</b> ${blockers.join(' · ')}.</p>`;
+    };
     const renderProductionTruth = async () => {
       if (!productionTruth) return;
       try {
@@ -135,6 +151,7 @@
     };
     characterCards.replaceChildren(...characters.map(makeCard));
     renderProductionTruth();
+    renderSourceIntake();
     renderReadiness();
     function renderRunners() {
       const leon = characters.find(item => item.id === 'leon');

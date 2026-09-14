@@ -79,6 +79,41 @@
   margin-top: 4px;
   font-size: .76rem;
 }
+.source-intake {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 249, 229, .9), rgba(237, 249, 255, .92));
+  border: 1px solid #d6e4f2;
+}
+.source-intake article {
+  min-height: 76px;
+  display: grid;
+  align-content: center;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 8px 18px rgba(24, 67, 114, .08);
+}
+.source-intake strong {
+  color: #143a6d;
+  font-size: clamp(1.45rem, 4vw, 2.25rem);
+  line-height: 1;
+}
+.source-intake span {
+  color: #52617a;
+  font-size: .78rem;
+  font-weight: 900;
+}
+.source-intake p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #60440b;
+  font-weight: 820;
+}
 .review-summary article {
   min-height: 82px;
   display: grid;
@@ -337,7 +372,8 @@
   .review-workbench { grid-template-columns:1fr; gap:20px; }
   .review-stage { min-height:0; }
   .review-summary,
-  .production-truth { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .production-truth,
+  .source-intake { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .production-truth section { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .review-filter-row button { flex: 1 1 130px; }
   .readiness-grid { grid-template-columns: 1fr; }
