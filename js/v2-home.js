@@ -93,7 +93,7 @@
   const mixerSummary = document.getElementById('mixerSummary');
   const filterButtons = [...document.querySelectorAll('[data-world-filter]')];
   const gameCards = [...document.querySelectorAll('.world-game[data-world-category]')];
-  const homePlayScene = document.querySelector('.hub-art[data-home-play-mode]');
+  const homePlayScene = document.querySelector('[data-home-play-mode]');
   const homePlayButtons = [...document.querySelectorAll('[data-home-play]')];
   const cardCharacters = {
     'bubble-card': { id: 'world-cloud', family: 'world', state: 'happy', displayName: 'Cloud' },

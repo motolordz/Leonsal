@@ -849,26 +849,46 @@ body[data-contrast="strong"] .game-topbar {
 }
 .hub-hopscotch i:first-child { grid-column: 1 / -1; width: 32px; justify-self: center; }
 
-.hub-art[data-home-play-mode="football"] .hub-sports-goal { opacity: 1; }
-.hub-art[data-home-play-mode="football"] .hub-hoop { opacity: 0; }
-.hub-art[data-home-play-mode="football"] .hub-hopscotch { opacity: .45; }
-.hub-art[data-home-play-mode="hoops"] .hub-sports-goal { opacity: .18; }
-.hub-art[data-home-play-mode="hoops"] .hub-hoop { opacity: 1; transform: translateY(0); }
-.hub-art[data-home-play-mode="hoops"] .landing-ball { animation-name: landingHoopsBall; }
-.hub-art[data-home-play-mode="hoops"] .runner-leon { animation-name: landingHoopsLeon; }
-.hub-art[data-home-play-mode="hoops"] .runner-zaya { animation-name: landingHoopsZaya; }
+.hub-art[data-home-play-mode="football"] .hub-sports-goal,
+.landing-playground[data-home-play-mode="football"] .hub-sports-goal { opacity: 1; }
+.hub-art[data-home-play-mode="football"] .hub-hoop,
+.landing-playground[data-home-play-mode="football"] .hub-hoop { opacity: 0; }
+.hub-art[data-home-play-mode="football"] .hub-hopscotch,
+.landing-playground[data-home-play-mode="football"] .hub-hopscotch { opacity: .45; }
+.hub-art[data-home-play-mode="hoops"] .hub-sports-goal,
+.landing-playground[data-home-play-mode="hoops"] .hub-sports-goal { opacity: .18; }
+.hub-art[data-home-play-mode="hoops"] .hub-hoop,
+.landing-playground[data-home-play-mode="hoops"] .hub-hoop { opacity: 1; transform: translateY(0); }
+.hub-art[data-home-play-mode="hoops"] .landing-ball,
+.landing-playground[data-home-play-mode="hoops"] .landing-ball { animation-name: landingHoopsBall; }
+.hub-art[data-home-play-mode="hoops"] .runner-leon,
+.landing-playground[data-home-play-mode="hoops"] .runner-leon { animation-name: landingHoopsLeon; }
+.hub-art[data-home-play-mode="hoops"] .runner-zaya,
+.landing-playground[data-home-play-mode="hoops"] .runner-zaya { animation-name: landingHoopsZaya; }
 .hub-art[data-home-play-mode="hopscotch"] .hub-sports-goal,
-.hub-art[data-home-play-mode="hopscotch"] .hub-hoop { opacity: .14; }
-.hub-art[data-home-play-mode="hopscotch"] .hub-hopscotch { opacity: 1; transform: rotate(-8deg) scale(1.18); }
-.hub-art[data-home-play-mode="hopscotch"] .landing-ball { opacity: .34; animation-name: landingFloat; }
-.hub-art[data-home-play-mode="hopscotch"] .runner-leon { animation-name: landingHopscotchLeon; }
-.hub-art[data-home-play-mode="hopscotch"] .runner-zaya { animation-name: landingHopscotchZaya; }
+.hub-art[data-home-play-mode="hopscotch"] .hub-hoop,
+.landing-playground[data-home-play-mode="hopscotch"] .hub-sports-goal,
+.landing-playground[data-home-play-mode="hopscotch"] .hub-hoop { opacity: .14; }
+.hub-art[data-home-play-mode="hopscotch"] .hub-hopscotch,
+.landing-playground[data-home-play-mode="hopscotch"] .hub-hopscotch { opacity: 1; transform: rotate(-8deg) scale(1.18); }
+.hub-art[data-home-play-mode="hopscotch"] .landing-ball,
+.landing-playground[data-home-play-mode="hopscotch"] .landing-ball { opacity: .34; animation-name: landingFloat; }
+.hub-art[data-home-play-mode="hopscotch"] .runner-leon,
+.landing-playground[data-home-play-mode="hopscotch"] .runner-leon { animation-name: landingHopscotchLeon; }
+.hub-art[data-home-play-mode="hopscotch"] .runner-zaya,
+.landing-playground[data-home-play-mode="hopscotch"] .runner-zaya { animation-name: landingHopscotchZaya; }
 .hub-art[data-home-play-mode="calm"] .hub-sports-goal,
-.hub-art[data-home-play-mode="calm"] .hub-hoop { opacity: .12; }
+.hub-art[data-home-play-mode="calm"] .hub-hoop,
+.landing-playground[data-home-play-mode="calm"] .hub-sports-goal,
+.landing-playground[data-home-play-mode="calm"] .hub-hoop { opacity: .12; }
 .hub-art[data-home-play-mode="calm"] .hub-hopscotch,
-.hub-art[data-home-play-mode="calm"] .landing-ball { opacity: .28; }
+.hub-art[data-home-play-mode="calm"] .landing-ball,
+.landing-playground[data-home-play-mode="calm"] .hub-hopscotch,
+.landing-playground[data-home-play-mode="calm"] .landing-ball { opacity: .28; }
 .hub-art[data-home-play-mode="calm"] .runner-leon,
-.hub-art[data-home-play-mode="calm"] .runner-zaya {
+.hub-art[data-home-play-mode="calm"] .runner-zaya,
+.landing-playground[data-home-play-mode="calm"] .runner-leon,
+.landing-playground[data-home-play-mode="calm"] .runner-zaya {
   animation-duration: 12s;
 }
 
