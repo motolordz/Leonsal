@@ -22,16 +22,24 @@ for (const text of [
   'setProgress(100)',
   "gameId: 'double-decker-bus-v2'",
   'window.__doubleDeckerBusProofState',
-  'hasTapAlternative: true'
+  'hasTapAlternative: true',
+  'role="button"',
+  'data-speed-dot="super-slow"',
+  'bus.addEventListener(\'click\'',
+  "event.key === 'Enter' || event.key === ' '",
+  "destination.textContent = selectedBus === 'hong-kong' ? 'Harbour'"
 ]) {
   assert(html.includes(text), `Double-decker bus missing interaction/sensory contract: ${text}`);
 }
 
-for (const selector of ['.bus-choice-row', '.bus-speed-row', '.double-bus', '.bus-landmark', '.bus-city', '.bus-lights']) {
+for (const selector of ['.bus-choice-row', '.bus-speed-row', '.double-bus', '.bus-landmark', '.bus-city', '.bus-lights', '.speed-ribbon', '.bus-destination', '.bus-motion-lines']) {
   assert(css.includes(selector), `Double-decker bus missing visual CSS: ${selector}`);
 }
 assert(css.includes('@media (max-width: 760px)'), 'Double-decker bus must have mobile layout rules');
 assert(css.includes('.bus-choice,.bus-speed { min-width: 0; min-height: 48px'), 'Bus choices must keep touch-sized mobile controls');
+assert(css.includes('body[data-calm="true"] .bus-motion-lines'), 'Calm mode must remove bus motion-line animation');
+assert(css.includes('.double-bus:focus-visible'), 'Bus tap target must expose keyboard focus');
+assert(css.includes('pointer-events: auto; cursor: pointer; touch-action: manipulation'), 'Bus tap target must override decorative layer pointer-events');
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet/i.test(html), 'Bus route must not reference review/source/QA art');
 assert(home.includes('v2-double-decker-bus.html'), 'V2 home must link to the double-decker bus route');
 assert(offline.includes("'./v2-double-decker-bus.html'"), 'Offline cache must include the double-decker bus route');

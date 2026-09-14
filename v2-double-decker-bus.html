@@ -14,7 +14,7 @@
       <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
       <div class="settings-popover" id="settings"></div>
     </header>
-    <section class="game-scene bus-world" id="world" data-bus="uk" aria-label="Double-decker bus play area">
+    <section class="game-scene bus-world" id="world" data-bus="uk" data-speed="medium" aria-label="Double-decker bus play area">
       <div class="bus-skyline" aria-hidden="true">
         <span class="bus-cloud bus-cloud-a"></span>
         <span class="bus-cloud bus-cloud-b"></span>
@@ -27,7 +27,12 @@
         <span class="bus-stop finish-stop"></span>
         <span class="bus-road"></span>
         <span class="bus-lights" id="busLights"></span>
-        <span class="double-bus" id="bus">
+        <span class="speed-ribbon" id="speedRibbon">
+          <i data-speed-dot="super-slow"></i><i data-speed-dot="slow"></i><i data-speed-dot="medium"></i><i data-speed-dot="fast"></i><i data-speed-dot="super-speed"></i>
+        </span>
+        <span class="double-bus" id="bus" role="button" tabindex="0" aria-label="Start the selected bus journey">
+          <span class="bus-destination" id="busDestination">Park</span>
+          <span class="bus-motion-lines"></span>
           <span class="bus-deck top-deck"></span>
           <span class="bus-deck lower-deck"></span>
           <span class="bus-face"></span>
@@ -63,6 +68,7 @@
     const causeEffect = new LeonSalV2.CauseEffectEngine();
     const world = document.querySelector('#world');
     const bus = document.querySelector('#bus');
+    const destination = document.querySelector('#busDestination');
     const status = document.querySelector('#status');
     const speedFactors = {
       'super-slow': 10,
@@ -103,6 +109,9 @@
       document.querySelectorAll('.bus-speed').forEach((button) => {
         button.dataset.active = String(button.dataset.speed === selectedSpeed);
       });
+      document.querySelectorAll('[data-speed-dot]').forEach((dot) => {
+        dot.dataset.active = String(dot.dataset.speedDot === selectedSpeed);
+      });
     }
     function setProgress(value) {
       progress = Math.max(0, Math.min(100, value));
@@ -133,6 +142,7 @@
     function setBus(nextBus) {
       selectedBus = nextBus;
       world.dataset.bus = selectedBus;
+      if (destination) destination.textContent = selectedBus === 'hong-kong' ? 'Harbour' : selectedBus === 'night' ? 'Home' : 'Park';
       updateButtons();
       status.textContent = `${busName()} is ready at ${speedLabels[selectedSpeed]} speed.`;
     }
@@ -141,6 +151,7 @@
       if (settings.value.speed !== nextSpeed) settings.set({ speed: nextSpeed });
       updateButtons();
       status.textContent = `${busName()} speed is ${speedLabels[selectedSpeed]}.`;
+      world.dataset.speed = selectedSpeed;
     }
     function stopBus() {
       running = false;
@@ -178,11 +189,19 @@
       if (button) setSpeed(button.dataset.speed);
     });
     document.querySelector('#go').addEventListener('click', () => causeEffect.trigger('go-bus'));
+    bus.addEventListener('click', () => causeEffect.trigger('go-bus'));
+    bus.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        causeEffect.trigger('go-bus');
+      }
+    });
     document.querySelector('#pauseBus').addEventListener('click', stopBus);
     document.querySelector('#reset').addEventListener('click', reset);
     settings.on('settings-change', () => {
       if (speedFactors[settings.value.speed] && selectedSpeed !== settings.value.speed) {
         selectedSpeed = settings.value.speed;
+        world.dataset.speed = selectedSpeed;
         updateButtons();
       }
       if (!settings.allowsMotion()) stopBus();

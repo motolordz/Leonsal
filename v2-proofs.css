@@ -2320,8 +2320,20 @@ body[data-motion="off"] .transport-choice { transition: none; }
 .bus-landmark[data-active="true"]::after { content: ""; position: absolute; left: 50%; bottom: -16px; width: 16px; aspect-ratio: 1; border-radius: 50%; transform: translateX(-50%); background: #facc15; box-shadow: -18px 2px 0 -4px #38bdf8, 18px 2px 0 -4px #22c55e; }
 .bus-lights { position: absolute; right: 9%; bottom: 45%; z-index: 3; width: 72px; height: 72px; border-radius: 50%; opacity: 0; background: radial-gradient(circle, rgba(250,204,21,.75) 0 10%, transparent 11%), radial-gradient(circle at 22% 34%, rgba(56,189,248,.65) 0 9%, transparent 10%), radial-gradient(circle at 74% 62%, rgba(34,197,94,.65) 0 9%, transparent 10%); transform: scale(.7); transition: opacity .24s ease, transform .24s ease; }
 .bus-world[data-arrived="true"] .bus-lights { opacity: 1; transform: scale(1); }
-.double-bus { --progress: 0%; position: absolute; left: calc(13% + (var(--progress) * .72)); bottom: 27%; z-index: 5; width: min(42vw, 250px); height: min(26vw, 155px); max-height: 170px; border-radius: 24px 28px 18px 18px; transform: translateX(-50%); background: linear-gradient(180deg, #ef4444 0 49%, #dc2626 50% 100%); box-shadow: inset 0 -14px 0 rgba(19,35,67,.13), 0 24px 38px rgba(19,35,67,.2); transition: background .22s ease; }
+.speed-ribbon { position: absolute; left: 50%; bottom: 12%; z-index: 4; width: min(70vw, 430px); height: 18px; transform: translateX(-50%); border-radius: 999px; background: rgba(255,255,255,.72); box-shadow: inset 0 -4px 0 rgba(19,35,67,.08), 0 10px 20px rgba(19,35,67,.1); }
+.speed-ribbon i { position: absolute; top: 50%; width: 18px; aspect-ratio: 1; border-radius: 50%; transform: translate(-50%,-50%) scale(.78); background: #bfdbfe; box-shadow: 0 0 0 4px rgba(255,255,255,.7); transition: transform .2s ease, background .2s ease; }
+.speed-ribbon i:nth-child(1) { left: 8%; }
+.speed-ribbon i:nth-child(2) { left: 29%; }
+.speed-ribbon i:nth-child(3) { left: 50%; }
+.speed-ribbon i:nth-child(4) { left: 71%; }
+.speed-ribbon i:nth-child(5) { left: 92%; }
+.speed-ribbon i[data-active="true"] { transform: translate(-50%,-50%) scale(1.35); background: #facc15; }
+.double-bus { --progress: 0%; position: absolute; left: calc(13% + (var(--progress) * .72)); bottom: 27%; z-index: 5; width: min(42vw, 250px); height: min(26vw, 155px); max-height: 170px; border-radius: 24px 28px 18px 18px; transform: translateX(-50%); background: linear-gradient(180deg, #ef4444 0 49%, #dc2626 50% 100%); box-shadow: inset 0 -14px 0 rgba(19,35,67,.13), 0 24px 38px rgba(19,35,67,.2); transition: background .22s ease; pointer-events: auto; cursor: pointer; touch-action: manipulation; }
 .double-bus::before { content: ""; position: absolute; left: 10%; right: 10%; top: 11%; height: 58%; border-radius: 12px; background: repeating-linear-gradient(90deg, #dbeafe 0 13%, transparent 13% 17%); box-shadow: inset 0 -8px 0 rgba(19,35,67,.08); }
+.double-bus:focus-visible { outline: 5px solid rgba(250,204,21,.72); outline-offset: 8px; }
+.bus-destination { position: absolute; left: 34%; right: 34%; top: 5%; z-index: 2; min-height: 22px; display: grid; place-items: center; border-radius: 7px; background: #173356; color: #fff; font-size: .58rem; font-weight: 1000; letter-spacing: 0; }
+.bus-motion-lines { position: absolute; right: 100%; top: 25%; width: 70px; height: 66px; opacity: 0; pointer-events: none; background: repeating-linear-gradient(180deg, transparent 0 12px, rgba(255,255,255,.78) 12px 17px, transparent 17px 25px); border-radius: 999px; transform: translateX(14px); }
+.double-bus[data-moving="true"] .bus-motion-lines { opacity: .7; animation: busMotionLines .42s linear infinite; }
 .bus-deck { position: absolute; left: 9%; right: 9%; height: 4px; border-radius: 999px; background: rgba(255,255,255,.45); }
 .top-deck { top: 45%; }
 .lower-deck { top: 71%; }
@@ -2333,6 +2345,7 @@ body[data-motion="off"] .transport-choice { transition: none; }
 .double-bus[data-moving="true"] .bus-wheel { animation: busWheelSpin .65s linear infinite; }
 .double-bus[data-moving="true"] { animation: busBob .9s ease-in-out infinite; }
 .bus-world[data-bus="hong-kong"] .double-bus { background: linear-gradient(180deg, #22c55e 0 49%, #16a34a 50% 100%); }
+.bus-world[data-bus="hong-kong"] .bus-road::after { background: repeating-linear-gradient(90deg, #fef3c7 0 28px, transparent 28px 52px); }
 .bus-world[data-bus="night"] { background: linear-gradient(180deg, #1e3a8a, #334155 56%, #475569 57%); color: #fff; }
 .bus-world[data-bus="night"] .double-bus { background: linear-gradient(180deg, #2563eb 0 49%, #1d4ed8 50% 100%); box-shadow: 0 0 38px rgba(96,165,250,.34), inset 0 -14px 0 rgba(19,35,67,.16); }
 .bus-world[data-bus="night"] .bus-sun { opacity: .18; }
@@ -2349,6 +2362,7 @@ body[data-motion="off"] .transport-choice { transition: none; }
 .bus-world .drawer-controls { z-index: 8; }
 @keyframes busWheelSpin { to { transform: rotate(360deg); } }
 @keyframes busBob { 0%,100% { margin-bottom: 0; } 50% { margin-bottom: 5px; } }
+@keyframes busMotionLines { to { transform: translateX(-12px); opacity: .2; } }
 body[data-motion="off"] .double-bus,
 body[data-motion="off"] .bus-wheel,
 body[data-motion="off"] .bus-lights,
@@ -2356,7 +2370,9 @@ body[data-motion="off"] .bus-landmark,
 body[data-calm="true"] .double-bus,
 body[data-calm="true"] .bus-wheel,
 body[data-calm="true"] .bus-lights,
-body[data-calm="true"] .bus-landmark { animation: none; transition: none; }
+body[data-calm="true"] .bus-landmark,
+body[data-calm="true"] .bus-motion-lines,
+body[data-calm="true"] .speed-ribbon i { animation: none; transition: none; }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -2493,6 +2509,8 @@ body[data-calm="true"] .connection-status { transition: none; }
   .bus-speed-row { top: 19%; grid-template-columns: repeat(2, minmax(0,1fr)); left: 6%; right: 6%; }
   .bus-choice,.bus-speed { min-height: 44px; border-radius: 15px; font-size: .7rem; }
   .double-bus { width: 150px; height: 96px; bottom: 30%; }
+  .bus-destination { font-size: .5rem; min-height: 18px; }
+  .speed-ribbon { bottom: 15%; width: 78vw; }
   .bus-road { bottom: 20%; height: 86px; }
   .bus-stop { bottom: 38%; width: 38px; height: 70px; }
   .bus-world .drawer-controls { left: 10px; right: 10px; justify-content: center; }
