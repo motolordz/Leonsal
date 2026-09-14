@@ -24,6 +24,7 @@
     const productionTruth = document.getElementById('productionTruth');
     const sourceIntake = document.getElementById('sourceIntake');
     const candidateLibrary = document.getElementById('candidateLibrary');
+    const guideProductionLane = document.getElementById('guideProductionLane');
     const productionBatches = document.getElementById('productionBatches');
     const familyEvidence = document.getElementById('familyEvidence');
     const gateMatrix = document.getElementById('gateMatrix');
@@ -82,6 +83,19 @@
         candidateLibrary.innerHTML = `<article><strong>${summary.pendingCharacters || 0}</strong><span>pending generated characters</span></article><article><strong>${(summary.pendingCharacters || 0) * 5}</strong><span>pending generated state slots</span></article><article><strong>${summary.pendingGeneratedVectorSources || 0}</strong><span>preserved vector sources</span></article><p><b>Candidate library:</b> Generated SVG-backed candidates are inspectable, but gameplay still resolves only approved art.</p><ul class="family-status-list">${familyRows}</ul><ul>${blockers}</ul>`;
       } catch {
         candidateLibrary.innerHTML = '<p>Candidate readiness report could not load. Registry checks still enforce approved-only runtime art.</p>';
+      }
+    };
+    const renderGuideProductionLane = async () => {
+      if (!guideProductionLane) return;
+      try {
+        const laneResponse = await fetch('qa/character-production-v3/GUIDE-PRODUCTION-LANE/guide-production-lane.json');
+        if (!laneResponse.ok) throw new Error('Guide lane unavailable');
+        const lane = await laneResponse.json();
+        const guides = lane.guides || [];
+        const rows = guides.map((guide) => `<li><b>${guide.displayName}</b><span>${guide.suppliedReviewStates.length}/5 review states · ${guide.missingSuppliedStates.length ? `missing ${guide.missingSuppliedStates.map(stateName).join(', ')}` : 'no supplied states missing'} · ${guide.approvalDecision}</span></li>`).join('');
+        guideProductionLane.innerHTML = `<div><h3>Guide production lane</h3><p>${lane.batteryPrecedent || 'Battery remains the production precedent.'}</p><ul>${rows}</ul><a href="qa/character-production-v3/GUIDE-PRODUCTION-LANE/guide-production-lane.png">Open guide lane sheet</a></div><img src="qa/character-production-v3/GUIDE-PRODUCTION-LANE/guide-production-lane.png" alt="Leon and Zaya guide production lane evidence" loading="lazy" decoding="async">`;
+      } catch {
+        guideProductionLane.innerHTML = '<p>Guide production lane evidence could not load.</p>';
       }
     };
     const renderGateMatrix = () => {
@@ -226,6 +240,7 @@
     renderProductionTruth();
     renderSourceIntake();
     renderCandidateLibrary();
+    renderGuideProductionLane();
     renderProductionBatches();
     renderFamilyEvidence();
     renderReadiness();

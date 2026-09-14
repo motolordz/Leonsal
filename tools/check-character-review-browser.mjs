@@ -36,6 +36,10 @@ try {
   assert(await page.locator('.readiness-card[data-character="leon"]').getByText('missing Empty', { exact: false }).isVisible());
   assert(await page.locator('.readiness-card[data-character="zaya"]').getByText('5/5 states supplied').isVisible());
   assert(await page.locator('.readiness-card[data-character="elephant"]').getByText('5/5 states supplied').isVisible());
+  assert(await page.locator('#guideProductionLane').getByText('Guide production lane', { exact: true }).isVisible());
+  assert(await page.locator('#guideProductionLane').getByText('Leon').isVisible());
+  assert(await page.locator('#guideProductionLane').getByText('missing Empty', { exact: false }).isVisible());
+  assert(await page.locator('#guideProductionLane img').isVisible());
   assert.equal(await page.locator('.readiness-card').getByText('Not production ready').count(),3);
   assert.equal(await page.locator('#stateStrip button').count(),5);
   assert.equal(await page.locator('#stateStrip button[data-missing="true"]').count(),0);

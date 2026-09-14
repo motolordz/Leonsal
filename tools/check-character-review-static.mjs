@@ -9,15 +9,15 @@ const review = JSON.parse(await fs.readFile('data/character-review.json', 'utf8'
 assert.equal(review.status, 'review-only', 'Character review data must remain review-only');
 assert.equal(review.productionApproved, false, 'Character review data must not be production approved');
 
-for (const text of ['productionTruth', 'sourceIntake', 'candidateLibrary', 'productionBatches', 'familyEvidence', 'gateMatrix', 'reviewSummary', 'data-review-filter="needs-states"', 'data-review-filter="five-state"', 'data-review-filter="guide"', 'data-review-filter="world"']) {
+for (const text of ['productionTruth', 'sourceIntake', 'candidateLibrary', 'guideProductionLane', 'productionBatches', 'familyEvidence', 'gateMatrix', 'reviewSummary', 'data-review-filter="needs-states"', 'data-review-filter="five-state"', 'data-review-filter="guide"', 'data-review-filter="world"']) {
   assert(html.includes(text), `Missing review UI hook: ${text}`);
 }
 
-for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'renderGateMatrix', 'Production gates', 'familySummary', 'gateSummary', 'visual blockers', 'family-status-list', 'renderProductionBatches', 'renderFamilyEvidence', 'supplied-character-source-contact-sheet.png', 'leon-zaya-five-state-generated-review.png', 'supplied-character-five-state-review.png', 'leon-zaya-five-states.png', 'leonsal-complete-character-library.png', 'Generated review sheets are shown here', '<img src="${href}"', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'reviewAssets', 'optimized review images', 'missing.length', 'approved art']) {
+for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'renderGuideProductionLane', 'Guide production lane', 'guide-production-lane.json', 'guide-production-lane.png', 'renderGateMatrix', 'Production gates', 'familySummary', 'gateSummary', 'visual blockers', 'family-status-list', 'renderProductionBatches', 'renderFamilyEvidence', 'supplied-character-source-contact-sheet.png', 'leon-zaya-five-state-generated-review.png', 'supplied-character-five-state-review.png', 'leon-zaya-five-states.png', 'leonsal-complete-character-library.png', 'Generated review sheets are shown here', '<img src="${href}"', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'reviewAssets', 'optimized review images', 'missing.length', 'approved art']) {
   assert(js.includes(text), `Missing review filter implementation: ${text}`);
 }
 
-for (const text of ['.production-truth', '.source-intake', '.candidate-library', '.production-batches', '.family-evidence', '.family-evidence a img', '.gate-matrix', '.review-summary', '.review-filter-row', 'min-height: 46px']) {
+for (const text of ['.production-truth', '.source-intake', '.candidate-library', '.guide-production-lane', '.guide-production-lane img', '.production-batches', '.family-evidence', '.family-evidence a img', '.gate-matrix', '.review-summary', '.review-filter-row', 'min-height: 46px']) {
   assert(css.includes(text), `Missing review dashboard styling: ${text}`);
 }
 
@@ -47,5 +47,9 @@ assert.equal(batches.batches[0].id, 'batch-1-guides-leon-zaya', 'Guide productio
 assert(batches.batches[0].characters.some(character => character.id === 'leon'), 'Guide batch must include Leon');
 assert(batches.batches[0].characters.some(character => character.id === 'zaya'), 'Guide batch must include Zaya');
 assert(batches.batches[1].characters.some(character => character.id === 'supplied-elephant'), 'Supplied Elephant intake must remain visible in batch 2');
+const lane = JSON.parse(await fs.readFile('qa/character-production-v3/GUIDE-PRODUCTION-LANE/guide-production-lane.json', 'utf8'));
+assert.equal(lane.status, 'pending-production', 'Guide lane must remain pending-production');
+assert(lane.guides.find(character => character.id === 'leon').missingSuppliedStates.includes('empty'), 'Guide lane must preserve Leon missing empty state');
+assert.equal(lane.guides.find(character => character.id === 'zaya').suppliedReviewStates.length, 5, 'Guide lane must preserve Zaya five supplied review states');
 
 console.log('Character review static checks passed.');
