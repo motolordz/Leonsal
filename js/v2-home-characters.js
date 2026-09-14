@@ -42,13 +42,31 @@
   }
 
   function install() {
-    document.querySelectorAll('[data-home-guide]').forEach((target) => {
+    const renderGuide = (target) => {
       target.setAttribute('data-svg-guide', 'true');
       const renderer = window.LeonSalCharacterRenderer;
       const guide = target.dataset.homeGuide;
-      const state = guide === 'zaya' ? 'excited' : 'happy';
+      const state = target.dataset.guideState || (guide === 'zaya' ? 'excited' : 'happy');
       const record = { id: guide, family: 'guide' };
+      target.setAttribute('aria-label', `${guide === 'zaya' ? 'Zaya' : 'Leon'} ${state} in the play scene`);
       target.replaceChildren(renderer ? renderer.makeCharacter(record, state, { decorative: true }) : makeGuide(guide));
+    };
+    const renderAll = (mode = document.querySelector('[data-home-play-mode]')?.dataset.homePlayMode || 'football') => {
+      document.querySelectorAll('[data-home-guide]').forEach((target) => {
+        const guide = target.dataset.homeGuide;
+        const statesByMode = {
+          football: { leon: 'happy', zaya: 'excited' },
+          hoops: { leon: 'excited', zaya: 'happy' },
+          hopscotch: { leon: 'happy', zaya: 'happy' },
+          calm: { leon: 'calm', zaya: 'calm' }
+        };
+        target.dataset.guideState = statesByMode[mode]?.[guide] || (guide === 'zaya' ? 'excited' : 'happy');
+        renderGuide(target);
+      });
+    };
+    renderAll();
+    document.querySelectorAll('[data-home-play]').forEach((button) => {
+      button.addEventListener('click', () => renderAll(button.dataset.homePlay));
     });
   }
 

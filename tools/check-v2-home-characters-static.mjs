@@ -35,7 +35,7 @@ for (const family of ['world', 'planet']) {
 for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
   assert(renderer.includes(state), `Shared guide renderer missing state: ${state}`);
 }
-for (const text of ['makeCharacter', 'LeonSalCharacterRenderer', 'data-svg-guide', 'home-guide-svg']) {
+for (const text of ['makeCharacter', 'LeonSalCharacterRenderer', 'data-svg-guide', 'home-guide-svg', 'statesByMode', 'guideState', 'in the play scene']) {
   assert(js.includes(text), `Home procedural guide renderer missing: ${text}`);
 }
 assert(js.includes('guide.name.toUpperCase()'), 'Home fallback guide renderer must render uppercase LEON/ZAYA identity text');
