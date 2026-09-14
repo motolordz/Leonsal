@@ -9,15 +9,15 @@ const review = JSON.parse(await fs.readFile('data/character-review.json', 'utf8'
 assert.equal(review.status, 'review-only', 'Character review data must remain review-only');
 assert.equal(review.productionApproved, false, 'Character review data must not be production approved');
 
-for (const text of ['reviewSummary', 'data-review-filter="needs-states"', 'data-review-filter="five-state"', 'data-review-filter="guide"', 'data-review-filter="world"']) {
+for (const text of ['productionTruth', 'reviewSummary', 'data-review-filter="needs-states"', 'data-review-filter="five-state"', 'data-review-filter="guide"', 'data-review-filter="world"']) {
   assert(html.includes(text), `Missing review UI hook: ${text}`);
 }
 
-for (const text of ['matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter']) {
+for (const text of ['renderProductionTruth', 'character-assets.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter']) {
   assert(js.includes(text), `Missing review filter implementation: ${text}`);
 }
 
-for (const text of ['.review-summary', '.review-filter-row', 'min-height: 46px']) {
+for (const text of ['.production-truth', '.review-summary', '.review-filter-row', 'min-height: 46px']) {
   assert(css.includes(text), `Missing review dashboard styling: ${text}`);
 }
 

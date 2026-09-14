@@ -21,6 +21,7 @@
     const characterCards = document.getElementById('characterCards');
     const readinessGrid = document.getElementById('readinessGrid');
     const reviewSummary = document.getElementById('reviewSummary');
+    const productionTruth = document.getElementById('productionTruth');
     const reviewFilters = [...document.querySelectorAll('[data-review-filter]')];
     let reviewFilter = 'all';
     const stateName = state => state[0].toUpperCase() + state.slice(1);
@@ -38,6 +39,27 @@
       const asset = item.states[state];
       if (!asset) return '';
       return format.value === 'vector' && asset.vectorSrc ? asset.vectorSrc : asset.src;
+    };
+    const registryGroups = registry => ['guides', 'alphabet', 'numbers', 'world', 'planets']
+      .flatMap(group => (registry[group] || []).map(item => ({ ...item, registryGroup: group })));
+    const renderProductionTruth = async () => {
+      if (!productionTruth) return;
+      try {
+        const assetResponse = await fetch('data/character-assets.json');
+        if (!assetResponse.ok) throw new Error('Registry unavailable');
+        const registry = await assetResponse.json();
+        const records = registryGroups(registry);
+        const approved = records.filter(item => item.status === 'approved');
+        const pending = records.filter(item => item.status !== 'approved');
+        const familyCounts = ['guide', 'world', 'alphabet', 'number', 'planet'].map((family) => {
+          const items = records.filter(item => item.family === family);
+          const approvedCount = items.filter(item => item.status === 'approved').length;
+          return `<article><strong>${family}</strong><span>${approvedCount}/${items.length} approved</span></article>`;
+        }).join('');
+        productionTruth.innerHTML = `<div><strong>${approved.length * 5}</strong><span>approved runtime state assets</span></div><div><strong>${pending.length * 5}</strong><span>pending/review state slots</span></div><p>${registry.runtimeRule || 'Only approved assets may resolve into gameplay.'}</p><section aria-label="Registry family approval counts">${familyCounts}</section>`;
+      } catch {
+        productionTruth.innerHTML = '<p>Production registry counts could not load. Runtime checks still fail closed.</p>';
+      }
     };
     format.addEventListener('change', render);
     for (const item of characters) {
@@ -112,6 +134,7 @@
       return card;
     };
     characterCards.replaceChildren(...characters.map(makeCard));
+    renderProductionTruth();
     renderReadiness();
     function renderRunners() {
       const leon = characters.find(item => item.id === 'leon');
