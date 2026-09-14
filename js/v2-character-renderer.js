@@ -50,6 +50,12 @@
     const id = record.id || '';
     if (record.family === 'alphabet') return 'letter';
     if (record.family === 'number' || record.family === 'numbers') return 'number';
+    if (/rainbow/.test(id)) return 'rainbow';
+    if (/cloud/.test(id)) return 'cloud';
+    if (/moon/.test(id)) return 'moon';
+    if (/sun/.test(id) && !/^planet-/.test(id)) return 'sun';
+    if (/rocket/.test(id)) return 'rocket';
+    if (/tree/.test(id)) return 'tree';
     if (/elephant/.test(id)) return 'elephant';
     if (/battery/.test(id)) return 'battery';
     if (/dinosaur/.test(id)) return 'dinosaur';
@@ -178,6 +184,24 @@
 
   function worldBodyMarkup(record, glyph, primary, accent, secondary) {
     const kind = characterKind(record);
+    if (kind === 'sun') {
+      return `<g class="character-body sun-body"><path d="M110 29 l12 27 29 -11 -11 29 27 12 -27 12 11 29 -29 -11 -12 27 -12 -27 -29 11 11 -29 -27 -12 27 -12 -11 -29 29 11z" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><circle cx="110" cy="108" r="52" class="body"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/></g>`;
+    }
+    if (kind === 'moon') {
+      return `<g class="character-body moon-body"><path d="M142 50 q-42 9 -49 54 q-7 48 34 72 q-48 2 -72 -35 q-20 -32 -5 -66 q20 -45 92 -25z" class="body"/><circle cx="74" cy="123" r="9" class="cheek"/><circle cx="134" cy="121" r="9" class="cheek"/></g>`;
+    }
+    if (kind === 'cloud') {
+      return `<g class="character-body cloud-body"><path d="M61 139 q-24 -4 -25 -30 q1 -24 26 -29 q11 -31 43 -31 q30 0 45 25 q31 0 39 28 q8 34 -28 40z" class="body"/><circle cx="75" cy="124" r="9" class="cheek"/><circle cx="154" cy="124" r="9" class="cheek"/></g>`;
+    }
+    if (kind === 'rainbow') {
+      return `<g class="character-body rainbow-body"><path d="M42 141 q68 -102 136 0" fill="none" stroke="#ff5dab" stroke-width="42" stroke-linecap="round"/><path d="M58 141 q52 -76 104 0" fill="none" stroke="#ffcf48" stroke-width="30" stroke-linecap="round"/><path d="M74 141 q36 -51 72 0" fill="none" stroke="#32c36b" stroke-width="18" stroke-linecap="round"/><path d="M90 141 q20 -28 40 0" fill="none" stroke="#32a7ff" stroke-width="9" stroke-linecap="round"/><circle cx="67" cy="147" r="22" fill="#fff"/><circle cx="153" cy="147" r="22" fill="#fff"/><circle cx="80" cy="128" r="9" class="cheek"/><circle cx="140" cy="128" r="9" class="cheek"/></g>`;
+    }
+    if (kind === 'rocket') {
+      return `<g class="character-body rocket-body"><path d="M111 38 q43 33 35 99 q-35 32 -70 0 q-8 -66 35 -99z" class="body"/><circle cx="111" cy="89" r="22" fill="#dff5ff" stroke="#173356" stroke-width="5"/><path d="M76 127 l-31 28 q-2 -34 20 -52zM146 127 l31 28 q2 -34 -20 -52z" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><path d="M92 151 q19 32 38 0" fill="#ff7a59" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><circle cx="82" cy="121" r="8" class="cheek"/><circle cx="140" cy="121" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'tree') {
+      return `<g class="character-body tree-body"><path d="M100 124 h22 l12 54 h-46z" fill="#9a6739" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><circle cx="83" cy="96" r="34" class="body"/><circle cx="117" cy="76" r="40" class="body"/><circle cx="145" cy="105" r="34" class="body"/><path d="M86 135 q25 14 55 0" fill="none" stroke="#fff" stroke-width="9" opacity=".28"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="155" cy="121" r="9" class="cheek"/></g>`;
+    }
     if (kind === 'battery') {
       return `<g class="character-body battery-body"><rect x="62" y="48" width="96" height="130" rx="24" class="body"/><rect x="86" y="32" width="48" height="24" rx="9" fill="${secondary}" stroke="#173356" stroke-width="5"/><path d="M92 114 l24 -43 -1 31 h22 l-30 48 5 -36z" fill="${accent}" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/></g>`;
     }
