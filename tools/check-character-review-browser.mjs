@@ -40,6 +40,12 @@ try {
   assert(await page.locator('#guideProductionLane').getByText('Leon').isVisible());
   assert(await page.locator('#guideProductionLane').getByText('missing Empty', { exact: false }).isVisible());
   assert(await page.locator('#guideProductionLane img').isVisible());
+  assert(await page.locator('#productionQueue').getByText('Production queue', { exact: true }).isVisible());
+  assert(await page.locator('#productionQueue').getByText('68', { exact: false }).isVisible());
+  assert(await page.locator('#productionQueue').getByText('340', { exact: false }).isVisible());
+  assert(await page.locator('#productionQueue').getByText('Leon', { exact: true }).isVisible());
+  assert(await page.locator('#productionQueue').getByText('Zaya', { exact: true }).isVisible());
+  assert.equal(await page.locator('#productionQueue a').getAttribute('href'), 'qa/character-production-v3/PRODUCTION-QUEUE/CHARACTER-PRODUCTION-QUEUE.md');
   assert.equal(await page.locator('.readiness-card').getByText('Not production ready').count(),3);
   assert.equal(await page.locator('#stateStrip button').count(),5);
   assert.equal(await page.locator('#stateStrip button[data-missing="true"]').count(),0);
@@ -90,6 +96,6 @@ try {
  await page.getByRole('button',{name:'Calm',exact:true}).click();await page.waitForSelector('#characterImage:not([hidden])');
  await page.route('**/data/character-assets.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify({world:[{id:'battery-buddy',status:'pending-art',states:{happy:'assets/character-review/elephant/happy.webp'}}]})}));
  await page.goto(base+'/v2-home.html');await page.waitForLoadState('networkidle');assert.equal(await page.locator('[data-approved-character] img').count(),0);assert(await page.locator('.home-battery').first().isVisible());
- assert.deepEqual(errors,[]);await fs.writeFile(`${out}/results.json`,JSON.stringify({passed:true,browser:name,widths:[390,768,1280],checks:['approved-only home','no review gameplay requests','review-only readiness matrix','five poses','keyboard','dark background','references','network failure recovery','pending record fallback'],errors},null,2)+'\n');
+ assert.deepEqual(errors,[]);await fs.writeFile(`${out}/results.json`,JSON.stringify({passed:true,browser:name,widths:[390,768,1280],checks:['approved-only home','no review gameplay requests','review-only readiness matrix','production queue visible','five poses','keyboard','dark background','references','network failure recovery','pending record fallback'],errors},null,2)+'\n');
  console.log(`${name}: character integration checks passed`);
 } finally {await browser.close();if(!externalBase && server.listening) await new Promise(resolve=>server.close(resolve));}
