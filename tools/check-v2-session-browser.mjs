@@ -161,6 +161,7 @@ try {
     await page.locator('.letter-chip').last().click();
     assert.equal(await page.evaluate(()=>window.__alphabetAdventureProofState().letter),'Z');
     await page.goto(base+'/v2-shape-builder.html');
+    assert.equal(await page.evaluate(()=>window.__shapeBuilderProofState().hasCharacterRenderer),true);
     for (let i=0;i<4;i+=1) await page.locator('.shape-piece').nth(i).click();
     assert.equal(await page.evaluate(()=>window.__shapeBuilderProofState().complete),true);
     await page.getByRole('button',{name:'Reset',exact:true}).click();
@@ -186,6 +187,7 @@ try {
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__numberTracingProofState().progress),0);
     await page.goto(base+'/v2-shape-tracing.html');
+    assert.equal(await page.evaluate(()=>window.__shapeTracingProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Step',exact:true}).click();
     assert((await page.evaluate(()=>window.__shapeTracingProofState().progress))>0);
     await page.getByRole('button',{name:'Next',exact:true}).click();

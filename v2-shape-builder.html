@@ -22,6 +22,7 @@
         <div class="shape-target target-door" data-target="door"></div>
         <div class="shape-target target-sun" data-target="sun"></div>
       </div>
+      <div class="shape-helper" id="shapeHelper" aria-live="polite"></div>
       <div class="shape-tray" id="tray" aria-label="Choose a shape">
         <button class="shape-piece piece-body" type="button" data-piece="body" aria-label="Place square body"></button>
         <button class="shape-piece piece-roof" type="button" data-piece="roof" aria-label="Place triangle roof"></button>
@@ -38,6 +39,7 @@
 
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -50,6 +52,7 @@
     ]);
     const status = document.querySelector('#status');
     const picture = document.querySelector('#picture');
+    const shapeHelper = document.querySelector('#shapeHelper');
     const order = ['body', 'roof', 'door', 'sun'];
     let selected = null;
     let pulse = 0;
@@ -61,6 +64,29 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+
+    function helperRecord() {
+      return { id: 'world-puzzle', displayName: 'Shape Helper', family: 'world', registryGroup: 'world' };
+    }
+
+    function helperState() {
+      if (engine.complete()) return 'excited';
+      if (engine.placed.size >= 2) return 'happy';
+      if (engine.placed.size >= 1) return 'calm';
+      return 'low';
+    }
+
+    function renderHelper() {
+      const renderer = window.LeonSalCharacterRenderer;
+      shapeHelper.replaceChildren();
+      if (renderer) {
+        shapeHelper.append(renderer.makeCharacter(helperRecord(), helperState(), { decorative: false }));
+      }
+      const label = document.createElement('span');
+      label.className = 'shape-helper-label';
+      label.textContent = engine.complete() ? 'Built' : 'Shapes';
+      shapeHelper.append(label);
+    }
 
     function select(piece) {
       selected = piece;
@@ -79,6 +105,7 @@
       pulse = settings.value.calmMode ? 0.35 : 0.8;
       audio.tone(engine.complete() ? 'success' : 'tap');
       status.textContent = engine.complete() ? 'Picture complete.' : 'Choose another shape.';
+      renderHelper();
     }
 
     function reset() {
@@ -90,6 +117,7 @@
         item.dataset.placed = 'false';
       });
       status.textContent = 'Choose a shape.';
+      renderHelper();
     }
 
     function animate(dt) {
@@ -114,7 +142,7 @@
     const removeTick = motion.add(animate);
     reset();
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], resources: [{ destroy: removeTick }, engine], reset, gameId: 'shape-builder-v2' });
-    window.__shapeBuilderProofState = () => ({ placed: [...engine.placed], complete: engine.complete(), selected, motion: settings.allowsMotion(), calmMode: settings.value.calmMode });
+    window.__shapeBuilderProofState = () => ({ placed: [...engine.placed], complete: engine.complete(), selected, hasCharacterRenderer: Boolean(shapeHelper.querySelector('.procedural-character-svg.character-family-world')), motion: settings.allowsMotion(), calmMode: settings.value.calmMode });
   </script>
 </body>
 </html>

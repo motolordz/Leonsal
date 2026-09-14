@@ -17,6 +17,7 @@
     <section class="game-scene shape-trace-world" aria-label="Shape tracing play area">
       <svg class="shape-trace-ghost" id="ghostShape" viewBox="0 0 320 320" aria-hidden="true"></svg>
       <canvas id="shapeTraceCanvas" class="trace-canvas" aria-label="Trace the circle. Drag along the path, or use the Step button."></canvas>
+      <div class="trace-character-preview shape-trace-helper" id="shapeTraceHelper" aria-live="polite"></div>
       <p class="scene-status" id="status">Trace the circle.</p>
       <div class="drawer-controls">
         <button class="scene-button" id="step" type="button">Step</button>
@@ -27,12 +28,14 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
     const canvas = document.querySelector('#shapeTraceCanvas');
     const status = document.querySelector('#status');
     const ghost = document.querySelector('#ghostShape');
+    const shapeTraceHelper = document.querySelector('#shapeTraceHelper');
     const shapes = ['circle', 'triangle', 'square', 'heart'];
     let shapeIndex = 0;
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
@@ -43,6 +46,24 @@
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
     function currentShape() { return shapes[shapeIndex]; }
+    function helperRecord() {
+      return { id: 'world-puzzle', displayName: 'Shape Helper', family: 'world', registryGroup: 'world' };
+    }
+    function helperState() {
+      const ratio = trace.path.length ? trace.progress / trace.path.length : 0;
+      if (ratio >= 1) return 'excited';
+      if (ratio >= .65) return 'happy';
+      if (ratio >= .35) return 'calm';
+      if (ratio > 0) return 'low';
+      return 'empty';
+    }
+    function renderHelper() {
+      const renderer = window.LeonSalCharacterRenderer;
+      shapeTraceHelper.replaceChildren();
+      if (renderer) {
+        shapeTraceHelper.append(renderer.makeCharacter(helperRecord(), helperState(), { decorative: false }));
+      }
+    }
     function drawGhost() {
       const shape = currentShape();
       const common = 'fill="none" stroke="rgba(15,23,42,.08)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"';
@@ -87,11 +108,13 @@
       trace.setPath(makePath());
       status.textContent = `Trace the ${currentShape()}.`;
       canvas.setAttribute('aria-label', `Trace the ${currentShape()}. Drag along the path, or use the Step button.`);
+      renderHelper();
     }
     function add(x, y) {
       const rect = canvas.getBoundingClientRect();
       const result = trace.addPoint(x - rect.left, y - rect.top);
       status.textContent = result.complete ? `${currentShape()} complete.` : result.near ? 'Keep tracing.' : 'Come back to the glow.';
+      renderHelper();
     }
     new LeonSalV2.InputEngine(canvas).onPointer({ down: ({ x, y }) => add(x, y), move: ({ x, y }) => add(x, y) });
     document.querySelector('#step').addEventListener('click', () => {
@@ -103,7 +126,7 @@
     window.addEventListener('resize', reset);
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [trace], reset, gameId: 'shape-tracing-v2' });
     reset();
-    window.__shapeTracingProofState = () => ({ shape: currentShape(), progress: trace.progress, complete: trace.progress >= trace.path.length, pathLength: trace.path.length, hasStepAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
+    window.__shapeTracingProofState = () => ({ shape: currentShape(), progress: trace.progress, complete: trace.progress >= trace.path.length, pathLength: trace.path.length, hasCharacterRenderer: Boolean(shapeTraceHelper.querySelector('.procedural-character-svg.character-family-world')), hasStepAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
   </script>
 </body>
 </html>
