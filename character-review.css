@@ -2,6 +2,34 @@
 .review-badge { display:inline-block; border-radius:20px; padding:9px 16px; background:#fff1cb; color:#67450a; font-weight:700; }
 .review-shell h1 { font-size:clamp(2rem,5vw,3.5rem); margin:16px 0; }
 .review-shell > p { max-width:760px; line-height:1.6; }
+.review-readiness {
+  margin: 28px 0;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid #d5e7f7;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,248,255,.92));
+  box-shadow: 0 18px 45px rgba(30, 70, 120, .12);
+}
+.review-readiness h2 { margin: 4px 0 8px; color: #143a6d; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.review-readiness p { margin: 0; color: #385777; line-height: 1.5; }
+.readiness-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+.readiness-card {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid #d7e5f3;
+  box-shadow: 0 12px 24px rgba(24, 67, 114, .1);
+}
+.readiness-card h3, .readiness-card p { margin: 0; }
+.readiness-card h3 { color: #143a6d; }
+.readiness-card p { font-weight: 900; color: #41627f; }
+.readiness-card strong { color: #86480a; }
+.readiness-card small { color: #52617a; line-height: 1.45; }
+.readiness-states { display: flex; flex-wrap: wrap; gap: 6px; }
+.readiness-states span { border-radius: 999px; padding: 6px 9px; background: #eef4fb; color: #536a83; font-size: .78rem; font-weight: 900; }
+.readiness-states span[data-ready="true"] { background: #dcf8e5; color: #126334; }
 .character-playground {
   margin: 28px 0 32px;
   padding: clamp(18px, 3vw, 32px);
@@ -152,6 +180,7 @@
 @media(max-width:650px) {
   .review-workbench { grid-template-columns:1fr; gap:20px; }
   .review-stage { min-height:0; }
+  .readiness-grid { grid-template-columns: 1fr; }
   .character-cards { grid-template-columns: 1fr; }
   .runner { width: min(48vw, 220px); }
   .runner-leon { left: -6%; }

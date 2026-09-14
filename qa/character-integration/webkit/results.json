@@ -9,6 +9,7 @@
   "checks": [
     "approved-only home",
     "no review gameplay requests",
+    "review-only readiness matrix",
     "five poses",
     "keyboard",
     "dark background",

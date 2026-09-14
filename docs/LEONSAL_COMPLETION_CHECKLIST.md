@@ -42,6 +42,7 @@
 - [x] Implement the Sensory Mixer foundation on V2 home as local saved sensory-world presets that obey global preference ceilings and do not count as games.
 - [x] Add a polite connection-status surface for V2 home and direct game entry, with safe offline fallback checks and mobile accessibility smoke coverage.
 - [x] Add local caregiver activity-summary export for the active profile, limited to visits and Finished sessions and explicitly excluding scores, grades, mastery claims and medical/sensory labels.
+- [x] Add a review-only character readiness matrix for supplied Leon, Zaya and Elephant artwork, showing five-state completeness and blockers while preserving production runtime art isolation.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 
@@ -61,6 +62,7 @@ Current registry: 69 canonical characters, 1 approved (Battery Buddy), 68 pendin
 
 - [x] Recover and preserve the five supplied individual Elephant PNGs; expose them only in the explicit character review page.
 - [x] Recover and preserve supplied individual Leon/Zaya/Elephant review PNGs and real SVG trace derivatives; expose them only in the explicit character review page. Leon still lacks a supplied empty state and all guide review art remains pending production approval.
+- [x] Expose review-only five-state readiness for supplied Leon, Zaya and Elephant candidates; this does not approve them for gameplay.
 - [ ] Recover remaining original individual five-pose PNGs from “Math Game Upgrade”; inspect actual bytes, alpha, dimensions, identity and provenance before deciding whether replacements are needed.
 - [ ] Resolve canonical Leon/Zaya identity review. Existing failed method pilots remain unapproved.
 - [ ] Deliver verified individual masters (2048+ px longest edge), matching optimised derivatives and exact visible LEON/ZAYA names.

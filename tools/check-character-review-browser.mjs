@@ -30,6 +30,12 @@ try {
   await page.waitForSelector('#characterImage:not([hidden])');
   assert(await page.getByText('Internal artwork review', {exact:false}).isVisible());
   assert.equal(await page.locator('.character-card').count(),3);
+  assert.equal(await page.locator('.readiness-card').count(),3);
+  assert(await page.locator('.readiness-card[data-character="leon"]').getByText('4/5 states supplied').isVisible());
+  assert(await page.locator('.readiness-card[data-character="leon"]').getByText('missing Empty', { exact: false }).isVisible());
+  assert(await page.locator('.readiness-card[data-character="zaya"]').getByText('5/5 states supplied').isVisible());
+  assert(await page.locator('.readiness-card[data-character="elephant"]').getByText('5/5 states supplied').isVisible());
+  assert.equal(await page.locator('.readiness-card').getByText('Not production ready').count(),3);
   assert.equal(await page.locator('[data-runner="leon"]').evaluate(img=>img.getAttribute('src').endsWith('/leon/happy.svg')),true);
   assert.equal(await page.locator('[data-runner="zaya"]').evaluate(img=>img.getAttribute('src').endsWith('/zaya/excited.svg')),true);
   assert.equal(await page.evaluate(()=>Array.from(document.styleSheets).every(sheet=>Array.from(sheet.cssRules || []).every(rule=>!String(rule.cssText).includes('scaleX(-1)')))),true);
@@ -73,6 +79,6 @@ try {
  await page.getByRole('button',{name:'Calm',exact:true}).click();await page.waitForSelector('#characterImage:not([hidden])');
  await page.route('**/data/character-assets.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify({world:[{id:'battery-buddy',status:'pending-art',states:{happy:'assets/character-review/elephant/happy.webp'}}]})}));
  await page.goto(base+'/v2-home.html');await page.waitForLoadState('networkidle');assert.equal(await page.locator('[data-approved-character] img').count(),0);assert(await page.locator('.home-battery').first().isVisible());
- assert.deepEqual(errors,[]);await fs.writeFile(`${out}/results.json`,JSON.stringify({passed:true,browser:name,widths:[390,768,1280],checks:['approved-only home','no review gameplay requests','five poses','keyboard','dark background','references','network failure recovery','pending record fallback'],errors},null,2)+'\n');
+ assert.deepEqual(errors,[]);await fs.writeFile(`${out}/results.json`,JSON.stringify({passed:true,browser:name,widths:[390,768,1280],checks:['approved-only home','no review gameplay requests','review-only readiness matrix','five poses','keyboard','dark background','references','network failure recovery','pending record fallback'],errors},null,2)+'\n');
  console.log(`${name}: character integration checks passed`);
 } finally {await browser.close();await new Promise(resolve=>server.close(resolve));}

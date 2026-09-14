@@ -18,6 +18,7 @@
     const selector = document.getElementById('reviewCharacter');
     const format = document.getElementById('artFormat');
     const characterCards = document.getElementById('characterCards');
+    const readinessGrid = document.getElementById('readinessGrid');
     const stateName = state => state[0].toUpperCase() + state.slice(1);
     const srcFor = (item, state) => {
       const asset = item.states[state];
@@ -28,6 +29,33 @@
     for (const item of characters) {
       const option = document.createElement('option'); option.value = item.id; option.textContent = item.name; selector.append(option);
     }
+    const renderReadiness = () => {
+      if (!readinessGrid) return;
+      const states = ['empty', 'low', 'calm', 'happy', 'excited'];
+      readinessGrid.replaceChildren(...characters.map((item) => {
+        const supplied = states.filter((state) => Boolean(item.states[state]));
+        const belowMasterSize = Object.values(item.states).some((asset) => Number(asset.width || 0) < 2048 || Number(asset.height || 0) < 2048);
+        const missing = states.filter((state) => !item.states[state]).map(stateName);
+        const blockers = [
+          item.status !== 'approved' ? 'review-only' : null,
+          supplied.length < 5 ? `missing ${missing.join(', ')}` : null,
+          belowMasterSize ? 'below 2048 px master requirement' : null,
+          /uppercase name|canonical uppercase name/i.test(item.notes || '') ? 'guide name needs canonical uppercase treatment' : null
+        ].filter(Boolean);
+        const card = document.createElement('article');
+        card.className = 'readiness-card';
+        card.dataset.character = item.id;
+        card.innerHTML = `<h3>${item.name}</h3><p>${supplied.length}/5 states supplied</p><div class="readiness-states" aria-label="${item.name} supplied states"></div><strong>${blockers.length ? 'Not production ready' : 'Ready for approval review'}</strong><small>${blockers.join(' · ') || 'All automated readiness blockers cleared.'}</small>`;
+        const stateHost = card.querySelector('.readiness-states');
+        stateHost.replaceChildren(...states.map((state) => {
+          const dot = document.createElement('span');
+          dot.textContent = stateName(state);
+          dot.dataset.ready = String(Boolean(item.states[state]));
+          return dot;
+        }));
+        return card;
+      }));
+    };
     const makeCard = item => {
       const card = document.createElement('button');
       card.type = 'button';
@@ -52,6 +80,7 @@
       return card;
     };
     characterCards.replaceChildren(...characters.map(makeCard));
+    renderReadiness();
     function renderRunners() {
       const leon = characters.find(item => item.id === 'leon');
       const zaya = characters.find(item => item.id === 'zaya');
