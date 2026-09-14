@@ -30,7 +30,7 @@ function blockersFor(record) {
   }
   if (record.id === "leon") blockers.push("Leon empty generation attempts failed real-alpha gate");
   if (record.family === "guide" && record.status !== "approved") {
-    blockers.push("guide art workflow has style-direction evidence but no individual transparent 2048px production masters");
+    blockers.push("guide art workflow has style-direction evidence but built-in generation failed transparent 2048px masters");
   }
   if (/procedural review artwork|does not yet match Battery Buddy/i.test(record.notes || "")) blockers.push("visual quality below Battery Buddy V3 precedent");
   return [...new Set(blockers)];
@@ -158,7 +158,7 @@ await fs.writeFile(path.join(outputDir, "CHARACTER-READINESS.md"), [
   "",
   "## Guide Art Method Status",
   "",
-  "The latest Leon/Zaya generation produced useful style-direction evidence but did not produce production masters. The review sheet and individual Leon attempt both failed real-alpha production requirements, and the individual attempt is below the 2048 px master-size floor.",
+  "The latest Leon/Zaya generation produced useful style-direction evidence but did not produce production masters. The review sheet, individual Leon attempt and background-extraction edit all failed real-alpha production requirements, and the individual outputs remain below the 2048 px master-size floor.",
   "",
   "## Runtime Rule",
   "",

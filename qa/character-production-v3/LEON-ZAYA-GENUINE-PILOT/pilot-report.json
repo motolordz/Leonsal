@@ -26,6 +26,15 @@
       "width": 1254,
       "height": 1254,
       "hasAlpha": false
+    },
+    {
+      "path": "qa/character-production-v3/LEON-ZAYA-GENUINE-PILOT/leon-empty-background-extraction-attempt/leon-empty-bg-extraction-review.png",
+      "archivedSourcePath": "assets/source-safe-keeping/generated-attempts/leon/empty/20260914-background-extraction-v1/leon-empty-bg-extraction-review.png",
+      "sha256": "488a0b178b6c2926c048e06373f3acc4ec164d1ef1f36e41466b5a1148ead11a",
+      "format": "png",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": false
     }
   ],
   "visualReview": {
@@ -42,5 +51,5 @@
     "runtimeReady": "fail",
     "approval": "not-approved"
   },
-  "decision": "Keep as review evidence only. Do not register as approved and do not expose as runtime artwork. The built-in generation path produced useful visual direction but did not preserve true alpha, and the individual state output remained below the 2048px master requirement. Next production attempt must use an art workflow that returns individual transparent 2048px masters per character state."
+  "decision": "Keep as review evidence only. Do not register as approved and do not expose as runtime artwork. The built-in generation path produced useful visual direction but did not preserve true alpha. Both the individual Leon EMPTY generation and the background-extraction edit returned baked checkerboard images below the 2048px master requirement. Next production attempt must use an art workflow that returns individual transparent 2048px masters per character state."
 }
