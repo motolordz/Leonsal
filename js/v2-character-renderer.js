@@ -97,7 +97,7 @@
   }
 
   function mouthMarkup(kind) {
-    if (kind === 'sleep') return '<path d="M103 137 q15 -10 30 0" class="mouth sleep-mouth"/>';
+    if (kind === 'sleep') return '<ellipse cx="118" cy="138" rx="11" ry="8" class="mouth sleep-mouth"/>';
     if (kind === 'soft') return '<path d="M101 136 q17 13 35 0" class="mouth soft-mouth"/>';
     if (kind === 'happy') return '<path d="M91 132 q27 30 58 0" class="mouth"/><path d="M102 137 q18 14 36 0" class="mouth-fill"/>';
     if (kind === 'excited') return '<path d="M88 129 q30 40 64 0" class="mouth"/><path d="M101 140 q18 20 39 0" class="mouth-fill"/>';

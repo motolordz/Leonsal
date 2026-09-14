@@ -3218,6 +3218,11 @@ body[data-calm="true"] .connection-status { transition: none; }
   stroke-width: 8;
   stroke-linecap: round;
 }
+.procedural-character-svg .sleep-mouth {
+  fill: #ff7a59;
+  stroke: #173356;
+  stroke-width: 7;
+}
 .procedural-character-svg .mouth-fill { fill: #ff7a59; stroke: none; opacity: .9; }
 .procedural-character-svg .cheek { fill: #ff8fb1; opacity: .6; }
 .procedural-character-svg .limb {
