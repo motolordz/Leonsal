@@ -17,6 +17,16 @@ assert.equal(manifest.productionApproved, false, "Supplied intake must not appro
 assert.equal(entries.length, 15, "Expected 15 character artwork references in the 20260915 intake");
 assert((manifest.excluded || []).some(item => /IMG_7371\.jpg$/.test(item.path) && item.reason === "excluded-sensitive-non-character-screenshot"), "Sensitive non-character screenshot must be recorded as excluded");
 
+const statesByCharacter = new Map();
+for (const entry of entries) {
+  if (!statesByCharacter.has(entry.character)) statesByCharacter.set(entry.character, new Set());
+  statesByCharacter.get(entry.character).add(entry.state);
+}
+assert.deepEqual([...statesByCharacter.get("elephant") || []].sort(), ["calm", "empty", "excited", "happy", "low"], "Elephant intake must include the five supplied energy states");
+assert.deepEqual([...statesByCharacter.get("zaya") || []].sort(), ["calm", "empty", "excited", "happy", "low"], "Zaya intake must include the five supplied energy states");
+assert.deepEqual([...statesByCharacter.get("leon") || []].sort(), ["calm", "excited", "happy", "low"], "Leon intake must keep EMPTY unresolved and must not invent a neutral energy state");
+assert.deepEqual([...statesByCharacter.get("lion") || []], ["reference-sheet"], "Lion intake must remain a reference sheet only");
+
 for (const entry of entries) {
   assert.equal(entry.status, "review-only", `${entry.character}/${entry.state} must remain review-only`);
   assert.equal(entry.productionApproved, false, `${entry.character}/${entry.state} must not be production approved`);

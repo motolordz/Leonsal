@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "created": "2026-09-14T18:56:59.350Z",
+  "created": "2026-09-14T19:01:52.839Z",
   "status": "review-only",
   "productionApproved": false,
   "decision": "Character artwork references are preserved for production rebuild/QA only. No runtime approval changes are made by this intake.",
@@ -69,6 +69,21 @@
       "hasAlpha": true,
       "transparentPixels": 859844,
       "sha256": "64ea39d63c1631b1d00a51ece007919a56f147a4b26017036a7e1ac212371d78",
+      "notes": "Supplied transparent character reference. Must pass identity, state, source, and production visual QA before any approval."
+    },
+    {
+      "character": "elephant",
+      "state": "calm",
+      "status": "review-only",
+      "productionApproved": false,
+      "sourcePath": "assets/source-safe-keeping/supplied-20260915/elephant/calm.png",
+      "originalFilename": "655C4720-865F-44B6-9D62-4B132CAA5A2F.PNG",
+      "width": 1254,
+      "height": 1254,
+      "format": "png",
+      "hasAlpha": true,
+      "transparentPixels": 858589,
+      "sha256": "4de8829a4590ee9c974a4f1d906f5e8751c3dc7e2e8d05b2003614eced2c58af",
       "notes": "Supplied transparent character reference. Must pass identity, state, source, and production visual QA before any approval."
     },
     {
@@ -167,21 +182,6 @@
       "status": "review-only",
       "productionApproved": false,
       "sourcePath": "assets/source-safe-keeping/supplied-20260915/leon/calm.png",
-      "originalFilename": "655C4720-865F-44B6-9D62-4B132CAA5A2F.PNG",
-      "width": 1254,
-      "height": 1254,
-      "format": "png",
-      "hasAlpha": true,
-      "transparentPixels": 858589,
-      "sha256": "4de8829a4590ee9c974a4f1d906f5e8751c3dc7e2e8d05b2003614eced2c58af",
-      "notes": "Supplied transparent character reference. Must pass identity, state, source, and production visual QA before any approval."
-    },
-    {
-      "character": "leon",
-      "state": "neutral",
-      "status": "review-only",
-      "productionApproved": false,
-      "sourcePath": "assets/source-safe-keeping/supplied-20260915/leon/neutral.png",
       "originalFilename": "43329A8D-9B15-4442-B997-8101A9038A6A.PNG",
       "width": 1254,
       "height": 1254,
