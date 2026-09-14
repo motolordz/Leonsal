@@ -57,7 +57,9 @@ try {
     await assertVisibleText(page, 'Maths & Logic');
     await assertVisibleText(page, 'Literacy');
     await assertVisibleText(page, 'Characters & Rewards');
+    await assertVisibleText(page, 'I want speed choices');
     assert.equal(await page.locator('.world-map-card').count(), 5, 'Landing page should expose five world choices');
+    assert.equal(await page.locator('.need-card.bus-need').getAttribute('href'), 'v2-double-decker-bus.html', 'Landing bus need should open the V2 double-decker bus');
     assert.equal(await page.locator('.wordmark').getAttribute('href'), 'v2-home.html', 'Landing wordmark should enter the V2 world');
     assert.equal(await page.locator('.maths-world').getAttribute('href'), 'v2-number-merge.html', 'Landing maths card should use V2 Number Merge');
     assert.equal(await page.locator('.literacy-world').getAttribute('href'), 'v2-alphabet-adventure.html', 'Landing literacy card should use V2 Alphabet Adventure');
