@@ -12,6 +12,7 @@ assert(html.includes('Character World'), 'Character World route title missing');
 assert(html.includes('class="game-scene character-world-hero"'), 'Character World must use shared game scene shell');
 assert(html.includes('id="settingsToggle"'), 'Character World must expose shared settings toggle');
 assert(html.includes('id="settings"'), 'Character World must expose shared settings panel');
+assert(html.includes('id="characterRuntimeTruth"'), 'Character World must expose runtime art truth');
 assert(html.includes('js/v2-character-renderer.js'), 'Character World shared renderer script missing');
 assert(html.includes('js/v2-character-world.js'), 'Character World script missing');
 assert(home.includes('href="v2-character-world.html"'), 'V2 home must link child-facing Character World');
@@ -30,6 +31,8 @@ for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
 }
 for (const text of [
   'fetch(\'data/character-assets.json\')',
+  'renderRuntimeTruth',
+  'approved runtime states',
   'LeonSalCharacterRenderer',
   'makeCharacter(record, state',
   'makeSvg(record, state',
@@ -43,6 +46,7 @@ for (const text of [
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(html), 'Character World HTML must not reference blocked art paths');
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(js), 'Character World JS must not reference blocked art paths');
 assert(css.includes('.character-world-grid'), 'Character World grid styling missing');
+assert(css.includes('.character-runtime-truth'), 'Runtime truth styling missing');
 assert(css.includes('@keyframes characterChaseLeon'), 'Leon chase animation missing');
 assert(css.includes('@keyframes footballDribble'), 'Football play animation missing');
 assert(css.includes('@keyframes hoopsArc'), 'Hoop play animation missing');

@@ -36,6 +36,7 @@
   const energyValue = document.getElementById('characterEnergyValue');
   const statePicker = document.getElementById('statePicker');
   const count = document.getElementById('characterCount');
+  const runtimeTruth = document.getElementById('characterRuntimeTruth');
   const familyButtons = [...document.querySelectorAll('[data-family-filter]')];
   const playScene = document.querySelector('.character-chase-scene');
   const playModeButtons = [...document.querySelectorAll('.play-mode-picker [data-play-mode]')];
@@ -64,6 +65,17 @@
       if (!byId.has(record.id)) byId.set(record.id, record);
     }
     return [...byId.values()];
+  };
+  const renderRuntimeTruth = registry => {
+    if (!runtimeTruth) return;
+    const records = allRecords(registry);
+    const approvedStates = records
+      .filter(item => item.status === 'approved')
+      .reduce((sum, item) => sum + Object.values(item.states || {}).filter(state => state?.webPath || state?.web || state?.src).length, 0);
+    const pendingStates = records
+      .filter(item => item.status !== 'approved')
+      .reduce((sum, item) => sum + Object.keys(item.states || {}).length, 0);
+    runtimeTruth.innerHTML = `<article><strong>${approvedStates}</strong><span>approved runtime states</span></article><article><strong>${pendingStates}</strong><span>pending review states</span></article><p>Only approved artwork can become a runtime image. Everything else uses this safe vector fallback.</p>`;
   };
   const displayInitial = record => {
     if (record.uppercase) return record.uppercase;
@@ -336,6 +348,7 @@
       const response = await fetch('data/character-assets.json');
       if (!response.ok) throw new Error('registry unavailable');
       const registry = await response.json();
+      renderRuntimeTruth(registry);
       characters = allRecords(registry).filter(item => item.id && item.displayName);
       selected = characters.find(item => item.id === 'leon') || characters[0];
       document.querySelector('[data-chase-character="leon"]').append(makeSvg(characters.find(item => item.id === 'leon') || selected, 'happy', { decorative: true }));

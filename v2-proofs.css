@@ -2832,6 +2832,38 @@ body[data-calm="true"] .connection-status { transition: none; }
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: .96;
 }
+.character-runtime-truth {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+.character-runtime-truth article {
+  min-height: 82px;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  padding: 12px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.78);
+  box-shadow: inset 0 -6px 0 rgba(20,58,109,.06);
+}
+.character-runtime-truth strong {
+  color: #143a6d;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.character-runtime-truth span,
+.character-runtime-truth p {
+  color: #60748d;
+  font-size: .84rem;
+  font-weight: 850;
+}
+.character-runtime-truth p {
+  grid-column: 1 / -1;
+  margin: 0;
+  line-height: 1.45;
+}
 .character-family-tabs {
   display: flex;
   gap: 8px;
