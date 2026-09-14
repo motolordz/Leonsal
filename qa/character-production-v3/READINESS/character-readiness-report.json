@@ -15,7 +15,12 @@
       }
     ],
     "failedGeneratedAttempts": [
-      "qa/character-production-v3/leon/failed-generated-empty/report.json"
+      "qa/character-production-v3/leon/failed-generated-empty/report.json",
+      "qa/character-production-v3/LEON-ZAYA-GENUINE-PILOT/pilot-report.json"
+    ],
+    "guideStyleDirectionEvidence": [
+      "qa/character-production-v3/LEON-ZAYA-GENUINE-PILOT/leon-zaya-five-state-generated-review.png",
+      "qa/character-production-v3/LEON-ZAYA-GENUINE-PILOT/character-review-guide-pilot-390.png"
     ]
   },
   "familySummary": {
@@ -34,6 +39,10 @@
       },
       "topBlockers": [
         {
+          "blocker": "guide art workflow has style-direction evidence but no individual transparent 2048px production masters",
+          "count": 2
+        },
+        {
           "blocker": "guide clothing/name text needs production cleanup",
           "count": 2
         },
@@ -48,10 +57,6 @@
         {
           "blocker": "visual quality below Battery Buddy V3 precedent",
           "count": 2
-        },
-        {
-          "blocker": "Leon empty generation attempts failed real-alpha gate",
-          "count": 1
         }
       ]
     },
@@ -173,6 +178,7 @@
         "guide clothing/name text needs production cleanup",
         "supplied source is below 2048 px production master requirement",
         "Leon empty generation attempts failed real-alpha gate",
+        "guide art workflow has style-direction evidence but no individual transparent 2048px production masters",
         "visual quality below Battery Buddy V3 precedent"
       ]
     },
@@ -202,6 +208,7 @@
         "not approved for production runtime",
         "guide clothing/name text needs production cleanup",
         "supplied source is below 2048 px production master requirement",
+        "guide art workflow has style-direction evidence but no individual transparent 2048px production masters",
         "visual quality below Battery Buddy V3 precedent"
       ]
     },

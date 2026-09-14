@@ -45,6 +45,26 @@ for (const attempt of failedReport.attempts || []) {
   if (attempt.productionVerdict !== "rejected") failures.push(`Attempt missing rejected verdict: ${attempt.path}`);
 }
 
+const guidePilotPath = "qa/character-production-v3/LEON-ZAYA-GENUINE-PILOT/pilot-report.json";
+const guidePilot = JSON.parse(await fs.readFile(guidePilotPath, "utf8"));
+assert.equal(guidePilot.status, "review-only", "Leon/Zaya genuine pilot must remain review-only");
+assert.equal(guidePilot.productionApproved, false, "Leon/Zaya genuine pilot must not be production approved");
+assert.match(guidePilot.decision || "", /Do not register as approved/i, "Guide pilot decision must block approval");
+
+for (const output of guidePilot.outputs || []) {
+  const metadata = await sharp(path.join(root, output.path)).metadata();
+  if (metadata.hasAlpha) failures.push(`Guide pilot output unexpectedly reports alpha; re-audit manually: ${output.path}`);
+  if (Math.max(metadata.width || 0, metadata.height || 0) >= 2048 && /individual/i.test(output.path)) {
+    failures.push(`Guide pilot individual output reached master size but is still recorded as failed; re-audit manually: ${output.path}`);
+  }
+  if (!/qa\/character-production-v3\/LEON-ZAYA-GENUINE-PILOT\//.test(output.path)) {
+    failures.push(`Guide pilot output is not stored in QA evidence: ${output.path}`);
+  }
+  if (!/assets\/source-safe-keeping\/generated-attempts\//.test(output.archivedSourcePath || "")) {
+    failures.push(`Guide pilot archived source is not in source-safe-keeping generated-attempts: ${output.archivedSourcePath || "missing"}`);
+  }
+}
+
 if (failures.length) {
   console.error("Character production intake check failed:");
   for (const failure of failures) console.error(`- ${failure}`);

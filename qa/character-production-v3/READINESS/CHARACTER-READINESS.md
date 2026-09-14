@@ -7,10 +7,11 @@ This report separates artwork that exists for review from artwork approved for p
 - Pending characters: 68
 - Supplied review characters: 3
 - Supplied review state assets: 14
+- Guide style-direction evidence: 2
 
 ## Family Status
 
-- guide: 0/2 approved; 10 pending state slots; top blocker: guide clothing/name text needs production cleanup
+- guide: 0/2 approved; 10 pending state slots; top blocker: guide art workflow has style-direction evidence but no individual transparent 2048px production masters
 - alphabet: 0/26 approved; 130 pending state slots; top blocker: not approved for production runtime
 - number: 0/10 approved; 50 pending state slots; top blocker: not approved for production runtime
 - world: 1/21 approved; 100 pending state slots; top blocker: not approved for production runtime
@@ -18,8 +19,8 @@ This report separates artwork that exists for review from artwork approved for p
 
 ## Immediate Blockers
 
-- Leon: not approved for production runtime; supplied source intake has 4/5 states; guide clothing/name text needs production cleanup; supplied source is below 2048 px production master requirement; Leon empty generation attempts failed real-alpha gate; visual quality below Battery Buddy V3 precedent
-- Zaya: not approved for production runtime; guide clothing/name text needs production cleanup; supplied source is below 2048 px production master requirement; visual quality below Battery Buddy V3 precedent
+- Leon: not approved for production runtime; supplied source intake has 4/5 states; guide clothing/name text needs production cleanup; supplied source is below 2048 px production master requirement; Leon empty generation attempts failed real-alpha gate; guide art workflow has style-direction evidence but no individual transparent 2048px production masters; visual quality below Battery Buddy V3 precedent
+- Zaya: not approved for production runtime; guide clothing/name text needs production cleanup; supplied source is below 2048 px production master requirement; guide art workflow has style-direction evidence but no individual transparent 2048px production masters; visual quality below Battery Buddy V3 precedent
 - Letter A: not approved for production runtime; visual quality below Battery Buddy V3 precedent
 - Letter B: not approved for production runtime; visual quality below Battery Buddy V3 precedent
 - Letter C: not approved for production runtime; visual quality below Battery Buddy V3 precedent
@@ -30,6 +31,10 @@ This report separates artwork that exists for review from artwork approved for p
 - Letter H: not approved for production runtime; visual quality below Battery Buddy V3 precedent
 - Letter I: not approved for production runtime; visual quality below Battery Buddy V3 precedent
 - Letter J: not approved for production runtime; visual quality below Battery Buddy V3 precedent
+
+## Guide Art Method Status
+
+The latest Leon/Zaya generation produced useful style-direction evidence but did not produce production masters. The review sheet and individual Leon attempt both failed real-alpha production requirements, and the individual attempt is below the 2048 px master-size floor.
 
 ## Runtime Rule
 
