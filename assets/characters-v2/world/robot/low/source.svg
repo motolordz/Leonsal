@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#102746" flood-opacity=".24"/></filter>
+    <linearGradient id="toy" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".38" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#102746" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <ellipse cx="1024" cy="1692" rx="420" ry="72" fill="#102746" opacity=".10"/>
+  <ellipse cx="1024" cy="980" rx="610" ry="640" fill="#6fb6ff" opacity=".34"/>
+  <g opacity=".8">
+      <path d="M1428 640 C1490 725 1446 810 1378 828 C1412 758 1392 704 1340 654Z" fill="#7bb7ff"/>
+      <ellipse cx="1024" cy="1518" rx="330" ry="70" fill="#ffd9bd"/>
+    </g>
+  <g filter="url(#shadow)" transform="translate(0 22) rotate(-2 1024 1024) scale(.98)"><rect x="640" y="560" width="768" height="680" rx="120" fill="#eaf4ff" stroke="#102746" stroke-width="34"/><rect x="760" y="710" width="528" height="246" rx="70" fill="#102746"/><circle cx="890" cy="830" r="42" fill="#91e3e4"/><circle cx="1158" cy="830" r="42" fill="#91e3e4"/><path d="M900 1030 Q1024 1070 1148 1030" fill="none" stroke="#102746" stroke-width="28" stroke-linecap="round"/><path d="M1024 560 V430" stroke="#102746" stroke-width="32" stroke-linecap="round"/><circle cx="1024" cy="390" r="48" fill="#ff8f37" stroke="#102746" stroke-width="20"/><g stroke="#102746" stroke-width="21.84" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M844.6 1027.2 C735.4 1081.8 696.4 1167.6 649.5999999999999 1198.8" fill="none"/>
+    <path d="M1203.4 1027.2 C1312.6 1081.8 1351.6 1167.6 1398.4 1198.8" fill="none"/>
+    <path d="M916.36 1245.6 L864.1 1396.92" fill="none"/>
+    <path d="M1131.64 1245.6 L1183.9 1390.68" fill="none"/>
+  </g>
+  <g fill="#fff" stroke="#102746" stroke-width="14.040000000000001">
+    <circle cx="641.8" cy="1198.8" r="35.88"/>
+    <circle cx="1406.2" cy="1198.8" r="35.88"/>
+    <ellipse cx="864.1" cy="1407.84" rx="63.96" ry="32.76"/>
+    <ellipse cx="1183.9" cy="1401.6" rx="63.96" ry="32.76"/>
+  </g></g>
+  </svg>

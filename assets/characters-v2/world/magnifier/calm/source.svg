@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#102746" flood-opacity=".24"/></filter>
+    <linearGradient id="toy" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".38" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#102746" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <ellipse cx="1024" cy="1692" rx="420" ry="72" fill="#102746" opacity=".10"/>
+  <ellipse cx="1024" cy="980" rx="610" ry="640" fill="#7d66d9" opacity=".34"/>
+  <g opacity=".72">
+      <circle cx="648" cy="690" r="34" fill="#ffd33f"/>
+      <circle cx="1400" cy="690" r="34" fill="#ffd33f"/>
+      <ellipse cx="1024" cy="1518" rx="340" ry="72" fill="#fff1ad"/>
+    </g>
+  <g filter="url(#shadow)" transform="translate(0 0) scale(1)"><circle cx="900" cy="850" r="310" fill="#dff5ff" opacity=".82" stroke="#102746" stroke-width="42"/><path d="M1128 1078 L1460 1410" stroke="#102746" stroke-width="86" stroke-linecap="round"/><path d="M900 650 C1020 740 1040 920 930 1040" fill="none" stroke="#fff" stroke-width="42" opacity=".7"/><ellipse cx="837.3" cy="835.48" rx="27.720000000000002" ry="36.96" fill="#102746"/>
+      <ellipse cx="962.7" cy="835.48" rx="27.720000000000002" ry="36.96" fill="#102746"/>
+      <ellipse cx="846.54" cy="823.6" rx="8.58" ry="11.88" fill="#fff"/>
+      <ellipse cx="971.94" cy="823.6" rx="8.58" ry="11.88" fill="#fff"/><ellipse cx="804.3" cy="880.36" rx="26.400000000000002" ry="17.16" fill="#ff9aa5" opacity=".7"/>
+    <ellipse cx="995.7" cy="880.36" rx="26.400000000000002" ry="17.16" fill="#ff9aa5" opacity=".7"/><path d="M853.8 930.52 Q900 968.8 946.2 930.52" fill="none" stroke="#102746" stroke-width="13.200000000000001" stroke-linecap="round"/></g>
+  </svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#102746" flood-opacity=".24"/></filter>
+    <linearGradient id="toy" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".38" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#102746" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <ellipse cx="1024" cy="1692" rx="420" ry="72" fill="#102746" opacity=".10"/>
+  <ellipse cx="1024" cy="980" rx="610" ry="640" fill="#2f95df" opacity=".34"/>
+  <g opacity=".82" stroke="#58db5b" stroke-width="38" stroke-linecap="round" fill="none">
+      <path d="M520 846 C430 1000 450 1170 560 1304"/>
+      <path d="M1528 846 C1618 1000 1598 1170 1488 1304"/>
+      <ellipse cx="1024" cy="1518" rx="360" ry="76" fill="#c8ffd0" stroke="none"/>
+    </g>
+  <g filter="url(#shadow)">
+    <text x="1024" y="1198" text-anchor="middle" font-family="Arial Rounded MT Bold, Arial, sans-serif" font-size="930" font-weight="900" fill="#2f95df" stroke="#102746" stroke-width="32" paint-order="stroke">1</text>
+    <text x="1024" y="1198" text-anchor="middle" font-family="Arial Rounded MT Bold, Arial, sans-serif" font-size="930" font-weight="900" fill="url(#toy)" opacity=".48">1</text>
+    <g stroke="#102746" stroke-width="30" stroke-linecap="round">
+      <path d="M650 1160 C510 860 500 750 440 800" fill="none"/>
+      <path d="M1398 1160 C1538 860 1548 750 1608 800" fill="none"/>
+    </g>
+    <g fill="#fff" stroke="#102746" stroke-width="20">
+      <circle cx="440" cy="800" r="50"/><circle cx="1608" cy="800" r="50"/>
+      <ellipse cx="830" cy="1512" rx="92" ry="48"/><ellipse cx="1218" cy="1512" rx="92" ry="48"/>
+    </g>
+    <ellipse cx="929" cy="816" rx="42" ry="56" fill="#102746"/>
+      <ellipse cx="1119" cy="816" rx="42" ry="56" fill="#102746"/>
+      <ellipse cx="943" cy="798" rx="13" ry="18" fill="#fff"/>
+      <ellipse cx="1133" cy="798" rx="13" ry="18" fill="#fff"/><ellipse cx="879" cy="884" rx="40" ry="26" fill="#ff9aa5" opacity=".7"/>
+    <ellipse cx="1169" cy="884" rx="40" ry="26" fill="#ff9aa5" opacity=".7"/><path d="M932 952 Q1024 1048 1116 952" fill="none" stroke="#102746" stroke-width="23" stroke-linecap="round"/>
+    
+  </g>
+  </svg>

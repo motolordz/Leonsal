@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#102746" flood-opacity=".24"/></filter>
+    <linearGradient id="toy" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".38" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#102746" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <ellipse cx="1024" cy="1692" rx="420" ry="72" fill="#102746" opacity=".10"/>
+  <ellipse cx="1024" cy="980" rx="610" ry="640" fill="#f28b30" opacity=".34"/>
+  <g opacity=".72">
+      <circle cx="648" cy="690" r="34" fill="#ffd33f"/>
+      <circle cx="1400" cy="690" r="34" fill="#ffd33f"/>
+      <ellipse cx="1024" cy="1518" rx="340" ry="72" fill="#fff1ad"/>
+    </g>
+  <g filter="url(#shadow)" transform="translate(0 0) scale(1)"><g transform="rotate(28 1024 1024)"><rect x="930" y="520" width="188" height="880" rx="76" fill="#f28b30" stroke="#102746" stroke-width="32"/><path d="M900 1350 C850 1510 1000 1640 1024 1740 C1048 1640 1198 1510 1148 1350Z" fill="#7d4a2a" stroke="#102746" stroke-width="30"/><ellipse cx="967" cy="906.8" rx="25.2" ry="33.6" fill="#102746"/>
+      <ellipse cx="1081" cy="906.8" rx="25.2" ry="33.6" fill="#102746"/>
+      <ellipse cx="975.4" cy="896" rx="7.8" ry="10.799999999999999" fill="#fff"/>
+      <ellipse cx="1089.4" cy="896" rx="7.8" ry="10.799999999999999" fill="#fff"/><ellipse cx="937" cy="947.6" rx="24" ry="15.6" fill="#ff9aa5" opacity=".7"/>
+    <ellipse cx="1111" cy="947.6" rx="24" ry="15.6" fill="#ff9aa5" opacity=".7"/><path d="M982 993.2 Q1024 1028 1066 993.2" fill="none" stroke="#102746" stroke-width="12" stroke-linecap="round"/></g></g>
+  </svg>

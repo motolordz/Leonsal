@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#102746" flood-opacity=".24"/></filter>
+    <linearGradient id="toy" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".38" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#102746" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <ellipse cx="1024" cy="1692" rx="420" ry="72" fill="#102746" opacity=".10"/>
+  <ellipse cx="1024" cy="980" rx="610" ry="640" fill="#ffca35" opacity=".34"/>
+  <g opacity=".86" stroke="#1fc9f5" stroke-width="42" stroke-linecap="round" fill="#ffd94e">
+    <path d="M470 610 L390 530"/><path d="M1578 610 L1658 530"/>
+    <path d="M390 990 H270"/><path d="M1658 990 H1778"/>
+    <path d="M560 1370 L470 1460"/><path d="M1488 1370 L1578 1460"/>
+    <circle cx="566" cy="430" r="28"/><circle cx="1482" cy="430" r="28"/>
+  </g>
+  <g filter="url(#shadow)" transform="translate(0 -48) rotate(4 1024 1024) scale(1.04)"><circle cx="1024" cy="980" r="350" fill="#ffca35" stroke="#102746" stroke-width="34"/><path d="M1444 980 L1559 980" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M1402.406924519016 1162.2311704293743 L1506.0183443277942 1212.1278004278936" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M1285.8657167806682 1308.3692226365724 L1357.5670439944224 1398.279843120396" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M1117.458792261652 1389.469723116366 L1143.0486996666282 1501.5864330172758" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M930.541207738348 1389.469723116366 L904.9513003333718 1501.5864330172758" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M762.134283219332 1308.3692226365724 L690.4329560055776 1398.279843120396" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M645.593075480984 1162.2311704293745 L541.9816556722058 1212.1278004278936" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M604 980 L489 980.0000000000001" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M645.593075480984 797.7688295706256 L541.9816556722058 747.8721995721064" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M762.1342832193318 651.6307773634276 L690.4329560055775 561.7201568796041" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M930.5412077383479 570.5302768836341 L904.9513003333717 458.4135669827243" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M1117.4587922616515 570.530276883634 L1143.0486996666277 458.4135669827242" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M1285.865716780668 651.6307773634275 L1357.5670439944224 561.720156879604" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><path d="M1402.4069245190162 797.7688295706258 L1506.0183443277942 747.8721995721068" stroke="#ff9b2e" stroke-width="48" stroke-linecap="round"/><g stroke="#1fc9f5" stroke-width="17.099999999999998" stroke-linecap="round" opacity=".8">
+    <path d="M777 715.5 l-66.5 -42.75"/><path d="M1271 715.5 l66.5 -42.75"/>
+    <path d="M748.5 943.5 l-85.5 0"/><path d="M1299.5 943.5 l85.5 0"/></g><ellipse cx="933.75" cy="894.1" rx="39.9" ry="60.8" fill="#102746"/>
+      <ellipse cx="1114.25" cy="894.1" rx="39.9" ry="60.8" fill="#102746"/>
+      <ellipse cx="947.05" cy="877" rx="12.35" ry="17.099999999999998" fill="#fff"/>
+      <ellipse cx="1127.55" cy="877" rx="12.35" ry="17.099999999999998" fill="#fff"/><ellipse cx="886.25" cy="958.7" rx="38" ry="24.7" fill="#ff9aa5" opacity=".7"/>
+    <ellipse cx="1161.75" cy="958.7" rx="38" ry="24.7" fill="#ff9aa5" opacity=".7"/><path d="M933.75 1010.0000000000001 Q1024 1163.9 1114.25 1010.0000000000001 Q1024 1076.5 933.75 1010.0000000000001Z" fill="#102746"/>
+      <path d="M981.25 1101.2 Q1024 1137.3000000000002 1066.75 1101.2" fill="none" stroke="#ff747b" stroke-width="17.099999999999998" stroke-linecap="round"/></g>
+  </svg>

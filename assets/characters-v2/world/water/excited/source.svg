@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#102746" flood-opacity=".24"/></filter>
+    <linearGradient id="toy" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".38" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#102746" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <ellipse cx="1024" cy="1692" rx="420" ry="72" fill="#102746" opacity=".10"/>
+  <ellipse cx="1024" cy="980" rx="610" ry="640" fill="#35c5f4" opacity=".34"/>
+  <g opacity=".86" stroke="#1fc9f5" stroke-width="42" stroke-linecap="round" fill="#ffd94e">
+    <path d="M470 610 L390 530"/><path d="M1578 610 L1658 530"/>
+    <path d="M390 990 H270"/><path d="M1658 990 H1778"/>
+    <path d="M560 1370 L470 1460"/><path d="M1488 1370 L1578 1460"/>
+    <circle cx="566" cy="430" r="28"/><circle cx="1482" cy="430" r="28"/>
+  </g>
+  <g filter="url(#shadow)" transform="translate(0 -48) rotate(4 1024 1024) scale(1.04)"><path d="M1024 430 C830 670 650 910 650 1160 C650 1378 818 1534 1024 1534 C1230 1534 1398 1378 1398 1160 C1398 910 1218 670 1024 430Z" fill="#35c5f4" stroke="#102746" stroke-width="34"/><g stroke="#1fc9f5" stroke-width="13.68" stroke-linecap="round" opacity=".8">
+    <path d="M826.4 880.4 l-53.2 -34.2"/><path d="M1221.6 880.4 l53.2 -34.2"/>
+    <path d="M803.6 1062.8 l-68.4 0"/><path d="M1244.4 1062.8 l68.4 0"/></g><ellipse cx="951.8" cy="1023.28" rx="31.92" ry="48.64" fill="#102746"/>
+      <ellipse cx="1096.2" cy="1023.28" rx="31.92" ry="48.64" fill="#102746"/>
+      <ellipse cx="962.4399999999999" cy="1009.6" rx="9.88" ry="13.68" fill="#fff"/>
+      <ellipse cx="1106.8400000000001" cy="1009.6" rx="9.88" ry="13.68" fill="#fff"/><ellipse cx="913.8" cy="1074.96" rx="30.4" ry="19.76" fill="#ff9aa5" opacity=".7"/>
+    <ellipse cx="1134.2" cy="1074.96" rx="30.4" ry="19.76" fill="#ff9aa5" opacity=".7"/><path d="M951.8 1116 Q1024 1239.1200000000001 1096.2 1116 Q1024 1169.2 951.8 1116Z" fill="#102746"/>
+      <path d="M989.8 1188.96 Q1024 1217.8400000000001 1058.2 1188.96" fill="none" stroke="#ff747b" stroke-width="13.68" stroke-linecap="round"/></g>
+  </svg>

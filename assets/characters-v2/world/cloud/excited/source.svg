@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#102746" flood-opacity=".24"/></filter>
+    <linearGradient id="toy" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".38" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#102746" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <ellipse cx="1024" cy="1692" rx="420" ry="72" fill="#102746" opacity=".10"/>
+  <ellipse cx="1024" cy="980" rx="610" ry="640" fill="#d9ecff" opacity=".34"/>
+  <g opacity=".86" stroke="#1fc9f5" stroke-width="42" stroke-linecap="round" fill="#ffd94e">
+    <path d="M470 610 L390 530"/><path d="M1578 610 L1658 530"/>
+    <path d="M390 990 H270"/><path d="M1658 990 H1778"/>
+    <path d="M560 1370 L470 1460"/><path d="M1488 1370 L1578 1460"/>
+    <circle cx="566" cy="430" r="28"/><circle cx="1482" cy="430" r="28"/>
+  </g>
+  <g filter="url(#shadow)" transform="translate(0 -48) rotate(4 1024 1024) scale(1.04)"><path d="M642 1190 C492 1176 400 1070 430 934 C462 794 596 742 706 790 C780 604 1012 548 1166 690 C1260 642 1398 676 1460 786 C1628 808 1718 948 1672 1102 C1626 1252 1478 1308 1328 1286 H670Z" fill="#d9ecff" stroke="#102746" stroke-width="34"/><g stroke="#1fc9f5" stroke-width="14.76" stroke-linecap="round" opacity=".8">
+    <path d="M810.8 817.8 l-57.4 -36.9"/><path d="M1237.2 817.8 l57.4 -36.9"/>
+    <path d="M786.2 1014.6 l-73.8 0"/><path d="M1261.8 1014.6 l73.8 0"/></g><ellipse cx="946.1" cy="971.96" rx="34.44" ry="52.48" fill="#102746"/>
+      <ellipse cx="1101.9" cy="971.96" rx="34.44" ry="52.48" fill="#102746"/>
+      <ellipse cx="957.58" cy="957.2" rx="10.66" ry="14.76" fill="#fff"/>
+      <ellipse cx="1113.38" cy="957.2" rx="10.66" ry="14.76" fill="#fff"/><ellipse cx="905.1" cy="1027.72" rx="32.8" ry="21.32" fill="#ff9aa5" opacity=".7"/>
+    <ellipse cx="1142.9" cy="1027.72" rx="32.8" ry="21.32" fill="#ff9aa5" opacity=".7"/><path d="M946.1 1072 Q1024 1204.84 1101.9 1072 Q1024 1129.3999999999999 946.1 1072Z" fill="#102746"/>
+      <path d="M987.1 1150.72 Q1024 1181.8799999999999 1060.9 1150.72" fill="none" stroke="#ff747b" stroke-width="14.76" stroke-linecap="round"/></g>
+  </svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#102746" flood-opacity=".24"/></filter>
+    <linearGradient id="toy" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".38" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#102746" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <ellipse cx="1024" cy="1692" rx="420" ry="72" fill="#102746" opacity=".10"/>
+  <ellipse cx="1024" cy="980" rx="610" ry="640" fill="#ffcf4a" opacity=".34"/>
+  <g opacity=".82">
+      <ellipse cx="1024" cy="1508" rx="360" ry="84" fill="#cfe1ff"/>
+      <path d="M1338 540 C1258 570 1216 666 1252 748 C1178 706 1138 612 1174 526 C1210 438 1300 394 1388 420 C1348 448 1328 492 1338 540Z" fill="#9fc2ff"/>
+    </g>
+  <g transform="translate(0 38) scale(.97)"><g filter="url(#shadow)">
+    <path d="M1464 980 L1584 980" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M1430.5069943049662 1148.3807102406395 L1541.3725382063205 1194.3027221244502" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M1335.126983722081 1291.126983722081 L1419.9797974644666 1375.9797974644666" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M1192.3807102406395 1386.5069943049662 L1238.3027221244504 1497.3725382063205" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M1024 1420 L1024 1540" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M855.6192897593605 1386.5069943049662 L809.6972778755497 1497.3725382063205" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M712.8730162779191 1291.126983722081 L628.0202025355334 1375.9797974644666" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M617.4930056950338 1148.3807102406395 L506.62746179367946 1194.3027221244504" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M584 980 L464 980.0000000000001" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M617.4930056950338 811.6192897593605 L506.62746179367934 765.6972778755498" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M712.8730162779191 668.8730162779191 L628.0202025355334 584.0202025355334" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M855.6192897593603 573.493005695034 L809.6972778755494 462.6274617936796" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M1023.9999999999999 540 L1023.9999999999999 420" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M1192.3807102406397 573.4930056950338 L1238.3027221244504 462.62746179367946" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M1335.1269837220807 668.8730162779191 L1419.9797974644666 584.0202025355334" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/><path d="M1430.5069943049662 811.6192897593602 L1541.3725382063203 765.6972778755494" stroke="#ff9b2e" stroke-width="50" stroke-linecap="round"/>
+    
+    <circle cx="1024" cy="980" r="390" fill="#ffcf4a" stroke="#102746" stroke-width="34"/>
+    <path d="M720 780 C850 690 1060 720 1160 820 C1020 870 860 880 720 780Z" fill="#ff8c28" opacity=".72"/>
+    <path d="M830 1180 C980 1090 1230 1120 1360 1240 C1190 1320 990 1310 830 1180Z" fill="#ff8c28" opacity=".62"/>
+    
+    
+    <path d="M915.5799999999999 942.84 C942.1 969.36 984.22 969.36 1010.74 942.84" fill="none" stroke="#102746" stroke-width="17.16" stroke-linecap="round"/>
+      <path d="M1037.26 942.84 C1063.78 969.36 1105.8999999999999 969.36 1132.4199999999998 942.84" fill="none" stroke="#102746" stroke-width="17.16" stroke-linecap="round"/><ellipse cx="910.9" cy="995.88" rx="31.200000000000003" ry="20.28" fill="#ff9aa5" opacity=".7"/>
+    <ellipse cx="1137.1" cy="995.88" rx="31.200000000000003" ry="20.28" fill="#ff9aa5" opacity=".7"/><path d="M1000.6 1055.16 Q1024 1033.3200000000002 1047.4 1055.16" fill="none" stroke="#102746" stroke-width="14.040000000000001" stroke-linecap="round"/>
+    <text x="1300" y="540" font-family="Arial" font-size="92" font-weight="900" fill="#2f69d9">z</text>
+  </g></g>
+  </svg>

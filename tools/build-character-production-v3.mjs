@@ -266,11 +266,13 @@ function planetSvg(record, state) {
 async function writeAsset(assetRoot, state, svg) {
   const dir = path.join(root, assetRoot, state);
   await fs.mkdir(dir, { recursive: true });
+  const source = path.join(dir, "source.svg");
   const master = path.join(dir, "master.png");
   const web = path.join(dir, "web.webp");
+  await fs.writeFile(source, svg);
   await sharp(Buffer.from(svg)).png().toFile(master);
   await sharp(master).webp({ quality: 88, effort: 5 }).toFile(web);
-  return { masterPath: path.relative(root, master), webPath: path.relative(root, web) };
+  return { sourcePath: path.relative(root, source), masterPath: path.relative(root, master), webPath: path.relative(root, web) };
 }
 
 async function buildContact(characterId, assetRoot) {

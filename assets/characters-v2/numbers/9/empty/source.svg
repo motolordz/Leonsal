@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#102746" flood-opacity=".24"/></filter>
+    <linearGradient id="toy" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".38" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#102746" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <ellipse cx="1024" cy="1692" rx="420" ry="72" fill="#102746" opacity=".10"/>
+  <ellipse cx="1024" cy="980" rx="610" ry="640" fill="#2f95df" opacity=".34"/>
+  <g opacity=".82">
+      <ellipse cx="1024" cy="1508" rx="360" ry="84" fill="#cfe1ff"/>
+      <path d="M1338 540 C1258 570 1216 666 1252 748 C1178 706 1138 612 1174 526 C1210 438 1300 394 1388 420 C1348 448 1328 492 1338 540Z" fill="#9fc2ff"/>
+    </g>
+  <g filter="url(#shadow)">
+    <text x="1024" y="1198" text-anchor="middle" font-family="Arial Rounded MT Bold, Arial, sans-serif" font-size="930" font-weight="900" fill="#2f95df" stroke="#102746" stroke-width="32" paint-order="stroke">9</text>
+    <text x="1024" y="1198" text-anchor="middle" font-family="Arial Rounded MT Bold, Arial, sans-serif" font-size="930" font-weight="900" fill="url(#toy)" opacity=".48">9</text>
+    <g stroke="#102746" stroke-width="30" stroke-linecap="round">
+      <path d="M650 1160 C570 1220 500 1320 440 1325" fill="none"/>
+      <path d="M1398 1160 C1478 1220 1548 1320 1608 1325" fill="none"/>
+    </g>
+    <g fill="#fff" stroke="#102746" stroke-width="20">
+      <circle cx="440" cy="1325" r="50"/><circle cx="1608" cy="1325" r="50"/>
+      <ellipse cx="830" cy="1512" rx="92" ry="48"/><ellipse cx="1218" cy="1512" rx="92" ry="48"/>
+    </g>
+    <path d="M885 816 C919 850 973 850 1007 816" fill="none" stroke="#102746" stroke-width="22" stroke-linecap="round"/>
+      <path d="M1041 816 C1075 850 1129 850 1163 816" fill="none" stroke="#102746" stroke-width="22" stroke-linecap="round"/><ellipse cx="879" cy="884" rx="40" ry="26" fill="#ff9aa5" opacity=".7"/>
+    <ellipse cx="1169" cy="884" rx="40" ry="26" fill="#ff9aa5" opacity=".7"/><path d="M994 960 Q1024 932 1054 960" fill="none" stroke="#102746" stroke-width="18" stroke-linecap="round"/>
+    <text x="1340" y="488" font-family="Arial" font-size="92" font-weight="900" fill="#2f69d9">z</text><text x="1430" y="400" font-family="Arial" font-size="62" font-weight="900" fill="#2f69d9">z</text>
+  </g>
+  </svg>
