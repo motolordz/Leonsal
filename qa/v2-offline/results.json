@@ -1,6 +1,7 @@
 {
   "passed": true,
-  "cachedRoutes": 34,
+  "cacheName": "leonsal-v2-safe-cache-v2",
+  "cachedRoutes": 38,
   "offlineFallback": "v2-offline.html",
   "connectionStatus": "polite online/offline status on V2 home and direct game entry",
   "cachedApprovedCharacterAssets": 5,

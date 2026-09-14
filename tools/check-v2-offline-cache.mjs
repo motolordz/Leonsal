@@ -64,6 +64,9 @@ for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
 }
 
 const safeAssetsBlock = sw.match(/const SAFE_ASSETS = \[([\s\S]*?)\];/)?.[1] || '';
+const cacheName = sw.match(/const CACHE_NAME = '([^']+)'/)?.[1] || '';
+assert(/leonsal-v2-safe-cache-v\d+/.test(cacheName), 'Service worker cache name must be explicitly versioned');
+assert(!cacheName.endsWith('-v1'), 'Service worker cache version must advance after V2 route/style changes');
 assert(!/(source-safe-keeping|qa\/|contact-sheet|rejected|character-review|_staging)/i.test(safeAssetsBlock), 'Offline safe cache includes blocked review/source path');
 assert(/BLOCKED_PATH/.test(sw), 'Service worker does not define blocked path protection');
 assert(/request\.mode === 'navigate'/.test(sw), 'Service worker does not use navigation-only offline fallback');
@@ -80,6 +83,7 @@ assert(/window\.addEventListener\('offline'/.test(shell), 'V2 game shell does no
 await fs.mkdir('qa/v2-offline', { recursive: true });
 await fs.writeFile('qa/v2-offline/results.json', JSON.stringify({
   passed: true,
+  cacheName,
   cachedRoutes: 38,
   offlineFallback: 'v2-offline.html',
   connectionStatus: 'polite online/offline status on V2 home and direct game entry',

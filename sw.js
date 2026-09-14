@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'leonsal-v2-safe-cache-v1';
+const CACHE_NAME = 'leonsal-v2-safe-cache-v2';
 const SAFE_ASSETS = [
   './index.html',
   './sensory-lab.html',
