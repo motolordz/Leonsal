@@ -4,7 +4,7 @@
     "width": 390,
     "height": 844
   },
-  "routeVisits": 45,
+  "routeVisits": 48,
   "checks": [
     "single session controls per route",
     "single session dialog per route",
@@ -58,6 +58,10 @@
     },
     {
       "pass": 0,
+      "route": "v2-shape-builder.html"
+    },
+    {
+      "pass": 0,
       "route": "v2-light-trail.html"
     },
     {
@@ -118,6 +122,10 @@
     },
     {
       "pass": 1,
+      "route": "v2-shape-builder.html"
+    },
+    {
+      "pass": 1,
       "route": "v2-light-trail.html"
     },
     {
@@ -175,6 +183,10 @@
     {
       "pass": 2,
       "route": "v2-alphabet-adventure.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-shape-builder.html"
     },
     {
       "pass": 2,

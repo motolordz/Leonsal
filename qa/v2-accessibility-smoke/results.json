@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 41,
+      "controls": 42,
       "canvases": []
     },
     {
@@ -130,6 +130,12 @@
       "route": "v2-alphabet-adventure.html",
       "passed": true,
       "controls": 35,
+      "canvases": []
+    },
+    {
+      "route": "v2-shape-builder.html",
+      "passed": true,
+      "controls": 11,
       "canvases": []
     },
     {

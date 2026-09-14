@@ -306,9 +306,9 @@
       "reducedMotion": "no animated snap",
       "finalCharacterArtRequired": false,
       "canShipWithProceduralGraphics": true,
-      "status": "legacy-existing",
+      "status": "proof",
       "liveV2Game": false,
-      "route": "shape-builder.html"
+      "route": "v2-shape-builder.html"
     },
     {
       "order": 14,

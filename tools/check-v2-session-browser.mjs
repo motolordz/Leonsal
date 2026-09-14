@@ -32,6 +32,7 @@ const playableRoutes = [
   'growing-garden',
   'number-merge',
   'alphabet-adventure',
+  'shape-builder',
   'light-trail',
   'hold-to-breathe',
   'trace-engine',
@@ -46,7 +47,7 @@ try {
     page.on('response', response => { if(response.status() >= 400) failures.push(`${response.status()} ${response.url()}`); });
     await page.goto(base+'/v2-home.html');
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 5);
+    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 6);
     assert.equal(await page.locator('.need-card').count(), 4);
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
     for (const route of playableRoutes) {
@@ -134,6 +135,11 @@ try {
     assert.equal(await page.evaluate(()=>window.__alphabetAdventureProofState().letter),'B');
     await page.locator('.letter-chip').last().click();
     assert.equal(await page.evaluate(()=>window.__alphabetAdventureProofState().letter),'Z');
+    await page.goto(base+'/v2-shape-builder.html');
+    for (let i=0;i<4;i+=1) await page.locator('.shape-piece').nth(i).click();
+    assert.equal(await page.evaluate(()=>window.__shapeBuilderProofState().complete),true);
+    await page.getByRole('button',{name:'Reset',exact:true}).click();
+    assert.equal(await page.evaluate(()=>window.__shapeBuilderProofState().placed.length),0);
     await page.goto(base+'/v2-light-trail.html');
     await page.locator('#canvas').focus(); await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowDown');
     assert((await page.evaluate(()=>trail.points.length))>1);

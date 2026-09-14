@@ -18,6 +18,7 @@ const routes = [
   'v2-growing-garden.html',
   'v2-number-merge.html',
   'v2-alphabet-adventure.html',
+  'v2-shape-builder.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -109,7 +110,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 5);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 6);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -214,6 +215,15 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__alphabetAdventureProofState?.());
       assert.equal(state.letter, 'A', 'Alphabet Adventure reset did not return to A');
+    }
+    if (route === 'v2-shape-builder.html') {
+      assert.equal(await page.locator('.shape-piece').count(), 4, 'Shape Builder does not expose four pieces');
+      for (let i = 0; i < 4; i += 1) await page.locator('.shape-piece').nth(i).click();
+      let state = await page.evaluate(() => window.__shapeBuilderProofState?.());
+      assert.equal(state.complete, true, 'Shape Builder did not complete after placing all pieces');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__shapeBuilderProofState?.());
+      assert.equal(state.placed.length, 0, 'Shape Builder reset did not clear placed pieces');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();
