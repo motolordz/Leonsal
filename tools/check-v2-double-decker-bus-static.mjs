@@ -5,6 +5,7 @@ const html = fs.readFileSync('v2-double-decker-bus.html', 'utf8');
 const css = fs.readFileSync('v2-proofs.css', 'utf8');
 const home = fs.readFileSync('v2-home.html', 'utf8');
 const offline = fs.readFileSync('sw.js', 'utf8');
+const games = JSON.parse(fs.readFileSync('data/games-v2.json', 'utf8'));
 
 for (const label of ['UK Bus', 'Hong Kong Bus', 'Night Bus']) {
   assert(html.includes(`>${label}</button>`), `Double-decker bus missing bus type: ${label}`);
@@ -34,5 +35,15 @@ assert(css.includes('.bus-choice,.bus-speed { min-width: 0; min-height: 48px'), 
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet/i.test(html), 'Bus route must not reference review/source/QA art');
 assert(home.includes('v2-double-decker-bus.html'), 'V2 home must link to the double-decker bus route');
 assert(offline.includes("'./v2-double-decker-bus.html'"), 'Offline cache must include the double-decker bus route');
+
+const transport = games.games.find((game) => game.id === 30 || game.title === 'Transport Adventure');
+const busVariant = transport?.proofVariants?.find((variant) => variant.id === 'double-decker-bus-journey');
+assert(busVariant, 'Transport Adventure registry must include the double-decker bus proof variant');
+assert.equal(busVariant.route, 'v2-double-decker-bus.html', 'Bus proof variant route must match the implemented route');
+assert.deepEqual(busVariant.busTypes, ['uk', 'hong-kong', 'night'], 'Bus proof variant must track the three implemented bus types');
+assert.deepEqual(busVariant.speedModes, ['super-slow', 'slow', 'medium', 'fast', 'super-speed'], 'Bus proof variant must track the five implemented speed modes');
+assert.equal(busVariant.calmMode, 'caps effective speed at slow', 'Bus registry must preserve calm-mode speed cap');
+assert.equal(busVariant.canShipWithProceduralGraphics, true, 'Bus proof must remain playable without final character art');
+assert.equal(busVariant.finalCharacterArtRequired, false, 'Bus proof must not depend on unapproved character art');
 
 console.log('V2 double-decker bus static checks passed.');
