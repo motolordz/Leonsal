@@ -23,6 +23,7 @@
     const reviewSummary = document.getElementById('reviewSummary');
     const productionTruth = document.getElementById('productionTruth');
     const sourceIntake = document.getElementById('sourceIntake');
+    const candidateLibrary = document.getElementById('candidateLibrary');
     const reviewFilters = [...document.querySelectorAll('[data-review-filter]')];
     let reviewFilter = 'all';
     const stateName = state => state[0].toUpperCase() + state.slice(1);
@@ -57,6 +58,23 @@
         'guide clothing/name treatment still needs production cleanup'
       ].filter(Boolean);
       sourceIntake.innerHTML = `<article><strong>${sourceAssets}</strong><span>supplied transparent source poses</span></article><article><strong>${vectorAssets}</strong><span>review SVG derivatives</span></article><article><strong>${missing.length}</strong><span>missing five-state slots</span></article><p><b>Next production blockers:</b> ${blockers.join(' · ')}.</p>`;
+    };
+    const renderCandidateLibrary = async () => {
+      if (!candidateLibrary) return;
+      try {
+        const reportResponse = await fetch('qa/character-production-v3/READINESS/character-readiness-report.json');
+        if (!reportResponse.ok) throw new Error('Readiness report unavailable');
+        const report = await reportResponse.json();
+        const summary = report.summary || {};
+        const blockers = (report.characters || [])
+          .filter(item => item.blockers?.length)
+          .slice(0, 4)
+          .map(item => `<li><b>${item.displayName}</b>: ${item.blockers[0]}</li>`)
+          .join('');
+        candidateLibrary.innerHTML = `<article><strong>${summary.pendingCharacters || 0}</strong><span>pending generated characters</span></article><article><strong>${(summary.pendingCharacters || 0) * 5}</strong><span>pending generated state slots</span></article><article><strong>340</strong><span>preserved vector sources</span></article><p><b>Candidate library:</b> Generated SVG-backed candidates are inspectable, but gameplay still resolves only approved art.</p><ul>${blockers}</ul>`;
+      } catch {
+        candidateLibrary.innerHTML = '<p>Candidate readiness report could not load. Registry checks still enforce approved-only runtime art.</p>';
+      }
     };
     const renderProductionTruth = async () => {
       if (!productionTruth) return;
@@ -152,6 +170,7 @@
     characterCards.replaceChildren(...characters.map(makeCard));
     renderProductionTruth();
     renderSourceIntake();
+    renderCandidateLibrary();
     renderReadiness();
     function renderRunners() {
       const leon = characters.find(item => item.id === 'leon');
