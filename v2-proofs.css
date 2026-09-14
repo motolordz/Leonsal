@@ -1496,6 +1496,18 @@ body[data-calm="true"] .hub-art {
 .garden-sun { position: absolute; right: 10%; top: 10%; width: 86px; height: 86px; border-radius: 999px; background: radial-gradient(circle, #fff8a8 0 36%, #ffd65d 37% 72%, rgba(255,214,93,0) 73%); filter: drop-shadow(0 0 22px rgba(255,214,93,.45)); pointer-events: none; z-index: 2; }
 .garden-world .scene-status { color: rgba(19,35,67,.82); background: rgba(255,255,255,.86); z-index: 4; }
 .garden-world .drawer-controls { z-index: 5; }
+.number-world { display: grid; grid-template-rows: 1fr auto auto; gap: 18px; overflow: hidden; padding-bottom: 104px; background: linear-gradient(180deg, #dff6ff, #fff2c8 58%, #d8f5dc); }
+.number-sky { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 20% 18%, rgba(255,255,255,.86) 0 6%, transparent 7%), radial-gradient(circle at 78% 24%, rgba(255,255,255,.72) 0 8%, transparent 9%), radial-gradient(ellipse at 50% 100%, rgba(86,177,108,.42), transparent 42%); }
+.number-equation { position: relative; z-index: 2; align-self: end; display: flex; align-items: center; justify-content: center; gap: clamp(8px, 3vw, 18px); min-height: 128px; padding: 10px; font-weight: 950; color: #173356; }
+.number-slot, .number-result { display: grid; place-items: center; width: clamp(62px, 18vw, 112px); aspect-ratio: 1; border-radius: 28px; background: rgba(255,255,255,.82); box-shadow: inset 0 -8px 0 rgba(43,90,136,.08), 0 18px 28px rgba(43,90,136,.12); font-size: clamp(2rem, 9vw, 4.4rem); }
+.number-result[data-ready="true"] { color: #0f6e3a; background: linear-gradient(180deg, #fff, #d8ffd9); }
+.number-symbol { font-size: clamp(1.9rem, 7vw, 3.4rem); }
+.number-mat { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(5, minmax(48px, 1fr)); gap: clamp(8px, 2.5vw, 14px); width: min(560px, 100%); margin: 0 auto; padding: 14px; border-radius: 32px; background: rgba(255,255,255,.46); box-shadow: inset 0 0 0 1px rgba(255,255,255,.8); }
+.number-buddy { min-height: 76px; border: 0; border-radius: 26px; color: #fff; font: inherit; font-size: clamp(1.8rem, 8vw, 3rem); font-weight: 950; text-shadow: 0 2px 0 rgba(19,35,67,.28); background: radial-gradient(circle at 35% 28%, rgba(255,255,255,.95) 0 11%, transparent 12%), linear-gradient(160deg, hsl(var(--hue, 205) 92% 64%), hsl(calc(var(--hue, 205) + 35) 82% 48%)); box-shadow: inset 0 -8px 0 rgba(19,35,67,.16), 0 14px 22px rgba(43,90,136,.18); cursor: pointer; }
+.number-buddy[data-selected="true"] { outline: 5px solid rgba(255,216,77,.92); transform: translateY(-4px); }
+.number-buddy:active { transform: translateY(2px) scale(.97); }
+.number-world .scene-status { position: relative; z-index: 3; color: rgba(19,35,67,.82); background: rgba(255,255,255,.86); }
+.number-world .drawer-controls { z-index: 5; }
 
 .trail-world { background: radial-gradient(circle at 50% 30%, rgba(56,109,203,.32), transparent 36%), linear-gradient(180deg, #132343, #1d2f68 52%, #243b7a); }
 .trail-starscape { position: absolute; inset: 0; opacity: .8; background-image: radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 1.8px), radial-gradient(circle, rgba(255,216,77,.85) 0 1.4px, transparent 2px); background-size: 58px 58px, 91px 91px; background-position: 0 0, 20px 26px; }
@@ -1607,6 +1619,8 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .home-stars::after { content: ""; position: absolute; left: -8%; right: -8%; bottom: -8%; height: 32%; border-radius: 50% 50% 0 0; background: rgba(255,216,77,.16); filter: blur(8px); }
 .garden-card .game-art { background: #def8dc; }
 .home-garden { width: 116px; height: 96px; border-radius: 26px; background: radial-gradient(circle at 50% 27%, #ff89bc 0 8%, #ffe36d 9% 15%, transparent 16%), linear-gradient(90deg, transparent 48%, #2f9f63 49% 54%, transparent 55%), radial-gradient(ellipse at 35% 62%, #45c678 0 16%, transparent 17%), radial-gradient(ellipse at 66% 58%, #45c678 0 15%, transparent 16%), linear-gradient(180deg, #c9f7dc 0 58%, #8a6238 59% 100%); box-shadow: inset 0 -10px 0 rgba(95,77,45,.14), 0 20px 35px rgba(47,159,99,.22); position: relative; overflow: hidden; }
+.number-card .game-art { background: #fff0bd; }
+.home-number { width: 116px; height: 96px; border-radius: 26px; display: grid; place-items: center; color: #173356; font-size: 2.05rem; font-weight: 950; background: radial-gradient(circle at 30% 26%, rgba(255,255,255,.9) 0 10%, transparent 11%), linear-gradient(145deg, #ffe875, #7fd7ff); box-shadow: inset 0 -12px 0 rgba(43,90,136,.12), 0 16px 26px rgba(43,90,136,.16); }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1677,6 +1691,13 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-snow { width: 54px; height: 58px; border-width: 4px; border-radius: 50% 50% 18px 18px; }
   .home-stars { width: 58px; height: 54px; border-radius: 15px; }
   .home-garden { width: 58px; height: 54px; border-radius: 15px; }
+  .home-number { width: 58px; height: 54px; border-radius: 15px; font-size: 1.1rem; }
+  .number-mat { grid-template-columns: repeat(5, 1fr); padding: 10px; }
+  .number-buddy { min-height: 58px; border-radius: 18px; }
+  .number-world { padding-bottom: 126px; gap: 10px; }
+  .number-equation { min-height: 104px; align-self: end; }
+  .number-slot, .number-result { width: 62px; border-radius: 20px; }
+  .number-world .drawer-controls { justify-content: center; }
 }
 
 .game-art img { width:180px; height:180px; object-fit:contain; }

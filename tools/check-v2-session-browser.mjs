@@ -30,6 +30,7 @@ const playableRoutes = [
   'snow-globe',
   'star-shower',
   'growing-garden',
+  'number-merge',
   'light-trail',
   'hold-to-breathe',
   'trace-engine',
@@ -44,7 +45,7 @@ try {
     page.on('response', response => { if(response.status() >= 400) failures.push(`${response.status()} ${response.url()}`); });
     await page.goto(base+'/v2-home.html');
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
+    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 4);
     assert.equal(await page.locator('.need-card').count(), 4);
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
     for (const route of playableRoutes) {
@@ -120,6 +121,12 @@ try {
     assert((await page.evaluate(()=>window.__growingGardenProofState().grown))>0);
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert((await page.evaluate(()=>window.__growingGardenProofState().plants))<=3);
+    await page.goto(base+'/v2-number-merge.html');
+    await page.locator('.number-buddy').nth(0).click();
+    await page.locator('.number-buddy').nth(1).click();
+    assert.equal(await page.evaluate(()=>{const state=window.__numberMergeProofState();return state.result===state.selected[0]+state.selected[1];}),true);
+    await page.getByRole('button',{name:'Clear',exact:true}).click();
+    assert.equal(await page.evaluate(()=>window.__numberMergeProofState().result),null);
     await page.goto(base+'/v2-light-trail.html');
     await page.locator('#canvas').focus(); await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowDown');
     assert((await page.evaluate(()=>trail.points.length))>1);

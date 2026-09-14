@@ -260,9 +260,9 @@
       "reducedMotion": "no bounce",
       "finalCharacterArtRequired": false,
       "canShipWithProceduralGraphics": true,
-      "status": "legacy-existing",
+      "status": "proof",
       "liveV2Game": false,
-      "route": "number-merge.html"
+      "route": "v2-number-merge.html"
     },
     {
       "order": 12,

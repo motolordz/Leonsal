@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 39,
+      "controls": 40,
       "canvases": []
     },
     {
@@ -119,6 +119,12 @@
           "tabIndex": -1
         }
       ]
+    },
+    {
+      "route": "v2-number-merge.html",
+      "passed": true,
+      "controls": 13,
+      "canvases": []
     },
     {
       "route": "v2-light-trail.html",

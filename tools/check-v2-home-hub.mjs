@@ -39,7 +39,7 @@ try {
       assert(await page.locator('.world-map-card').filter({ hasText: name }).isVisible(), `Missing world card: ${name}`);
     }
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
+    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 4);
     assert(await page.getByRole('link', { name: /open character review/i }).isVisible());
     await page.getByRole('button', { name: 'Settings' }).click();
     assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
@@ -51,7 +51,7 @@ try {
     await context.close();
   }
   assert.deepEqual(errors, []);
-  await fs.writeFile(`${out}/results.json`, JSON.stringify({ passed: true, viewports: [390, 768, 1280], checks: ['hub loaded', 'five world cards', 'ten sensory games', 'three engine proofs', 'settings popover', 'no horizontal overflow', 'no review-art requests'], errors }, null, 2) + '\n');
+  await fs.writeFile(`${out}/results.json`, JSON.stringify({ passed: true, viewports: [390, 768, 1280], checks: ['hub loaded', 'five world cards', 'ten sensory games', 'four learning engine cards', 'settings popover', 'no horizontal overflow', 'no review-art requests'], errors }, null, 2) + '\n');
   console.log('V2 home hub checks passed');
 } finally {
   await browser.close();

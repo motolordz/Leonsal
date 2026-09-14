@@ -16,6 +16,7 @@ const routes = [
   'v2-snow-globe.html',
   'v2-star-shower.html',
   'v2-growing-garden.html',
+  'v2-number-merge.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -107,7 +108,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 4);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -191,6 +192,15 @@ async function main() {
       await page.evaluate(() => settings.set({ calmMode: true }));
       const calmState = await page.evaluate(() => window.__growingGardenProofState?.());
       assert(calmState.plants <= 3, 'Growing Garden calm mode did not reduce plant count');
+    }
+    if (route === 'v2-number-merge.html') {
+      await page.locator('.number-buddy').nth(0).click();
+      await page.locator('.number-buddy').nth(1).click();
+      const state = await page.evaluate(() => window.__numberMergeProofState?.());
+      assert.equal(state.result, state.selected[0] + state.selected[1], 'Number Merge did not combine selected numbers');
+      await page.getByRole('button', { name: 'Clear' }).click();
+      const cleared = await page.evaluate(() => window.__numberMergeProofState?.());
+      assert.equal(cleared.result, null, 'Number Merge clear did not reset result');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

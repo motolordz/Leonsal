@@ -15,6 +15,7 @@ const routes = [
   'v2-snow-globe.html',
   'v2-star-shower.html',
   'v2-growing-garden.html',
+  'v2-number-merge.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -50,6 +51,10 @@ async function sampleRoute(page, base, route) {
   if (route === 'v2-snow-globe.html') await page.getByRole('button', { name: 'Shake gently' }).click();
   if (route === 'v2-star-shower.html') await page.getByRole('button', { name: 'Soft star' }).click();
   if (route === 'v2-growing-garden.html') await page.getByRole('button', { name: 'Water' }).click();
+  if (route === 'v2-number-merge.html') {
+    await page.locator('.number-buddy').nth(0).click();
+    await page.locator('.number-buddy').nth(1).click();
+  }
   if (route === 'v2-light-trail.html') {
     const box = await page.locator('#canvas').boundingBox();
     await page.mouse.move(box.x + 60, box.y + 160);
