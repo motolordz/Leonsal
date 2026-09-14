@@ -22,6 +22,9 @@ for (const text of ['LeonSalCharacterRenderer', 'makeCharacter', 'makeGuide', 'm
 for (const family of ['alphabet', 'number']) {
   assert(renderer.includes(family), `Shared renderer missing ${family} support`);
 }
+for (const family of ['world', 'planet']) {
+  assert(renderer.includes(family), `Shared renderer missing ${family} support`);
+}
 for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
   assert(renderer.includes(state), `Shared guide renderer missing state: ${state}`);
 }

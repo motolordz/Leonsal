@@ -188,7 +188,7 @@
 
   function makeSvg(record, state, options = {}) {
     const sharedRenderer = window.LeonSalCharacterRenderer;
-    if (sharedRenderer && ['guide', 'alphabet', 'number', 'numbers'].includes(record.family)) {
+    if (sharedRenderer) {
       const svg = sharedRenderer.makeCharacter(record, state, options);
       if (svg) {
         svg.classList.add('procedural-character-svg', `character-family-${record.family}`, `character-state-${state}`);
