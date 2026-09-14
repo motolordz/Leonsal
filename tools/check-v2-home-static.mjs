@@ -50,6 +50,7 @@ assert(rendererLikeCharacters(), 'Shared renderer must classify Battery Buddy an
 assert(rendererLikeWorldSet(), 'Shared renderer must give core world characters distinct procedural bodies');
 assert(rendererLikeObjectSet(), 'Shared renderer must give learning object characters distinct procedural bodies');
 assert(rendererLikeTransportSet(), 'Shared renderer must give transport and discovery characters distinct procedural bodies');
+assert(rendererLikePlanetSet(), 'Shared renderer must give planet characters distinct procedural bodies');
 for (const text of ['new LeonSalV2.AssetLoaderEngine', 'loader.resolve', 'record?.states?.[state]']) {
   assert(approvedLoader.includes(text), `Approved character loader must use shared asset loader: ${text}`);
 }
@@ -82,6 +83,12 @@ function rendererLikeObjectSet() {
 function rendererLikeTransportSet() {
   const renderer = fs.readFileSync('js/v2-character-renderer.js', 'utf8');
   return ['earth-body', 'robot-body', 'magnifier-body', 'puzzle-body', 'train-body', 'plane-body', 'boat-body']
+    .every(bodyClass => renderer.includes(bodyClass));
+}
+
+function rendererLikePlanetSet() {
+  const renderer = fs.readFileSync('js/v2-character-renderer.js', 'utf8');
+  return ['planet-sun-body', 'planet-mercury-body', 'planet-venus-body', 'planet-mars-body', 'planet-jupiter-body', 'planet-saturn-body', 'planet-uranus-body', 'planet-neptune-body']
     .every(bodyClass => renderer.includes(bodyClass));
 }
 

@@ -85,7 +85,7 @@
     if (/moon/i.test(record.id)) return 'MOON';
     if (/cloud/i.test(record.id)) return 'CLOUD';
     if (/rainbow/i.test(record.id)) return 'RAIN';
-    if (/plane/i.test(record.id)) return 'JET';
+    if (/(^|-)plane($|-)/i.test(record.id)) return 'JET';
     if (/rocket/i.test(record.id)) return 'GO';
     if (/bus|double-decker/i.test(record.id)) return 'BUS';
     if (/boat/i.test(record.id)) return 'BOAT';
@@ -104,7 +104,7 @@
     if (/battery/.test(id)) return 'battery';
     if (/dinosaur/.test(id)) return 'dinosaur';
     if (/bus|train|double-decker/.test(id)) return 'vehicle';
-    if (/plane|rocket|boat/.test(id)) return 'transport';
+    if (/(^|-)plane($|-)/.test(id) || /rocket|boat/.test(id)) return 'transport';
     if (/sun|moon|earth|planet|mercury|venus|mars|jupiter|saturn|uranus|neptune/.test(id)) return 'planet';
     if (/cloud|rainbow|water|tree/.test(id)) return 'nature';
     if (/robot|magnifier|pencil|book|paintbrush|music|clock|calendar|puzzle|treasure/.test(id)) return 'object';

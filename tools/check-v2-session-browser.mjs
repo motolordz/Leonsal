@@ -95,7 +95,15 @@ try {
       ['world-train', '.train-body'],
       ['double-decker', '.vehicle-body'],
       ['plane', '.plane-body'],
-      ['boat', '.boat-body']
+      ['boat', '.boat-body'],
+      ['planet-sun', '.planet-sun-body'],
+      ['planet-mercury', '.planet-mercury-body'],
+      ['planet-venus', '.planet-venus-body'],
+      ['planet-mars', '.planet-mars-body'],
+      ['planet-jupiter', '.planet-jupiter-body'],
+      ['planet-saturn', '.planet-saturn-body'],
+      ['planet-uranus', '.planet-uranus-body'],
+      ['planet-neptune', '.planet-neptune-body']
     ];
     for (const [characterId, bodySelector] of expectedCharacterBodies) {
       assert.equal(

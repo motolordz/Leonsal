@@ -32,7 +32,7 @@
     if (/moon/i.test(record.id)) return 'MOON';
     if (/cloud/i.test(record.id)) return 'CLOUD';
     if (/rainbow/i.test(record.id)) return 'RAIN';
-    if (/plane/i.test(record.id)) return 'JET';
+    if (/(^|-)plane($|-)/i.test(record.id)) return 'JET';
     if (/rocket/i.test(record.id)) return 'GO';
     if (/bus|double-decker/i.test(record.id)) return 'BUS';
     if (/boat/i.test(record.id)) return 'BOAT';
@@ -61,7 +61,7 @@
     if (/magnifier/.test(id)) return 'magnifier';
     if (/puzzle/.test(id)) return 'puzzle';
     if (/train/.test(id)) return 'train';
-    if (/plane/.test(id)) return 'plane';
+    if (/(^|-)plane($|-)/.test(id)) return 'plane';
     if (/boat/.test(id)) return 'boat';
     if (/clock/.test(id)) return 'clock';
     if (/calendar/.test(id)) return 'calendar';
@@ -290,6 +290,30 @@
       return `<g class="character-body animal-body owl-body"><ellipse cx="110" cy="114" rx="58" ry="65" class="body"/><path d="M62 74 q23 -29 48 0 q25 -29 48 0 q-18 -9 -48 -6 q-30 -3 -48 6z" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><path d="M98 118 l12 15 13 -15" fill="${secondary}" stroke="#173356" stroke-width="4" stroke-linejoin="round"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/></g>`;
     }
     if (kind === 'planet') {
+      if (/planet-sun/.test(record.id)) {
+        return `<g class="character-body planet-body planet-sun-body"><path d="M110 24 l12 28 30 -13 -9 32 31 10 -30 15 14 29 -33 -7 -15 31 -17 -30 -32 9 12 -31 -29 -13 30 -12 -10 -32 30 12z" fill="#ffcf48" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><circle cx="110" cy="108" r="53" fill="#ffdf5a" stroke="#173356" stroke-width="6"/><circle cx="76" cy="121" r="10" class="cheek"/><circle cx="159" cy="121" r="10" class="cheek"/></g>`;
+      }
+      if (/mercury/.test(record.id)) {
+        return `<g class="character-body planet-body planet-mercury-body"><circle cx="110" cy="108" r="57" fill="#b6a899" stroke="#173356" stroke-width="6"/><circle cx="83" cy="84" r="8" fill="#8f8174" opacity=".45"/><circle cx="137" cy="132" r="11" fill="#8f8174" opacity=".35"/><circle cx="74" cy="124" r="9" class="cheek"/><circle cx="159" cy="124" r="9" class="cheek"/></g>`;
+      }
+      if (/venus/.test(record.id)) {
+        return `<g class="character-body planet-body planet-venus-body"><circle cx="110" cy="108" r="58" fill="#f2b35d" stroke="#173356" stroke-width="6"/><path d="M59 100 q45 -20 102 0M61 126 q44 18 99 0M78 78 q35 12 72 0" fill="none" stroke="#ffe4a6" stroke-width="8" stroke-linecap="round" opacity=".8"/><circle cx="75" cy="122" r="9" class="cheek"/><circle cx="159" cy="122" r="9" class="cheek"/></g>`;
+      }
+      if (/mars/.test(record.id)) {
+        return `<g class="character-body planet-body planet-mars-body"><circle cx="110" cy="108" r="58" fill="#e56c47" stroke="#173356" stroke-width="6"/><path d="M70 86 q29 20 68 7M83 145 q34 -22 70 -7" fill="none" stroke="#ffb17d" stroke-width="9" stroke-linecap="round" opacity=".78"/><circle cx="139" cy="91" r="10" fill="#b94738" opacity=".36"/><circle cx="75" cy="122" r="9" class="cheek"/><circle cx="159" cy="122" r="9" class="cheek"/></g>`;
+      }
+      if (/jupiter/.test(record.id)) {
+        return `<g class="character-body planet-body planet-jupiter-body"><circle cx="110" cy="108" r="61" fill="#d79b64" stroke="#173356" stroke-width="6"/><path d="M52 81 h116M50 105 h120M56 130 h108" stroke="#ffe2b8" stroke-width="11" stroke-linecap="round" opacity=".86"/><ellipse cx="144" cy="121" rx="18" ry="12" fill="#c64b3c" stroke="#fff" stroke-width="4"/><circle cx="75" cy="123" r="8" class="cheek"/><circle cx="159" cy="123" r="8" class="cheek"/></g>`;
+      }
+      if (/saturn/.test(record.id)) {
+        return `<g class="character-body planet-body planet-saturn-body"><ellipse cx="110" cy="114" rx="90" ry="25" fill="none" stroke="#ffd166" stroke-width="13" opacity=".86"/><path d="M29 119 q80 -20 162 0" fill="none" stroke="#173356" stroke-width="5" opacity=".28"/><circle cx="110" cy="108" r="55" fill="#eecb75" stroke="#173356" stroke-width="6"/><path d="M67 98 q42 13 87 0" fill="none" stroke="#fff0b5" stroke-width="8" stroke-linecap="round" opacity=".72"/><circle cx="75" cy="123" r="9" class="cheek"/><circle cx="159" cy="123" r="9" class="cheek"/></g>`;
+      }
+      if (/uranus/.test(record.id)) {
+        return `<g class="character-body planet-body planet-uranus-body"><ellipse cx="111" cy="109" rx="22" ry="82" fill="none" stroke="#b9f6ff" stroke-width="9" opacity=".78" transform="rotate(18 111 109)"/><circle cx="110" cy="108" r="57" fill="#8fe7ec" stroke="#173356" stroke-width="6"/><path d="M66 112 q43 16 89 0" fill="none" stroke="#eaffff" stroke-width="9" stroke-linecap="round" opacity=".72"/><circle cx="75" cy="123" r="9" class="cheek"/><circle cx="159" cy="123" r="9" class="cheek"/></g>`;
+      }
+      if (/neptune/.test(record.id)) {
+        return `<g class="character-body planet-body planet-neptune-body"><circle cx="110" cy="108" r="58" fill="#3c76db" stroke="#173356" stroke-width="6"/><path d="M69 92 q34 22 82 8M75 137 q32 -16 78 -5" fill="none" stroke="#9be7ff" stroke-width="9" stroke-linecap="round" opacity=".75"/><circle cx="80" cy="78" r="9" fill="#244fb5" opacity=".42"/><circle cx="75" cy="122" r="9" class="cheek"/><circle cx="159" cy="122" r="9" class="cheek"/></g>`;
+      }
       return `<g class="character-body planet-body"><ellipse cx="110" cy="112" rx="82" ry="24" fill="none" stroke="${accent}" stroke-width="12" opacity=".72"/><circle cx="110" cy="108" r="58" class="body"/><path d="M67 118 q42 20 88 -6" fill="none" stroke="#fff" stroke-width="9" opacity=".35"/><circle cx="76" cy="121" r="10" class="cheek"/><circle cx="159" cy="121" r="10" class="cheek"/></g>`;
     }
     if (kind === 'nature') {
