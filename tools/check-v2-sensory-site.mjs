@@ -14,6 +14,7 @@ const routes = [
   'v2-firefly-catch.html',
   'v2-calm-rain-window.html',
   'v2-snow-globe.html',
+  'v2-star-shower.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -104,7 +105,7 @@ async function main() {
       assert(await page.getByText(/not scores, grades or mastery/i).isVisible(), 'V2 home local progress copy implies assessment');
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
-      assert.equal(await page.locator('.hub-game-grid .world-game').count(), 8);
+      assert.equal(await page.locator('.hub-game-grid .world-game').count(), 9);
       assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
@@ -165,6 +166,18 @@ async function main() {
       await page.evaluate(() => settings.set({ calmMode: true }));
       const calmState = await page.evaluate(() => window.__snowGlobeProofState?.());
       assert(calmState.flakes <= 32, 'Snow Globe calm mode did not reduce flakes');
+    }
+    if (route === 'v2-star-shower.html') {
+      const box = await page.locator('#starCanvas').boundingBox();
+      await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+      const canvas = await sampleCanvas(page, '#starCanvas');
+      await page.getByRole('button', { name: 'Soft star' }).click();
+      const state = await page.evaluate(() => window.__starShowerProofState?.());
+      assert(canvas.width >= 340 && canvas.height > 400, 'Star canvas is not sized for mobile play');
+      assert(state.stars > 0, 'Star Shower did not create a star response');
+      await page.evaluate(() => settings.set({ calmMode: true }));
+      const calmState = await page.evaluate(() => window.__starShowerProofState?.());
+      assert(calmState.maxStars <= 5, 'Star Shower calm mode did not cap active stars');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

@@ -4,7 +4,7 @@
     "width": 390,
     "height": 844
   },
-  "routeVisits": 33,
+  "routeVisits": 36,
   "checks": [
     "single session controls per route",
     "single session dialog per route",
@@ -42,6 +42,10 @@
     },
     {
       "pass": 0,
+      "route": "v2-star-shower.html"
+    },
+    {
+      "pass": 0,
       "route": "v2-light-trail.html"
     },
     {
@@ -86,6 +90,10 @@
     },
     {
       "pass": 1,
+      "route": "v2-star-shower.html"
+    },
+    {
+      "pass": 1,
       "route": "v2-light-trail.html"
     },
     {
@@ -127,6 +135,10 @@
     {
       "pass": 2,
       "route": "v2-snow-globe.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-star-shower.html"
     },
     {
       "pass": 2,

@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 37,
+      "controls": 38,
       "canvases": []
     },
     {
@@ -88,6 +88,20 @@
           "width": 374,
           "height": 656,
           "name": "Snow globe. Drag, tap, or press Shake gently to move the snow.",
+          "tabIndex": -1
+        }
+      ]
+    },
+    {
+      "route": "v2-star-shower.html",
+      "passed": true,
+      "controls": 9,
+      "canvases": [
+        {
+          "id": "starCanvas",
+          "width": 374,
+          "height": 656,
+          "name": "Star shower. Tap, click, or press the sky to make a soft star fall.",
           "tabIndex": -1
         }
       ]

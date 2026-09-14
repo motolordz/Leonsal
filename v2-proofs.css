@@ -1485,6 +1485,13 @@ body[data-calm="true"] .hub-art {
 .snow-world .scene-status { background: rgba(255,255,255,.86); z-index: 5; }
 .snow-world .drawer-controls { z-index: 6; }
 
+.star-world { padding: 0; background: #14234f; }
+.star-canvas { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; touch-action: none; z-index: 1; }
+.star-horizon { position: absolute; left: -6%; right: -6%; bottom: -4%; height: 28%; pointer-events: none; z-index: 2; background: radial-gradient(ellipse at 24% 100%, rgba(90, 82, 145, .84), transparent 38%), radial-gradient(ellipse at 63% 100%, rgba(66, 122, 126, .72), transparent 40%), radial-gradient(ellipse at 90% 100%, rgba(130, 105, 223, .5), transparent 34%); }
+.star-horizon::after { content: ""; position: absolute; left: 0; right: 0; bottom: 12%; height: 36%; background: linear-gradient(90deg, transparent, rgba(255,216,77,.16), transparent); filter: blur(12px); }
+.star-world .scene-status { color: rgba(19,35,67,.82); background: rgba(255,255,255,.86); z-index: 4; }
+.star-world .drawer-controls { z-index: 5; }
+
 .trail-world { background: radial-gradient(circle at 50% 30%, rgba(56,109,203,.32), transparent 36%), linear-gradient(180deg, #132343, #1d2f68 52%, #243b7a); }
 .trail-starscape { position: absolute; inset: 0; opacity: .8; background-image: radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 1.8px), radial-gradient(circle, rgba(255,216,77,.85) 0 1.4px, transparent 2px); background-size: 58px 58px, 91px 91px; background-position: 0 0, 20px 26px; }
 .trail-world .scene-status { color: rgba(255,255,255,.78); }
@@ -1590,6 +1597,9 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .snow-card .game-art { background: #edf7ff; }
 .home-snow { width: 100px; height: 106px; border-radius: 50% 50% 28px 28px; background: radial-gradient(circle at 35% 24%, rgba(255,255,255,.96), rgba(185,231,255,.38) 44%, rgba(115,178,225,.22)), linear-gradient(180deg, transparent 0 72%, #e18a45 73%); border: 5px solid rgba(255,255,255,.86); box-shadow: inset -8px -12px 0 rgba(57,99,145,.12), 0 12px 22px rgba(35,75,118,.14); position: relative; }
 .home-snow::before { content: ""; position: absolute; left: 35%; top: 43%; width: 30%; height: 20%; border-radius: 8px; background: #fff0bd; box-shadow: -24px 7px 0 -4px #45bd6b, 25px 7px 0 -4px #45bd6b; }
+.star-card .game-art { background: #172852; }
+.home-stars { width: 116px; height: 96px; border-radius: 26px; background: radial-gradient(circle at 25% 28%, #ffe875 0 8%, rgba(255,232,117,.34) 9% 23%, transparent 24%), radial-gradient(circle at 70% 40%, #fff 0 5%, rgba(255,255,255,.28) 6% 17%, transparent 18%), linear-gradient(180deg, #14234f, #31528d 70%, #8069ba); box-shadow: inset 0 -14px 0 rgba(130,105,223,.26), 0 12px 22px rgba(19,35,67,.2); position: relative; overflow: hidden; }
+.home-stars::after { content: ""; position: absolute; left: -8%; right: -8%; bottom: -8%; height: 32%; border-radius: 50% 50% 0 0; background: rgba(255,216,77,.16); filter: blur(8px); }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1658,6 +1668,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-rain { width: 58px; height: 54px; border-width: 5px; border-radius: 14px; }
   .home-firefly { width: 58px; height: 54px; border-radius: 15px; }
   .home-snow { width: 54px; height: 58px; border-width: 4px; border-radius: 50% 50% 18px 18px; }
+  .home-stars { width: 58px; height: 54px; border-radius: 15px; }
 }
 
 .game-art img { width:180px; height:180px; object-fit:contain; }

@@ -51,6 +51,7 @@
 - [x] Add `Calm Rain Window` as the next no-pressure V2 sensory proof, using Canvas rain/ripples, shared settings, shared session controls, reduced-motion and calm-mode support.
 - [x] Add `Firefly Catch` as a no-pressure V2 sensory proof, using Canvas glow tracking, shared settings, shared session controls, reduced-motion and calm-mode support.
 - [x] Add `Snow Globe` as a no-pressure V2 sensory proof, using Canvas flakes, shared settings, shared session controls, reduced-motion and calm-mode support.
+- [x] Add `Star Shower` as a no-pressure V2 sensory proof, using Canvas stars, shared settings, shared session controls, reduced-motion and calm-mode support.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 
@@ -98,7 +99,7 @@ Status below is the existing registry status, not an assertion of release comple
 | 6 | Firefly Catch | proof | v2-firefly-catch.html |
 | 7 | Calm Rain Window | proof | v2-calm-rain-window.html |
 | 8 | Snow Globe | proof | v2-snow-globe.html |
-| 9 | Star Shower | specified | Not implemented |
+| 9 | Star Shower | proof | v2-star-shower.html |
 | 10 | Growing Garden | specified | Not implemented |
 | 11 | Number Merge | legacy-existing | number-merge.html |
 | 12 | Alphabet Adventure | legacy-existing | alphabet-adventure.html |
