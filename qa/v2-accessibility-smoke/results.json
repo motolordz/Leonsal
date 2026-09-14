@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 46,
+      "controls": 47,
       "canvases": []
     },
     {
@@ -184,6 +184,12 @@
       "route": "v2-colour-match.html",
       "passed": true,
       "controls": 15,
+      "canvases": []
+    },
+    {
+      "route": "v2-big-small.html",
+      "passed": true,
+      "controls": 13,
       "canvases": []
     },
     {

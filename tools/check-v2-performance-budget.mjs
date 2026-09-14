@@ -22,6 +22,7 @@ const routes = [
   'v2-number-tracing.html',
   'v2-shape-tracing.html',
   'v2-colour-match.html',
+  'v2-big-small.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -69,6 +70,10 @@ async function sampleRoute(page, base, route) {
   if (route === 'v2-colour-match.html') {
     await page.locator('.colour-drop').first().click();
     await page.locator('.colour-well').first().click();
+  }
+  if (route === 'v2-big-small.html') {
+    await page.locator('.size-toy').first().click();
+    await page.locator('.size-basket').first().click();
   }
   if (route === 'v2-light-trail.html') {
     const box = await page.locator('#canvas').boundingBox();

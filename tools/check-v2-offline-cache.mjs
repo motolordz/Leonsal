@@ -25,6 +25,7 @@ for (const route of [
   'v2-number-tracing.html',
   'v2-shape-tracing.html',
   'v2-colour-match.html',
+  'v2-big-small.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -66,7 +67,7 @@ assert(/window\.addEventListener\('offline'/.test(shell), 'V2 game shell does no
 await fs.mkdir('qa/v2-offline', { recursive: true });
 await fs.writeFile('qa/v2-offline/results.json', JSON.stringify({
   passed: true,
-  cachedRoutes: 24,
+  cachedRoutes: 25,
   offlineFallback: 'v2-offline.html',
   connectionStatus: 'polite online/offline status on V2 home and direct game entry',
   cachedApprovedCharacterAssets: 5,

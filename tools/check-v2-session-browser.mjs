@@ -37,6 +37,7 @@ const playableRoutes = [
   'number-tracing',
   'shape-tracing',
   'colour-match',
+  'big-small',
   'light-trail',
   'hold-to-breathe',
   'trace-engine',
@@ -51,7 +52,7 @@ try {
     page.on('response', response => { if(response.status() >= 400) failures.push(`${response.status()} ${response.url()}`); });
     await page.goto(base+'/v2-home.html');
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 10);
+    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 11);
     assert.equal(await page.locator('.need-card').count(), 4);
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
     for (const route of playableRoutes) {
@@ -171,6 +172,12 @@ try {
     assert.equal(await page.evaluate(()=>window.__colourMatchProofState().matched.includes('red')),true);
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__colourMatchProofState().matched.length),0);
+    await page.goto(base+'/v2-big-small.html');
+    await page.locator('.size-toy').first().click();
+    await page.locator('.size-basket').first().click();
+    assert.equal(await page.evaluate(()=>window.__bigSmallProofState().sorted.includes('tiny-star')),true);
+    await page.getByRole('button',{name:'Reset',exact:true}).click();
+    assert.equal(await page.evaluate(()=>window.__bigSmallProofState().sorted.length),0);
     await page.goto(base+'/v2-light-trail.html');
     await page.locator('#canvas').focus(); await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowDown');
     assert((await page.evaluate(()=>trail.points.length))>1);

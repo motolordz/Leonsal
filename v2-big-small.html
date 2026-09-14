@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Big & Small</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
+      <div class="game-title"><strong>Big &amp; Small</strong><span>Sort toys by size.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+    <section class="game-scene big-small-world" aria-label="Big and small sorting play area">
+      <p class="scene-status" id="status">Pick a toy.</p>
+      <div class="size-baskets" id="baskets">
+        <button class="size-basket" type="button" data-size="small">Small</button>
+        <button class="size-basket" type="button" data-size="big">Big</button>
+      </div>
+      <div class="size-toys" id="toys"></div>
+      <div class="drawer-controls">
+        <button class="scene-button" id="hint" type="button">Hint</button>
+        <button class="scene-button" id="reset" type="button">Reset</button>
+      </div>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const matcher = new LeonSalV2.SortMatchEngine();
+    const dragDrop = new LeonSalV2.DragDropEngine({ snapDistance: 90 });
+    const status = document.querySelector('#status');
+    const toys = document.querySelector('#toys');
+    const baskets = document.querySelector('#baskets');
+    const items = [
+      { id: 'tiny-star', label: 'Small star', size: 'small', shape: 'star' },
+      { id: 'big-star', label: 'Big star', size: 'big', shape: 'star' },
+      { id: 'tiny-ball', label: 'Small ball', size: 'small', shape: 'ball' },
+      { id: 'big-ball', label: 'Big ball', size: 'big', shape: 'ball' }
+    ];
+    let selected = null;
+    let sorted = new Set();
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+    function build() {
+      selected = null;
+      sorted = new Set();
+      toys.innerHTML = '';
+      items.forEach((item) => {
+        matcher.register(item.id, item.size);
+        const toy = document.createElement('button');
+        toy.className = `size-toy ${item.shape}`;
+        toy.type = 'button';
+        toy.dataset.id = item.id;
+        toy.dataset.size = item.size;
+        toy.dataset.visualSize = item.size;
+        toy.textContent = item.size === 'big' ? 'Big' : 'Small';
+        toy.setAttribute('aria-label', item.label);
+        toys.append(toy);
+        const zone = document.querySelector(`.size-basket[data-size="${item.size}"]`);
+        dragDrop.register(toy, zone, { select: () => selectToy(toy), drop: () => tryBasket(zone) });
+      });
+      document.querySelectorAll('.size-basket').forEach((basket) => basket.dataset.count = '0');
+      status.textContent = 'Pick a toy.';
+    }
+    function selectToy(toy) {
+      if (sorted.has(toy.dataset.id)) return;
+      selected = toy;
+      document.querySelectorAll('.size-toy').forEach((item) => item.dataset.selected = String(item === toy));
+      status.textContent = `${toy.textContent} toy selected. Choose a basket.`;
+    }
+    function tryBasket(basket) {
+      if (!selected) {
+        status.textContent = 'Pick a toy first.';
+        return;
+      }
+      if (matcher.check(selected.dataset.id, basket.dataset.size)) {
+        sorted.add(selected.dataset.id);
+        selected.dataset.sorted = 'true';
+        basket.dataset.count = String(Number(basket.dataset.count || 0) + 1);
+        selected = null;
+        status.textContent = sorted.size === items.length ? 'All toys sorted.' : 'Sorted.';
+      } else {
+        status.textContent = 'Try the other basket.';
+      }
+      document.querySelectorAll('.size-toy').forEach((item) => item.dataset.selected = 'false');
+    }
+    toys.addEventListener('click', (event) => {
+      const toy = event.target.closest('.size-toy');
+      if (toy) selectToy(toy);
+    });
+    baskets.addEventListener('click', (event) => {
+      const basket = event.target.closest('.size-basket');
+      if (basket) tryBasket(basket);
+    });
+    document.querySelector('#hint').addEventListener('click', () => {
+      const next = items.find((item) => !sorted.has(item.id));
+      status.textContent = next ? `${next.label} goes in ${next.size}.` : 'All toys sorted.';
+    });
+    document.querySelector('#reset').addEventListener('click', build);
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [], reset: build, gameId: 'big-small-v2' });
+    build();
+    window.__bigSmallProofState = () => ({ selected: selected?.dataset.id || null, sorted: [...sorted], complete: sorted.size === items.length, hasTapAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
+  </script>
+</body>
+</html>
