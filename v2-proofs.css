@@ -1923,6 +1923,36 @@ body[data-motion="off"] .weather-choice { transition: none; }
 .habitat-world .drawer-controls { z-index: 6; }
 body[data-motion="off"] .animal-token,
 body[data-motion="off"] .habitat-zone { transition: none; }
+.transport-card { background: linear-gradient(145deg, #e0f2fe, #dbeafe 48%, #fef3c7); }
+.home-transport { position: relative; width: 86px; height: 66px; border-radius: 22px; background: linear-gradient(180deg, #bae6fd, #dcfce7); box-shadow: inset 0 -8px 0 rgba(19,35,67,.08), 0 14px 26px rgba(14,165,233,.14); }
+.home-transport::before { content: ""; position: absolute; left: 12px; bottom: 17px; width: 58px; height: 22px; border-radius: 14px 18px 10px 10px; background: #ef4444; box-shadow: inset 0 -6px 0 rgba(19,35,67,.12); }
+.home-transport::after { content: ""; position: absolute; left: 18px; bottom: 10px; width: 13px; aspect-ratio: 1; border-radius: 50%; background: #173356; box-shadow: 38px 0 0 #173356, 15px -31px 0 -1px #facc15; }
+.transport-world { background: linear-gradient(180deg, #dbeafe, #dcfce7 62%, #fef3c7); overflow: hidden; }
+.transport-landscape { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.route-line { position: absolute; left: 11%; right: 15%; height: 10px; border-radius: 999px; opacity: .32; background: #173356; }
+.road-line { top: 62%; background: repeating-linear-gradient(90deg, #475569 0 34px, #facc15 34px 48px); }
+.rail-line { top: 50%; background: repeating-linear-gradient(90deg, #78350f 0 14px, #fef3c7 14px 24px); }
+.sky-line { top: 36%; background: linear-gradient(90deg, transparent, #38bdf8, transparent); }
+.water-line { top: 73%; background: repeating-linear-gradient(90deg, #0284c7 0 22px, #7dd3fc 22px 38px); }
+.transport-world[data-route="road"] .road-line,
+.transport-world[data-route="rail"] .rail-line,
+.transport-world[data-route="sky"] .sky-line,
+.transport-world[data-route="water"] .water-line { opacity: .95; height: 14px; }
+.transport-vehicle { position: absolute; left: calc(10% + (var(--progress, 0%) * .72)); top: 62%; z-index: 4; width: 74px; height: 44px; border-radius: 18px 22px 12px 12px; transform: translate(-50%,-50%); background: #ef4444; box-shadow: inset 0 -9px 0 rgba(19,35,67,.12), 0 14px 24px rgba(19,35,67,.16); transition: top .24s ease, background .24s ease; }
+.transport-vehicle::before { content: ""; position: absolute; left: 10px; top: 7px; width: 22px; height: 13px; border-radius: 8px; background: rgba(255,255,255,.7); box-shadow: 29px 0 0 rgba(255,255,255,.7); }
+.transport-vehicle::after { content: ""; position: absolute; left: 10px; bottom: -7px; width: 15px; aspect-ratio: 1; border-radius: 50%; background: #173356; box-shadow: 39px 0 0 #173356; }
+.transport-world[data-route="rail"] .transport-vehicle { top: 50%; background: #0ea5e9; border-radius: 14px; }
+.transport-world[data-route="sky"] .transport-vehicle { top: 36%; background: #facc15; border-radius: 50% 48% 48% 50%; }
+.transport-world[data-route="sky"] .transport-vehicle::after { left: 58px; bottom: 12px; width: 24px; height: 18px; border-radius: 0; clip-path: polygon(0 50%,100% 0,100% 100%); background: #f97316; box-shadow: none; }
+.transport-world[data-route="water"] .transport-vehicle { top: 73%; background: #2563eb; border-radius: 8px 8px 26px 26px; }
+.arrival-gate { position: absolute; right: 8%; top: 50%; width: 52px; height: 128px; border-radius: 24px; background: rgba(255,255,255,.68); box-shadow: inset 0 -10px 0 rgba(19,35,67,.08), 0 16px 30px rgba(19,35,67,.12); }
+.transport-choices { position: absolute; left: 7%; right: 7%; top: 12%; z-index: 5; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 9px; }
+.transport-choice { min-height: 62px; border: 0; border-radius: 20px; background: rgba(255,255,255,.76); color: #173356; font: inherit; font-size: .8rem; font-weight: 1000; box-shadow: 0 12px 22px rgba(19,35,67,.12), inset 0 -8px 0 rgba(19,35,67,.06); touch-action: manipulation; }
+.transport-choice[data-active="true"] { background: #facc15; outline: 4px solid rgba(255,255,255,.78); transform: translateY(5px); }
+.transport-world .scene-status { z-index: 6; background: rgba(255,255,255,.68); color: #173356; }
+.transport-world .drawer-controls { z-index: 6; }
+body[data-motion="off"] .transport-vehicle,
+body[data-motion="off"] .transport-choice { transition: none; }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1996,7 +2026,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-number { width: 58px; height: 54px; border-radius: 15px; font-size: 1.1rem; }
   .home-letter { width: 58px; height: 54px; border-radius: 15px; font-size: 2.2rem; }
   .home-shapes { width: 58px; height: 54px; border-radius: 15px; }
-  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it, .home-planet-pals, .home-solar-build, .home-day-night, .home-days-week, .home-months, .home-seasons, .home-clock, .home-weather, .home-habitat { width: 58px; height: 54px; border-radius: 15px; font-size: 1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
+  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it, .home-planet-pals, .home-solar-build, .home-day-night, .home-days-week, .home-months, .home-seasons, .home-clock, .home-weather, .home-habitat, .home-transport { width: 58px; height: 54px; border-radius: 15px; font-size: 1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
   .number-mat { grid-template-columns: repeat(5, 1fr); padding: 10px; }
   .number-buddy { min-height: 58px; border-radius: 18px; }
   .number-world { padding-bottom: 126px; gap: 10px; }
@@ -2040,6 +2070,10 @@ body[data-calm="true"] .connection-status { transition: none; }
   .animal-tray { bottom: 24%; gap: 7px; }
   .animal-token { min-height: 68px; border-radius: 18px; font-size: .68rem; padding-top: 32px; }
   .animal-token::before { width: 28px; top: 9px; }
+  .transport-choices { top: 12%; grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .transport-choice { min-height: 50px; border-radius: 16px; }
+  .transport-vehicle { width: 58px; height: 36px; }
+  .arrival-gate { right: 5%; height: 96px; width: 42px; }
 }
 
 .game-art img { width:180px; height:180px; object-fit:contain; }

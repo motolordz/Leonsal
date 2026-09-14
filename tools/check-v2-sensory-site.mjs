@@ -35,6 +35,7 @@ const routes = [
   'v2-first-clock.html',
   'v2-weather-world.html',
   'v2-animal-habitats.html',
+  'v2-transport-adventure.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -126,7 +127,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 22);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 23);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -442,6 +443,28 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__animalHabitatsProofState?.());
       assert.equal(state.matched.length, 0, 'Animal Habitats reset did not clear matches');
+    }
+    if (route === 'v2-transport-adventure.html') {
+      assert.equal(await page.locator('.transport-choice').count(), 4, 'Transport Adventure does not expose four routes');
+      await page.getByRole('button', { name: 'Next route' }).click();
+      let state = await page.evaluate(() => window.__transportAdventureProofState?.());
+      assert.equal(state.route, 'Rail', 'Transport Adventure Next did not advance to Rail');
+      assert.equal(state.hasTapAlternative, true, 'Transport Adventure missing tap alternative');
+      await page.getByRole('button', { name: 'Choose Sky' }).click();
+      state = await page.evaluate(() => window.__transportAdventureProofState?.());
+      assert.equal(state.route, 'Sky', 'Transport Adventure tap did not choose Sky');
+      await page.getByRole('button', { name: 'Go' }).click();
+      await page.waitForTimeout(160);
+      state = await page.evaluate(() => window.__transportAdventureProofState?.());
+      assert(state.progress > 0, 'Transport Adventure did not move after Go');
+      await page.evaluate(() => settings.set({ reducedMotion: true }));
+      await page.getByRole('button', { name: 'Go' }).click();
+      state = await page.evaluate(() => window.__transportAdventureProofState?.());
+      assert.equal(state.progress, 100, 'Transport Adventure reduced motion did not complete without travel animation');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__transportAdventureProofState?.());
+      assert.equal(state.route, 'Road', 'Transport Adventure reset did not return to Road');
+      assert.equal(state.progress, 0, 'Transport Adventure reset did not clear progress');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

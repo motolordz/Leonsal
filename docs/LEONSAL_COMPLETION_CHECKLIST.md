@@ -125,7 +125,7 @@ Status below is the existing registry status, not an assertion of release comple
 | 27 | My First Clock | proof | v2-first-clock.html |
 | 28 | Weather World | proof | v2-weather-world.html |
 | 29 | Animal Habitats | proof | v2-animal-habitats.html |
-| 30 | Transport Adventure | specified | Not implemented |
+| 30 | Transport Adventure | proof | v2-transport-adventure.html |
 
 ## Verification and release gates
 

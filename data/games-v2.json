@@ -692,9 +692,10 @@
       "calmMode": "slow motion",
       "reducedMotion": "position states",
       "finalCharacterArtRequired": false,
-      "canShipWithProceduralGraphics": false,
-      "status": "specified",
-      "liveV2Game": false
+      "canShipWithProceduralGraphics": true,
+      "status": "proof",
+      "liveV2Game": false,
+      "route": "v2-transport-adventure.html"
     }
   ],
   "catalogueStatus": "implementation-map-not-live-game-count",
