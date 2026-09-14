@@ -1185,7 +1185,7 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .world-shell { width: min(1160px, calc(100% - 40px)); margin: auto; padding-bottom: 28px; }
 .world-header { display: flex; gap: 20px; align-items: center; padding: 28px 0; }
 .world-header > a:last-child { margin-left: auto; color: #425779; font-weight: 650; padding: 12px; }
-.wordmark { font-size: 2rem; font-weight: 900; color: #1c497b; text-decoration: none; letter-spacing: -1px; }
+.wordmark { min-height: 48px; display: inline-flex; align-items: center; padding: 4px 8px; font-size: 2rem; font-weight: 900; color: #1c497b; text-decoration: none; letter-spacing: -1px; }
 .wordmark span { color: #a64635; }
 .preview-label { font-size: .8rem; background: #fff; border: 1px solid #cedceb; padding: 6px 12px; border-radius: 30px; color: #52617a; }
 .world-welcome { padding: 36px 0 42px; }
@@ -1218,6 +1218,7 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
 .planned-worlds p, .world-shell footer { font-size: .9rem; color: #52617a; line-height: 1.6; }
 .world-shell footer { margin-top: 38px; }
+.world-shell footer a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 10px; margin-left: 2px; }
 @media (max-width: 760px) { .world-games { grid-template-columns: repeat(2, 1fr); } .planned-worlds { grid-template-columns: repeat(2, 1fr); } .world-section-heading { align-items: start; flex-direction: column; gap: 6px; } }
 @media (max-width: 480px) { .world-games { grid-template-columns: 1fr; } .world-header { gap: 8px; flex-wrap: wrap; } .world-header > a:last-child { margin-left: 0; } .world-welcome { padding-top: 16px; } .session-controls { gap: 6px; } .session-controls a, .session-controls button { padding: 10px 16px; } }
 @media (max-width: 480px) {

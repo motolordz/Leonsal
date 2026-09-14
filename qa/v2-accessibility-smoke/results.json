@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "reducedMotion": "reduce",
+  "checks": [
+    "no horizontal overflow",
+    "no console errors or failed requests",
+    "no runtime requests to source/review/QA/rejected art paths",
+    "visible actionable controls have accessible names",
+    "visible actionable controls meet 44px touch target minimum",
+    "shared sensory settings open and close by keyboard",
+    "shared sensory setting count",
+    "OS reduced-motion cap",
+    "session Pause and Finished controls",
+    "visible canvases have accessible labels"
+  ],
+  "results": [
+    {
+      "route": "v2-home.html",
+      "passed": true,
+      "controls": 22,
+      "canvases": []
+    },
+    {
+      "route": "v2-energy-battery.html",
+      "passed": true,
+      "controls": 6,
+      "canvases": []
+    },
+    {
+      "route": "v2-dash-dock.html",
+      "passed": true,
+      "controls": 8,
+      "canvases": []
+    },
+    {
+      "route": "v2-bubble-garden.html",
+      "passed": true,
+      "controls": 12,
+      "canvases": [
+        {
+          "id": "canvas",
+          "width": 374,
+          "height": 656,
+          "name": "Bubble garden. Tap or click bubbles in the play area, or use the Pop a bubble button.",
+          "tabIndex": -1
+        }
+      ]
+    },
+    {
+      "route": "v2-light-trail.html",
+      "passed": true,
+      "controls": 10,
+      "canvases": [
+        {
+          "id": "canvas",
+          "width": 374,
+          "height": 656,
+          "name": "Light drawing. Use arrow keys to draw, or touch and move.",
+          "tabIndex": 0
+        }
+      ]
+    },
+    {
+      "route": "v2-hold-to-breathe.html",
+      "passed": true,
+      "controls": 7,
+      "canvases": []
+    },
+    {
+      "route": "v2-trace-engine.html",
+      "passed": true,
+      "controls": 7,
+      "canvases": [
+        {
+          "id": "traceCanvas",
+          "width": 374,
+          "height": 656,
+          "name": "Trace path. Drag along the path, or use the Step button.",
+          "tabIndex": -1
+        }
+      ]
+    },
+    {
+      "route": "v2-orbit-engine.html",
+      "passed": true,
+      "controls": 8,
+      "canvases": []
+    },
+    {
+      "route": "v2-cause-effect-engine.html",
+      "passed": true,
+      "controls": 8,
+      "canvases": []
+    }
+  ]
+}
