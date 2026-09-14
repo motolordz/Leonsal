@@ -1881,6 +1881,10 @@ body[data-calm="true"] .hub-art {
 .number-trace-world .trace-canvas { z-index: 2; background: transparent; }
 .shape-trace-world .trace-canvas { z-index: 2; background: transparent; }
 .trace-letter-ghost { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; color: rgba(255,255,255,.42); font-size: clamp(15rem, 78vw, 34rem); font-weight: 950; line-height: 1; text-shadow: 0 12px 0 rgba(43,90,136,.08); pointer-events: none; }
+.trace-character-preview { position: absolute; z-index: 3; right: clamp(10px, 4vw, 28px); bottom: clamp(88px, 13vh, 132px); width: clamp(104px, 30vw, 174px); aspect-ratio: 1; display: grid; place-items: center; pointer-events: none; filter: drop-shadow(0 16px 18px rgba(26,55,92,.18)); }
+.trace-character-preview .procedural-character-svg { width: 100%; height: 100%; }
+.letter-trace-world .trace-character-preview { transform: rotate(4deg); }
+.number-trace-world .trace-character-preview { transform: rotate(-3deg); }
 .shape-trace-ghost { position: absolute; inset: 12% 9% 16%; width: 82%; height: 72%; z-index: 1; pointer-events: none; }
 .letter-trace-world .scene-status, .number-trace-world .scene-status, .shape-trace-world .scene-status { background: rgba(255,255,255,.86); z-index: 4; }
 .letter-trace-world .drawer-controls, .number-trace-world .drawer-controls, .shape-trace-world .drawer-controls { z-index: 5; }

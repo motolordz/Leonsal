@@ -27,12 +27,17 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
     const canvas = document.querySelector('#numberTraceCanvas');
     const status = document.querySelector('#status');
     const ghost = document.querySelector('#ghostNumber');
+    const characterPreview = document.createElement('div');
+    characterPreview.className = 'trace-character-preview';
+    characterPreview.setAttribute('aria-live', 'polite');
+    document.querySelector('.number-trace-world').append(characterPreview);
     const numbers = ['1', '2', '3', '5', '10'];
     let numberIndex = 0;
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
@@ -43,6 +48,27 @@
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
     function currentNumber() { return numbers[numberIndex]; }
+    function currentState() {
+      const ratio = trace.path.length ? trace.progress / trace.path.length : 0;
+      if (ratio >= .92) return 'excited';
+      if (ratio >= .65) return 'happy';
+      if (ratio >= .38) return 'calm';
+      if (ratio > 0) return 'low';
+      return 'empty';
+    }
+    function numberRecord() {
+      const number = currentNumber();
+      return { id: `number-${number}`, displayName: `Number ${number}`, family: 'number' };
+    }
+    function renderCharacter() {
+      characterPreview.replaceChildren();
+      const renderer = window.LeonSalCharacterRenderer;
+      if (!renderer) {
+        characterPreview.textContent = currentNumber();
+        return;
+      }
+      characterPreview.append(renderer.makeCharacter(numberRecord(), currentState(), { decorative: false }));
+    }
     function makePath() {
       const rect = canvas.getBoundingClientRect();
       const w = rect.width;
@@ -85,11 +111,13 @@
       ghost.textContent = currentNumber();
       trace.setPath(makePath());
       status.textContent = `Trace number ${currentNumber()}.`;
+      renderCharacter();
     }
     function add(x, y) {
       const rect = canvas.getBoundingClientRect();
       const result = trace.addPoint(x - rect.left, y - rect.top);
       status.textContent = result.complete ? `${currentNumber()} complete.` : result.near ? 'Keep tracing.' : 'Come back to the glow.';
+      renderCharacter();
     }
     new LeonSalV2.InputEngine(canvas).onPointer({ down: ({ x, y }) => add(x, y), move: ({ x, y }) => add(x, y) });
     document.querySelector('#step').addEventListener('click', () => {
@@ -101,7 +129,7 @@
     window.addEventListener('resize', reset);
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [trace], reset, gameId: 'number-tracing-v2' });
     reset();
-    window.__numberTracingProofState = () => ({ number: currentNumber(), progress: trace.progress, complete: trace.progress >= trace.path.length, pathLength: trace.path.length, hasStepAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
+    window.__numberTracingProofState = () => ({ number: currentNumber(), progress: trace.progress, complete: trace.progress >= trace.path.length, pathLength: trace.path.length, characterState: currentState(), hasCharacterRenderer: Boolean(characterPreview.querySelector('.procedural-character-svg')), hasStepAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
   </script>
 </body>
 </html>
