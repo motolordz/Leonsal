@@ -79,10 +79,10 @@
       var state = window.LeonSalCharacters.stateFromPercent(slider ? slider.value : appState.energy);
       var record = window.LeonSalCharacters.findRecord(registry, family, characterId);
       preload(record);
-      setRealImage(worldSprite, record, state, (record && record.displayName) + " " + state);
-      setRealImage(dashBuddy, record, state, (record && record.displayName) + " " + state);
-      if (glyph) glyph.hidden = true;
-      if (sleepCloud) sleepCloud.hidden = true;
+      var realWorld = setRealImage(worldSprite, record, state, (record && record.displayName) + " " + state);
+      var realDash = setRealImage(dashBuddy, record, state, (record && record.displayName) + " " + state);
+      if (glyph) glyph.hidden = realWorld || realDash;
+      if (sleepCloud) sleepCloud.hidden = realWorld || realDash || state !== "empty";
       if (energyNumber) energyNumber.textContent = (slider ? slider.value : lastEnergyPercent) + "%";
     }
 
@@ -91,7 +91,7 @@
       var record = byId(registry[family], map[button.dataset.character]);
       var icon = button.querySelector(".sprite");
       if (record && icon) {
-        setRealImage(icon, record, "calm", record.displayName + " thumbnail");
+        if (!setRealImage(icon, record, "calm", record.displayName + " thumbnail")) icon.dataset.realApplied = "false";
       }
       button.addEventListener("click", function () {
         render();
@@ -112,8 +112,9 @@
       var value = number.textContent.trim();
       var record = byValue(registry.numbers, value);
       if (!record) return;
-      buddy.dataset.realApplied = "true";
-      setRealImage(buddy, record, buddy.classList.contains("pop-in") ? "happy" : "calm", "Number " + value + " character");
+      if (setRealImage(buddy, record, buddy.classList.contains("pop-in") ? "happy" : "calm", "Number " + value + " character")) {
+        buddy.dataset.realApplied = "true";
+      }
     });
   }
 
@@ -126,8 +127,9 @@
       if (!/^[a-z]$/i.test(value)) return;
       var record = byLetter(registry.alphabet, value);
       if (!record) return;
-      buddy.dataset.realApplied = "true";
-      setRealImage(buddy, record, buddy.classList.contains("pop-in") ? "happy" : "calm", "Letter " + value.toUpperCase() + " character");
+      if (setRealImage(buddy, record, buddy.classList.contains("pop-in") ? "happy" : "calm", "Letter " + value.toUpperCase() + " character")) {
+        buddy.dataset.realApplied = "true";
+      }
     });
 
     document.querySelectorAll(".letter-tile").forEach(function (tile) {
@@ -135,9 +137,10 @@
       var value = tile.textContent.trim();
       var record = byLetter(registry.alphabet, value);
       if (!record) return;
-      tile.dataset.realApplied = "true";
-      tile.textContent = "";
-      setRealImage(tile, record, "calm", "Letter " + value.toUpperCase() + " thumbnail");
+      if (setRealImage(tile, record, "calm", "Letter " + value.toUpperCase() + " thumbnail")) {
+        tile.dataset.realApplied = "true";
+        tile.textContent = "";
+      }
     });
   }
 
