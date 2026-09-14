@@ -34,15 +34,16 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
     const causeEffect = new LeonSalV2.CauseEffectEngine();
     const cycle = new LeonSalV2.TimeCycleEngine([
-      { id: 'road', label: 'Road', cue: 'Road route is ready.' },
-      { id: 'rail', label: 'Rail', cue: 'Rail route is ready.' },
-      { id: 'sky', label: 'Sky', cue: 'Sky route is ready.' },
-      { id: 'water', label: 'Water', cue: 'Water route is ready.' }
+      { id: 'road', label: 'Road', cue: 'Road route is ready.', characterId: 'world-bus', displayName: 'Bus' },
+      { id: 'rail', label: 'Rail', cue: 'Rail route is ready.', characterId: 'world-train', displayName: 'Train' },
+      { id: 'sky', label: 'Sky', cue: 'Sky route is ready.', characterId: 'world-plane', displayName: 'Plane' },
+      { id: 'water', label: 'Water', cue: 'Water route is ready.', characterId: 'world-boat', displayName: 'Boat' }
     ]);
     const world = document.querySelector('#world');
     const choices = document.querySelector('#choices');
@@ -51,6 +52,7 @@
     let progress = 0;
     let running = false;
     let removeStep = null;
+    let renderedVehicleKey = '';
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
     document.querySelector('#settingsToggle').addEventListener('click', () => {
       const panel = document.querySelector('#settings');
@@ -58,6 +60,28 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function routeRecord(route) {
+      return { id: route.characterId, displayName: route.displayName, family: 'world', registryGroup: 'world' };
+    }
+    function routeState() {
+      if (progress >= 100) return 'excited';
+      if (running) return 'happy';
+      return 'calm';
+    }
+    function renderVehicle() {
+      const route = cycle.sequence.current();
+      const key = `${route.id}:${routeState()}`;
+      if (renderedVehicleKey === key && vehicle.firstElementChild) return;
+      renderedVehicleKey = key;
+      const renderer = window.LeonSalCharacterRenderer;
+      vehicle.replaceChildren();
+      if (renderer) {
+        vehicle.append(renderer.makeCharacter(routeRecord(route), routeState(), { decorative: false }));
+      } else {
+        vehicle.textContent = route.displayName;
+      }
+      vehicle.setAttribute('aria-label', `${route.displayName} on ${route.label} route`);
+    }
     function setRoute(index) {
       cycle.set(index);
       const current = cycle.sequence.items[cycle.sequence.index];
@@ -67,11 +91,13 @@
         button.dataset.active = String(buttonIndex === cycle.sequence.index);
       });
       setProgress(0);
+      renderVehicle();
     }
     function setProgress(value) {
       progress = Math.max(0, Math.min(100, value));
       vehicle.style.setProperty('--progress', `${progress}%`);
       if (progress >= 100) status.textContent = `${cycle.sequence.current().label} route arrived.`;
+      renderVehicle();
     }
     function stopRun() {
       running = false;
@@ -87,6 +113,7 @@
         return 'arrived';
       }
       status.textContent = `${cycle.sequence.current().label} route moving.`;
+      renderVehicle();
       removeStep = motion.add((dt) => {
         setProgress(progress + dt * (settings.value.calmMode ? 34 : 48));
         if (progress >= 100) stopRun();
@@ -100,7 +127,7 @@
         button.className = `transport-choice ${route.id}`;
         button.type = 'button';
         button.dataset.route = route.id;
-        button.textContent = route.label;
+        button.append(document.createTextNode(route.label));
         button.setAttribute('aria-label', `Choose ${route.label}`);
         button.addEventListener('click', () => setRoute(index));
         choices.append(button);
@@ -120,6 +147,7 @@
       route: cycle.sequence.current().label,
       progress,
       running,
+      hasCharacterRenderer: Boolean(vehicle.querySelector('.procedural-character-svg.character-family-world')),
       hasTapAlternative: true,
       calmMode: settings.value.calmMode,
       reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()

@@ -216,12 +216,14 @@ try {
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__sortItProofState().sorted.length),0);
     await page.goto(base+'/v2-planet-pals.html');
+    assert.equal(await page.evaluate(()=>window.__planetPalsProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Next',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__planetPalsProofState().visited.includes('Mercury')),true);
     assert.equal(await page.evaluate(()=>window.__planetPalsProofState().educationalScaleNote),true);
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__planetPalsProofState().visited.length),0);
     await page.goto(base+'/v2-build-solar-system.html');
+    assert.equal(await page.evaluate(()=>window.__solarBuildProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Place next',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__solarBuildProofState().placed.includes('mercury')),true);
     assert.equal(await page.evaluate(()=>window.__solarBuildProofState().educationalScaleNote),true);
@@ -269,6 +271,7 @@ try {
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal((await page.evaluate(()=>window.__animalHabitatsProofState().matched.length)),0);
     await page.goto(base+'/v2-transport-adventure.html');
+    assert.equal(await page.evaluate(()=>window.__transportAdventureProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Choose Water',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__transportAdventureProofState().route),'Water');
     await page.evaluate(()=>settings.set({reducedMotion:true}));

@@ -28,6 +28,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -50,6 +51,14 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function planetRecord(planet) {
+      return { id: `planet-${planet.id}`, displayName: planet.name, family: 'planet', registryGroup: 'planets' };
+    }
+    function renderPlanetCharacter(planet, state) {
+      const renderer = window.LeonSalCharacterRenderer;
+      if (!renderer) return document.createTextNode(planet.name);
+      return renderer.makeCharacter(planetRecord(planet), state, { decorative: false });
+    }
     function layoutPoints() {
       const rect = document.querySelector('.solar-build-world').getBoundingClientRect();
       const cx = rect.width / 2;
@@ -74,7 +83,7 @@
         piece.type = 'button';
         piece.dataset.planet = planet.id;
         piece.style.setProperty('--planet-colour', planet.colour);
-        piece.textContent = planet.name;
+        piece.append(renderPlanetCharacter(planet, 'calm'));
         piece.setAttribute('aria-label', `Place ${planet.name}`);
         pieces.append(piece);
       }
@@ -82,7 +91,10 @@
     }
     function syncPlaced() {
       document.querySelectorAll('.solar-piece').forEach((piece) => {
-        piece.dataset.placed = String(placed.includes(piece.dataset.planet));
+        const isPlaced = placed.includes(piece.dataset.planet);
+        piece.dataset.placed = String(isPlaced);
+        const planet = planets.find((candidate) => candidate.id === piece.dataset.planet);
+        if (planet) piece.replaceChildren(renderPlanetCharacter(planet, isPlaced ? 'excited' : 'calm'));
       });
       document.querySelectorAll('.solar-slot').forEach((slot) => {
         slot.dataset.placed = String(placed.includes(slot.dataset.planet));
@@ -136,7 +148,7 @@
     window.addEventListener('resize', reset);
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [orbit], reset, gameId: 'build-solar-system-v2' });
     reset();
-    window.__solarBuildProofState = () => ({ placed: [...placed], complete: placed.length === planets.length, planetCount: planets.length, educationalScaleNote: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
+    window.__solarBuildProofState = () => ({ placed: [...placed], complete: placed.length === planets.length, planetCount: planets.length, hasCharacterRenderer: [...document.querySelectorAll('.solar-piece')].every((piece) => Boolean(piece.querySelector('.procedural-character-svg.character-family-planet'))), educationalScaleNote: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
   </script>
 </body>
 </html>

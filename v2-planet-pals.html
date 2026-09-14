@@ -33,6 +33,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -48,6 +49,23 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function planetRecord(name) {
+      return { id: `planet-${name.toLowerCase()}`, displayName: name, family: 'planet', registryGroup: 'planets' };
+    }
+    function renderPlanetButtons() {
+      const renderer = window.LeonSalCharacterRenderer;
+      planetButtons.forEach((button) => {
+        const name = button.dataset.planet;
+        const active = button.dataset.active === 'true';
+        button.replaceChildren();
+        if (renderer) {
+          button.append(renderer.makeCharacter(planetRecord(name), active ? 'excited' : 'calm', { decorative: false }));
+        } else {
+          button.textContent = name;
+        }
+        button.setAttribute('aria-label', `Visit ${name}`);
+      });
+    }
     function setupOrbit() {
       orbit.destroy();
       const rect = document.querySelector('.planet-pals-world').getBoundingClientRect();
@@ -74,12 +92,14 @@
       planetButtons.forEach((button) => button.dataset.active = String(button.dataset.planet === name));
       status.textContent = `Visiting ${name}.`;
       if (visited.length === planetButtons.length) status.textContent = 'All planet pals visited.';
+      renderPlanetButtons();
     }
     function reset() {
       visited = [];
       sequence.reset();
       planetButtons.forEach((button) => button.dataset.active = 'false');
       status.textContent = 'Tap a planet to visit.';
+      renderPlanetButtons();
       setupOrbit();
     }
     planetButtons.forEach((button) => button.addEventListener('click', () => visit(button.dataset.planet)));
@@ -93,7 +113,7 @@
     window.addEventListener('resize', setupOrbit);
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [orbit], reset, gameId: 'planet-pals-v2' });
     reset();
-    window.__planetPalsProofState = () => ({ visited: [...visited], active: planetButtons.find((button) => button.dataset.active === 'true')?.dataset.planet || null, planetCount: planetButtons.length, educationalScaleNote: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
+    window.__planetPalsProofState = () => ({ visited: [...visited], active: planetButtons.find((button) => button.dataset.active === 'true')?.dataset.planet || null, planetCount: planetButtons.length, hasCharacterRenderer: planetButtons.every((button) => Boolean(button.querySelector('.procedural-character-svg.character-family-planet'))), educationalScaleNote: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
   </script>
 </body>
 </html>

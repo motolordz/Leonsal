@@ -2108,7 +2108,8 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .orbit-one { width: 184px; height: 184px; }
 .orbit-two { width: 256px; height: 256px; }
 .orbit-three { width: 328px; height: 328px; }
-.planet-pal { position: absolute; left: 0; top: 0; z-index: 3; min-width: 70px; min-height: 70px; border: 0; border-radius: 50%; padding: 6px; font: inherit; font-size: .72rem; font-weight: 1000; color: #12213f; box-shadow: inset -10px -12px 0 rgba(19,35,67,.16), 0 14px 24px rgba(0,0,0,.22); transition: outline .14s ease, transform .14s ease; touch-action: manipulation; }
+.planet-pal { position: absolute; left: 0; top: 0; z-index: 3; width: 82px; min-width: 70px; min-height: 70px; border: 0; border-radius: 50%; padding: 4px; font: inherit; font-size: .72rem; font-weight: 1000; color: #12213f; box-shadow: inset -10px -12px 0 rgba(19,35,67,.16), 0 14px 24px rgba(0,0,0,.22); transition: outline .14s ease, transform .14s ease; touch-action: manipulation; }
+.planet-pal .procedural-character-svg { width: 100%; height: 100%; }
 .planet-pal[data-active="true"] { outline: 5px solid rgba(255,255,255,.82); }
 .planet-pal.mercury { background: radial-gradient(circle at 34% 28%, #fff 0 12%, #94a3b8 13% 100%); }
 .planet-pal.earth { background: radial-gradient(circle at 35% 35%, #22c55e 0 18%, transparent 19%), radial-gradient(circle at 64% 68%, #22c55e 0 16%, transparent 17%), #38bdf8; }
@@ -2124,7 +2125,8 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .solar-slot { position: absolute; left: 50%; top: 45%; width: var(--orbit-radius); height: var(--orbit-radius); border: 2px solid rgba(255,255,255,.18); border-radius: 50%; transform: translate(-50%,-50%); color: transparent; contain: layout paint; }
 .solar-slot[data-placed="true"] { border-color: rgba(255,255,255,.38); }
 .solar-pieces { position: absolute; left: 7%; right: 7%; bottom: 22%; z-index: 4; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; align-items: center; justify-items: center; min-height: 92px; }
-.solar-piece { width: 74px; height: 74px; border: 0; border-radius: 50%; padding: 0; display: grid; place-items: center; font: inherit; font-size: .68rem; font-weight: 1000; color: #12213f; background: radial-gradient(circle at 32% 26%, rgba(255,255,255,.95) 0 14%, transparent 15%), var(--planet-colour); box-shadow: inset -8px -10px 0 rgba(19,35,67,.16), 0 10px 18px rgba(0,0,0,.18); transition: transform .12s ease; touch-action: manipulation; contain: layout paint; will-change: transform; }
+.solar-piece { width: 74px; height: 74px; border: 0; border-radius: 50%; padding: 0; display: grid; place-items: center; font: inherit; font-size: .68rem; font-weight: 1000; color: #12213f; background: radial-gradient(circle at 32% 26%, rgba(255,255,255,.95) 0 14%, transparent 15%), var(--planet-colour); box-shadow: inset -8px -10px 0 rgba(19,35,67,.16), 0 10px 18px rgba(0,0,0,.18); transition: transform .12s ease; touch-action: manipulation; contain: layout paint; will-change: transform; overflow: visible; }
+.solar-piece .procedural-character-svg { width: 112%; height: 112%; pointer-events: none; }
 .solar-piece:active { transform: translateY(3px) scale(.98); }
 .solar-piece[data-placed="true"] { opacity: 1; outline: 4px solid rgba(255,255,255,.68); }
 .solar-piece.mercury { width: 56px; height: 56px; }
@@ -2295,13 +2297,13 @@ body[data-motion="off"] .habitat-zone { transition: none; }
 .transport-world[data-route="rail"] .rail-line,
 .transport-world[data-route="sky"] .sky-line,
 .transport-world[data-route="water"] .water-line { opacity: .95; height: 14px; }
-.transport-vehicle { position: absolute; left: calc(10% + (var(--progress, 0%) * .72)); top: 62%; z-index: 4; width: 74px; height: 44px; border-radius: 18px 22px 12px 12px; transform: translate(-50%,-50%); background: #ef4444; box-shadow: inset 0 -9px 0 rgba(19,35,67,.12), 0 14px 24px rgba(19,35,67,.16); transition: top .24s ease, background .24s ease; }
-.transport-vehicle::before { content: ""; position: absolute; left: 10px; top: 7px; width: 22px; height: 13px; border-radius: 8px; background: rgba(255,255,255,.7); box-shadow: 29px 0 0 rgba(255,255,255,.7); }
-.transport-vehicle::after { content: ""; position: absolute; left: 10px; bottom: -7px; width: 15px; aspect-ratio: 1; border-radius: 50%; background: #173356; box-shadow: 39px 0 0 #173356; }
-.transport-world[data-route="rail"] .transport-vehicle { top: 50%; background: #0ea5e9; border-radius: 14px; }
-.transport-world[data-route="sky"] .transport-vehicle { top: 36%; background: #facc15; border-radius: 50% 48% 48% 50%; }
-.transport-world[data-route="sky"] .transport-vehicle::after { left: 58px; bottom: 12px; width: 24px; height: 18px; border-radius: 0; clip-path: polygon(0 50%,100% 0,100% 100%); background: #f97316; box-shadow: none; }
-.transport-world[data-route="water"] .transport-vehicle { top: 73%; background: #2563eb; border-radius: 8px 8px 26px 26px; }
+.transport-vehicle { position: absolute; left: calc(10% + (var(--progress, 0%) * .72)); top: 62%; z-index: 4; width: 92px; height: 92px; display: grid; place-items: center; transform: translate(-50%,-50%); filter: drop-shadow(0 14px 18px rgba(19,35,67,.18)); transition: top .24s ease; }
+.transport-vehicle::before,
+.transport-vehicle::after { content: none; }
+.transport-vehicle .procedural-character-svg { width: 100%; height: 100%; }
+.transport-world[data-route="rail"] .transport-vehicle { top: 50%; }
+.transport-world[data-route="sky"] .transport-vehicle { top: 36%; }
+.transport-world[data-route="water"] .transport-vehicle { top: 73%; }
 .arrival-gate { position: absolute; right: 8%; top: 50%; width: 52px; height: 128px; border-radius: 24px; background: rgba(255,255,255,.68); box-shadow: inset 0 -10px 0 rgba(19,35,67,.08), 0 16px 30px rgba(19,35,67,.12); }
 .transport-choices { position: absolute; left: 7%; right: 7%; top: 12%; z-index: 5; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 9px; }
 .transport-choice { min-height: 62px; border: 0; border-radius: 20px; background: rgba(255,255,255,.76); color: #173356; font: inherit; font-size: .8rem; font-weight: 1000; box-shadow: 0 12px 22px rgba(19,35,67,.12), inset 0 -8px 0 rgba(19,35,67,.06); touch-action: manipulation; }
@@ -2533,7 +2535,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .animal-token::before { width: 28px; top: 9px; }
   .transport-choices { top: 12%; grid-template-columns: repeat(2, minmax(0,1fr)); }
   .transport-choice { min-height: 50px; border-radius: 16px; }
-  .transport-vehicle { width: 58px; height: 36px; }
+  .transport-vehicle { width: 72px; height: 72px; }
   .arrival-gate { right: 5%; height: 96px; width: 42px; }
   .bus-world { min-height: 650px; }
   .bus-choice-row { top: 8%; grid-template-columns: repeat(3, minmax(0,1fr)); left: 6%; right: 6%; }
