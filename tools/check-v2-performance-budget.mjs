@@ -7,6 +7,8 @@ import { chromium } from 'playwright';
 const root = process.cwd();
 const out = 'qa/v2-performance-budget';
 const routes = [
+  'index.html',
+  'v2-character-world.html',
   'v2-energy-battery.html',
   'v2-dash-dock.html',
   'v2-bubble-garden.html',
@@ -63,6 +65,14 @@ async function sampleRoute(page, base, route) {
     await page.mouse.down();
     await page.mouse.move(box.x + box.width - 20, box.y + box.height / 2, { steps: 14 });
     await page.mouse.up();
+  }
+  if (route === 'index.html') {
+    await page.getByRole('link', { name: 'Meet the Characters' }).hover();
+  }
+  if (route === 'v2-character-world.html') {
+    await page.locator('.play-mode-picker [data-play-mode="football"]').click();
+    await page.locator('.character-world-card[data-character="zaya"]').click();
+    await page.locator('.character-runway-state[data-state="excited"]').click();
   }
   if (route === 'v2-dash-dock.html') await page.getByRole('button', { name: 'Move right' }).click();
   if (route === 'v2-bubble-garden.html') await page.getByRole('button', { name: 'Pop a bubble' }).click();
