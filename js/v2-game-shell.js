@@ -15,7 +15,8 @@ class LeonSalGameShell {
     this.audio = audio;
     this.reset = reset;
     this.gameId = gameId;
-    this.profile = typeof LeonSalV2 !== 'undefined' ? new LeonSalV2.ProfileProgressStoreEngine() : null;
+    this.localProfiles = typeof LeonSalV2 !== 'undefined' ? new LeonSalV2.LocalProfileEngine() : null;
+    this.profile = typeof LeonSalV2 !== 'undefined' ? new LeonSalV2.ProfileProgressStoreEngine(this.localProfiles?.progressKey()) : null;
     this.paused = false;
     this.scene = document.querySelector('.game-scene');
     this.settingsPanel = document.querySelector('#settings');

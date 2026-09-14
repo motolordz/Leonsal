@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "checks": [
+    "local-only profile controls visible",
+    "no score/mastery wording",
+    "no inferred medical or sensory labels",
+    "active profile persists",
+    "game activity records under active profile key",
+    "shared profile remains separate",
+    "profile removal clears that local profile notes"
+  ]
+}

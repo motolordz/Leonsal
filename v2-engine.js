@@ -1075,6 +1075,65 @@ const LeonSalV2 = (() => {
     }
   }
 
+  class LocalProfileEngine extends EventBus {
+    constructor(key = 'leonsal-v2-local-profiles') {
+      super();
+      this.key = key;
+      this.value = {
+        activeId: 'default',
+        profiles: [{ id: 'default', name: 'Shared play' }]
+      };
+      this.load();
+    }
+    load() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(this.key) || '{}');
+        if (saved && typeof saved === 'object') {
+          const profiles = Array.isArray(saved.profiles) ? saved.profiles.filter((profile) => profile?.id && profile?.name) : [];
+          this.value = {
+            activeId: saved.activeId || profiles[0]?.id || 'default',
+            profiles: profiles.length ? profiles : this.value.profiles
+          };
+        }
+      } catch (_error) {
+        /* Local profiles are optional. */
+      }
+      if (!this.value.profiles.some((profile) => profile.id === this.value.activeId)) this.value.activeId = this.value.profiles[0].id;
+    }
+    save() {
+      try { localStorage.setItem(this.key, JSON.stringify(this.value)); } catch (_error) { /* optional */ }
+      this.emit('save', this.value);
+    }
+    activeProfile() {
+      return this.value.profiles.find((profile) => profile.id === this.value.activeId) || this.value.profiles[0];
+    }
+    progressKey(id = this.value.activeId) {
+      return id === 'default' ? 'leonsal-v2-profile-progress' : `leonsal-v2-profile-progress:${id}`;
+    }
+    setActive(id) {
+      if (!this.value.profiles.some((profile) => profile.id === id)) return;
+      this.value.activeId = id;
+      this.save();
+    }
+    add(name) {
+      const clean = String(name || '').trim().replace(/\s+/g, ' ').slice(0, 24);
+      if (!clean) return null;
+      const id = `profile-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+      this.value.profiles.push({ id, name: clean });
+      this.value.activeId = id;
+      this.save();
+      return id;
+    }
+    remove(id) {
+      if (id === 'default') return false;
+      this.value.profiles = this.value.profiles.filter((profile) => profile.id !== id);
+      try { localStorage.removeItem(this.progressKey(id)); } catch (_error) { /* optional */ }
+      if (!this.value.profiles.some((profile) => profile.id === this.value.activeId)) this.value.activeId = 'default';
+      this.save();
+      return true;
+    }
+  }
+
   class HintFeedbackEngine extends EventBus {
     constructor(options = {}) {
       super();
@@ -1130,6 +1189,7 @@ const LeonSalV2 = (() => {
     AssetLoaderEngine,
     PerformanceMonitorEngine,
     ProfileProgressStoreEngine,
+    LocalProfileEngine,
     HintFeedbackEngine,
     SettingsPanel,
     clamp,

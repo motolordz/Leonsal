@@ -89,6 +89,14 @@
         <h2 id="progress-title">Local activity notes</h2>
         <p>Saved on this device only. These notes show visits and finished sessions, not scores, grades or mastery.</p>
       </div>
+      <div class="local-profile-tools" aria-label="Local child profile controls">
+        <label for="localProfile">Profile</label>
+        <select id="localProfile"></select>
+        <label class="visually-hidden" for="newProfileName">New profile name</label>
+        <input id="newProfileName" type="text" maxlength="24" autocomplete="off" placeholder="Child name" aria-label="New profile name">
+        <button class="hub-secondary" id="addProfile" type="button">Add profile</button>
+        <button class="hub-secondary" id="removeProfile" type="button">Remove</button>
+      </div>
       <div class="progress-summary" id="progressSummary" aria-live="polite"></div>
       <button class="hub-secondary" id="clearProgress" type="button">Clear local notes</button>
     </section>
