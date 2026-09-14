@@ -71,6 +71,11 @@ try {
     assert(await page.locator('[data-approved-character="battery-buddy"]').count(), 'Landing page should include only approved Battery art hook');
     assert.equal(await page.locator('img[src*="assets/characters-v2"][src*="leon"]').count(), 0, 'Landing page must not render pending Leon art');
     assert.equal(await page.locator('img[src*="assets/characters-v2"][src*="zaya"]').count(), 0, 'Landing page must not render pending Zaya art');
+    for (const [label, mode] of [['Football', 'football'], ['Hoops', 'hoops'], ['Hopscotch', 'hopscotch'], ['Calm', 'calm']]) {
+      await page.getByRole('button', { name: label, exact: true }).click();
+      assert.equal(await page.locator('.landing-playground').getAttribute('data-home-play-mode'), mode, `Landing play scene did not switch to ${mode}`);
+      assert.equal(await page.getByRole('button', { name: label, exact: true }).getAttribute('aria-pressed'), 'true', `Landing play mode ${label} did not set aria-pressed`);
+    }
     await page.getByRole('button', { name: 'Settings' }).click();
     assert(await page.locator('#hubSettings [data-key="motion"]').isVisible(), 'Landing settings should expose shared motion setting');
     await page.keyboard.press('Escape');
