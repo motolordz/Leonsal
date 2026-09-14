@@ -37,6 +37,8 @@
   const statePicker = document.getElementById('statePicker');
   const count = document.getElementById('characterCount');
   const familyButtons = [...document.querySelectorAll('[data-family-filter]')];
+  const playScene = document.querySelector('.character-chase-scene');
+  const playModeButtons = [...document.querySelectorAll('.play-mode-picker [data-play-mode]')];
   let characters = [];
   let selected = null;
   let filter = 'all';
@@ -338,6 +340,12 @@
           filter = button.dataset.familyFilter;
           familyButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
           renderGrid();
+        });
+      });
+      playModeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          playScene.dataset.playMode = button.dataset.playMode;
+          playModeButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
         });
       });
     } catch {

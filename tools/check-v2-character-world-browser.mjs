@@ -51,6 +51,10 @@ await page.locator('#settingsToggle').click();
 assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', 'Settings panel did not open');
 await page.keyboard.press('Escape');
 assert.equal(await page.locator('#settings').getAttribute('data-open'), 'false', 'Settings panel did not close with Escape');
+for (const mode of ['Football', 'Hoops', 'Calm', 'Chase']) {
+  await page.locator('.play-mode-picker').getByRole('button', { name: mode, exact: true }).click();
+  assert.equal(await page.locator('.character-chase-scene').getAttribute('data-play-mode'), mode.toLowerCase(), `${mode} play mode did not activate`);
+}
 
 await page.emulateMedia({ reducedMotion: 'reduce' });
 await page.reload({ waitUntil: 'networkidle' });

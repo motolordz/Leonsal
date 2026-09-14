@@ -21,6 +21,9 @@ assert(sw.includes("'./js/v2-character-world.js'"), 'Offline cache must include 
 for (const family of ['guide', 'alphabet', 'number', 'world', 'planet']) {
   assert(html.includes(`data-family-filter="${family}"`), `Missing family filter: ${family}`);
 }
+for (const mode of ['chase', 'football', 'hoops', 'calm']) {
+  assert(html.includes(`data-play-mode="${mode}"`), `Missing play mode: ${mode}`);
+}
 for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
   assert(js.includes(`['${state}'`), `Missing state anchor: ${state}`);
 }
@@ -38,6 +41,8 @@ assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejecte
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(js), 'Character World JS must not reference blocked art paths');
 assert(css.includes('.character-world-grid'), 'Character World grid styling missing');
 assert(css.includes('@keyframes characterChaseLeon'), 'Leon chase animation missing');
+assert(css.includes('@keyframes footballDribble'), 'Football play animation missing');
+assert(css.includes('@keyframes hoopsArc'), 'Hoop play animation missing');
 assert(css.includes('body[data-motion="off"] .chase-player'), 'Reduced motion guard missing');
 assert(css.includes('min-height: 52px'), 'Family tabs must keep touch targets large');
 

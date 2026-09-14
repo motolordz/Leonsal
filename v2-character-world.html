@@ -27,12 +27,18 @@
         <h2 id="characterWorldTitle">Meet Leon, Zaya, letters, numbers and friends.</h2>
         <p>Choose a character and move through empty, low, calm, happy and excited. These are procedural vectors until final production art is approved.</p>
       </div>
-      <div class="character-chase-scene" aria-label="Leon and Zaya playing chase">
+      <div class="character-chase-scene" data-play-mode="chase" aria-label="Leon and Zaya playing chase">
         <div class="chase-track" aria-hidden="true"></div>
         <div class="chase-player chase-leon" data-chase-character="leon"></div>
         <div class="chase-player chase-zaya" data-chase-character="zaya"></div>
         <span class="chase-ball" aria-hidden="true"></span>
         <span class="chase-hoop" aria-hidden="true"></span>
+        <div class="play-mode-picker" aria-label="Choose play scene">
+          <button type="button" data-play-mode="chase" aria-pressed="true">Chase</button>
+          <button type="button" data-play-mode="football">Football</button>
+          <button type="button" data-play-mode="hoops">Hoops</button>
+          <button type="button" data-play-mode="calm">Calm</button>
+        </div>
       </div>
     </section>
 
