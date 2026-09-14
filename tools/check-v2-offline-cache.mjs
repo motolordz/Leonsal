@@ -15,7 +15,8 @@ for (const route of [
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
   'v2-orbit-engine.html',
-  'v2-cause-effect-engine.html'
+  'v2-cause-effect-engine.html',
+  'v2-offline.html'
 ]) {
   assert(sw.includes(route), `Service worker cache is missing ${route}`);
 }
@@ -37,6 +38,8 @@ for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
 const safeAssetsBlock = sw.match(/const SAFE_ASSETS = \[([\s\S]*?)\];/)?.[1] || '';
 assert(!/(source-safe-keeping|qa\/|contact-sheet|rejected|character-review|_staging)/i.test(safeAssetsBlock), 'Offline safe cache includes blocked review/source path');
 assert(/BLOCKED_PATH/.test(sw), 'Service worker does not define blocked path protection');
+assert(/request\.mode === 'navigate'/.test(sw), 'Service worker does not use navigation-only offline fallback');
+assert(/v2-offline\.html/.test(sw), 'Service worker does not reference the V2 offline fallback');
 assert(/serviceWorker\.register\('sw\.js'/.test(offline), 'V2 home offline helper does not register sw.js');
 assert(home.includes('js/v2-offline.js'), 'V2 home does not load offline helper');
 assert(/registerOffline/.test(shell), 'V2 game shell does not register offline support for direct game entry');
@@ -44,7 +47,8 @@ assert(/registerOffline/.test(shell), 'V2 game shell does not register offline s
 await fs.mkdir('qa/v2-offline', { recursive: true });
 await fs.writeFile('qa/v2-offline/results.json', JSON.stringify({
   passed: true,
-  cachedRoutes: 9,
+  cachedRoutes: 10,
+  offlineFallback: 'v2-offline.html',
   cachedApprovedCharacterAssets: 5,
   blockedRuntimePaths: ['source-safe-keeping', 'qa/', 'contact-sheet', 'rejected', 'character-review', '_staging']
 }, null, 2) + '\n');

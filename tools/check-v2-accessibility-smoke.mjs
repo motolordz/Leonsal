@@ -15,7 +15,8 @@ const routes = [
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
   'v2-orbit-engine.html',
-  'v2-cause-effect-engine.html'
+  'v2-cause-effect-engine.html',
+  'v2-offline.html'
 ];
 const mime = {
   '.css': 'text/css',
@@ -130,6 +131,10 @@ async function checkRoute(base, browser, route) {
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'false', 'Home settings did not close with Escape');
       await page.keyboard.press('Tab');
       assert(await page.evaluate(() => Boolean(document.activeElement?.textContent || document.activeElement?.getAttribute('aria-label'))), 'Home first tab stop has no accessible name');
+    } else if (route === 'v2-offline.html') {
+      assert(await page.getByText('This activity needs a connection.').isVisible(), 'Offline fallback heading missing');
+      assert(await page.getByRole('link', { name: 'Back home' }).isVisible(), 'Offline fallback missing Back home link');
+      assert(await page.getByRole('link', { name: 'Try saved activity' }).isVisible(), 'Offline fallback missing saved activity link');
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);

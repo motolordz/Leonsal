@@ -11,6 +11,7 @@ const SAFE_ASSETS = [
   './v2-trace-engine.html',
   './v2-orbit-engine.html',
   './v2-cause-effect-engine.html',
+  './v2-offline.html',
   './v2-proofs.css',
   './v2-engine.js',
   './js/v2-game-shell.js',
@@ -43,6 +44,6 @@ self.addEventListener('fetch', (event) => {
         if (response.ok) caches.open(CACHE_NAME).then((cache) => cache.put(request, response.clone()));
         return response;
       })
-      .catch(() => caches.match(request))
+      .catch(() => caches.match(request).then((cached) => cached || (request.mode === 'navigate' ? caches.match('./v2-offline.html') : undefined)))
   );
 });

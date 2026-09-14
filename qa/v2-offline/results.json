@@ -1,6 +1,7 @@
 {
   "passed": true,
-  "cachedRoutes": 9,
+  "cachedRoutes": 10,
+  "offlineFallback": "v2-offline.html",
   "cachedApprovedCharacterAssets": 5,
   "blockedRuntimePaths": [
     "source-safe-keeping",

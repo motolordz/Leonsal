@@ -95,6 +95,12 @@
       "passed": true,
       "controls": 8,
       "canvases": []
+    },
+    {
+      "route": "v2-offline.html",
+      "passed": true,
+      "controls": 2,
+      "canvases": []
     }
   ]
 }
