@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seasons</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
+      <div class="game-title"><strong>Seasons</strong><span>Change the world gently.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+    <section class="game-scene seasons-world" id="world" aria-label="Seasons play area">
+      <canvas id="seasonCanvas" aria-label="Gentle seasonal particles"></canvas>
+      <div class="season-tree" aria-hidden="true">
+        <span class="tree-trunk"></span>
+        <span class="tree-top"></span>
+      </div>
+      <div class="season-choices" id="choices"></div>
+      <p class="scene-status" id="status">Spring brings new flowers.</p>
+      <div class="drawer-controls">
+        <button class="scene-button" id="next" type="button">Next season</button>
+        <button class="scene-button" id="reset" type="button">Reset</button>
+      </div>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const cycle = new LeonSalV2.TimeCycleEngine([
+      { id: 'spring', label: 'Spring', cue: 'Spring brings new flowers.' },
+      { id: 'summer', label: 'Summer', cue: 'Summer brings warm sunshine.' },
+      { id: 'autumn', label: 'Autumn', cue: 'Autumn brings falling leaves.' },
+      { id: 'winter', label: 'Winter', cue: 'Winter brings quiet snow.' }
+    ]);
+    const canvas = document.querySelector('#seasonCanvas');
+    const world = document.querySelector('#world');
+    const choices = document.querySelector('#choices');
+    const status = document.querySelector('#status');
+    const particles = new LeonSalV2.ParticleEngine(canvas, motion, settings);
+
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+
+    function particleCount() {
+      if (settings.value.calmMode || settings.value.particles === 'few') return 8;
+      if (settings.value.particles === 'many') return 24;
+      return 16;
+    }
+
+    function paintParticles(kind) {
+      particles.destroy();
+      particles.items = [];
+      if (!settings.allowsMotion()) return;
+      particles.seed(kind, particleCount());
+      particles.start(kind);
+    }
+
+    function setSeason(index) {
+      cycle.set(index);
+      const current = cycle.sequence.current();
+      world.dataset.season = current.id;
+      status.textContent = current.cue;
+      document.querySelectorAll('.season-choice').forEach((button, buttonIndex) => {
+        button.dataset.active = String(buttonIndex === cycle.sequence.index);
+      });
+      paintParticles(current.id === 'winter' ? 'rain' : current.id === 'autumn' ? 'stars' : 'sparkles');
+    }
+
+    function renderChoices() {
+      choices.innerHTML = '';
+      cycle.sequence.items.forEach((season, index) => {
+        const button = document.createElement('button');
+        button.className = 'season-choice';
+        button.type = 'button';
+        button.dataset.season = season.id;
+        button.textContent = season.label;
+        button.setAttribute('aria-label', `Choose ${season.label}`);
+        button.addEventListener('click', () => setSeason(index));
+        choices.append(button);
+      });
+    }
+
+    function reset() {
+      setSeason(0);
+    }
+
+    document.querySelector('#next').addEventListener('click', () => setSeason((cycle.sequence.index + 1) % cycle.sequence.items.length));
+    document.querySelector('#reset').addEventListener('click', reset);
+    settings.on('change', () => setSeason(cycle.sequence.index));
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [particles], reset, gameId: 'seasons-v2' });
+    renderChoices();
+    reset();
+    window.__seasonsProofState = () => ({
+      season: cycle.sequence.items[cycle.sequence.index].label,
+      index: cycle.sequence.index,
+      count: cycle.sequence.items.length,
+      particles: particles.items.length,
+      hasTapAlternative: true,
+      calmMode: settings.value.calmMode,
+      reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()
+    });
+  </script>
+</body>
+</html>

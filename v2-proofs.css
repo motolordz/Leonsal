@@ -1693,6 +1693,9 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .home-months::before { content: ""; position: absolute; inset: 18%; border-radius: 50%; background: rgba(255,255,255,.88); }
 .home-months { isolation: isolate; }
 .home-months::after { content: ""; position: absolute; inset: 43%; border-radius: 50%; background: #60a5fa; }
+.seasons-card .game-art { background: #ecfccb; }
+.home-seasons { width: 116px; height: 96px; border-radius: 30px; background: radial-gradient(circle at 50% 34%, #86efac 0 28%, transparent 29%), linear-gradient(90deg, transparent 46%, #9a5a28 47% 54%, transparent 55%), linear-gradient(180deg, #dbeafe, #dcfce7); box-shadow: inset 0 -12px 0 rgba(15,23,42,.1), 0 16px 26px rgba(34,197,94,.16); position: relative; }
+.home-seasons::after { content: ""; position: absolute; inset: 18%; border-radius: 50%; background: conic-gradient(#86efac, #fde047, #fb923c, #dbeafe, #86efac); opacity: .78; mix-blend-mode: multiply; }
 .colour-match-world { background: linear-gradient(180deg, #fff7ed, #e0f2fe 55%, #f0fdf4); overflow: hidden; }
 .colour-wells, .colour-drops { position: absolute; left: 7%; right: 7%; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; z-index: 3; }
 .colour-wells { top: 15%; }
@@ -1816,6 +1819,22 @@ body[data-motion="off"] .week-day { transition: none; }
 .month-center { position: absolute; left: 50%; top: 43%; z-index: 4; transform: translate(-50%,-50%); width: min(48vw, 230px); min-height: 112px; display: grid; place-items: center; border-radius: 36px; background: rgba(255,255,255,.94); color: #173356; font-size: clamp(1.8rem, 8vw, 3.3rem); font-weight: 1000; text-align: center; box-shadow: 0 16px 34px rgba(19,35,67,.14); }
 .months-world .scene-status { z-index: 5; background: rgba(255,255,255,.58); color: #173356; }
 .months-world .drawer-controls { z-index: 5; }
+.seasons-world { background: linear-gradient(180deg, #dbeafe, #dcfce7 58%, #bbf7d0); overflow: hidden; }
+.seasons-world[data-season="summer"] { background: linear-gradient(180deg, #7dd3fc, #fef3c7 58%, #bbf7d0); }
+.seasons-world[data-season="autumn"] { background: linear-gradient(180deg, #fed7aa, #fde68a 56%, #f5d0a8); }
+.seasons-world[data-season="winter"] { background: linear-gradient(180deg, #dbeafe, #f8fafc 58%, #dbeafe); }
+.seasons-world canvas { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; pointer-events: none; }
+.season-tree { position: absolute; left: 50%; top: 45%; z-index: 3; width: min(62vw, 330px); height: min(62vw, 330px); transform: translate(-50%,-50%); }
+.tree-trunk { position: absolute; left: 45%; top: 42%; width: 16%; height: 42%; border-radius: 999px 999px 16px 16px; background: linear-gradient(90deg, #8b5a2b, #b7793c); box-shadow: inset -8px 0 0 rgba(19,35,67,.1); }
+.tree-top { position: absolute; left: 50%; top: 31%; width: 76%; aspect-ratio: 1; border-radius: 48% 52% 46% 54%; transform: translate(-50%,-50%); background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.45) 0 12%, transparent 13%), #86efac; box-shadow: inset -18px -20px 0 rgba(19,35,67,.08), 0 22px 40px rgba(34,197,94,.16); }
+.seasons-world[data-season="summer"] .tree-top { background-color: #22c55e; }
+.seasons-world[data-season="autumn"] .tree-top { background: radial-gradient(circle at 28% 28%, #fbbf24 0 18%, transparent 19%), radial-gradient(circle at 70% 60%, #fb923c 0 19%, transparent 20%), #f97316; }
+.seasons-world[data-season="winter"] .tree-top { background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.82) 0 18%, transparent 19%), #e2e8f0; }
+.season-choices { position: absolute; left: 7%; right: 7%; top: 12%; z-index: 4; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 9px; }
+.season-choice { min-height: 62px; border: 0; border-radius: 20px; background: rgba(255,255,255,.72); color: #173356; font: inherit; font-size: .8rem; font-weight: 1000; box-shadow: 0 12px 22px rgba(19,35,67,.12), inset 0 -8px 0 rgba(19,35,67,.06); touch-action: manipulation; }
+.season-choice[data-active="true"] { background: #facc15; outline: 4px solid rgba(255,255,255,.72); }
+.seasons-world .scene-status { z-index: 5; background: rgba(255,255,255,.6); color: #173356; }
+.seasons-world .drawer-controls { z-index: 5; }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1889,7 +1908,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-number { width: 58px; height: 54px; border-radius: 15px; font-size: 1.1rem; }
   .home-letter { width: 58px; height: 54px; border-radius: 15px; font-size: 2.2rem; }
   .home-shapes { width: 58px; height: 54px; border-radius: 15px; }
-  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it, .home-planet-pals, .home-solar-build, .home-day-night, .home-days-week, .home-months { width: 58px; height: 54px; border-radius: 15px; font-size: 1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
+  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it, .home-planet-pals, .home-solar-build, .home-day-night, .home-days-week, .home-months, .home-seasons { width: 58px; height: 54px; border-radius: 15px; font-size: 1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
   .number-mat { grid-template-columns: repeat(5, 1fr); padding: 10px; }
   .number-buddy { min-height: 58px; border-radius: 18px; }
   .number-world { padding-bottom: 126px; gap: 10px; }
@@ -1917,6 +1936,9 @@ body[data-calm="true"] .connection-status { transition: none; }
   .month-wheel { width: 320px; top: 45%; }
   .month-dot { width: 54px; height: 46px; border-radius: 14px; font-size: .62rem; transform: translate(-50%,-50%) rotate(calc(var(--month-index) * 30deg)) translateY(-132px) rotate(calc(var(--month-index) * -30deg)); }
   .month-center { top: 45%; min-height: 92px; border-radius: 28px; font-size: 2rem; }
+  .season-choices { top: 12%; grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .season-choice { min-height: 50px; border-radius: 16px; }
+  .season-tree { top: 47%; width: 260px; height: 260px; }
 }
 
 .game-art img { width:180px; height:180px; object-fit:contain; }

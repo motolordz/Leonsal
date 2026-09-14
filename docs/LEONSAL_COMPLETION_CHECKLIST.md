@@ -121,7 +121,7 @@ Status below is the existing registry status, not an assertion of release comple
 | 23 | Day & Night | proof | v2-day-night.html |
 | 24 | Days of the Week | proof | v2-days-week.html |
 | 25 | Months of the Year | proof | v2-months-year.html |
-| 26 | Seasons | specified | Not implemented |
+| 26 | Seasons | proof | v2-seasons.html |
 | 27 | My First Clock | specified | Not implemented |
 | 28 | Weather World | specified | Not implemented |
 | 29 | Animal Habitats | specified | Not implemented |

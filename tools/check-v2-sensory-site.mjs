@@ -31,6 +31,7 @@ const routes = [
   'v2-day-night.html',
   'v2-days-week.html',
   'v2-months-year.html',
+  'v2-seasons.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -122,7 +123,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 18);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 19);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -378,6 +379,22 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__monthsYearProofState?.());
       assert.equal(state.month, 'January', 'Months of Year reset did not return to January');
+    }
+    if (route === 'v2-seasons.html') {
+      assert.equal(await page.locator('.season-choice').count(), 4, 'Seasons does not expose four seasons');
+      await page.getByRole('button', { name: 'Next season' }).click();
+      let state = await page.evaluate(() => window.__seasonsProofState?.());
+      assert.equal(state.season, 'Summer', 'Seasons Next did not advance to Summer');
+      assert.equal(state.hasTapAlternative, true, 'Seasons missing tap alternative');
+      await page.getByRole('button', { name: 'Choose Winter' }).click();
+      state = await page.evaluate(() => window.__seasonsProofState?.());
+      assert.equal(state.season, 'Winter', 'Seasons tap did not choose Winter');
+      await page.evaluate(() => settings.set({ calmMode: true }));
+      state = await page.evaluate(() => window.__seasonsProofState?.());
+      assert(state.particles <= 8, 'Seasons calm mode did not reduce particles');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__seasonsProofState?.());
+      assert.equal(state.season, 'Spring', 'Seasons reset did not return to Spring');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

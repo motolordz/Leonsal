@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 54,
+      "controls": 55,
       "canvases": []
     },
     {
@@ -233,6 +233,20 @@
       "passed": true,
       "controls": 19,
       "canvases": []
+    },
+    {
+      "route": "v2-seasons.html",
+      "passed": true,
+      "controls": 11,
+      "canvases": [
+        {
+          "id": "seasonCanvas",
+          "width": 374,
+          "height": 656,
+          "name": "Gentle seasonal particles",
+          "tabIndex": -1
+        }
+      ]
     },
     {
       "route": "v2-light-trail.html",
