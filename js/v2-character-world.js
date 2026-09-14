@@ -408,7 +408,11 @@
       label.textContent = record.displayName;
       const detail = document.createElement('span');
       detail.textContent = `${stateLabels[previewState]} ${record.status === 'approved' ? 'approved art' : 'vector fallback'}`;
-      button.append(label, detail);
+      const stateStrip = document.createElement('span');
+      stateStrip.className = 'character-card-state-strip';
+      stateStrip.setAttribute('aria-label', `${record.displayName} has empty, low, calm, happy, and excited states`);
+      stateStrip.innerHTML = STATES.map(([state, value]) => `<i data-state="${state}" title="${stateLabels[state]} ${value}%"></i>`).join('');
+      button.append(label, detail, stateStrip);
       button.addEventListener('click', () => {
         selected = record;
         renderStatePicker();

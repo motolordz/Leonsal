@@ -58,6 +58,9 @@ assert(await page.locator('[data-chase-character="zaya"] svg').isVisible(), 'Zay
 assert.equal(await page.locator('.character-runway-state').count(), 5, 'Selected character runway must render five states');
 assert.equal(await page.locator('.character-world-card[data-status="approved"]').count(), 1, 'Only Battery Buddy should appear as approved artwork');
 assert.equal(await page.locator('.character-world-card[data-status="pending"]').count(), cardCount - 1, 'All non-Battery characters should remain pending vector fallbacks');
+assert.equal(await page.locator('.character-world-card').first().locator('.character-card-state-strip i').count(), 5, 'Character cards must show five state anchors');
+assert.equal(await page.locator('.character-world-card').first().locator('.character-card-state-strip i[data-state="empty"]').count(), 1, 'Character card missing empty state anchor');
+assert.equal(await page.locator('.character-world-card').first().locator('.character-card-state-strip i[data-state="excited"]').count(), 1, 'Character card missing excited state anchor');
 
 for (const value of ['0', '25', '50', '75', '100']) {
   await page.locator('#characterEnergy').evaluate((input, next) => {

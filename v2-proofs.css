@@ -3212,9 +3212,9 @@ body[data-calm="true"] .connection-status { transition: none; }
   gap: 14px;
 }
 .character-world-card {
-  min-height: 214px;
+  min-height: 234px;
   display: grid;
-  grid-template-rows: 132px auto auto;
+  grid-template-rows: 132px auto auto auto;
   gap: 5px;
   place-items: center;
   padding: 12px;
@@ -3229,6 +3229,27 @@ body[data-calm="true"] .connection-status { transition: none; }
 }
 .character-world-card svg { width: 128px; height: 128px; }
 .character-world-card span { color: #60748d; font-size: .78rem; font-weight: 850; }
+.character-card-state-strip {
+  width: min(118px, 100%);
+  min-height: 18px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  place-items: center;
+  margin-top: 2px;
+}
+.character-card-state-strip i {
+  width: 15px;
+  height: 15px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  box-shadow: 0 5px 10px rgba(20,58,109,.13);
+}
+.character-card-state-strip i[data-state="empty"] { background: #f16c6c; }
+.character-card-state-strip i[data-state="low"] { background: #ff9a3d; }
+.character-card-state-strip i[data-state="calm"] { background: #ffd84d; }
+.character-card-state-strip i[data-state="happy"] { background: #53d86a; }
+.character-card-state-strip i[data-state="excited"] { background: #35c8ff; }
 .character-world-card.is-selected {
   outline: 4px solid rgba(255,207,72,.72);
   background: #fff9dd;

@@ -56,6 +56,8 @@ for (const text of [
   'dataset.previewState',
   'statusFilter',
   'data-status',
+  'character-card-state-strip',
+  'has empty, low, calm, happy, and excited states',
   'character-world-empty',
   'Show all artwork',
   'Procedural vector fallback',
@@ -68,6 +70,7 @@ for (const text of [
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(html), 'Character World HTML must not reference blocked art paths');
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(js), 'Character World JS must not reference blocked art paths');
 assert(css.includes('.character-world-grid'), 'Character World grid styling missing');
+assert(css.includes('.character-card-state-strip'), 'Character card five-state strip styling missing');
 assert(css.includes('.character-library-progress'), 'Character World library progress styling missing');
 assert(css.includes('.character-world-empty'), 'Character World empty status styling missing');
 assert(css.includes('.character-status-tabs'), 'Character World status filter styling missing');
