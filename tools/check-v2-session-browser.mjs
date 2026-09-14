@@ -25,6 +25,7 @@ const playableRoutes = [
   'energy-battery',
   'dash-dock',
   'bubble-garden',
+  'firefly-catch',
   'calm-rain-window',
   'light-trail',
   'hold-to-breathe',
@@ -39,7 +40,7 @@ try {
     page.on('pageerror', error => failures.push(error.message));
     page.on('response', response => { if(response.status() >= 400) failures.push(`${response.status()} ${response.url()}`); });
     await page.goto(base+'/v2-home.html');
-    assert.equal(await page.locator('.hub-game-grid .world-game').count(), 6);
+    assert.equal(await page.locator('.hub-game-grid .world-game').count(), 7);
     assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
     assert.equal(await page.locator('.need-card').count(), 4);
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
@@ -91,6 +92,11 @@ try {
     assert.equal(await page.evaluate(()=>particles.items.filter(x=>x.type==='bubbles').length),27);
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert.equal(await page.evaluate(()=>particles.items.length),6);
+    await page.goto(base+'/v2-firefly-catch.html');
+    await page.getByRole('button',{name:'Glow one',exact:true}).click();
+    assert((await page.evaluate(()=>window.__fireflyProofState().glows))>0);
+    await page.evaluate(()=>settings.set({calmMode:true}));
+    assert((await page.evaluate(()=>window.__fireflyProofState().fireflies))<=6);
     await page.goto(base+'/v2-calm-rain-window.html');
     await page.getByRole('button',{name:'Ripple',exact:true}).click();
     assert((await page.evaluate(()=>window.__rainProofState().ripples))>0);

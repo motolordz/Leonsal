@@ -168,8 +168,9 @@
       "reducedMotion": "static rain marks",
       "finalCharacterArtRequired": false,
       "canShipWithProceduralGraphics": true,
-      "status": "specified",
-      "liveV2Game": false
+      "status": "proof",
+      "liveV2Game": false,
+      "route": "v2-firefly-catch.html"
     },
     {
       "order": 8,

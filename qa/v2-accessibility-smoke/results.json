@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 35,
+      "controls": 36,
       "canvases": []
     },
     {
@@ -46,6 +46,20 @@
           "width": 374,
           "height": 656,
           "name": "Bubble garden. Tap or click bubbles in the play area, or use the Pop a bubble button.",
+          "tabIndex": -1
+        }
+      ]
+    },
+    {
+      "route": "v2-firefly-catch.html",
+      "passed": true,
+      "controls": 9,
+      "canvases": [
+        {
+          "id": "fireflyCanvas",
+          "width": 374,
+          "height": 656,
+          "name": "Firefly garden. Tap, click, or press near a firefly to make a soft glow.",
           "tabIndex": -1
         }
       ]

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Firefly Catch</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
+      <div class="game-title"><strong>Firefly Catch</strong><span>Touch soft lights and watch them glow.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+
+    <section class="game-scene firefly-world" aria-label="Firefly catch play area">
+      <canvas class="firefly-canvas" id="fireflyCanvas" aria-label="Firefly garden. Tap, click, or press near a firefly to make a soft glow."></canvas>
+      <div class="firefly-meadow" aria-hidden="true"></div>
+      <p class="scene-status" id="status">Fireflies are drifting.</p>
+      <div class="drawer-controls">
+        <button id="catchOne" class="scene-button" type="button">Glow one</button>
+        <button id="reset" class="scene-button" type="button">Reset</button>
+        <button class="mode-pill" data-fireflies="few" type="button">Few</button>
+        <button class="mode-pill" data-fireflies="normal" type="button" aria-pressed="true">Gentle</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const audio = new LeonSalV2.AudioEngine(settings);
+    const canvas = document.querySelector('#fireflyCanvas');
+    const ctx = canvas.getContext('2d');
+    const status = document.querySelector('#status');
+    let mode = 'normal';
+    let fireflies = [];
+    let glows = [];
+
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      const scale = Math.min(2, window.devicePixelRatio || 1);
+      canvas.width = Math.max(1, Math.round(rect.width * scale));
+      canvas.height = Math.max(1, Math.round(rect.height * scale));
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
+      seed();
+    }
+
+    function count() {
+      const base = mode === 'few' ? 8 : 16;
+      if (settings.value.calmMode) return Math.min(6, base);
+      return settings.value.particles === 'off' ? 5 : settings.particleCount(base);
+    }
+
+    function seed() {
+      const rect = canvas.getBoundingClientRect();
+      fireflies = Array.from({ length: count() }, () => ({
+        x: 28 + Math.random() * Math.max(1, rect.width - 56),
+        y: 80 + Math.random() * Math.max(1, rect.height - 170),
+        vx: -12 + Math.random() * 24,
+        vy: -9 + Math.random() * 18,
+        r: 7 + Math.random() * 5,
+        phase: Math.random() * Math.PI * 2,
+        glow: 0.35 + Math.random() * 0.35
+      }));
+      draw(0);
+    }
+
+    function catchAt(x, y) {
+      const hit = fireflies.find((item) => Math.hypot(item.x - x, item.y - y) <= 42);
+      if (!hit) {
+        status.textContent = 'Fireflies are drifting.';
+        return false;
+      }
+      hit.glow = 1;
+      glows.push({ x: hit.x, y: hit.y, age: 0, life: settings.allowsMotion() ? 0.9 : 0.45 });
+      status.textContent = 'Soft glow.';
+      audio.tone('tap');
+      return true;
+    }
+
+    function draw(dt) {
+      const rect = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+      const sky = ctx.createLinearGradient(0, 0, 0, rect.height);
+      sky.addColorStop(0, '#162852');
+      sky.addColorStop(0.58, '#27487f');
+      sky.addColorStop(1, '#45693e');
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, rect.width, rect.height);
+
+      ctx.fillStyle = 'rgba(255,255,255,.72)';
+      for (let i = 0; i < 26; i += 1) {
+        const x = (i * 71) % Math.max(1, rect.width);
+        const y = 18 + ((i * 43) % Math.max(1, rect.height * 0.42));
+        ctx.globalAlpha = 0.25 + ((i % 4) * 0.08);
+        ctx.beginPath();
+        ctx.arc(x, y, i % 3 === 0 ? 1.8 : 1.1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+
+      const speed = settings.speedFactor();
+      for (const item of fireflies) {
+        if (settings.allowsMotion()) {
+          item.phase += dt * 1.4;
+          item.x += (item.vx + Math.sin(item.phase) * 10) * speed * dt;
+          item.y += (item.vy + Math.cos(item.phase * 0.7) * 8) * speed * dt;
+          if (item.x < 24 || item.x > rect.width - 24) item.vx *= -1;
+          if (item.y < 60 || item.y > rect.height - 90) item.vy *= -1;
+        }
+        item.glow += ((0.36 + Math.sin(item.phase) * 0.14) - item.glow) * Math.min(1, dt * 1.8);
+        const glowSize = item.r * (6 + item.glow * 5);
+        const gradient = ctx.createRadialGradient(item.x, item.y, 1, item.x, item.y, glowSize);
+        gradient.addColorStop(0, `rgba(255,239,134,${0.72 * item.glow})`);
+        gradient.addColorStop(0.32, `rgba(255,216,77,${0.38 * item.glow})`);
+        gradient.addColorStop(1, 'rgba(255,216,77,0)');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(item.x, item.y, glowSize, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fff2a0';
+        ctx.beginPath();
+        ctx.arc(item.x, item.y, item.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(19,35,67,.42)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+
+      glows = glows.filter((glow) => glow.age < glow.life);
+      for (const glow of glows) {
+        glow.age += settings.allowsMotion() ? dt : glow.life;
+        const alpha = Math.max(0, 1 - (glow.age / glow.life));
+        ctx.globalAlpha = alpha;
+        ctx.strokeStyle = '#fff6b5';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(glow.x, glow.y, 20 + glow.age * 70, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    const removeTick = motion.add((dt) => draw(dt));
+    new LeonSalV2.InputEngine(canvas).onPointer({
+      down: ({ x, y }) => {
+        const rect = canvas.getBoundingClientRect();
+        catchAt(x - rect.left, y - rect.top);
+      }
+    });
+    document.querySelector('#catchOne').addEventListener('click', () => {
+      const first = fireflies[0];
+      if (first) catchAt(first.x, first.y);
+    });
+    document.querySelector('#reset').addEventListener('click', () => { glows = []; seed(); status.textContent = 'Fireflies are drifting.'; });
+    document.querySelectorAll('[data-fireflies]').forEach((button) => button.addEventListener('click', () => {
+      mode = button.dataset.fireflies;
+      document.querySelectorAll('[data-fireflies]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      seed();
+    }));
+    settings.on('settings-change', seed);
+    window.addEventListener('resize', resize);
+    resize();
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], resources: [{ destroy: removeTick }], reset: () => { glows = []; seed(); }, gameId: 'firefly-catch' });
+    window.__fireflyProofState = () => ({ mode, fireflies: fireflies.length, glows: glows.length, motion: settings.allowsMotion(), calmMode: settings.value.calmMode });
+  </script>
+</body>
+</html>
