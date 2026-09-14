@@ -46,6 +46,7 @@
 - [x] Retire the old push-triggered character pilot extraction workflow and add approval-preservation verification so it cannot auto-run, write contents, invoke the chart-crop builder or push generated art.
 - [x] Add explicit shared game-shell resource ownership and destroy coverage so future engines can register disposable resources and clean them up exactly once.
 - [x] Add pinned npm check scripts, reproducible lockfile and a read-only GitHub Actions verification workflow for the current static V2 proof architecture.
+- [x] Add the five-world V2 home entry map so children see Sensory, Maths, Literacy, Time/World and Characters choices before the detailed proof list.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 

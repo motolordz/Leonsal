@@ -669,6 +669,40 @@ body[data-contrast="strong"] .game-topbar {
 .hub-bubble-one { width: 96px; height: 96px; left: 8%; top: 18%; animation: hub-float 4.8s ease-in-out infinite; }
 .hub-bubble-two { width: 68px; height: 68px; right: 12%; bottom: 23%; animation: hub-float 5.4s ease-in-out infinite reverse; }
 
+.world-map { margin: 22px 0 26px; }
+.world-map-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+.world-map-card {
+  min-height: 190px;
+  padding: 16px;
+  border-radius: 28px;
+  text-decoration: none;
+  color: #173356;
+  background: rgba(255,255,255,.88);
+  box-shadow: 0 16px 35px rgba(30, 70, 120, .13);
+  display: grid;
+  align-content: start;
+  gap: 9px;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.world-map-card:active { transform: translateY(3px) scale(.985); }
+.world-map-card span {
+  width: 74px;
+  aspect-ratio: 1;
+  border-radius: 24px;
+  box-shadow: inset 0 -8px 0 rgba(19, 35, 67, .08), 0 12px 22px rgba(28, 77, 140, .14);
+}
+.world-map-card strong { font-size: 1.05rem; line-height: 1.12; }
+.world-map-card small { color: #52617a; line-height: 1.35; font-weight: 800; }
+.sensory-world span { background: radial-gradient(circle at 35% 28%, #fff, #aeeeff 42%, #72cfeb); }
+.maths-world span { background: conic-gradient(from 45deg, #ffd84d, #45bd6b, #2f91e8, #ffd84d); }
+.literacy-world span { background: linear-gradient(135deg, #fff, #ffd2ea 48%, #f15aa6); }
+.time-world span { background: radial-gradient(circle at 68% 32%, #fff8a8 0 13%, transparent 14%), linear-gradient(135deg, #163a80, #8269df); }
+.character-world span { background: radial-gradient(circle at 50% 28%, #fff, #ffe9a4 38%, #ff9d3b); }
+
 .hub-game-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
@@ -896,6 +930,9 @@ body[data-calm="true"] .hub-art {
   .hub-engine-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .world-map-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 620px) {
@@ -934,6 +971,18 @@ body[data-calm="true"] .hub-art {
   .hub-game-grid,
   .hub-engine-grid {
     grid-template-columns: 1fr;
+  }
+  .world-map-grid {
+    grid-template-columns: 1fr;
+  }
+  .world-map-card {
+    min-height: 118px;
+    grid-template-columns: 74px 1fr;
+    align-items: center;
+    align-content: center;
+  }
+  .world-map-card small {
+    grid-column: 2;
   }
   .need-grid {
     grid-template-columns: 1fr 1fr;
