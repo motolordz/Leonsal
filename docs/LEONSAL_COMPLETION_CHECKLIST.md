@@ -38,18 +38,19 @@
 - [x] Add route-level mobile accessibility smoke for the V2 home, eight current V2 activities and the offline fallback at 390x844, including touch target size, accessible names, keyboard settings close, reduced-motion cap, labelled canvases, horizontal overflow and blocked-art request checks.
 - [x] Verify the internal character review surface in Chromium and WebKit across phone, tablet and desktop widths, including vector review derivatives, missing-state fallback, dark-background inspection, reference lazy-load and no review-art leakage into gameplay.
 - [x] Add local-only V2 child profile switching for caregiver activity notes, with separate per-profile storage, no score/mastery claims, no medical/sensory-label inference, and mobile browser smoke evidence.
+- [x] Add repeated V2 route lifecycle stress coverage for all eight current activities, proving one active shell/control set per route, no leaked pause/inert state, reduced-motion reapplication, and no console/page errors across 24 mobile navigations.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 
 ## Required remaining foundation work
 
 - [ ] Reconcile the static proof architecture with the adopted Vite/TypeScript modular build target; pin test/build dependencies and add reproducible lockfile/CI.
-- [ ] Complete full game-module preload/mount/start/pause/resume/reset/settings/destroy lifecycle, resource ownership, and repeat-route cleanup tests. The current shared session wrapper handles pause/finish but is not the entire module architecture.
+- [ ] Complete full game-module preload/mount/start/pause/resume/reset/settings/destroy lifecycle, resource ownership, and repeat-route cleanup tests. The current shared session wrapper handles pause/finish and now has repeated-route cleanup stress coverage, but this is still not the entire module architecture.
 - [x] Bridge legacy and V2 sensory preference stores for core controls. V2 now validates and exposes motion, sound, voice, music, vibration, calm mode, particles, speed, contrast and pace; the legacy home reads/writes shared motion, sound, vibration and contrast settings. Independent audio levels and deeper profile migration remain outstanding.
 - [x] Implement and verify eight foundation engine contracts: memory-recall, physics-play, character-state-animation, world-shell-progress, asset-loader, performance-monitor, profile-progress-store, hint-feedback. These are foundation primitives, not completed games.
 - [ ] Complete parent/profile controls, full error recovery and full offline behaviour. Local V2 activity notes now support separate local child profiles, and the safe V2 route cache plus navigation-only offline fallback avoid false saved/mastery claims; full caregiver controls and full offline UX are still not complete.
 - [ ] Implement Sensory Mixer using global preference ceilings; presets do not count as games.
-- [ ] Verify repeated route transitions, background suspension, full accessibility and physical iPhone Safari. Viewport-emulated cleanup, accessibility and performance/long-task smoke checks now exist, but physical-device and full screen-reader evidence are still required.
+- [ ] Verify repeated route transitions, background suspension, full accessibility and physical iPhone Safari. Viewport-emulated repeated-route cleanup, accessibility and performance/long-task smoke checks now exist, but physical-device and full screen-reader evidence are still required.
 
 ## Character production requirements
 

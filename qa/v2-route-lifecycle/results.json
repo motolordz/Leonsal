@@ -1,0 +1,115 @@
+{
+  "passed": true,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "routeVisits": 24,
+  "checks": [
+    "single session controls per route",
+    "single session dialog per route",
+    "active shell exists after each navigation",
+    "pause state does not leak",
+    "inert state does not leak",
+    "reduced-motion cap reapplies",
+    "no console/page errors"
+  ],
+  "visits": [
+    {
+      "pass": 0,
+      "route": "v2-energy-battery.html"
+    },
+    {
+      "pass": 0,
+      "route": "v2-dash-dock.html"
+    },
+    {
+      "pass": 0,
+      "route": "v2-bubble-garden.html"
+    },
+    {
+      "pass": 0,
+      "route": "v2-light-trail.html"
+    },
+    {
+      "pass": 0,
+      "route": "v2-hold-to-breathe.html"
+    },
+    {
+      "pass": 0,
+      "route": "v2-trace-engine.html"
+    },
+    {
+      "pass": 0,
+      "route": "v2-orbit-engine.html"
+    },
+    {
+      "pass": 0,
+      "route": "v2-cause-effect-engine.html"
+    },
+    {
+      "pass": 1,
+      "route": "v2-energy-battery.html"
+    },
+    {
+      "pass": 1,
+      "route": "v2-dash-dock.html"
+    },
+    {
+      "pass": 1,
+      "route": "v2-bubble-garden.html"
+    },
+    {
+      "pass": 1,
+      "route": "v2-light-trail.html"
+    },
+    {
+      "pass": 1,
+      "route": "v2-hold-to-breathe.html"
+    },
+    {
+      "pass": 1,
+      "route": "v2-trace-engine.html"
+    },
+    {
+      "pass": 1,
+      "route": "v2-orbit-engine.html"
+    },
+    {
+      "pass": 1,
+      "route": "v2-cause-effect-engine.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-energy-battery.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-dash-dock.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-bubble-garden.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-light-trail.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-hold-to-breathe.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-trace-engine.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-orbit-engine.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-cause-effect-engine.html"
+    }
+  ]
+}

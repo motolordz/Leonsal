@@ -44,6 +44,7 @@ class LeonSalGameShell {
     this.dialog.addEventListener('cancel', (event) => { event.preventDefault(); this.resume(); }, options);
     document.addEventListener('visibilitychange', () => { if (document.hidden) this.pause(); }, options);
     window.addEventListener('pagehide', () => this.pause(), options);
+    document.body.dataset.paused = 'false';
     this.settingsPanel?.setAttribute('role', 'group');
     this.settingsPanel?.setAttribute('aria-label', 'Sensory settings');
     this.settingsToggle?.setAttribute('aria-controls', 'settings');
