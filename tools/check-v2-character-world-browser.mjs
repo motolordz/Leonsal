@@ -98,6 +98,11 @@ assert.equal(await page.locator('.character-world-card[data-status="approved"]')
 assert(await page.locator('.character-world-card[data-character="leon"]').isVisible(), 'Pending filter should show Leon procedural vector fallback');
 await page.locator('.character-world-card[data-character="leon"]').first().click();
 assert(await page.locator('.selected-character-card figcaption strong').getByText('Leon', { exact: true }).isVisible(), 'Pending status filter changed selected character identity');
+await page.getByRole('button', { name: 'A-Z' }).click();
+await page.getByRole('button', { name: 'Approved only', exact: true }).click();
+assert(await page.locator('.character-world-empty').getByText('No approved art here yet.', { exact: true }).isVisible(), 'Empty approved-family state did not explain missing approved art');
+await page.getByRole('button', { name: 'Show all artwork', exact: true }).click();
+assert(await page.locator('.character-world-card[data-family="alphabet"]').first().isVisible(), 'Show all artwork did not restore alphabet vector cards');
 await page.locator('#settingsToggle').click();
 assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', 'Settings panel did not open');
 await page.keyboard.press('Escape');

@@ -44,6 +44,8 @@ for (const text of [
   'character-runway-state',
   'statusFilter',
   'data-status',
+  'character-world-empty',
+  'Show all artwork',
   'Procedural vector fallback',
   'new LeonSalGameShell',
   'new LeonSalV2.SettingsPanel'
@@ -54,6 +56,7 @@ for (const text of [
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(html), 'Character World HTML must not reference blocked art paths');
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(js), 'Character World JS must not reference blocked art paths');
 assert(css.includes('.character-world-grid'), 'Character World grid styling missing');
+assert(css.includes('.character-world-empty'), 'Character World empty status styling missing');
 assert(css.includes('.character-status-tabs'), 'Character World status filter styling missing');
 assert(css.includes('.character-runtime-truth'), 'Runtime truth styling missing');
 assert(css.includes('.character-state-runway'), 'Five-state runway styling missing');

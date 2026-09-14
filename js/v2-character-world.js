@@ -356,6 +356,22 @@
       return familyMatch && statusMatch;
     });
     count.textContent = `${visible.length} shown`;
+    if (!visible.length) {
+      const empty = document.createElement('article');
+      empty.className = 'character-world-empty';
+      empty.innerHTML = '<strong>No approved art here yet.</strong><span>Try all artwork to see the safe vector previews.</span>';
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = 'Show all artwork';
+      button.addEventListener('click', () => {
+        statusFilter = 'all';
+        statusButtons.forEach(item => item.setAttribute('aria-pressed', String(item.dataset.statusFilter === 'all')));
+        renderGrid();
+      });
+      empty.append(button);
+      grid.replaceChildren(empty);
+      return;
+    }
     grid.replaceChildren(...visible.map(record => {
       const button = document.createElement('button');
       button.type = 'button';
