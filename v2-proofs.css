@@ -637,6 +637,31 @@ body[data-contrast="strong"] .game-topbar {
 .quick-play a:nth-child(4) span { background: radial-gradient(circle at 32% 27%, #fff, #b8f1ff 36%, #8269df); }
 .quick-play a:nth-child(5) span { width: 38px; height: 25px; border-radius: 8px; background: linear-gradient(180deg, #ef4444 0 64%, #b91c1c 65%); }
 
+.world-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.world-filter button {
+  min-height: 46px;
+  border: 2px solid rgba(195, 214, 237, .9);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,.86);
+  color: #173356;
+  font: inherit;
+  font-weight: 950;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(39, 85, 139, .1);
+}
+.world-filter button[aria-pressed="true"] {
+  border-color: #2364be;
+  background: #2364be;
+  color: #fff;
+}
+.world-filter button:active { transform: translateY(2px) scale(.98); }
+
 .hub-primary,
 .hub-secondary {
   min-height: 58px;
@@ -1476,6 +1501,18 @@ body[data-calm="true"] .hub-art {
   .quick-play span {
     width: 23px;
     height: 23px;
+  }
+  .world-filter {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-bottom: 4px;
+  }
+  .world-filter button {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 8px 13px;
+    font-size: .88rem;
   }
   .hub-art {
     min-height: min(42svh, 330px);

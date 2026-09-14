@@ -5,6 +5,7 @@ const html = fs.readFileSync('v2-home.html', 'utf8');
 const css = fs.readFileSync('v2-proofs.css', 'utf8');
 
 assert(html.includes('aria-label="Quick play choices"'), 'V2 home must expose quick play choices');
+assert(html.includes('aria-label="Show activities"'), 'V2 home must expose activity filtering');
 for (const route of [
   'v2-calm-rain-window.html',
   'v2-dash-dock.html',
@@ -19,9 +20,19 @@ for (const label of ['Quiet', 'Move', 'Draw', 'Breathe', 'Speed']) {
 }
 
 assert(css.includes('.quick-play'), 'Quick play styling missing');
+assert(css.includes('.world-filter'), 'World filter styling missing');
 assert(css.includes('min-height: 74px'), 'Quick play desktop touch targets too small or unchecked');
 assert(css.includes('min-height: 62px'), 'Quick play mobile touch targets too small or unchecked');
 assert(css.includes('scroll-snap-type: x mandatory'), 'Quick play should be swipe-friendly on mobile');
+assert(css.includes('overscroll-behavior-x: contain'), 'Mobile choice rows should avoid accidental page gestures');
+for (const filter of ['all', 'calm', 'sensory', 'learning', 'world']) {
+  assert(html.includes(`data-world-filter="${filter}"`), `Missing world filter: ${filter}`);
+}
+const categorizedCards = [...html.matchAll(/class="world-game[^"]*" data-world-category="([^"]+)"/g)];
+assert.equal(categorizedCards.length, 34, 'Every V2 activity card must have a filter category');
+for (const category of ['calm', 'sensory', 'learning', 'world']) {
+  assert(categorizedCards.some(([, value]) => value.split(/\s+/).includes(category)), `No cards tagged for ${category}`);
+}
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet/i.test(html), 'V2 home must not reference review/source/QA art');
 
 console.log('V2 home static checks passed.');

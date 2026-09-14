@@ -90,6 +90,21 @@
   const mixer = new LeonSalV2.SensoryMixerEngine(settings);
   const mixerPresets = document.getElementById('mixerPresets');
   const mixerSummary = document.getElementById('mixerSummary');
+  const filterButtons = [...document.querySelectorAll('[data-world-filter]')];
+  const gameCards = [...document.querySelectorAll('.world-game[data-world-category]')];
+
+  const applyWorldFilter = (filter) => {
+    filterButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.worldFilter === filter)));
+    gameCards.forEach((card) => {
+      const categories = String(card.dataset.worldCategory || '').split(/\s+/);
+      const visible = filter === 'all' || categories.includes(filter);
+      card.hidden = !visible;
+    });
+  };
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => applyWorldFilter(button.dataset.worldFilter));
+  });
 
   const renderProgress = () => {
     if (!progressHost) return;
