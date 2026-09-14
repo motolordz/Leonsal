@@ -14,9 +14,18 @@ for (const id of ["leon", "zaya"]) {
   assert.equal(guide.productionStatus, "pending-art", `${id} registry status must remain pending-art`);
   assert(guide.blockers.includes("not-production-approved"), `${id} must keep not-production-approved blocker`);
   assert(guide.blockers.some((item) => /2048px production master/.test(item)), `${id} must keep production-size blocker`);
+  assert.equal(Object.keys(guide.stateProductionPlan || {}).length, 5, `${id} must define a production plan for all five states`);
+  assert(guide.identityRequirements?.some((item) => item.includes(id === "leon" ? "LEON" : "ZAYA")), `${id} must require visible guide name identity`);
   assert(!Object.values(guide.suppliedSourceResolution || {}).some((state) => /qa\/|contact-sheet|rejected/i.test(state.source)), `${id} must not point supplied source states at QA/contact/rejected art`);
+  for (const [state, plan] of Object.entries(guide.stateProductionPlan || {})) {
+    assert(plan.requiredVisual, `${id}/${state} missing required visual`);
+    assert(plan.source, `${id}/${state} missing source basis`);
+    assert(/master\.png and web\.webp/.test(plan.productionOutputRequired), `${id}/${state} must name production outputs`);
+    assert(/2048px transparent master|newly authored/.test(plan.approvalGate), `${id}/${state} must preserve production approval gate`);
+  }
 }
 assert(lane.guides.find((record) => record.id === "leon").missingSuppliedStates.includes("empty"), "Leon empty state must remain explicitly missing");
+assert.equal(lane.guides.find((record) => record.id === "leon").stateProductionPlan.empty.sourceBasis, "approved-poster-reference-only", "Leon empty must use approved poster reference only");
 assert.equal(lane.guides.find((record) => record.id === "zaya").missingSuppliedStates.length, 0, "Zaya supplied review states should be complete");
 assert(fs.existsSync(sheetPath), "Guide production lane contact sheet missing");
 

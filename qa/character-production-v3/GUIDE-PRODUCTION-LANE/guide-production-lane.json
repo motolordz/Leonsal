@@ -44,6 +44,54 @@
           "sourceSha256": "9b9331b046ca45fe4a6f72b34f0cc13a014a3ddb9fceb31cf7a679506ef35242"
         }
       },
+      "stateProductionPlan": {
+        "empty": {
+          "requiredVisual": "sleepy or resting, low energy, child-safe and not distressed",
+          "sourceBasis": "approved-poster-reference-only",
+          "source": "assets/source-safe-keeping/approved-character-sheets-v2/leon-five-state-large.jpg",
+          "sourceUsability": "reference-only-contact-sheet-not-runtime",
+          "productionOutputRequired": "assets/characters-v2/leon/empty/master.png and web.webp",
+          "approvalGate": "must be newly authored from approved reference; chart/contact-sheet crop is forbidden"
+        },
+        "low": {
+          "requiredVisual": "gently tired or waking, visually distinct from empty",
+          "sourceBasis": "supplied-transparent-review-pose",
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/low.png",
+          "sourceUsability": "reference-only-below-production-size",
+          "productionOutputRequired": "assets/characters-v2/leon/low/master.png and web.webp",
+          "approvalGate": "must be rebuilt or reauthored as a true 2048px transparent master before approval"
+        },
+        "calm": {
+          "requiredVisual": "awake, balanced, neutral-friendly and ready",
+          "sourceBasis": "supplied-transparent-review-pose",
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/calm.png",
+          "sourceUsability": "reference-only-below-production-size",
+          "productionOutputRequired": "assets/characters-v2/leon/calm/master.png and web.webp",
+          "approvalGate": "must be rebuilt or reauthored as a true 2048px transparent master before approval"
+        },
+        "happy": {
+          "requiredVisual": "active, friendly smile, clear positive posture",
+          "sourceBasis": "supplied-transparent-review-pose",
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/happy.png",
+          "sourceUsability": "reference-only-below-production-size",
+          "productionOutputRequired": "assets/characters-v2/leon/happy/master.png and web.webp",
+          "approvalGate": "must be rebuilt or reauthored as a true 2048px transparent master before approval"
+        },
+        "excited": {
+          "requiredVisual": "energetic, celebratory, bright but not visually chaotic",
+          "sourceBasis": "supplied-transparent-review-pose",
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/excited.png",
+          "sourceUsability": "reference-only-below-production-size",
+          "productionOutputRequired": "assets/characters-v2/leon/excited/master.png and web.webp",
+          "approvalGate": "must be rebuilt or reauthored as a true 2048px transparent master before approval"
+        }
+      },
+      "identityRequirements": [
+        "same Leon face, hair, body proportions and outfit language across all five states",
+        "visible uppercase LEON name on clothing or a natural badge",
+        "one character only, transparent background, no labels, no percentage text, no poster contamination",
+        "runtime path remains hidden until every state passes visual and technical QA"
+      ],
       "approvalDecision": "blocked",
       "blockers": [
         "not-production-approved",
@@ -104,6 +152,54 @@
           "sourceSha256": "dee38a0889064d718e39fb095bbe0f9893241e0a3e778437f1470723e64e5a4f"
         }
       },
+      "stateProductionPlan": {
+        "empty": {
+          "requiredVisual": "sleepy or resting, low energy, child-safe and not distressed",
+          "sourceBasis": "supplied-transparent-review-pose",
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/empty.png",
+          "sourceUsability": "reference-only-below-production-size",
+          "productionOutputRequired": "assets/characters-v2/zaya/empty/master.png and web.webp",
+          "approvalGate": "must be rebuilt or reauthored as a true 2048px transparent master before approval"
+        },
+        "low": {
+          "requiredVisual": "gently tired or waking, visually distinct from empty",
+          "sourceBasis": "supplied-transparent-review-pose",
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/low.png",
+          "sourceUsability": "reference-only-below-production-size",
+          "productionOutputRequired": "assets/characters-v2/zaya/low/master.png and web.webp",
+          "approvalGate": "must be rebuilt or reauthored as a true 2048px transparent master before approval"
+        },
+        "calm": {
+          "requiredVisual": "awake, balanced, neutral-friendly and ready",
+          "sourceBasis": "supplied-transparent-review-pose",
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/calm.png",
+          "sourceUsability": "reference-only-below-production-size",
+          "productionOutputRequired": "assets/characters-v2/zaya/calm/master.png and web.webp",
+          "approvalGate": "must be rebuilt or reauthored as a true 2048px transparent master before approval"
+        },
+        "happy": {
+          "requiredVisual": "active, friendly smile, clear positive posture",
+          "sourceBasis": "supplied-transparent-review-pose",
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/happy.png",
+          "sourceUsability": "reference-only-below-production-size",
+          "productionOutputRequired": "assets/characters-v2/zaya/happy/master.png and web.webp",
+          "approvalGate": "must be rebuilt or reauthored as a true 2048px transparent master before approval"
+        },
+        "excited": {
+          "requiredVisual": "energetic, celebratory, bright but not visually chaotic",
+          "sourceBasis": "supplied-transparent-review-pose",
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/excited.png",
+          "sourceUsability": "reference-only-below-production-size",
+          "productionOutputRequired": "assets/characters-v2/zaya/excited/master.png and web.webp",
+          "approvalGate": "must be rebuilt or reauthored as a true 2048px transparent master before approval"
+        }
+      },
+      "identityRequirements": [
+        "same Zaya face, hair, body proportions and outfit language across all five states",
+        "visible uppercase ZAYA name on clothing or a natural badge",
+        "one character only, transparent background, no labels, no percentage text, no poster contamination",
+        "runtime path remains hidden until every state passes visual and technical QA"
+      ],
       "approvalDecision": "blocked",
       "blockers": [
         "not-production-approved",

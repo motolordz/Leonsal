@@ -8,6 +8,13 @@ const sourceSheets = {
   leon: "assets/source-safe-keeping/approved-character-sheets-v2/leon-five-state-large.jpg",
   zaya: "assets/source-safe-keeping/approved-character-sheets-v2/zaya-five-state-large.jpg"
 };
+const stateRequirements = {
+  empty: "sleepy or resting, low energy, child-safe and not distressed",
+  low: "gently tired or waking, visually distinct from empty",
+  calm: "awake, balanced, neutral-friendly and ready",
+  happy: "active, friendly smile, clear positive posture",
+  excited: "energetic, celebratory, bright but not visually chaotic"
+};
 
 const review = JSON.parse(await fs.readFile("data/character-review.json", "utf8"));
 const registry = JSON.parse(await fs.readFile("data/character-assets.json", "utf8"));
@@ -69,6 +76,26 @@ const guides = ["leon", "zaya"].map((id) => {
         sourceSha256: supplied.states[state].sourceSha256
       }
     ])) : {},
+    stateProductionPlan: Object.fromEntries(states.map((state) => {
+      const suppliedState = supplied?.states?.[state];
+      const hasSupplied = Boolean(suppliedState);
+      return [state, {
+        requiredVisual: stateRequirements[state],
+        sourceBasis: hasSupplied ? "supplied-transparent-review-pose" : "approved-poster-reference-only",
+        source: hasSupplied ? suppliedState.source : sourceSheets[id],
+        sourceUsability: hasSupplied ? "reference-only-below-production-size" : "reference-only-contact-sheet-not-runtime",
+        productionOutputRequired: `assets/characters-v2/${id}/${state}/master.png and web.webp`,
+        approvalGate: hasSupplied
+          ? "must be rebuilt or reauthored as a true 2048px transparent master before approval"
+          : "must be newly authored from approved reference; chart/contact-sheet crop is forbidden"
+      }];
+    })),
+    identityRequirements: [
+      `same ${id === "leon" ? "Leon" : "Zaya"} face, hair, body proportions and outfit language across all five states`,
+      `visible uppercase ${id === "leon" ? "LEON" : "ZAYA"} name on clothing or a natural badge`,
+      "one character only, transparent background, no labels, no percentage text, no poster contamination",
+      "runtime path remains hidden until every state passes visual and technical QA"
+    ],
     approvalDecision: "blocked",
     blockers: blockerSet(id, suppliedStates),
     nextProductionSteps: [
@@ -136,6 +163,14 @@ await fs.writeFile(path.join(outDir, "GUIDE-PRODUCTION-LANE.md"), [
     `- Missing supplied states: ${guide.missingSuppliedStates.join(", ") || "none"}`,
     `- Poster/reference sheet: ${guide.posterReference}`,
     `- First blocker: ${guide.blockers[0]}`,
+    `- Identity requirement: ${guide.identityRequirements[0]}`,
+    "",
+    "| State | Required visual | Source basis | Approval gate |",
+    "| --- | --- | --- | --- |",
+    ...states.map((state) => {
+      const plan = guide.stateProductionPlan[state];
+      return `| ${state} | ${plan.requiredVisual} | ${plan.sourceBasis} | ${plan.approvalGate} |`;
+    }),
     ""
   ]),
   "## Evidence",
