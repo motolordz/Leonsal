@@ -13,6 +13,11 @@ const rawRecords = registryGroups
     uppercase: record.uppercase
   })))
   .filter(record => record.id && record.displayName);
+rawRecords.push(
+  { id: 'world-bus-uk', displayName: 'UK Bus', family: 'world' },
+  { id: 'world-bus-hong-kong', displayName: 'Hong Kong Bus', family: 'world' },
+  { id: 'world-bus-night', displayName: 'Night Bus', family: 'world' }
+);
 const byRecordId = new Map();
 for (const record of rawRecords) {
   if (!byRecordId.has(record.id)) byRecordId.set(record.id, record);
@@ -36,8 +41,11 @@ const expectedBodyClasses = {
   'world-train': 'train-body',
   'world-plane': 'plane-body',
   'world-boat': 'boat-body',
-  'world-double-decker-bus': 'vehicle-body',
-  'double-decker': 'vehicle-body',
+  'world-double-decker-bus': 'double-decker-body',
+  'double-decker': 'double-decker-body',
+  'world-bus-uk': 'double-decker-body',
+  'world-bus-hong-kong': 'double-decker-body',
+  'world-bus-night': 'double-decker-body',
   plane: 'plane-body',
   boat: 'boat-body',
   'world-clock': 'clock-body',

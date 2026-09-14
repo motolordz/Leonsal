@@ -125,8 +125,11 @@
       document.querySelectorAll('.bus-choice').forEach((button) => {
         const label = busLabels[button.dataset.bus] || button.textContent.trim();
         button.replaceChildren();
+        button.setAttribute('aria-label', label);
         if (renderer) {
-          button.append(renderer.makeCharacter(busRecord(button), button.dataset.bus === selectedBus ? 'happy' : 'calm', { decorative: true }));
+          const thumbnail = renderer.makeCharacter(busRecord(button), button.dataset.bus === selectedBus ? 'happy' : 'calm', { decorative: true });
+          thumbnail.setAttribute('aria-hidden', 'true');
+          button.append(thumbnail);
         }
         const text = document.createElement('span');
         text.className = 'bus-choice-label';

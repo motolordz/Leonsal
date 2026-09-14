@@ -75,7 +75,7 @@
     if (/battery/.test(id)) return 'battery';
     if (/dinosaur/.test(id)) return 'dinosaur';
     if (/owl|fish|lizard|penguin/.test(id)) return 'animal';
-    if (/bus|double-decker/.test(id)) return 'vehicle';
+    if (/bus|double-decker/.test(id)) return 'double-decker';
     if (/rocket/.test(id)) return 'transport';
     if (/sun|moon|earth|planet|mercury|venus|mars|jupiter|saturn|uranus|neptune/.test(id)) return 'planet';
     if (/cloud|rainbow|water|tree/.test(id)) return 'nature';
@@ -231,6 +231,29 @@
     }
     if (kind === 'train') {
       return `<g class="character-body train-body"><rect x="45" y="90" width="122" height="62" rx="18" class="body"/><rect x="62" y="62" width="58" height="38" rx="12" fill="${accent}" stroke="#173356" stroke-width="5"/><rect x="71" y="73" width="38" height="20" rx="7" fill="#dff5ff"/><path d="M47 126 h118" stroke="#fff" stroke-width="8" opacity=".55"/><circle cx="72" cy="158" r="15" fill="#173356"/><circle cx="139" cy="158" r="15" fill="#173356"/><path d="M151 79 q20 -18 35 2" fill="none" stroke="${secondary}" stroke-width="9" stroke-linecap="round"/><circle cx="78" cy="122" r="8" class="cheek"/><circle cx="148" cy="122" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'double-decker') {
+      const isHongKong = /hong|hk/i.test(record.id || '');
+      const isNight = /night|nite/i.test(record.id || '');
+      const busTop = isHongKong ? '#22c55e' : isNight ? '#2563eb' : '#ef4444';
+      const busBottom = isHongKong ? '#16a34a' : isNight ? '#1d4ed8' : '#dc2626';
+      const stripe = isHongKong ? '#facc15' : '#fff7ed';
+      return `<g class="character-body vehicle-body double-decker-body">
+        <rect x="42" y="58" width="136" height="96" rx="19" fill="${busTop}" stroke="#173356" stroke-width="6"/>
+        <path d="M43 105 h134 v29 q0 20 -20 20 h-94 q-20 0 -20 -20z" fill="${busBottom}" stroke="#173356" stroke-width="6" stroke-linejoin="round"/>
+        <rect x="55" y="69" width="110" height="28" rx="8" fill="#dff5ff" opacity=".95"/>
+        <rect x="57" y="112" width="106" height="23" rx="8" fill="#dff5ff" opacity=".92"/>
+        <path d="M73 70 v26M98 70 v26M124 70 v26M149 70 v26M82 113 v22M110 113 v22M138 113 v22" stroke="#173356" stroke-width="3" opacity=".22"/>
+        <path d="M51 105 h119M55 139 h108" stroke="${stripe}" stroke-width="6" stroke-linecap="round" opacity=".9"/>
+        <rect x="90" y="61" width="42" height="18" rx="7" fill="#173356" opacity=".9"/>
+        <text x="111" y="75" text-anchor="middle" fill="#fff" font-size="12" font-weight="1000">${isHongKong ? 'HK' : isNight ? 'NITE' : 'UK'}</text>
+        <circle cx="75" cy="159" r="15" fill="#173356"/>
+        <circle cx="145" cy="159" r="15" fill="#173356"/>
+        <circle cx="75" cy="159" r="7" fill="#e5e7eb"/>
+        <circle cx="145" cy="159" r="7" fill="#e5e7eb"/>
+        <circle cx="82" cy="122" r="8" class="cheek"/>
+        <circle cx="151" cy="122" r="8" class="cheek"/>
+      </g>`;
     }
     if (kind === 'plane') {
       return `<g class="character-body plane-body"><path d="M38 119 q62 -58 145 -13 q-38 42 -145 13z" class="body"/><path d="M98 79 l26 -42 q16 38 6 71zM101 132 l18 42 q20 -30 15 -55z" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><circle cx="157" cy="103" r="12" fill="#dff5ff" stroke="#173356" stroke-width="5"/><circle cx="76" cy="121" r="8" class="cheek"/><circle cx="137" cy="114" r="8" class="cheek"/></g>`;
