@@ -44,6 +44,7 @@ const SAFE_ASSETS = [
   './v2-proofs.css',
   './v2-engine.js',
   './js/v2-game-shell.js',
+  './js/v2-character-renderer.js',
   './js/v2-home.js',
   './js/v2-home-characters.js',
   './js/v2-character-world.js',

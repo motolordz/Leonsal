@@ -44,7 +44,10 @@
   function install() {
     document.querySelectorAll('[data-home-guide]').forEach((target) => {
       target.setAttribute('data-svg-guide', 'true');
-      target.replaceChildren(makeGuide(target.dataset.homeGuide));
+      const renderer = window.LeonSalCharacterRenderer;
+      const guide = target.dataset.homeGuide;
+      const state = guide === 'zaya' ? 'excited' : 'happy';
+      target.replaceChildren(renderer ? renderer.makeGuide(guide, state, { decorative: true }) : makeGuide(guide));
     });
   }
 
