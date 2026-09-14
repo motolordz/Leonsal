@@ -110,7 +110,7 @@ Status below is the existing registry status, not an assertion of release comple
 | 12 | Alphabet Adventure | proof | v2-alphabet-adventure.html |
 | 13 | Shape Builder | proof | v2-shape-builder.html |
 | 14 | Letter Tracing | proof | v2-letter-tracing.html |
-| 15 | Number Tracing | specified | Not implemented |
+| 15 | Number Tracing | proof | v2-number-tracing.html |
 | 16 | Shape Tracing | specified | Not implemented |
 | 17 | Colour Match | specified | Not implemented |
 | 18 | Big & Small | specified | Not implemented |

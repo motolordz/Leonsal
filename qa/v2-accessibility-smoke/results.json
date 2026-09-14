@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 43,
+      "controls": 44,
       "canvases": []
     },
     {
@@ -148,6 +148,20 @@
           "width": 374,
           "height": 656,
           "name": "Trace letter A. Drag along the path, or use the Step button.",
+          "tabIndex": -1
+        }
+      ]
+    },
+    {
+      "route": "v2-number-tracing.html",
+      "passed": true,
+      "controls": 8,
+      "canvases": [
+        {
+          "id": "numberTraceCanvas",
+          "width": 374,
+          "height": 656,
+          "name": "Trace number 1. Drag along the path, or use the Step button.",
           "tabIndex": -1
         }
       ]

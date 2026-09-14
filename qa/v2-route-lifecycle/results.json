@@ -4,7 +4,7 @@
     "width": 390,
     "height": 844
   },
-  "routeVisits": 51,
+  "routeVisits": 54,
   "checks": [
     "single session controls per route",
     "single session dialog per route",
@@ -66,6 +66,10 @@
     },
     {
       "pass": 0,
+      "route": "v2-number-tracing.html"
+    },
+    {
+      "pass": 0,
       "route": "v2-light-trail.html"
     },
     {
@@ -134,6 +138,10 @@
     },
     {
       "pass": 1,
+      "route": "v2-number-tracing.html"
+    },
+    {
+      "pass": 1,
       "route": "v2-light-trail.html"
     },
     {
@@ -199,6 +207,10 @@
     {
       "pass": 2,
       "route": "v2-letter-tracing.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-number-tracing.html"
     },
     {
       "pass": 2,
