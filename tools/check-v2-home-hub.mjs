@@ -79,6 +79,8 @@ try {
       assert.equal(await page.locator('.hub-game-grid').evaluate(element => getComputedStyle(element).display), 'flex');
       assert.equal(await page.locator('.hub-engine-grid').evaluate(element => getComputedStyle(element).display), 'flex');
       assert(await page.locator('.hub-engine-grid').evaluate(element => element.scrollWidth > element.clientWidth), 'Learning activity carousel should be horizontally scrollable on phone');
+      assert.equal(await page.locator('.hub-game-grid .world-game').first().evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length), 1, 'Hub mobile cards should stay one-column mini-world cards');
+      assert.equal(await page.locator('.hub-game-grid .world-game .game-art').first().evaluate(element => getComputedStyle(element).gridColumnStart), 'auto', 'Hub mobile cards should keep art above text, not compact row layout');
     }
     assert(await page.getByRole('link', { name: /open character world/i }).isVisible());
     assert(await page.getByRole('link', { name: /internal art review/i }).isVisible());

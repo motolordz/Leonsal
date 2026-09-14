@@ -2818,8 +2818,19 @@ body[data-calm="true"] .connection-status { transition: none; }
   .v2-hub .hub-game-grid .world-game,
   .v2-hub .hub-engine-grid .world-game {
     display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(150px, auto) auto 1fr auto auto;
+    row-gap: 9px;
     flex: 0 0 min(82vw, 330px);
     min-height: 318px;
+    padding: 16px;
+  }
+  .v2-hub .hub-game-grid .world-game .game-art,
+  .v2-hub .hub-engine-grid .world-game .game-art {
+    grid-row: auto;
+    grid-column: auto;
+    height: auto;
+    align-self: stretch;
   }
   .home-battery { width: 62px; height: 38px; border-width: 4px; border-radius: 10px; }
   .home-battery:after { top: 9px; right: -9px; width: 5px; height: 14px; }
