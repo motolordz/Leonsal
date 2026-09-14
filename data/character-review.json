@@ -59,6 +59,11 @@
       "name": "Lion five-pose reference",
       "src": "assets/source-safe-keeping/supplied-20260911/lion-reference.png",
       "notes": "Multi-character reference sheet, not individual runtime artwork."
+    },
+    {
+      "name": "Lion five-pose reference — supplied 20260915",
+      "src": "assets/source-safe-keeping/supplied-20260915/lion/reference-sheet.png",
+      "notes": "Multi-pose reference sheet only. Individual transparent production masters are still required."
     }
   ],
   "characters": [
@@ -66,11 +71,11 @@
       "id": "elephant",
       "name": "Elephant",
       "status": "review-only",
-      "notes": "Supplied individual transparent poses. Native 1254 px is below the 2048 px production requirement. Edge quality and five-state distinction require review.",
+      "notes": "Supplied 20260915 transparent poses cover all five states. Sources remain below the 2048 px production master requirement and require production rebuild/visual QA before approval.",
       "states": {
         "empty": {
-          "src": "assets/character-review/supplied-20260911/elephant/empty.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/elephant/empty.png",
+          "src": "assets/character-review/supplied-20260915/elephant/empty.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/elephant/empty.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -82,11 +87,11 @@
             0
           ],
           "sourceSha256": "f2f3f7dcdc502855e60acb7703f6ec73b0fbbbeb7df132b93a7c5a41bb4956eb",
-          "vectorSrc": "assets/character-review/vectors/elephant/empty.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "low": {
-          "src": "assets/character-review/supplied-20260911/elephant/low.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/elephant/low.png",
+          "src": "assets/character-review/supplied-20260915/elephant/low.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/elephant/low.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -98,11 +103,11 @@
             0
           ],
           "sourceSha256": "64ea39d63c1631b1d00a51ece007919a56f147a4b26017036a7e1ac212371d78",
-          "vectorSrc": "assets/character-review/vectors/elephant/low.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "calm": {
-          "src": "assets/character-review/supplied-20260911/elephant/calm.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/elephant/calm.png",
+          "src": "assets/character-review/supplied-20260915/elephant/calm.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/elephant/calm.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -114,11 +119,11 @@
             0
           ],
           "sourceSha256": "4de8829a4590ee9c974a4f1d906f5e8751c3dc7e2e8d05b2003614eced2c58af",
-          "vectorSrc": "assets/character-review/vectors/elephant/calm.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "happy": {
-          "src": "assets/character-review/supplied-20260911/elephant/happy.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/elephant/happy.png",
+          "src": "assets/character-review/supplied-20260915/elephant/happy.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/elephant/happy.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -130,11 +135,11 @@
             0
           ],
           "sourceSha256": "39e48ce0c89150b9a79843f7decd8b0b4bb722b209b83414bba1b12d2d29a97e",
-          "vectorSrc": "assets/character-review/vectors/elephant/happy.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "excited": {
-          "src": "assets/character-review/supplied-20260911/elephant/excited.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/elephant/excited.png",
+          "src": "assets/character-review/supplied-20260915/elephant/excited.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/elephant/excited.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -146,7 +151,7 @@
             0
           ],
           "sourceSha256": "b6509c0a9029c0747a172bfc09c3ba76e1a3d90aa4cf0ca7bcfe9c88feaaf2d1",
-          "vectorSrc": "assets/character-review/vectors/elephant/excited.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         }
       }
     },
@@ -154,11 +159,11 @@
       "id": "zaya",
       "name": "Zaya",
       "status": "review-only",
-      "notes": "Supplied individual transparent poses. Native 1254 px is below the 2048 px production requirement. Edge quality and five-state distinction require review. Clothing needs the canonical uppercase name.",
+      "notes": "Supplied 20260915 transparent poses cover all five states. Sources remain below the 2048 px production master requirement and require production rebuild/visual QA before approval.",
       "states": {
         "empty": {
-          "src": "assets/character-review/supplied-20260911/zaya/empty.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/zaya/empty.png",
+          "src": "assets/character-review/supplied-20260915/zaya/empty.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/empty.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -170,11 +175,11 @@
             0
           ],
           "sourceSha256": "8f51e17676e2a8c9c4c2c4719b18398a635836fb0cc2fb810b94ec3c6f40a821",
-          "vectorSrc": "assets/character-review/vectors/zaya/empty.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "low": {
-          "src": "assets/character-review/supplied-20260911/zaya/low.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/zaya/low.png",
+          "src": "assets/character-review/supplied-20260915/zaya/low.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/low.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -186,11 +191,11 @@
             0
           ],
           "sourceSha256": "85bb1ffb6d2cd71866b73216b959213fd55812aa43d49eb6a7d263bdf16fb613",
-          "vectorSrc": "assets/character-review/vectors/zaya/low.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "calm": {
-          "src": "assets/character-review/supplied-20260911/zaya/calm.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/zaya/calm.png",
+          "src": "assets/character-review/supplied-20260915/zaya/calm.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/calm.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -202,11 +207,11 @@
             0
           ],
           "sourceSha256": "e9dfaeb36f5cb0a3f0aed4a7969f1a68a32bff02eb4538024394bb81233a1231",
-          "vectorSrc": "assets/character-review/vectors/zaya/calm.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "happy": {
-          "src": "assets/character-review/supplied-20260911/zaya/happy.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/zaya/happy.png",
+          "src": "assets/character-review/supplied-20260915/zaya/happy.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/happy.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -218,11 +223,11 @@
             0
           ],
           "sourceSha256": "f6c99e8fde3429c8188c90f7fc108214f33871c69fcf2d2b3ebf3ca7ddc984a5",
-          "vectorSrc": "assets/character-review/vectors/zaya/happy.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "excited": {
-          "src": "assets/character-review/supplied-20260911/zaya/excited.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/zaya/excited.png",
+          "src": "assets/character-review/supplied-20260915/zaya/excited.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/excited.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -234,7 +239,7 @@
             0
           ],
           "sourceSha256": "dee38a0889064d718e39fb095bbe0f9893241e0a3e778437f1470723e64e5a4f",
-          "vectorSrc": "assets/character-review/vectors/zaya/excited.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         }
       }
     },
@@ -242,11 +247,11 @@
       "id": "leon",
       "name": "Leon",
       "status": "review-only",
-      "notes": "Supplied individual transparent poses. Native 1254 px is below the 2048 px production requirement. Edge quality and five-state distinction require review. Clothing needs the canonical uppercase name. Empty pose has not been supplied.",
+      "notes": "Supplied 20260915 transparent poses are available for LOW, CALM, HAPPY and EXCITED. EMPTY has not been supplied and must be produced before Leon can be approved. Sources remain below the 2048 px production master requirement and are review-only.",
       "states": {
         "low": {
-          "src": "assets/character-review/supplied-20260911/leon/low.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/leon/low.png",
+          "src": "assets/character-review/supplied-20260915/leon/low.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/low.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -258,11 +263,11 @@
             0
           ],
           "sourceSha256": "3f19e851a08b2818ba41f565a29632603c97c73187902cfe03bbcdf167ec9817",
-          "vectorSrc": "assets/character-review/vectors/leon/low.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "calm": {
-          "src": "assets/character-review/supplied-20260911/leon/calm.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/leon/calm.png",
+          "src": "assets/character-review/supplied-20260915/leon/calm.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/calm.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -274,11 +279,11 @@
             0
           ],
           "sourceSha256": "68c446c9cc16cdb61ded29b4e7588804cf7c4c82cdb222ab71de2b0215645a40",
-          "vectorSrc": "assets/character-review/vectors/leon/calm.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "happy": {
-          "src": "assets/character-review/supplied-20260911/leon/happy.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/leon/happy.png",
+          "src": "assets/character-review/supplied-20260915/leon/happy.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/happy.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -290,11 +295,11 @@
             0
           ],
           "sourceSha256": "fc2b6ba6303b0cadc9c25a5f58250d777f8635b5abc8c0d4c3ddabf9569b8909",
-          "vectorSrc": "assets/character-review/vectors/leon/happy.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         },
         "excited": {
-          "src": "assets/character-review/supplied-20260911/leon/excited.webp",
-          "source": "assets/source-safe-keeping/supplied-20260911/leon/excited.png",
+          "src": "assets/character-review/supplied-20260915/leon/excited.webp",
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/excited.png",
           "width": 1254,
           "height": 1254,
           "hasAlpha": true,
@@ -306,9 +311,10 @@
             0
           ],
           "sourceSha256": "9b9331b046ca45fe4a6f72b34f0cc13a014a3ddb9fceb31cf7a679506ef35242",
-          "vectorSrc": "assets/character-review/vectors/leon/excited.svg"
+          "intake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
         }
       }
     }
-  ]
+  ],
+  "lastSuppliedIntake": "qa/character-production-v3/SUPPLIED-20260915/supplied-character-source-intake.json"
 }

@@ -39,8 +39,8 @@ try {
   assert.equal(await page.locator('.readiness-card').getByText('Not production ready').count(),3);
   assert.equal(await page.locator('#stateStrip button').count(),5);
   assert.equal(await page.locator('#stateStrip button[data-missing="true"]').count(),0);
-  assert.equal(await page.locator('[data-runner="leon"]').evaluate(img=>img.getAttribute('src').endsWith('/leon/happy.svg')),true);
-  assert.equal(await page.locator('[data-runner="zaya"]').evaluate(img=>img.getAttribute('src').endsWith('/zaya/excited.svg')),true);
+  assert.equal(await page.locator('[data-runner="leon"]').evaluate(img=>img.getAttribute('src').endsWith('/supplied-20260915/leon/happy.webp')),true);
+  assert.equal(await page.locator('[data-runner="zaya"]').evaluate(img=>img.getAttribute('src').endsWith('/supplied-20260915/zaya/excited.webp')),true);
   assert.equal(await page.evaluate(()=>Array.from(document.styleSheets).every(sheet=>Array.from(sheet.cssRules || []).every(rule=>!String(rule.cssText).includes('scaleX(-1)')))),true);
   for(const character of ['elephant','zaya','leon']) {
    await page.selectOption('#reviewCharacter',character);
@@ -56,7 +56,7 @@ try {
     assert.equal(await page.locator(`#stateStrip button[data-state="${state}"]`).getAttribute('data-missing'),'true');
     continue;
    }
-   await page.waitForFunction(({state,character})=>{const img=document.querySelector('#characterImage');return !img.hidden && img.dataset.state===state && img.dataset.character===character && img.dataset.format==='vector' && img.complete && img.naturalWidth===1254;},{state,character});
+   await page.waitForFunction(({state,character})=>{const img=document.querySelector('#characterImage');return !img.hidden && img.dataset.state===state && img.dataset.character===character && img.dataset.format==='original' && img.complete && img.naturalWidth > 0;},{state,character});
    assert.equal(await page.locator(`.pose-buttons button[data-state="${state}"]`).getAttribute('aria-pressed'),'true');
    assert.equal(await page.locator(`#stateStrip button[data-state="${state}"]`).getAttribute('aria-pressed'),'true');
    }
@@ -68,17 +68,17 @@ try {
   await page.waitForFunction(()=>document.querySelector('#characterImage').dataset.format==='original');
   assert.equal(await page.locator('#energy').inputValue(),retainedEnergy);
   await page.selectOption('#artFormat','vector');
-  await page.waitForFunction(()=>document.querySelector('#characterImage').dataset.format==='vector');
+  await page.waitForFunction(()=>document.querySelector('#characterImage').dataset.format==='original');
   await page.locator('#energy').focus();await page.keyboard.press('Home');
   await page.waitForFunction(()=>document.querySelector('#characterImage').dataset.state==='empty');
   await page.locator('#darkBackground').check();assert(await page.locator('#reviewStage').evaluate(el=>el.classList.contains('dark')));
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await page.screenshot({path:`${out}/review-${width}.png`,fullPage:true});
-  await page.locator('summary').click();await page.waitForSelector('#referenceImages img');assert.equal(await page.locator('#referenceImages img').count(),3);
+  await page.locator('summary').click();await page.waitForSelector('#referenceImages img');assert.equal(await page.locator('#referenceImages img').count(),4);
   await context.close();
  }
  const page=await browser.newPage();
- await page.route('**/assets/character-review/vectors/elephant/low.svg',route=>route.abort());
+  await page.route('**/assets/character-review/supplied-20260915/elephant/low.webp',route=>route.abort());
  await page.goto(base+'/character-review.html');await page.waitForSelector('#characterImage:not([hidden])');
  await page.getByRole('button',{name:'Low',exact:true}).click();
  await page.getByText('This pose could not load.',{exact:false}).waitFor();

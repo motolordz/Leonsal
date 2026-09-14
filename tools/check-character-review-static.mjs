@@ -13,7 +13,7 @@ for (const text of ['productionTruth', 'sourceIntake', 'candidateLibrary', 'prod
   assert(html.includes(text), `Missing review UI hook: ${text}`);
 }
 
-for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'renderGateMatrix', 'Production gates', 'familySummary', 'gateSummary', 'visual blockers', 'family-status-list', 'renderProductionBatches', 'renderFamilyEvidence', 'leon-zaya-five-state-generated-review.png', 'supplied-character-five-state-review.png', 'leon-zaya-five-states.png', 'leonsal-complete-character-library.png', 'Generated review sheets are shown here', '<img src="${href}"', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'vectorAssets', 'missing.length', 'approved art']) {
+for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'renderGateMatrix', 'Production gates', 'familySummary', 'gateSummary', 'visual blockers', 'family-status-list', 'renderProductionBatches', 'renderFamilyEvidence', 'leon-zaya-five-state-generated-review.png', 'supplied-character-five-state-review.png', 'leon-zaya-five-states.png', 'leonsal-complete-character-library.png', 'Generated review sheets are shown here', '<img src="${href}"', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'reviewAssets', 'optimized review images', 'missing.length', 'approved art']) {
   assert(js.includes(text), `Missing review filter implementation: ${text}`);
 }
 
@@ -27,9 +27,9 @@ assert(characters.some(item => item.id === 'leon' && Object.keys(item.states || 
 assert(characters.some(item => item.id === 'zaya' && Object.keys(item.states || {}).length === 5), 'Zaya five-state review set should remain visible');
 assert(characters.some(item => item.id === 'elephant' && Object.keys(item.states || {}).length === 5), 'Elephant five-state review set should remain visible');
 const suppliedSources = characters.reduce((sum, item) => sum + Object.values(item.states || {}).filter(asset => asset.source).length, 0);
-const vectorDerivatives = characters.reduce((sum, item) => sum + Object.values(item.states || {}).filter(asset => asset.vectorSrc).length, 0);
+const reviewDerivatives = characters.reduce((sum, item) => sum + Object.values(item.states || {}).filter(asset => asset.src?.startsWith('assets/character-review/supplied-20260915/')).length, 0);
 assert.equal(suppliedSources, 14, 'Expected 14 supplied source poses in review intake');
-assert.equal(vectorDerivatives, 14, 'Expected 14 review SVG derivatives in review intake');
+assert.equal(reviewDerivatives, 14, 'Expected 14 optimized 20260915 review image derivatives in review intake');
 const readiness = JSON.parse(await fs.readFile('qa/character-production-v3/READINESS/character-readiness-report.json', 'utf8'));
 assert.equal(readiness.summary.pendingCharacters, 68, 'Expected 68 pending generated character candidates');
 assert.equal(readiness.summary.approvedRuntimeStateAssets, 5, 'Only Battery Buddy should be approved in readiness report');
