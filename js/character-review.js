@@ -126,7 +126,7 @@
         ['Planets', 'Planet five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/planets-five-states.png'],
         ['Full library', 'Complete pending library sheet', 'qa/character-production-v3/FINAL-REVIEW/leonsal-complete-character-library.png']
       ];
-      familyEvidence.innerHTML = `<p><b>Family evidence:</b> Open the generated review sheets. These remain QA evidence, not gameplay assets.</p><div>${sheets.map(([family, label, href]) => `<a href="${href}"><strong>${family}</strong><span>${label}</span></a>`).join('')}</div>`;
+      familyEvidence.innerHTML = `<p><b>Family evidence:</b> Generated review sheets are shown here for visual inspection. These remain QA evidence, not gameplay assets.</p><div>${sheets.map(([family, label, href]) => `<a href="${href}"><img src="${href}" alt="" loading="lazy" decoding="async"><strong>${family}</strong><span>${label}</span></a>`).join('')}</div>`;
     };
     const renderProductionTruth = async () => {
       if (!productionTruth) return;

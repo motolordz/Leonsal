@@ -223,8 +223,9 @@
 }
 .family-evidence a {
   display: grid;
-  gap: 4px;
-  min-height: 76px;
+  grid-template-rows: 150px auto auto;
+  gap: 7px;
+  min-height: 246px;
   align-content: center;
   padding: 12px;
   border-radius: 18px;
@@ -233,6 +234,17 @@
   text-decoration: none;
   border: 1px solid #d1e4ee;
   box-shadow: 0 8px 18px rgba(24, 67, 114, .08);
+}
+.family-evidence a img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 14px;
+  background:
+    linear-gradient(45deg, #e7eef7 25%, transparent 25% 75%, #e7eef7 75%),
+    linear-gradient(45deg, #e7eef7 25%, transparent 25% 75%, #e7eef7 75%) 10px 10px,
+    #f7fbff;
+  background-size: 20px 20px;
 }
 .family-evidence a:focus-visible {
   outline: 4px solid rgba(255, 199, 64, .72);
@@ -558,6 +570,7 @@
   .candidate-library { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .production-batches ol { grid-template-columns: 1fr; }
   .production-truth section { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .family-evidence div { grid-template-columns: 1fr; }
   .review-filter-row button { flex: 1 1 130px; }
   .readiness-grid { grid-template-columns: 1fr; }
   .character-cards { grid-template-columns: 1fr; }

@@ -13,11 +13,11 @@ for (const text of ['productionTruth', 'sourceIntake', 'candidateLibrary', 'prod
   assert(html.includes(text), `Missing review UI hook: ${text}`);
 }
 
-for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'renderGateMatrix', 'Production gates', 'familySummary', 'gateSummary', 'visual blockers', 'family-status-list', 'renderProductionBatches', 'renderFamilyEvidence', 'leon-zaya-five-states.png', 'leonsal-complete-character-library.png', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'vectorAssets', 'missing.length', 'approved art']) {
+for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'renderGateMatrix', 'Production gates', 'familySummary', 'gateSummary', 'visual blockers', 'family-status-list', 'renderProductionBatches', 'renderFamilyEvidence', 'leon-zaya-five-states.png', 'leonsal-complete-character-library.png', 'Generated review sheets are shown here', '<img src="${href}"', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'vectorAssets', 'missing.length', 'approved art']) {
   assert(js.includes(text), `Missing review filter implementation: ${text}`);
 }
 
-for (const text of ['.production-truth', '.source-intake', '.candidate-library', '.production-batches', '.family-evidence', '.gate-matrix', '.review-summary', '.review-filter-row', 'min-height: 46px']) {
+for (const text of ['.production-truth', '.source-intake', '.candidate-library', '.production-batches', '.family-evidence', '.family-evidence a img', '.gate-matrix', '.review-summary', '.review-filter-row', 'min-height: 46px']) {
   assert(css.includes(text), `Missing review dashboard styling: ${text}`);
 }
 
