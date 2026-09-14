@@ -20,7 +20,20 @@
     const format = document.getElementById('artFormat');
     const characterCards = document.getElementById('characterCards');
     const readinessGrid = document.getElementById('readinessGrid');
+    const reviewSummary = document.getElementById('reviewSummary');
+    const reviewFilters = [...document.querySelectorAll('[data-review-filter]')];
+    let reviewFilter = 'all';
     const stateName = state => state[0].toUpperCase() + state.slice(1);
+    const familyFor = item => item.family || (['leon', 'zaya'].includes(item.id) ? 'guide' : 'world');
+    const statesFor = item => ['empty', 'low', 'calm', 'happy', 'excited'].filter((state) => Boolean(item.states[state]));
+    const matchesFilter = item => {
+      const supplied = statesFor(item).length;
+      if (reviewFilter === 'needs-states') return supplied < 5;
+      if (reviewFilter === 'five-state') return supplied === 5;
+      if (reviewFilter === 'guide') return familyFor(item) === 'guide';
+      if (reviewFilter === 'world') return familyFor(item) === 'world';
+      return true;
+    };
     const srcFor = (item, state) => {
       const asset = item.states[state];
       if (!asset) return '';
@@ -33,8 +46,19 @@
     const renderReadiness = () => {
       if (!readinessGrid) return;
       const states = ['empty', 'low', 'calm', 'happy', 'excited'];
-      readinessGrid.replaceChildren(...characters.map((item) => {
-        const supplied = states.filter((state) => Boolean(item.states[state]));
+      const counts = characters.reduce((memo, item) => {
+        const supplied = statesFor(item).length;
+        memo.total += 1;
+        memo.fiveState += supplied === 5 ? 1 : 0;
+        memo.needsStates += supplied < 5 ? 1 : 0;
+        memo.reviewOnly += item.status === 'review-only' ? 1 : 0;
+        return memo;
+      }, { total: 0, fiveState: 0, needsStates: 0, reviewOnly: 0 });
+      if (reviewSummary) {
+        reviewSummary.innerHTML = `<article><strong>${counts.total}</strong><span>review characters</span></article><article><strong>${counts.fiveState}</strong><span>five-state sets</span></article><article><strong>${counts.needsStates}</strong><span>need states</span></article><article><strong>${counts.reviewOnly}</strong><span>review only</span></article>`;
+      }
+      readinessGrid.replaceChildren(...characters.filter(matchesFilter).map((item) => {
+        const supplied = statesFor(item);
         const belowMasterSize = Object.values(item.states).some((asset) => Number(asset.width || 0) < 2048 || Number(asset.height || 0) < 2048);
         const missing = states.filter((state) => !item.states[state]).map(stateName);
         const blockers = [
@@ -46,7 +70,7 @@
         const card = document.createElement('article');
         card.className = 'readiness-card';
         card.dataset.character = item.id;
-        card.innerHTML = `<h3>${item.name}</h3><p>${supplied.length}/5 states supplied</p><div class="readiness-states" aria-label="${item.name} supplied states"></div><strong>${blockers.length ? 'Not production ready' : 'Ready for approval review'}</strong><small>${blockers.join(' · ') || 'All automated readiness blockers cleared.'}</small>`;
+        card.innerHTML = `<h3>${item.name}</h3><p>${supplied.length}/5 states supplied · ${familyFor(item)}</p><div class="readiness-states" aria-label="${item.name} supplied states"></div><strong>${blockers.length ? 'Not production ready' : 'Ready for approval review'}</strong><small>${blockers.join(' · ') || 'All automated readiness blockers cleared.'}</small>`;
         const stateHost = card.querySelector('.readiness-states');
         stateHost.replaceChildren(...states.map((state) => {
           const dot = document.createElement('span');
@@ -57,6 +81,13 @@
         return card;
       }));
     };
+    reviewFilters.forEach((button) => {
+      button.addEventListener('click', () => {
+        reviewFilter = button.dataset.reviewFilter;
+        reviewFilters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        renderReadiness();
+      });
+    });
     const makeCard = item => {
       const card = document.createElement('button');
       card.type = 'button';
