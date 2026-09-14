@@ -33,6 +33,7 @@ const routes = [
   'v2-months-year.html',
   'v2-seasons.html',
   'v2-first-clock.html',
+  'v2-weather-world.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -124,7 +125,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 20);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 21);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -410,6 +411,23 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__firstClockProofState?.());
       assert.equal(state.readout, '1:00', 'First Clock reset did not return to 1:00');
+    }
+    if (route === 'v2-weather-world.html') {
+      assert.equal(await page.locator('.weather-choice').count(), 4, 'Weather World does not expose four weather choices');
+      await page.getByRole('button', { name: 'Next weather' }).click();
+      let state = await page.evaluate(() => window.__weatherWorldProofState?.());
+      assert.equal(state.weather, 'Cloudy', 'Weather World Next did not advance to Cloudy');
+      assert.equal(state.hasTapAlternative, true, 'Weather World missing tap alternative');
+      assert.equal(state.effects, 1, 'Weather World cause/effect registration changed');
+      await page.getByRole('button', { name: 'Choose Rain' }).click();
+      state = await page.evaluate(() => window.__weatherWorldProofState?.());
+      assert.equal(state.weather, 'Rain', 'Weather World tap did not choose Rain');
+      await page.evaluate(() => settings.set({ calmMode: true }));
+      state = await page.evaluate(() => window.__weatherWorldProofState?.());
+      assert(state.particles <= 10, 'Weather World calm mode did not reduce particles');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__weatherWorldProofState?.());
+      assert.equal(state.weather, 'Sunny', 'Weather World reset did not return to Sunny');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather World</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
+      <div class="game-title"><strong>Weather World</strong><span>Choose the sky.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+    <section class="game-scene weather-world" id="world" data-weather="sunny" aria-label="Weather World play area">
+      <canvas id="weatherCanvas" aria-label="Gentle weather particles"></canvas>
+      <div class="weather-sky" aria-hidden="true">
+        <span class="weather-sun"></span>
+        <span class="weather-cloud cloud-a"></span>
+        <span class="weather-cloud cloud-b"></span>
+        <span class="weather-ground"></span>
+      </div>
+      <div class="weather-choices" id="choices"></div>
+      <p class="scene-status" id="status">Sunny sky is bright and warm.</p>
+      <div class="drawer-controls">
+        <button class="scene-button" id="next" type="button">Next weather</button>
+        <button class="scene-button" id="reset" type="button">Reset</button>
+      </div>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const causeEffect = new LeonSalV2.CauseEffectEngine();
+    const cycle = new LeonSalV2.TimeCycleEngine([
+      { id: 'sunny', label: 'Sunny', cue: 'Sunny sky is bright and warm.', particle: 'sparkle' },
+      { id: 'cloudy', label: 'Cloudy', cue: 'Clouds drift across the sky.', particle: 'bubbles' },
+      { id: 'rain', label: 'Rain', cue: 'Rain falls softly on the garden.', particle: 'rain' },
+      { id: 'snow', label: 'Snow', cue: 'Snow floats quietly down.', particle: 'sparkle' }
+    ]);
+    const canvas = document.querySelector('#weatherCanvas');
+    const world = document.querySelector('#world');
+    const choices = document.querySelector('#choices');
+    const status = document.querySelector('#status');
+    const particles = new LeonSalV2.ParticleEngine(canvas, motion, settings);
+
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+
+    function particleCount(weather) {
+      const base = weather === 'rain' ? 30 : weather === 'snow' ? 22 : 14;
+      if (settings.value.calmMode || settings.value.particles === 'few') return Math.min(10, base);
+      if (settings.value.particles === 'many') return Math.min(36, base + 10);
+      return base;
+    }
+
+    function paintParticles(weather) {
+      particles.destroy();
+      particles.items = [];
+      if (!settings.allowsMotion()) return;
+      const current = cycle.sequence.items[cycle.sequence.index];
+      particles.seed(current.particle, particleCount(weather));
+      particles.items.forEach((item) => {
+        if (weather === 'rain') {
+          item.r = 4 + Math.random() * 7;
+          item.vy = 50 + Math.random() * 40;
+          item.vx = -8 + Math.random() * 16;
+          item.life = 0.72 + Math.random() * 0.2;
+        }
+        if (weather === 'snow') {
+          item.r = 5 + Math.random() * 10;
+          item.vy = 10 + Math.random() * 16;
+          item.vx = -8 + Math.random() * 16;
+          item.life = 0.7 + Math.random() * 0.24;
+        }
+      });
+      particles.start(current.particle);
+    }
+
+    function chooseWeather(index) {
+      causeEffect.trigger('choose-weather', { index });
+    }
+
+    causeEffect.connect('choose-weather', ({ index }) => {
+      cycle.set(index);
+      const current = cycle.sequence.items[cycle.sequence.index];
+      world.dataset.weather = current.id;
+      status.textContent = current.cue;
+      document.querySelectorAll('.weather-choice').forEach((button, buttonIndex) => {
+        button.dataset.active = String(buttonIndex === cycle.sequence.index);
+      });
+      paintParticles(current.id);
+      return current.id;
+    });
+
+    function renderChoices() {
+      choices.innerHTML = '';
+      cycle.sequence.items.forEach((weather, index) => {
+        const button = document.createElement('button');
+        button.className = 'weather-choice';
+        button.type = 'button';
+        button.dataset.weather = weather.id;
+        button.textContent = weather.label;
+        button.setAttribute('aria-label', `Choose ${weather.label}`);
+        button.addEventListener('click', () => chooseWeather(index));
+        choices.append(button);
+      });
+    }
+
+    function reset() {
+      chooseWeather(0);
+    }
+
+    document.querySelector('#next').addEventListener('click', () => chooseWeather((cycle.sequence.index + 1) % cycle.sequence.items.length));
+    document.querySelector('#reset').addEventListener('click', reset);
+    settings.on('change', () => chooseWeather(cycle.sequence.index));
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [particles, causeEffect], reset, gameId: 'weather-world-v2' });
+    renderChoices();
+    reset();
+    window.__weatherWorldProofState = () => ({
+      weather: cycle.sequence.items[cycle.sequence.index].label,
+      id: cycle.sequence.items[cycle.sequence.index].id,
+      particles: particles.items.length,
+      hasTapAlternative: true,
+      effects: causeEffect.effects.size,
+      calmMode: settings.value.calmMode,
+      reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()
+    });
+  </script>
+</body>
+</html>

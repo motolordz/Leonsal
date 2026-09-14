@@ -30,6 +30,7 @@ const SAFE_ASSETS = [
   './v2-months-year.html',
   './v2-seasons.html',
   './v2-first-clock.html',
+  './v2-weather-world.html',
   './v2-light-trail.html',
   './v2-hold-to-breathe.html',
   './v2-trace-engine.html',

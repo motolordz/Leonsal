@@ -47,6 +47,7 @@ const playableRoutes = [
   'months-year',
   'seasons',
   'first-clock',
+  'weather-world',
   'light-trail',
   'hold-to-breathe',
   'trace-engine',
@@ -61,7 +62,7 @@ try {
     page.on('response', response => { if(response.status() >= 400) failures.push(`${response.status()} ${response.url()}`); });
     await page.goto(base+'/v2-home.html');
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 20);
+    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 21);
     assert.equal(await page.locator('.need-card').count(), 4);
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
     for (const route of playableRoutes) {
@@ -238,6 +239,13 @@ try {
     assert.equal(await page.evaluate(()=>window.__firstClockProofState().readout),'2:30');
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__firstClockProofState().readout),'1:00');
+    await page.goto(base+'/v2-weather-world.html');
+    await page.getByRole('button',{name:'Next weather',exact:true}).click();
+    assert.equal(await page.evaluate(()=>window.__weatherWorldProofState().weather),'Cloudy');
+    await page.getByRole('button',{name:'Choose Snow',exact:true}).click();
+    assert.equal(await page.evaluate(()=>window.__weatherWorldProofState().weather),'Snow');
+    await page.evaluate(()=>settings.set({calmMode:true}));
+    assert((await page.evaluate(()=>window.__weatherWorldProofState().particles))<=10);
     await page.goto(base+'/v2-light-trail.html');
     await page.locator('#canvas').focus(); await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowDown');
     assert((await page.evaluate(()=>trail.points.length))>1);
