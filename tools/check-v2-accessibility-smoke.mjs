@@ -8,7 +8,9 @@ const root = process.cwd();
 const out = 'qa/v2-accessibility-smoke';
 const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
 const routes = [
+  'index.html',
   'v2-home.html',
+  'v2-character-world.html',
   'v2-energy-battery.html',
   'v2-dash-dock.html',
   'v2-bubble-garden.html',
@@ -150,7 +152,7 @@ async function checkRoute(base, browser, route) {
     const tooSmall = controls.filter((control) => control.width < 44 || control.height < 44);
     assert.equal(tooSmall.length, 0, `${route} has touch targets below 44px: ${JSON.stringify(tooSmall)}`);
 
-    if (route === 'v2-home.html') {
+    if (route === 'index.html' || route === 'v2-home.html') {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true', 'Home settings did not open');
       assert.equal(await page.locator('#hubSettings [data-key]').count(), 13, 'Home settings does not expose shared sensory keys');
@@ -158,6 +160,10 @@ async function checkRoute(base, browser, route) {
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'false', 'Home settings did not close with Escape');
       await page.keyboard.press('Tab');
       assert(await page.evaluate(() => Boolean(document.activeElement?.textContent || document.activeElement?.getAttribute('aria-label'))), 'Home first tab stop has no accessible name');
+      if (route === 'index.html') {
+        assert.equal(await page.getByRole('navigation', { name: 'LeonSal sections' }).getByRole('link', { name: 'Characters', exact: true }).getAttribute('href'), 'v2-character-world.html', 'Landing character nav must open child-facing Character World');
+        assert(await page.getByRole('link', { name: 'Meet the Characters', exact: true }).isVisible(), 'Landing page must expose a child-facing character action');
+      }
     } else if (route === 'v2-offline.html') {
       assert(await page.getByText('This activity needs a connection.').isVisible(), 'Offline fallback heading missing');
       assert(await page.getByRole('link', { name: 'Back home' }).isVisible(), 'Offline fallback missing Back home link');

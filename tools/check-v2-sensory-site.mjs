@@ -8,6 +8,7 @@ const root = process.cwd();
 const out = 'qa/v2-sensory-site-smoke';
 const routes = [
   'v2-home.html',
+  'v2-character-world.html',
   'v2-energy-battery.html',
   'v2-dash-dock.html',
   'v2-bubble-garden.html',
