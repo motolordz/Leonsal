@@ -127,6 +127,10 @@ try {
   assert(result.output.find(item => item.id === 'leon')?.html.includes('guide-accessory-headband'), 'Leon rendered without headband identity');
   assert(result.output.find(item => item.id === 'zaya')?.html.includes('guide-hair-zaya'), 'Zaya rendered without pigtail hair identity');
   assert(result.output.find(item => item.id === 'zaya')?.html.includes('guide-accessory-bows'), 'Zaya rendered without bow identity');
+  assert(result.output.find(item => item.id === 'letter-a')?.html.includes('letter-number-body-alphabet'), 'Alphabet characters rendered without alphabet learning body');
+  assert(result.output.find(item => item.id === 'letter-a')?.html.includes('learning-family-badge-alphabet'), 'Alphabet characters rendered without ABC family marker');
+  assert(result.output.find(item => item.id === 'number-1')?.html.includes('letter-number-body-number'), 'Number characters rendered without number learning body');
+  assert(result.output.find(item => item.id === 'number-1')?.html.includes('learning-family-badge-number'), 'Number characters rendered without 123 family marker');
   for (const id of ['leon', 'zaya', 'letter-a', 'battery-buddy', 'double-decker']) {
     const emptyRender = result.output.find(item => item.id === id && item.state === 'empty');
     assert(emptyRender?.html.includes('<ellipse cx="118" cy="138"'), `${id} empty state must use a sleepy open-mouth expression, not a sad curve`);

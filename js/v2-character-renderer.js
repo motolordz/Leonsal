@@ -164,6 +164,30 @@
       </g>`;
   }
 
+  function learningLimbMarkup(state, family, secondary) {
+    const isNumber = family === 'number';
+    const shoe = isNumber ? '#ff7a59' : '#6e6ef7';
+    const hands = {
+      empty: '<path d="M62 146 q-23 13 -30 35" class="limb"/><path d="M158 146 q24 13 31 35" class="limb"/>',
+      low: '<path d="M62 146 q-25 8 -36 28" class="limb"/><path d="M158 146 q25 8 36 28" class="limb"/>',
+      calm: '<path d="M62 146 q-30 -6 -42 17" class="limb"/><path d="M158 146 q31 -6 42 17" class="limb"/>',
+      happy: '<path d="M62 146 q-35 -15 -45 12" class="limb"/><path d="M158 146 q34 -18 42 -52" class="limb"/>',
+      excited: '<path d="M62 146 q-31 -30 -34 -67" class="limb"/><path d="M158 146 q34 -30 39 -67" class="limb"/>'
+    }[state] || '<path d="M62 146 q-30 -6 -42 17" class="limb"/><path d="M158 146 q31 -6 42 17" class="limb"/>';
+    const feet = state === 'empty'
+      ? `<ellipse cx="74" cy="190" rx="18" ry="8" fill="${shoe}" opacity=".75"/><ellipse cx="146" cy="190" rx="18" ry="8" fill="${shoe}" opacity=".75"/>`
+      : `<path d="M86 169 q-14 17 -30 23" class="limb" style="stroke:${secondary}"/><path d="M134 169 q15 18 32 23" class="limb" style="stroke:${secondary}"/><ellipse cx="57" cy="193" rx="17" ry="8" fill="${shoe}" stroke="#fff" stroke-width="4"/><ellipse cx="166" cy="193" rx="17" ry="8" fill="${shoe}" stroke="#fff" stroke-width="4"/>`;
+    return `<g class="learning-limbs learning-limbs-${state}">${hands}${feet}</g>`;
+  }
+
+  function learningBadgeMarkup(family, accent) {
+    const label = family === 'number' ? '123' : 'ABC';
+    return `<g class="learning-family-badge learning-family-badge-${family}">
+      <rect x="72" y="154" width="76" height="25" rx="12" fill="#fff" opacity=".86"/>
+      <text x="110" y="172" text-anchor="middle" fill="${accent}" font-size="18" font-weight="1000">${label}</text>
+    </g>`;
+  }
+
   function makeGuide(id, state = 'happy', options = {}) {
     const guide = guideModels[id] || guideModels.leon;
     const emotion = emotions[state] || emotions.happy;
@@ -230,8 +254,11 @@
       <g transform="translate(0 ${emotion.lift}) rotate(${emotion.lean} 110 112)" filter="url(#learningGlyphShadow-${record.id}-${state})">
         <ellipse cx="110" cy="187" rx="58" ry="13" fill="#163f6d" opacity=".12"/>
         <circle cx="110" cy="108" r="76" fill="${accent}" opacity="${emotion.glow}"/>
-        <g class="character-body letter-number-body">
-          <text x="110" y="142" text-anchor="middle" class="glyph" style="font-size:${fontSize}px">${glyph}</text>
+        <g class="character-body letter-number-body letter-number-body-${family}">
+          <path d="M43 74 q67 -50 134 0 v78 q-67 42 -134 0z" fill="url(#learningGlyph-${record.id}-${state})" stroke="#173356" stroke-width="6" stroke-linejoin="round" opacity=".96"/>
+          <path d="M60 85 q49 -28 99 0" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".38"/>
+          <text x="110" y="143" text-anchor="middle" class="glyph" style="font-size:${fontSize}px">${glyph}</text>
+          ${learningBadgeMarkup(family, accent)}
           <circle cx="76" cy="121" r="10" class="cheek"/>
           <circle cx="159" cy="121" r="10" class="cheek"/>
         </g>
@@ -239,9 +266,7 @@
           ${eyeMarkup(emotion.eye)}
           ${mouthMarkup(emotion.mouth)}
         </g>
-        ${armsMarkup(emotion.arm).replaceAll('skin-limb', 'limb')}
-        <path d="M86 169 q-11 16 -26 23" class="limb"/>
-        <path d="M134 169 q12 17 28 23" class="limb"/>
+        ${learningLimbMarkup(state, family, secondary)}
         ${state === 'excited' ? '<path d="M35 61 l9 17 19 2 -14 12 4 19 -16 -10 -17 9 5 -19 -14 -13 19 -1z" class="spark"/><path d="M174 47 l6 13 15 2 -11 10 3 15 -13 -8 -13 7 4 -15 -11 -10 15 -1z" class="spark small"/>' : ''}
         ${state === 'empty' ? '<text x="160" y="55" class="sleep-z">z</text><text x="176" y="42" class="sleep-z small">z</text>' : ''}
       </g>`;
