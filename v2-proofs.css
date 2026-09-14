@@ -1243,6 +1243,13 @@ body[data-contrast="strong"] .game-topbar {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 12px;
 }
+.landing-character-status {
+  width: min(100%, 780px);
+  margin: 16px auto 0;
+}
+.landing-character-status.hub-character-status div {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
 .world-map-card {
   min-height: 190px;
   padding: 16px;

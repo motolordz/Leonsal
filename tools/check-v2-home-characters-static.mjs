@@ -12,6 +12,7 @@ const sw = fs.readFileSync('sw.js', 'utf8');
 for (const source of [landing, home]) {
   assert(source.includes('js/v2-character-renderer.js'), 'Shared character renderer script missing from route');
   assert(source.includes('js/v2-home-characters.js'), 'Home character script missing from route');
+  assert(source.includes('id="hubCharacterStatus"'), 'Home route must expose character library status');
   assert(source.includes('data-home-guide="leon"'), 'Leon procedural home guide missing');
   assert(source.includes('data-home-guide="zaya"'), 'Zaya procedural home guide missing');
   assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(source), 'Home route must not reference blocked character art paths');
@@ -43,6 +44,7 @@ assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejecte
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(js), 'Home procedural guide renderer must not reference blocked art paths');
 assert(css.includes('.landing-runner[data-svg-guide="true"]'), 'Home procedural guide CSS missing');
 assert(css.includes('.landing-playground[data-home-play-mode="hoops"]'), 'Landing play scene mode CSS missing');
+assert(css.includes('.landing-character-status'), 'Landing character status styling missing');
 assert(sw.includes("'./js/v2-character-renderer.js'"), 'Offline cache must include shared character renderer script');
 assert(sw.includes("'./js/v2-home-characters.js'"), 'Offline cache must include home procedural character script');
 

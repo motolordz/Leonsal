@@ -8,6 +8,16 @@ const root = process.cwd();
 const out = 'qa/v2-landing-page';
 const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webp': 'image/webp', '.png': 'image/png', '.svg': 'image/svg+xml' };
+const registry = JSON.parse(await fs.readFile('data/character-assets.json', 'utf8'));
+const registryRecords = [];
+for (const group of ['guides', 'alphabet', 'numbers', 'world', 'planets', 'pilot']) {
+  for (const record of registry[group] || []) {
+    if (registryRecords.some(item => item.id === record.id)) continue;
+    registryRecords.push({ ...record, family: record.family === 'numbers' ? 'number' : record.family });
+  }
+}
+const approvedCharacters = registryRecords.filter(record => record.status === 'approved').length;
+const pendingCharacters = registryRecords.length - approvedCharacters;
 
 const server = http.createServer(async (request, response) => {
   const url = new URL(request.url, 'http://127.0.0.1');
@@ -65,9 +75,18 @@ try {
     assert.equal(await page.locator('.literacy-world').getAttribute('href'), 'v2-alphabet-adventure.html', 'Landing literacy card should use V2 Alphabet Adventure');
     assert.equal(await page.getByRole('navigation', { name: 'LeonSal sections' }).getByRole('link', { name: 'Characters', exact: true }).getAttribute('href'), 'v2-character-world.html', 'Landing character nav should open child-facing Character World');
     assert.equal(await page.getByRole('link', { name: 'Meet the Characters', exact: true }).getAttribute('href'), 'v2-character-world.html', 'Landing hero character action should open Character World');
+    const characterStatus = await page.locator('#hubCharacterStatus').innerText();
+    const compactCharacterStatus = characterStatus.replace(/\s+/g, '');
+    assert(characterStatus.includes(`${approvedCharacters} approved art set`), 'Landing character status must keep approved count honest');
+    assert(characterStatus.includes(`${pendingCharacters} safe vector previews`), 'Landing character status must keep pending vector count honest');
+    for (const expected of ['2 Leon & Zaya', '26 A-Z', '10 1-10', '25 World', '10 Planets']) {
+      assert(compactCharacterStatus.includes(expected.replace(/\s+/g, '')), `Landing character status missing ${expected}`);
+    }
     assert.equal(await page.locator('.archive-link').getAttribute('href'), 'sensory-lab.html', 'Legacy lab should be retained only as an archive link');
-    assert(await page.locator('.runner-leon').getByText('Leon', { exact: true }).isVisible(), 'Landing procedural Leon marker should show Leon');
-    assert(await page.locator('.runner-zaya').getByText('Zaya', { exact: true }).isVisible(), 'Landing procedural Zaya marker should show Zaya');
+    assert(await page.locator('.runner-leon .home-guide-svg').isVisible(), 'Landing procedural Leon SVG should render');
+    assert(await page.locator('.runner-zaya .home-guide-svg').isVisible(), 'Landing procedural Zaya SVG should render');
+    assert((await page.locator('.runner-leon').innerText()).includes('LEON'), 'Landing procedural Leon should show uppercase LEON');
+    assert((await page.locator('.runner-zaya').innerText()).includes('ZAYA'), 'Landing procedural Zaya should show uppercase ZAYA');
     assert(await page.locator('[data-approved-character="battery-buddy"]').count(), 'Landing page should include only approved Battery art hook');
     assert.equal(await page.locator('img[src*="assets/characters-v2"][src*="leon"]').count(), 0, 'Landing page must not render pending Leon art');
     assert.equal(await page.locator('img[src*="assets/characters-v2"][src*="zaya"]').count(), 0, 'Landing page must not render pending Zaya art');
