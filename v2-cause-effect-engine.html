@@ -18,6 +18,8 @@
       <div class="cause-house" id="house"><span></span></div>
       <div class="cause-sun" id="sun"></div>
       <div class="cause-garden" id="garden"></div>
+      <div class="ambient-character cause-helper sun-helper" id="sunHelper" aria-hidden="true"></div>
+      <div class="ambient-character cause-helper tree-helper" id="treeHelper" aria-hidden="true"></div>
       <div class="floating-controls cause-controls">
         <button class="scene-button" data-cause="light" type="button">Light</button>
         <button class="scene-button" data-cause="grow" type="button">Grow</button>
@@ -27,10 +29,13 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const engine = new LeonSalV2.CauseEffectEngine();
     const stage = document.querySelector('#stage');
+    const sunHelper = document.querySelector('#sunHelper');
+    const treeHelper = document.querySelector('#treeHelper');
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
     document.querySelector('#settingsToggle').addEventListener('click', () => {
       const panel = document.querySelector('#settings');
@@ -38,15 +43,25 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
-    engine.connect('light', () => stage.dataset.light = 'true');
-    engine.connect('grow', () => stage.dataset.grow = 'true');
-    engine.connect('reset', () => { stage.dataset.light = 'false'; stage.dataset.grow = 'false'; });
+    function renderWorldHelper(host, id, label, state) {
+      const renderer = window.LeonSalCharacterRenderer;
+      host.replaceChildren();
+      if (renderer) host.append(renderer.makeCharacter({ id, displayName: label, family: 'world', registryGroup: 'world' }, state, { decorative: true }));
+    }
+    function renderHelpers() {
+      renderWorldHelper(sunHelper, 'world-sun', 'Sun', stage.dataset.light === 'true' ? 'excited' : 'calm');
+      renderWorldHelper(treeHelper, 'world-tree', 'Tree', stage.dataset.grow === 'true' ? 'happy' : 'low');
+    }
+    engine.connect('light', () => { stage.dataset.light = 'true'; renderHelpers(); });
+    engine.connect('grow', () => { stage.dataset.grow = 'true'; renderHelpers(); });
+    engine.connect('reset', () => { stage.dataset.light = 'false'; stage.dataset.grow = 'false'; renderHelpers(); });
     document.querySelectorAll('[data-cause]').forEach((button) => button.addEventListener('click', () => engine.trigger(button.dataset.cause)));
     window.__causeEffectProofState = () => ({
       light: stage.dataset.light,
       grow: stage.dataset.grow,
       registeredEffects: engine.effects.size,
       deterministicReset: stage.dataset.light === 'false' && stage.dataset.grow === 'false',
+      hasCharacterRenderer: Boolean(sunHelper.querySelector('.procedural-character-svg.character-family-world')) && Boolean(treeHelper.querySelector('.procedural-character-svg.character-family-world')),
       reducedMotion: settings.value.reducedMotion,
       calmMode: settings.value.calmMode
     });

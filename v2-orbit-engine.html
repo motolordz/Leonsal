@@ -18,8 +18,8 @@
       <div class="orbit-star" aria-hidden="true"></div>
       <div class="orbit-ring ring-a" aria-hidden="true"></div>
       <div class="orbit-ring ring-b" aria-hidden="true"></div>
-      <div class="planet planet-a" id="planetA"></div>
-      <div class="planet planet-b" id="planetB"></div>
+      <div class="planet planet-a" id="planetA" aria-hidden="true"></div>
+      <div class="planet planet-b" id="planetB" aria-hidden="true"></div>
       <p class="scene-status orbit-note">A simple learning orbit, not real space size.</p>
       <div class="floating-controls">
         <button class="mode-pill" data-speed="0.35" type="button">Slow</button>
@@ -30,6 +30,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -42,8 +43,15 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function renderPlanet(host, id, label, state) {
+      const renderer = window.LeonSalCharacterRenderer;
+      host.replaceChildren();
+      if (renderer) host.append(renderer.makeCharacter({ id, displayName: label, family: 'planet', registryGroup: 'planets' }, state, { decorative: true }));
+    }
     function setup() {
       orbit.destroy();
+      renderPlanet(document.querySelector('#planetA'), 'planet-earth', 'Earth', 'happy');
+      renderPlanet(document.querySelector('#planetB'), 'planet-moon', 'Moon', 'calm');
       const rect = stage.getBoundingClientRect();
       const cx = rect.width / 2;
       const cy = rect.height / 2;
@@ -61,6 +69,7 @@
       speedScale: orbit.speedScale,
       reducedMotion: settings.value.reducedMotion,
       calmMode: settings.value.calmMode,
+      hasCharacterRenderer: Boolean(document.querySelector('#planetA .procedural-character-svg.character-family-planet')) && Boolean(document.querySelector('#planetB .procedural-character-svg.character-family-planet')),
       educationalScaleNote: Boolean(document.querySelector('.orbit-note')?.textContent.includes('not real space size'))
     });
     window.__orbitProofCleanup = () => {

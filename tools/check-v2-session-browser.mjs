@@ -316,11 +316,14 @@ try {
     await page.getByRole('button',{name:'Settle',exact:true}).click();
     assert.equal(await page.evaluate(()=>scale),1);
     await page.goto(base+'/v2-trace-engine.html');
+    assert.equal(await page.evaluate(()=>window.__traceProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Step',exact:true}).click();
     assert((await page.evaluate(()=>window.__traceProofState().progress))>0);
     await page.goto(base+'/v2-orbit-engine.html');
+    assert.equal(await page.evaluate(()=>window.__orbitProofState().hasCharacterRenderer),true);
     assert.equal(await page.evaluate(()=>window.__orbitProofState().educationalScaleNote),true);
     await page.goto(base+'/v2-cause-effect-engine.html');
+    assert.equal(await page.evaluate(()=>window.__causeEffectProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Light',exact:true}).click();
     await page.getByRole('button',{name:'Grow',exact:true}).click();
     await page.getByRole('button',{name:'Reset',exact:true}).click();
