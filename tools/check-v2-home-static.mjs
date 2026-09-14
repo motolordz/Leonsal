@@ -8,6 +8,8 @@ const approvedLoader = fs.readFileSync('js/approved-character-image.js', 'utf8')
 
 assert(html.includes('aria-label="Quick play choices"'), 'V2 home must expose quick play choices');
 assert(html.includes('aria-label="Show activities"'), 'V2 home must expose activity filtering');
+assert(html.includes('id="hubCharacterStatus"'), 'V2 home must expose character library status');
+assert(html.includes('Leon, Zaya and every friend have five energy states.'), 'V2 home character panel must describe the five-state library');
 for (const route of [
   'v2-calm-rain-window.html',
   'v2-dash-dock.html',
@@ -38,13 +40,14 @@ for (const category of ['calm', 'sensory', 'learning', 'world']) {
 for (const text of ['applyWorldFilter', 'data-world-filter', 'data-world-category', 'card.hidden = !visible']) {
   assert(js.includes(text), `V2 home missing filter behavior: ${text}`);
 }
-for (const text of ['const cardCharacters', 'installCardCharacters', 'renderer.makeCharacter', 'characterDecorated']) {
+for (const text of ['const cardCharacters', 'installCardCharacters', 'renderer.makeCharacter', 'characterDecorated', 'renderCharacterStatus', 'character-assets.json', 'safe vector previews']) {
   assert(js.includes(text), `V2 home missing procedural card character behavior: ${text}`);
 }
 for (const id of ['elephant', 'plane', 'double-decker', 'letter-a', 'number-3', 'world-cloud', 'planet-earth']) {
   assert(js.includes(`id: '${id}'`), `V2 home card character map missing canonical id: ${id}`);
 }
 assert(css.includes('.game-art[data-character-decorated="true"] .procedural-character-svg'), 'V2 home card character styling missing');
+assert(css.includes('.hub-character-status'), 'V2 home character status styling missing');
 assert(rendererLikeVehicle(), 'Shared renderer must classify double-decker as a vehicle');
 assert(rendererLikeCharacters(), 'Shared renderer must classify Battery Buddy and Dinosaur as distinct character bodies');
 assert(rendererLikeWorldSet(), 'Shared renderer must give core world characters distinct procedural bodies');

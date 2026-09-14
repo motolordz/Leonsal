@@ -93,6 +93,7 @@
   const mixerSummary = document.getElementById('mixerSummary');
   const filterButtons = [...document.querySelectorAll('[data-world-filter]')];
   const gameCards = [...document.querySelectorAll('.world-game[data-world-category]')];
+  const characterStatus = document.getElementById('hubCharacterStatus');
   const homePlayScene = document.querySelector('[data-home-play-mode]');
   const homePlayButtons = [...document.querySelectorAll('[data-home-play]')];
   const cardCharacters = {
@@ -144,6 +145,38 @@
     });
   };
   installCardCharacters();
+
+  const normalFamily = record => record.family === 'numbers' ? 'number' : record.family;
+  const characterRecords = registry => {
+    const byId = new Map();
+    for (const group of ['guides', 'alphabet', 'numbers', 'world', 'planets', 'pilot']) {
+      for (const item of registry[group] || []) {
+        if (!byId.has(item.id)) byId.set(item.id, { ...item, family: normalFamily(item) });
+      }
+    }
+    return [...byId.values()];
+  };
+  const renderCharacterStatus = async () => {
+    if (!characterStatus) return;
+    try {
+      const response = await fetch('data/character-assets.json');
+      if (!response.ok) throw new Error('character registry unavailable');
+      const records = characterRecords(await response.json());
+      const approved = records.filter(record => record.status === 'approved').length;
+      const pending = records.length - approved;
+      const familyCounts = [
+        ['guide', 'Leon & Zaya'],
+        ['alphabet', 'A-Z'],
+        ['number', '1-10'],
+        ['world', 'World'],
+        ['planet', 'Planets']
+      ].map(([family, label]) => `<span><strong>${records.filter(record => record.family === family).length}</strong>${label}</span>`).join('');
+      characterStatus.innerHTML = `<div>${familyCounts}</div><small>${approved} approved art set · ${pending} safe vector previews</small>`;
+    } catch {
+      characterStatus.innerHTML = '<small>Character library is available in safe vector mode.</small>';
+    }
+  };
+  renderCharacterStatus();
 
   const applyWorldFilter = (filter) => {
     filterButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.worldFilter === filter)));

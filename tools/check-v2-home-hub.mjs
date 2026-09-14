@@ -20,6 +20,16 @@ const server = http.createServer(async (req, res) => {
 const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
 if (!externalBase) await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const base = externalBase || `http://127.0.0.1:${server.address().port}`;
+const registry = JSON.parse(await fs.readFile('data/character-assets.json', 'utf8'));
+const registryRecords = [];
+for (const group of ['guides', 'alphabet', 'numbers', 'world', 'planets', 'pilot']) {
+  for (const record of registry[group] || []) {
+    if (registryRecords.some(item => item.id === record.id)) continue;
+    registryRecords.push({ ...record, family: record.family === 'numbers' ? 'number' : record.family });
+  }
+}
+const approvedCharacters = registryRecords.filter(record => record.status === 'approved').length;
+const pendingCharacters = registryRecords.length - approvedCharacters;
 const browser = await chromium.launch();
 const out = 'qa/v2-home-hub';
 await fs.mkdir(out, { recursive: true });
@@ -49,6 +59,12 @@ try {
     assert.equal(await page.locator('.need-card').count(), 5);
     assert.equal(await page.locator('.bus-need').getAttribute('href'), 'v2-double-decker-bus.html');
     assert(await page.locator('.bus-need').getByText('I want speed choices', { exact: true }).isVisible());
+    const characterStatus = (await page.locator('#hubCharacterStatus').innerText()).replace(/\s+/g, ' ');
+    assert(characterStatus.includes(`${approvedCharacters} approved art set`), 'Hub character status must keep approved count honest');
+    assert(characterStatus.includes(`${pendingCharacters} safe vector previews`), 'Hub character status must keep pending vector count honest');
+    for (const expected of ['2 Leon & Zaya', '26 A-Z', '10 1-10', '25 World', '10 Planets']) {
+      assert(characterStatus.includes(expected), `Hub character status missing ${expected}`);
+    }
     assert.equal(await page.locator('.hub-game-grid').getAttribute('aria-label'), 'Sensory activity carousel');
     assert.equal(await page.locator('.hub-engine-grid').getAttribute('aria-label'), 'Learning activity carousel');
     assert.equal(await page.locator('.hub-game-grid').getAttribute('tabindex'), '0');
