@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alphabet Adventure</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
+      <div class="game-title"><strong>Alphabet Adventure</strong><span>Choose a letter and let it shine.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+
+    <section class="game-scene alphabet-world" aria-label="Alphabet adventure play area">
+      <div class="letter-stage" aria-live="polite">
+        <div class="big-letter" id="bigLetter">A</div>
+        <p id="letterWord">Apple</p>
+      </div>
+      <div class="alphabet-path" id="letterPath" aria-label="Choose a letter"></div>
+      <p class="scene-status" id="status">A is for Apple.</p>
+      <div class="drawer-controls">
+        <button id="previous" class="scene-button" type="button">Back</button>
+        <button id="next" class="scene-button" type="button">Next</button>
+        <button id="say" class="scene-button" type="button">Sound</button>
+        <button id="reset" class="scene-button" type="button">Reset</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
+  <script>
+    const letters = [
+      ['A', 'Apple'], ['B', 'Ball'], ['C', 'Cloud'], ['D', 'Drum'], ['E', 'Elephant'], ['F', 'Flower'],
+      ['G', 'Garden'], ['H', 'House'], ['I', 'Igloo'], ['J', 'Jam'], ['K', 'Key'], ['L', 'Lamp'],
+      ['M', 'Moon'], ['N', 'Nest'], ['O', 'Ocean'], ['P', 'Plane'], ['Q', 'Quiet'], ['R', 'Rainbow'],
+      ['S', 'Sun'], ['T', 'Tree'], ['U', 'Umbrella'], ['V', 'Van'], ['W', 'Water'], ['X', 'X-ray'],
+      ['Y', 'Yellow'], ['Z', 'Zaya']
+    ].map(([letter, word], index) => ({ letter, word, index }));
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const audio = new LeonSalV2.AudioEngine(settings);
+    const sequence = new LeonSalV2.SequenceEngine(letters);
+    const bigLetter = document.querySelector('#bigLetter');
+    const letterWord = document.querySelector('#letterWord');
+    const status = document.querySelector('#status');
+    const path = document.querySelector('#letterPath');
+    let pulse = 0;
+
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+
+    function renderPath() {
+      path.innerHTML = '';
+      letters.forEach((item) => {
+        const button = document.createElement('button');
+        button.className = 'letter-chip';
+        button.type = 'button';
+        button.textContent = item.letter;
+        button.dataset.index = String(item.index);
+        button.style.setProperty('--hue', String((item.index * 31) % 360));
+        button.addEventListener('click', () => setLetter(item.index));
+        path.append(button);
+      });
+    }
+
+    function setLetter(index) {
+      sequence.index = Math.max(0, Math.min(letters.length - 1, index));
+      pulse = settings.value.calmMode ? 0.32 : 0.8;
+      audio.tone('tap');
+      update();
+    }
+
+    function update() {
+      const item = sequence.current();
+      bigLetter.textContent = item.letter;
+      letterWord.textContent = item.word;
+      status.textContent = `${item.letter} is for ${item.word}.`;
+      document.querySelectorAll('.letter-chip').forEach((button) => {
+        button.setAttribute('aria-pressed', String(Number(button.dataset.index) === sequence.index));
+      });
+    }
+
+    function animate(dt) {
+      if (!settings.allowsMotion()) {
+        bigLetter.style.transform = 'none';
+        return;
+      }
+      pulse = Math.max(0, pulse - dt * settings.speedFactor());
+      const lift = Math.sin(pulse * Math.PI * 3) * 8 * pulse;
+      bigLetter.style.transform = `translateY(${-lift}px) scale(${1 + pulse * 0.035})`;
+    }
+
+    document.querySelector('#previous').addEventListener('click', () => { sequence.previous(); pulse = .45; update(); });
+    document.querySelector('#next').addEventListener('click', () => { sequence.next(); pulse = .45; update(); });
+    document.querySelector('#say').addEventListener('click', () => audio.tone('tap'));
+    document.querySelector('#reset').addEventListener('click', () => { sequence.reset(); pulse = 0; update(); });
+    const removeTick = motion.add(animate);
+    renderPath();
+    update();
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], resources: [{ destroy: removeTick }], reset: () => { sequence.reset(); update(); }, gameId: 'alphabet-adventure-v2' });
+    window.__alphabetAdventureProofState = () => ({ letter: sequence.current().letter, word: sequence.current().word, index: sequence.index, motion: settings.allowsMotion(), calmMode: settings.value.calmMode });
+  </script>
+</body>
+</html>

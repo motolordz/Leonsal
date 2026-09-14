@@ -17,6 +17,7 @@ const routes = [
   'v2-star-shower.html',
   'v2-growing-garden.html',
   'v2-number-merge.html',
+  'v2-alphabet-adventure.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -108,7 +109,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 4);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 5);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -201,6 +202,18 @@ async function main() {
       await page.getByRole('button', { name: 'Clear' }).click();
       const cleared = await page.evaluate(() => window.__numberMergeProofState?.());
       assert.equal(cleared.result, null, 'Number Merge clear did not reset result');
+    }
+    if (route === 'v2-alphabet-adventure.html') {
+      assert.equal(await page.locator('.letter-chip').count(), 26, 'Alphabet Adventure does not expose A-Z');
+      await page.getByRole('button', { name: 'Next' }).click();
+      let state = await page.evaluate(() => window.__alphabetAdventureProofState?.());
+      assert.equal(state.letter, 'B', 'Alphabet Adventure Next did not advance to B');
+      await page.locator('.letter-chip').last().click();
+      state = await page.evaluate(() => window.__alphabetAdventureProofState?.());
+      assert.equal(state.letter, 'Z', 'Alphabet Adventure direct letter selection failed');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__alphabetAdventureProofState?.());
+      assert.equal(state.letter, 'A', 'Alphabet Adventure reset did not return to A');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

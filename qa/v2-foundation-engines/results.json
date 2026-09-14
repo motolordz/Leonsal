@@ -30,8 +30,8 @@
       "history": 2
     },
     "performanceSummary": {
-      "averageFps": 59.88023952095792,
-      "worstFps": 59.88023952095792,
+      "averageFps": 59.880239520958334,
+      "worstFps": 59.880239520958334,
       "sampleCount": 1,
       "longTaskCount": 0
     }

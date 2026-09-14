@@ -54,6 +54,7 @@
 - [x] Add `Star Shower` as a no-pressure V2 sensory proof, using Canvas stars, shared settings, shared session controls, reduced-motion and calm-mode support.
 - [x] Add `Growing Garden` as a no-pressure V2 sensory proof, using Canvas watering/growth, shared settings, shared session controls, reduced-motion and calm-mode support.
 - [x] Add `Number Merge` as a no-pressure V2 early-learning proof, using shared settings, shared session controls, tap/select alternatives and bounded reward motion.
+- [x] Add `Alphabet Adventure` as a no-pressure V2 early-learning proof, using shared settings, shared session controls, A-Z sequence navigation and optional sound.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 
@@ -104,7 +105,7 @@ Status below is the existing registry status, not an assertion of release comple
 | 9 | Star Shower | proof | v2-star-shower.html |
 | 10 | Growing Garden | proof | v2-growing-garden.html |
 | 11 | Number Merge | proof | v2-number-merge.html |
-| 12 | Alphabet Adventure | legacy-existing | alphabet-adventure.html |
+| 12 | Alphabet Adventure | proof | v2-alphabet-adventure.html |
 | 13 | Shape Builder | legacy-existing | shape-builder.html |
 | 14 | Letter Tracing | specified | Not implemented |
 | 15 | Number Tracing | specified | Not implemented |

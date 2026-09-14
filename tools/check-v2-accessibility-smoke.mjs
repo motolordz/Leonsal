@@ -17,6 +17,7 @@ const routes = [
   'v2-star-shower.html',
   'v2-growing-garden.html',
   'v2-number-merge.html',
+  'v2-alphabet-adventure.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',

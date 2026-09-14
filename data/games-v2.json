@@ -283,9 +283,9 @@
       "reducedMotion": "instant feedback",
       "finalCharacterArtRequired": false,
       "canShipWithProceduralGraphics": true,
-      "status": "legacy-existing",
+      "status": "proof",
       "liveV2Game": false,
-      "route": "alphabet-adventure.html"
+      "route": "v2-alphabet-adventure.html"
     },
     {
       "order": 13,

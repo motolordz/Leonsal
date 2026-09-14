@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 40,
+      "controls": 41,
       "canvases": []
     },
     {
@@ -124,6 +124,12 @@
       "route": "v2-number-merge.html",
       "passed": true,
       "controls": 13,
+      "canvases": []
+    },
+    {
+      "route": "v2-alphabet-adventure.html",
+      "passed": true,
+      "controls": 35,
       "canvases": []
     },
     {
