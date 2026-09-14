@@ -93,6 +93,8 @@
   const mixerSummary = document.getElementById('mixerSummary');
   const filterButtons = [...document.querySelectorAll('[data-world-filter]')];
   const gameCards = [...document.querySelectorAll('.world-game[data-world-category]')];
+  const homePlayScene = document.querySelector('.hub-art[data-home-play-mode]');
+  const homePlayButtons = [...document.querySelectorAll('[data-home-play]')];
   const cardCharacters = {
     'bubble-card': { id: 'world-cloud', family: 'world', state: 'happy', displayName: 'Cloud' },
     'firefly-card': { id: 'world-moon', family: 'world', state: 'happy', displayName: 'Moon' },
@@ -154,6 +156,20 @@
 
   filterButtons.forEach((button) => {
     button.addEventListener('click', () => applyWorldFilter(button.dataset.worldFilter));
+  });
+
+  const setHomePlayMode = (mode) => {
+    if (!homePlayScene) return;
+    homePlayScene.dataset.homePlayMode = mode;
+    homePlayButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.homePlay === mode)));
+  };
+  homePlayButtons.forEach(button => {
+    button.addEventListener('click', () => setHomePlayMode(button.dataset.homePlay));
+  });
+  window.__v2HomeProofState = () => ({
+    playMode: homePlayScene?.dataset.homePlayMode || null,
+    guideCount: document.querySelectorAll('.landing-runner[data-svg-guide="true"] .home-guide-svg').length,
+    decoratedCards: document.querySelectorAll('.world-game .game-art[data-character-decorated="true"] .procedural-character-svg').length
   });
 
   const renderProgress = () => {

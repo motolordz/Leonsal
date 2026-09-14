@@ -715,6 +715,36 @@ body[data-contrast="strong"] .game-topbar {
 .hub-art .landing-ball {
   animation: landingBall 6.5s ease-in-out infinite;
 }
+.home-play-modes {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  max-width: min(94%, 430px);
+  padding: 7px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.74);
+  box-shadow: 0 14px 28px rgba(31, 78, 130, .12);
+  backdrop-filter: blur(12px);
+}
+.home-play-modes button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 13px;
+  color: #173356;
+  background: transparent;
+  font-weight: 1000;
+  cursor: pointer;
+}
+.home-play-modes button[aria-pressed="true"] {
+  color: #fff;
+  background: linear-gradient(135deg, #2f91e8, #8269df);
+  box-shadow: 0 8px 14px rgba(47, 145, 232, .22);
+}
 .hub-cloud {
   position: absolute;
   z-index: 1;
@@ -763,6 +793,39 @@ body[data-contrast="strong"] .game-topbar {
   transform: translateX(-50%);
   background: radial-gradient(ellipse, rgba(19,35,67,.13), transparent 68%);
 }
+.hub-hoop {
+  position: absolute;
+  right: 8%;
+  bottom: 35%;
+  z-index: 2;
+  width: 78px;
+  height: 92px;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.hub-hoop::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 0;
+  height: 46px;
+  border: 7px solid #ef6f66;
+  border-bottom-color: rgba(239,111,102,.42);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 72%, rgba(255,255,255,.68), transparent 44%);
+}
+.hub-hoop::after {
+  content: "";
+  position: absolute;
+  left: 37px;
+  bottom: 0;
+  width: 8px;
+  height: 66px;
+  border-radius: 999px;
+  background: #173356;
+  box-shadow: 0 16px 18px rgba(19,35,67,.13);
+}
 .hub-hopscotch {
   position: absolute;
   right: 10%;
@@ -785,6 +848,29 @@ body[data-contrast="strong"] .game-topbar {
   box-shadow: inset 0 -4px 0 rgba(19,35,67,.08);
 }
 .hub-hopscotch i:first-child { grid-column: 1 / -1; width: 32px; justify-self: center; }
+
+.hub-art[data-home-play-mode="football"] .hub-sports-goal { opacity: 1; }
+.hub-art[data-home-play-mode="football"] .hub-hoop { opacity: 0; }
+.hub-art[data-home-play-mode="football"] .hub-hopscotch { opacity: .45; }
+.hub-art[data-home-play-mode="hoops"] .hub-sports-goal { opacity: .18; }
+.hub-art[data-home-play-mode="hoops"] .hub-hoop { opacity: 1; transform: translateY(0); }
+.hub-art[data-home-play-mode="hoops"] .landing-ball { animation-name: landingHoopsBall; }
+.hub-art[data-home-play-mode="hoops"] .runner-leon { animation-name: landingHoopsLeon; }
+.hub-art[data-home-play-mode="hoops"] .runner-zaya { animation-name: landingHoopsZaya; }
+.hub-art[data-home-play-mode="hopscotch"] .hub-sports-goal,
+.hub-art[data-home-play-mode="hopscotch"] .hub-hoop { opacity: .14; }
+.hub-art[data-home-play-mode="hopscotch"] .hub-hopscotch { opacity: 1; transform: rotate(-8deg) scale(1.18); }
+.hub-art[data-home-play-mode="hopscotch"] .landing-ball { opacity: .34; animation-name: landingFloat; }
+.hub-art[data-home-play-mode="hopscotch"] .runner-leon { animation-name: landingHopscotchLeon; }
+.hub-art[data-home-play-mode="hopscotch"] .runner-zaya { animation-name: landingHopscotchZaya; }
+.hub-art[data-home-play-mode="calm"] .hub-sports-goal,
+.hub-art[data-home-play-mode="calm"] .hub-hoop { opacity: .12; }
+.hub-art[data-home-play-mode="calm"] .hub-hopscotch,
+.hub-art[data-home-play-mode="calm"] .landing-ball { opacity: .28; }
+.hub-art[data-home-play-mode="calm"] .runner-leon,
+.hub-art[data-home-play-mode="calm"] .runner-zaya {
+  animation-duration: 12s;
+}
 
 .hub-battery {
   position: absolute;
@@ -1423,6 +1509,37 @@ body[data-calm="true"] .hub-art {
   70% { transform: translate3d(46%, 0, 0) rotate(330deg); }
 }
 
+@keyframes landingHoopsBall {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  42% { transform: translate3d(108%, -94px, 0) rotate(220deg) scale(.92); }
+  62% { transform: translate3d(135%, -58px, 0) rotate(330deg) scale(.98); }
+  82% { transform: translate3d(68%, 0, 0) rotate(430deg) scale(1); }
+}
+
+@keyframes landingHoopsLeon {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-2deg) scaleY(.99); }
+  42% { transform: translate3d(37%, -10px, 0) rotate(2deg) scaleY(1.02); }
+  68% { transform: translate3d(23%, -2px, 0) rotate(-1deg) scaleY(.99); }
+}
+
+@keyframes landingHoopsZaya {
+  0%, 100% { transform: translate3d(0, -4px, 0) rotate(2deg) scaleY(1.01); }
+  42% { transform: translate3d(-31%, -16px, 0) rotate(-3deg) scaleY(1.03); }
+  68% { transform: translate3d(-16%, 0, 0) rotate(1deg) scaleY(.99); }
+}
+
+@keyframes landingHopscotchLeon {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-1deg) scaleY(1); }
+  33% { transform: translate3d(42%, -28px, 0) rotate(3deg) scaleY(1.03); }
+  66% { transform: translate3d(68%, 0, 0) rotate(-2deg) scaleY(.98); }
+}
+
+@keyframes landingHopscotchZaya {
+  0%, 100% { transform: translate3d(0, -4px, 0) rotate(2deg) scaleY(1.01); }
+  33% { transform: translate3d(-22%, -16px, 0) rotate(-2deg) scaleY(1.02); }
+  66% { transform: translate3d(-52%, -30px, 0) rotate(3deg) scaleY(1.03); }
+}
+
 @keyframes hub-cloud-drift {
   0%, 100% { transform: translate3d(0, 0, 0) scale(var(--cloud-scale, 1)); }
   50% { transform: translate3d(18px, -6px, 0) scale(var(--cloud-scale, 1)); }
@@ -1440,7 +1557,8 @@ body[data-calm="true"] .hub-art {
   .runner-leon,
   .runner-zaya,
   .landing-ball,
-  .landing-bubble {
+  .landing-bubble,
+  .hub-hoop {
     animation: none;
   }
 }

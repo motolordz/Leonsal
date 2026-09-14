@@ -70,6 +70,14 @@ try {
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
     assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 24);
     assert((await page.locator('.world-game .game-art[data-character-decorated="true"] .procedural-character-svg').count()) >= 30, 'V2 home activity cards must render procedural character art');
+    assert.equal(await page.locator('.landing-runner[data-svg-guide="true"] .home-guide-svg').count(), 2);
+    assert.equal(await page.locator('[data-home-play]').count(), 4);
+    await page.locator('[data-home-play="hoops"]').click();
+    assert.equal(await page.locator('.hub-art').getAttribute('data-home-play-mode'), 'hoops');
+    await page.locator('[data-home-play="hopscotch"]').click();
+    assert.equal(await page.locator('.hub-art').getAttribute('data-home-play-mode'), 'hopscotch');
+    await page.locator('[data-home-play="calm"]').click();
+    assert.equal(await page.evaluate(() => window.__v2HomeProofState().playMode), 'calm');
     assert.equal(await page.locator('.need-card').count(), 5);
     assert.equal(await page.locator('.bus-need').getAttribute('href'), 'v2-double-decker-bus.html');
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
