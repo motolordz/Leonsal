@@ -147,7 +147,7 @@
       "canShipWithProceduralGraphics": true,
       "status": "proof",
       "liveV2Game": false,
-      "route": "v2-calm-rain-window.html"
+      "route": "v2-firefly-catch.html"
     },
     {
       "order": 7,
@@ -170,7 +170,7 @@
       "canShipWithProceduralGraphics": true,
       "status": "proof",
       "liveV2Game": false,
-      "route": "v2-firefly-catch.html"
+      "route": "v2-calm-rain-window.html"
     },
     {
       "order": 8,
