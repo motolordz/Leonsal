@@ -32,12 +32,19 @@ for (const text of [
   'destination.textContent = busDestinations[selectedBus]',
   'routeMark.textContent = busRouteMarks[selectedBus]',
   'destination: destination?.textContent',
-  'routeMark: routeMark?.textContent'
+  'routeMark: routeMark?.textContent',
+  'id="busJourneyProgress"',
+  'role="progressbar"',
+  'aria-valuenow',
+  'journeyProgress?.setAttribute',
+  'progressValue: journeyProgress?.getAttribute',
+  'data-stop="start"',
+  'data-stop="finish"'
 ]) {
   assert(html.includes(text), `Double-decker bus missing interaction/sensory contract: ${text}`);
 }
 
-for (const selector of ['.bus-choice-row', '.bus-speed-row', '.double-bus', '.bus-landmark', '.bus-city', '.bus-lights', '.speed-ribbon', '.bus-destination', '.bus-route-mark', '.bus-side-stripe', '.bus-motion-lines']) {
+for (const selector of ['.bus-choice-row', '.bus-speed-row', '.double-bus', '.bus-landmark', '.bus-city', '.bus-lights', '.speed-ribbon', '.bus-journey-progress', '.bus-destination', '.bus-route-mark', '.bus-side-stripe', '.bus-motion-lines']) {
   assert(css.includes(selector), `Double-decker bus missing visual CSS: ${selector}`);
 }
 for (const selector of ['.bus-world[data-bus="uk"] .double-bus', '.bus-world[data-bus="hong-kong"] .bus-side-stripe', '.bus-world[data-bus="night"] .bus-route-mark']) {

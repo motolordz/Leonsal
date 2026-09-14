@@ -2624,6 +2624,67 @@ body[data-motion="off"] .transport-choice { transition: none; }
 .speed-ribbon i:nth-child(4) { left: 71%; }
 .speed-ribbon i:nth-child(5) { left: 92%; }
 .speed-ribbon i[data-active="true"] { transform: translate(-50%,-50%) scale(1.35); background: #facc15; }
+.bus-journey-progress {
+  --journey-progress: 0%;
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  z-index: 7;
+  width: min(78vw, 500px);
+  min-height: 44px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: 4px;
+  padding-top: 18px;
+  transform: translateX(-50%);
+  color: #173356;
+  font-size: .68rem;
+  font-weight: 1000;
+  pointer-events: none;
+}
+.bus-journey-progress::before,
+.bus-journey-progress::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  height: 10px;
+  border-radius: 999px;
+}
+.bus-journey-progress::before {
+  right: 0;
+  background: rgba(255,255,255,.74);
+  box-shadow: inset 0 -4px 0 rgba(19,35,67,.08);
+}
+.bus-journey-progress::after {
+  width: var(--journey-progress);
+  background: linear-gradient(90deg, #38bdf8, #facc15, #22c55e);
+  box-shadow: 0 6px 14px rgba(19,35,67,.12);
+}
+.bus-journey-progress i {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  font-style: normal;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255,255,255,.85);
+}
+.bus-journey-progress i::before {
+  content: "";
+  width: 14px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #bfdbfe;
+  box-shadow: 0 6px 12px rgba(19,35,67,.12);
+}
+.bus-journey-progress i[data-active="true"]::before {
+  border-color: #facc15;
+  background: #fff7c2;
+  transform: scale(1.16);
+}
 .double-bus { --progress: 0%; position: absolute; left: calc(13% + (var(--progress) * .72)); bottom: 27%; z-index: 5; width: min(42vw, 250px); height: min(26vw, 155px); max-height: 170px; border-radius: 24px 28px 18px 18px; transform: translateX(-50%); background: linear-gradient(180deg, #ef4444 0 49%, #dc2626 50% 100%); box-shadow: inset 0 -14px 0 rgba(19,35,67,.13), 0 24px 38px rgba(19,35,67,.2); transition: background .22s ease, box-shadow .22s ease; pointer-events: auto; cursor: pointer; touch-action: manipulation; }
 .double-bus::before { content: ""; position: absolute; left: 10%; right: 10%; top: 11%; height: 58%; border-radius: 12px; background: repeating-linear-gradient(90deg, #dbeafe 0 13%, transparent 13% 17%); box-shadow: inset 0 -8px 0 rgba(19,35,67,.08); }
 .double-bus:focus-visible { outline: 5px solid rgba(250,204,21,.72); outline-offset: 8px; }

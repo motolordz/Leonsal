@@ -47,6 +47,8 @@ async function main() {
     assert.equal(await page.locator('.bus-landmark').count(), 2, 'Expected two visible journey landmarks');
     assert.equal(await page.locator('.bus-city').count(), 2, 'Expected skyline depth elements');
     assert.equal(await page.locator('.bus-lights').count(), 1, 'Expected arrival light effect');
+    assert.equal(await page.locator('#busJourneyProgress[role="progressbar"]').count(), 1, 'Expected accessible journey progressbar');
+    assert.equal(await page.locator('#busJourneyProgress [data-stop]').count(), 4, 'Expected four journey stop anchors');
     const geometry = await page.evaluate(() => {
       const targets = ['.game-scene', '.bus-choice-row', '.bus-speed-row', '.drawer-controls', '.session-controls'];
       return targets.map((selector) => {
@@ -80,23 +82,30 @@ async function main() {
     });
     state = await page.evaluate(() => window.__doubleDeckerBusProofState());
     assert.equal(state.milestone, 'park', 'Park landmark should activate around one-third progress');
+    assert.equal(state.progressValue, '36', 'Progressbar should expose park progress value');
+    assert.equal(await page.locator('#busJourneyProgress [data-stop="park"]').getAttribute('data-active'), 'true', 'Park stop anchor should activate');
     await page.evaluate(() => setProgress(62));
     state = await page.evaluate(() => window.__doubleDeckerBusProofState());
     assert.equal(state.milestone, 'library', 'Library landmark should activate after mid-route progress');
+    assert.equal(state.progressValue, '62', 'Progressbar should expose library progress value');
+    assert.equal(await page.locator('#busJourneyProgress [data-stop="library"]').getAttribute('data-active'), 'true', 'Library stop anchor should activate');
     await page.evaluate(() => settings.set({ reducedMotion: true }));
     await page.getByRole('button', { name: 'Go', exact: true }).click();
     state = await page.evaluate(() => window.__doubleDeckerBusProofState());
     assert.equal(state.progress, 100, 'Reduced motion should complete without continuous travel');
     assert.equal(state.milestone, 'finish', 'Finish milestone should activate on arrival');
+    assert.equal(state.progressValue, '100', 'Progressbar should expose finish progress value');
     await page.getByRole('button', { name: 'Reset', exact: true }).click();
     state = await page.evaluate(() => window.__doubleDeckerBusProofState());
     assert.equal(state.bus, 'uk');
     assert.equal(state.speed, 'medium');
     assert.equal(state.progress, 0);
+    assert.equal(state.progressValue, '0');
+    assert.equal(await page.locator('#busJourneyProgress [data-stop="start"]').getAttribute('data-active'), 'true', 'Start stop anchor should reactivate after reset');
     assert.equal(state.destination, 'Park');
     assert.equal(state.routeMark, 'UK');
     await page.screenshot({ path: `${out}/double-decker-bus-390.png`, fullPage: true });
-    await fs.writeFile(`${out}/results.json`, JSON.stringify({ passed: true, viewport: { width: 390, height: 844 }, geometry, checks: ['three bus types', 'five speed modes', 'journey landmarks', 'park milestone', 'library milestone', 'finish milestone', 'skyline depth', 'arrival lights', 'calm speed cap', 'reduced-motion static completion', 'reset restores defaults', 'no horizontal overflow'], consoleErrors: failures }, null, 2) + '\n');
+    await fs.writeFile(`${out}/results.json`, JSON.stringify({ passed: true, viewport: { width: 390, height: 844 }, geometry, checks: ['three bus types', 'five speed modes', 'accessible journey progressbar', 'journey stop anchors', 'park milestone', 'library milestone', 'finish milestone', 'skyline depth', 'arrival lights', 'calm speed cap', 'reduced-motion static completion', 'reset restores defaults', 'no horizontal overflow'], consoleErrors: failures }, null, 2) + '\n');
     assert.equal(failures.length, 0, `Console errors: ${failures.join('; ')}`);
     console.log('V2 double-decker bus checks passed.');
   } finally {

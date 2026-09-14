@@ -30,6 +30,9 @@
         <span class="speed-ribbon" id="speedRibbon">
           <i data-speed-dot="super-slow"></i><i data-speed-dot="slow"></i><i data-speed-dot="medium"></i><i data-speed-dot="fast"></i><i data-speed-dot="super-speed"></i>
         </span>
+        <span class="bus-journey-progress" id="busJourneyProgress" role="progressbar" aria-label="Bus journey progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <i data-stop="start">Start</i><i data-stop="park">Park</i><i data-stop="library">Library</i><i data-stop="finish">Home</i>
+        </span>
         <span class="double-bus" id="bus" role="button" tabindex="0" aria-label="Start the selected bus journey">
           <span class="bus-destination" id="busDestination">Park</span>
           <span class="bus-route-mark" id="busRouteMark">UK</span>
@@ -73,6 +76,7 @@
     const bus = document.querySelector('#bus');
     const destination = document.querySelector('#busDestination');
     const routeMark = document.querySelector('#busRouteMark');
+    const journeyProgress = document.querySelector('#busJourneyProgress');
     const status = document.querySelector('#status');
     const speedFactors = {
       'super-slow': 10,
@@ -157,6 +161,8 @@
     function setProgress(value) {
       progress = Math.max(0, Math.min(100, value));
       bus.style.setProperty('--progress', `${progress}%`);
+      journeyProgress?.style.setProperty('--journey-progress', `${progress}%`);
+      journeyProgress?.setAttribute('aria-valuenow', String(Math.round(progress)));
       bus.dataset.moving = String(running && settings.allowsMotion());
       world.dataset.arrived = String(progress >= 100);
       updateJourneyMilestone();
@@ -172,6 +178,9 @@
       world.dataset.milestone = next;
       document.querySelectorAll('.bus-landmark').forEach((item) => {
         item.dataset.active = String(item.dataset.landmark === next);
+      });
+      document.querySelectorAll('[data-stop]').forEach((item) => {
+        item.dataset.active = String(item.dataset.stop === next);
       });
       if (!running || next === 'finish') return;
       const label = next === 'park' ? 'passing the park' : next === 'library' ? 'passing the library' : 'starting softly';
@@ -219,6 +228,7 @@
       lastMilestone = 'resetting';
       world.dataset.milestone = 'start';
       document.querySelectorAll('.bus-landmark').forEach((item) => { item.dataset.active = 'false'; });
+      document.querySelectorAll('[data-stop]').forEach((item) => { item.dataset.active = String(item.dataset.stop === 'start'); });
       setProgress(0);
       status.textContent = 'Choose a bus pace. Stop anytime.';
     }
@@ -262,6 +272,7 @@
       hasTapAlternative: true,
       destination: destination?.textContent || '',
       routeMark: routeMark?.textContent || '',
+      progressValue: journeyProgress?.getAttribute('aria-valuenow') || '',
       calmMode: settings.value.calmMode,
       reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()
     });
