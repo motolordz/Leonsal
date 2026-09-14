@@ -1,0 +1,2582 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "qa/character-production-v3/READINESS/character-readiness-report.json",
+  "runtimeRule": "Only records with status approved may resolve state paths into runtime image sources. Approved paths must be individual production derivatives from matching transparent masters and must not point into source-safe-keeping, review-only, QA, contact-sheet, or rejected folders.",
+  "approvedRuntimeStateAssets": 5,
+  "pendingCharacters": 68,
+  "pendingStateAssets": 340,
+  "priorities": {
+    "P0": 2,
+    "P1": 56,
+    "P2": 10
+  },
+  "families": {
+    "guide": 2,
+    "world": 20,
+    "alphabet": 26,
+    "number": 10,
+    "planet": 10
+  },
+  "queue": [
+    {
+      "id": "leon",
+      "displayName": "Leon",
+      "family": "guide",
+      "priority": "P0",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "supplied source intake has 4/5 states",
+        "supplied source is below 2048 px production master requirement",
+        "Leon empty generation attempts failed real-alpha gate",
+        "guide art workflow has style-direction evidence but built-in generation failed transparent 2048px masters",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Build or source a real Leon EMPTY production state first, then rebuild all five guide states to one canonical model with visible LEON text.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/leon/empty/master.png",
+        "assets/characters-v2/leon/empty/web.webp",
+        "assets/characters-v2/leon/low/master.png",
+        "assets/characters-v2/leon/low/web.webp",
+        "assets/characters-v2/leon/calm/master.png",
+        "assets/characters-v2/leon/calm/web.webp",
+        "assets/characters-v2/leon/happy/master.png",
+        "assets/characters-v2/leon/happy/web.webp",
+        "assets/characters-v2/leon/excited/master.png",
+        "assets/characters-v2/leon/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/leon/five-states.png",
+        "qa/character-production-v3/leon/identity-consistency.png",
+        "qa/character-production-v3/leon/mobile-five-states.png",
+        "qa/character-production-v3/leon/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "zaya",
+      "displayName": "Zaya",
+      "family": "guide",
+      "priority": "P0",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "supplied source is below 2048 px production master requirement",
+        "guide art workflow has style-direction evidence but built-in generation failed transparent 2048px masters",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Rebuild Zaya from the supplied five-state reference into 2048px production masters with consistent identity and visible ZAYA text.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/zaya/empty/master.png",
+        "assets/characters-v2/zaya/empty/web.webp",
+        "assets/characters-v2/zaya/low/master.png",
+        "assets/characters-v2/zaya/low/web.webp",
+        "assets/characters-v2/zaya/calm/master.png",
+        "assets/characters-v2/zaya/calm/web.webp",
+        "assets/characters-v2/zaya/happy/master.png",
+        "assets/characters-v2/zaya/happy/web.webp",
+        "assets/characters-v2/zaya/excited/master.png",
+        "assets/characters-v2/zaya/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/zaya/five-states.png",
+        "qa/character-production-v3/zaya/identity-consistency.png",
+        "qa/character-production-v3/zaya/mobile-five-states.png",
+        "qa/character-production-v3/zaya/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-book",
+      "displayName": "Book",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/book/empty/master.png",
+        "assets/characters-v2/book/empty/web.webp",
+        "assets/characters-v2/book/low/master.png",
+        "assets/characters-v2/book/low/web.webp",
+        "assets/characters-v2/book/calm/master.png",
+        "assets/characters-v2/book/calm/web.webp",
+        "assets/characters-v2/book/happy/master.png",
+        "assets/characters-v2/book/happy/web.webp",
+        "assets/characters-v2/book/excited/master.png",
+        "assets/characters-v2/book/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-book/five-states.png",
+        "qa/character-production-v3/world-book/identity-consistency.png",
+        "qa/character-production-v3/world-book/mobile-five-states.png",
+        "qa/character-production-v3/world-book/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-calendar",
+      "displayName": "Calendar",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/calendar/empty/master.png",
+        "assets/characters-v2/calendar/empty/web.webp",
+        "assets/characters-v2/calendar/low/master.png",
+        "assets/characters-v2/calendar/low/web.webp",
+        "assets/characters-v2/calendar/calm/master.png",
+        "assets/characters-v2/calendar/calm/web.webp",
+        "assets/characters-v2/calendar/happy/master.png",
+        "assets/characters-v2/calendar/happy/web.webp",
+        "assets/characters-v2/calendar/excited/master.png",
+        "assets/characters-v2/calendar/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-calendar/five-states.png",
+        "qa/character-production-v3/world-calendar/identity-consistency.png",
+        "qa/character-production-v3/world-calendar/mobile-five-states.png",
+        "qa/character-production-v3/world-calendar/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-clock",
+      "displayName": "Clock",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/clock/empty/master.png",
+        "assets/characters-v2/clock/empty/web.webp",
+        "assets/characters-v2/clock/low/master.png",
+        "assets/characters-v2/clock/low/web.webp",
+        "assets/characters-v2/clock/calm/master.png",
+        "assets/characters-v2/clock/calm/web.webp",
+        "assets/characters-v2/clock/happy/master.png",
+        "assets/characters-v2/clock/happy/web.webp",
+        "assets/characters-v2/clock/excited/master.png",
+        "assets/characters-v2/clock/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-clock/five-states.png",
+        "qa/character-production-v3/world-clock/identity-consistency.png",
+        "qa/character-production-v3/world-clock/mobile-five-states.png",
+        "qa/character-production-v3/world-clock/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-cloud",
+      "displayName": "Cloud",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/cloud/empty/master.png",
+        "assets/characters-v2/cloud/empty/web.webp",
+        "assets/characters-v2/cloud/low/master.png",
+        "assets/characters-v2/cloud/low/web.webp",
+        "assets/characters-v2/cloud/calm/master.png",
+        "assets/characters-v2/cloud/calm/web.webp",
+        "assets/characters-v2/cloud/happy/master.png",
+        "assets/characters-v2/cloud/happy/web.webp",
+        "assets/characters-v2/cloud/excited/master.png",
+        "assets/characters-v2/cloud/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-cloud/five-states.png",
+        "qa/character-production-v3/world-cloud/identity-consistency.png",
+        "qa/character-production-v3/world-cloud/mobile-five-states.png",
+        "qa/character-production-v3/world-cloud/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-dinosaur",
+      "displayName": "Dinosaur",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/dinosaur/empty/master.png",
+        "assets/characters-v2/dinosaur/empty/web.webp",
+        "assets/characters-v2/dinosaur/low/master.png",
+        "assets/characters-v2/dinosaur/low/web.webp",
+        "assets/characters-v2/dinosaur/calm/master.png",
+        "assets/characters-v2/dinosaur/calm/web.webp",
+        "assets/characters-v2/dinosaur/happy/master.png",
+        "assets/characters-v2/dinosaur/happy/web.webp",
+        "assets/characters-v2/dinosaur/excited/master.png",
+        "assets/characters-v2/dinosaur/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-dinosaur/five-states.png",
+        "qa/character-production-v3/world-dinosaur/identity-consistency.png",
+        "qa/character-production-v3/world-dinosaur/mobile-five-states.png",
+        "qa/character-production-v3/world-dinosaur/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-earth",
+      "displayName": "Earth",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/earth/empty/master.png",
+        "assets/characters-v2/earth/empty/web.webp",
+        "assets/characters-v2/earth/low/master.png",
+        "assets/characters-v2/earth/low/web.webp",
+        "assets/characters-v2/earth/calm/master.png",
+        "assets/characters-v2/earth/calm/web.webp",
+        "assets/characters-v2/earth/happy/master.png",
+        "assets/characters-v2/earth/happy/web.webp",
+        "assets/characters-v2/earth/excited/master.png",
+        "assets/characters-v2/earth/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-earth/five-states.png",
+        "qa/character-production-v3/world-earth/identity-consistency.png",
+        "qa/character-production-v3/world-earth/mobile-five-states.png",
+        "qa/character-production-v3/world-earth/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-magnifier",
+      "displayName": "Magnifying Glass",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/magnifier/empty/master.png",
+        "assets/characters-v2/magnifier/empty/web.webp",
+        "assets/characters-v2/magnifier/low/master.png",
+        "assets/characters-v2/magnifier/low/web.webp",
+        "assets/characters-v2/magnifier/calm/master.png",
+        "assets/characters-v2/magnifier/calm/web.webp",
+        "assets/characters-v2/magnifier/happy/master.png",
+        "assets/characters-v2/magnifier/happy/web.webp",
+        "assets/characters-v2/magnifier/excited/master.png",
+        "assets/characters-v2/magnifier/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-magnifier/five-states.png",
+        "qa/character-production-v3/world-magnifier/identity-consistency.png",
+        "qa/character-production-v3/world-magnifier/mobile-five-states.png",
+        "qa/character-production-v3/world-magnifier/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-moon",
+      "displayName": "Moon",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/moon/empty/master.png",
+        "assets/characters-v2/moon/empty/web.webp",
+        "assets/characters-v2/moon/low/master.png",
+        "assets/characters-v2/moon/low/web.webp",
+        "assets/characters-v2/moon/calm/master.png",
+        "assets/characters-v2/moon/calm/web.webp",
+        "assets/characters-v2/moon/happy/master.png",
+        "assets/characters-v2/moon/happy/web.webp",
+        "assets/characters-v2/moon/excited/master.png",
+        "assets/characters-v2/moon/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-moon/five-states.png",
+        "qa/character-production-v3/world-moon/identity-consistency.png",
+        "qa/character-production-v3/world-moon/mobile-five-states.png",
+        "qa/character-production-v3/world-moon/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-music-note",
+      "displayName": "Musical Note",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/music-note/empty/master.png",
+        "assets/characters-v2/music-note/empty/web.webp",
+        "assets/characters-v2/music-note/low/master.png",
+        "assets/characters-v2/music-note/low/web.webp",
+        "assets/characters-v2/music-note/calm/master.png",
+        "assets/characters-v2/music-note/calm/web.webp",
+        "assets/characters-v2/music-note/happy/master.png",
+        "assets/characters-v2/music-note/happy/web.webp",
+        "assets/characters-v2/music-note/excited/master.png",
+        "assets/characters-v2/music-note/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-music-note/five-states.png",
+        "qa/character-production-v3/world-music-note/identity-consistency.png",
+        "qa/character-production-v3/world-music-note/mobile-five-states.png",
+        "qa/character-production-v3/world-music-note/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-paintbrush",
+      "displayName": "Paintbrush",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/paintbrush/empty/master.png",
+        "assets/characters-v2/paintbrush/empty/web.webp",
+        "assets/characters-v2/paintbrush/low/master.png",
+        "assets/characters-v2/paintbrush/low/web.webp",
+        "assets/characters-v2/paintbrush/calm/master.png",
+        "assets/characters-v2/paintbrush/calm/web.webp",
+        "assets/characters-v2/paintbrush/happy/master.png",
+        "assets/characters-v2/paintbrush/happy/web.webp",
+        "assets/characters-v2/paintbrush/excited/master.png",
+        "assets/characters-v2/paintbrush/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-paintbrush/five-states.png",
+        "qa/character-production-v3/world-paintbrush/identity-consistency.png",
+        "qa/character-production-v3/world-paintbrush/mobile-five-states.png",
+        "qa/character-production-v3/world-paintbrush/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-pencil",
+      "displayName": "Pencil",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/pencil/empty/master.png",
+        "assets/characters-v2/pencil/empty/web.webp",
+        "assets/characters-v2/pencil/low/master.png",
+        "assets/characters-v2/pencil/low/web.webp",
+        "assets/characters-v2/pencil/calm/master.png",
+        "assets/characters-v2/pencil/calm/web.webp",
+        "assets/characters-v2/pencil/happy/master.png",
+        "assets/characters-v2/pencil/happy/web.webp",
+        "assets/characters-v2/pencil/excited/master.png",
+        "assets/characters-v2/pencil/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-pencil/five-states.png",
+        "qa/character-production-v3/world-pencil/identity-consistency.png",
+        "qa/character-production-v3/world-pencil/mobile-five-states.png",
+        "qa/character-production-v3/world-pencil/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-puzzle",
+      "displayName": "Puzzle Piece",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/puzzle/empty/master.png",
+        "assets/characters-v2/puzzle/empty/web.webp",
+        "assets/characters-v2/puzzle/low/master.png",
+        "assets/characters-v2/puzzle/low/web.webp",
+        "assets/characters-v2/puzzle/calm/master.png",
+        "assets/characters-v2/puzzle/calm/web.webp",
+        "assets/characters-v2/puzzle/happy/master.png",
+        "assets/characters-v2/puzzle/happy/web.webp",
+        "assets/characters-v2/puzzle/excited/master.png",
+        "assets/characters-v2/puzzle/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-puzzle/five-states.png",
+        "qa/character-production-v3/world-puzzle/identity-consistency.png",
+        "qa/character-production-v3/world-puzzle/mobile-five-states.png",
+        "qa/character-production-v3/world-puzzle/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-rainbow",
+      "displayName": "Rainbow",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/rainbow/empty/master.png",
+        "assets/characters-v2/rainbow/empty/web.webp",
+        "assets/characters-v2/rainbow/low/master.png",
+        "assets/characters-v2/rainbow/low/web.webp",
+        "assets/characters-v2/rainbow/calm/master.png",
+        "assets/characters-v2/rainbow/calm/web.webp",
+        "assets/characters-v2/rainbow/happy/master.png",
+        "assets/characters-v2/rainbow/happy/web.webp",
+        "assets/characters-v2/rainbow/excited/master.png",
+        "assets/characters-v2/rainbow/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-rainbow/five-states.png",
+        "qa/character-production-v3/world-rainbow/identity-consistency.png",
+        "qa/character-production-v3/world-rainbow/mobile-five-states.png",
+        "qa/character-production-v3/world-rainbow/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-robot",
+      "displayName": "Robot",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/robot/empty/master.png",
+        "assets/characters-v2/robot/empty/web.webp",
+        "assets/characters-v2/robot/low/master.png",
+        "assets/characters-v2/robot/low/web.webp",
+        "assets/characters-v2/robot/calm/master.png",
+        "assets/characters-v2/robot/calm/web.webp",
+        "assets/characters-v2/robot/happy/master.png",
+        "assets/characters-v2/robot/happy/web.webp",
+        "assets/characters-v2/robot/excited/master.png",
+        "assets/characters-v2/robot/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-robot/five-states.png",
+        "qa/character-production-v3/world-robot/identity-consistency.png",
+        "qa/character-production-v3/world-robot/mobile-five-states.png",
+        "qa/character-production-v3/world-robot/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-rocket",
+      "displayName": "Rocket",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/rocket/empty/master.png",
+        "assets/characters-v2/rocket/empty/web.webp",
+        "assets/characters-v2/rocket/low/master.png",
+        "assets/characters-v2/rocket/low/web.webp",
+        "assets/characters-v2/rocket/calm/master.png",
+        "assets/characters-v2/rocket/calm/web.webp",
+        "assets/characters-v2/rocket/happy/master.png",
+        "assets/characters-v2/rocket/happy/web.webp",
+        "assets/characters-v2/rocket/excited/master.png",
+        "assets/characters-v2/rocket/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-rocket/five-states.png",
+        "qa/character-production-v3/world-rocket/identity-consistency.png",
+        "qa/character-production-v3/world-rocket/mobile-five-states.png",
+        "qa/character-production-v3/world-rocket/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-sun",
+      "displayName": "Sun",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/sun/empty/master.png",
+        "assets/characters-v2/sun/empty/web.webp",
+        "assets/characters-v2/sun/low/master.png",
+        "assets/characters-v2/sun/low/web.webp",
+        "assets/characters-v2/sun/calm/master.png",
+        "assets/characters-v2/sun/calm/web.webp",
+        "assets/characters-v2/sun/happy/master.png",
+        "assets/characters-v2/sun/happy/web.webp",
+        "assets/characters-v2/sun/excited/master.png",
+        "assets/characters-v2/sun/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-sun/five-states.png",
+        "qa/character-production-v3/world-sun/identity-consistency.png",
+        "qa/character-production-v3/world-sun/mobile-five-states.png",
+        "qa/character-production-v3/world-sun/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-train",
+      "displayName": "Train",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/train/empty/master.png",
+        "assets/characters-v2/train/empty/web.webp",
+        "assets/characters-v2/train/low/master.png",
+        "assets/characters-v2/train/low/web.webp",
+        "assets/characters-v2/train/calm/master.png",
+        "assets/characters-v2/train/calm/web.webp",
+        "assets/characters-v2/train/happy/master.png",
+        "assets/characters-v2/train/happy/web.webp",
+        "assets/characters-v2/train/excited/master.png",
+        "assets/characters-v2/train/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-train/five-states.png",
+        "qa/character-production-v3/world-train/identity-consistency.png",
+        "qa/character-production-v3/world-train/mobile-five-states.png",
+        "qa/character-production-v3/world-train/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-treasure",
+      "displayName": "Treasure Chest",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/treasure/empty/master.png",
+        "assets/characters-v2/treasure/empty/web.webp",
+        "assets/characters-v2/treasure/low/master.png",
+        "assets/characters-v2/treasure/low/web.webp",
+        "assets/characters-v2/treasure/calm/master.png",
+        "assets/characters-v2/treasure/calm/web.webp",
+        "assets/characters-v2/treasure/happy/master.png",
+        "assets/characters-v2/treasure/happy/web.webp",
+        "assets/characters-v2/treasure/excited/master.png",
+        "assets/characters-v2/treasure/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-treasure/five-states.png",
+        "qa/character-production-v3/world-treasure/identity-consistency.png",
+        "qa/character-production-v3/world-treasure/mobile-five-states.png",
+        "qa/character-production-v3/world-treasure/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-tree",
+      "displayName": "Tree",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/tree/empty/master.png",
+        "assets/characters-v2/tree/empty/web.webp",
+        "assets/characters-v2/tree/low/master.png",
+        "assets/characters-v2/tree/low/web.webp",
+        "assets/characters-v2/tree/calm/master.png",
+        "assets/characters-v2/tree/calm/web.webp",
+        "assets/characters-v2/tree/happy/master.png",
+        "assets/characters-v2/tree/happy/web.webp",
+        "assets/characters-v2/tree/excited/master.png",
+        "assets/characters-v2/tree/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-tree/five-states.png",
+        "qa/character-production-v3/world-tree/identity-consistency.png",
+        "qa/character-production-v3/world-tree/mobile-five-states.png",
+        "qa/character-production-v3/world-tree/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "world-water",
+      "displayName": "Water Droplet",
+      "family": "world",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production-quality five-state character art that preserves object identity and passes visual QA.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/water/empty/master.png",
+        "assets/characters-v2/water/empty/web.webp",
+        "assets/characters-v2/water/low/master.png",
+        "assets/characters-v2/water/low/web.webp",
+        "assets/characters-v2/water/calm/master.png",
+        "assets/characters-v2/water/calm/web.webp",
+        "assets/characters-v2/water/happy/master.png",
+        "assets/characters-v2/water/happy/web.webp",
+        "assets/characters-v2/water/excited/master.png",
+        "assets/characters-v2/water/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/world-water/five-states.png",
+        "qa/character-production-v3/world-water/identity-consistency.png",
+        "qa/character-production-v3/world-water/mobile-five-states.png",
+        "qa/character-production-v3/world-water/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-a",
+      "displayName": "Letter A",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/a/empty/master.png",
+        "assets/characters-v2/alphabet/a/empty/web.webp",
+        "assets/characters-v2/alphabet/a/low/master.png",
+        "assets/characters-v2/alphabet/a/low/web.webp",
+        "assets/characters-v2/alphabet/a/calm/master.png",
+        "assets/characters-v2/alphabet/a/calm/web.webp",
+        "assets/characters-v2/alphabet/a/happy/master.png",
+        "assets/characters-v2/alphabet/a/happy/web.webp",
+        "assets/characters-v2/alphabet/a/excited/master.png",
+        "assets/characters-v2/alphabet/a/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-a/five-states.png",
+        "qa/character-production-v3/letter-a/identity-consistency.png",
+        "qa/character-production-v3/letter-a/mobile-five-states.png",
+        "qa/character-production-v3/letter-a/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-b",
+      "displayName": "Letter B",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/b/empty/master.png",
+        "assets/characters-v2/alphabet/b/empty/web.webp",
+        "assets/characters-v2/alphabet/b/low/master.png",
+        "assets/characters-v2/alphabet/b/low/web.webp",
+        "assets/characters-v2/alphabet/b/calm/master.png",
+        "assets/characters-v2/alphabet/b/calm/web.webp",
+        "assets/characters-v2/alphabet/b/happy/master.png",
+        "assets/characters-v2/alphabet/b/happy/web.webp",
+        "assets/characters-v2/alphabet/b/excited/master.png",
+        "assets/characters-v2/alphabet/b/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-b/five-states.png",
+        "qa/character-production-v3/letter-b/identity-consistency.png",
+        "qa/character-production-v3/letter-b/mobile-five-states.png",
+        "qa/character-production-v3/letter-b/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-c",
+      "displayName": "Letter C",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/c/empty/master.png",
+        "assets/characters-v2/alphabet/c/empty/web.webp",
+        "assets/characters-v2/alphabet/c/low/master.png",
+        "assets/characters-v2/alphabet/c/low/web.webp",
+        "assets/characters-v2/alphabet/c/calm/master.png",
+        "assets/characters-v2/alphabet/c/calm/web.webp",
+        "assets/characters-v2/alphabet/c/happy/master.png",
+        "assets/characters-v2/alphabet/c/happy/web.webp",
+        "assets/characters-v2/alphabet/c/excited/master.png",
+        "assets/characters-v2/alphabet/c/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-c/five-states.png",
+        "qa/character-production-v3/letter-c/identity-consistency.png",
+        "qa/character-production-v3/letter-c/mobile-five-states.png",
+        "qa/character-production-v3/letter-c/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-d",
+      "displayName": "Letter D",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/d/empty/master.png",
+        "assets/characters-v2/alphabet/d/empty/web.webp",
+        "assets/characters-v2/alphabet/d/low/master.png",
+        "assets/characters-v2/alphabet/d/low/web.webp",
+        "assets/characters-v2/alphabet/d/calm/master.png",
+        "assets/characters-v2/alphabet/d/calm/web.webp",
+        "assets/characters-v2/alphabet/d/happy/master.png",
+        "assets/characters-v2/alphabet/d/happy/web.webp",
+        "assets/characters-v2/alphabet/d/excited/master.png",
+        "assets/characters-v2/alphabet/d/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-d/five-states.png",
+        "qa/character-production-v3/letter-d/identity-consistency.png",
+        "qa/character-production-v3/letter-d/mobile-five-states.png",
+        "qa/character-production-v3/letter-d/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-e",
+      "displayName": "Letter E",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/e/empty/master.png",
+        "assets/characters-v2/alphabet/e/empty/web.webp",
+        "assets/characters-v2/alphabet/e/low/master.png",
+        "assets/characters-v2/alphabet/e/low/web.webp",
+        "assets/characters-v2/alphabet/e/calm/master.png",
+        "assets/characters-v2/alphabet/e/calm/web.webp",
+        "assets/characters-v2/alphabet/e/happy/master.png",
+        "assets/characters-v2/alphabet/e/happy/web.webp",
+        "assets/characters-v2/alphabet/e/excited/master.png",
+        "assets/characters-v2/alphabet/e/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-e/five-states.png",
+        "qa/character-production-v3/letter-e/identity-consistency.png",
+        "qa/character-production-v3/letter-e/mobile-five-states.png",
+        "qa/character-production-v3/letter-e/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-f",
+      "displayName": "Letter F",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/f/empty/master.png",
+        "assets/characters-v2/alphabet/f/empty/web.webp",
+        "assets/characters-v2/alphabet/f/low/master.png",
+        "assets/characters-v2/alphabet/f/low/web.webp",
+        "assets/characters-v2/alphabet/f/calm/master.png",
+        "assets/characters-v2/alphabet/f/calm/web.webp",
+        "assets/characters-v2/alphabet/f/happy/master.png",
+        "assets/characters-v2/alphabet/f/happy/web.webp",
+        "assets/characters-v2/alphabet/f/excited/master.png",
+        "assets/characters-v2/alphabet/f/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-f/five-states.png",
+        "qa/character-production-v3/letter-f/identity-consistency.png",
+        "qa/character-production-v3/letter-f/mobile-five-states.png",
+        "qa/character-production-v3/letter-f/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-g",
+      "displayName": "Letter G",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/g/empty/master.png",
+        "assets/characters-v2/alphabet/g/empty/web.webp",
+        "assets/characters-v2/alphabet/g/low/master.png",
+        "assets/characters-v2/alphabet/g/low/web.webp",
+        "assets/characters-v2/alphabet/g/calm/master.png",
+        "assets/characters-v2/alphabet/g/calm/web.webp",
+        "assets/characters-v2/alphabet/g/happy/master.png",
+        "assets/characters-v2/alphabet/g/happy/web.webp",
+        "assets/characters-v2/alphabet/g/excited/master.png",
+        "assets/characters-v2/alphabet/g/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-g/five-states.png",
+        "qa/character-production-v3/letter-g/identity-consistency.png",
+        "qa/character-production-v3/letter-g/mobile-five-states.png",
+        "qa/character-production-v3/letter-g/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-h",
+      "displayName": "Letter H",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/h/empty/master.png",
+        "assets/characters-v2/alphabet/h/empty/web.webp",
+        "assets/characters-v2/alphabet/h/low/master.png",
+        "assets/characters-v2/alphabet/h/low/web.webp",
+        "assets/characters-v2/alphabet/h/calm/master.png",
+        "assets/characters-v2/alphabet/h/calm/web.webp",
+        "assets/characters-v2/alphabet/h/happy/master.png",
+        "assets/characters-v2/alphabet/h/happy/web.webp",
+        "assets/characters-v2/alphabet/h/excited/master.png",
+        "assets/characters-v2/alphabet/h/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-h/five-states.png",
+        "qa/character-production-v3/letter-h/identity-consistency.png",
+        "qa/character-production-v3/letter-h/mobile-five-states.png",
+        "qa/character-production-v3/letter-h/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-i",
+      "displayName": "Letter I",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/i/empty/master.png",
+        "assets/characters-v2/alphabet/i/empty/web.webp",
+        "assets/characters-v2/alphabet/i/low/master.png",
+        "assets/characters-v2/alphabet/i/low/web.webp",
+        "assets/characters-v2/alphabet/i/calm/master.png",
+        "assets/characters-v2/alphabet/i/calm/web.webp",
+        "assets/characters-v2/alphabet/i/happy/master.png",
+        "assets/characters-v2/alphabet/i/happy/web.webp",
+        "assets/characters-v2/alphabet/i/excited/master.png",
+        "assets/characters-v2/alphabet/i/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-i/five-states.png",
+        "qa/character-production-v3/letter-i/identity-consistency.png",
+        "qa/character-production-v3/letter-i/mobile-five-states.png",
+        "qa/character-production-v3/letter-i/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-j",
+      "displayName": "Letter J",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/j/empty/master.png",
+        "assets/characters-v2/alphabet/j/empty/web.webp",
+        "assets/characters-v2/alphabet/j/low/master.png",
+        "assets/characters-v2/alphabet/j/low/web.webp",
+        "assets/characters-v2/alphabet/j/calm/master.png",
+        "assets/characters-v2/alphabet/j/calm/web.webp",
+        "assets/characters-v2/alphabet/j/happy/master.png",
+        "assets/characters-v2/alphabet/j/happy/web.webp",
+        "assets/characters-v2/alphabet/j/excited/master.png",
+        "assets/characters-v2/alphabet/j/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-j/five-states.png",
+        "qa/character-production-v3/letter-j/identity-consistency.png",
+        "qa/character-production-v3/letter-j/mobile-five-states.png",
+        "qa/character-production-v3/letter-j/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-k",
+      "displayName": "Letter K",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/k/empty/master.png",
+        "assets/characters-v2/alphabet/k/empty/web.webp",
+        "assets/characters-v2/alphabet/k/low/master.png",
+        "assets/characters-v2/alphabet/k/low/web.webp",
+        "assets/characters-v2/alphabet/k/calm/master.png",
+        "assets/characters-v2/alphabet/k/calm/web.webp",
+        "assets/characters-v2/alphabet/k/happy/master.png",
+        "assets/characters-v2/alphabet/k/happy/web.webp",
+        "assets/characters-v2/alphabet/k/excited/master.png",
+        "assets/characters-v2/alphabet/k/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-k/five-states.png",
+        "qa/character-production-v3/letter-k/identity-consistency.png",
+        "qa/character-production-v3/letter-k/mobile-five-states.png",
+        "qa/character-production-v3/letter-k/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-l",
+      "displayName": "Letter L",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/l/empty/master.png",
+        "assets/characters-v2/alphabet/l/empty/web.webp",
+        "assets/characters-v2/alphabet/l/low/master.png",
+        "assets/characters-v2/alphabet/l/low/web.webp",
+        "assets/characters-v2/alphabet/l/calm/master.png",
+        "assets/characters-v2/alphabet/l/calm/web.webp",
+        "assets/characters-v2/alphabet/l/happy/master.png",
+        "assets/characters-v2/alphabet/l/happy/web.webp",
+        "assets/characters-v2/alphabet/l/excited/master.png",
+        "assets/characters-v2/alphabet/l/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-l/five-states.png",
+        "qa/character-production-v3/letter-l/identity-consistency.png",
+        "qa/character-production-v3/letter-l/mobile-five-states.png",
+        "qa/character-production-v3/letter-l/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-m",
+      "displayName": "Letter M",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/m/empty/master.png",
+        "assets/characters-v2/alphabet/m/empty/web.webp",
+        "assets/characters-v2/alphabet/m/low/master.png",
+        "assets/characters-v2/alphabet/m/low/web.webp",
+        "assets/characters-v2/alphabet/m/calm/master.png",
+        "assets/characters-v2/alphabet/m/calm/web.webp",
+        "assets/characters-v2/alphabet/m/happy/master.png",
+        "assets/characters-v2/alphabet/m/happy/web.webp",
+        "assets/characters-v2/alphabet/m/excited/master.png",
+        "assets/characters-v2/alphabet/m/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-m/five-states.png",
+        "qa/character-production-v3/letter-m/identity-consistency.png",
+        "qa/character-production-v3/letter-m/mobile-five-states.png",
+        "qa/character-production-v3/letter-m/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-n",
+      "displayName": "Letter N",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/n/empty/master.png",
+        "assets/characters-v2/alphabet/n/empty/web.webp",
+        "assets/characters-v2/alphabet/n/low/master.png",
+        "assets/characters-v2/alphabet/n/low/web.webp",
+        "assets/characters-v2/alphabet/n/calm/master.png",
+        "assets/characters-v2/alphabet/n/calm/web.webp",
+        "assets/characters-v2/alphabet/n/happy/master.png",
+        "assets/characters-v2/alphabet/n/happy/web.webp",
+        "assets/characters-v2/alphabet/n/excited/master.png",
+        "assets/characters-v2/alphabet/n/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-n/five-states.png",
+        "qa/character-production-v3/letter-n/identity-consistency.png",
+        "qa/character-production-v3/letter-n/mobile-five-states.png",
+        "qa/character-production-v3/letter-n/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-o",
+      "displayName": "Letter O",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/o/empty/master.png",
+        "assets/characters-v2/alphabet/o/empty/web.webp",
+        "assets/characters-v2/alphabet/o/low/master.png",
+        "assets/characters-v2/alphabet/o/low/web.webp",
+        "assets/characters-v2/alphabet/o/calm/master.png",
+        "assets/characters-v2/alphabet/o/calm/web.webp",
+        "assets/characters-v2/alphabet/o/happy/master.png",
+        "assets/characters-v2/alphabet/o/happy/web.webp",
+        "assets/characters-v2/alphabet/o/excited/master.png",
+        "assets/characters-v2/alphabet/o/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-o/five-states.png",
+        "qa/character-production-v3/letter-o/identity-consistency.png",
+        "qa/character-production-v3/letter-o/mobile-five-states.png",
+        "qa/character-production-v3/letter-o/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-p",
+      "displayName": "Letter P",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/p/empty/master.png",
+        "assets/characters-v2/alphabet/p/empty/web.webp",
+        "assets/characters-v2/alphabet/p/low/master.png",
+        "assets/characters-v2/alphabet/p/low/web.webp",
+        "assets/characters-v2/alphabet/p/calm/master.png",
+        "assets/characters-v2/alphabet/p/calm/web.webp",
+        "assets/characters-v2/alphabet/p/happy/master.png",
+        "assets/characters-v2/alphabet/p/happy/web.webp",
+        "assets/characters-v2/alphabet/p/excited/master.png",
+        "assets/characters-v2/alphabet/p/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-p/five-states.png",
+        "qa/character-production-v3/letter-p/identity-consistency.png",
+        "qa/character-production-v3/letter-p/mobile-five-states.png",
+        "qa/character-production-v3/letter-p/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-q",
+      "displayName": "Letter Q",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/q/empty/master.png",
+        "assets/characters-v2/alphabet/q/empty/web.webp",
+        "assets/characters-v2/alphabet/q/low/master.png",
+        "assets/characters-v2/alphabet/q/low/web.webp",
+        "assets/characters-v2/alphabet/q/calm/master.png",
+        "assets/characters-v2/alphabet/q/calm/web.webp",
+        "assets/characters-v2/alphabet/q/happy/master.png",
+        "assets/characters-v2/alphabet/q/happy/web.webp",
+        "assets/characters-v2/alphabet/q/excited/master.png",
+        "assets/characters-v2/alphabet/q/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-q/five-states.png",
+        "qa/character-production-v3/letter-q/identity-consistency.png",
+        "qa/character-production-v3/letter-q/mobile-five-states.png",
+        "qa/character-production-v3/letter-q/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-r",
+      "displayName": "Letter R",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/r/empty/master.png",
+        "assets/characters-v2/alphabet/r/empty/web.webp",
+        "assets/characters-v2/alphabet/r/low/master.png",
+        "assets/characters-v2/alphabet/r/low/web.webp",
+        "assets/characters-v2/alphabet/r/calm/master.png",
+        "assets/characters-v2/alphabet/r/calm/web.webp",
+        "assets/characters-v2/alphabet/r/happy/master.png",
+        "assets/characters-v2/alphabet/r/happy/web.webp",
+        "assets/characters-v2/alphabet/r/excited/master.png",
+        "assets/characters-v2/alphabet/r/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-r/five-states.png",
+        "qa/character-production-v3/letter-r/identity-consistency.png",
+        "qa/character-production-v3/letter-r/mobile-five-states.png",
+        "qa/character-production-v3/letter-r/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-s",
+      "displayName": "Letter S",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/s/empty/master.png",
+        "assets/characters-v2/alphabet/s/empty/web.webp",
+        "assets/characters-v2/alphabet/s/low/master.png",
+        "assets/characters-v2/alphabet/s/low/web.webp",
+        "assets/characters-v2/alphabet/s/calm/master.png",
+        "assets/characters-v2/alphabet/s/calm/web.webp",
+        "assets/characters-v2/alphabet/s/happy/master.png",
+        "assets/characters-v2/alphabet/s/happy/web.webp",
+        "assets/characters-v2/alphabet/s/excited/master.png",
+        "assets/characters-v2/alphabet/s/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-s/five-states.png",
+        "qa/character-production-v3/letter-s/identity-consistency.png",
+        "qa/character-production-v3/letter-s/mobile-five-states.png",
+        "qa/character-production-v3/letter-s/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-t",
+      "displayName": "Letter T",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/t/empty/master.png",
+        "assets/characters-v2/alphabet/t/empty/web.webp",
+        "assets/characters-v2/alphabet/t/low/master.png",
+        "assets/characters-v2/alphabet/t/low/web.webp",
+        "assets/characters-v2/alphabet/t/calm/master.png",
+        "assets/characters-v2/alphabet/t/calm/web.webp",
+        "assets/characters-v2/alphabet/t/happy/master.png",
+        "assets/characters-v2/alphabet/t/happy/web.webp",
+        "assets/characters-v2/alphabet/t/excited/master.png",
+        "assets/characters-v2/alphabet/t/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-t/five-states.png",
+        "qa/character-production-v3/letter-t/identity-consistency.png",
+        "qa/character-production-v3/letter-t/mobile-five-states.png",
+        "qa/character-production-v3/letter-t/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-u",
+      "displayName": "Letter U",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/u/empty/master.png",
+        "assets/characters-v2/alphabet/u/empty/web.webp",
+        "assets/characters-v2/alphabet/u/low/master.png",
+        "assets/characters-v2/alphabet/u/low/web.webp",
+        "assets/characters-v2/alphabet/u/calm/master.png",
+        "assets/characters-v2/alphabet/u/calm/web.webp",
+        "assets/characters-v2/alphabet/u/happy/master.png",
+        "assets/characters-v2/alphabet/u/happy/web.webp",
+        "assets/characters-v2/alphabet/u/excited/master.png",
+        "assets/characters-v2/alphabet/u/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-u/five-states.png",
+        "qa/character-production-v3/letter-u/identity-consistency.png",
+        "qa/character-production-v3/letter-u/mobile-five-states.png",
+        "qa/character-production-v3/letter-u/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-v",
+      "displayName": "Letter V",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/v/empty/master.png",
+        "assets/characters-v2/alphabet/v/empty/web.webp",
+        "assets/characters-v2/alphabet/v/low/master.png",
+        "assets/characters-v2/alphabet/v/low/web.webp",
+        "assets/characters-v2/alphabet/v/calm/master.png",
+        "assets/characters-v2/alphabet/v/calm/web.webp",
+        "assets/characters-v2/alphabet/v/happy/master.png",
+        "assets/characters-v2/alphabet/v/happy/web.webp",
+        "assets/characters-v2/alphabet/v/excited/master.png",
+        "assets/characters-v2/alphabet/v/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-v/five-states.png",
+        "qa/character-production-v3/letter-v/identity-consistency.png",
+        "qa/character-production-v3/letter-v/mobile-five-states.png",
+        "qa/character-production-v3/letter-v/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-w",
+      "displayName": "Letter W",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/w/empty/master.png",
+        "assets/characters-v2/alphabet/w/empty/web.webp",
+        "assets/characters-v2/alphabet/w/low/master.png",
+        "assets/characters-v2/alphabet/w/low/web.webp",
+        "assets/characters-v2/alphabet/w/calm/master.png",
+        "assets/characters-v2/alphabet/w/calm/web.webp",
+        "assets/characters-v2/alphabet/w/happy/master.png",
+        "assets/characters-v2/alphabet/w/happy/web.webp",
+        "assets/characters-v2/alphabet/w/excited/master.png",
+        "assets/characters-v2/alphabet/w/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-w/five-states.png",
+        "qa/character-production-v3/letter-w/identity-consistency.png",
+        "qa/character-production-v3/letter-w/mobile-five-states.png",
+        "qa/character-production-v3/letter-w/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-x",
+      "displayName": "Letter X",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/x/empty/master.png",
+        "assets/characters-v2/alphabet/x/empty/web.webp",
+        "assets/characters-v2/alphabet/x/low/master.png",
+        "assets/characters-v2/alphabet/x/low/web.webp",
+        "assets/characters-v2/alphabet/x/calm/master.png",
+        "assets/characters-v2/alphabet/x/calm/web.webp",
+        "assets/characters-v2/alphabet/x/happy/master.png",
+        "assets/characters-v2/alphabet/x/happy/web.webp",
+        "assets/characters-v2/alphabet/x/excited/master.png",
+        "assets/characters-v2/alphabet/x/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-x/five-states.png",
+        "qa/character-production-v3/letter-x/identity-consistency.png",
+        "qa/character-production-v3/letter-x/mobile-five-states.png",
+        "qa/character-production-v3/letter-x/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-y",
+      "displayName": "Letter Y",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/y/empty/master.png",
+        "assets/characters-v2/alphabet/y/empty/web.webp",
+        "assets/characters-v2/alphabet/y/low/master.png",
+        "assets/characters-v2/alphabet/y/low/web.webp",
+        "assets/characters-v2/alphabet/y/calm/master.png",
+        "assets/characters-v2/alphabet/y/calm/web.webp",
+        "assets/characters-v2/alphabet/y/happy/master.png",
+        "assets/characters-v2/alphabet/y/happy/web.webp",
+        "assets/characters-v2/alphabet/y/excited/master.png",
+        "assets/characters-v2/alphabet/y/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-y/five-states.png",
+        "qa/character-production-v3/letter-y/identity-consistency.png",
+        "qa/character-production-v3/letter-y/mobile-five-states.png",
+        "qa/character-production-v3/letter-y/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "letter-z",
+      "displayName": "Letter Z",
+      "family": "alphabet",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector letter into a production-quality character while preserving exact uppercase glyph identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/alphabet/z/empty/master.png",
+        "assets/characters-v2/alphabet/z/empty/web.webp",
+        "assets/characters-v2/alphabet/z/low/master.png",
+        "assets/characters-v2/alphabet/z/low/web.webp",
+        "assets/characters-v2/alphabet/z/calm/master.png",
+        "assets/characters-v2/alphabet/z/calm/web.webp",
+        "assets/characters-v2/alphabet/z/happy/master.png",
+        "assets/characters-v2/alphabet/z/happy/web.webp",
+        "assets/characters-v2/alphabet/z/excited/master.png",
+        "assets/characters-v2/alphabet/z/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/letter-z/five-states.png",
+        "qa/character-production-v3/letter-z/identity-consistency.png",
+        "qa/character-production-v3/letter-z/mobile-five-states.png",
+        "qa/character-production-v3/letter-z/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "number-1",
+      "displayName": "Number 1",
+      "family": "number",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector number into a production-quality character while preserving exact numeral identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/numbers/1/empty/master.png",
+        "assets/characters-v2/numbers/1/empty/web.webp",
+        "assets/characters-v2/numbers/1/low/master.png",
+        "assets/characters-v2/numbers/1/low/web.webp",
+        "assets/characters-v2/numbers/1/calm/master.png",
+        "assets/characters-v2/numbers/1/calm/web.webp",
+        "assets/characters-v2/numbers/1/happy/master.png",
+        "assets/characters-v2/numbers/1/happy/web.webp",
+        "assets/characters-v2/numbers/1/excited/master.png",
+        "assets/characters-v2/numbers/1/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/number-1/five-states.png",
+        "qa/character-production-v3/number-1/identity-consistency.png",
+        "qa/character-production-v3/number-1/mobile-five-states.png",
+        "qa/character-production-v3/number-1/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "number-2",
+      "displayName": "Number 2",
+      "family": "number",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector number into a production-quality character while preserving exact numeral identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/numbers/2/empty/master.png",
+        "assets/characters-v2/numbers/2/empty/web.webp",
+        "assets/characters-v2/numbers/2/low/master.png",
+        "assets/characters-v2/numbers/2/low/web.webp",
+        "assets/characters-v2/numbers/2/calm/master.png",
+        "assets/characters-v2/numbers/2/calm/web.webp",
+        "assets/characters-v2/numbers/2/happy/master.png",
+        "assets/characters-v2/numbers/2/happy/web.webp",
+        "assets/characters-v2/numbers/2/excited/master.png",
+        "assets/characters-v2/numbers/2/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/number-2/five-states.png",
+        "qa/character-production-v3/number-2/identity-consistency.png",
+        "qa/character-production-v3/number-2/mobile-five-states.png",
+        "qa/character-production-v3/number-2/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "number-3",
+      "displayName": "Number 3",
+      "family": "number",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector number into a production-quality character while preserving exact numeral identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/numbers/3/empty/master.png",
+        "assets/characters-v2/numbers/3/empty/web.webp",
+        "assets/characters-v2/numbers/3/low/master.png",
+        "assets/characters-v2/numbers/3/low/web.webp",
+        "assets/characters-v2/numbers/3/calm/master.png",
+        "assets/characters-v2/numbers/3/calm/web.webp",
+        "assets/characters-v2/numbers/3/happy/master.png",
+        "assets/characters-v2/numbers/3/happy/web.webp",
+        "assets/characters-v2/numbers/3/excited/master.png",
+        "assets/characters-v2/numbers/3/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/number-3/five-states.png",
+        "qa/character-production-v3/number-3/identity-consistency.png",
+        "qa/character-production-v3/number-3/mobile-five-states.png",
+        "qa/character-production-v3/number-3/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "number-4",
+      "displayName": "Number 4",
+      "family": "number",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector number into a production-quality character while preserving exact numeral identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/numbers/4/empty/master.png",
+        "assets/characters-v2/numbers/4/empty/web.webp",
+        "assets/characters-v2/numbers/4/low/master.png",
+        "assets/characters-v2/numbers/4/low/web.webp",
+        "assets/characters-v2/numbers/4/calm/master.png",
+        "assets/characters-v2/numbers/4/calm/web.webp",
+        "assets/characters-v2/numbers/4/happy/master.png",
+        "assets/characters-v2/numbers/4/happy/web.webp",
+        "assets/characters-v2/numbers/4/excited/master.png",
+        "assets/characters-v2/numbers/4/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/number-4/five-states.png",
+        "qa/character-production-v3/number-4/identity-consistency.png",
+        "qa/character-production-v3/number-4/mobile-five-states.png",
+        "qa/character-production-v3/number-4/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "number-5",
+      "displayName": "Number 5",
+      "family": "number",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector number into a production-quality character while preserving exact numeral identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/numbers/5/empty/master.png",
+        "assets/characters-v2/numbers/5/empty/web.webp",
+        "assets/characters-v2/numbers/5/low/master.png",
+        "assets/characters-v2/numbers/5/low/web.webp",
+        "assets/characters-v2/numbers/5/calm/master.png",
+        "assets/characters-v2/numbers/5/calm/web.webp",
+        "assets/characters-v2/numbers/5/happy/master.png",
+        "assets/characters-v2/numbers/5/happy/web.webp",
+        "assets/characters-v2/numbers/5/excited/master.png",
+        "assets/characters-v2/numbers/5/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/number-5/five-states.png",
+        "qa/character-production-v3/number-5/identity-consistency.png",
+        "qa/character-production-v3/number-5/mobile-five-states.png",
+        "qa/character-production-v3/number-5/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "number-6",
+      "displayName": "Number 6",
+      "family": "number",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector number into a production-quality character while preserving exact numeral identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/numbers/6/empty/master.png",
+        "assets/characters-v2/numbers/6/empty/web.webp",
+        "assets/characters-v2/numbers/6/low/master.png",
+        "assets/characters-v2/numbers/6/low/web.webp",
+        "assets/characters-v2/numbers/6/calm/master.png",
+        "assets/characters-v2/numbers/6/calm/web.webp",
+        "assets/characters-v2/numbers/6/happy/master.png",
+        "assets/characters-v2/numbers/6/happy/web.webp",
+        "assets/characters-v2/numbers/6/excited/master.png",
+        "assets/characters-v2/numbers/6/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/number-6/five-states.png",
+        "qa/character-production-v3/number-6/identity-consistency.png",
+        "qa/character-production-v3/number-6/mobile-five-states.png",
+        "qa/character-production-v3/number-6/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "number-7",
+      "displayName": "Number 7",
+      "family": "number",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector number into a production-quality character while preserving exact numeral identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/numbers/7/empty/master.png",
+        "assets/characters-v2/numbers/7/empty/web.webp",
+        "assets/characters-v2/numbers/7/low/master.png",
+        "assets/characters-v2/numbers/7/low/web.webp",
+        "assets/characters-v2/numbers/7/calm/master.png",
+        "assets/characters-v2/numbers/7/calm/web.webp",
+        "assets/characters-v2/numbers/7/happy/master.png",
+        "assets/characters-v2/numbers/7/happy/web.webp",
+        "assets/characters-v2/numbers/7/excited/master.png",
+        "assets/characters-v2/numbers/7/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/number-7/five-states.png",
+        "qa/character-production-v3/number-7/identity-consistency.png",
+        "qa/character-production-v3/number-7/mobile-five-states.png",
+        "qa/character-production-v3/number-7/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "number-8",
+      "displayName": "Number 8",
+      "family": "number",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector number into a production-quality character while preserving exact numeral identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/numbers/8/empty/master.png",
+        "assets/characters-v2/numbers/8/empty/web.webp",
+        "assets/characters-v2/numbers/8/low/master.png",
+        "assets/characters-v2/numbers/8/low/web.webp",
+        "assets/characters-v2/numbers/8/calm/master.png",
+        "assets/characters-v2/numbers/8/calm/web.webp",
+        "assets/characters-v2/numbers/8/happy/master.png",
+        "assets/characters-v2/numbers/8/happy/web.webp",
+        "assets/characters-v2/numbers/8/excited/master.png",
+        "assets/characters-v2/numbers/8/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/number-8/five-states.png",
+        "qa/character-production-v3/number-8/identity-consistency.png",
+        "qa/character-production-v3/number-8/mobile-five-states.png",
+        "qa/character-production-v3/number-8/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "number-9",
+      "displayName": "Number 9",
+      "family": "number",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector number into a production-quality character while preserving exact numeral identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/numbers/9/empty/master.png",
+        "assets/characters-v2/numbers/9/empty/web.webp",
+        "assets/characters-v2/numbers/9/low/master.png",
+        "assets/characters-v2/numbers/9/low/web.webp",
+        "assets/characters-v2/numbers/9/calm/master.png",
+        "assets/characters-v2/numbers/9/calm/web.webp",
+        "assets/characters-v2/numbers/9/happy/master.png",
+        "assets/characters-v2/numbers/9/happy/web.webp",
+        "assets/characters-v2/numbers/9/excited/master.png",
+        "assets/characters-v2/numbers/9/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/number-9/five-states.png",
+        "qa/character-production-v3/number-9/identity-consistency.png",
+        "qa/character-production-v3/number-9/mobile-five-states.png",
+        "qa/character-production-v3/number-9/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "number-10",
+      "displayName": "Number 10",
+      "family": "number",
+      "priority": "P1",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime",
+        "visual quality below Battery Buddy V3 precedent"
+      ],
+      "nextAction": "Upgrade the readable vector number into a production-quality character while preserving exact numeral identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/numbers/10/empty/master.png",
+        "assets/characters-v2/numbers/10/empty/web.webp",
+        "assets/characters-v2/numbers/10/low/master.png",
+        "assets/characters-v2/numbers/10/low/web.webp",
+        "assets/characters-v2/numbers/10/calm/master.png",
+        "assets/characters-v2/numbers/10/calm/web.webp",
+        "assets/characters-v2/numbers/10/happy/master.png",
+        "assets/characters-v2/numbers/10/happy/web.webp",
+        "assets/characters-v2/numbers/10/excited/master.png",
+        "assets/characters-v2/numbers/10/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/number-10/five-states.png",
+        "qa/character-production-v3/number-10/identity-consistency.png",
+        "qa/character-production-v3/number-10/mobile-five-states.png",
+        "qa/character-production-v3/number-10/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "planet-earth",
+      "displayName": "Earth",
+      "family": "planet",
+      "priority": "P2",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production planet character states without changing scientifically recognisable visual identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/planets/earth/empty/master.png",
+        "assets/characters-v2/planets/earth/empty/web.webp",
+        "assets/characters-v2/planets/earth/low/master.png",
+        "assets/characters-v2/planets/earth/low/web.webp",
+        "assets/characters-v2/planets/earth/calm/master.png",
+        "assets/characters-v2/planets/earth/calm/web.webp",
+        "assets/characters-v2/planets/earth/happy/master.png",
+        "assets/characters-v2/planets/earth/happy/web.webp",
+        "assets/characters-v2/planets/earth/excited/master.png",
+        "assets/characters-v2/planets/earth/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/planet-earth/five-states.png",
+        "qa/character-production-v3/planet-earth/identity-consistency.png",
+        "qa/character-production-v3/planet-earth/mobile-five-states.png",
+        "qa/character-production-v3/planet-earth/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "planet-jupiter",
+      "displayName": "Jupiter",
+      "family": "planet",
+      "priority": "P2",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production planet character states without changing scientifically recognisable visual identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/planets/jupiter/empty/master.png",
+        "assets/characters-v2/planets/jupiter/empty/web.webp",
+        "assets/characters-v2/planets/jupiter/low/master.png",
+        "assets/characters-v2/planets/jupiter/low/web.webp",
+        "assets/characters-v2/planets/jupiter/calm/master.png",
+        "assets/characters-v2/planets/jupiter/calm/web.webp",
+        "assets/characters-v2/planets/jupiter/happy/master.png",
+        "assets/characters-v2/planets/jupiter/happy/web.webp",
+        "assets/characters-v2/planets/jupiter/excited/master.png",
+        "assets/characters-v2/planets/jupiter/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/planet-jupiter/five-states.png",
+        "qa/character-production-v3/planet-jupiter/identity-consistency.png",
+        "qa/character-production-v3/planet-jupiter/mobile-five-states.png",
+        "qa/character-production-v3/planet-jupiter/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "planet-mars",
+      "displayName": "Mars",
+      "family": "planet",
+      "priority": "P2",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production planet character states without changing scientifically recognisable visual identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/planets/mars/empty/master.png",
+        "assets/characters-v2/planets/mars/empty/web.webp",
+        "assets/characters-v2/planets/mars/low/master.png",
+        "assets/characters-v2/planets/mars/low/web.webp",
+        "assets/characters-v2/planets/mars/calm/master.png",
+        "assets/characters-v2/planets/mars/calm/web.webp",
+        "assets/characters-v2/planets/mars/happy/master.png",
+        "assets/characters-v2/planets/mars/happy/web.webp",
+        "assets/characters-v2/planets/mars/excited/master.png",
+        "assets/characters-v2/planets/mars/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/planet-mars/five-states.png",
+        "qa/character-production-v3/planet-mars/identity-consistency.png",
+        "qa/character-production-v3/planet-mars/mobile-five-states.png",
+        "qa/character-production-v3/planet-mars/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "planet-mercury",
+      "displayName": "Mercury",
+      "family": "planet",
+      "priority": "P2",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production planet character states without changing scientifically recognisable visual identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/planets/mercury/empty/master.png",
+        "assets/characters-v2/planets/mercury/empty/web.webp",
+        "assets/characters-v2/planets/mercury/low/master.png",
+        "assets/characters-v2/planets/mercury/low/web.webp",
+        "assets/characters-v2/planets/mercury/calm/master.png",
+        "assets/characters-v2/planets/mercury/calm/web.webp",
+        "assets/characters-v2/planets/mercury/happy/master.png",
+        "assets/characters-v2/planets/mercury/happy/web.webp",
+        "assets/characters-v2/planets/mercury/excited/master.png",
+        "assets/characters-v2/planets/mercury/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/planet-mercury/five-states.png",
+        "qa/character-production-v3/planet-mercury/identity-consistency.png",
+        "qa/character-production-v3/planet-mercury/mobile-five-states.png",
+        "qa/character-production-v3/planet-mercury/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "planet-moon",
+      "displayName": "Moon",
+      "family": "planet",
+      "priority": "P2",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production planet character states without changing scientifically recognisable visual identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/planets/moon/empty/master.png",
+        "assets/characters-v2/planets/moon/empty/web.webp",
+        "assets/characters-v2/planets/moon/low/master.png",
+        "assets/characters-v2/planets/moon/low/web.webp",
+        "assets/characters-v2/planets/moon/calm/master.png",
+        "assets/characters-v2/planets/moon/calm/web.webp",
+        "assets/characters-v2/planets/moon/happy/master.png",
+        "assets/characters-v2/planets/moon/happy/web.webp",
+        "assets/characters-v2/planets/moon/excited/master.png",
+        "assets/characters-v2/planets/moon/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/planet-moon/five-states.png",
+        "qa/character-production-v3/planet-moon/identity-consistency.png",
+        "qa/character-production-v3/planet-moon/mobile-five-states.png",
+        "qa/character-production-v3/planet-moon/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "planet-neptune",
+      "displayName": "Neptune",
+      "family": "planet",
+      "priority": "P2",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production planet character states without changing scientifically recognisable visual identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/planets/neptune/empty/master.png",
+        "assets/characters-v2/planets/neptune/empty/web.webp",
+        "assets/characters-v2/planets/neptune/low/master.png",
+        "assets/characters-v2/planets/neptune/low/web.webp",
+        "assets/characters-v2/planets/neptune/calm/master.png",
+        "assets/characters-v2/planets/neptune/calm/web.webp",
+        "assets/characters-v2/planets/neptune/happy/master.png",
+        "assets/characters-v2/planets/neptune/happy/web.webp",
+        "assets/characters-v2/planets/neptune/excited/master.png",
+        "assets/characters-v2/planets/neptune/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/planet-neptune/five-states.png",
+        "qa/character-production-v3/planet-neptune/identity-consistency.png",
+        "qa/character-production-v3/planet-neptune/mobile-five-states.png",
+        "qa/character-production-v3/planet-neptune/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "planet-saturn",
+      "displayName": "Saturn",
+      "family": "planet",
+      "priority": "P2",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production planet character states without changing scientifically recognisable visual identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/planets/saturn/empty/master.png",
+        "assets/characters-v2/planets/saturn/empty/web.webp",
+        "assets/characters-v2/planets/saturn/low/master.png",
+        "assets/characters-v2/planets/saturn/low/web.webp",
+        "assets/characters-v2/planets/saturn/calm/master.png",
+        "assets/characters-v2/planets/saturn/calm/web.webp",
+        "assets/characters-v2/planets/saturn/happy/master.png",
+        "assets/characters-v2/planets/saturn/happy/web.webp",
+        "assets/characters-v2/planets/saturn/excited/master.png",
+        "assets/characters-v2/planets/saturn/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/planet-saturn/five-states.png",
+        "qa/character-production-v3/planet-saturn/identity-consistency.png",
+        "qa/character-production-v3/planet-saturn/mobile-five-states.png",
+        "qa/character-production-v3/planet-saturn/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "planet-sun",
+      "displayName": "Sun",
+      "family": "planet",
+      "priority": "P2",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production planet character states without changing scientifically recognisable visual identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/planets/sun/empty/master.png",
+        "assets/characters-v2/planets/sun/empty/web.webp",
+        "assets/characters-v2/planets/sun/low/master.png",
+        "assets/characters-v2/planets/sun/low/web.webp",
+        "assets/characters-v2/planets/sun/calm/master.png",
+        "assets/characters-v2/planets/sun/calm/web.webp",
+        "assets/characters-v2/planets/sun/happy/master.png",
+        "assets/characters-v2/planets/sun/happy/web.webp",
+        "assets/characters-v2/planets/sun/excited/master.png",
+        "assets/characters-v2/planets/sun/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/planet-sun/five-states.png",
+        "qa/character-production-v3/planet-sun/identity-consistency.png",
+        "qa/character-production-v3/planet-sun/mobile-five-states.png",
+        "qa/character-production-v3/planet-sun/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "planet-uranus",
+      "displayName": "Uranus",
+      "family": "planet",
+      "priority": "P2",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production planet character states without changing scientifically recognisable visual identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/planets/uranus/empty/master.png",
+        "assets/characters-v2/planets/uranus/empty/web.webp",
+        "assets/characters-v2/planets/uranus/low/master.png",
+        "assets/characters-v2/planets/uranus/low/web.webp",
+        "assets/characters-v2/planets/uranus/calm/master.png",
+        "assets/characters-v2/planets/uranus/calm/web.webp",
+        "assets/characters-v2/planets/uranus/happy/master.png",
+        "assets/characters-v2/planets/uranus/happy/web.webp",
+        "assets/characters-v2/planets/uranus/excited/master.png",
+        "assets/characters-v2/planets/uranus/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/planet-uranus/five-states.png",
+        "qa/character-production-v3/planet-uranus/identity-consistency.png",
+        "qa/character-production-v3/planet-uranus/mobile-five-states.png",
+        "qa/character-production-v3/planet-uranus/visual-acceptance.json"
+      ]
+    },
+    {
+      "id": "planet-venus",
+      "displayName": "Venus",
+      "family": "planet",
+      "priority": "P2",
+      "status": "pending-production",
+      "stateSlots": {
+        "empty": true,
+        "low": true,
+        "calm": true,
+        "happy": true,
+        "excited": true
+      },
+      "blockers": [
+        "not approved for production runtime"
+      ],
+      "nextAction": "Create production planet character states without changing scientifically recognisable visual identity.",
+      "allowedSourceUse": "Reference only until rebuilt/redrawn into approved production masters; review, QA, source-safe and contact-sheet paths must not be runtime sources.",
+      "requiredOutputs": [
+        "assets/characters-v2/planets/venus/empty/master.png",
+        "assets/characters-v2/planets/venus/empty/web.webp",
+        "assets/characters-v2/planets/venus/low/master.png",
+        "assets/characters-v2/planets/venus/low/web.webp",
+        "assets/characters-v2/planets/venus/calm/master.png",
+        "assets/characters-v2/planets/venus/calm/web.webp",
+        "assets/characters-v2/planets/venus/happy/master.png",
+        "assets/characters-v2/planets/venus/happy/web.webp",
+        "assets/characters-v2/planets/venus/excited/master.png",
+        "assets/characters-v2/planets/venus/excited/web.webp"
+      ],
+      "requiredEvidence": [
+        "qa/character-production-v3/planet-venus/five-states.png",
+        "qa/character-production-v3/planet-venus/identity-consistency.png",
+        "qa/character-production-v3/planet-venus/mobile-five-states.png",
+        "qa/character-production-v3/planet-venus/visual-acceptance.json"
+      ]
+    }
+  ]
+}

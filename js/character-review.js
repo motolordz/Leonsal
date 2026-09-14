@@ -26,6 +26,7 @@
     const candidateLibrary = document.getElementById('candidateLibrary');
     const guideProductionLane = document.getElementById('guideProductionLane');
     const productionBatches = document.getElementById('productionBatches');
+    const productionQueue = document.getElementById('productionQueue');
     const familyEvidence = document.getElementById('familyEvidence');
     const gateMatrix = document.getElementById('gateMatrix');
     const reviewFilters = [...document.querySelectorAll('[data-review-filter]')];
@@ -128,6 +129,21 @@
         productionBatches.innerHTML = `<p><b>Production order:</b> ${batches.length} review batches, starting with Leon and Zaya.</p><ol>${batches.map((batch) => `<li><b>${batch.title}</b><span>${batch.characterCount} characters · ${batch.status}</span></li>`).join('')}</ol>`;
       } catch {
         productionBatches.innerHTML = '<p>Production batch report could not load.</p>';
+      }
+    };
+    const renderProductionQueue = async () => {
+      if (!productionQueue) return;
+      try {
+        const queueResponse = await fetch('qa/character-production-v3/PRODUCTION-QUEUE/character-production-queue.json');
+        if (!queueResponse.ok) throw new Error('Production queue unavailable');
+        const report = await queueResponse.json();
+        const firstTasks = (report.queue || []).slice(0, 8);
+        const familyText = Object.entries(report.families || {})
+          .map(([family, amount]) => `${family}: ${amount}`)
+          .join(' · ');
+        productionQueue.innerHTML = `<div><h3>Production queue</h3><p><b>${report.pendingCharacters}</b> pending characters · <b>${report.pendingStateAssets}</b> state assets · ${familyText}</p><a href="qa/character-production-v3/PRODUCTION-QUEUE/CHARACTER-PRODUCTION-QUEUE.md">Open full production queue</a></div><ol>${firstTasks.map((item) => `<li><strong>${item.displayName}</strong><span>${item.priority} · ${item.nextAction}</span></li>`).join('')}</ol>`;
+      } catch {
+        productionQueue.innerHTML = '<p>Production queue could not load. Run the registry checks to rebuild it.</p>';
       }
     };
     const renderFamilyEvidence = () => {
@@ -242,6 +258,7 @@
     renderCandidateLibrary();
     renderGuideProductionLane();
     renderProductionBatches();
+    renderProductionQueue();
     renderFamilyEvidence();
     renderReadiness();
     function renderRunners() {
