@@ -56,6 +56,14 @@
     if (/sun/.test(id) && !/^planet-/.test(id)) return 'sun';
     if (/rocket/.test(id)) return 'rocket';
     if (/tree/.test(id)) return 'tree';
+    if (/clock/.test(id)) return 'clock';
+    if (/calendar/.test(id)) return 'calendar';
+    if (/pencil/.test(id)) return 'pencil';
+    if (/book/.test(id)) return 'book';
+    if (/paintbrush/.test(id)) return 'paintbrush';
+    if (/music/.test(id)) return 'music';
+    if (/water/.test(id)) return 'water';
+    if (/treasure/.test(id)) return 'treasure';
     if (/elephant/.test(id)) return 'elephant';
     if (/battery/.test(id)) return 'battery';
     if (/dinosaur/.test(id)) return 'dinosaur';
@@ -201,6 +209,30 @@
     }
     if (kind === 'tree') {
       return `<g class="character-body tree-body"><path d="M100 124 h22 l12 54 h-46z" fill="#9a6739" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><circle cx="83" cy="96" r="34" class="body"/><circle cx="117" cy="76" r="40" class="body"/><circle cx="145" cy="105" r="34" class="body"/><path d="M86 135 q25 14 55 0" fill="none" stroke="#fff" stroke-width="9" opacity=".28"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="155" cy="121" r="9" class="cheek"/></g>`;
+    }
+    if (kind === 'clock') {
+      return `<g class="character-body clock-body"><circle cx="110" cy="108" r="60" class="body"/><circle cx="110" cy="108" r="45" fill="#fff" opacity=".9" stroke="#173356" stroke-width="5"/><path d="M110 108 v-28M110 108 l28 18" stroke="#173356" stroke-width="8" stroke-linecap="round"/><circle cx="76" cy="124" r="9" class="cheek"/><circle cx="159" cy="124" r="9" class="cheek"/></g>`;
+    }
+    if (kind === 'calendar') {
+      return `<g class="character-body calendar-body"><rect x="55" y="55" width="110" height="118" rx="18" class="body"/><path d="M55 86 h110" stroke="#fff" stroke-width="14" opacity=".65"/><path d="M78 44 v28M142 44 v28" stroke="#173356" stroke-width="10" stroke-linecap="round"/><circle cx="85" cy="125" r="8" fill="#fff" opacity=".8"/><circle cx="112" cy="125" r="8" fill="#fff" opacity=".8"/><circle cx="139" cy="125" r="8" fill="#fff" opacity=".8"/><circle cx="76" cy="116" r="8" class="cheek"/><circle cx="159" cy="116" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'pencil') {
+      return `<g class="character-body pencil-body"><path d="M60 137 l62 -86 q16 5 31 22 l-64 85z" class="body"/><path d="M122 51 l20 -23 q19 7 31 23 l-20 22z" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><path d="M60 137 l-16 36 45 -15z" fill="#ffe8bd" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><circle cx="87" cy="122" r="8" class="cheek"/><circle cx="130" cy="120" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'book') {
+      return `<g class="character-body book-body"><path d="M51 62 q34 -16 59 8 q25 -24 59 -8 v112 q-34 -16 -59 8 q-25 -24 -59 -8z" class="body"/><path d="M110 70 v112" stroke="#fff" stroke-width="8" opacity=".55"/><path d="M67 91 h27M126 91 h27M67 115 h24M126 115 h24" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".72"/><circle cx="78" cy="128" r="8" class="cheek"/><circle cx="145" cy="128" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'paintbrush') {
+      return `<g class="character-body paintbrush-body"><path d="M75 151 q38 -78 83 -115 q21 16 25 34 q-62 35 -108 81z" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><path d="M59 165 q10 -46 44 -41 q10 35 -44 41z" class="body"/><path d="M52 172 q21 11 46 -11" fill="none" stroke="#173356" stroke-width="6" stroke-linecap="round"/><circle cx="86" cy="124" r="8" class="cheek"/><circle cx="129" cy="120" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'music') {
+      return `<g class="character-body music-body"><path d="M98 53 h50 v86" fill="none" stroke="${primary}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="80" cy="146" rx="30" ry="24" class="body"/><ellipse cx="142" cy="139" rx="30" ry="24" class="body"/><path d="M98 53 v91" stroke="#173356" stroke-width="5" opacity=".45"/><circle cx="73" cy="133" r="8" class="cheek"/><circle cx="143" cy="126" r="8" class="cheek"/></g>`;
+    }
+    if (kind === 'water') {
+      return `<g class="character-body water-body"><path d="M110 39 q57 70 57 103 q0 42 -57 42 q-57 0 -57 -42 q0 -33 57 -103z" class="body"/><path d="M82 137 q28 18 59 0" fill="none" stroke="#fff" stroke-width="9" opacity=".35"/><circle cx="76" cy="124" r="9" class="cheek"/><circle cx="159" cy="124" r="9" class="cheek"/></g>`;
+    }
+    if (kind === 'treasure') {
+      return `<g class="character-body treasure-body"><path d="M55 102 q8 -45 55 -45 q47 0 55 45z" class="body"/><rect x="49" y="101" width="122" height="70" rx="15" class="body"/><path d="M49 115 h122M110 58 v113" stroke="#ffcf48" stroke-width="10" opacity=".85"/><rect x="97" y="112" width="26" height="26" rx="6" fill="${accent}" stroke="#173356" stroke-width="5"/><circle cx="76" cy="130" r="8" class="cheek"/><circle cx="159" cy="130" r="8" class="cheek"/></g>`;
     }
     if (kind === 'battery') {
       return `<g class="character-body battery-body"><rect x="62" y="48" width="96" height="130" rx="24" class="body"/><rect x="86" y="32" width="48" height="24" rx="9" fill="${secondary}" stroke="#173356" stroke-width="5"/><path d="M92 114 l24 -43 -1 31 h22 l-30 48 5 -36z" fill="${accent}" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/></g>`;
