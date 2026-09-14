@@ -1733,7 +1733,22 @@ body[data-calm="true"] .hub-art {
 /* Shared flagship session controls and the short world selection screen. */
 [hidden] { display: none !important; }
 :focus-visible { outline: 3px solid #5533bb; outline-offset: 4px; }
-.session-controls { display: flex; gap: 12px; align-items: center; justify-content: center; padding: 10px; }
+.session-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  border-radius: 22px;
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 12px 30px rgba(36, 62, 99, .12);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  bottom: 8px;
+  z-index: 30;
+}
 .session-controls a, .session-controls button, .session-actions a, .session-actions button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 10px 20px; border: 2px solid #c3d6ed; border-radius: 16px; background: #fff; color: #132343; font: inherit; font-weight: 750; text-decoration: none; cursor: pointer; }
 .session-controls button:last-child { background: #d8f3df; border-color: #93cba1; }
 .session-dialog { width: min(460px, calc(100% - 32px)); border: 0; border-radius: 28px; padding: 30px; color: #132343; box-shadow: 0 24px 80px #13234340; }
@@ -2213,7 +2228,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .bus-stop { bottom: 37%; width: 42px; height: 78px; }
   .bus-world .drawer-controls { left: 14px; right: 14px; bottom: 14px; justify-content: center; }
 }
-@media (max-width: 480px) { .world-games { grid-template-columns: 1fr; } .world-header { gap: 8px; flex-wrap: wrap; } .world-header > a:last-child { margin-left: 0; } .world-welcome { padding-top: 16px; } .session-controls { gap: 6px; } .session-controls a, .session-controls button { padding: 10px 16px; } }
+@media (max-width: 480px) { .world-games { grid-template-columns: 1fr; } .world-header { gap: 8px; flex-wrap: wrap; } .world-header > a:last-child { margin-left: 0; } .world-welcome { padding-top: 16px; } .session-controls { gap: 6px; padding: 8px; padding-bottom: max(8px, env(safe-area-inset-bottom)); border-radius: 18px; } .session-controls a, .session-controls button { min-height: 46px; padding: 8px 10px; font-size: .92rem; border-radius: 14px; } }
 @media (max-width: 480px) {
   .local-profile-tools { grid-template-columns: 1fr 1fr; }
   .local-profile-tools label, .local-profile-tools select, .local-profile-tools input { grid-column: 1 / -1; }
