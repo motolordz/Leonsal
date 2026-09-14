@@ -93,6 +93,55 @@
   const mixerSummary = document.getElementById('mixerSummary');
   const filterButtons = [...document.querySelectorAll('[data-world-filter]')];
   const gameCards = [...document.querySelectorAll('.world-game[data-world-category]')];
+  const cardCharacters = {
+    'bubble-card': { id: 'world-cloud', family: 'world', state: 'happy', displayName: 'Cloud' },
+    'firefly-card': { id: 'world-moon', family: 'world', state: 'happy', displayName: 'Moon' },
+    'snow-card': { id: 'world-cloud', family: 'world', state: 'calm', displayName: 'Cloud' },
+    'star-card': { id: 'planet-sun', family: 'planet', state: 'excited', displayName: 'Sun' },
+    'garden-card': { id: 'world-tree', family: 'world', state: 'happy', displayName: 'Tree' },
+    'trail-card': { id: 'world-moon', family: 'world', state: 'calm', displayName: 'Moon' },
+    'breathe-card': { id: 'world-cloud', family: 'world', state: 'calm', displayName: 'Cloud' },
+    'rain-card': { id: 'world-cloud', family: 'world', state: 'happy', displayName: 'Cloud' },
+    'number-card': { id: 'number-3', family: 'number', state: 'happy', displayName: 'Number 3' },
+    'alphabet-card': { id: 'letter-a', family: 'alphabet', state: 'happy', displayName: 'Letter A', uppercase: 'A' },
+    'shape-card': { id: 'world-puzzle', family: 'world', state: 'happy', displayName: 'Puzzle' },
+    'letter-trace-card': { id: 'letter-a', family: 'alphabet', state: 'calm', displayName: 'Letter A', uppercase: 'A' },
+    'number-trace-card': { id: 'number-1', family: 'number', state: 'calm', displayName: 'Number 1' },
+    'shape-trace-card': { id: 'world-pencil', family: 'world', state: 'calm', displayName: 'Pencil' },
+    'colour-match-card': { id: 'world-paintbrush', family: 'world', state: 'happy', displayName: 'Paintbrush' },
+    'big-small-card': { id: 'world-treasure', family: 'world', state: 'happy', displayName: 'Treasure' },
+    'pattern-card': { id: 'world-rainbow', family: 'world', state: 'happy', displayName: 'Rainbow' },
+    'sort-it-card': { id: 'world-puzzle', family: 'world', state: 'calm', displayName: 'Puzzle' },
+    'planet-pals-card': { id: 'planet-earth', family: 'planet', state: 'happy', displayName: 'Earth' },
+    'solar-build-card': { id: 'planet-saturn', family: 'planet', state: 'happy', displayName: 'Saturn' },
+    'day-night-card': { id: 'world-moon', family: 'world', state: 'calm', displayName: 'Moon' },
+    'days-week-card': { id: 'world-calendar', family: 'world', state: 'happy', displayName: 'Calendar' },
+    'months-card': { id: 'world-calendar', family: 'world', state: 'calm', displayName: 'Calendar' },
+    'seasons-card': { id: 'world-tree', family: 'world', state: 'excited', displayName: 'Tree' },
+    'clock-card': { id: 'world-clock', family: 'world', state: 'happy', displayName: 'Clock' },
+    'weather-card': { id: 'world-sun', family: 'world', state: 'happy', displayName: 'Sun' },
+    'habitat-card': { id: 'elephant', family: 'world', state: 'happy', displayName: 'Elephant' },
+    'transport-card': { id: 'plane', family: 'world', state: 'happy', displayName: 'Plane' },
+    'bus-card': { id: 'double-decker', family: 'world', state: 'happy', displayName: 'Double-decker Bus' },
+    'trace-card': { id: 'letter-a', family: 'alphabet', state: 'calm', displayName: 'Letter A', uppercase: 'A' },
+    'orbit-card': { id: 'planet-earth', family: 'planet', state: 'calm', displayName: 'Earth' },
+    'cause-card': { id: 'world-sun', family: 'world', state: 'excited', displayName: 'Sun' }
+  };
+
+  const installCardCharacters = () => {
+    const renderer = window.LeonSalCharacterRenderer;
+    if (!renderer) return;
+    gameCards.forEach((card) => {
+      const matchedClass = Object.keys(cardCharacters).find(className => card.classList.contains(className));
+      if (!matchedClass) return;
+      const art = card.querySelector('.game-art');
+      if (!art || art.dataset.characterDecorated === 'true') return;
+      const { state, ...record } = cardCharacters[matchedClass];
+      art.dataset.characterDecorated = 'true';
+      art.replaceChildren(renderer.makeCharacter(record, state, { decorative: true }));
+    });
+  };
+  installCardCharacters();
 
   const applyWorldFilter = (filter) => {
     filterButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.worldFilter === filter)));

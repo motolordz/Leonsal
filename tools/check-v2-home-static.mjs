@@ -38,6 +38,13 @@ for (const category of ['calm', 'sensory', 'learning', 'world']) {
 for (const text of ['applyWorldFilter', 'data-world-filter', 'data-world-category', 'card.hidden = !visible']) {
   assert(js.includes(text), `V2 home missing filter behavior: ${text}`);
 }
+for (const text of ['const cardCharacters', 'installCardCharacters', 'renderer.makeCharacter', 'characterDecorated']) {
+  assert(js.includes(text), `V2 home missing procedural card character behavior: ${text}`);
+}
+for (const id of ['elephant', 'plane', 'double-decker', 'letter-a', 'number-3', 'world-cloud', 'planet-earth']) {
+  assert(js.includes(`id: '${id}'`), `V2 home card character map missing canonical id: ${id}`);
+}
+assert(css.includes('.game-art[data-character-decorated="true"] .procedural-character-svg'), 'V2 home card character styling missing');
 for (const text of ['new LeonSalV2.AssetLoaderEngine', 'loader.resolve', 'record?.states?.[state]']) {
   assert(approvedLoader.includes(text), `Approved character loader must use shared asset loader: ${text}`);
 }

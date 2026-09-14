@@ -2013,6 +2013,8 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .world-game p { color: #52617a; font-size: .95rem; line-height: 1.6; margin: 0 5px 20px; }
 .play-label { margin: auto 5px 4px; color: #305a89; font-weight: 800; }
 .game-art { height: 146px; border-radius: 14px; display: flex; gap: 12px; align-items: center; justify-content: center; background: #f5eacd; overflow: hidden; }
+.game-art[data-character-decorated="true"] .procedural-character-svg,
+.game-art[data-character-decorated="true"] .home-guide-svg { width: min(128px, 92%); height: min(128px, 92%); filter: drop-shadow(0 14px 16px rgba(19,35,67,.16)); }
 .home-battery { width: 140px; height: 70px; border: 6px solid #275c51; border-radius: 20px; background: linear-gradient(90deg, #8ad69c 66%, #fff 66%); position: relative; }
 .home-battery:after { content: ''; position: absolute; right: -16px; top: 18px; width: 10px; height: 26px; background: #275c51; border-radius: 0 5px 5px 0; }
 .dock-card .game-art { background: #e4eeff; }
