@@ -63,6 +63,8 @@ try {
     assert.equal(await page.locator('.wordmark').getAttribute('href'), 'v2-home.html', 'Landing wordmark should enter the V2 world');
     assert.equal(await page.locator('.maths-world').getAttribute('href'), 'v2-number-merge.html', 'Landing maths card should use V2 Number Merge');
     assert.equal(await page.locator('.literacy-world').getAttribute('href'), 'v2-alphabet-adventure.html', 'Landing literacy card should use V2 Alphabet Adventure');
+    assert.equal(await page.getByRole('navigation', { name: 'LeonSal sections' }).getByRole('link', { name: 'Characters', exact: true }).getAttribute('href'), 'v2-character-world.html', 'Landing character nav should open child-facing Character World');
+    assert.equal(await page.getByRole('link', { name: 'Meet the Characters', exact: true }).getAttribute('href'), 'v2-character-world.html', 'Landing hero character action should open Character World');
     assert.equal(await page.locator('.archive-link').getAttribute('href'), 'sensory-lab.html', 'Legacy lab should be retained only as an archive link');
     assert(await page.locator('.runner-leon').getByText('Leon', { exact: true }).isVisible(), 'Landing procedural Leon marker should show Leon');
     assert(await page.locator('.runner-zaya').getByText('Zaya', { exact: true }).isVisible(), 'Landing procedural Zaya marker should show Zaya');
