@@ -187,6 +187,12 @@
   };
 
   function makeSvg(record, state, options = {}) {
+    const sharedRenderer = window.LeonSalCharacterRenderer;
+    if (sharedRenderer && record.family === 'guide' && (record.id === 'leon' || record.id === 'zaya')) {
+      const svg = sharedRenderer.makeGuide(record.id, state, options);
+      svg.classList.add('procedural-character-svg', `character-family-${record.family}`, `character-state-${state}`);
+      return svg;
+    }
     const family = record.family || 'world';
     const [primary, accent, secondary] = palettes[family] || palettes.world;
     const tone = stateTone[state] || stateTone.calm;

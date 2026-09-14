@@ -12,6 +12,7 @@ assert(html.includes('Character World'), 'Character World route title missing');
 assert(html.includes('class="game-scene character-world-hero"'), 'Character World must use shared game scene shell');
 assert(html.includes('id="settingsToggle"'), 'Character World must expose shared settings toggle');
 assert(html.includes('id="settings"'), 'Character World must expose shared settings panel');
+assert(html.includes('js/v2-character-renderer.js'), 'Character World shared renderer script missing');
 assert(html.includes('js/v2-character-world.js'), 'Character World script missing');
 assert(home.includes('href="v2-character-world.html"'), 'V2 home must link child-facing Character World');
 assert(landing.includes('href="v2-character-world.html"'), 'Landing page must link child-facing Character World');
@@ -29,6 +30,7 @@ for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
 }
 for (const text of [
   'fetch(\'data/character-assets.json\')',
+  'LeonSalCharacterRenderer',
   'makeSvg(record, state',
   'Procedural vector fallback',
   'new LeonSalGameShell',
