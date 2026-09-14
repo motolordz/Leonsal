@@ -26,6 +26,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -77,9 +78,33 @@
       });
     }
 
+    function calendarRecord() {
+      return { id: 'world-calendar', displayName: 'Calendar', family: 'world', registryGroup: 'world' };
+    }
+
+    function monthState() {
+      if (cycle.sequence.index === 0) return 'calm';
+      if (cycle.sequence.index >= months.length - 1) return 'excited';
+      if (cycle.sequence.index >= 6) return 'happy';
+      return 'calm';
+    }
+
+    function renderActiveMonth() {
+      const current = cycle.sequence.current();
+      const renderer = window.LeonSalCharacterRenderer;
+      activeMonth.replaceChildren();
+      if (renderer) {
+        activeMonth.append(renderer.makeCharacter(calendarRecord(), monthState(), { decorative: false }));
+      }
+      const label = document.createElement('span');
+      label.className = 'time-cycle-label';
+      label.textContent = current.label;
+      activeMonth.append(label);
+    }
+
     function update() {
       const current = cycle.sequence.current();
-      activeMonth.textContent = current.label;
+      renderActiveMonth();
       activeMonth.dataset.month = current.id;
       status.textContent = current.cue;
       document.querySelectorAll('.month-dot').forEach((button, index) => {
@@ -102,6 +127,7 @@
       month: cycle.sequence.current().label,
       index: cycle.sequence.index,
       count: months.length,
+      hasCharacterRenderer: Boolean(activeMonth.querySelector('.procedural-character-svg.character-family-world')),
       hasTapAlternative: true,
       calmMode: settings.value.calmMode,
       reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()

@@ -25,6 +25,7 @@
         <span class="clock-pin"></span>
       </div>
       <div class="clock-readout" id="readout" aria-live="polite">1:00</div>
+      <div class="clock-helper" id="clockHelper" aria-live="polite"></div>
       <p class="scene-status" id="status">Hour hand points to 1.</p>
       <div class="drawer-controls">
         <button class="scene-button" id="hour" type="button">Next hour</button>
@@ -35,6 +36,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -43,6 +45,7 @@
     const status = document.querySelector('#status');
     const hourHand = document.querySelector('#hourHand');
     const minuteHand = document.querySelector('#minuteHand');
+    const clockHelper = document.querySelector('#clockHelper');
     let minutes = 0;
 
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
@@ -57,6 +60,22 @@
       return cycle.sequence.index + 1;
     }
 
+    function clockRecord() {
+      return { id: 'world-clock', displayName: 'Clock', family: 'world', registryGroup: 'world' };
+    }
+
+    function renderClockHelper() {
+      const renderer = window.LeonSalCharacterRenderer;
+      clockHelper.replaceChildren();
+      if (renderer) {
+        clockHelper.append(renderer.makeCharacter(clockRecord(), minutes === 30 ? 'happy' : 'calm', { decorative: false }));
+      }
+      const label = document.createElement('span');
+      label.className = 'time-cycle-label';
+      label.textContent = readout.textContent;
+      clockHelper.append(label);
+    }
+
     function setClock(nextHour, nextMinutes) {
       cycle.set(Math.max(0, Math.min(11, nextHour - 1)));
       minutes = nextMinutes === 30 ? 30 : 0;
@@ -66,6 +85,7 @@
       minuteHand.style.setProperty('--angle', `${minuteAngle}deg`);
       readout.textContent = `${hour()}:${minutes === 30 ? '30' : '00'}`;
       status.textContent = minutes === 30 ? `Half past ${hour()}.` : `Hour hand points to ${hour()}.`;
+      renderClockHelper();
     }
 
     function reset() {
@@ -81,6 +101,7 @@
       hour: hour(),
       minutes,
       readout: readout.textContent,
+      hasCharacterRenderer: Boolean(clockHelper.querySelector('.procedural-character-svg.character-family-world')),
       hasTapAlternative: true,
       calmMode: settings.value.calmMode,
       reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()

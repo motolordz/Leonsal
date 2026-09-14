@@ -26,6 +26,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -69,9 +70,26 @@
       });
     }
 
+    function calendarRecord() {
+      return { id: 'world-calendar', displayName: 'Calendar', family: 'world', registryGroup: 'world' };
+    }
+
+    function renderActiveDay() {
+      const current = sequence.current();
+      const renderer = window.LeonSalCharacterRenderer;
+      activeDay.replaceChildren();
+      if (renderer) {
+        activeDay.append(renderer.makeCharacter(calendarRecord(), sequence.index >= 5 ? 'happy' : 'calm', { decorative: false }));
+      }
+      const label = document.createElement('span');
+      label.className = 'time-cycle-label';
+      label.textContent = current.label;
+      activeDay.append(label);
+    }
+
     function update() {
       const current = sequence.current();
-      activeDay.textContent = current.label;
+      renderActiveDay();
       activeDay.dataset.day = current.id;
       status.textContent = current.cue;
       document.querySelectorAll('.week-day').forEach((button, index) => {
@@ -99,6 +117,7 @@
       day: sequence.current().label,
       index: sequence.index,
       count: days.length,
+      hasCharacterRenderer: Boolean(activeDay.querySelector('.procedural-character-svg.character-family-world')),
       hasTapAlternative: true,
       calmMode: settings.value.calmMode,
       reducedMotion: settings.value.reducedMotion
