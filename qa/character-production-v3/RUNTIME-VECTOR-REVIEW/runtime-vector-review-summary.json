@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-09-14T18:31:36.049Z",
+  "source": "js/v2-character-renderer.js",
+  "productionApprovalChanged": false,
+  "records": 69,
+  "states": [
+    "empty",
+    "low",
+    "calm",
+    "happy",
+    "excited"
+  ],
+  "screenshot": "qa/character-production-v3/RUNTIME-VECTOR-REVIEW/runtime-vector-five-state-review.png",
+  "runtimeRule": "This QA sheet is evidence only. Pending vectors remain preview/fallback artwork and must not be counted as approved production image assets."
+}
