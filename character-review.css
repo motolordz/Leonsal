@@ -223,7 +223,7 @@
 }
 .family-evidence a {
   display: grid;
-  grid-template-rows: 150px auto auto;
+  grid-template-rows: clamp(190px, 28vw, 260px) auto auto;
   gap: 7px;
   min-height: 246px;
   align-content: center;
@@ -237,8 +237,9 @@
 }
 .family-evidence a img {
   width: 100%;
-  height: 150px;
-  object-fit: contain;
+  height: clamp(190px, 28vw, 260px);
+  object-fit: cover;
+  object-position: top center;
   border-radius: 14px;
   background:
     linear-gradient(45deg, #e7eef7 25%, transparent 25% 75%, #e7eef7 75%),
