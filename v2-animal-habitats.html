@@ -31,6 +31,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -55,6 +56,20 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function animalRecord(animal) {
+      return { id: `world-${animal.id}`, displayName: animal.label, family: 'world', registryGroup: 'world' };
+    }
+    function renderAnimal(item, animal, state = 'calm') {
+      const renderer = window.LeonSalCharacterRenderer;
+      item.replaceChildren();
+      if (renderer) {
+        item.append(renderer.makeCharacter(animalRecord(animal), state, { decorative: true }));
+      }
+      const label = document.createElement('span');
+      label.className = 'animal-label';
+      label.textContent = animal.label;
+      item.append(label);
+    }
     function build() {
       selected = null;
       matched = new Set();
@@ -66,8 +81,8 @@
         item.type = 'button';
         item.dataset.id = animal.id;
         item.dataset.habitat = animal.habitat;
-        item.textContent = animal.label;
         item.setAttribute('aria-label', animal.label);
+        renderAnimal(item, animal, 'calm');
         animalWrap.append(item);
         const zone = document.querySelector(`.habitat-zone[data-habitat="${animal.habitat}"]`);
         dragDrop.register(item, zone, { select: () => selectAnimal(item), drop: () => tryHabitat(zone) });
@@ -89,6 +104,8 @@
       if (matcher.check(selected.dataset.id, zone.dataset.habitat)) {
         matched.add(selected.dataset.id);
         selected.dataset.matched = 'true';
+        const animal = animals.find((entry) => entry.id === selected.dataset.id);
+        if (animal) renderAnimal(selected, animal, 'happy');
         zone.dataset.count = String(Number(zone.dataset.count || 0) + 1);
         zone.dataset.glow = 'true';
         rewards.celebrate(zone, { type: 'glow' });
@@ -118,6 +135,7 @@
       selected: selected?.dataset.id || null,
       matched: [...matched],
       complete: matched.size === animals.length,
+      hasCharacterRenderer: [...document.querySelectorAll('.animal-token')].every((item) => Boolean(item.querySelector('.procedural-character-svg.character-family-world'))),
       hasTapAlternative: true,
       calmMode: settings.value.calmMode,
       reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()

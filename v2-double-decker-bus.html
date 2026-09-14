@@ -62,6 +62,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -84,6 +85,11 @@
       fast: 'fast',
       'super-speed': 'super speed'
     };
+    const busLabels = {
+      uk: 'UK Bus',
+      'hong-kong': 'Hong Kong Bus',
+      night: 'Night Bus'
+    };
     let selectedBus = 'uk';
     let selectedSpeed = 'medium';
     let progress = 0;
@@ -97,6 +103,24 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function busRecord(button) {
+      const label = busLabels[button.dataset.bus] || button.textContent.trim();
+      return { id: `world-bus-${button.dataset.bus}`, displayName: label, family: 'world', registryGroup: 'world' };
+    }
+    function renderBusChoices() {
+      const renderer = window.LeonSalCharacterRenderer;
+      document.querySelectorAll('.bus-choice').forEach((button) => {
+        const label = busLabels[button.dataset.bus] || button.textContent.trim();
+        button.replaceChildren();
+        if (renderer) {
+          button.append(renderer.makeCharacter(busRecord(button), button.dataset.bus === selectedBus ? 'happy' : 'calm', { decorative: true }));
+        }
+        const text = document.createElement('span');
+        text.className = 'bus-choice-label';
+        text.textContent = label;
+        button.append(text);
+      });
+    }
     function effectiveSpeed() {
       if (!settings.allowsMotion()) return 0;
       const base = speedFactors[selectedSpeed] || speedFactors.medium;
@@ -106,6 +130,7 @@
       document.querySelectorAll('.bus-choice').forEach((button) => {
         button.dataset.active = String(button.dataset.bus === selectedBus);
       });
+      renderBusChoices();
       document.querySelectorAll('.bus-speed').forEach((button) => {
         button.dataset.active = String(button.dataset.speed === selectedSpeed);
       });
@@ -137,7 +162,7 @@
       status.textContent = `${busName()} is ${label}.`;
     }
     function busName() {
-      return selectedBus === 'hong-kong' ? 'Hong Kong Bus' : selectedBus === 'night' ? 'Night Bus' : 'UK Bus';
+      return busLabels[selectedBus] || 'UK Bus';
     }
     function setBus(nextBus) {
       selectedBus = nextBus;
@@ -216,6 +241,7 @@
       progress,
       running,
       milestone: lastMilestone,
+      hasCharacterRenderer: [...document.querySelectorAll('.bus-choice')].every((button) => Boolean(button.querySelector('.procedural-character-svg.character-family-world'))),
       hasTapAlternative: true,
       calmMode: settings.value.calmMode,
       reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()

@@ -36,6 +36,10 @@
     if (/rocket/i.test(record.id)) return 'GO';
     if (/bus/i.test(record.id)) return 'BUS';
     if (/boat/i.test(record.id)) return 'BOAT';
+    if (/owl/i.test(record.id)) return 'OWL';
+    if (/fish/i.test(record.id)) return 'FISH';
+    if (/lizard/i.test(record.id)) return 'LIZ';
+    if (/penguin/i.test(record.id)) return 'P';
     if (/tree/i.test(record.id)) return 'TREE';
     if (/robot/i.test(record.id)) return 'BOT';
     if (/elephant/i.test(record.id)) return 'E';
@@ -47,6 +51,7 @@
     if (record.family === 'alphabet') return 'letter';
     if (record.family === 'number' || record.family === 'numbers') return 'number';
     if (/elephant/.test(id)) return 'elephant';
+    if (/owl|fish|lizard|penguin/.test(id)) return 'animal';
     if (/bus|train/.test(id)) return 'vehicle';
     if (/plane|rocket|boat/.test(id)) return 'transport';
     if (/sun|moon|earth|planet|mercury|venus|mars|jupiter|saturn|uranus|neptune/.test(id)) return 'planet';
@@ -169,7 +174,7 @@
     return svg;
   }
 
-  function worldBodyMarkup(record, glyph, primary, accent) {
+  function worldBodyMarkup(record, glyph, primary, accent, secondary) {
     const kind = characterKind(record);
     if (kind === 'elephant') {
       return `<g class="character-body elephant-body"><ellipse cx="66" cy="105" rx="34" ry="46" fill="#ff9db3"/><ellipse cx="154" cy="105" rx="34" ry="46" fill="#ff9db3"/><circle cx="110" cy="102" r="58" class="body"/><path d="M111 121 q4 31 -20 51 q26 12 43 -6 q-10 -24 -4 -45z" fill="${primary}" stroke="#173356" stroke-width="5" stroke-linecap="round"/><circle cx="76" cy="121" r="10" class="cheek"/><circle cx="159" cy="121" r="10" class="cheek"/></g>`;
@@ -179,6 +184,18 @@
     }
     if (kind === 'transport') {
       return `<g class="character-body transport-body"><path d="M45 119 q62 -67 128 0 q-45 30 -128 0z" class="body"/><path d="M91 68 l45 104" stroke="${accent}" stroke-width="15" stroke-linecap="round" opacity=".7"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/></g>`;
+    }
+    if (kind === 'animal') {
+      if (/fish/.test(record.id)) {
+        return `<g class="character-body animal-body fish-body"><path d="M55 112 q45 -48 104 0 q-58 46 -104 0z" class="body"/><path d="M159 112 l32 -27 q8 28 0 54z" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><path d="M93 75 q12 15 24 0" fill="none" stroke="${accent}" stroke-width="12" stroke-linecap="round"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="145" cy="121" r="9" class="cheek"/></g>`;
+      }
+      if (/lizard/.test(record.id)) {
+        return `<g class="character-body animal-body lizard-body"><ellipse cx="112" cy="115" rx="62" ry="43" class="body"/><path d="M58 126 q-25 8 -37 27" fill="none" stroke="${primary}" stroke-width="14" stroke-linecap="round"/><path d="M166 127 q22 7 34 25" fill="none" stroke="${primary}" stroke-width="12" stroke-linecap="round"/><path d="M82 77 l10 -19 11 20M128 77 l10 -19 11 20" fill="none" stroke="${accent}" stroke-width="8" stroke-linecap="round"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/></g>`;
+      }
+      if (/penguin/.test(record.id)) {
+        return `<g class="character-body animal-body penguin-body"><ellipse cx="110" cy="112" rx="54" ry="70" fill="#173356"/><ellipse cx="110" cy="126" rx="35" ry="42" fill="#fff" opacity=".92"/><path d="M99 116 l11 12 12 -12" fill="${accent}" stroke="#173356" stroke-width="4" stroke-linejoin="round"/><path d="M70 132 q-28 18 -41 43" class="limb"/><path d="M150 132 q28 18 41 43" class="limb"/><circle cx="78" cy="123" r="8" class="cheek"/><circle cx="158" cy="123" r="8" class="cheek"/></g>`;
+      }
+      return `<g class="character-body animal-body owl-body"><ellipse cx="110" cy="114" rx="58" ry="65" class="body"/><path d="M62 74 q23 -29 48 0 q25 -29 48 0 q-18 -9 -48 -6 q-30 -3 -48 6z" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><path d="M98 118 l12 15 13 -15" fill="${secondary}" stroke="#173356" stroke-width="4" stroke-linejoin="round"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/></g>`;
     }
     if (kind === 'planet') {
       return `<g class="character-body planet-body"><ellipse cx="110" cy="112" rx="82" ry="24" fill="none" stroke="${accent}" stroke-width="12" opacity=".72"/><circle cx="110" cy="108" r="58" class="body"/><path d="M67 118 q42 20 88 -6" fill="none" stroke="#fff" stroke-width="9" opacity=".35"/><circle cx="76" cy="121" r="10" class="cheek"/><circle cx="159" cy="121" r="10" class="cheek"/></g>`;
@@ -219,7 +236,7 @@
       <g transform="translate(0 ${emotion.lift}) rotate(${emotion.lean} 110 112)" filter="url(#worldCharacterShadow-${record.id}-${state})">
         <ellipse cx="110" cy="187" rx="58" ry="13" fill="#163f6d" opacity=".12"/>
         <circle cx="110" cy="108" r="76" fill="${accent}" opacity="${emotion.glow}"/>
-        ${worldBodyMarkup(record, glyph, primary, accent)}
+        ${worldBodyMarkup(record, glyph, primary, accent, secondary)}
         <g class="character-face">${eyeMarkup(emotion.eye)}${mouthMarkup(emotion.mouth)}</g>
         ${armsMarkup(emotion.arm).replaceAll('skin-limb', 'limb')}
         <path d="M86 169 q-11 16 -26 23" class="limb"/>

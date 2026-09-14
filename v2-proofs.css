@@ -2285,12 +2285,9 @@ body[data-motion="off"] .weather-choice { transition: none; }
 .habitat-zone.desert { background: radial-gradient(circle at 75% 20%, #facc15 0 12%, transparent 13%), linear-gradient(180deg, #fde68a, #f59e0b); }
 .habitat-zone.polar { background: radial-gradient(circle at 40% 68%, rgba(255,255,255,.9) 0 22%, transparent 23%), linear-gradient(180deg, #eff6ff, #bfdbfe); }
 .animal-tray { position: absolute; left: 7%; right: 7%; bottom: 24%; z-index: 5; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
-.animal-token { position: relative; min-height: 84px; border: 0; border-radius: 24px; padding-top: 36px; background: rgba(255,255,255,.82); color: #173356; font: inherit; font-size: .78rem; font-weight: 1000; box-shadow: 0 12px 24px rgba(19,35,67,.13), inset 0 -8px 0 rgba(19,35,67,.06); touch-action: none; }
-.animal-token::before { content: ""; position: absolute; left: 50%; top: 12px; width: 34px; aspect-ratio: 1; border-radius: 50%; transform: translateX(-50%); background: #f59e0b; box-shadow: inset 0 -5px 0 rgba(19,35,67,.1); }
-.animal-token.owl::before { background: radial-gradient(circle at 34% 38%, #fff 0 11%, transparent 12%), radial-gradient(circle at 66% 38%, #fff 0 11%, transparent 12%), #a16207; }
-.animal-token.fish::before { border-radius: 50% 45% 45% 50%; background: #0ea5e9; }
-.animal-token.lizard::before { border-radius: 45% 55% 52% 48%; background: #22c55e; }
-.animal-token.penguin::before { background: radial-gradient(circle at 50% 62%, #fff 0 28%, transparent 29%), #1e3a8a; }
+.animal-token { position: relative; min-height: 108px; display: grid; grid-template-rows: minmax(68px, 1fr) auto; place-items: center; gap: 2px; border: 0; border-radius: 24px; padding: 8px 8px 12px; background: rgba(255,255,255,.82); color: #173356; font: inherit; font-size: .78rem; font-weight: 1000; box-shadow: 0 12px 24px rgba(19,35,67,.13), inset 0 -8px 0 rgba(19,35,67,.06); touch-action: none; }
+.animal-token .procedural-character-svg { width: min(18vw, 82px); max-height: 80px; }
+.animal-label { display: block; line-height: 1; }
 .animal-token[data-selected="true"] { outline: 4px solid #facc15; transform: translateY(-4px); }
 .animal-token[data-matched="true"] { opacity: .58; transform: scale(.94); }
 .habitat-world .scene-status { z-index: 6; background: rgba(255,255,255,.7); color: #173356; }
@@ -2397,6 +2394,9 @@ body[data-motion="off"] .transport-choice { transition: none; }
 .bus-choice-row { top: 10%; grid-template-columns: repeat(3, minmax(0,1fr)); }
 .bus-speed-row { top: 23%; grid-template-columns: repeat(5, minmax(0,1fr)); }
 .bus-choice,.bus-speed { min-height: 54px; border: 0; border-radius: 18px; background: rgba(255,255,255,.78); color: #173356; font: inherit; font-size: .76rem; font-weight: 1000; box-shadow: 0 10px 20px rgba(19,35,67,.12), inset 0 -7px 0 rgba(19,35,67,.06); touch-action: manipulation; }
+.bus-choice { min-height: 86px; display: grid; grid-template-rows: minmax(48px, 1fr) auto; place-items: center; gap: 1px; padding: 8px 6px 10px; }
+.bus-choice .procedural-character-svg { width: min(15vw, 70px); max-height: 62px; }
+.bus-choice-label { display: block; line-height: 1.05; }
 .bus-choice[data-active="true"],.bus-speed[data-active="true"] { background: #facc15; outline: 4px solid rgba(255,255,255,.78); transform: translateY(4px); }
 .bus-world .scene-status { z-index: 8; background: rgba(255,255,255,.7); color: #173356; }
 .bus-world .drawer-controls { z-index: 8; }
@@ -2465,6 +2465,8 @@ body[data-calm="true"] .connection-status { transition: none; }
   .bus-choice-row { top: 9%; grid-template-columns: repeat(3, minmax(0, 1fr)); left: 7%; right: 7%; }
   .bus-speed-row { top: 21%; grid-template-columns: repeat(3, minmax(0, 1fr)); left: 7%; right: 7%; }
   .bus-choice,.bus-speed { min-width: 0; min-height: 48px; padding: 0 8px; font-size: .72rem; white-space: normal; line-height: 1.05; }
+  .bus-choice { min-height: 72px; padding: 7px 5px 8px; }
+  .bus-choice .procedural-character-svg { width: 54px; max-height: 50px; }
   .double-bus { width: min(38vw, 190px); height: min(23vw, 118px); bottom: 30%; }
   .bus-road { bottom: 20%; height: 94px; }
   .bus-stop { bottom: 37%; width: 42px; height: 78px; }
@@ -2551,8 +2553,8 @@ body[data-calm="true"] .connection-status { transition: none; }
   .habitat-map { top: 11%; gap: 8px; }
   .habitat-zone { min-height: 126px; border-radius: 20px; font-size: .82rem; }
   .animal-tray { bottom: 24%; gap: 7px; }
-  .animal-token { min-height: 68px; border-radius: 18px; font-size: .68rem; padding-top: 32px; }
-  .animal-token::before { width: 28px; top: 9px; }
+  .animal-token { min-height: 84px; grid-template-rows: minmax(50px, 1fr) auto; border-radius: 18px; font-size: .68rem; padding: 6px 5px 9px; }
+  .animal-token .procedural-character-svg { width: 58px; max-height: 56px; }
   .transport-choices { top: 12%; grid-template-columns: repeat(2, minmax(0,1fr)); }
   .transport-choice { min-height: 50px; border-radius: 16px; }
   .transport-vehicle { width: 72px; height: 72px; }
@@ -2561,6 +2563,8 @@ body[data-calm="true"] .connection-status { transition: none; }
   .bus-choice-row { top: 8%; grid-template-columns: repeat(3, minmax(0,1fr)); left: 6%; right: 6%; }
   .bus-speed-row { top: 19%; grid-template-columns: repeat(2, minmax(0,1fr)); left: 6%; right: 6%; }
   .bus-choice,.bus-speed { min-height: 44px; border-radius: 15px; font-size: .7rem; }
+  .bus-choice { min-height: 68px; }
+  .bus-choice .procedural-character-svg { width: 48px; max-height: 46px; }
   .double-bus { width: 150px; height: 96px; bottom: 30%; }
   .bus-destination { font-size: .5rem; min-height: 18px; }
   .speed-ribbon { bottom: 15%; width: 78vw; }

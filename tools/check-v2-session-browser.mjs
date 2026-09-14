@@ -83,7 +83,7 @@ try {
       assert.equal(await page.locator('.game-scene').evaluate(el=>el.inert),false);
       assert.equal(await page.locator('body').getAttribute('data-paused'),'false');
       await page.getByRole('button',{name:'Finished',exact:true}).click();
-      await page.getByRole('button',{name:'Start again',exact:true}).last().click();
+      await page.locator('.session-dialog [data-repeat]').click();
       await page.getByRole('button',{name:'Sensory settings',exact:true}).click();
       const sound = page.locator('#settings [data-key="sound"]');
       await sound.focus(); await page.keyboard.press('Enter');
@@ -272,6 +272,7 @@ try {
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert((await page.evaluate(()=>window.__weatherWorldProofState().particles))<=10);
     await page.goto(base+'/v2-animal-habitats.html');
+    assert.equal(await page.evaluate(()=>window.__animalHabitatsProofState().hasCharacterRenderer),true);
     await page.locator('.animal-token[data-id="owl"]').click();
     await page.locator('.habitat-zone[data-habitat="forest"]').click();
     assert((await page.evaluate(()=>window.__animalHabitatsProofState().matched)).includes('owl'));
@@ -287,6 +288,7 @@ try {
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__transportAdventureProofState().progress),0);
     await page.goto(base+'/v2-double-decker-bus.html');
+    assert.equal(await page.evaluate(()=>window.__doubleDeckerBusProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Hong Kong Bus',exact:true}).click();
     await page.getByRole('button',{name:'Super speed',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__doubleDeckerBusProofState().bus),'hong-kong');
