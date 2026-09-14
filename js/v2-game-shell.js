@@ -9,6 +9,7 @@ class LeonSalGameShell {
   }
 
   constructor({ settings, motions = [], audio = [], reset, gameId = document.body.dataset.gameId || LeonSalGameShell.routeGameId() }) {
+    LeonSalGameShell.registerOffline();
     this.settings = settings;
     this.motions = motions;
     this.audio = audio;
@@ -54,6 +55,14 @@ class LeonSalGameShell {
     this.unsubscribe = settings.on('settings-change', () => this.applySettings());
     this.applySettings();
     this.profile?.record(this.gameId, { visits: ((this.profile.value.progress[this.gameId]?.visits || 0) + 1) });
+  }
+
+  static registerOffline() {
+    if (!('serviceWorker' in navigator) || !window.isSecureContext || LeonSalGameShell.offlineRegistered) return;
+    LeonSalGameShell.offlineRegistered = true;
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js', { scope: './' }).catch(() => {});
+    }, { once: true });
   }
   closeSettings(focus = false) {
     if (!this.settingsPanel) return;

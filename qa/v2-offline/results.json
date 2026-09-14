@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "cachedRoutes": 9,
+  "cachedApprovedCharacterAssets": 5,
+  "blockedRuntimePaths": [
+    "source-safe-keeping",
+    "qa/",
+    "contact-sheet",
+    "rejected",
+    "character-review",
+    "_staging"
+  ]
+}
