@@ -23,6 +23,10 @@ assert.equal(readiness.familySummary?.alphabet?.pendingStateSlots, 130, "Alphabe
 assert.equal(readiness.familySummary?.number?.pendingStateSlots, 50, "Number family summary must include 50 pending state slots");
 assert.equal(readiness.familySummary?.world?.approvedRuntimeStateAssets, 5, "World family summary must include only Battery runtime assets");
 assert.equal(readiness.familySummary?.planet?.pendingStateSlots, 50, "Planet family summary must include 50 pending state slots");
+assert.equal(readiness.familySummary?.guide?.gateSummary?.blocked, 2, "Guide gate matrix must keep Leon and Zaya blocked");
+assert.equal(readiness.familySummary?.alphabet?.gateSummary?.visualQualityFailed, 26, "Alphabet gate matrix must preserve visual-quality blockers");
+assert.equal(readiness.characters.find((record) => record.id === "battery-buddy")?.gates?.approvalStatus, "approved", "Battery Buddy gate matrix must be approved");
+assert.equal(readiness.characters.find((record) => record.id === "leon")?.gates?.suppliedSourceComplete, "fail", "Leon gate matrix must keep supplied empty failure explicit");
 assert(/Only records with status approved/i.test(batchReport.runtimeRule), "Runtime rule must require approved status");
 for (const blocked of ["source-safe-keeping", "review-only", "QA", "contact-sheet", "rejected"]) {
   assert(batchReport.runtimeRule.includes(blocked), `Runtime rule must explicitly block ${blocked}`);

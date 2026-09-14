@@ -69,7 +69,7 @@
         const report = await reportResponse.json();
         const summary = report.summary || {};
         const familyRows = Object.entries(report.familySummary || {})
-          .map(([family, item]) => `<li><b>${family}</b>: ${item.approvedCharacters}/${item.characterCount} approved · ${item.pendingStateSlots} pending state slots</li>`)
+          .map(([family, item]) => `<li><b>${family}</b>: ${item.approvedCharacters}/${item.characterCount} approved · ${item.pendingStateSlots} pending state slots · ${item.gateSummary?.visualQualityFailed || 0} visual blockers</li>`)
           .join('');
         const blockers = (report.characters || [])
           .filter(item => item.blockers?.length)

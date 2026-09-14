@@ -33,17 +33,39 @@ function blockersFor(record) {
   return [...new Set(blockers)];
 }
 
+function gatesFor(record, supplied, presentStates, suppliedStates) {
+  const generatedQualityPending = /procedural review artwork|does not yet match Battery Buddy/i.test(record.notes || "");
+  const sourceTooSmall = supplied && /below the 2048 px production requirement/i.test(supplied.notes || "");
+  const guideNameNeedsCleanup = supplied && /canonical uppercase name|clothing needs/i.test(supplied.notes || "");
+  const leonEmptyBlocked = record.id === "leon";
+  const isApproved = record.status === "approved";
+  return {
+    fiveStateComplete: presentStates.length === states.length ? "pass" : "fail",
+    suppliedSourceComplete: !supplied ? "not-applicable" : suppliedStates.length === states.length ? "pass" : "fail",
+    productionResolution: isApproved ? "pass" : sourceTooSmall ? "fail" : "pending",
+    transparentMasters: isApproved ? "pass" : presentStates.length === states.length ? "technical-pass" : "pending",
+    runtimeExposure: Object.keys(record.states || {}).length === (isApproved ? states.length : 0) ? "pass" : "fail",
+    visualQuality: isApproved ? "pass" : generatedQualityPending ? "fail" : "pending",
+    identityConsistency: isApproved ? "pass" : "pending-visual-review",
+    guideNameText: record.family !== "guide" ? "not-applicable" : guideNameNeedsCleanup || leonEmptyBlocked ? "fail" : "pending",
+    approvalStatus: isApproved ? "approved" : "blocked"
+  };
+}
+
 const characters = registryRecords.map((record) => {
   const supplied = reviewFor(record.id);
   const stateSource = record.status === "approved" ? record.states : record.reviewStates || record.masterStates || {};
+  const presentStates = states.filter((state) => Boolean(stateSource[state]));
+  const suppliedStates = supplied ? states.filter((state) => Boolean(supplied.states?.[state])) : [];
   return {
     id: record.id,
     displayName: record.displayName,
     family: record.family,
     status: record.status,
     productionRuntimeStates: record.status === "approved" ? Object.keys(record.states || {}).length : 0,
-    registryStateSlots: states.filter((state) => Boolean(stateSource[state])).length,
-    suppliedReviewStates: supplied ? states.filter((state) => Boolean(supplied.states?.[state])).length : 0,
+    registryStateSlots: presentStates.length,
+    suppliedReviewStates: suppliedStates.length,
+    gates: gatesFor(record, supplied, presentStates, suppliedStates),
     evidence: record.evidence || [],
     blockers: blockersFor(record)
   };
@@ -64,6 +86,12 @@ const familySummary = Object.fromEntries(["guide", "alphabet", "number", "world"
       .filter((record) => record.status !== "approved")
       .reduce((total, record) => total + record.registryStateSlots, 0),
     suppliedReviewStateAssets: items.reduce((total, record) => total + record.suppliedReviewStates, 0),
+    gateSummary: {
+      approved: items.filter((record) => record.gates.approvalStatus === "approved").length,
+      blocked: items.filter((record) => record.gates.approvalStatus === "blocked").length,
+      visualQualityFailed: items.filter((record) => record.gates.visualQuality === "fail").length,
+      runtimeExposurePassed: items.filter((record) => record.gates.runtimeExposure === "pass").length
+    },
     topBlockers: [...blockerCounts.entries()]
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .slice(0, 5)

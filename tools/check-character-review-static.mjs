@@ -13,7 +13,7 @@ for (const text of ['productionTruth', 'sourceIntake', 'candidateLibrary', 'prod
   assert(html.includes(text), `Missing review UI hook: ${text}`);
 }
 
-for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'familySummary', 'family-status-list', 'renderProductionBatches', 'renderFamilyEvidence', 'leon-zaya-five-states.png', 'leonsal-complete-character-library.png', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'vectorAssets', 'missing.length', 'approved art']) {
+for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'familySummary', 'gateSummary', 'visual blockers', 'family-status-list', 'renderProductionBatches', 'renderFamilyEvidence', 'leon-zaya-five-states.png', 'leonsal-complete-character-library.png', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'vectorAssets', 'missing.length', 'approved art']) {
   assert(js.includes(text), `Missing review filter implementation: ${text}`);
 }
 
@@ -38,6 +38,10 @@ assert.equal(readiness.familySummary.world.approvedCharacters, 1, 'World family 
 assert.equal(readiness.familySummary.alphabet.pendingCharacters, 26, 'Alphabet family summary must show 26 pending letters');
 assert.equal(readiness.familySummary.number.pendingCharacters, 10, 'Number family summary must show 10 pending numbers');
 assert.equal(readiness.familySummary.planet.pendingCharacters, 10, 'Planet family summary must show 10 pending planet characters');
+assert.equal(readiness.characters.find(item => item.id === 'battery-buddy').gates.approvalStatus, 'approved', 'Battery gates must show approved');
+assert.equal(readiness.characters.find(item => item.id === 'leon').gates.guideNameText, 'fail', 'Leon gate matrix must preserve guide-name/empty blocker');
+assert.equal(readiness.characters.find(item => item.id === 'zaya').gates.visualQuality, 'fail', 'Zaya must remain visually blocked until production quality passes');
+assert.equal(readiness.familySummary.alphabet.gateSummary.visualQualityFailed, 26, 'Alphabet visual blockers must remain explicit');
 const batches = JSON.parse(await fs.readFile('qa/character-production-v3/READINESS/character-production-batches.json', 'utf8'));
 assert.equal(batches.batches[0].id, 'batch-1-guides-leon-zaya', 'Guide production batch must remain first');
 assert(batches.batches[0].characters.some(character => character.id === 'leon'), 'Guide batch must include Leon');

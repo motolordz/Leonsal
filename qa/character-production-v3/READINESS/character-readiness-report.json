@@ -26,6 +26,12 @@
       "approvedRuntimeStateAssets": 0,
       "pendingStateSlots": 10,
       "suppliedReviewStateAssets": 9,
+      "gateSummary": {
+        "approved": 0,
+        "blocked": 2,
+        "visualQualityFailed": 2,
+        "runtimeExposurePassed": 2
+      },
       "topBlockers": [
         {
           "blocker": "guide clothing/name text needs production cleanup",
@@ -56,6 +62,12 @@
       "approvedRuntimeStateAssets": 0,
       "pendingStateSlots": 130,
       "suppliedReviewStateAssets": 0,
+      "gateSummary": {
+        "approved": 0,
+        "blocked": 26,
+        "visualQualityFailed": 26,
+        "runtimeExposurePassed": 26
+      },
       "topBlockers": [
         {
           "blocker": "not approved for production runtime",
@@ -74,6 +86,12 @@
       "approvedRuntimeStateAssets": 0,
       "pendingStateSlots": 50,
       "suppliedReviewStateAssets": 0,
+      "gateSummary": {
+        "approved": 0,
+        "blocked": 10,
+        "visualQualityFailed": 10,
+        "runtimeExposurePassed": 10
+      },
       "topBlockers": [
         {
           "blocker": "not approved for production runtime",
@@ -92,6 +110,12 @@
       "approvedRuntimeStateAssets": 5,
       "pendingStateSlots": 100,
       "suppliedReviewStateAssets": 0,
+      "gateSummary": {
+        "approved": 1,
+        "blocked": 20,
+        "visualQualityFailed": 0,
+        "runtimeExposurePassed": 21
+      },
       "topBlockers": [
         {
           "blocker": "not approved for production runtime",
@@ -106,6 +130,12 @@
       "approvedRuntimeStateAssets": 0,
       "pendingStateSlots": 50,
       "suppliedReviewStateAssets": 0,
+      "gateSummary": {
+        "approved": 0,
+        "blocked": 10,
+        "visualQualityFailed": 0,
+        "runtimeExposurePassed": 10
+      },
       "topBlockers": [
         {
           "blocker": "not approved for production runtime",
@@ -123,6 +153,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 4,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "fail",
+        "productionResolution": "fail",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "fail",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/leon/five-states.png"
       ],
@@ -143,6 +184,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 5,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "pass",
+        "productionResolution": "fail",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "fail",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/zaya/five-states.png"
       ],
@@ -161,6 +213,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-a/five-states.png"
       ],
@@ -177,6 +240,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-b/five-states.png"
       ],
@@ -193,6 +267,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-c/five-states.png"
       ],
@@ -209,6 +294,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-d/five-states.png"
       ],
@@ -225,6 +321,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-e/five-states.png"
       ],
@@ -241,6 +348,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-f/five-states.png"
       ],
@@ -257,6 +375,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-g/five-states.png"
       ],
@@ -273,6 +402,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-h/five-states.png"
       ],
@@ -289,6 +429,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-i/five-states.png"
       ],
@@ -305,6 +456,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-j/five-states.png"
       ],
@@ -321,6 +483,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-k/five-states.png"
       ],
@@ -337,6 +510,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-l/five-states.png"
       ],
@@ -353,6 +537,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-m/five-states.png"
       ],
@@ -369,6 +564,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-n/five-states.png"
       ],
@@ -385,6 +591,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-o/five-states.png"
       ],
@@ -401,6 +618,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-p/five-states.png"
       ],
@@ -417,6 +645,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-q/five-states.png"
       ],
@@ -433,6 +672,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-r/five-states.png"
       ],
@@ -449,6 +699,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-s/five-states.png"
       ],
@@ -465,6 +726,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-t/five-states.png"
       ],
@@ -481,6 +753,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-u/five-states.png"
       ],
@@ -497,6 +780,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-v/five-states.png"
       ],
@@ -513,6 +807,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-w/five-states.png"
       ],
@@ -529,6 +834,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-x/five-states.png"
       ],
@@ -545,6 +861,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-y/five-states.png"
       ],
@@ -561,6 +888,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/letter-z/five-states.png"
       ],
@@ -577,6 +915,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/number-1/five-states.png"
       ],
@@ -593,6 +942,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/number-2/five-states.png"
       ],
@@ -609,6 +969,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/number-3/five-states.png"
       ],
@@ -625,6 +996,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/number-4/five-states.png"
       ],
@@ -641,6 +1023,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/number-5/five-states.png"
       ],
@@ -657,6 +1050,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/number-6/five-states.png"
       ],
@@ -673,6 +1077,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/number-7/five-states.png"
       ],
@@ -689,6 +1104,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/number-8/five-states.png"
       ],
@@ -705,6 +1131,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/number-9/five-states.png"
       ],
@@ -721,6 +1158,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "fail",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/number-10/five-states.png"
       ],
@@ -737,6 +1185,17 @@
       "productionRuntimeStates": 5,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pass",
+        "transparentMasters": "pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pass",
+        "identityConsistency": "pass",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "approved"
+      },
       "evidence": [
         "qa/battery-production-v3/FINAL-OWNER-READY/battery-five-final.png",
         "qa/battery-production-v3/FINAL-OWNER-READY/battery-mobile-five-states.png",
@@ -752,6 +1211,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-sun/five-states.png"
       ],
@@ -767,6 +1237,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-moon/five-states.png"
       ],
@@ -782,6 +1263,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-cloud/five-states.png"
       ],
@@ -797,6 +1289,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-rainbow/five-states.png"
       ],
@@ -812,6 +1315,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-rocket/five-states.png"
       ],
@@ -827,6 +1341,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-earth/five-states.png"
       ],
@@ -842,6 +1367,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-robot/five-states.png"
       ],
@@ -857,6 +1393,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-magnifier/five-states.png"
       ],
@@ -872,6 +1419,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-pencil/five-states.png"
       ],
@@ -887,6 +1445,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-book/five-states.png"
       ],
@@ -902,6 +1471,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-paintbrush/five-states.png"
       ],
@@ -917,6 +1497,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-music-note/five-states.png"
       ],
@@ -932,6 +1523,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-clock/five-states.png"
       ],
@@ -947,6 +1549,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-calendar/five-states.png"
       ],
@@ -962,6 +1575,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-puzzle/five-states.png"
       ],
@@ -977,6 +1601,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-water/five-states.png"
       ],
@@ -992,6 +1627,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-tree/five-states.png"
       ],
@@ -1007,6 +1653,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-train/five-states.png"
       ],
@@ -1022,6 +1679,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-dinosaur/five-states.png"
       ],
@@ -1037,6 +1705,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/world-treasure/five-states.png"
       ],
@@ -1052,6 +1731,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/planet-sun/five-states.png"
       ],
@@ -1067,6 +1757,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/planet-mercury/five-states.png"
       ],
@@ -1082,6 +1783,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/planet-venus/five-states.png"
       ],
@@ -1097,6 +1809,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/planet-earth/five-states.png"
       ],
@@ -1112,6 +1835,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/planet-mars/five-states.png"
       ],
@@ -1127,6 +1861,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/planet-jupiter/five-states.png"
       ],
@@ -1142,6 +1887,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/planet-saturn/five-states.png"
       ],
@@ -1157,6 +1913,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/planet-uranus/five-states.png"
       ],
@@ -1172,6 +1939,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/planet-neptune/five-states.png"
       ],
@@ -1187,6 +1965,17 @@
       "productionRuntimeStates": 0,
       "registryStateSlots": 5,
       "suppliedReviewStates": 0,
+      "gates": {
+        "fiveStateComplete": "pass",
+        "suppliedSourceComplete": "not-applicable",
+        "productionResolution": "pending",
+        "transparentMasters": "technical-pass",
+        "runtimeExposure": "pass",
+        "visualQuality": "pending",
+        "identityConsistency": "pending-visual-review",
+        "guideNameText": "not-applicable",
+        "approvalStatus": "blocked"
+      },
       "evidence": [
         "qa/character-production-v3/planet-moon/five-states.png"
       ],
