@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 53,
+      "controls": 54,
       "canvases": []
     },
     {
@@ -226,6 +226,12 @@
       "route": "v2-days-week.html",
       "passed": true,
       "controls": 14,
+      "canvases": []
+    },
+    {
+      "route": "v2-months-year.html",
+      "passed": true,
+      "controls": 19,
       "canvases": []
     },
     {

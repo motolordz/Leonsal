@@ -4,7 +4,7 @@
     "width": 390,
     "height": 844
   },
-  "routeVisits": 81,
+  "routeVisits": 84,
   "checks": [
     "single session controls per route",
     "single session dialog per route",
@@ -106,6 +106,10 @@
     },
     {
       "pass": 0,
+      "route": "v2-months-year.html"
+    },
+    {
+      "pass": 0,
       "route": "v2-light-trail.html"
     },
     {
@@ -214,6 +218,10 @@
     },
     {
       "pass": 1,
+      "route": "v2-months-year.html"
+    },
+    {
+      "pass": 1,
       "route": "v2-light-trail.html"
     },
     {
@@ -319,6 +327,10 @@
     {
       "pass": 2,
       "route": "v2-days-week.html"
+    },
+    {
+      "pass": 2,
+      "route": "v2-months-year.html"
     },
     {
       "pass": 2,

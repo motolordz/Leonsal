@@ -30,6 +30,7 @@ const routes = [
   'v2-build-solar-system.html',
   'v2-day-night.html',
   'v2-days-week.html',
+  'v2-months-year.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -121,7 +122,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 17);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 18);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -364,6 +365,19 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__daysWeekProofState?.());
       assert.equal(state.day, 'Monday', 'Days of Week reset did not return to Monday');
+    }
+    if (route === 'v2-months-year.html') {
+      assert.equal(await page.locator('.month-dot').count(), 12, 'Months of Year does not expose twelve months');
+      await page.getByRole('button', { name: 'Next month' }).click();
+      let state = await page.evaluate(() => window.__monthsYearProofState?.());
+      assert.equal(state.month, 'February', 'Months of Year Next did not advance to February');
+      assert.equal(state.hasTapAlternative, true, 'Months of Year missing tap alternative');
+      await page.getByRole('button', { name: 'Choose December' }).click();
+      state = await page.evaluate(() => window.__monthsYearProofState?.());
+      assert.equal(state.month, 'December', 'Months of Year tap did not choose December');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__monthsYearProofState?.());
+      assert.equal(state.month, 'January', 'Months of Year reset did not return to January');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

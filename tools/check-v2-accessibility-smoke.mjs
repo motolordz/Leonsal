@@ -30,6 +30,7 @@ const routes = [
   'v2-build-solar-system.html',
   'v2-day-night.html',
   'v2-days-week.html',
+  'v2-months-year.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
