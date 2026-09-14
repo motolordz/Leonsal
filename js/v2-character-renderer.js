@@ -51,6 +51,8 @@
     if (record.family === 'alphabet') return 'letter';
     if (record.family === 'number' || record.family === 'numbers') return 'number';
     if (/elephant/.test(id)) return 'elephant';
+    if (/battery/.test(id)) return 'battery';
+    if (/dinosaur/.test(id)) return 'dinosaur';
     if (/owl|fish|lizard|penguin/.test(id)) return 'animal';
     if (/bus|train|double-decker/.test(id)) return 'vehicle';
     if (/plane|rocket|boat/.test(id)) return 'transport';
@@ -176,8 +178,14 @@
 
   function worldBodyMarkup(record, glyph, primary, accent, secondary) {
     const kind = characterKind(record);
+    if (kind === 'battery') {
+      return `<g class="character-body battery-body"><rect x="62" y="48" width="96" height="130" rx="24" class="body"/><rect x="86" y="32" width="48" height="24" rx="9" fill="${secondary}" stroke="#173356" stroke-width="5"/><path d="M92 114 l24 -43 -1 31 h22 l-30 48 5 -36z" fill="${accent}" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/></g>`;
+    }
     if (kind === 'elephant') {
       return `<g class="character-body elephant-body"><ellipse cx="66" cy="105" rx="34" ry="46" fill="#ff9db3"/><ellipse cx="154" cy="105" rx="34" ry="46" fill="#ff9db3"/><circle cx="110" cy="102" r="58" class="body"/><path d="M111 121 q4 31 -20 51 q26 12 43 -6 q-10 -24 -4 -45z" fill="${primary}" stroke="#173356" stroke-width="5" stroke-linecap="round"/><circle cx="76" cy="121" r="10" class="cheek"/><circle cx="159" cy="121" r="10" class="cheek"/></g>`;
+    }
+    if (kind === 'dinosaur') {
+      return `<g class="character-body dinosaur-body"><path d="M69 112 q9 -53 62 -53 q43 0 54 43 q-11 56 -69 68 q-43 -5 -47 -58z" class="body"/><path d="M83 67 l13 -23 12 25M115 58 l14 -24 12 27M149 74 l15 -20 8 27" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/><path d="M61 137 q-30 8 -41 33" fill="none" stroke="${primary}" stroke-width="15" stroke-linecap="round"/><circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/></g>`;
     }
     if (kind === 'vehicle') {
       return `<g class="character-body vehicle-body"><rect x="45" y="76" width="130" height="77" rx="18" class="body"/><rect x="55" y="87" width="110" height="24" rx="8" fill="#dff5ff" opacity=".9"/><path d="M58 122 h104" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".55"/><circle cx="78" cy="158" r="14" fill="#173356"/><circle cx="142" cy="158" r="14" fill="#173356"/><circle cx="76" cy="121" r="8" class="cheek"/><circle cx="159" cy="121" r="8" class="cheek"/></g>`;

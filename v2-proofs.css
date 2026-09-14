@@ -2936,7 +2936,8 @@ body[data-calm="true"] .connection-status { transition: none; }
   transform: translateY(-18px);
 }
 .procedural-character-svg .vehicle-body + .character-face,
-.procedural-character-svg .transport-body + .character-face {
+.procedural-character-svg .transport-body + .character-face,
+.procedural-character-svg .battery-body + .character-face {
   transform: translateY(11px);
 }
 .procedural-character-svg .eye { fill: #173356; }

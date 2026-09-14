@@ -101,6 +101,8 @@
     if (record.family === 'alphabet') return 'letter';
     if (record.family === 'number') return 'number';
     if (/elephant/.test(id)) return 'elephant';
+    if (/battery/.test(id)) return 'battery';
+    if (/dinosaur/.test(id)) return 'dinosaur';
     if (/bus|train|double-decker/.test(id)) return 'vehicle';
     if (/plane|rocket|boat/.test(id)) return 'transport';
     if (/sun|moon|earth|planet|mercury|venus|mars|jupiter|saturn|uranus|neptune/.test(id)) return 'planet';
@@ -110,6 +112,15 @@
   };
   const bodyMarkupFor = (record, family, glyph, primary, accent, secondary) => {
     const kind = characterKind(record);
+    if (kind === 'battery') {
+      return `
+        <g class="character-body battery-body">
+          <rect x="62" y="48" width="96" height="130" rx="24" class="body"/>
+          <rect x="86" y="32" width="48" height="24" rx="9" fill="${secondary}" stroke="#173356" stroke-width="5"/>
+          <path d="M92 114 l24 -43 -1 31 h22 l-30 48 5 -36z" fill="${accent}" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/>
+        </g>`;
+    }
     if (kind === 'letter' || kind === 'number') {
       const fontSize = kind === 'number' && glyph.length > 1 ? 82 : 102;
       return `
@@ -144,6 +155,15 @@
           <path d="M111 121 q4 31 -20 51 q26 12 43 -6 q-10 -24 -4 -45z" fill="${primary}" stroke="#173356" stroke-width="5" stroke-linecap="round"/>
           <circle cx="76" cy="121" r="10" class="cheek"/>
           <circle cx="159" cy="121" r="10" class="cheek"/>
+        </g>`;
+    }
+    if (kind === 'dinosaur') {
+      return `
+        <g class="character-body dinosaur-body">
+          <path d="M69 112 q9 -53 62 -53 q43 0 54 43 q-11 56 -69 68 q-43 -5 -47 -58z" class="body"/>
+          <path d="M83 67 l13 -23 12 25M115 58 l14 -24 12 27M149 74 l15 -20 8 27" fill="${accent}" stroke="#173356" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M61 137 q-30 8 -41 33" fill="none" stroke="${primary}" stroke-width="15" stroke-linecap="round"/>
+          <circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/>
         </g>`;
     }
     if (kind === 'vehicle') {

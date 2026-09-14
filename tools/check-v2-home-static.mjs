@@ -46,6 +46,7 @@ for (const id of ['elephant', 'plane', 'double-decker', 'letter-a', 'number-3', 
 }
 assert(css.includes('.game-art[data-character-decorated="true"] .procedural-character-svg'), 'V2 home card character styling missing');
 assert(rendererLikeVehicle(), 'Shared renderer must classify double-decker as a vehicle');
+assert(rendererLikeCharacters(), 'Shared renderer must classify Battery Buddy and Dinosaur as distinct character bodies');
 for (const text of ['new LeonSalV2.AssetLoaderEngine', 'loader.resolve', 'record?.states?.[state]']) {
   assert(approvedLoader.includes(text), `Approved character loader must use shared asset loader: ${text}`);
 }
@@ -55,6 +56,12 @@ function rendererLikeVehicle() {
   const renderer = fs.readFileSync('js/v2-character-renderer.js', 'utf8');
   const characterWorld = fs.readFileSync('js/v2-character-world.js', 'utf8');
   return /bus\|train\|double-decker/.test(renderer) && /bus\|train\|double-decker/.test(characterWorld);
+}
+
+function rendererLikeCharacters() {
+  const renderer = fs.readFileSync('js/v2-character-renderer.js', 'utf8');
+  const characterWorld = fs.readFileSync('js/v2-character-world.js', 'utf8');
+  return /battery-body/.test(renderer) && /dinosaur-body/.test(renderer) && /battery-body/.test(characterWorld) && /dinosaur-body/.test(characterWorld);
 }
 
 console.log('V2 home static checks passed.');
