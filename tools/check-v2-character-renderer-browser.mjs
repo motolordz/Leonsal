@@ -1,53 +1,28 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { chromium } from 'playwright';
 
 const states = ['empty', 'low', 'calm', 'happy', 'excited'];
-const records = [
-  { id: 'leon', displayName: 'Leon', family: 'guide' },
-  { id: 'zaya', displayName: 'Zaya', family: 'guide' },
-  { id: 'letter-a', displayName: 'Letter A', family: 'alphabet', uppercase: 'A' },
-  { id: 'letter-z', displayName: 'Letter Z', family: 'alphabet', uppercase: 'Z' },
-  { id: 'number-1', displayName: 'Number 1', family: 'number' },
-  { id: 'number-10', displayName: 'Number 10', family: 'number' },
-  { id: 'battery-buddy', displayName: 'Battery Buddy', family: 'world' },
-  { id: 'world-elephant', displayName: 'Elephant', family: 'world' },
-  { id: 'world-dinosaur', displayName: 'Dinosaur', family: 'world' },
-  { id: 'world-sun', displayName: 'Sun', family: 'world' },
-  { id: 'world-moon', displayName: 'Moon', family: 'world' },
-  { id: 'world-cloud', displayName: 'Cloud', family: 'world' },
-  { id: 'world-rainbow', displayName: 'Rainbow', family: 'world' },
-  { id: 'world-rocket', displayName: 'Rocket', family: 'world' },
-  { id: 'world-earth', displayName: 'Earth', family: 'world' },
-  { id: 'world-robot', displayName: 'Robot', family: 'world' },
-  { id: 'world-magnifier', displayName: 'Magnifying Glass', family: 'world' },
-  { id: 'world-puzzle', displayName: 'Puzzle', family: 'world' },
-  { id: 'world-train', displayName: 'Train', family: 'world' },
-  { id: 'world-plane', displayName: 'Plane', family: 'world' },
-  { id: 'world-boat', displayName: 'Boat', family: 'world' },
-  { id: 'world-double-decker-bus', displayName: 'Double-decker Bus', family: 'world' },
-  { id: 'world-clock', displayName: 'Clock', family: 'world' },
-  { id: 'world-calendar', displayName: 'Calendar', family: 'world' },
-  { id: 'world-pencil', displayName: 'Pencil', family: 'world' },
-  { id: 'world-book', displayName: 'Book', family: 'world' },
-  { id: 'world-paintbrush', displayName: 'Paintbrush', family: 'world' },
-  { id: 'world-music-note', displayName: 'Music Note', family: 'world' },
-  { id: 'world-water', displayName: 'Water Droplet', family: 'world' },
-  { id: 'world-treasure', displayName: 'Treasure Chest', family: 'world' },
-  { id: 'planet-sun', displayName: 'Sun', family: 'planet' },
-  { id: 'planet-mercury', displayName: 'Mercury', family: 'planet' },
-  { id: 'planet-venus', displayName: 'Venus', family: 'planet' },
-  { id: 'planet-earth', displayName: 'Earth', family: 'planet' },
-  { id: 'planet-mars', displayName: 'Mars', family: 'planet' },
-  { id: 'planet-jupiter', displayName: 'Jupiter', family: 'planet' },
-  { id: 'planet-saturn', displayName: 'Saturn', family: 'planet' },
-  { id: 'planet-uranus', displayName: 'Uranus', family: 'planet' },
-  { id: 'planet-neptune', displayName: 'Neptune', family: 'planet' },
-  { id: 'planet-moon', displayName: 'Moon', family: 'planet' }
-];
+const registry = JSON.parse(fs.readFileSync('data/character-assets.json', 'utf8'));
+const registryGroups = ['guides', 'alphabet', 'numbers', 'world', 'planets', 'pilot'];
+const rawRecords = registryGroups
+  .flatMap(group => (registry[group] || []).map(record => ({
+    id: record.id,
+    displayName: record.displayName,
+    family: record.family === 'numbers' ? 'number' : record.family,
+    uppercase: record.uppercase
+  })))
+  .filter(record => record.id && record.displayName);
+const byRecordId = new Map();
+for (const record of rawRecords) {
+  if (!byRecordId.has(record.id)) byRecordId.set(record.id, record);
+}
+const records = [...byRecordId.values()];
 
 const expectedBodyClasses = {
   'battery-buddy': 'battery-body',
   'world-elephant': 'elephant-body',
+  elephant: 'elephant-body',
   'world-dinosaur': 'dinosaur-body',
   'world-sun': 'sun-body',
   'world-moon': 'moon-body',
@@ -62,6 +37,9 @@ const expectedBodyClasses = {
   'world-plane': 'plane-body',
   'world-boat': 'boat-body',
   'world-double-decker-bus': 'vehicle-body',
+  'double-decker': 'vehicle-body',
+  plane: 'plane-body',
+  boat: 'boat-body',
   'world-clock': 'clock-body',
   'world-calendar': 'calendar-body',
   'world-pencil': 'pencil-body',
