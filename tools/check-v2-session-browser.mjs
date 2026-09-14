@@ -41,6 +41,7 @@ const playableRoutes = [
   'pattern-builder',
   'sort-it',
   'planet-pals',
+  'build-solar-system',
   'light-trail',
   'hold-to-breathe',
   'trace-engine',
@@ -55,7 +56,7 @@ try {
     page.on('response', response => { if(response.status() >= 400) failures.push(`${response.status()} ${response.url()}`); });
     await page.goto(base+'/v2-home.html');
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 14);
+    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 15);
     assert.equal(await page.locator('.need-card').count(), 4);
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
     for (const route of playableRoutes) {
@@ -198,6 +199,12 @@ try {
     assert.equal(await page.evaluate(()=>window.__planetPalsProofState().educationalScaleNote),true);
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__planetPalsProofState().visited.length),0);
+    await page.goto(base+'/v2-build-solar-system.html');
+    await page.getByRole('button',{name:'Place next',exact:true}).click();
+    assert.equal(await page.evaluate(()=>window.__solarBuildProofState().placed.includes('mercury')),true);
+    assert.equal(await page.evaluate(()=>window.__solarBuildProofState().educationalScaleNote),true);
+    await page.getByRole('button',{name:'Reset',exact:true}).click();
+    assert.equal(await page.evaluate(()=>window.__solarBuildProofState().placed.length),0);
     await page.goto(base+'/v2-light-trail.html');
     await page.locator('#canvas').focus(); await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowDown');
     assert((await page.evaluate(()=>trail.points.length))>1);

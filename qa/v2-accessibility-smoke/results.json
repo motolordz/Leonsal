@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 50,
+      "controls": 51,
       "canvases": []
     },
     {
@@ -206,6 +206,12 @@
     },
     {
       "route": "v2-planet-pals.html",
+      "passed": true,
+      "controls": 11,
+      "canvases": []
+    },
+    {
+      "route": "v2-build-solar-system.html",
       "passed": true,
       "controls": 11,
       "canvases": []

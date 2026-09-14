@@ -9,134 +9,141 @@
     {
       "route": "v2-energy-battery.html",
       "frames": 79,
-      "averageFps": 58.8,
-      "worstObservedFps": 53.5,
+      "averageFps": 59.2,
+      "worstObservedFps": 53.8,
       "longTasks": []
     },
     {
       "route": "v2-dash-dock.html",
       "frames": 78,
-      "averageFps": 59.2,
+      "averageFps": 58.7,
       "worstObservedFps": 30,
       "longTasks": []
     },
     {
       "route": "v2-bubble-garden.html",
-      "frames": 78,
-      "averageFps": 58.8,
-      "worstObservedFps": 30,
+      "frames": 79,
+      "averageFps": 59.3,
+      "worstObservedFps": 53.8,
       "longTasks": []
     },
     {
       "route": "v2-firefly-catch.html",
       "frames": 78,
-      "averageFps": 59.2,
-      "worstObservedFps": 30,
+      "averageFps": 59.4,
+      "worstObservedFps": 29.9,
       "longTasks": []
     },
     {
       "route": "v2-calm-rain-window.html",
-      "frames": 77,
-      "averageFps": 59,
-      "worstObservedFps": 29.9,
-      "longTasks": []
-    },
-    {
-      "route": "v2-snow-globe.html",
       "frames": 79,
-      "averageFps": 59.4,
+      "averageFps": 59.5,
       "worstObservedFps": 53.8,
       "longTasks": []
     },
     {
-      "route": "v2-star-shower.html",
+      "route": "v2-snow-globe.html",
       "frames": 78,
-      "averageFps": 58.5,
-      "worstObservedFps": 29.9,
+      "averageFps": 59,
+      "worstObservedFps": 30.1,
+      "longTasks": []
+    },
+    {
+      "route": "v2-star-shower.html",
+      "frames": 79,
+      "averageFps": 59,
+      "worstObservedFps": 53.8,
       "longTasks": []
     },
     {
       "route": "v2-growing-garden.html",
-      "frames": 79,
-      "averageFps": 59.2,
-      "worstObservedFps": 53.5,
+      "frames": 78,
+      "averageFps": 59,
+      "worstObservedFps": 29.9,
       "longTasks": []
     },
     {
       "route": "v2-number-merge.html",
-      "frames": 79,
-      "averageFps": 59,
-      "worstObservedFps": 53.5,
-      "longTasks": []
-    },
-    {
-      "route": "v2-alphabet-adventure.html",
       "frames": 79,
       "averageFps": 58.9,
       "worstObservedFps": 53.8,
       "longTasks": []
     },
     {
-      "route": "v2-shape-builder.html",
+      "route": "v2-alphabet-adventure.html",
       "frames": 78,
       "averageFps": 58.7,
       "worstObservedFps": 29.9,
       "longTasks": []
     },
     {
+      "route": "v2-shape-builder.html",
+      "frames": 79,
+      "averageFps": 59.2,
+      "worstObservedFps": 53.8,
+      "longTasks": []
+    },
+    {
       "route": "v2-letter-tracing.html",
-      "frames": 78,
-      "averageFps": 58.1,
-      "worstObservedFps": 34.9,
+      "frames": 77,
+      "averageFps": 58.3,
+      "worstObservedFps": 25.1,
       "longTasks": []
     },
     {
       "route": "v2-number-tracing.html",
-      "frames": 78,
-      "averageFps": 58.6,
-      "worstObservedFps": 21.9,
+      "frames": 79,
+      "averageFps": 58.5,
+      "worstObservedFps": 35.5,
       "longTasks": []
     },
     {
       "route": "v2-shape-tracing.html",
-      "frames": 79,
+      "frames": 78,
       "averageFps": 58.7,
-      "worstObservedFps": 42.9,
+      "worstObservedFps": 22.6,
       "longTasks": []
     },
     {
       "route": "v2-colour-match.html",
       "frames": 79,
       "averageFps": 58.8,
-      "worstObservedFps": 53.5,
+      "worstObservedFps": 53.8,
       "longTasks": []
     },
     {
       "route": "v2-big-small.html",
-      "frames": 79,
-      "averageFps": 58.8,
+      "frames": 80,
+      "averageFps": 58.6,
       "worstObservedFps": 53.5,
       "longTasks": []
     },
     {
       "route": "v2-pattern-builder.html",
       "frames": 78,
-      "averageFps": 58.4,
-      "worstObservedFps": 23.1,
+      "averageFps": 58.5,
+      "worstObservedFps": 23,
       "longTasks": []
     },
     {
       "route": "v2-sort-it.html",
       "frames": 79,
-      "averageFps": 58.8,
-      "worstObservedFps": 53.5,
+      "averageFps": 58.7,
+      "worstObservedFps": 54.1,
       "longTasks": []
     },
     {
       "route": "v2-planet-pals.html",
       "frames": 78,
-      "averageFps": 58.7,
-      "worstObservedFps": 29.9,
+      "averageFps": 58.4,
+      "worstObservedFps": 30,
+      "longTasks": []
+    },
+    {
+      "route": "v2-build-solar-system.html",
+      "frames": 78,
+      "averageFps": 58.4,
+      "worstObservedFps": 23.7,
       "longTasks": []
     },
     {
@@ -149,29 +156,29 @@
     {
       "route": "v2-hold-to-breathe.html",
       "frames": 78,
-      "averageFps": 59.2,
-      "worstObservedFps": 29.9,
+      "averageFps": 59.3,
+      "worstObservedFps": 30,
       "longTasks": []
     },
     {
       "route": "v2-trace-engine.html",
       "frames": 78,
-      "averageFps": 58.8,
-      "worstObservedFps": 39,
+      "averageFps": 58.7,
+      "worstObservedFps": 23.5,
       "longTasks": []
     },
     {
       "route": "v2-orbit-engine.html",
       "frames": 79,
-      "averageFps": 59.1,
-      "worstObservedFps": 53.8,
+      "averageFps": 59.2,
+      "worstObservedFps": 53.5,
       "longTasks": []
     },
     {
       "route": "v2-cause-effect-engine.html",
       "frames": 78,
-      "averageFps": 58.8,
-      "worstObservedFps": 22.5,
+      "averageFps": 59.1,
+      "worstObservedFps": 23.3,
       "longTasks": []
     }
   ]

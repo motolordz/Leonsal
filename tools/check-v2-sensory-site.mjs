@@ -27,6 +27,7 @@ const routes = [
   'v2-pattern-builder.html',
   'v2-sort-it.html',
   'v2-planet-pals.html',
+  'v2-build-solar-system.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -118,7 +119,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 14);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 15);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -320,6 +321,19 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__planetPalsProofState?.());
       assert.equal(state.visited.length, 0, 'Planet Pals reset did not clear visits');
+    }
+    if (route === 'v2-build-solar-system.html') {
+      assert(await page.getByText(/not physical scale/i).isVisible(), 'Build Solar missing educational scale note');
+      await page.getByRole('button', { name: 'Place next' }).click();
+      let state = await page.evaluate(() => window.__solarBuildProofState?.());
+      assert(state.placed.includes('mercury'), 'Build Solar Place next did not place Mercury');
+      assert.equal(state.educationalScaleNote, true, 'Build Solar missing scale truth flag');
+      for (let i = 0; i < 3; i += 1) await page.getByRole('button', { name: 'Place next' }).click();
+      state = await page.evaluate(() => window.__solarBuildProofState?.());
+      assert.equal(state.complete, true, 'Build Solar did not complete after placing planets');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__solarBuildProofState?.());
+      assert.equal(state.placed.length, 0, 'Build Solar reset did not clear placements');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();
