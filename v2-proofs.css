@@ -2624,6 +2624,8 @@ body[data-motion="off"] .transport-choice { transition: none; }
 .speed-ribbon i:nth-child(4) { left: 71%; }
 .speed-ribbon i:nth-child(5) { left: 92%; }
 .speed-ribbon i[data-active="true"] { transform: translate(-50%,-50%) scale(1.35); background: #facc15; }
+.speed-ribbon i[data-effective="true"] { box-shadow: 0 0 0 5px rgba(255,255,255,.78), 0 0 0 10px rgba(69,189,107,.22); }
+.speed-ribbon i[data-active="true"][data-effective="false"] { background: #bfdbfe; outline: 3px solid rgba(250,204,21,.76); }
 .bus-journey-progress {
   --journey-progress: 0%;
   position: absolute;

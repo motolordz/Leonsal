@@ -146,6 +146,12 @@
       const base = speedFactors[selectedSpeed] || speedFactors.medium;
       return settings.value.calmMode ? Math.min(base, speedFactors.slow) : base;
     }
+    function effectiveSpeedKey() {
+      if (!settings.allowsMotion()) return 'super-slow';
+      const base = speedFactors[selectedSpeed] || speedFactors.medium;
+      if (!settings.value.calmMode || base <= speedFactors.slow) return selectedSpeed;
+      return 'slow';
+    }
     function updateButtons() {
       document.querySelectorAll('.bus-choice').forEach((button) => {
         button.dataset.active = String(button.dataset.bus === selectedBus);
@@ -156,7 +162,9 @@
       });
       document.querySelectorAll('[data-speed-dot]').forEach((dot) => {
         dot.dataset.active = String(dot.dataset.speedDot === selectedSpeed);
+        dot.dataset.effective = String(dot.dataset.speedDot === effectiveSpeedKey());
       });
+      world.dataset.effectiveSpeed = effectiveSpeedKey();
     }
     function setProgress(value) {
       progress = Math.max(0, Math.min(100, value));
@@ -201,7 +209,9 @@
       selectedSpeed = nextSpeed;
       if (settings.value.speed !== nextSpeed) settings.set({ speed: nextSpeed });
       updateButtons();
-      status.textContent = `${busName()} speed is ${speedLabels[selectedSpeed]}.`;
+      status.textContent = settings.value.calmMode && effectiveSpeedKey() !== selectedSpeed
+        ? `${busName()} picked ${speedLabels[selectedSpeed]}, capped to slow in Calm Mode.`
+        : `${busName()} speed is ${speedLabels[selectedSpeed]}.`;
       world.dataset.speed = selectedSpeed;
     }
     function stopBus() {
@@ -254,8 +264,8 @@
       if (speedFactors[settings.value.speed] && selectedSpeed !== settings.value.speed) {
         selectedSpeed = settings.value.speed;
         world.dataset.speed = selectedSpeed;
-        updateButtons();
       }
+      updateButtons();
       if (!settings.allowsMotion()) stopBus();
       bus.dataset.calm = String(settings.value.calmMode);
     });
@@ -274,6 +284,7 @@
       routeMark: routeMark?.textContent || '',
       progressValue: journeyProgress?.getAttribute('aria-valuenow') || '',
       calmMode: settings.value.calmMode,
+      effectiveSpeedKey: effectiveSpeedKey(),
       reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()
     });
   </script>

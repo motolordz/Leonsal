@@ -76,6 +76,9 @@ async function main() {
     await page.evaluate(() => settings.set({ calmMode: true }));
     state = await page.evaluate(() => window.__doubleDeckerBusProofState());
     assert(state.effectiveSpeed <= 18, 'Calm mode must cap the bus at slow speed');
+    assert.equal(state.effectiveSpeedKey, 'slow', 'Calm mode should expose slow as the effective speed');
+    assert.equal(await page.locator('[data-speed-dot="slow"]').getAttribute('data-effective'), 'true', 'Speed ribbon should mark slow as the effective calm-capped speed');
+    assert.equal(await page.locator('[data-speed-dot="super-speed"]').getAttribute('data-active'), 'true', 'Speed ribbon should preserve the selected super speed');
     await page.evaluate(() => {
       settings.set({ calmMode: false, reducedMotion: false });
       setProgress(36);

@@ -18,6 +18,8 @@ for (const key of ["'super-slow': 10", 'slow: 18', 'medium: 30', 'fast: 48', "'s
 }
 for (const text of [
   'settings.value.calmMode ? Math.min(base, speedFactors.slow) : base',
+  'function effectiveSpeedKey()',
+  'dot.dataset.effective',
   'if (!settings.allowsMotion())',
   'setProgress(100)',
   "gameId: 'double-decker-bus-v2'",
@@ -52,6 +54,7 @@ for (const selector of ['.bus-world[data-bus="uk"] .double-bus', '.bus-world[dat
 }
 assert(css.includes('@media (max-width: 760px)'), 'Double-decker bus must have mobile layout rules');
 assert(css.includes('.bus-choice,.bus-speed { min-width: 0; min-height: 48px'), 'Bus choices must keep touch-sized mobile controls');
+assert(css.includes('.speed-ribbon i[data-effective="true"]'), 'Bus speed ribbon must show effective calm-capped speed');
 assert(css.includes('body[data-calm="true"] .bus-motion-lines'), 'Calm mode must remove bus motion-line animation');
 assert(css.includes('.double-bus:focus-visible'), 'Bus tap target must expose keyboard focus');
 assert(css.includes('pointer-events: auto; cursor: pointer; touch-action: manipulation'), 'Bus tap target must override decorative layer pointer-events');
