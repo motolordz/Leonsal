@@ -94,14 +94,19 @@
       .reduce((sum, item) => sum + Object.values(item.states || {}).filter(state => state?.webPath || state?.web || state?.src).length, 0);
     const pendingStates = records
       .filter(item => item.status !== 'approved')
-      .reduce((sum, item) => sum + Object.keys(item.states || {}).length, 0);
+      .reduce((sum, item) => sum + Object.keys(item.reviewStates || item.masterStates || {}).length, 0);
     runtimeTruth.innerHTML = `<article><strong>${approvedStates}</strong><span>approved runtime states</span></article><article><strong>${pendingStates}</strong><span>pending review states</span></article><p>Only approved artwork can become a runtime image. Everything else uses this safe vector fallback.</p>`;
   };
   const renderLibraryProgress = registry => {
     if (!libraryProgress) return;
     const records = allRecords(registry);
-    const approved = records.filter(item => item.status === 'approved').length;
-    const pending = records.length - approved;
+    const approvedStates = records
+      .filter(item => item.status === 'approved')
+      .reduce((sum, item) => sum + Object.values(item.states || {}).filter(state => state?.webPath || state?.web || state?.src).length, 0);
+    const pendingStates = records
+      .filter(item => item.status !== 'approved')
+      .reduce((sum, item) => sum + Object.keys(item.reviewStates || item.masterStates || {}).length, 0);
+    const pending = records.filter(item => item.status !== 'approved').length;
     const families = [
       ['guide', 'Leon & Zaya'],
       ['alphabet', 'A-Z'],
@@ -112,7 +117,7 @@
       const familyRecords = records.filter(item => item.family === family);
       return `<span><strong>${familyRecords.length}</strong>${label}</span>`;
     }).join('');
-    libraryProgress.innerHTML = `<div>${families}</div><small>${approved} approved · ${pending} pending vector previews</small>`;
+    libraryProgress.innerHTML = `<div>${families}</div><small>${approvedStates} approved runtime states · ${pendingStates} pending review states · ${pending} pending vector previews</small>`;
   };
   const displayInitial = record => {
     if (record.uppercase) return record.uppercase;

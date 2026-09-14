@@ -21,8 +21,13 @@ const familyCounts = Object.fromEntries(['guide', 'alphabet', 'number', 'world',
   family,
   registryRecords.filter(record => record.family === family).length
 ]));
-const approvedCount = registryRecords.filter(record => record.status === 'approved').length;
-const pendingCount = registryRecords.length - approvedCount;
+const approvedStateCount = registryRecords
+  .filter(record => record.status === 'approved')
+  .reduce((total, record) => total + Object.values(record.states || {}).filter(state => state?.webPath || state?.web || state?.src).length, 0);
+const pendingStateCount = registryRecords
+  .filter(record => record.status !== 'approved')
+  .reduce((total, record) => total + Object.keys(record.reviewStates || record.masterStates || {}).length, 0);
+const pendingCount = registryRecords.filter(record => record.status !== 'approved').length;
 
 const browser = await chromium.launch();
 const context = await browser.newContext({
@@ -51,8 +56,9 @@ assert(await page.getByText('Tap a character, then slide from sleepy to full of 
 for (const text of [`${familyCounts.guide}Leon & Zaya`, `${familyCounts.alphabet}A-Z`, `${familyCounts.number} 1-10`, `${familyCounts.world}World`, `${familyCounts.planet}Planets`]) {
   assert((await page.locator('#characterLibraryProgress').innerText()).replace(/\s+/g, '').includes(text.replace(/\s+/g, '')), `Library progress missing ${text}`);
 }
-assert((await page.locator('#characterLibraryProgress').innerText()).includes(`${approvedCount} approved`), 'Library progress must keep approved count honest');
-assert((await page.locator('#characterLibraryProgress').innerText()).includes(`${pendingCount} pending`), 'Library progress must keep pending count honest');
+assert((await page.locator('#characterLibraryProgress').innerText()).includes(`${approvedStateCount} approved runtime states`), 'Library progress must keep approved state count honest');
+assert((await page.locator('#characterLibraryProgress').innerText()).includes(`${pendingStateCount} pending review states`), 'Library progress must keep pending state count honest');
+assert((await page.locator('#characterLibraryProgress').innerText()).includes(`${pendingCount} pending vector previews`), 'Library progress must keep pending preview count honest');
 assert(await page.locator('[data-chase-character="leon"] svg').isVisible(), 'Leon procedural runner missing');
 assert(await page.locator('[data-chase-character="zaya"] svg').isVisible(), 'Zaya procedural runner missing');
 assert.equal(await page.locator('.character-runway-state').count(), 5, 'Selected character runway must render five states');
