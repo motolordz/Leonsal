@@ -114,6 +114,7 @@ try {
     dash=await page.evaluate(()=>window.__dashDockState());
     assert.equal(dash.dashPosition,0);assert.equal(dash.energy,0);
     await page.goto(base+'/v2-bubble-garden.html');
+    assert.equal(await page.evaluate(()=>window.__bubbleGardenProofState().hasCharacterRenderer),true);
     assert.equal(await page.evaluate(()=>particles.items.length),28,'Density overwritten on start');
     await page.getByRole('button',{name:'Pop a bubble',exact:true}).focus();
     await page.keyboard.press('Enter');
@@ -133,11 +134,13 @@ try {
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert((await page.evaluate(()=>window.__rainProofState().drops))<=28);
     await page.goto(base+'/v2-snow-globe.html');
+    assert.equal(await page.evaluate(()=>window.__snowGlobeProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Shake gently',exact:true}).click();
     assert((await page.evaluate(()=>window.__snowGlobeProofState().energy))>0);
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert((await page.evaluate(()=>window.__snowGlobeProofState().flakes))<=32);
     await page.goto(base+'/v2-star-shower.html');
+    assert.equal(await page.evaluate(()=>window.__starShowerProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Soft star',exact:true}).click();
     assert((await page.evaluate(()=>window.__starShowerProofState().stars))>0);
     await page.evaluate(()=>settings.set({calmMode:true}));

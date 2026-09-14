@@ -17,6 +17,7 @@
     <section class="game-scene bubble-world" aria-label="Bubble garden play area">
       <canvas class="bubble-canvas premium" id="canvas" aria-label="Bubble garden. Tap or click bubbles in the play area, or use the Pop a bubble button."></canvas>
       <div class="bubble-plants" aria-hidden="true"></div>
+      <div class="ambient-character bubble-helper" id="bubbleHelper" aria-hidden="true"></div>
       <p class="scene-status" id="status">Bubbles are drifting gently.</p>
       <div class="drawer-controls">
         <button id="popBubble" class="scene-button" type="button">Pop a bubble</button>
@@ -31,12 +32,14 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
     const audio = new LeonSalV2.AudioEngine(settings);
     const canvas = document.querySelector('#canvas');
     const status = document.querySelector('#status');
+    const bubbleHelper = document.querySelector('#bubbleHelper');
     const particles = new LeonSalV2.ParticleEngine(canvas, motion, settings);
     let density = 'normal';
     let speed = 'normal';
@@ -48,18 +51,24 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function renderHelper(state = 'calm') {
+      const renderer = window.LeonSalCharacterRenderer;
+      bubbleHelper.replaceChildren();
+      if (renderer) bubbleHelper.append(renderer.makeCharacter({ id: 'world-rainbow', displayName: 'Rainbow', family: 'world', registryGroup: 'world' }, state, { decorative: true }));
+    }
     function reset() {
       particles.seed('bubbles', counts[density]);
       const speedFactor = speed === 'slow' ? 0.42 : 1;
       particles.items.forEach((item) => { item.vx *= speedFactor; item.vy *= speedFactor; });
       status.textContent = 'Bubbles are drifting gently.';
+      renderHelper();
     }
     new LeonSalV2.InputEngine(canvas).onPointer({
       down: ({ x, y }) => {
         const rect = canvas.getBoundingClientRect();
         const popped = particles.popAt(x - rect.left, y - rect.top, 58);
         status.textContent = popped ? 'Pop.' : 'Bubbles are drifting gently.';
-        if (popped) audio.tone('tap');
+        if (popped) { audio.tone('tap'); renderHelper('happy'); }
       }
     });
     document.querySelector('#reset').addEventListener('click', reset);
@@ -75,7 +84,7 @@
     }));
     document.querySelector('#popBubble').addEventListener('click', () => {
       const bubble = particles.items.find((item) => item.type === 'bubbles');
-      if (bubble) { particles.popAt(bubble.x, bubble.y); status.textContent = 'Pop.'; audio.tone('tap'); }
+      if (bubble) { particles.popAt(bubble.x, bubble.y); status.textContent = 'Pop.'; audio.tone('tap'); renderHelper('happy'); }
       else status.textContent = 'All bubbles popped. Choose Reset to play again.';
     });
     settings.on('settings-change', reset);
@@ -83,6 +92,7 @@
     reset();
     particles.start('bubbles');
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], reset: reset });
+    window.__bubbleGardenProofState = () => ({ density, speed, bubbles: particles.items.filter((item) => item.type === 'bubbles').length, hasCharacterRenderer: Boolean(bubbleHelper.querySelector('.procedural-character-svg.character-family-world')), calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion || !settings.allowsMotion() });
   </script>
 </body>
 </html>

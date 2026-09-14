@@ -24,6 +24,7 @@
         <span class="snow-tree tree-right"></span>
         <span class="snow-base"></span>
       </div>
+      <div class="ambient-character snow-helper" id="snowHelper" aria-hidden="true"></div>
       <p class="scene-status" id="status">Snow is settling.</p>
       <div class="drawer-controls">
         <button id="shake" class="scene-button" type="button">Shake gently</button>
@@ -34,6 +35,7 @@
 
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -43,6 +45,7 @@
     const globe = document.querySelector('#globe');
     const ctx = canvas.getContext('2d');
     const status = document.querySelector('#status');
+    const snowHelper = document.querySelector('#snowHelper');
     let flakes = [];
     let energy = 0;
     let tilt = 0;
@@ -54,6 +57,11 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function renderHelper(state = 'calm') {
+      const renderer = window.LeonSalCharacterRenderer;
+      snowHelper.replaceChildren();
+      if (renderer) snowHelper.append(renderer.makeCharacter({ id: 'world-moon', displayName: 'Moon', family: 'world', registryGroup: 'world' }, state, { decorative: true }));
+    }
 
     function resize() {
       const rect = canvas.getBoundingClientRect();
@@ -84,6 +92,7 @@
         };
       });
       draw(0);
+      renderHelper();
     }
 
     function stir(amount = 1) {
@@ -95,6 +104,7 @@
       }
       status.textContent = 'Snow is moving softly.';
       audio.tone('tap');
+      renderHelper('happy');
     }
 
     function draw(dt) {
@@ -145,12 +155,12 @@
       }
     });
     document.querySelector('#shake').addEventListener('click', () => stir(1));
-    document.querySelector('#reset').addEventListener('click', () => { energy = 0; tilt = 0; seed(); status.textContent = 'Snow is settling.'; });
+    document.querySelector('#reset').addEventListener('click', () => { energy = 0; tilt = 0; seed(); renderHelper(); status.textContent = 'Snow is settling.'; });
     settings.on('settings-change', seed);
     window.addEventListener('resize', resize);
     resize();
-    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], resources: [{ destroy: removeTick }], reset: () => { energy = 0; tilt = 0; seed(); }, gameId: 'snow-globe' });
-    window.__snowGlobeProofState = () => ({ flakes: flakes.length, energy: Number(energy.toFixed(3)), calmMode: settings.value.calmMode, motion: settings.allowsMotion() });
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], resources: [{ destroy: removeTick }], reset: () => { energy = 0; tilt = 0; seed(); renderHelper(); }, gameId: 'snow-globe' });
+    window.__snowGlobeProofState = () => ({ flakes: flakes.length, energy: Number(energy.toFixed(3)), hasCharacterRenderer: Boolean(snowHelper.querySelector('.procedural-character-svg.character-family-world')), calmMode: settings.value.calmMode, motion: settings.allowsMotion() });
   </script>
 </body>
 </html>

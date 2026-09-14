@@ -1779,6 +1779,7 @@ body[data-calm="true"] .hub-art {
 .bubble-world { background: radial-gradient(circle at 28% 18%, rgba(255,255,255,.72), transparent 22%), linear-gradient(180deg, #bdefff, #d9fbff 46%, #c9f4d8); }
 .bubble-canvas.premium, .trail-canvas.premium { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; border-radius: 0; background: transparent; }
 .bubble-plants { position: absolute; inset: auto 0 0 0; height: 24%; background: radial-gradient(ellipse at 15% 100%, rgba(69,189,107,.5), transparent 34%), radial-gradient(ellipse at 82% 100%, rgba(47,145,232,.25), transparent 34%); pointer-events: none; }
+.bubble-helper { right: clamp(14px, 5vw, 44px); bottom: clamp(98px, 16vh, 160px); width: clamp(92px, 22vw, 140px); aspect-ratio: 1; opacity: .92; }
 .drawer-controls { position: absolute; right: 16px; bottom: 16px; z-index: 4; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
 
 .rain-world { padding: 0; background: radial-gradient(circle at 50% 72%, rgba(255, 226, 143, .24), transparent 30%), linear-gradient(180deg, #dfeeff, #fff8df); }
@@ -1822,9 +1823,11 @@ body[data-calm="true"] .hub-art {
 .tree-right { right: 22%; transform: rotate(6deg); }
 .snow-world .scene-status { background: rgba(255,255,255,.86); z-index: 5; }
 .snow-world .drawer-controls { z-index: 6; }
+.snow-helper { left: clamp(14px, 5vw, 44px); top: clamp(80px, 13vh, 130px); width: clamp(86px, 20vw, 126px); aspect-ratio: 1; opacity: .86; }
 
 .star-world { padding: 0; background: #14234f; }
 .star-canvas { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; touch-action: none; z-index: 1; }
+.star-helper { right: clamp(18px, 6vw, 54px); top: clamp(78px, 13vh, 130px); width: clamp(86px, 20vw, 128px); aspect-ratio: 1; opacity: .92; }
 .star-horizon { position: absolute; left: -6%; right: -6%; bottom: -4%; height: 28%; pointer-events: none; z-index: 2; background: radial-gradient(ellipse at 24% 100%, rgba(90, 82, 145, .84), transparent 38%), radial-gradient(ellipse at 63% 100%, rgba(66, 122, 126, .72), transparent 40%), radial-gradient(ellipse at 90% 100%, rgba(130, 105, 223, .5), transparent 34%); }
 .star-horizon::after { content: ""; position: absolute; left: 0; right: 0; bottom: 12%; height: 36%; background: linear-gradient(90deg, transparent, rgba(255,216,77,.16), transparent); filter: blur(12px); }
 .star-world .scene-status { color: rgba(19,35,67,.82); background: rgba(255,255,255,.86); z-index: 4; }
