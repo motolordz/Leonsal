@@ -424,11 +424,47 @@
     return `<g class="character-body buddy-body"><circle cx="110" cy="111" r="54" class="body"/><text x="110" y="132" text-anchor="middle" class="object-glyph">${glyph}</text><circle cx="76" cy="121" r="10" class="cheek"/><circle cx="159" cy="121" r="10" class="cheek"/></g>`;
   }
 
+  function worldStateSignalMarkup(state, kind, accent, secondary) {
+    if (state === 'empty') {
+      return `<g class="world-state-signal world-state-signal-empty">
+        <path d="M48 158 q27 21 71 20 q45 -1 75 -20" fill="none" stroke="${secondary}" stroke-width="13" stroke-linecap="round" opacity=".24"/>
+        <path d="M49 51 q18 -18 45 -12 q-31 12 -28 44 q-18 -12 -17 -32z" fill="#dbeafe" stroke="#fff" stroke-width="4" opacity=".88"/>
+      </g>`;
+    }
+    if (state === 'low') {
+      return `<g class="world-state-signal world-state-signal-low">
+        <path d="M60 50 q19 -16 44 -9" fill="none" stroke="${accent}" stroke-width="7" stroke-linecap="round" opacity=".64"/>
+        <circle cx="166" cy="62" r="9" fill="${secondary}" opacity=".38"/>
+      </g>`;
+    }
+    if (state === 'calm') {
+      return `<g class="world-state-signal world-state-signal-calm">
+        <circle cx="110" cy="109" r="83" fill="none" stroke="${accent}" stroke-width="8" opacity=".18"/>
+        <path d="M55 45 q55 -26 110 0" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".34"/>
+      </g>`;
+    }
+    if (state === 'happy') {
+      return `<g class="world-state-signal world-state-signal-happy">
+        <path d="M38 87 q-17 26 4 48" fill="none" stroke="${accent}" stroke-width="8" stroke-linecap="round" opacity=".62"/>
+        <path d="M183 84 q20 28 -2 54" fill="none" stroke="${accent}" stroke-width="8" stroke-linecap="round" opacity=".62"/>
+      </g>`;
+    }
+    if (state === 'excited') {
+      const busPulse = kind === 'double-decker' ? '<path d="M57 177 h106" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".74"/>' : '';
+      return `<g class="world-state-signal world-state-signal-excited">
+        <path d="M43 45 l14 10M177 45 l-14 10M30 104 h19M190 104 h-19" stroke="${accent}" stroke-width="8" stroke-linecap="round" opacity=".75"/>
+        ${busPulse}
+      </g>`;
+    }
+    return '';
+  }
+
   function makeWorldCharacter(record, state = 'happy', options = {}) {
     const family = record.family === 'planet' || record.family === 'planets' ? 'planet' : 'world';
     const [primary, accent, secondary] = palettes[family] || palettes.world;
     const emotion = emotions[state] || emotions.happy;
     const glyph = safeText(displayGlyph(record));
+    const kind = characterKind(record);
     const svg = document.createElementNS(svgNS, 'svg');
     svg.setAttribute('viewBox', '0 0 220 220');
     svg.setAttribute('role', options.decorative ? 'presentation' : 'img');
@@ -451,6 +487,7 @@
       <g transform="translate(0 ${emotion.lift}) rotate(${emotion.lean} 110 112)" filter="url(#worldCharacterShadow-${record.id}-${state})">
         <ellipse cx="110" cy="187" rx="58" ry="13" fill="#163f6d" opacity=".12"/>
         <circle cx="110" cy="108" r="76" fill="${accent}" opacity="${emotion.glow}"/>
+        ${worldStateSignalMarkup(state, kind, accent, secondary)}
         ${worldBodyMarkup(record, glyph, primary, accent, secondary)}
         <g class="character-face">${eyeMarkup(emotion.eye)}${mouthMarkup(emotion.mouth)}</g>
         ${armsMarkup(emotion.arm).replaceAll('skin-limb', 'limb')}
