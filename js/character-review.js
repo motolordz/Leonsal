@@ -24,6 +24,7 @@
     const productionTruth = document.getElementById('productionTruth');
     const sourceIntake = document.getElementById('sourceIntake');
     const candidateLibrary = document.getElementById('candidateLibrary');
+    const productionBatches = document.getElementById('productionBatches');
     const reviewFilters = [...document.querySelectorAll('[data-review-filter]')];
     let reviewFilter = 'all';
     const stateName = state => state[0].toUpperCase() + state.slice(1);
@@ -74,6 +75,18 @@
         candidateLibrary.innerHTML = `<article><strong>${summary.pendingCharacters || 0}</strong><span>pending generated characters</span></article><article><strong>${(summary.pendingCharacters || 0) * 5}</strong><span>pending generated state slots</span></article><article><strong>340</strong><span>preserved vector sources</span></article><p><b>Candidate library:</b> Generated SVG-backed candidates are inspectable, but gameplay still resolves only approved art.</p><ul>${blockers}</ul>`;
       } catch {
         candidateLibrary.innerHTML = '<p>Candidate readiness report could not load. Registry checks still enforce approved-only runtime art.</p>';
+      }
+    };
+    const renderProductionBatches = async () => {
+      if (!productionBatches) return;
+      try {
+        const batchResponse = await fetch('qa/character-production-v3/READINESS/character-production-batches.json');
+        if (!batchResponse.ok) throw new Error('Batch report unavailable');
+        const report = await batchResponse.json();
+        const batches = (report.batches || []).slice(0, 6);
+        productionBatches.innerHTML = `<p><b>Production order:</b> ${batches.length} review batches, starting with Leon and Zaya.</p><ol>${batches.map((batch) => `<li><b>${batch.title}</b><span>${batch.characterCount} characters · ${batch.status}</span></li>`).join('')}</ol>`;
+      } catch {
+        productionBatches.innerHTML = '<p>Production batch report could not load.</p>';
       }
     };
     const renderProductionTruth = async () => {
@@ -171,6 +184,7 @@
     renderProductionTruth();
     renderSourceIntake();
     renderCandidateLibrary();
+    renderProductionBatches();
     renderReadiness();
     function renderRunners() {
       const leon = characters.find(item => item.id === 'leon');

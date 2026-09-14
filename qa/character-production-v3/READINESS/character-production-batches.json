@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "qa/character-production-v3/READINESS/character-readiness-report.json",
+  "runtimeRule": "Only records with status approved may resolve state paths into runtime image sources. Approved paths must be individual production derivatives from matching transparent masters and must not point into source-safe-keeping, review-only, QA, contact-sheet, or rejected folders.",
+  "batches": [
+    {
+      "id": "batch-1-guides-leon-zaya",
+      "title": "Complete Leon and Zaya five-state production artwork",
+      "priority": "P0",
+      "status": "pending-production",
+      "characterCount": 2,
+      "stateAssetCount": 10,
+      "requiredEvidence": [
+        "five production masters per guide",
+        "web derivatives",
+        "source/vector provenance",
+        "mobile five-state render evidence",
+        "visible uppercase LEON/ZAYA name treatment",
+        "identity consistency sheet",
+        "owner/autonomous approval evidence bound to exact hashes"
+      ],
+      "characters": [
+        {
+          "id": "leon",
+          "displayName": "Leon",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 4,
+          "blockers": [
+            "not approved for production runtime",
+            "supplied source intake has 4/5 states",
+            "guide clothing/name text needs production cleanup",
+            "supplied source is below 2048 px production master requirement",
+            "Leon empty generation attempts failed real-alpha gate",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/leon/five-states.png"
+          ]
+        },
+        {
+          "id": "zaya",
+          "displayName": "Zaya",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 5,
+          "blockers": [
+            "not approved for production runtime",
+            "guide clothing/name text needs production cleanup",
+            "supplied source is below 2048 px production master requirement",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/zaya/five-states.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "batch-2-supplied-world-poses",
+      "title": "Resolve supplied Elephant and related world pose candidates",
+      "priority": "P1",
+      "status": "pending-production",
+      "characterCount": 1,
+      "stateAssetCount": 5,
+      "requiredEvidence": [
+        "single-character transparent masters",
+        "2048px production reconstruction or approved source upgrade",
+        "five-state distinction",
+        "identity consistency sheet",
+        "runtime resolver proof"
+      ],
+      "characters": [
+        {
+          "id": "supplied-elephant",
+          "displayName": "Elephant",
+          "status": "review-only",
+          "registryStateSlots": 0,
+          "suppliedReviewStates": 5,
+          "blockers": [
+            "not present in canonical production registry",
+            "supplied five-state review set still needs production reconstruction",
+            "supplied source is below 2048 px production master requirement"
+          ],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "batch-3-alphabet",
+      "title": "Complete A-Z five-state alphabet characters",
+      "priority": "P1",
+      "status": "pending-production",
+      "characterCount": 26,
+      "stateAssetCount": 130,
+      "requiredEvidence": [
+        "A-Z exact sequence",
+        "glyph legibility on mobile",
+        "five emotional states per letter",
+        "no confusing b/d, p/q, m/n, u/v, I/l forms",
+        "family contact sheet"
+      ],
+      "characters": [
+        {
+          "id": "letter-a",
+          "displayName": "Letter A",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-a/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-b",
+          "displayName": "Letter B",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-b/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-c",
+          "displayName": "Letter C",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-c/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-d",
+          "displayName": "Letter D",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-d/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-e",
+          "displayName": "Letter E",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-e/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-f",
+          "displayName": "Letter F",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-f/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-g",
+          "displayName": "Letter G",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-g/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-h",
+          "displayName": "Letter H",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-h/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-i",
+          "displayName": "Letter I",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-i/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-j",
+          "displayName": "Letter J",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-j/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-k",
+          "displayName": "Letter K",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-k/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-l",
+          "displayName": "Letter L",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-l/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-m",
+          "displayName": "Letter M",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-m/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-n",
+          "displayName": "Letter N",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-n/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-o",
+          "displayName": "Letter O",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-o/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-p",
+          "displayName": "Letter P",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-p/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-q",
+          "displayName": "Letter Q",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-q/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-r",
+          "displayName": "Letter R",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-r/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-s",
+          "displayName": "Letter S",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-s/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-t",
+          "displayName": "Letter T",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-t/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-u",
+          "displayName": "Letter U",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-u/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-v",
+          "displayName": "Letter V",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-v/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-w",
+          "displayName": "Letter W",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-w/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-x",
+          "displayName": "Letter X",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-x/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-y",
+          "displayName": "Letter Y",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-y/five-states.png"
+          ]
+        },
+        {
+          "id": "letter-z",
+          "displayName": "Letter Z",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/letter-z/five-states.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "batch-4-numbers",
+      "title": "Complete 1-10 five-state number characters",
+      "priority": "P1",
+      "status": "pending-production",
+      "characterCount": 10,
+      "stateAssetCount": 50,
+      "requiredEvidence": [
+        "1-10 numeric ordering",
+        "10 treated as one number character",
+        "mobile numeral legibility",
+        "five emotional states per number",
+        "family contact sheet"
+      ],
+      "characters": [
+        {
+          "id": "number-1",
+          "displayName": "Number 1",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/number-1/five-states.png"
+          ]
+        },
+        {
+          "id": "number-2",
+          "displayName": "Number 2",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/number-2/five-states.png"
+          ]
+        },
+        {
+          "id": "number-3",
+          "displayName": "Number 3",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/number-3/five-states.png"
+          ]
+        },
+        {
+          "id": "number-4",
+          "displayName": "Number 4",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/number-4/five-states.png"
+          ]
+        },
+        {
+          "id": "number-5",
+          "displayName": "Number 5",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/number-5/five-states.png"
+          ]
+        },
+        {
+          "id": "number-6",
+          "displayName": "Number 6",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/number-6/five-states.png"
+          ]
+        },
+        {
+          "id": "number-7",
+          "displayName": "Number 7",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/number-7/five-states.png"
+          ]
+        },
+        {
+          "id": "number-8",
+          "displayName": "Number 8",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/number-8/five-states.png"
+          ]
+        },
+        {
+          "id": "number-9",
+          "displayName": "Number 9",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/number-9/five-states.png"
+          ]
+        },
+        {
+          "id": "number-10",
+          "displayName": "Number 10",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime",
+            "visual quality below Battery Buddy V3 precedent"
+          ],
+          "evidence": [
+            "qa/character-production-v3/number-10/five-states.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "batch-5-world",
+      "title": "Complete canonical world characters",
+      "priority": "P2",
+      "status": "pending-production",
+      "characterCount": 20,
+      "stateAssetCount": 100,
+      "requiredEvidence": [
+        "object identity preserved",
+        "five meaningful states where energy system applies",
+        "no generic blob substitution",
+        "family contact sheet",
+        "game-context render smoke"
+      ],
+      "characters": [
+        {
+          "id": "world-sun",
+          "displayName": "Sun",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-sun/five-states.png"
+          ]
+        },
+        {
+          "id": "world-moon",
+          "displayName": "Moon",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-moon/five-states.png"
+          ]
+        },
+        {
+          "id": "world-cloud",
+          "displayName": "Cloud",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-cloud/five-states.png"
+          ]
+        },
+        {
+          "id": "world-rainbow",
+          "displayName": "Rainbow",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-rainbow/five-states.png"
+          ]
+        },
+        {
+          "id": "world-rocket",
+          "displayName": "Rocket",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-rocket/five-states.png"
+          ]
+        },
+        {
+          "id": "world-earth",
+          "displayName": "Earth",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-earth/five-states.png"
+          ]
+        },
+        {
+          "id": "world-robot",
+          "displayName": "Robot",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-robot/five-states.png"
+          ]
+        },
+        {
+          "id": "world-magnifier",
+          "displayName": "Magnifying Glass",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-magnifier/five-states.png"
+          ]
+        },
+        {
+          "id": "world-pencil",
+          "displayName": "Pencil",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-pencil/five-states.png"
+          ]
+        },
+        {
+          "id": "world-book",
+          "displayName": "Book",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-book/five-states.png"
+          ]
+        },
+        {
+          "id": "world-paintbrush",
+          "displayName": "Paintbrush",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-paintbrush/five-states.png"
+          ]
+        },
+        {
+          "id": "world-music-note",
+          "displayName": "Musical Note",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-music-note/five-states.png"
+          ]
+        },
+        {
+          "id": "world-clock",
+          "displayName": "Clock",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-clock/five-states.png"
+          ]
+        },
+        {
+          "id": "world-calendar",
+          "displayName": "Calendar",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-calendar/five-states.png"
+          ]
+        },
+        {
+          "id": "world-puzzle",
+          "displayName": "Puzzle Piece",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-puzzle/five-states.png"
+          ]
+        },
+        {
+          "id": "world-water",
+          "displayName": "Water Droplet",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-water/five-states.png"
+          ]
+        },
+        {
+          "id": "world-tree",
+          "displayName": "Tree",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-tree/five-states.png"
+          ]
+        },
+        {
+          "id": "world-train",
+          "displayName": "Train",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-train/five-states.png"
+          ]
+        },
+        {
+          "id": "world-dinosaur",
+          "displayName": "Dinosaur",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-dinosaur/five-states.png"
+          ]
+        },
+        {
+          "id": "world-treasure",
+          "displayName": "Treasure Chest",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/world-treasure/five-states.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "batch-6-planets",
+      "title": "Complete planet and space character candidates",
+      "priority": "P2",
+      "status": "pending-production",
+      "characterCount": 10,
+      "stateAssetCount": 50,
+      "requiredEvidence": [
+        "scientific visual identity preserved",
+        "fictional personality separated from astronomy facts",
+        "five expressive states",
+        "orbit/world render smoke"
+      ],
+      "characters": [
+        {
+          "id": "planet-sun",
+          "displayName": "Sun",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/planet-sun/five-states.png"
+          ]
+        },
+        {
+          "id": "planet-mercury",
+          "displayName": "Mercury",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/planet-mercury/five-states.png"
+          ]
+        },
+        {
+          "id": "planet-venus",
+          "displayName": "Venus",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/planet-venus/five-states.png"
+          ]
+        },
+        {
+          "id": "planet-earth",
+          "displayName": "Earth",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/planet-earth/five-states.png"
+          ]
+        },
+        {
+          "id": "planet-mars",
+          "displayName": "Mars",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/planet-mars/five-states.png"
+          ]
+        },
+        {
+          "id": "planet-jupiter",
+          "displayName": "Jupiter",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/planet-jupiter/five-states.png"
+          ]
+        },
+        {
+          "id": "planet-saturn",
+          "displayName": "Saturn",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/planet-saturn/five-states.png"
+          ]
+        },
+        {
+          "id": "planet-uranus",
+          "displayName": "Uranus",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/planet-uranus/five-states.png"
+          ]
+        },
+        {
+          "id": "planet-neptune",
+          "displayName": "Neptune",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/planet-neptune/five-states.png"
+          ]
+        },
+        {
+          "id": "planet-moon",
+          "displayName": "Moon",
+          "status": "pending-art",
+          "registryStateSlots": 5,
+          "suppliedReviewStates": 0,
+          "blockers": [
+            "not approved for production runtime"
+          ],
+          "evidence": [
+            "qa/character-production-v3/planet-moon/five-states.png"
+          ]
+        }
+      ]
+    }
+  ]
+}

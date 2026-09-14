@@ -9,15 +9,15 @@ const review = JSON.parse(await fs.readFile('data/character-review.json', 'utf8'
 assert.equal(review.status, 'review-only', 'Character review data must remain review-only');
 assert.equal(review.productionApproved, false, 'Character review data must not be production approved');
 
-for (const text of ['productionTruth', 'sourceIntake', 'candidateLibrary', 'reviewSummary', 'data-review-filter="needs-states"', 'data-review-filter="five-state"', 'data-review-filter="guide"', 'data-review-filter="world"']) {
+for (const text of ['productionTruth', 'sourceIntake', 'candidateLibrary', 'productionBatches', 'reviewSummary', 'data-review-filter="needs-states"', 'data-review-filter="five-state"', 'data-review-filter="guide"', 'data-review-filter="world"']) {
   assert(html.includes(text), `Missing review UI hook: ${text}`);
 }
 
-for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'character-assets.json', 'character-readiness-report.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'vectorAssets', 'missing.length', 'approved art']) {
+for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'renderProductionBatches', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'vectorAssets', 'missing.length', 'approved art']) {
   assert(js.includes(text), `Missing review filter implementation: ${text}`);
 }
 
-for (const text of ['.production-truth', '.source-intake', '.candidate-library', '.review-summary', '.review-filter-row', 'min-height: 46px']) {
+for (const text of ['.production-truth', '.source-intake', '.candidate-library', '.production-batches', '.review-summary', '.review-filter-row', 'min-height: 46px']) {
   assert(css.includes(text), `Missing review dashboard styling: ${text}`);
 }
 
@@ -33,5 +33,10 @@ assert.equal(vectorDerivatives, 14, 'Expected 14 review SVG derivatives in revie
 const readiness = JSON.parse(await fs.readFile('qa/character-production-v3/READINESS/character-readiness-report.json', 'utf8'));
 assert.equal(readiness.summary.pendingCharacters, 68, 'Expected 68 pending generated character candidates');
 assert.equal(readiness.summary.approvedRuntimeStateAssets, 5, 'Only Battery Buddy should be approved in readiness report');
+const batches = JSON.parse(await fs.readFile('qa/character-production-v3/READINESS/character-production-batches.json', 'utf8'));
+assert.equal(batches.batches[0].id, 'batch-1-guides-leon-zaya', 'Guide production batch must remain first');
+assert(batches.batches[0].characters.some(character => character.id === 'leon'), 'Guide batch must include Leon');
+assert(batches.batches[0].characters.some(character => character.id === 'zaya'), 'Guide batch must include Zaya');
+assert(batches.batches[1].characters.some(character => character.id === 'supplied-elephant'), 'Supplied Elephant intake must remain visible in batch 2');
 
 console.log('Character review static checks passed.');
