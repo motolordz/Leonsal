@@ -35,6 +35,22 @@
       ],
       "productionVerdict": "rejected",
       "reason": "Generated file contains no usable transparent alpha; checkerboard/background is baked into the pixels."
+    },
+    {
+      "path": "assets/source-safe-keeping/generated-attempts/leon/empty/20260914-imagegen-v1/leon-empty-candidate.png",
+      "sha256": "d8e9c8696059280e13f88419fbea90d42133412ba373a9ebdb197d63b3d37111",
+      "width": 1024,
+      "height": 1536,
+      "hasAlpha": false,
+      "transparentPixels": 0,
+      "cornerAlpha": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "productionVerdict": "rejected",
+      "reason": "Generated file visually matches the Leon empty direction, but contains a baked checkerboard/background and no usable transparent alpha."
     }
   ],
   "nextRequiredAction": "Create a real transparent Leon empty master at production quality before Leon can become a complete five-state approved character."
