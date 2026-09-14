@@ -1471,6 +1471,20 @@ body[data-calm="true"] .hub-art {
 .firefly-world .scene-status { background: rgba(255, 255, 255, .86); }
 .firefly-world .drawer-controls { z-index: 4; }
 
+.snow-world { display: grid; place-items: center; padding: 0; background: radial-gradient(circle at 50% 22%, rgba(255,255,255,.92), transparent 24%), linear-gradient(180deg, #d8f2ff, #fff5df); }
+.snow-canvas { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; touch-action: none; z-index: 4; }
+.snow-globe-shell { position: relative; width: min(74vw, 430px); height: min(74vw, 430px); max-height: 64svh; transform: translateY(var(--snow-lift, 0)) rotate(var(--snow-tilt, 0deg)); transform-origin: 50% 80%; transition: transform .08s linear; z-index: 2; }
+.snow-globe-glass { position: absolute; inset: 0 0 15%; border-radius: 50%; background: radial-gradient(circle at 34% 24%, rgba(255,255,255,.82), rgba(203,239,255,.38) 34%, rgba(120,185,225,.16) 72%); box-shadow: inset -18px -25px 0 rgba(57, 99, 145, .14), inset 0 0 0 8px rgba(255,255,255,.8), 0 26px 42px rgba(35,75,118,.2); border: 3px solid rgba(255,255,255,.82); }
+.snow-base { position: absolute; left: 16%; right: 16%; bottom: 2%; height: 25%; border-radius: 28px 28px 36px 36px; background: linear-gradient(180deg, #ffce65, #e18a45); box-shadow: inset 0 -12px 0 rgba(19,35,67,.12), 0 20px 24px rgba(70,45,30,.18); }
+.snow-house { position: absolute; left: 50%; bottom: 33%; width: 30%; height: 23%; transform: translateX(-50%); border-radius: 12px 12px 8px 8px; background: #fff0bd; box-shadow: inset 0 -8px 0 rgba(19,35,67,.08); }
+.snow-house::before { content: ""; position: absolute; left: 50%; top: -38%; width: 78%; aspect-ratio: 1; border-radius: 9px; background: #ef6f66; transform: translateX(-50%) rotate(45deg); z-index: -1; }
+.snow-house::after { content: ""; position: absolute; left: 40%; bottom: 0; width: 20%; height: 42%; border-radius: 10px 10px 0 0; background: #8b6137; }
+.snow-tree { position: absolute; bottom: 33%; width: 18%; height: 25%; border-radius: 45% 45% 36% 36%; background: radial-gradient(circle at 45% 24%, #baf29a, #43b86a 70%); box-shadow: inset -7px -9px 0 rgba(19,35,67,.08); }
+.tree-left { left: 21%; transform: rotate(-5deg); }
+.tree-right { right: 22%; transform: rotate(6deg); }
+.snow-world .scene-status { background: rgba(255,255,255,.86); z-index: 5; }
+.snow-world .drawer-controls { z-index: 6; }
+
 .trail-world { background: radial-gradient(circle at 50% 30%, rgba(56,109,203,.32), transparent 36%), linear-gradient(180deg, #132343, #1d2f68 52%, #243b7a); }
 .trail-starscape { position: absolute; inset: 0; opacity: .8; background-image: radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 1.8px), radial-gradient(circle, rgba(255,216,77,.85) 0 1.4px, transparent 2px); background-size: 58px 58px, 91px 91px; background-position: 0 0, 20px 26px; }
 .trail-world .scene-status { color: rgba(255,255,255,.78); }
@@ -1573,6 +1587,9 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .firefly-card .game-art { background: #172852; }
 .home-firefly { width: 116px; height: 96px; border-radius: 26px; background: radial-gradient(circle at 28% 32%, rgba(255,239,134,.95) 0 7%, rgba(255,216,77,.42) 8% 22%, transparent 23%), radial-gradient(circle at 68% 46%, rgba(255,239,134,.95) 0 7%, rgba(255,216,77,.38) 8% 22%, transparent 23%), linear-gradient(180deg, #203f75, #315d44); box-shadow: inset 0 -14px 0 rgba(111, 197, 96, .28), 0 12px 22px rgba(19,35,67,.22); position: relative; overflow: hidden; }
 .home-firefly::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; background-image: linear-gradient(104deg, transparent 0 45%, rgba(178, 235, 145, .78) 46% 51%, transparent 52%); background-size: 15px 42px; }
+.snow-card .game-art { background: #edf7ff; }
+.home-snow { width: 100px; height: 106px; border-radius: 50% 50% 28px 28px; background: radial-gradient(circle at 35% 24%, rgba(255,255,255,.96), rgba(185,231,255,.38) 44%, rgba(115,178,225,.22)), linear-gradient(180deg, transparent 0 72%, #e18a45 73%); border: 5px solid rgba(255,255,255,.86); box-shadow: inset -8px -12px 0 rgba(57,99,145,.12), 0 12px 22px rgba(35,75,118,.14); position: relative; }
+.home-snow::before { content: ""; position: absolute; left: 35%; top: 43%; width: 30%; height: 20%; border-radius: 8px; background: #fff0bd; box-shadow: -24px 7px 0 -4px #45bd6b, 25px 7px 0 -4px #45bd6b; }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1640,6 +1657,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-orb { width: 50px; height: 50px; box-shadow: 0 0 0 8px #d4c8ec; }
   .home-rain { width: 58px; height: 54px; border-width: 5px; border-radius: 14px; }
   .home-firefly { width: 58px; height: 54px; border-radius: 15px; }
+  .home-snow { width: 54px; height: 58px; border-width: 4px; border-radius: 50% 50% 18px 18px; }
 }
 
 .game-art img { width:180px; height:180px; object-fit:contain; }

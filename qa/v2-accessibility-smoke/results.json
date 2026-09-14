@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 36,
+      "controls": 37,
       "canvases": []
     },
     {
@@ -74,6 +74,20 @@
           "width": 338,
           "height": 620,
           "name": "Calm rain window. Tap, click, or press the window to make gentle ripples.",
+          "tabIndex": -1
+        }
+      ]
+    },
+    {
+      "route": "v2-snow-globe.html",
+      "passed": true,
+      "controls": 7,
+      "canvases": [
+        {
+          "id": "snowCanvas",
+          "width": 374,
+          "height": 656,
+          "name": "Snow globe. Drag, tap, or press Shake gently to move the snow.",
           "tabIndex": -1
         }
       ]

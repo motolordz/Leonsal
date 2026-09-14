@@ -13,6 +13,7 @@ const routes = [
   'v2-bubble-garden.html',
   'v2-firefly-catch.html',
   'v2-calm-rain-window.html',
+  'v2-snow-globe.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -103,7 +104,7 @@ async function main() {
       assert(await page.getByText(/not scores, grades or mastery/i).isVisible(), 'V2 home local progress copy implies assessment');
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
-      assert.equal(await page.locator('.hub-game-grid .world-game').count(), 7);
+      assert.equal(await page.locator('.hub-game-grid .world-game').count(), 8);
       assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
@@ -152,6 +153,18 @@ async function main() {
       await page.evaluate(() => settings.set({ calmMode: true }));
       const calmState = await page.evaluate(() => window.__rainProofState?.());
       assert(calmState.drops <= 28, 'Rain window calm mode did not reduce drops');
+    }
+    if (route === 'v2-snow-globe.html') {
+      const box = await page.locator('#snowCanvas').boundingBox();
+      await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+      const canvas = await sampleCanvas(page, '#snowCanvas');
+      await page.getByRole('button', { name: 'Shake gently' }).click();
+      const state = await page.evaluate(() => window.__snowGlobeProofState?.());
+      assert(canvas.width >= 340 && canvas.height > 400, 'Snow canvas is not sized for mobile play');
+      assert(state.energy > 0, 'Snow Globe did not respond to shake');
+      await page.evaluate(() => settings.set({ calmMode: true }));
+      const calmState = await page.evaluate(() => window.__snowGlobeProofState?.());
+      assert(calmState.flakes <= 32, 'Snow Globe calm mode did not reduce flakes');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

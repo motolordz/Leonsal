@@ -50,6 +50,7 @@
 - [x] Make the default `index.html` a V2-first sensory landing page, preserve the older long page at `sensory-lab.html`, and add browser evidence for the default route.
 - [x] Add `Calm Rain Window` as the next no-pressure V2 sensory proof, using Canvas rain/ripples, shared settings, shared session controls, reduced-motion and calm-mode support.
 - [x] Add `Firefly Catch` as a no-pressure V2 sensory proof, using Canvas glow tracking, shared settings, shared session controls, reduced-motion and calm-mode support.
+- [x] Add `Snow Globe` as a no-pressure V2 sensory proof, using Canvas flakes, shared settings, shared session controls, reduced-motion and calm-mode support.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 
@@ -96,7 +97,7 @@ Status below is the existing registry status, not an assertion of release comple
 | 5 | Hold to Breathe | accepted | v2-hold-to-breathe.html |
 | 6 | Firefly Catch | proof | v2-firefly-catch.html |
 | 7 | Calm Rain Window | proof | v2-calm-rain-window.html |
-| 8 | Snow Globe | specified | Not implemented |
+| 8 | Snow Globe | proof | v2-snow-globe.html |
 | 9 | Star Shower | specified | Not implemented |
 | 10 | Growing Garden | specified | Not implemented |
 | 11 | Number Merge | legacy-existing | number-merge.html |

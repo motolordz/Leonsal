@@ -10,6 +10,7 @@ const SAFE_ASSETS = [
   './v2-bubble-garden.html',
   './v2-firefly-catch.html',
   './v2-calm-rain-window.html',
+  './v2-snow-globe.html',
   './v2-light-trail.html',
   './v2-hold-to-breathe.html',
   './v2-trace-engine.html',

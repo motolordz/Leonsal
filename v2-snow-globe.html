@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Snow Globe</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
+      <div class="game-title"><strong>Snow Globe</strong><span>Move gently and let the snow settle.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+
+    <section class="game-scene snow-world" id="stage" aria-label="Snow globe play area">
+      <canvas class="snow-canvas" id="snowCanvas" aria-label="Snow globe. Drag, tap, or press Shake gently to move the snow."></canvas>
+      <div class="snow-globe-shell" id="globe" aria-hidden="true">
+        <span class="snow-globe-glass"></span>
+        <span class="snow-house"></span>
+        <span class="snow-tree tree-left"></span>
+        <span class="snow-tree tree-right"></span>
+        <span class="snow-base"></span>
+      </div>
+      <p class="scene-status" id="status">Snow is settling.</p>
+      <div class="drawer-controls">
+        <button id="shake" class="scene-button" type="button">Shake gently</button>
+        <button id="reset" class="scene-button" type="button">Reset</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const audio = new LeonSalV2.AudioEngine(settings);
+    const stage = document.querySelector('#stage');
+    const canvas = document.querySelector('#snowCanvas');
+    const globe = document.querySelector('#globe');
+    const ctx = canvas.getContext('2d');
+    const status = document.querySelector('#status');
+    let flakes = [];
+    let energy = 0;
+    let tilt = 0;
+
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      const scale = Math.min(2, window.devicePixelRatio || 1);
+      canvas.width = Math.max(1, Math.round(rect.width * scale));
+      canvas.height = Math.max(1, Math.round(rect.height * scale));
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
+      seed();
+    }
+
+    function flakeCount() {
+      if (settings.value.calmMode) return 32;
+      return settings.value.particles === 'off' ? 20 : settings.particleCount(76);
+    }
+
+    function seed() {
+      const rect = canvas.getBoundingClientRect();
+      flakes = Array.from({ length: flakeCount() }, () => {
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.sqrt(Math.random()) * 0.42;
+        return {
+          x: rect.width * (0.5 + Math.cos(angle) * radius),
+          y: rect.height * (0.46 + Math.sin(angle) * radius),
+          r: 1.8 + Math.random() * 3.8,
+          vx: -8 + Math.random() * 16,
+          vy: 10 + Math.random() * 18,
+          alpha: 0.45 + Math.random() * 0.5
+        };
+      });
+      draw(0);
+    }
+
+    function stir(amount = 1) {
+      if (!settings.allowsMotion()) {
+        energy = 0.22;
+      } else {
+        energy = Math.min(1.8, energy + amount);
+        tilt = (Math.random() > 0.5 ? 1 : -1) * Math.min(6, 3 + amount * 2);
+      }
+      status.textContent = 'Snow is moving softly.';
+      audio.tone('tap');
+    }
+
+    function draw(dt) {
+      const rect = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+      const cx = rect.width * 0.5;
+      const cy = rect.height * 0.45;
+      const radius = Math.min(rect.width, rect.height) * 0.38;
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.clip();
+      if (settings.allowsMotion()) {
+        for (const flake of flakes) {
+          flake.x += (flake.vx + energy * 46 * Math.sin((flake.y + flake.x) * 0.02)) * dt * settings.speedFactor();
+          flake.y += (flake.vy + energy * -28) * dt * settings.speedFactor();
+          const dx = flake.x - cx;
+          const dy = flake.y - cy;
+          if (Math.hypot(dx, dy) > radius - flake.r || flake.y > cy + radius - flake.r) {
+            const angle = Math.random() * Math.PI * 2;
+            const spread = Math.sqrt(Math.random()) * 0.36;
+            flake.x = cx + Math.cos(angle) * radius * spread;
+            flake.y = cy - radius * 0.5 + Math.sin(angle) * radius * spread;
+          }
+        }
+      }
+      for (const flake of flakes) {
+        ctx.globalAlpha = flake.alpha;
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+      ctx.globalAlpha = 1;
+      energy += (0 - energy) * Math.min(1, dt * 1.55);
+      tilt += (0 - tilt) * Math.min(1, dt * 4.4);
+      globe.style.setProperty('--snow-tilt', `${tilt}deg`);
+      globe.style.setProperty('--snow-lift', `${Math.abs(tilt) * -0.9}px`);
+      if (energy < 0.08) status.textContent = 'Snow is settling.';
+    }
+
+    const removeTick = motion.add((dt) => draw(dt));
+    new LeonSalV2.InputEngine(stage).onPointer({
+      down: () => stir(0.8),
+      move: ({ dx }) => {
+        if (Math.abs(dx) > 3) stir(0.08);
+      }
+    });
+    document.querySelector('#shake').addEventListener('click', () => stir(1));
+    document.querySelector('#reset').addEventListener('click', () => { energy = 0; tilt = 0; seed(); status.textContent = 'Snow is settling.'; });
+    settings.on('settings-change', seed);
+    window.addEventListener('resize', resize);
+    resize();
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], resources: [{ destroy: removeTick }], reset: () => { energy = 0; tilt = 0; seed(); }, gameId: 'snow-globe' });
+    window.__snowGlobeProofState = () => ({ flakes: flakes.length, energy: Number(energy.toFixed(3)), calmMode: settings.value.calmMode, motion: settings.allowsMotion() });
+  </script>
+</body>
+</html>

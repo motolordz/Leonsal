@@ -27,6 +27,7 @@ const playableRoutes = [
   'bubble-garden',
   'firefly-catch',
   'calm-rain-window',
+  'snow-globe',
   'light-trail',
   'hold-to-breathe',
   'trace-engine',
@@ -40,7 +41,7 @@ try {
     page.on('pageerror', error => failures.push(error.message));
     page.on('response', response => { if(response.status() >= 400) failures.push(`${response.status()} ${response.url()}`); });
     await page.goto(base+'/v2-home.html');
-    assert.equal(await page.locator('.hub-game-grid .world-game').count(), 7);
+    assert.equal(await page.locator('.hub-game-grid .world-game').count(), 8);
     assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
     assert.equal(await page.locator('.need-card').count(), 4);
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
@@ -102,6 +103,11 @@ try {
     assert((await page.evaluate(()=>window.__rainProofState().ripples))>0);
     await page.evaluate(()=>settings.set({calmMode:true}));
     assert((await page.evaluate(()=>window.__rainProofState().drops))<=28);
+    await page.goto(base+'/v2-snow-globe.html');
+    await page.getByRole('button',{name:'Shake gently',exact:true}).click();
+    assert((await page.evaluate(()=>window.__snowGlobeProofState().energy))>0);
+    await page.evaluate(()=>settings.set({calmMode:true}));
+    assert((await page.evaluate(()=>window.__snowGlobeProofState().flakes))<=32);
     await page.goto(base+'/v2-light-trail.html');
     await page.locator('#canvas').focus(); await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowDown');
     assert((await page.evaluate(()=>trail.points.length))>1);
