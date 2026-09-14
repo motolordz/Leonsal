@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Animal Habitats</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
+      <div class="game-title"><strong>Animal Habitats</strong><span>Match homes gently.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+    <section class="game-scene habitat-world" aria-label="Animal Habitats play area">
+      <div class="habitat-map" id="habitats">
+        <button class="habitat-zone forest" type="button" data-habitat="forest">Forest</button>
+        <button class="habitat-zone ocean" type="button" data-habitat="ocean">Ocean</button>
+        <button class="habitat-zone desert" type="button" data-habitat="desert">Desert</button>
+        <button class="habitat-zone polar" type="button" data-habitat="polar">Polar</button>
+      </div>
+      <div class="animal-tray" id="animals"></div>
+      <p class="scene-status" id="status">Choose an animal, then choose its home.</p>
+      <div class="drawer-controls">
+        <button class="scene-button" id="hint" type="button">Hint</button>
+        <button class="scene-button" id="reset" type="button">Reset</button>
+      </div>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const matcher = new LeonSalV2.SortMatchEngine();
+    const dragDrop = new LeonSalV2.DragDropEngine({ snapDistance: 100 });
+    const rewards = new LeonSalV2.RewardEngine(settings);
+    const status = document.querySelector('#status');
+    const animalWrap = document.querySelector('#animals');
+    const habitats = document.querySelector('#habitats');
+    const animals = [
+      { id: 'owl', label: 'Owl', habitat: 'forest', icon: 'owl' },
+      { id: 'fish', label: 'Fish', habitat: 'ocean', icon: 'fish' },
+      { id: 'lizard', label: 'Lizard', habitat: 'desert', icon: 'lizard' },
+      { id: 'penguin', label: 'Penguin', habitat: 'polar', icon: 'penguin' }
+    ];
+    let selected = null;
+    let matched = new Set();
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+    function build() {
+      selected = null;
+      matched = new Set();
+      animalWrap.innerHTML = '';
+      animals.forEach((animal) => {
+        matcher.register(animal.id, animal.habitat);
+        const item = document.createElement('button');
+        item.className = `animal-token ${animal.icon}`;
+        item.type = 'button';
+        item.dataset.id = animal.id;
+        item.dataset.habitat = animal.habitat;
+        item.textContent = animal.label;
+        item.setAttribute('aria-label', animal.label);
+        animalWrap.append(item);
+        const zone = document.querySelector(`.habitat-zone[data-habitat="${animal.habitat}"]`);
+        dragDrop.register(item, zone, { select: () => selectAnimal(item), drop: () => tryHabitat(zone) });
+      });
+      document.querySelectorAll('.habitat-zone').forEach((zone) => zone.dataset.count = '0');
+      status.textContent = 'Choose an animal, then choose its home.';
+    }
+    function selectAnimal(item) {
+      if (matched.has(item.dataset.id)) return;
+      selected = item;
+      document.querySelectorAll('.animal-token').forEach((node) => node.dataset.selected = String(node === item));
+      status.textContent = `${item.textContent} selected. Choose a home.`;
+    }
+    function tryHabitat(zone) {
+      if (!selected) {
+        status.textContent = 'Choose an animal first.';
+        return;
+      }
+      if (matcher.check(selected.dataset.id, zone.dataset.habitat)) {
+        matched.add(selected.dataset.id);
+        selected.dataset.matched = 'true';
+        zone.dataset.count = String(Number(zone.dataset.count || 0) + 1);
+        zone.dataset.glow = 'true';
+        rewards.celebrate(zone, { type: 'glow' });
+        selected = null;
+        status.textContent = matched.size === animals.length ? 'Every animal found a home.' : 'That home fits.';
+      } else {
+        status.textContent = 'Try a different home.';
+      }
+      document.querySelectorAll('.animal-token').forEach((node) => node.dataset.selected = 'false');
+    }
+    animalWrap.addEventListener('click', (event) => {
+      const item = event.target.closest('.animal-token');
+      if (item) selectAnimal(item);
+    });
+    habitats.addEventListener('click', (event) => {
+      const zone = event.target.closest('.habitat-zone');
+      if (zone) tryHabitat(zone);
+    });
+    document.querySelector('#hint').addEventListener('click', () => {
+      const next = animals.find((animal) => !matched.has(animal.id));
+      status.textContent = next ? `${next.label} lives in the ${next.habitat}.` : 'Every animal found a home.';
+    });
+    document.querySelector('#reset').addEventListener('click', build);
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [], reset: build, gameId: 'animal-habitats-v2' });
+    build();
+    window.__animalHabitatsProofState = () => ({
+      selected: selected?.dataset.id || null,
+      matched: [...matched],
+      complete: matched.size === animals.length,
+      hasTapAlternative: true,
+      calmMode: settings.value.calmMode,
+      reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()
+    });
+  </script>
+</body>
+</html>

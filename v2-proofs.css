@@ -1896,6 +1896,33 @@ body[data-motion="off"] .weather-world,
 body[data-motion="off"] .weather-sun,
 body[data-motion="off"] .weather-cloud,
 body[data-motion="off"] .weather-choice { transition: none; }
+.habitat-card { background: linear-gradient(145deg, #dcfce7, #e0f2fe 48%, #fef3c7); }
+.home-habitat { position: relative; width: 86px; height: 66px; border-radius: 22px; overflow: hidden; background: linear-gradient(135deg, #86efac 0 50%, #93c5fd 51% 100%); box-shadow: inset 0 -8px 0 rgba(19,35,67,.08), 0 14px 26px rgba(34,197,94,.15); }
+.home-habitat::before { content: ""; position: absolute; left: 11px; bottom: 9px; width: 28px; height: 30px; border-radius: 50% 50% 12px 12px; background: #f59e0b; box-shadow: 40px -4px 0 #0ea5e9; }
+.home-habitat::after { content: ""; position: absolute; right: 9px; top: 9px; width: 24px; aspect-ratio: 1; border-radius: 50%; background: #f8fafc; box-shadow: -45px 4px 0 #22c55e; }
+.habitat-world { background: linear-gradient(180deg, #dbeafe, #dcfce7 60%, #fef3c7); overflow: hidden; }
+.habitat-world::before { content: ""; position: absolute; inset: 0; opacity: .42; background-image: radial-gradient(circle at 18% 18%, rgba(255,255,255,.86) 0 8%, transparent 9%), radial-gradient(circle at 82% 20%, rgba(253,224,71,.42) 0 10%, transparent 11%); pointer-events: none; }
+.habitat-map { position: absolute; left: 6%; right: 6%; top: 11%; z-index: 3; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+.habitat-zone { position: relative; min-height: min(25svh, 178px); border: 0; border-radius: 28px; overflow: hidden; color: #173356; font: inherit; font-size: 1rem; font-weight: 1000; box-shadow: 0 16px 32px rgba(19,35,67,.13), inset 0 -12px 0 rgba(19,35,67,.08); touch-action: manipulation; }
+.habitat-zone::after { content: attr(data-count); position: absolute; right: 12px; bottom: 10px; min-width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.76); color: #173356; }
+.habitat-zone[data-glow="true"] { outline: 4px solid rgba(255,255,255,.82); }
+.habitat-zone.forest { background: radial-gradient(circle at 30% 42%, #22c55e 0 17%, transparent 18%), radial-gradient(circle at 58% 35%, #16a34a 0 20%, transparent 21%), linear-gradient(180deg, #bbf7d0, #65a30d); }
+.habitat-zone.ocean { background: radial-gradient(circle at 36% 45%, rgba(255,255,255,.64) 0 12%, transparent 13%), linear-gradient(180deg, #bae6fd, #0284c7); }
+.habitat-zone.desert { background: radial-gradient(circle at 75% 20%, #facc15 0 12%, transparent 13%), linear-gradient(180deg, #fde68a, #f59e0b); }
+.habitat-zone.polar { background: radial-gradient(circle at 40% 68%, rgba(255,255,255,.9) 0 22%, transparent 23%), linear-gradient(180deg, #eff6ff, #bfdbfe); }
+.animal-tray { position: absolute; left: 7%; right: 7%; bottom: 24%; z-index: 5; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
+.animal-token { position: relative; min-height: 84px; border: 0; border-radius: 24px; padding-top: 36px; background: rgba(255,255,255,.82); color: #173356; font: inherit; font-size: .78rem; font-weight: 1000; box-shadow: 0 12px 24px rgba(19,35,67,.13), inset 0 -8px 0 rgba(19,35,67,.06); touch-action: none; }
+.animal-token::before { content: ""; position: absolute; left: 50%; top: 12px; width: 34px; aspect-ratio: 1; border-radius: 50%; transform: translateX(-50%); background: #f59e0b; box-shadow: inset 0 -5px 0 rgba(19,35,67,.1); }
+.animal-token.owl::before { background: radial-gradient(circle at 34% 38%, #fff 0 11%, transparent 12%), radial-gradient(circle at 66% 38%, #fff 0 11%, transparent 12%), #a16207; }
+.animal-token.fish::before { border-radius: 50% 45% 45% 50%; background: #0ea5e9; }
+.animal-token.lizard::before { border-radius: 45% 55% 52% 48%; background: #22c55e; }
+.animal-token.penguin::before { background: radial-gradient(circle at 50% 62%, #fff 0 28%, transparent 29%), #1e3a8a; }
+.animal-token[data-selected="true"] { outline: 4px solid #facc15; transform: translateY(-4px); }
+.animal-token[data-matched="true"] { opacity: .58; transform: scale(.94); }
+.habitat-world .scene-status { z-index: 6; background: rgba(255,255,255,.7); color: #173356; }
+.habitat-world .drawer-controls { z-index: 6; }
+body[data-motion="off"] .animal-token,
+body[data-motion="off"] .habitat-zone { transition: none; }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1969,7 +1996,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-number { width: 58px; height: 54px; border-radius: 15px; font-size: 1.1rem; }
   .home-letter { width: 58px; height: 54px; border-radius: 15px; font-size: 2.2rem; }
   .home-shapes { width: 58px; height: 54px; border-radius: 15px; }
-  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it, .home-planet-pals, .home-solar-build, .home-day-night, .home-days-week, .home-months, .home-seasons, .home-clock, .home-weather { width: 58px; height: 54px; border-radius: 15px; font-size: 1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
+  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it, .home-planet-pals, .home-solar-build, .home-day-night, .home-days-week, .home-months, .home-seasons, .home-clock, .home-weather, .home-habitat { width: 58px; height: 54px; border-radius: 15px; font-size: 1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
   .number-mat { grid-template-columns: repeat(5, 1fr); padding: 10px; }
   .number-buddy { min-height: 58px; border-radius: 18px; }
   .number-world { padding-bottom: 126px; gap: 10px; }
@@ -2008,6 +2035,11 @@ body[data-calm="true"] .connection-status { transition: none; }
   .weather-sun { top: 26%; width: 96px; }
   .cloud-a { left: 31%; top: 28%; }
   .cloud-b { right: 8%; top: 40%; }
+  .habitat-map { top: 11%; gap: 8px; }
+  .habitat-zone { min-height: 126px; border-radius: 20px; font-size: .82rem; }
+  .animal-tray { bottom: 24%; gap: 7px; }
+  .animal-token { min-height: 68px; border-radius: 18px; font-size: .68rem; padding-top: 32px; }
+  .animal-token::before { width: 28px; top: 9px; }
 }
 
 .game-art img { width:180px; height:180px; object-fit:contain; }

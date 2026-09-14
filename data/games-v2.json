@@ -669,9 +669,10 @@
       "calmMode": "no confetti",
       "reducedMotion": "static match",
       "finalCharacterArtRequired": false,
-      "canShipWithProceduralGraphics": false,
-      "status": "specified",
-      "liveV2Game": false
+      "canShipWithProceduralGraphics": true,
+      "status": "proof",
+      "liveV2Game": false,
+      "route": "v2-animal-habitats.html"
     },
     {
       "order": 30,

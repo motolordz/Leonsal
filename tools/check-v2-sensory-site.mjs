@@ -34,6 +34,7 @@ const routes = [
   'v2-seasons.html',
   'v2-first-clock.html',
   'v2-weather-world.html',
+  'v2-animal-habitats.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -125,7 +126,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 21);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 22);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -428,6 +429,19 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__weatherWorldProofState?.());
       assert.equal(state.weather, 'Sunny', 'Weather World reset did not return to Sunny');
+    }
+    if (route === 'v2-animal-habitats.html') {
+      assert.equal(await page.locator('.habitat-zone').count(), 4, 'Animal Habitats does not expose four habitats');
+      assert.equal(await page.locator('.animal-token').count(), 4, 'Animal Habitats does not expose four animal tokens');
+      await page.getByRole('button', { name: 'Owl' }).click();
+      await page.getByRole('button', { name: 'Forest' }).click();
+      let state = await page.evaluate(() => window.__animalHabitatsProofState?.());
+      assert(state.matched.includes('owl'), 'Animal Habitats did not match Owl to Forest');
+      assert.equal(state.hasTapAlternative, true, 'Animal Habitats missing tap alternative');
+      await page.getByRole('button', { name: 'Hint' }).click();
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__animalHabitatsProofState?.());
+      assert.equal(state.matched.length, 0, 'Animal Habitats reset did not clear matches');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();
