@@ -55,6 +55,8 @@
   }
 
   function installHomeEnergy(registry) {
+    if (!window.LeonSalCharacters) return;
+
     var map = {
       battery: "battery-buddy",
       elephant: "elephant",

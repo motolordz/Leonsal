@@ -14,6 +14,7 @@ for (const forbidden of [
 }
 
 assert(js.includes('record.status !== "approved"'), "Artwork integration must require approved records");
+assert(js.includes("if (!window.LeonSalCharacters) return;"), "Artwork integration must guard the optional character helper");
 assert(js.includes("var realWorld = setRealImage"), "Energy rendering must keep real-art resolution explicit");
 assert(js.includes("var realDash = setRealImage"), "Dash rendering must keep real-art resolution explicit");
 assert(js.includes("glyph.hidden = realWorld || realDash"), "Pending character fallback must not be hidden");
