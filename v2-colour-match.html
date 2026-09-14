@@ -26,6 +26,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -35,10 +36,10 @@
     const wells = document.querySelector('#wells');
     const drops = document.querySelector('#drops');
     const colours = [
-      { id: 'red', label: 'Red', value: '#f87171' },
-      { id: 'blue', label: 'Blue', value: '#38bdf8' },
-      { id: 'yellow', label: 'Yellow', value: '#fde047' },
-      { id: 'green', label: 'Green', value: '#4ade80' }
+      { id: 'red', label: 'Red', value: '#f87171', characterId: 'world-paintbrush', displayName: 'Paintbrush' },
+      { id: 'blue', label: 'Blue', value: '#38bdf8', characterId: 'world-water', displayName: 'Water Drop' },
+      { id: 'yellow', label: 'Yellow', value: '#fde047', characterId: 'world-sun', displayName: 'Sun' },
+      { id: 'green', label: 'Green', value: '#4ade80', characterId: 'world-tree', displayName: 'Tree' }
     ];
     let selected = null;
     let matched = new Set();
@@ -49,6 +50,19 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function colourRecord(colour) {
+      return { id: colour.characterId, displayName: colour.displayName, family: 'world', registryGroup: 'world' };
+    }
+    function renderDrop(drop, colour, state) {
+      const renderer = window.LeonSalCharacterRenderer;
+      drop.replaceChildren();
+      if (renderer) drop.append(renderer.makeCharacter(colourRecord(colour), state, { decorative: false }));
+      else drop.textContent = colour.label;
+      const label = document.createElement('span');
+      label.className = 'choice-label';
+      label.textContent = colour.label;
+      drop.append(label);
+    }
     function build() {
       selected = null;
       matched = new Set();
@@ -62,7 +76,7 @@
         well.dataset.colour = colour.id;
         well.style.setProperty('--match-colour', colour.value);
         well.setAttribute('aria-label', `${colour.label} well`);
-        well.textContent = colour.label;
+        well.append(document.createTextNode(colour.label));
         wells.append(well);
         const drop = document.createElement('button');
         drop.className = 'colour-drop';
@@ -70,7 +84,7 @@
         drop.dataset.colour = colour.id;
         drop.style.setProperty('--match-colour', colour.value);
         drop.setAttribute('aria-label', `${colour.label} paint drop`);
-        drop.textContent = colour.label;
+        renderDrop(drop, colour, 'calm');
         drops.append(drop);
         dragDrop.register(drop, well, { select: () => selectDrop(drop), drop: () => tryDrop(well) });
       }
@@ -80,7 +94,7 @@
       if (matched.has(drop.dataset.colour)) return;
       selected = drop;
       document.querySelectorAll('.colour-drop').forEach((item) => item.dataset.selected = String(item === drop));
-      status.textContent = `${drop.textContent} selected. Choose the matching well.`;
+      status.textContent = `${drop.getAttribute('aria-label')} selected. Choose the matching well.`;
     }
     function tryDrop(well) {
       if (!selected) {
@@ -92,6 +106,8 @@
       if (matcher.check(itemId, categoryId)) {
         matched.add(itemId);
         selected.dataset.matched = 'true';
+        const colour = colours.find((candidate) => candidate.id === itemId);
+        if (colour) renderDrop(selected, colour, 'excited');
         well.dataset.matched = 'true';
         selected = null;
         status.textContent = matched.size === colours.length ? 'All colours matched.' : 'Match made.';
@@ -115,7 +131,7 @@
     document.querySelector('#reset').addEventListener('click', build);
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [], reset: build, gameId: 'colour-match-v2' });
     build();
-    window.__colourMatchProofState = () => ({ selected: selected?.dataset.colour || null, matched: [...matched], complete: matched.size === colours.length, hasTapAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
+    window.__colourMatchProofState = () => ({ selected: selected?.dataset.colour || null, matched: [...matched], complete: matched.size === colours.length, hasCharacterRenderer: [...document.querySelectorAll('.colour-drop')].every((drop) => Boolean(drop.querySelector('.procedural-character-svg.character-family-world'))), hasTapAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
   </script>
 </body>
 </html>

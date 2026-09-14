@@ -29,12 +29,14 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
     const sequence = new LeonSalV2.SequenceEngine(['sun', 'moon', 'sun', 'moon', 'sun', 'moon']);
     const ribbon = document.querySelector('#ribbon');
     const status = document.querySelector('#status');
+    const choiceHost = document.querySelector('#choices');
     let placed = [];
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
     document.querySelector('#settingsToggle').addEventListener('click', () => {
@@ -43,15 +45,37 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function patternRecord(value) {
+      return {
+        id: value === 'sun' ? 'world-sun' : 'world-moon',
+        displayName: value === 'sun' ? 'Sun' : 'Moon',
+        family: 'world',
+        registryGroup: 'world'
+      };
+    }
+    function renderPatternCharacter(value, state) {
+      const renderer = window.LeonSalCharacterRenderer;
+      if (!renderer) return document.createTextNode(value === 'sun' ? 'Sun' : 'Moon');
+      return renderer.makeCharacter(patternRecord(value), state, { decorative: false });
+    }
+    function renderChoiceButton(button) {
+      const value = button.dataset.value;
+      button.replaceChildren(renderPatternCharacter(value, 'calm'));
+      const label = document.createElement('span');
+      label.className = 'choice-label';
+      label.textContent = value === 'sun' ? 'Sun' : 'Moon';
+      button.append(label);
+    }
     function render() {
       ribbon.innerHTML = '';
       sequence.items.forEach((item, index) => {
         const slot = document.createElement('span');
         slot.className = `pattern-slot ${index < placed.length ? `slot-${placed[index]}` : 'slot-empty'}`;
-        slot.textContent = index < placed.length ? (placed[index] === 'sun' ? 'Sun' : 'Moon') : '';
+        if (index < placed.length) slot.append(renderPatternCharacter(placed[index], index === placed.length - 1 ? 'happy' : 'calm'));
         slot.setAttribute('aria-label', index < placed.length ? placed[index] : 'empty pattern slot');
         ribbon.append(slot);
       });
+      document.querySelectorAll('.pattern-choice').forEach(renderChoiceButton);
     }
     function reset() {
       placed = ['sun', 'moon'];
@@ -75,7 +99,7 @@
         status.textContent = 'Try the other shape.';
       }
     }
-    document.querySelector('#choices').addEventListener('click', (event) => {
+    choiceHost.addEventListener('click', (event) => {
       const choice = event.target.closest('.pattern-choice');
       if (choice) choose(choice.dataset.value);
     });
@@ -83,7 +107,7 @@
     document.querySelector('#reset').addEventListener('click', reset);
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [], reset, gameId: 'pattern-builder-v2' });
     reset();
-    window.__patternBuilderProofState = () => ({ placed: [...placed], next: sequence.items[placed.length] || null, complete: placed.length === sequence.items.length, hasTapAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
+    window.__patternBuilderProofState = () => ({ placed: [...placed], next: sequence.items[placed.length] || null, complete: placed.length === sequence.items.length, hasCharacterRenderer: [...document.querySelectorAll('.pattern-choice')].every((choice) => Boolean(choice.querySelector('.procedural-character-svg.character-family-world'))) && [...document.querySelectorAll('.pattern-slot:not(.slot-empty)')].every((slot) => Boolean(slot.querySelector('.procedural-character-svg.character-family-world'))), hasTapAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
   </script>
 </body>
 </html>

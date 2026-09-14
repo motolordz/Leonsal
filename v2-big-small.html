@@ -29,6 +29,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -38,10 +39,10 @@
     const toys = document.querySelector('#toys');
     const baskets = document.querySelector('#baskets');
     const items = [
-      { id: 'tiny-star', label: 'Small star', size: 'small', shape: 'star' },
-      { id: 'big-star', label: 'Big star', size: 'big', shape: 'star' },
-      { id: 'tiny-ball', label: 'Small ball', size: 'small', shape: 'ball' },
-      { id: 'big-ball', label: 'Big ball', size: 'big', shape: 'ball' }
+      { id: 'tiny-star', label: 'Small star', size: 'small', shape: 'star', characterId: 'world-moon', displayName: 'Star' },
+      { id: 'big-star', label: 'Big star', size: 'big', shape: 'star', characterId: 'world-moon', displayName: 'Star' },
+      { id: 'tiny-ball', label: 'Small ball', size: 'small', shape: 'ball', characterId: 'world-treasure', displayName: 'Ball' },
+      { id: 'big-ball', label: 'Big ball', size: 'big', shape: 'ball', characterId: 'world-treasure', displayName: 'Ball' }
     ];
     let selected = null;
     let sorted = new Set();
@@ -52,6 +53,19 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function toyRecord(item) {
+      return { id: item.characterId, displayName: item.displayName, family: 'world', registryGroup: 'world' };
+    }
+    function renderToy(toy, item, state) {
+      const renderer = window.LeonSalCharacterRenderer;
+      toy.replaceChildren();
+      if (renderer) toy.append(renderer.makeCharacter(toyRecord(item), state, { decorative: false }));
+      else toy.textContent = item.size === 'big' ? 'Big' : 'Small';
+      const label = document.createElement('span');
+      label.className = 'choice-label';
+      label.textContent = item.size === 'big' ? 'Big' : 'Small';
+      toy.append(label);
+    }
     function build() {
       selected = null;
       sorted = new Set();
@@ -64,8 +78,8 @@
         toy.dataset.id = item.id;
         toy.dataset.size = item.size;
         toy.dataset.visualSize = item.size;
-        toy.textContent = item.size === 'big' ? 'Big' : 'Small';
         toy.setAttribute('aria-label', item.label);
+        renderToy(toy, item, 'calm');
         toys.append(toy);
         const zone = document.querySelector(`.size-basket[data-size="${item.size}"]`);
         dragDrop.register(toy, zone, { select: () => selectToy(toy), drop: () => tryBasket(zone) });
@@ -77,7 +91,7 @@
       if (sorted.has(toy.dataset.id)) return;
       selected = toy;
       document.querySelectorAll('.size-toy').forEach((item) => item.dataset.selected = String(item === toy));
-      status.textContent = `${toy.textContent} toy selected. Choose a basket.`;
+      status.textContent = `${toy.getAttribute('aria-label')} selected. Choose a basket.`;
     }
     function tryBasket(basket) {
       if (!selected) {
@@ -87,6 +101,8 @@
       if (matcher.check(selected.dataset.id, basket.dataset.size)) {
         sorted.add(selected.dataset.id);
         selected.dataset.sorted = 'true';
+        const item = items.find((candidate) => candidate.id === selected.dataset.id);
+        if (item) renderToy(selected, item, 'excited');
         basket.dataset.count = String(Number(basket.dataset.count || 0) + 1);
         selected = null;
         status.textContent = sorted.size === items.length ? 'All toys sorted.' : 'Sorted.';
@@ -110,7 +126,7 @@
     document.querySelector('#reset').addEventListener('click', build);
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [], reset: build, gameId: 'big-small-v2' });
     build();
-    window.__bigSmallProofState = () => ({ selected: selected?.dataset.id || null, sorted: [...sorted], complete: sorted.size === items.length, hasTapAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
+    window.__bigSmallProofState = () => ({ selected: selected?.dataset.id || null, sorted: [...sorted], complete: sorted.size === items.length, hasCharacterRenderer: [...document.querySelectorAll('.size-toy')].every((toy) => Boolean(toy.querySelector('.procedural-character-svg.character-family-world'))), hasTapAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
   </script>
 </body>
 </html>
