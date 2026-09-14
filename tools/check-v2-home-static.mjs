@@ -43,10 +43,14 @@ for (const text of ['applyWorldFilter', 'data-world-filter', 'data-world-categor
 for (const text of ['const cardCharacters', 'installCardCharacters', 'renderer.makeCharacter', 'characterDecorated', 'renderCharacterStatus', 'character-assets.json', 'safe vector previews']) {
   assert(js.includes(text), `V2 home missing procedural card character behavior: ${text}`);
 }
+for (const text of ['const cardCapabilities', 'installCapabilityChips', 'card-capability-row', 'Speed choice', 'UK/HK buses', 'Calm cap', 'No timer', 'Tap or drag']) {
+  assert(js.includes(text), `V2 home missing sensory capability behavior: ${text}`);
+}
 for (const id of ['elephant', 'plane', 'double-decker', 'letter-a', 'number-3', 'world-cloud', 'planet-earth']) {
   assert(js.includes(`id: '${id}'`), `V2 home card character map missing canonical id: ${id}`);
 }
 assert(css.includes('.game-art[data-character-decorated="true"] .procedural-character-svg'), 'V2 home card character styling missing');
+assert(css.includes('.card-capability-row'), 'V2 home capability chip styling missing');
 assert(css.includes('.hub-character-status'), 'V2 home character status styling missing');
 assert(rendererLikeVehicle(), 'Shared renderer must classify double-decker as a vehicle');
 assert(rendererLikeCharacters(), 'Shared renderer must classify Battery Buddy and Dinosaur as distinct character bodies');

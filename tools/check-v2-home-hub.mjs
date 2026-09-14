@@ -56,6 +56,10 @@ try {
     }
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
     assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 24);
+    assert.equal(await page.locator('.world-game .card-capability-row').count(), 34, 'Every activity card should expose compact capability chips');
+    assert(await page.locator('.bus-card .card-capability-row').getByText('Speed choice', { exact: true }).isVisible(), 'Bus card missing speed capability chip');
+    assert(await page.locator('.bus-card .card-capability-row').getByText('UK/HK buses', { exact: true }).isVisible(), 'Bus card missing variant capability chip');
+    assert(await page.locator('.bus-card .card-capability-row').getByText('Calm cap', { exact: true }).isVisible(), 'Bus card missing calm-speed cap chip');
     assert.equal(await page.locator('.need-card').count(), 5);
     assert.equal(await page.locator('.bus-need').getAttribute('href'), 'v2-double-decker-bus.html');
     assert(await page.locator('.bus-need').getByText('I want speed choices', { exact: true }).isVisible());
@@ -69,6 +73,8 @@ try {
     assert.equal(await page.locator('.hub-engine-grid').getAttribute('aria-label'), 'Learning activity carousel');
     assert.equal(await page.locator('.hub-game-grid').getAttribute('tabindex'), '0');
     assert.equal(await page.locator('.hub-engine-grid').getAttribute('tabindex'), '0');
+    const proofState = await page.evaluate(() => window.__v2HomeProofState?.());
+    assert.equal(proofState.capabilityRows, 34, 'Proof state should report capability chips on all cards');
     if (viewport.width <= 620) {
       assert.equal(await page.locator('.hub-game-grid').evaluate(element => getComputedStyle(element).display), 'flex');
       assert.equal(await page.locator('.hub-engine-grid').evaluate(element => getComputedStyle(element).display), 'flex');

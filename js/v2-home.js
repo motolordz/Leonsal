@@ -130,6 +130,42 @@
     'orbit-card': { id: 'planet-earth', family: 'planet', state: 'calm', displayName: 'Earth' },
     'cause-card': { id: 'world-sun', family: 'world', state: 'excited', displayName: 'Sun' }
   };
+  const cardCapabilities = {
+    'energy-card': ['Touch', 'No timer', 'Motion safe'],
+    'dock-card': ['Move', 'No score', 'Logic'],
+    'bubble-card': ['Touch', 'Quiet', 'Few or many'],
+    'firefly-card': ['Touch', 'Calm', 'No score'],
+    'snow-card': ['Gentle', 'Settle', 'No timer'],
+    'star-card': ['Touch', 'Soft glow', 'No score'],
+    'garden-card': ['Grow', 'Calm pace', 'No rush'],
+    'trail-card': ['Draw', 'No sound needed', 'Clear'],
+    'breathe-card': ['Hold', 'Self paced', 'Calm mode'],
+    'rain-card': ['Quiet', 'Touch', 'Slow'],
+    'number-card': ['Tap', 'Numbers', 'No pressure'],
+    'alphabet-card': ['Tap', 'Letters', 'A-Z'],
+    'shape-card': ['Build', 'Snap', 'Touch'],
+    'letter-trace-card': ['Trace', 'Tap option', 'Gentle help'],
+    'number-trace-card': ['Trace', 'Tap option', 'Gentle help'],
+    'shape-trace-card': ['Trace', 'Shapes', 'Gentle help'],
+    'colour-match-card': ['Match', 'Colours', 'Tap or drag'],
+    'big-small-card': ['Sort', 'Size', 'Tap or drag'],
+    'pattern-card': ['Sequence', 'Pattern', 'No timer'],
+    'sort-it-card': ['Sort', 'Categories', 'Tap or drag'],
+    'planet-pals-card': ['Explore', 'Planets', 'Simple facts'],
+    'solar-build-card': ['Build', 'Order', 'Calm orbit'],
+    'day-night-card': ['Slide', 'Day/night', 'Reduced motion'],
+    'days-week-card': ['Sequence', 'Days', 'Step by step'],
+    'months-card': ['Sequence', 'Months', 'Step by step'],
+    'seasons-card': ['Cycle', 'Seasons', 'Calm'],
+    'clock-card': ['Touch', 'Time', 'No timer'],
+    'weather-card': ['Choose', 'Weather', 'Calm'],
+    'habitat-card': ['Match', 'Animals', 'Tap or drag'],
+    'transport-card': ['Choose', 'Routes', 'Move'],
+    'bus-card': ['Speed choice', 'UK/HK buses', 'Calm cap'],
+    'trace-card': ['Trace', 'Paths', 'Gentle help'],
+    'orbit-card': ['Orbit', 'Drag', 'Reduced motion'],
+    'cause-card': ['Press', 'Switch', 'Deterministic']
+  };
 
   const installCardCharacters = () => {
     const renderer = window.LeonSalCharacterRenderer;
@@ -145,6 +181,22 @@
     });
   };
   installCardCharacters();
+
+  const installCapabilityChips = () => {
+    gameCards.forEach((card) => {
+      if (card.querySelector('.card-capability-row')) return;
+      const matchedClass = Object.keys(cardCapabilities).find(className => card.classList.contains(className));
+      if (!matchedClass) return;
+      const row = document.createElement('span');
+      row.className = 'card-capability-row';
+      row.setAttribute('aria-label', `${card.querySelector('h3')?.textContent || 'Activity'} features`);
+      row.innerHTML = cardCapabilities[matchedClass].map(label => `<i>${label}</i>`).join('');
+      const playLabel = card.querySelector('.play-label');
+      if (playLabel) card.insertBefore(row, playLabel);
+      else card.append(row);
+    });
+  };
+  installCapabilityChips();
 
   const normalFamily = record => record.family === 'numbers' ? 'number' : record.family;
   const characterRecords = registry => {
@@ -202,7 +254,8 @@
   window.__v2HomeProofState = () => ({
     playMode: homePlayScene?.dataset.homePlayMode || null,
     guideCount: document.querySelectorAll('.landing-runner[data-svg-guide="true"] .home-guide-svg').length,
-    decoratedCards: document.querySelectorAll('.world-game .game-art[data-character-decorated="true"] .procedural-character-svg').length
+    decoratedCards: document.querySelectorAll('.world-game .game-art[data-character-decorated="true"] .procedural-character-svg').length,
+    capabilityRows: document.querySelectorAll('.world-game .card-capability-row').length
   });
 
   const renderProgress = () => {
