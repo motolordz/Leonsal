@@ -47,9 +47,12 @@ class LeonSalGameShell {
     document.addEventListener('visibilitychange', () => { if (document.hidden) this.pause(); }, options);
     window.addEventListener('pagehide', () => this.pause(), options);
     document.body.dataset.paused = 'false';
-    this.settingsPanel?.setAttribute('role', 'group');
-    this.settingsPanel?.setAttribute('aria-label', 'Sensory settings');
+    if (this.settingsPanel) {
+      this.settingsPanel.setAttribute('role', this.settingsPanel.getAttribute('role') || 'dialog');
+      this.settingsPanel.setAttribute('aria-label', 'Sensory settings');
+    }
     this.settingsToggle?.setAttribute('aria-controls', 'settings');
+    this.settingsToggle?.setAttribute('aria-label', 'Open sensory settings');
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && this.settingsPanel?.dataset.open === 'true') this.closeSettings(true);
     }, options);
@@ -105,6 +108,7 @@ class LeonSalGameShell {
     if (!this.settingsPanel) return;
     this.settingsPanel.dataset.open = 'false';
     this.settingsToggle?.setAttribute('aria-expanded', 'false');
+    this.settingsToggle?.setAttribute('aria-label', 'Open sensory settings');
     if (focus) this.settingsToggle?.focus();
   }
   applySettings() {

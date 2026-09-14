@@ -50,6 +50,15 @@
   let settings = null;
   let gridPreviewState = 'calm';
 
+  const setSettingsOpen = open => {
+    const panel = document.querySelector('#settings');
+    const toggle = document.querySelector('#settingsToggle');
+    if (!panel || !toggle) return;
+    panel.dataset.open = String(open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close sensory settings' : 'Open sensory settings');
+  };
+
   const stateForEnergy = value => {
     const percent = Number(value);
     if (typeof LeonSalV2 !== 'undefined') return LeonSalV2.stateForEnergy(percent);
@@ -430,9 +439,7 @@
         new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
         document.querySelector('#settingsToggle').addEventListener('click', () => {
           const panel = document.querySelector('#settings');
-          const open = panel.dataset.open !== 'true';
-          panel.dataset.open = String(open);
-          document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+          setSettingsOpen(panel.dataset.open !== 'true');
         });
         new LeonSalGameShell({ settings, reset: () => {
           energy.value = '50';

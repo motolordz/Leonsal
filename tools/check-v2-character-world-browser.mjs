@@ -137,8 +137,13 @@ await page.getByRole('button', { name: 'Show all artwork', exact: true }).click(
 assert(await page.locator('.character-world-card[data-family="alphabet"]').first().isVisible(), 'Show all artwork did not restore alphabet vector cards');
 await page.locator('#settingsToggle').click();
 assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', 'Settings panel did not open');
+assert.equal(await page.locator('#settings').getAttribute('role'), 'dialog', 'Settings panel must keep shared dialog semantics');
+assert.equal(await page.locator('#settings').getAttribute('aria-label'), 'Sensory settings', 'Settings panel must keep accessible name');
+assert.equal(await page.locator('#settingsToggle').getAttribute('aria-label'), 'Close sensory settings', 'Settings toggle must announce close action while open');
+assert(await page.getByRole('button', { name: /Motion:/ }).isVisible(), 'Character World settings must expose labelled Motion control');
 await page.keyboard.press('Escape');
 assert.equal(await page.locator('#settings').getAttribute('data-open'), 'false', 'Settings panel did not close with Escape');
+assert.equal(await page.locator('#settingsToggle').getAttribute('aria-label'), 'Open sensory settings', 'Settings toggle must announce open action while closed');
 assert(await page.getByRole('button', { name: 'Pause', exact: true }).isVisible(), 'Character World missing shared Pause control');
 assert(await page.getByRole('button', { name: 'Finished', exact: true }).isVisible(), 'Character World missing shared Finished control');
 await page.getByRole('button', { name: 'Pause', exact: true }).click();
