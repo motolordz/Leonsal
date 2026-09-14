@@ -32,15 +32,16 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
     const causeEffect = new LeonSalV2.CauseEffectEngine();
     const cycle = new LeonSalV2.TimeCycleEngine([
-      { id: 'sunny', label: 'Sunny', cue: 'Sunny sky is bright and warm.', particle: 'sparkle' },
-      { id: 'cloudy', label: 'Cloudy', cue: 'Clouds drift across the sky.', particle: 'bubbles' },
-      { id: 'rain', label: 'Rain', cue: 'Rain falls softly on the garden.', particle: 'rain' },
-      { id: 'snow', label: 'Snow', cue: 'Snow floats quietly down.', particle: 'sparkle' }
+      { id: 'sunny', label: 'Sunny', cue: 'Sunny sky is bright and warm.', particle: 'sparkle', characterId: 'world-sun', displayName: 'Sun' },
+      { id: 'cloudy', label: 'Cloudy', cue: 'Clouds drift across the sky.', particle: 'bubbles', characterId: 'world-cloud', displayName: 'Cloud' },
+      { id: 'rain', label: 'Rain', cue: 'Rain falls softly on the garden.', particle: 'rain', characterId: 'world-water', displayName: 'Water Drop' },
+      { id: 'snow', label: 'Snow', cue: 'Snow floats quietly down.', particle: 'sparkle', characterId: 'world-moon', displayName: 'Moon' }
     ]);
     const canvas = document.querySelector('#weatherCanvas');
     const world = document.querySelector('#world');
@@ -89,6 +90,22 @@
     function chooseWeather(index) {
       causeEffect.trigger('choose-weather', { index });
     }
+    function weatherRecord(weather) {
+      return { id: weather.characterId, displayName: weather.displayName, family: 'world', registryGroup: 'world' };
+    }
+    function renderWeatherChoice(button, weather, active) {
+      const renderer = window.LeonSalCharacterRenderer;
+      button.replaceChildren();
+      if (renderer) {
+        button.append(renderer.makeCharacter(weatherRecord(weather), active ? 'excited' : 'calm', { decorative: false }));
+      } else {
+        button.textContent = weather.label;
+      }
+      const label = document.createElement('span');
+      label.className = 'choice-label';
+      label.textContent = weather.label;
+      button.append(label);
+    }
 
     causeEffect.connect('choose-weather', ({ index }) => {
       cycle.set(index);
@@ -96,7 +113,9 @@
       world.dataset.weather = current.id;
       status.textContent = current.cue;
       document.querySelectorAll('.weather-choice').forEach((button, buttonIndex) => {
-        button.dataset.active = String(buttonIndex === cycle.sequence.index);
+        const active = buttonIndex === cycle.sequence.index;
+        button.dataset.active = String(active);
+        renderWeatherChoice(button, cycle.sequence.items[buttonIndex], active);
       });
       paintParticles(current.id);
       return current.id;
@@ -109,8 +128,8 @@
         button.className = 'weather-choice';
         button.type = 'button';
         button.dataset.weather = weather.id;
-        button.textContent = weather.label;
         button.setAttribute('aria-label', `Choose ${weather.label}`);
+        renderWeatherChoice(button, weather, index === cycle.sequence.index);
         button.addEventListener('click', () => chooseWeather(index));
         choices.append(button);
       });
@@ -130,6 +149,7 @@
       weather: cycle.sequence.items[cycle.sequence.index].label,
       id: cycle.sequence.items[cycle.sequence.index].id,
       particles: particles.items.length,
+      hasCharacterRenderer: [...document.querySelectorAll('.weather-choice')].every((button) => Boolean(button.querySelector('.procedural-character-svg.character-family-world'))),
       hasTapAlternative: true,
       effects: causeEffect.effects.size,
       calmMode: settings.value.calmMode,

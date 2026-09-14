@@ -210,6 +210,7 @@ try {
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__patternBuilderProofState().placed.length),2);
     await page.goto(base+'/v2-sort-it.html');
+    assert.equal(await page.evaluate(()=>window.__sortItProofState().hasCharacterRenderer),true);
     await page.locator('.sort-item').first().click();
     await page.locator('.sort-basket').first().click();
     assert.equal(await page.evaluate(()=>window.__sortItProofState().sorted.includes('cloud')),true);
@@ -258,6 +259,7 @@ try {
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__firstClockProofState().readout),'1:00');
     await page.goto(base+'/v2-weather-world.html');
+    assert.equal(await page.evaluate(()=>window.__weatherWorldProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Next weather',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__weatherWorldProofState().weather),'Cloudy');
     await page.getByRole('button',{name:'Choose Snow',exact:true}).click();

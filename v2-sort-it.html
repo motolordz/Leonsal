@@ -29,6 +29,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -38,10 +39,10 @@
     const itemWrap = document.querySelector('#items');
     const baskets = document.querySelector('#baskets');
     const objects = [
-      { id: 'cloud', label: 'Cloud', category: 'sky', icon: 'cloud' },
-      { id: 'star', label: 'Star', category: 'sky', icon: 'star' },
-      { id: 'flower', label: 'Flower', category: 'garden', icon: 'flower' },
-      { id: 'leaf', label: 'Leaf', category: 'garden', icon: 'leaf' }
+      { id: 'cloud', label: 'Cloud', category: 'sky', icon: 'cloud', characterId: 'world-cloud' },
+      { id: 'star', label: 'Star', category: 'sky', icon: 'star', characterId: 'world-moon' },
+      { id: 'flower', label: 'Flower', category: 'garden', icon: 'flower', characterId: 'world-paintbrush' },
+      { id: 'leaf', label: 'Leaf', category: 'garden', icon: 'leaf', characterId: 'world-tree' }
     ];
     let selected = null;
     let sorted = new Set();
@@ -52,6 +53,19 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function objectRecord(object) {
+      return { id: object.characterId, displayName: object.label, family: 'world', registryGroup: 'world' };
+    }
+    function renderSortItem(item, object, state) {
+      const renderer = window.LeonSalCharacterRenderer;
+      item.replaceChildren();
+      if (renderer) item.append(renderer.makeCharacter(objectRecord(object), state, { decorative: false }));
+      else item.textContent = object.label;
+      const label = document.createElement('span');
+      label.className = 'choice-label';
+      label.textContent = object.label;
+      item.append(label);
+    }
     function build() {
       selected = null;
       sorted = new Set();
@@ -63,8 +77,8 @@
         item.type = 'button';
         item.dataset.id = object.id;
         item.dataset.category = object.category;
-        item.textContent = object.label;
         item.setAttribute('aria-label', object.label);
+        renderSortItem(item, object, 'calm');
         itemWrap.append(item);
         const zone = document.querySelector(`.sort-basket[data-category="${object.category}"]`);
         dragDrop.register(item, zone, { select: () => selectItem(item), drop: () => tryBasket(zone) });
@@ -76,7 +90,7 @@
       if (sorted.has(item.dataset.id)) return;
       selected = item;
       document.querySelectorAll('.sort-item').forEach((node) => node.dataset.selected = String(node === item));
-      status.textContent = `${item.textContent} selected. Choose a group.`;
+      status.textContent = `${item.getAttribute('aria-label')} selected. Choose a group.`;
     }
     function tryBasket(basket) {
       if (!selected) {
@@ -86,6 +100,8 @@
       if (matcher.check(selected.dataset.id, basket.dataset.category)) {
         sorted.add(selected.dataset.id);
         selected.dataset.sorted = 'true';
+        const object = objects.find((candidate) => candidate.id === selected.dataset.id);
+        if (object) renderSortItem(selected, object, 'excited');
         basket.dataset.count = String(Number(basket.dataset.count || 0) + 1);
         selected = null;
         status.textContent = sorted.size === objects.length ? 'Everything is sorted.' : 'Sorted.';
@@ -109,7 +125,7 @@
     document.querySelector('#reset').addEventListener('click', build);
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [], reset: build, gameId: 'sort-it-v2' });
     build();
-    window.__sortItProofState = () => ({ selected: selected?.dataset.id || null, sorted: [...sorted], complete: sorted.size === objects.length, hasTapAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
+    window.__sortItProofState = () => ({ selected: selected?.dataset.id || null, sorted: [...sorted], complete: sorted.size === objects.length, hasCharacterRenderer: [...document.querySelectorAll('.sort-item')].every((item) => Boolean(item.querySelector('.procedural-character-svg.character-family-world'))), hasTapAlternative: true, calmMode: settings.value.calmMode, reducedMotion: settings.value.reducedMotion });
   </script>
 </body>
 </html>
