@@ -34,7 +34,7 @@
     if (/rainbow/i.test(record.id)) return 'RAIN';
     if (/plane/i.test(record.id)) return 'JET';
     if (/rocket/i.test(record.id)) return 'GO';
-    if (/bus/i.test(record.id)) return 'BUS';
+    if (/bus|double-decker/i.test(record.id)) return 'BUS';
     if (/boat/i.test(record.id)) return 'BOAT';
     if (/owl/i.test(record.id)) return 'OWL';
     if (/fish/i.test(record.id)) return 'FISH';
@@ -52,7 +52,7 @@
     if (record.family === 'number' || record.family === 'numbers') return 'number';
     if (/elephant/.test(id)) return 'elephant';
     if (/owl|fish|lizard|penguin/.test(id)) return 'animal';
-    if (/bus|train/.test(id)) return 'vehicle';
+    if (/bus|train|double-decker/.test(id)) return 'vehicle';
     if (/plane|rocket|boat/.test(id)) return 'transport';
     if (/sun|moon|earth|planet|mercury|venus|mars|jupiter|saturn|uranus|neptune/.test(id)) return 'planet';
     if (/cloud|rainbow|water|tree/.test(id)) return 'nature';

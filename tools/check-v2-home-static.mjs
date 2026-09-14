@@ -45,9 +45,16 @@ for (const id of ['elephant', 'plane', 'double-decker', 'letter-a', 'number-3', 
   assert(js.includes(`id: '${id}'`), `V2 home card character map missing canonical id: ${id}`);
 }
 assert(css.includes('.game-art[data-character-decorated="true"] .procedural-character-svg'), 'V2 home card character styling missing');
+assert(rendererLikeVehicle(), 'Shared renderer must classify double-decker as a vehicle');
 for (const text of ['new LeonSalV2.AssetLoaderEngine', 'loader.resolve', 'record?.states?.[state]']) {
   assert(approvedLoader.includes(text), `Approved character loader must use shared asset loader: ${text}`);
 }
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet/i.test(html), 'V2 home must not reference review/source/QA art');
+
+function rendererLikeVehicle() {
+  const renderer = fs.readFileSync('js/v2-character-renderer.js', 'utf8');
+  const characterWorld = fs.readFileSync('js/v2-character-world.js', 'utf8');
+  return /bus\|train\|double-decker/.test(renderer) && /bus\|train\|double-decker/.test(characterWorld);
+}
 
 console.log('V2 home static checks passed.');
