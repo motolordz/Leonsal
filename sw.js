@@ -2,6 +2,8 @@
 
 const CACHE_NAME = 'leonsal-v2-safe-cache-v1';
 const SAFE_ASSETS = [
+  './index.html',
+  './sensory-lab.html',
   './v2-home.html',
   './v2-energy-battery.html',
   './v2-dash-dock.html',

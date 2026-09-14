@@ -7,6 +7,8 @@ const home = await fs.readFile('v2-home.html', 'utf8');
 const shell = await fs.readFile('js/v2-game-shell.js', 'utf8');
 
 for (const route of [
+  'index.html',
+  'sensory-lab.html',
   'v2-home.html',
   'v2-energy-battery.html',
   'v2-dash-dock.html',
@@ -52,7 +54,7 @@ assert(/window\.addEventListener\('offline'/.test(shell), 'V2 game shell does no
 await fs.mkdir('qa/v2-offline', { recursive: true });
 await fs.writeFile('qa/v2-offline/results.json', JSON.stringify({
   passed: true,
-  cachedRoutes: 10,
+  cachedRoutes: 12,
   offlineFallback: 'v2-offline.html',
   connectionStatus: 'polite online/offline status on V2 home and direct game entry',
   cachedApprovedCharacterAssets: 5,

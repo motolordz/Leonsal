@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "cachedRoutes": 10,
+  "cachedRoutes": 12,
   "offlineFallback": "v2-offline.html",
   "connectionStatus": "polite online/offline status on V2 home and direct game entry",
   "cachedApprovedCharacterAssets": 5,

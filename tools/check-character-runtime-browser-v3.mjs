@@ -143,7 +143,7 @@ async function main() {
         if (reviewPaths.has(new URL(url).pathname.slice(1))) summary.forbiddenRequests.push(url);
         if (/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|\/qa\//i.test(url)) summary.forbiddenRequests.push(url);
       });
-      await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: "networkidle" });
+      await page.goto(`http://127.0.0.1:${port}/sensory-lab.html`, { waitUntil: "networkidle" });
       for (const item of states) {
         await assertBattery(page, item.value, item.state);
         await page.locator('#characterStage').screenshot({path: path.join(outDir, `${viewport.name}-battery-${item.state}.png`)});

@@ -669,6 +669,230 @@ body[data-contrast="strong"] .game-topbar {
 .hub-bubble-one { width: 96px; height: 96px; left: 8%; top: 18%; animation: hub-float 4.8s ease-in-out infinite; }
 .hub-bubble-two { width: 68px; height: 68px; right: 12%; bottom: 23%; animation: hub-float 5.4s ease-in-out infinite reverse; }
 
+.landing-page {
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255, 216, 77, .32), transparent 24%),
+    radial-gradient(circle at 87% 10%, rgba(241, 90, 166, .18), transparent 27%),
+    linear-gradient(180deg, #eff8ff 0%, #fff7de 62%, #efffe9 100%);
+}
+
+.landing-hero {
+  min-height: min(720px, calc(100svh - 112px));
+  padding: clamp(24px, 5vw, 58px);
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(340px, 1.18fr);
+  gap: clamp(20px, 4vw, 52px);
+  align-items: center;
+  overflow: hidden;
+  border: 2px solid rgba(178, 210, 246, .86);
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, .9), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .46));
+  box-shadow: 0 30px 80px rgba(35, 79, 140, .18);
+}
+
+.landing-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.landing-copy h1 {
+  margin: 0;
+  max-width: 780px;
+  font-size: clamp(2.15rem, 5.4vw, 5.4rem);
+  line-height: .98;
+  letter-spacing: 0;
+}
+
+.landing-copy > p:not(.eyebrow) {
+  max-width: 620px;
+  font-size: clamp(1rem, 1.8vw, 1.28rem);
+  color: var(--muted);
+  font-weight: 760;
+  line-height: 1.55;
+}
+
+.landing-playground {
+  position: relative;
+  min-height: min(560px, 64svh);
+  border-radius: 34px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 75% 20%, rgba(255, 255, 255, .8), transparent 18%),
+    linear-gradient(180deg, #bfe9ff 0 58%, #aee989 58% 100%);
+  box-shadow: inset 0 -20px 0 rgba(47, 145, 232, .08), 0 20px 50px rgba(47, 145, 232, .17);
+  isolation: isolate;
+}
+
+.landing-sun {
+  position: absolute;
+  top: 8%;
+  right: 10%;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 32%, #fff7a8, #ffd84d 62%, #ffb03b);
+  box-shadow: 0 0 38px rgba(255, 216, 77, .58);
+}
+
+.landing-hill {
+  position: absolute;
+  bottom: -12%;
+  border-radius: 50% 50% 0 0;
+  background: linear-gradient(180deg, #76d974, #47bd69);
+}
+
+.hill-one {
+  left: -8%;
+  width: 68%;
+  height: 36%;
+}
+
+.hill-two {
+  right: -14%;
+  width: 76%;
+  height: 42%;
+  background: linear-gradient(180deg, #8be181, #5dc779);
+}
+
+.landing-battery {
+  position: absolute;
+  left: 50%;
+  bottom: 19%;
+  width: min(25vw, 190px);
+  max-width: 42%;
+  transform: translateX(-50%);
+  z-index: 5;
+  filter: drop-shadow(0 20px 22px rgba(37, 82, 128, .22));
+}
+
+.landing-runner {
+  position: absolute;
+  bottom: 22%;
+  z-index: 6;
+  width: clamp(88px, 14vw, 132px);
+  aspect-ratio: .74;
+  border-radius: 44% 44% 38% 38%;
+  display: grid;
+  place-items: start center;
+  padding-top: 52%;
+  color: #fff;
+  font-weight: 1000;
+  text-shadow: 0 2px 0 rgba(19, 35, 67, .18);
+  box-shadow: 0 18px 28px rgba(19, 35, 67, .18);
+  transform-origin: 50% 100%;
+}
+
+.landing-runner::before,
+.landing-runner::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+}
+
+.landing-runner::before {
+  top: 6%;
+  left: 50%;
+  width: 64%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(circle at 37% 42%, #3b261a 0 6%, transparent 7%),
+    radial-gradient(circle at 63% 42%, #3b261a 0 6%, transparent 7%),
+    radial-gradient(circle at 51% 61%, #fff 0 15%, transparent 16%),
+    linear-gradient(180deg, #ffd2a6, #f4a868);
+  box-shadow: inset 0 -7px 0 rgba(164, 89, 36, .14);
+}
+
+.landing-runner::after {
+  left: 17%;
+  right: 17%;
+  bottom: -8%;
+  height: 18%;
+  background:
+    radial-gradient(ellipse at 22% 50%, #fff 0 34%, transparent 35%),
+    radial-gradient(ellipse at 78% 50%, #fff 0 34%, transparent 35%);
+}
+
+.landing-runner span {
+  display: grid;
+  place-items: center;
+  width: 76%;
+  height: 34%;
+  border-radius: 22px 22px 28px 28px;
+  font-size: clamp(1.45rem, 4vw, 2.1rem);
+  background: rgba(255, 255, 255, .16);
+}
+
+.runner-leon {
+  left: 9%;
+  background: linear-gradient(180deg, #1f8eff, #0966cf);
+  animation: landingRunLeon 6.5s ease-in-out infinite;
+}
+
+.runner-zaya {
+  right: 7%;
+  background: linear-gradient(180deg, #ff6ebd, #e13c91);
+  animation: landingRunZaya 6.5s ease-in-out infinite;
+}
+
+.landing-ball {
+  position: absolute;
+  left: 35%;
+  bottom: 18%;
+  z-index: 7;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, #fff 0 16%, transparent 17%),
+    conic-gradient(from 20deg, #ffd84d, #45bd6b, #2f91e8, #f15aa6, #ffd84d);
+  box-shadow: 0 12px 18px rgba(19, 35, 67, .18);
+  animation: landingBall 6.5s ease-in-out infinite;
+}
+
+.landing-bubble,
+.landing-trail {
+  position: absolute;
+  pointer-events: none;
+}
+
+.landing-bubble {
+  border: 2px solid rgba(255, 255, 255, .82);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.92), rgba(140,222,255,.42) 42%, rgba(47,145,232,.12));
+  box-shadow: inset -7px -9px 14px rgba(47, 145, 232, .12);
+}
+
+.bubble-a {
+  left: 14%;
+  top: 18%;
+  width: 46px;
+  height: 46px;
+  animation: landingFloat 5.8s ease-in-out infinite;
+}
+
+.bubble-b {
+  right: 24%;
+  top: 31%;
+  width: 34px;
+  height: 34px;
+  animation: landingFloat 6.7s ease-in-out infinite reverse;
+}
+
+.landing-trail {
+  left: 18%;
+  right: 14%;
+  top: 41%;
+  height: 48px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.72), rgba(140,222,255,.82), transparent);
+  filter: blur(9px);
+  transform: rotate(-7deg);
+  opacity: .75;
+}
+
 .world-map { margin: 22px 0 26px; }
 .world-map-grid {
   display: grid;
@@ -913,18 +1137,47 @@ body[data-calm="true"] .hub-art {
   to { transform: rotate(360deg); }
 }
 
+@keyframes landingRunLeon {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-2deg) scaleY(.99); }
+  45% { transform: translate3d(48%, -12px, 0) rotate(3deg) scaleY(1.02); }
+  70% { transform: translate3d(26%, 0, 0) rotate(-1deg) scaleY(.98); }
+}
+
+@keyframes landingRunZaya {
+  0%, 100% { transform: translate3d(0, -4px, 0) rotate(2deg) scaleY(1.01); }
+  45% { transform: translate3d(-44%, 0, 0) rotate(-3deg) scaleY(.99); }
+  70% { transform: translate3d(-23%, -12px, 0) rotate(1deg) scaleY(1.02); }
+}
+
+@keyframes landingBall {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  45% { transform: translate3d(88%, -18px, 0) rotate(210deg); }
+  70% { transform: translate3d(46%, 0, 0) rotate(330deg); }
+}
+
+@keyframes landingFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-18px) scale(1.05); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hub-orbit,
-  .hub-bubble {
+  .hub-bubble,
+  .runner-leon,
+  .runner-zaya,
+  .landing-ball,
+  .landing-bubble {
     animation: none;
   }
 }
 
 @media (max-width: 980px) {
-  .hub-welcome {
+  .hub-welcome,
+  .landing-hero {
     grid-template-columns: 1fr;
     min-height: auto;
   }
+  .landing-playground { min-height: 430px; }
   .hub-art { min-height: 430px; }
   .hub-game-grid,
   .hub-engine-grid {
@@ -956,14 +1209,40 @@ body[data-calm="true"] .hub-art {
     padding: 20px;
     border-radius: 30px;
   }
+  .landing-hero {
+    min-height: auto;
+    padding: 20px;
+    border-radius: 30px;
+  }
   .hub-copy h1 {
     font-size: clamp(2.35rem, 13vw, 3.9rem);
+  }
+  .landing-copy h1 {
+    font-size: clamp(2.15rem, 11vw, 3.55rem);
   }
   .hub-actions a {
     width: 100%;
   }
   .hub-art {
     min-height: 360px;
+  }
+  .landing-playground {
+    min-height: min(420px, 52svh);
+  }
+  .landing-battery {
+    width: min(46vw, 168px);
+    bottom: 24%;
+  }
+  .landing-runner {
+    width: clamp(74px, 25vw, 104px);
+    bottom: 27%;
+  }
+  .runner-leon { left: 5%; }
+  .runner-zaya { right: 4%; }
+  .landing-ball {
+    width: 38px;
+    height: 38px;
+    bottom: 24%;
   }
   .hub-battery {
     width: min(72vw, 270px);

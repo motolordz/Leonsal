@@ -104,7 +104,7 @@ async function main() {
       }));
       localStorage.removeItem('leonsal-sensory-v1');
     });
-    await page.goto(`http://127.0.0.1:${server.address().port}/index.html`, { waitUntil: 'networkidle' });
+    await page.goto(`http://127.0.0.1:${server.address().port}/sensory-lab.html`, { waitUntil: 'networkidle' });
     assert.equal(await page.locator('#motionToggle').getAttribute('aria-checked'), 'true', 'Legacy home did not read V2 motion setting');
     assert.equal(await page.locator('#soundToggle').getAttribute('aria-checked'), 'true', 'Legacy home did not read V2 sound setting');
     assert.equal(await page.locator('#hapticToggle').getAttribute('aria-checked'), 'true', 'Legacy home did not read V2 vibration setting');
