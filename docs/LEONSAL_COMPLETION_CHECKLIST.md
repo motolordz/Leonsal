@@ -119,7 +119,7 @@ Status below is the existing registry status, not an assertion of release comple
 | 21 | Planet Pals | proof | v2-planet-pals.html |
 | 22 | Build the Solar System | proof | v2-build-solar-system.html |
 | 23 | Day & Night | proof | v2-day-night.html |
-| 24 | Days of the Week | specified | Not implemented |
+| 24 | Days of the Week | proof | v2-days-week.html |
 | 25 | Months of the Year | specified | Not implemented |
 | 26 | Seasons | specified | Not implemented |
 | 27 | My First Clock | specified | Not implemented |

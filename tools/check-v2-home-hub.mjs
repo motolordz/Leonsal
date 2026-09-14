@@ -39,7 +39,7 @@ try {
       assert(await page.locator('.world-map-card').filter({ hasText: name }).isVisible(), `Missing world card: ${name}`);
     }
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 16);
+    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 17);
     assert(await page.getByRole('link', { name: /open character review/i }).isVisible());
     await page.getByRole('button', { name: 'Settings' }).click();
     assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');

@@ -29,6 +29,7 @@ const routes = [
   'v2-planet-pals.html',
   'v2-build-solar-system.html',
   'v2-day-night.html',
+  'v2-days-week.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -120,7 +121,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 16);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 17);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -350,6 +351,19 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__dayNightProofState?.());
       assert.equal(state.phase, 'morning', 'Day & Night reset did not return to morning');
+    }
+    if (route === 'v2-days-week.html') {
+      assert.equal(await page.locator('.week-day').count(), 7, 'Days of Week does not expose seven days');
+      await page.getByRole('button', { name: 'Next day' }).click();
+      let state = await page.evaluate(() => window.__daysWeekProofState?.());
+      assert.equal(state.day, 'Tuesday', 'Days of Week Next did not advance to Tuesday');
+      assert.equal(state.hasTapAlternative, true, 'Days of Week missing tap alternative');
+      await page.getByRole('button', { name: 'Choose Sunday' }).click();
+      state = await page.evaluate(() => window.__daysWeekProofState?.());
+      assert.equal(state.day, 'Sunday', 'Days of Week tap did not choose Sunday');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__daysWeekProofState?.());
+      assert.equal(state.day, 'Monday', 'Days of Week reset did not return to Monday');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

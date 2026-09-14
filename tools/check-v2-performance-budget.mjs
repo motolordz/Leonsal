@@ -28,6 +28,7 @@ const routes = [
   'v2-planet-pals.html',
   'v2-build-solar-system.html',
   'v2-day-night.html',
+  'v2-days-week.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -88,6 +89,7 @@ async function sampleRoute(page, base, route) {
   if (route === 'v2-planet-pals.html') await page.getByRole('button', { name: 'Next' }).click();
   if (route === 'v2-build-solar-system.html') await page.getByRole('button', { name: 'Place next' }).click();
   if (route === 'v2-day-night.html') await page.getByRole('button', { name: 'Next' }).click();
+  if (route === 'v2-days-week.html') await page.getByRole('button', { name: 'Next day' }).click();
   if (route === 'v2-light-trail.html') {
     const box = await page.locator('#canvas').boundingBox();
     await page.mouse.move(box.x + 60, box.y + 160);
