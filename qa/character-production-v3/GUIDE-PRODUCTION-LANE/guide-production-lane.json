@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "status": "pending-production",
+  "runtimeRule": "Only records with status approved may resolve state paths into runtime image sources. Approved paths must be individual production derivatives from matching transparent masters and must not point into source-safe-keeping, review-only, QA, contact-sheet, or rejected folders.",
+  "batteryPrecedent": "Battery Buddy V3 remains the only approved production character set.",
+  "guides": [
+    {
+      "id": "leon",
+      "displayName": "Leon",
+      "productionStatus": "pending-art",
+      "suppliedReviewStates": [
+        "low",
+        "calm",
+        "happy",
+        "excited"
+      ],
+      "missingSuppliedStates": [
+        "empty"
+      ],
+      "posterReference": "assets/source-safe-keeping/approved-character-sheets-v2/leon-five-state-large.jpg",
+      "suppliedSourceResolution": {
+        "low": {
+          "width": 1254,
+          "height": 1254,
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/low.png",
+          "sourceSha256": "3f19e851a08b2818ba41f565a29632603c97c73187902cfe03bbcdf167ec9817"
+        },
+        "calm": {
+          "width": 1254,
+          "height": 1254,
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/calm.png",
+          "sourceSha256": "68c446c9cc16cdb61ded29b4e7588804cf7c4c82cdb222ab71de2b0215645a40"
+        },
+        "happy": {
+          "width": 1254,
+          "height": 1254,
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/happy.png",
+          "sourceSha256": "fc2b6ba6303b0cadc9c25a5f58250d777f8635b5abc8c0d4c3ddabf9569b8909"
+        },
+        "excited": {
+          "width": 1254,
+          "height": 1254,
+          "source": "assets/source-safe-keeping/supplied-20260915/leon/excited.png",
+          "sourceSha256": "9b9331b046ca45fe4a6f72b34f0cc13a014a3ddb9fceb31cf7a679506ef35242"
+        }
+      },
+      "approvalDecision": "blocked",
+      "blockers": [
+        "not-production-approved",
+        "current generated production candidates are below Battery Buddy V3 visual quality",
+        "supplied individual references are 1254px review sources, below 2048px production master requirement",
+        "missing-supplied-empty-reference",
+        "Leon empty state must be rebuilt from approved poster/reference material, not chart-cropped into runtime"
+      ],
+      "nextProductionSteps": [
+        "author or generate true individual 2048px transparent masters for all five states",
+        "preserve visible uppercase name on clothing or a natural badge",
+        "bind every accepted master to source hashes and visual QA evidence",
+        "only then expose approved runtime web derivatives through data/character-assets.json"
+      ]
+    },
+    {
+      "id": "zaya",
+      "displayName": "Zaya",
+      "productionStatus": "pending-art",
+      "suppliedReviewStates": [
+        "empty",
+        "low",
+        "calm",
+        "happy",
+        "excited"
+      ],
+      "missingSuppliedStates": [],
+      "posterReference": "assets/source-safe-keeping/approved-character-sheets-v2/zaya-five-state-large.jpg",
+      "suppliedSourceResolution": {
+        "empty": {
+          "width": 1254,
+          "height": 1254,
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/empty.png",
+          "sourceSha256": "8f51e17676e2a8c9c4c2c4719b18398a635836fb0cc2fb810b94ec3c6f40a821"
+        },
+        "low": {
+          "width": 1254,
+          "height": 1254,
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/low.png",
+          "sourceSha256": "85bb1ffb6d2cd71866b73216b959213fd55812aa43d49eb6a7d263bdf16fb613"
+        },
+        "calm": {
+          "width": 1254,
+          "height": 1254,
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/calm.png",
+          "sourceSha256": "e9dfaeb36f5cb0a3f0aed4a7969f1a68a32bff02eb4538024394bb81233a1231"
+        },
+        "happy": {
+          "width": 1254,
+          "height": 1254,
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/happy.png",
+          "sourceSha256": "f6c99e8fde3429c8188c90f7fc108214f33871c69fcf2d2b3ebf3ca7ddc984a5"
+        },
+        "excited": {
+          "width": 1254,
+          "height": 1254,
+          "source": "assets/source-safe-keeping/supplied-20260915/zaya/excited.png",
+          "sourceSha256": "dee38a0889064d718e39fb095bbe0f9893241e0a3e778437f1470723e64e5a4f"
+        }
+      },
+      "approvalDecision": "blocked",
+      "blockers": [
+        "not-production-approved",
+        "current generated production candidates are below Battery Buddy V3 visual quality",
+        "supplied individual references are 1254px review sources, below 2048px production master requirement"
+      ],
+      "nextProductionSteps": [
+        "author or generate true individual 2048px transparent masters for all five states",
+        "preserve visible uppercase name on clothing or a natural badge",
+        "bind every accepted master to source hashes and visual QA evidence",
+        "only then expose approved runtime web derivatives through data/character-assets.json"
+      ]
+    }
+  ]
+}
