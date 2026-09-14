@@ -5,7 +5,8 @@
   const toggle = document.getElementById('hubSettingsButton');
   if (!host || !toggle || typeof LeonSalV2 === 'undefined') return;
   const settings = new LeonSalV2.SensorySettings();
-  new LeonSalV2.SettingsPanel(host, settings, { keys: ['motion', 'sound', 'voice', 'music', 'vibration', 'calmMode', 'particles', 'speed', 'contrast', 'pace'] });
+  const sensoryKeys = ['motion', 'sound', 'voice', 'music', 'vibration', 'calmMode', 'particles', 'speed', 'effectsLevel', 'voiceLevel', 'musicLevel', 'contrast', 'pace'];
+  new LeonSalV2.SettingsPanel(host, settings, { keys: sensoryKeys });
 
   const apply = () => {
     document.body.dataset.motion = settings.allowsMotion() ? 'on' : 'off';

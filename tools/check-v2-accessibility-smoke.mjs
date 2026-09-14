@@ -126,7 +126,7 @@ async function checkRoute(base, browser, route) {
     if (route === 'v2-home.html') {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true', 'Home settings did not open');
-      assert.equal(await page.locator('#hubSettings [data-key]').count(), 10, 'Home settings does not expose shared sensory keys');
+      assert.equal(await page.locator('#hubSettings [data-key]').count(), 13, 'Home settings does not expose shared sensory keys');
       await page.keyboard.press('Escape');
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'false', 'Home settings did not close with Escape');
       await page.keyboard.press('Tab');
@@ -138,7 +138,7 @@ async function checkRoute(base, browser, route) {
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
-      assert.equal(await page.locator('#settings [data-key]').count(), 10, `${route} settings does not expose shared sensory keys`);
+      assert.equal(await page.locator('#settings [data-key]').count(), 13, `${route} settings does not expose shared sensory keys`);
       await page.keyboard.press('Escape');
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'false', `${route} settings did not close with Escape`);
       assert.equal(await page.locator('body').getAttribute('data-motion'), 'off', `${route} ignored OS reduced motion cap`);

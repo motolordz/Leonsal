@@ -41,17 +41,23 @@ async function main() {
         calmMode: true,
         particles: 'low',
         speed: 'lively',
+        effectsLevel: 'medium',
+        voiceLevel: 'medium',
+        musicLevel: 'off',
         contrast: 'strong',
         pace: 'guided',
         unknown: 'ignored'
       });
       const saved = new LeonSalV2.SensorySettings('leonsal-v2-pref-test');
-      saved.set({ particles: 'chaos', speed: 'fastest', contrast: 'extreme', pace: 'forced' });
+      saved.set({ particles: 'chaos', speed: 'fastest', effectsLevel: 'loud', voiceLevel: 'max', musicLevel: 'blast', contrast: 'extreme', pace: 'forced' });
       return {
         value: saved.value,
         allowsMotion: saved.allowsMotion(),
         speedFactor: saved.speedFactor(),
-        particleCount: saved.particleCount(10)
+        particleCount: saved.particleCount(10),
+        effectsLevelValue: saved.levelValue('effectsLevel'),
+        voiceLevelValue: saved.levelValue('voiceLevel'),
+        musicLevelValue: saved.levelValue('musicLevel')
       };
     });
     assert.equal(engineResult.value.sound, true);
@@ -61,15 +67,21 @@ async function main() {
     assert.equal(engineResult.value.calmMode, true);
     assert.equal(engineResult.value.particles, 'low');
     assert.equal(engineResult.value.speed, 'lively');
+    assert.equal(engineResult.value.effectsLevel, 'medium');
+    assert.equal(engineResult.value.voiceLevel, 'medium');
+    assert.equal(engineResult.value.musicLevel, 'off');
     assert.equal(engineResult.value.contrast, 'strong');
     assert.equal(engineResult.value.pace, 'guided');
     assert.equal(engineResult.allowsMotion, false, 'OS reduced motion must cap motion even when saved motion is on');
     assert.equal(engineResult.speedFactor, 0, 'Reduced motion should cap speed factor to 0');
     assert.equal(engineResult.particleCount, 0, 'Calm mode should cap particles to 0');
+    assert.equal(engineResult.effectsLevelValue, 0.68, 'Effects level should persist independently');
+    assert.equal(engineResult.voiceLevelValue, 0.68, 'Voice level should persist independently');
+    assert.equal(engineResult.musicLevelValue, 0, 'Music level off should cap music independently');
 
     await page.getByRole('button', { name: 'Settings' }).click();
-    for (const label of ['Motion', 'Sound', 'Voice', 'Music', 'Vibration', 'Calm Mode', 'Particles', 'Speed', 'Contrast', 'Pace']) {
-      assert(await page.locator('#hubSettings .v2-setting-pill', { hasText: label }).isVisible(), `Missing ${label} setting`);
+    for (const key of ['motion', 'sound', 'voice', 'music', 'vibration', 'calmMode', 'particles', 'speed', 'effectsLevel', 'voiceLevel', 'musicLevel', 'contrast', 'pace']) {
+      assert(await page.locator(`#hubSettings [data-key="${key}"]`).isVisible(), `Missing ${key} setting`);
     }
     const contrast = page.locator('#hubSettings [data-key="contrast"]');
     await contrast.click();
@@ -106,7 +118,7 @@ async function main() {
     await fs.writeFile(`${out}/results.json`, JSON.stringify({
       passed: true,
       engineResult,
-      checkedSettings: 10,
+      checkedSettings: 13,
       legacyBridge: { readV2: true, writesV2: true }
     }, null, 2) + '\n');
     console.log('V2 sensory preference checks passed.');

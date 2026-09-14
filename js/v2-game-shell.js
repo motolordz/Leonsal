@@ -2,7 +2,7 @@
 
 // Shared no-pressure lifecycle for the five flagship previews.
 class LeonSalGameShell {
-  static sensoryKeys = ['motion', 'sound', 'voice', 'music', 'vibration', 'calmMode', 'particles', 'speed', 'contrast', 'pace'];
+  static sensoryKeys = ['motion', 'sound', 'voice', 'music', 'vibration', 'calmMode', 'particles', 'speed', 'effectsLevel', 'voiceLevel', 'musicLevel', 'contrast', 'pace'];
 
   static routeGameId() {
     return location.pathname.split('/').pop().replace(/^v2-/, '').replace(/\.html$/, '') || 'v2-game';

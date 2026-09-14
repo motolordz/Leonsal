@@ -10,6 +10,9 @@
       "calmMode": true,
       "particles": "low",
       "speed": "lively",
+      "effectsLevel": "medium",
+      "voiceLevel": "medium",
+      "musicLevel": "off",
       "contrast": "strong",
       "pace": "guided",
       "confetti": false,
@@ -17,9 +20,12 @@
     },
     "allowsMotion": false,
     "speedFactor": 0,
-    "particleCount": 0
+    "particleCount": 0,
+    "effectsLevelValue": 0.68,
+    "voiceLevelValue": 0.68,
+    "musicLevelValue": 0
   },
-  "checkedSettings": 10,
+  "checkedSettings": 13,
   "legacyBridge": {
     "readV2": true,
     "writesV2": true

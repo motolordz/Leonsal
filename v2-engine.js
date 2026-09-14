@@ -42,6 +42,9 @@ const LeonSalV2 = (() => {
         calmMode: false,
         particles: 'gentle',
         speed: 'normal',
+        effectsLevel: 'soft',
+        voiceLevel: 'soft',
+        musicLevel: 'soft',
         contrast: 'standard',
         pace: 'self-paced',
         confetti: false,
@@ -70,6 +73,9 @@ const LeonSalV2 = (() => {
       }
       if (['off', 'low', 'gentle'].includes(patch.particles)) this.value.particles = patch.particles;
       if (['slow', 'normal', 'lively'].includes(patch.speed)) this.value.speed = patch.speed;
+      if (['off', 'soft', 'medium'].includes(patch.effectsLevel)) this.value.effectsLevel = patch.effectsLevel;
+      if (['off', 'soft', 'medium'].includes(patch.voiceLevel)) this.value.voiceLevel = patch.voiceLevel;
+      if (['off', 'soft', 'medium'].includes(patch.musicLevel)) this.value.musicLevel = patch.musicLevel;
       if (['standard', 'strong'].includes(patch.contrast)) this.value.contrast = patch.contrast;
       if (['self-paced', 'guided'].includes(patch.pace)) this.value.pace = patch.pace;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.value.reducedMotion = true;
@@ -90,6 +96,12 @@ const LeonSalV2 = (() => {
       if (this.value.particles === 'low') return Math.ceil(base * 0.4);
       return base;
     }
+    levelValue(key) {
+      const value = this.value[key];
+      if (value === 'off') return 0;
+      if (value === 'medium') return 0.68;
+      return 0.36;
+    }
   }
 
   class SettingsPanel {
@@ -106,6 +118,9 @@ const LeonSalV2 = (() => {
         calmMode: 'Calm Mode',
         particles: 'Particles',
         speed: 'Speed',
+        effectsLevel: 'Effects',
+        voiceLevel: 'Voice Level',
+        musicLevel: 'Music Level',
         contrast: 'Contrast',
         pace: 'Pace',
         confetti: 'Confetti'
@@ -113,6 +128,9 @@ const LeonSalV2 = (() => {
       this.choices = {
         particles: ['gentle', 'low', 'off'],
         speed: ['normal', 'slow', 'lively'],
+        effectsLevel: ['soft', 'medium', 'off'],
+        voiceLevel: ['soft', 'medium', 'off'],
+        musicLevel: ['soft', 'medium', 'off'],
         contrast: ['standard', 'strong'],
         pace: ['self-paced', 'guided']
       };
@@ -246,7 +264,7 @@ const LeonSalV2 = (() => {
       return this.ctx;
     }
     tone(type = 'tap') {
-      if (!this.settings.value.sound) return;
+      if (!this.settings.value.sound || this.settings.value.effectsLevel === 'off') return;
       const ctx = this.ensure();
       if (!ctx) return;
       const osc = ctx.createOscillator();
@@ -254,7 +272,7 @@ const LeonSalV2 = (() => {
       const now = ctx.currentTime;
       osc.frequency.value = type === 'success' ? 520 : 360;
       gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.045, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.045 * this.settings.levelValue('effectsLevel'), now + 0.02);
       gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
       osc.connect(gain);
       gain.connect(ctx.destination);

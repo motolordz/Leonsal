@@ -12,7 +12,10 @@
     vibration: true,
     reducedMotion: false,
     calmMode: false,
-    confetti: true
+    confetti: true,
+    effectsLevel: "soft",
+    voiceLevel: "soft",
+    musicLevel: "soft"
   };
 
   function readJson(key, fallback) {
@@ -29,6 +32,9 @@
     ["motion", "sound", "voice", "vibration", "reducedMotion", "calmMode", "confetti"].forEach(function (key) {
       if (typeof settings[key] === "boolean") result[key] = settings[key];
     });
+    ["effectsLevel", "voiceLevel", "musicLevel"].forEach(function (key) {
+      if (["off", "soft", "medium"].indexOf(settings[key]) >= 0) result[key] = settings[key];
+    });
     return result;
   }
 
@@ -41,7 +47,10 @@
       vibration: Boolean(settings.vibration),
       reducedMotion: Boolean(settings.reducedMotion),
       calmMode: Boolean(settings.calmMode),
-      confetti: Boolean(settings.confetti)
+      confetti: Boolean(settings.confetti),
+      effectsLevel: ["off", "soft", "medium"].indexOf(settings.effectsLevel) >= 0 ? settings.effectsLevel : existing.effectsLevel,
+      voiceLevel: ["off", "soft", "medium"].indexOf(settings.voiceLevel) >= 0 ? settings.voiceLevel : existing.voiceLevel,
+      musicLevel: ["off", "soft", "medium"].indexOf(settings.musicLevel) >= 0 ? settings.musicLevel : existing.musicLevel
     });
   }
 
