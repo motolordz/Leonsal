@@ -626,6 +626,13 @@ body[data-contrast="strong"] .game-topbar {
   overflow: hidden;
   isolation: isolate;
 }
+.hub-art .landing-sun { z-index: 1; }
+.hub-art .landing-runner { bottom: 20%; }
+.hub-art .runner-leon { left: 6%; }
+.hub-art .runner-zaya { right: 5%; }
+.hub-art .landing-ball {
+  animation: landingBall 6.5s ease-in-out infinite;
+}
 
 .hub-battery {
   position: absolute;
