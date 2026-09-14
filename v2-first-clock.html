@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My First Clock</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
+      <div class="game-title"><strong>My First Clock</strong><span>Move time gently.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+    <section class="game-scene clock-world" aria-label="First clock play area">
+      <div class="clock-face" id="clock" aria-label="Clock face">
+        <span class="clock-number n12">12</span>
+        <span class="clock-number n3">3</span>
+        <span class="clock-number n6">6</span>
+        <span class="clock-number n9">9</span>
+        <span class="clock-hand hour-hand" id="hourHand"></span>
+        <span class="clock-hand minute-hand" id="minuteHand"></span>
+        <span class="clock-pin"></span>
+      </div>
+      <div class="clock-readout" id="readout" aria-live="polite">1:00</div>
+      <p class="scene-status" id="status">Hour hand points to 1.</p>
+      <div class="drawer-controls">
+        <button class="scene-button" id="hour" type="button">Next hour</button>
+        <button class="scene-button" id="half" type="button">Half hour</button>
+        <button class="scene-button" id="reset" type="button">Reset</button>
+      </div>
+    </section>
+  </main>
+  <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const cycle = new LeonSalV2.TimeCycleEngine(Array.from({ length: 12 }, (_, index) => ({ hour: index + 1 })));
+    const readout = document.querySelector('#readout');
+    const status = document.querySelector('#status');
+    const hourHand = document.querySelector('#hourHand');
+    const minuteHand = document.querySelector('#minuteHand');
+    let minutes = 0;
+
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+
+    function hour() {
+      return cycle.sequence.index + 1;
+    }
+
+    function setClock(nextHour, nextMinutes) {
+      cycle.set(Math.max(0, Math.min(11, nextHour - 1)));
+      minutes = nextMinutes === 30 ? 30 : 0;
+      const hourAngle = ((hour() % 12) * 30) + (minutes / 2);
+      const minuteAngle = minutes === 30 ? 180 : 0;
+      hourHand.style.setProperty('--angle', `${hourAngle}deg`);
+      minuteHand.style.setProperty('--angle', `${minuteAngle}deg`);
+      readout.textContent = `${hour()}:${minutes === 30 ? '30' : '00'}`;
+      status.textContent = minutes === 30 ? `Half past ${hour()}.` : `Hour hand points to ${hour()}.`;
+    }
+
+    function reset() {
+      setClock(1, 0);
+    }
+
+    document.querySelector('#hour').addEventListener('click', () => setClock(hour() === 12 ? 1 : hour() + 1, minutes));
+    document.querySelector('#half').addEventListener('click', () => setClock(hour(), minutes === 30 ? 0 : 30));
+    document.querySelector('#reset').addEventListener('click', reset);
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], resources: [], reset, gameId: 'first-clock-v2' });
+    reset();
+    window.__firstClockProofState = () => ({
+      hour: hour(),
+      minutes,
+      readout: readout.textContent,
+      hasTapAlternative: true,
+      calmMode: settings.value.calmMode,
+      reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()
+    });
+  </script>
+</body>
+</html>

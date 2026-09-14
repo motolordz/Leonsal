@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 55,
+      "controls": 56,
       "canvases": []
     },
     {
@@ -247,6 +247,12 @@
           "tabIndex": -1
         }
       ]
+    },
+    {
+      "route": "v2-first-clock.html",
+      "passed": true,
+      "controls": 8,
+      "canvases": []
     },
     {
       "route": "v2-light-trail.html",

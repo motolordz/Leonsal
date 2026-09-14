@@ -31,6 +31,7 @@ const routes = [
   'v2-days-week.html',
   'v2-months-year.html',
   'v2-seasons.html',
+  'v2-first-clock.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -94,6 +95,7 @@ async function sampleRoute(page, base, route) {
   if (route === 'v2-days-week.html') await page.getByRole('button', { name: 'Next day' }).click();
   if (route === 'v2-months-year.html') await page.getByRole('button', { name: 'Next month' }).click();
   if (route === 'v2-seasons.html') await page.getByRole('button', { name: 'Next season' }).click();
+  if (route === 'v2-first-clock.html') await page.getByRole('button', { name: 'Next hour' }).click();
   if (route === 'v2-light-trail.html') {
     const box = await page.locator('#canvas').boundingBox();
     await page.mouse.move(box.x + 60, box.y + 160);

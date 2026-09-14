@@ -624,8 +624,9 @@
       "reducedMotion": "static hands",
       "finalCharacterArtRequired": false,
       "canShipWithProceduralGraphics": true,
-      "status": "specified",
-      "liveV2Game": false
+      "status": "proof",
+      "liveV2Game": false,
+      "route": "v2-first-clock.html"
     },
     {
       "order": 28,

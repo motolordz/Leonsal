@@ -32,6 +32,7 @@ const routes = [
   'v2-days-week.html',
   'v2-months-year.html',
   'v2-seasons.html',
+  'v2-first-clock.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -123,7 +124,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 19);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 20);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -395,6 +396,20 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__seasonsProofState?.());
       assert.equal(state.season, 'Spring', 'Seasons reset did not return to Spring');
+    }
+    if (route === 'v2-first-clock.html') {
+      await page.getByRole('button', { name: 'Next hour' }).click();
+      let state = await page.evaluate(() => window.__firstClockProofState?.());
+      assert.equal(state.hour, 2, 'First Clock Next hour did not advance to 2');
+      assert.equal(state.readout, '2:00', 'First Clock readout did not update for hour');
+      assert.equal(state.hasTapAlternative, true, 'First Clock missing tap alternative');
+      await page.getByRole('button', { name: 'Half hour' }).click();
+      state = await page.evaluate(() => window.__firstClockProofState?.());
+      assert.equal(state.minutes, 30, 'First Clock Half hour did not set minutes to 30');
+      assert.equal(state.readout, '2:30', 'First Clock readout did not update for half-hour');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__firstClockProofState?.());
+      assert.equal(state.readout, '1:00', 'First Clock reset did not return to 1:00');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

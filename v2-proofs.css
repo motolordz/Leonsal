@@ -1696,6 +1696,11 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .seasons-card .game-art { background: #ecfccb; }
 .home-seasons { width: 116px; height: 96px; border-radius: 30px; background: radial-gradient(circle at 50% 34%, #86efac 0 28%, transparent 29%), linear-gradient(90deg, transparent 46%, #9a5a28 47% 54%, transparent 55%), linear-gradient(180deg, #dbeafe, #dcfce7); box-shadow: inset 0 -12px 0 rgba(15,23,42,.1), 0 16px 26px rgba(34,197,94,.16); position: relative; }
 .home-seasons::after { content: ""; position: absolute; inset: 18%; border-radius: 50%; background: conic-gradient(#86efac, #fde047, #fb923c, #dbeafe, #86efac); opacity: .78; mix-blend-mode: multiply; }
+.clock-card .game-art { background: #eef2ff; }
+.home-clock { width: 104px; height: 104px; border-radius: 50%; display: grid; place-items: start center; padding-top: 12px; color: #173356; font-size: 1.25rem; font-weight: 1000; background: radial-gradient(circle at 50% 50%, #fff 0 57%, #bfdbfe 58% 100%); box-shadow: inset 0 -10px 0 rgba(15,23,42,.1), 0 16px 26px rgba(37,99,235,.16); position: relative; }
+.home-clock::before, .home-clock::after { content: ""; position: absolute; left: 50%; top: 50%; width: 7px; border-radius: 999px; background: #173356; transform-origin: 50% 100%; }
+.home-clock::before { height: 30px; transform: translate(-50%,-100%) rotate(30deg); }
+.home-clock::after { height: 39px; transform: translate(-50%,-100%) rotate(180deg); background: #ef4444; }
 .colour-match-world { background: linear-gradient(180deg, #fff7ed, #e0f2fe 55%, #f0fdf4); overflow: hidden; }
 .colour-wells, .colour-drops { position: absolute; left: 7%; right: 7%; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; z-index: 3; }
 .colour-wells { top: 15%; }
@@ -1835,6 +1840,22 @@ body[data-motion="off"] .week-day { transition: none; }
 .season-choice[data-active="true"] { background: #facc15; outline: 4px solid rgba(255,255,255,.72); }
 .seasons-world .scene-status { z-index: 5; background: rgba(255,255,255,.6); color: #173356; }
 .seasons-world .drawer-controls { z-index: 5; }
+.clock-world { background: radial-gradient(circle at 50% 40%, rgba(255,255,255,.84), transparent 45%), linear-gradient(180deg, #dbeafe, #fef3c7 58%, #dcfce7); overflow: hidden; }
+.clock-world::before { content: ""; position: absolute; inset: 0; opacity: .5; background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,.86) 0 9%, transparent 10%), radial-gradient(circle at 82% 18%, rgba(253,224,71,.48) 0 10%, transparent 11%); }
+.clock-face { position: absolute; left: 50%; top: 43%; z-index: 3; width: min(78vw, 390px); aspect-ratio: 1; border-radius: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle at 35% 25%, #fff 0 10%, transparent 11%), radial-gradient(circle, #fff 0 59%, #bfdbfe 60% 100%); border: 10px solid rgba(255,255,255,.76); box-shadow: 0 24px 52px rgba(19,35,67,.14), inset 0 -16px 0 rgba(19,35,67,.08); }
+.clock-number { position: absolute; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; color: #173356; font-weight: 1000; font-size: 1.15rem; background: rgba(219,234,254,.76); }
+.n12 { left: 50%; top: 7%; transform: translateX(-50%); }
+.n3 { right: 7%; top: 50%; transform: translateY(-50%); }
+.n6 { left: 50%; bottom: 7%; transform: translateX(-50%); }
+.n9 { left: 7%; top: 50%; transform: translateY(-50%); }
+.clock-hand { position: absolute; left: 50%; top: 50%; z-index: 4; border-radius: 999px; transform-origin: 50% 100%; transform: translate(-50%,-100%) rotate(var(--angle)); transition: transform .2s ease; }
+.hour-hand { width: 14px; height: 27%; background: #173356; }
+.minute-hand { width: 9px; height: 37%; background: #ef4444; }
+.clock-pin { position: absolute; left: 50%; top: 50%; z-index: 5; width: 28px; aspect-ratio: 1; border-radius: 50%; transform: translate(-50%,-50%); background: #facc15; box-shadow: 0 0 0 7px rgba(255,255,255,.76); }
+.clock-readout { position: absolute; left: 50%; bottom: 23%; z-index: 5; min-width: 132px; min-height: 70px; display: grid; place-items: center; transform: translateX(-50%); border-radius: 26px; background: rgba(255,255,255,.88); color: #173356; font-size: 2rem; font-weight: 1000; box-shadow: 0 16px 34px rgba(19,35,67,.12); }
+.clock-world .scene-status { z-index: 5; background: rgba(255,255,255,.62); color: #173356; }
+.clock-world .drawer-controls { z-index: 5; }
+body[data-motion="off"] .clock-hand { transition: none; }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1908,7 +1929,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-number { width: 58px; height: 54px; border-radius: 15px; font-size: 1.1rem; }
   .home-letter { width: 58px; height: 54px; border-radius: 15px; font-size: 2.2rem; }
   .home-shapes { width: 58px; height: 54px; border-radius: 15px; }
-  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it, .home-planet-pals, .home-solar-build, .home-day-night, .home-days-week, .home-months, .home-seasons { width: 58px; height: 54px; border-radius: 15px; font-size: 1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
+  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it, .home-planet-pals, .home-solar-build, .home-day-night, .home-days-week, .home-months, .home-seasons, .home-clock { width: 58px; height: 54px; border-radius: 15px; font-size: 1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
   .number-mat { grid-template-columns: repeat(5, 1fr); padding: 10px; }
   .number-buddy { min-height: 58px; border-radius: 18px; }
   .number-world { padding-bottom: 126px; gap: 10px; }
@@ -1939,6 +1960,9 @@ body[data-calm="true"] .connection-status { transition: none; }
   .season-choices { top: 12%; grid-template-columns: repeat(2, minmax(0,1fr)); }
   .season-choice { min-height: 50px; border-radius: 16px; }
   .season-tree { top: 47%; width: 260px; height: 260px; }
+  .clock-face { width: 288px; top: 42%; border-width: 8px; }
+  .clock-number { width: 40px; height: 40px; font-size: .95rem; }
+  .clock-readout { bottom: 24%; min-height: 56px; font-size: 1.65rem; }
 }
 
 .game-art img { width:180px; height:180px; object-fit:contain; }
