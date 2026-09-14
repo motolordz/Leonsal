@@ -34,6 +34,7 @@ for (const mode of ['chase', 'football', 'hoops', 'calm']) {
 for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
   assert(js.includes(`['${state}'`), `Missing state anchor: ${state}`);
 }
+assert(js.includes('<ellipse cx="118" cy="138" rx="11" ry="8" class="mouth sleep-mouth"/>'), 'Character World fallback empty state must use sleepy open-mouth expression, not a sad curve');
 for (const text of [
   'Choose a friend. Change their energy.',
   'Tap a character, then slide from sleepy to full of energy.',
