@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 
 const html = await fs.readFile('v2-home.html', 'utf8');
 const homeJs = await fs.readFile('js/v2-home.js', 'utf8');
-const routeMatches = [...html.matchAll(/href="(v2-[^"]+\.html)"[\s\S]*?<h3>(.*?)<\/h3>/g)];
+const routeMatches = [...html.matchAll(/<a class="world-game[^"]*"[^>]*href="(v2-[^"]+\.html)"[\s\S]*?<h3>(.*?)<\/h3>/g)];
 const routeNames = new Map();
 
 for (const [, route, rawName] of routeMatches) {

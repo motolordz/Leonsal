@@ -1,10 +1,11 @@
 'use strict';
 
-const CACHE_NAME = 'leonsal-v2-safe-cache-v2';
+const CACHE_NAME = 'leonsal-v2-safe-cache-v3';
 const SAFE_ASSETS = [
   './index.html',
   './sensory-lab.html',
   './v2-home.html',
+  './v2-character-world.html',
   './v2-energy-battery.html',
   './v2-dash-dock.html',
   './v2-bubble-garden.html',
@@ -44,6 +45,7 @@ const SAFE_ASSETS = [
   './v2-engine.js',
   './js/v2-game-shell.js',
   './js/v2-home.js',
+  './js/v2-character-world.js',
   './js/approved-character-image.js',
   './data/character-assets.json',
   './assets/characters-v2/battery/empty/web.webp',

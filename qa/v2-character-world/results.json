@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "viewport": "390x844",
+  "cardCount": 73,
+  "checks": [
+    "five-state range",
+    "Leon and Zaya procedural runners",
+    "family filters",
+    "settings open-close",
+    "reduced-motion reload",
+    "no blocked art requests",
+    "no horizontal overflow"
+  ],
+  "blockedRequests": [],
+  "errors": []
+}

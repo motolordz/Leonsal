@@ -33,6 +33,7 @@
     'bubble-garden': 'Quiet Bubble Garden',
     'light-trail': 'Finger Light Trail',
     'hold-to-breathe': 'Hold to Breathe',
+    'character-world': 'Character World',
     'calm-rain-window': 'Calm Rain Window',
     'firefly-catch': 'Firefly Catch',
     'snow-globe': 'Snow Globe',

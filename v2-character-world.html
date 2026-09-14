@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="LeonSal character world with five calm energy states for every pending character.">
+  <title>LeonSal V2 — Character World</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+  <script src="v2-engine.js" defer></script>
+  <script src="js/v2-game-shell.js" defer></script>
+  <script src="js/v2-character-world.js" defer></script>
+  <script src="js/v2-offline.js" defer></script>
+</head>
+<body class="world-home character-world-page">
+  <main class="game-shell character-world-shell">
+    <header class="game-topbar">
+      <a class="back-link" href="v2-home.html" aria-label="Back to LeonSal home">Home</a>
+      <h1>Character World</h1>
+      <button class="settings-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false" aria-controls="settings">Settings</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+
+    <section class="game-scene character-world-hero" aria-labelledby="characterWorldTitle">
+      <div class="character-world-copy">
+        <p class="eyebrow">Five energy states</p>
+        <h2 id="characterWorldTitle">Meet Leon, Zaya, letters, numbers and friends.</h2>
+        <p>Choose a character and move through empty, low, calm, happy and excited. These are procedural vectors until final production art is approved.</p>
+      </div>
+      <div class="character-chase-scene" aria-label="Leon and Zaya playing chase">
+        <div class="chase-track" aria-hidden="true"></div>
+        <div class="chase-player chase-leon" data-chase-character="leon"></div>
+        <div class="chase-player chase-zaya" data-chase-character="zaya"></div>
+        <span class="chase-ball" aria-hidden="true"></span>
+        <span class="chase-hoop" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <section class="character-state-play" aria-labelledby="statePlayTitle">
+      <div class="state-play-stage">
+        <div class="selected-character-card" id="selectedCharacterCard" aria-live="polite"></div>
+        <label class="energy-touch-track" for="characterEnergy">
+          <span>Energy</span>
+          <input id="characterEnergy" type="range" min="0" max="100" value="50">
+          <output id="characterEnergyValue" for="characterEnergy">50%</output>
+        </label>
+        <div class="state-picker" id="statePicker" aria-label="Choose energy state"></div>
+      </div>
+      <div class="state-play-copy">
+        <p class="eyebrow">Child-safe preview</p>
+        <h2 id="statePlayTitle">Same character. Different energy.</h2>
+        <p>The character never turns into another character. If final artwork is pending, this page uses a clean SVG fallback instead of review PNGs.</p>
+      </div>
+    </section>
+
+    <section class="character-family-tabs" aria-label="Character families">
+      <button type="button" data-family-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-family-filter="guide">Leon &amp; Zaya</button>
+      <button type="button" data-family-filter="alphabet">A-Z</button>
+      <button type="button" data-family-filter="number">1-10</button>
+      <button type="button" data-family-filter="world">World</button>
+      <button type="button" data-family-filter="planet">Planets</button>
+    </section>
+
+    <section class="character-grid-section" aria-labelledby="characterGridTitle">
+      <div class="world-section-heading">
+        <h2 id="characterGridTitle">Choose a character</h2>
+        <span id="characterCount">Loading</span>
+      </div>
+      <div class="character-world-grid" id="characterWorldGrid" aria-live="polite"></div>
+    </section>
+  </main>
+</body>
+</html>

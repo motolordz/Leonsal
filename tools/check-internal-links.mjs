@@ -35,7 +35,7 @@ for (const game of gamesV2.games || []) {
   checkRoute(`v2:${game.id}`, game.route);
 }
 
-for (const route of ["v2-home.html", "v2-proof-lab.html", "character-review.html"]) {
+for (const route of ["v2-home.html", "v2-proof-lab.html", "v2-character-world.html", "character-review.html"]) {
   checkRoute(`page:${route}`, route);
 }
 
@@ -48,4 +48,4 @@ if (failures.length > 0) {
 }
 
 const v2RouteCount = (gamesV2.games || []).filter(game => game.route).length;
-console.log(`Internal link check passed for ${games.length} legacy game routes, ${v2RouteCount} V2 game routes, and 3 V2 entry pages.`);
+console.log(`Internal link check passed for ${games.length} legacy game routes, ${v2RouteCount} V2 game routes, and 4 V2 entry pages.`);
