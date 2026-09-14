@@ -3,6 +3,7 @@ import fs from 'node:fs';
 
 const html = fs.readFileSync('v2-home.html', 'utf8');
 const css = fs.readFileSync('v2-proofs.css', 'utf8');
+const js = fs.readFileSync('js/v2-home.js', 'utf8');
 
 assert(html.includes('aria-label="Quick play choices"'), 'V2 home must expose quick play choices');
 assert(html.includes('aria-label="Show activities"'), 'V2 home must expose activity filtering');
@@ -32,6 +33,9 @@ const categorizedCards = [...html.matchAll(/class="world-game[^"]*" data-world-c
 assert.equal(categorizedCards.length, 34, 'Every V2 activity card must have a filter category');
 for (const category of ['calm', 'sensory', 'learning', 'world']) {
   assert(categorizedCards.some(([, value]) => value.split(/\s+/).includes(category)), `No cards tagged for ${category}`);
+}
+for (const text of ['applyWorldFilter', 'data-world-filter', 'data-world-category', 'card.hidden = !visible']) {
+  assert(js.includes(text), `V2 home missing filter behavior: ${text}`);
 }
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet/i.test(html), 'V2 home must not reference review/source/QA art');
 
