@@ -3,8 +3,8 @@
 (() => {
   const svgNS = 'http://www.w3.org/2000/svg';
   const guideModels = {
-    leon: { shirt: '#1872e8', hair: '#1d1512', name: 'Leon', accessory: 'headband' },
-    zaya: { shirt: '#ff5dab', hair: '#4a2418', name: 'Zaya', accessory: 'bows' }
+    leon: { shirt: '#1872e8', shorts: '#123e7c', shoe: '#1872e8', hair: '#1d1512', name: 'Leon', accessory: 'headband' },
+    zaya: { shirt: '#ff5dab', shorts: '#24559b', shoe: '#ff5dab', hair: '#4a2418', name: 'Zaya', accessory: 'bows' }
   };
   const palettes = {
     alphabet: ['#6e6ef7', '#ffca3a', '#3bd982'],
@@ -117,6 +117,53 @@
     return '<path d="M68 145 q-31 -7 -42 20" class="skin-limb"/><path d="M153 145 q32 -7 43 18" class="skin-limb"/>';
   }
 
+  function guideHairMarkup(id, guide) {
+    if (id === 'zaya') {
+      return `
+        <g class="guide-hair guide-hair-zaya">
+          <ellipse cx="61" cy="59" rx="30" ry="34" fill="${guide.hair}"/>
+          <ellipse cx="159" cy="59" rx="30" ry="34" fill="${guide.hair}"/>
+          <path d="M66 72 q19 -50 69 -37 q36 9 39 49 q-46 -25 -108 -12z" fill="${guide.hair}"/>
+          <path d="M80 47 q20 -18 50 -15 q-18 16 -49 24z" fill="#6a3323" opacity=".42"/>
+        </g>`;
+    }
+    return `
+      <g class="guide-hair guide-hair-leon">
+        <path d="M62 79 q6 -38 33 -46 l-5 22 q20 -29 45 -30 l-11 24 q25 -22 47 -13 q-6 24 -2 45 q-45 -24 -107 -2z" fill="${guide.hair}"/>
+        <path d="M77 57 q28 -31 56 -25M111 48 q30 -23 55 -10" fill="none" stroke="#3a261e" stroke-width="6" stroke-linecap="round" opacity=".38"/>
+      </g>`;
+  }
+
+  function guideAccessoryMarkup(id, guide) {
+    if (guide.accessory === 'bows') {
+      return `
+        <g class="guide-accessory guide-accessory-bows">
+          <path d="M70 36 q-28 -18 -38 10 q22 18 45 7zM91 38 q30 -17 37 12 q-25 14 -47 2z" fill="#ff4fa3" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="80" cy="47" r="8" fill="#e9368f"/>
+          <path d="M132 38 q29 -18 38 10 q-23 17 -45 6zM153 39 q31 -17 38 12 q-25 14 -48 1z" fill="#ff4fa3" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="143" cy="48" r="8" fill="#e9368f"/>
+        </g>`;
+    }
+    return `
+      <g class="guide-accessory guide-accessory-headband">
+        <path d="M65 50 q47 -27 96 0" fill="none" stroke="#1263cb" stroke-width="12" stroke-linecap="round"/>
+        <path d="M110 38 l8 16 18 2 -13 12 4 18 -17 -9 -16 9 3 -18 -13 -12 18 -2z" fill="#ffcf48" stroke="#fff" stroke-width="3"/>
+      </g>`;
+  }
+
+  function guideLegsMarkup(id, guide, arm) {
+    const active = arm === 'celebrate' || arm === 'wave';
+    const leftLeg = active ? 'M84 178 q-22 11 -35 29' : 'M84 178 q-10 17 -17 31';
+    const rightLeg = active ? 'M136 178 q25 7 40 25' : 'M136 178 q11 17 18 31';
+    return `
+      <g class="guide-legs guide-legs-${id}">
+        <path d="${leftLeg}" class="clothes-limb" style="stroke:${guide.shorts}"/>
+        <path d="${rightLeg}" class="clothes-limb" style="stroke:${guide.shorts}"/>
+        <ellipse cx="${active ? 50 : 66}" cy="207" rx="17" ry="8" fill="${guide.shoe}" stroke="#fff" stroke-width="4"/>
+        <ellipse cx="${active ? 176 : 154}" cy="205" rx="17" ry="8" fill="${guide.shoe}" stroke="#fff" stroke-width="4"/>
+      </g>`;
+  }
+
   function makeGuide(id, state = 'happy', options = {}) {
     const guide = guideModels[id] || guideModels.leon;
     const emotion = emotions[state] || emotions.happy;
@@ -124,29 +171,33 @@
     svg.setAttribute('viewBox', '0 0 220 220');
     svg.setAttribute('role', options.decorative ? 'presentation' : 'img');
     if (!options.decorative) svg.setAttribute('aria-label', `${guide.name} ${state}`);
-    svg.classList.add('home-guide-svg', `home-guide-${id}`, `guide-state-${state}`);
-    const accessory = guide.accessory === 'bows'
-      ? '<path d="M80 35 q-26 -18 -34 7 q21 18 42 6zM140 35 q26 -18 34 7 q-21 18 -42 6z" fill="#ff5dab"/>'
-      : '<path d="M65 50 q47 -27 96 0" fill="none" stroke="#1263cb" stroke-width="12" stroke-linecap="round"/><path d="M110 38 l8 16 18 2 -13 12 4 18 -17 -9 -16 9 3 -18 -13 -12 18 -2z" fill="#ffcf48" stroke="#fff" stroke-width="3"/>';
+    svg.classList.add('home-guide-svg', 'procedural-character-svg', `home-guide-${id}`, `guide-state-${state}`, `character-state-${state}`);
+    svg.style.setProperty('--pc-primary', guide.shirt);
+    svg.style.setProperty('--pc-accent', '#ffcf48');
+    svg.style.setProperty('--pc-secondary', guide.shorts);
     svg.innerHTML = `
       <filter id="guideRendererShadow-${id}-${state}" x="-30%" y="-30%" width="160%" height="160%">
         <feDropShadow dx="0" dy="10" stdDeviation="7" flood-color="#143a6d" flood-opacity=".2"/>
       </filter>
       <g transform="translate(0 ${emotion.lift}) rotate(${emotion.lean} 110 112)" filter="url(#guideRendererShadow-${id}-${state})">
         <ellipse cx="110" cy="188" rx="58" ry="13" fill="#143a6d" opacity=".14"/>
-        <circle cx="110" cy="83" r="47" fill="#ffc58d"/>
-        <path d="M66 71 q32 -48 88 -22 q14 10 19 33 q-44 -22 -107 -11z" fill="${guide.hair}"/>
-        ${accessory}
+        <circle cx="110" cy="84" r="48" fill="#ffc58d"/>
+        ${guideHairMarkup(id, guide)}
+        ${guideAccessoryMarkup(id, guide)}
         ${eyeMarkup(emotion.eye)}
         <circle cx="77" cy="111" r="9" fill="#ff8fb1" opacity=".58"/>
         <circle cx="145" cy="111" r="9" fill="#ff8fb1" opacity=".58"/>
         ${mouthMarkup(emotion.mouth)}
-        <path d="M63 132 q47 -24 94 0 l20 54 q-67 25 -134 0z" fill="${guide.shirt}"/>
+        <g class="guide-outfit guide-outfit-${id}">
+          <path d="M63 132 q47 -24 94 0 l20 54 q-67 25 -134 0z" fill="${guide.shirt}"/>
+          <path d="M73 181 q37 13 75 0 l7 18 q-44 10 -89 0z" fill="${guide.shorts}" opacity=".96"/>
+        </g>
         ${armsMarkup(emotion.arm)}
-        <path d="M83 179 q-16 12 -27 27" class="clothes-limb"/>
-        <path d="M137 179 q18 10 30 25" class="clothes-limb"/>
+        ${guideLegsMarkup(id, guide, emotion.arm)}
         <path d="M110 134 l8 16 18 2 -13 12 4 18 -17 -9 -16 9 3 -18 -13 -12 18 -2z" fill="#ffcf48" stroke="#fff" stroke-width="3"/>
         <text x="110" y="168" text-anchor="middle" class="guide-name">${guide.name.toUpperCase()}</text>
+        ${state === 'excited' ? '<path d="M37 72 l8 15 16 2 -12 11 4 16 -15 -8 -14 8 4 -16 -12 -11 16 -2z" class="spark"/><path d="M176 56 l6 12 13 1 -10 9 3 13 -12 -7 -12 7 3 -13 -10 -9 13 -1z" class="spark small"/>' : ''}
+        ${state === 'empty' ? '<text x="156" y="54" class="sleep-z">z</text><text x="172" y="41" class="sleep-z small">z</text>' : ''}
       </g>`;
     return svg;
   }

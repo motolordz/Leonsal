@@ -108,6 +108,7 @@ try {
     assert(item.label?.toLowerCase().includes(item.state), `${item.id} ${item.state} missing state in aria label`);
     assert(item.classes.includes(`character-state-${item.state}`) || item.classes.includes(`guide-state-${item.state}`), `${item.id} ${item.state} missing state class`);
     assert(!/source-safe-keeping|qa\/|contact-sheet|rejected|assets\/character-review|_staging/i.test(item.html), `${item.id} ${item.state} referenced blocked art`);
+    assert(!/<(?:image|script|foreignObject)\b|data:image|(?:href|xlink:href)\s*=/i.test(item.html), `${item.id} ${item.state} renderer must stay procedural SVG without raster/script references`);
     if (expectedBodyClasses[item.id]) {
       assert(item.html.includes(expectedBodyClasses[item.id]), `${item.id} ${item.state} missing ${expectedBodyClasses[item.id]}`);
     }
@@ -122,6 +123,10 @@ try {
 
   assert(result.output.find(item => item.id === 'leon')?.text.includes('LEON'), 'Leon rendered without uppercase visible name');
   assert(result.output.find(item => item.id === 'zaya')?.text.includes('ZAYA'), 'Zaya rendered without uppercase visible name');
+  assert(result.output.find(item => item.id === 'leon')?.html.includes('guide-hair-leon'), 'Leon rendered without distinct spiky hair identity');
+  assert(result.output.find(item => item.id === 'leon')?.html.includes('guide-accessory-headband'), 'Leon rendered without headband identity');
+  assert(result.output.find(item => item.id === 'zaya')?.html.includes('guide-hair-zaya'), 'Zaya rendered without pigtail hair identity');
+  assert(result.output.find(item => item.id === 'zaya')?.html.includes('guide-accessory-bows'), 'Zaya rendered without bow identity');
   for (const id of ['leon', 'zaya', 'letter-a', 'battery-buddy', 'double-decker']) {
     const emptyRender = result.output.find(item => item.id === id && item.state === 'empty');
     assert(emptyRender?.html.includes('<ellipse cx="118" cy="138"'), `${id} empty state must use a sleepy open-mouth expression, not a sad curve`);
