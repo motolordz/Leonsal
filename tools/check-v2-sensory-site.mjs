@@ -24,6 +24,7 @@ const routes = [
   'v2-shape-tracing.html',
   'v2-colour-match.html',
   'v2-big-small.html',
+  'v2-pattern-builder.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -115,7 +116,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 11);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 12);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -285,6 +286,15 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__bigSmallProofState?.());
       assert.equal(state.sorted.length, 0, 'Big & Small reset did not clear sorted toys');
+    }
+    if (route === 'v2-pattern-builder.html') {
+      await page.getByRole('button', { name: 'Add next' }).click();
+      let state = await page.evaluate(() => window.__patternBuilderProofState?.());
+      assert.equal(state.placed.length, 3, 'Pattern Builder Add next did not extend pattern');
+      assert.equal(state.hasTapAlternative, true, 'Pattern Builder missing tap alternative');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__patternBuilderProofState?.());
+      assert.equal(state.placed.length, 2, 'Pattern Builder reset did not return to starter pattern');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

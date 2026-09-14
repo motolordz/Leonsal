@@ -114,7 +114,7 @@ Status below is the existing registry status, not an assertion of release comple
 | 16 | Shape Tracing | proof | v2-shape-tracing.html |
 | 17 | Colour Match | proof | v2-colour-match.html |
 | 18 | Big & Small | proof | v2-big-small.html |
-| 19 | Pattern Builder | specified | Not implemented |
+| 19 | Pattern Builder | proof | v2-pattern-builder.html |
 | 20 | Sort It | specified | Not implemented |
 | 21 | Planet Pals | specified | Not implemented |
 | 22 | Build the Solar System | specified | Not implemented |

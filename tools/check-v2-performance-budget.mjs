@@ -23,6 +23,7 @@ const routes = [
   'v2-shape-tracing.html',
   'v2-colour-match.html',
   'v2-big-small.html',
+  'v2-pattern-builder.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -75,6 +76,7 @@ async function sampleRoute(page, base, route) {
     await page.locator('.size-toy').first().click();
     await page.locator('.size-basket').first().click();
   }
+  if (route === 'v2-pattern-builder.html') await page.getByRole('button', { name: 'Add next' }).click();
   if (route === 'v2-light-trail.html') {
     const box = await page.locator('#canvas').boundingBox();
     await page.mouse.move(box.x + 60, box.y + 160);

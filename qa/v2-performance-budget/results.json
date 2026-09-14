@@ -9,148 +9,155 @@
     {
       "route": "v2-energy-battery.html",
       "frames": 79,
-      "averageFps": 59.4,
+      "averageFps": 58.8,
       "worstObservedFps": 53.8,
       "longTasks": []
     },
     {
       "route": "v2-dash-dock.html",
       "frames": 78,
-      "averageFps": 58.9,
+      "averageFps": 58.7,
       "worstObservedFps": 30,
       "longTasks": []
     },
     {
       "route": "v2-bubble-garden.html",
       "frames": 79,
-      "averageFps": 59.2,
-      "worstObservedFps": 53.2,
+      "averageFps": 59.5,
+      "worstObservedFps": 53.5,
       "longTasks": []
     },
     {
       "route": "v2-firefly-catch.html",
       "frames": 78,
-      "averageFps": 59.4,
+      "averageFps": 59.1,
       "worstObservedFps": 29.9,
       "longTasks": []
     },
     {
       "route": "v2-calm-rain-window.html",
       "frames": 78,
-      "averageFps": 59.4,
-      "worstObservedFps": 29.9,
+      "averageFps": 59.1,
+      "worstObservedFps": 30,
       "longTasks": []
     },
     {
       "route": "v2-snow-globe.html",
       "frames": 78,
       "averageFps": 59.4,
-      "worstObservedFps": 30,
+      "worstObservedFps": 29.9,
       "longTasks": []
     },
     {
       "route": "v2-star-shower.html",
       "frames": 78,
-      "averageFps": 59.1,
-      "worstObservedFps": 29.9,
+      "averageFps": 58.8,
+      "worstObservedFps": 30,
       "longTasks": []
     },
     {
       "route": "v2-growing-garden.html",
       "frames": 78,
-      "averageFps": 59.2,
-      "worstObservedFps": 29.9,
+      "averageFps": 58.8,
+      "worstObservedFps": 30,
       "longTasks": []
     },
     {
       "route": "v2-number-merge.html",
       "frames": 79,
-      "averageFps": 59.1,
-      "worstObservedFps": 53.5,
+      "averageFps": 58.9,
+      "worstObservedFps": 53.8,
       "longTasks": []
     },
     {
       "route": "v2-alphabet-adventure.html",
-      "frames": 79,
-      "averageFps": 59.2,
-      "worstObservedFps": 54.3,
+      "frames": 78,
+      "averageFps": 58.7,
+      "worstObservedFps": 30,
       "longTasks": []
     },
     {
       "route": "v2-shape-builder.html",
       "frames": 78,
-      "averageFps": 58.9,
-      "worstObservedFps": 29.9,
+      "averageFps": 58.4,
+      "worstObservedFps": 30,
       "longTasks": []
     },
     {
       "route": "v2-letter-tracing.html",
-      "frames": 79,
-      "averageFps": 58.9,
-      "worstObservedFps": 34,
+      "frames": 78,
+      "averageFps": 58.4,
+      "worstObservedFps": 22,
       "longTasks": []
     },
     {
       "route": "v2-number-tracing.html",
       "frames": 78,
-      "averageFps": 58.8,
-      "worstObservedFps": 23.6,
+      "averageFps": 58.2,
+      "worstObservedFps": 23.4,
       "longTasks": []
     },
     {
       "route": "v2-shape-tracing.html",
-      "frames": 79,
-      "averageFps": 59,
-      "worstObservedFps": 35.5,
+      "frames": 78,
+      "averageFps": 58.3,
+      "worstObservedFps": 35.7,
       "longTasks": []
     },
     {
       "route": "v2-colour-match.html",
       "frames": 79,
-      "averageFps": 59.3,
+      "averageFps": 58.9,
       "worstObservedFps": 53.8,
       "longTasks": []
     },
     {
       "route": "v2-big-small.html",
       "frames": 79,
-      "averageFps": 59.2,
+      "averageFps": 58.7,
       "worstObservedFps": 53.8,
+      "longTasks": []
+    },
+    {
+      "route": "v2-pattern-builder.html",
+      "frames": 78,
+      "averageFps": 58.4,
+      "worstObservedFps": 23.4,
       "longTasks": []
     },
     {
       "route": "v2-light-trail.html",
       "frames": 79,
-      "averageFps": 59.8,
-      "worstObservedFps": 53.8,
+      "averageFps": 59.6,
+      "worstObservedFps": 54.1,
       "longTasks": []
     },
     {
       "route": "v2-hold-to-breathe.html",
-      "frames": 79,
-      "averageFps": 59.8,
-      "worstObservedFps": 54.3,
+      "frames": 78,
+      "averageFps": 59.3,
+      "worstObservedFps": 30,
       "longTasks": []
     },
     {
       "route": "v2-trace-engine.html",
-      "frames": 79,
-      "averageFps": 59,
-      "worstObservedFps": 34.1,
+      "frames": 78,
+      "averageFps": 58.2,
+      "worstObservedFps": 21.9,
       "longTasks": []
     },
     {
       "route": "v2-orbit-engine.html",
       "frames": 79,
-      "averageFps": 59.2,
-      "worstObservedFps": 53.5,
+      "averageFps": 58.7,
+      "worstObservedFps": 53.8,
       "longTasks": []
     },
     {
       "route": "v2-cause-effect-engine.html",
       "frames": 78,
-      "averageFps": 59.1,
-      "worstObservedFps": 24.3,
+      "averageFps": 58.8,
+      "worstObservedFps": 35.2,
       "longTasks": []
     }
   ]
