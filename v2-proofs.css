@@ -1539,11 +1539,14 @@ body[data-calm="true"] .hub-art {
 .shape-world .drawer-controls { z-index: 5; }
 .letter-trace-world { padding: 0; overflow: hidden; background: linear-gradient(180deg, #e5f8ff, #fff4d8 55%, #efe6ff); }
 .number-trace-world { padding: 0; overflow: hidden; background: linear-gradient(180deg, #eff6ff, #fef9c3 55%, #dcfce7); }
+.shape-trace-world { padding: 0; overflow: hidden; background: linear-gradient(180deg, #f5f3ff, #e0f2fe 52%, #fff7ed); }
 .letter-trace-world .trace-canvas { z-index: 2; background: transparent; }
 .number-trace-world .trace-canvas { z-index: 2; background: transparent; }
+.shape-trace-world .trace-canvas { z-index: 2; background: transparent; }
 .trace-letter-ghost { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; color: rgba(255,255,255,.42); font-size: clamp(15rem, 78vw, 34rem); font-weight: 950; line-height: 1; text-shadow: 0 12px 0 rgba(43,90,136,.08); pointer-events: none; }
-.letter-trace-world .scene-status, .number-trace-world .scene-status { background: rgba(255,255,255,.86); z-index: 4; }
-.letter-trace-world .drawer-controls, .number-trace-world .drawer-controls { z-index: 5; }
+.shape-trace-ghost { position: absolute; inset: 12% 9% 16%; width: 82%; height: 72%; z-index: 1; pointer-events: none; }
+.letter-trace-world .scene-status, .number-trace-world .scene-status, .shape-trace-world .scene-status { background: rgba(255,255,255,.86); z-index: 4; }
+.letter-trace-world .drawer-controls, .number-trace-world .drawer-controls, .shape-trace-world .drawer-controls { z-index: 5; }
 
 .trail-world { background: radial-gradient(circle at 50% 30%, rgba(56,109,203,.32), transparent 36%), linear-gradient(180deg, #132343, #1d2f68 52%, #243b7a); }
 .trail-starscape { position: absolute; inset: 0; opacity: .8; background-image: radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 1.8px), radial-gradient(circle, rgba(255,216,77,.85) 0 1.4px, transparent 2px); background-size: 58px 58px, 91px 91px; background-position: 0 0, 20px 26px; }
@@ -1665,6 +1668,8 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .home-letter-trace { width: 116px; height: 96px; border-radius: 26px; display: grid; place-items: center; color: #2f91e8; font-size: 4rem; font-weight: 950; background: radial-gradient(circle at 30% 24%, rgba(255,255,255,.9) 0 9%, transparent 10%), linear-gradient(145deg, #fff, #c9f7ff); box-shadow: inset 0 -12px 0 rgba(43,90,136,.12), 0 16px 26px rgba(43,90,136,.16); text-decoration: underline; text-decoration-thickness: 8px; text-underline-offset: 8px; }
 .number-trace-card .game-art { background: #e8fff2; }
 .home-number-trace { width: 116px; height: 96px; border-radius: 26px; display: grid; place-items: center; color: #2563eb; font-size: 4rem; font-weight: 950; background: radial-gradient(circle at 30% 24%, rgba(255,255,255,.9) 0 9%, transparent 10%), linear-gradient(145deg, #fff, #bbf7d0); box-shadow: inset 0 -12px 0 rgba(22,101,52,.12), 0 16px 26px rgba(22,101,52,.16); }
+.shape-trace-card .game-art { background: #fff7ed; }
+.home-shape-trace { width: 116px; height: 96px; border-radius: 26px; background: radial-gradient(circle at 50% 44%, transparent 0 29%, #8b5cf6 30% 40%, transparent 41%), conic-gradient(from 45deg, #38bdf8 0 25%, #facc15 0 50%, #fb7185 0 75%, #34d399 0); box-shadow: inset 0 -12px 0 rgba(15,23,42,.1), 0 16px 26px rgba(139,92,246,.18); }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1738,7 +1743,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-number { width: 58px; height: 54px; border-radius: 15px; font-size: 1.1rem; }
   .home-letter { width: 58px; height: 54px; border-radius: 15px; font-size: 2.2rem; }
   .home-shapes { width: 58px; height: 54px; border-radius: 15px; }
-  .home-letter-trace, .home-number-trace { width: 58px; height: 54px; border-radius: 15px; font-size: 2.1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
+  .home-letter-trace, .home-number-trace, .home-shape-trace { width: 58px; height: 54px; border-radius: 15px; font-size: 2.1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
   .number-mat { grid-template-columns: repeat(5, 1fr); padding: 10px; }
   .number-buddy { min-height: 58px; border-radius: 18px; }
   .number-world { padding-bottom: 126px; gap: 10px; }

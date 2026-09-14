@@ -20,6 +20,7 @@ const routes = [
   'v2-shape-builder.html',
   'v2-letter-tracing.html',
   'v2-number-tracing.html',
+  'v2-shape-tracing.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',

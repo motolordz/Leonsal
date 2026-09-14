@@ -111,7 +111,7 @@ Status below is the existing registry status, not an assertion of release comple
 | 13 | Shape Builder | proof | v2-shape-builder.html |
 | 14 | Letter Tracing | proof | v2-letter-tracing.html |
 | 15 | Number Tracing | proof | v2-number-tracing.html |
-| 16 | Shape Tracing | specified | Not implemented |
+| 16 | Shape Tracing | proof | v2-shape-tracing.html |
 | 17 | Colour Match | specified | Not implemented |
 | 18 | Big & Small | specified | Not implemented |
 | 19 | Pattern Builder | specified | Not implemented |

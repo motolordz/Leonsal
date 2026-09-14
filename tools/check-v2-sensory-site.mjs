@@ -21,6 +21,7 @@ const routes = [
   'v2-shape-builder.html',
   'v2-letter-tracing.html',
   'v2-number-tracing.html',
+  'v2-shape-tracing.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -112,7 +113,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 8);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 9);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -250,6 +251,18 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__numberTracingProofState?.());
       assert.equal(state.progress, 0, 'Number Tracing reset did not clear progress');
+    }
+    if (route === 'v2-shape-tracing.html') {
+      await page.getByRole('button', { name: 'Step' }).click();
+      let state = await page.evaluate(() => window.__shapeTracingProofState?.());
+      assert(state.progress > 0, 'Shape Tracing Step did not advance progress');
+      assert.equal(state.hasStepAlternative, true, 'Shape Tracing missing Step alternative');
+      await page.getByRole('button', { name: 'Next' }).click();
+      state = await page.evaluate(() => window.__shapeTracingProofState?.());
+      assert.equal(state.shape, 'triangle', 'Shape Tracing Next did not change shape');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__shapeTracingProofState?.());
+      assert.equal(state.progress, 0, 'Shape Tracing reset did not clear progress');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();
