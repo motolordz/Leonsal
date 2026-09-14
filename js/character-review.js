@@ -119,6 +119,7 @@
     const renderFamilyEvidence = () => {
       if (!familyEvidence) return;
       const sheets = [
+        ['Supplied poses', 'Elephant, Zaya and Leon source-state intake', 'qa/character-production-v3/READINESS/supplied-character-five-state-review.png'],
         ['Guides', 'Leon and Zaya five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/leon-zaya-five-states.png'],
         ['Alphabet', 'A-Z five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/alphabet-five-states.png'],
         ['Numbers', '1-10 five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/numbers-five-states.png'],
