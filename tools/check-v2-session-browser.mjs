@@ -69,6 +69,7 @@ try {
     await page.goto(base+'/v2-home.html');
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
     assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 24);
+    assert((await page.locator('.world-game .game-art[data-character-decorated="true"] .procedural-character-svg').count()) >= 30, 'V2 home activity cards must render procedural character art');
     assert.equal(await page.locator('.need-card').count(), 5);
     assert.equal(await page.locator('.bus-need').getAttribute('href'), 'v2-double-decker-bus.html');
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
