@@ -5,6 +5,24 @@ import { chromium } from 'playwright';
 const base = process.env.LEONSAL_BASE_URL || 'http://127.0.0.1:4179';
 const out = 'qa/v2-character-world';
 await fs.mkdir(out, { recursive: true });
+const registry = JSON.parse(await fs.readFile('data/character-assets.json', 'utf8'));
+const registryGroups = ['guides', 'alphabet', 'numbers', 'world', 'planets', 'pilot'];
+const registryRecords = [];
+for (const group of registryGroups) {
+  for (const record of registry[group] || []) {
+    if (registryRecords.some(item => item.id === record.id)) continue;
+    registryRecords.push({
+      ...record,
+      family: record.family === 'numbers' ? 'number' : record.family
+    });
+  }
+}
+const familyCounts = Object.fromEntries(['guide', 'alphabet', 'number', 'world', 'planet'].map(family => [
+  family,
+  registryRecords.filter(record => record.family === family).length
+]));
+const approvedCount = registryRecords.filter(record => record.status === 'approved').length;
+const pendingCount = registryRecords.length - approvedCount;
 
 const browser = await chromium.launch();
 const context = await browser.newContext({
@@ -28,6 +46,13 @@ await page.screenshot({ path: `${out}/character-world-390.png`, fullPage: true }
 const cardCount = await page.locator('.character-world-card').count();
 assert(cardCount >= 60, `Expected broad character library, found ${cardCount}`);
 assert(await page.getByRole('heading', { name: 'Character World' }).isVisible(), 'Heading missing');
+assert(await page.getByRole('heading', { name: 'Choose a friend. Change their energy.' }).isVisible(), 'Character World hero should be child-facing');
+assert(await page.getByText('Tap a character, then slide from sleepy to full of energy.', { exact: true }).isVisible(), 'Character World hero should use short instructions');
+for (const text of [`${familyCounts.guide}Leon & Zaya`, `${familyCounts.alphabet}A-Z`, `${familyCounts.number} 1-10`, `${familyCounts.world}World`, `${familyCounts.planet}Planets`]) {
+  assert((await page.locator('#characterLibraryProgress').innerText()).replace(/\s+/g, '').includes(text.replace(/\s+/g, '')), `Library progress missing ${text}`);
+}
+assert((await page.locator('#characterLibraryProgress').innerText()).includes(`${approvedCount} approved`), 'Library progress must keep approved count honest');
+assert((await page.locator('#characterLibraryProgress').innerText()).includes(`${pendingCount} pending`), 'Library progress must keep pending count honest');
 assert(await page.locator('[data-chase-character="leon"] svg').isVisible(), 'Leon procedural runner missing');
 assert(await page.locator('[data-chase-character="zaya"] svg').isVisible(), 'Zaya procedural runner missing');
 assert.equal(await page.locator('.character-runway-state').count(), 5, 'Selected character runway must render five states');

@@ -2798,6 +2798,47 @@ body[data-calm="true"] .connection-status { transition: none; }
   font-size: 1.05rem;
   line-height: 1.55;
 }
+.character-library-progress {
+  width: min(100%, 560px);
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, .72);
+  box-shadow: inset 0 -7px 0 rgba(20, 58, 109, .06), 0 14px 28px rgba(20, 58, 109, .1);
+}
+.character-library-progress div {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+}
+.character-library-progress span {
+  min-height: 62px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #fff, #eef8ff);
+  color: #173356;
+  font-size: .74rem;
+  font-weight: 950;
+  line-height: 1.05;
+  text-align: center;
+}
+.character-library-progress strong {
+  display: block;
+  color: #143a6d;
+  font-size: 1.42rem;
+  line-height: 1;
+}
+.character-library-progress small {
+  display: block;
+  margin-top: 9px;
+  color: #60748d;
+  font-size: .82rem;
+  font-weight: 900;
+  text-align: center;
+}
 .character-chase-scene {
   position: relative;
   min-height: clamp(420px, 64svh, 650px);
@@ -3287,6 +3328,7 @@ body[data-motion="off"] .play-mode-picker button {
   .character-world-hero,
   .character-state-play { grid-template-columns: 1fr; }
   .character-world-hero { min-height: auto; }
+  .character-library-progress div { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .character-chase-scene { min-height: 420px; border-radius: 32px; }
   .chase-player { width: 138px; }
   .play-mode-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); border-radius: 24px; }
@@ -3296,6 +3338,10 @@ body[data-motion="off"] .play-mode-picker button {
 }
 @media (max-width: 480px) {
   .character-world-copy h2 { font-size: 2.35rem; }
+  .character-library-progress { margin-top: 12px; padding: 9px; border-radius: 22px; }
+  .character-library-progress div { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .character-library-progress span { min-height: 48px; border-radius: 16px; font-size: .7rem; }
+  .character-library-progress strong { font-size: 1.2rem; }
   .character-chase-scene { min-height: 360px; }
   .chase-player { width: 124px; bottom: 27%; }
   .play-mode-picker { left: 4%; right: 4%; bottom: 4%; }

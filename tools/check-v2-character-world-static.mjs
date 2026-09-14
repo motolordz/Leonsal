@@ -13,6 +13,7 @@ assert(html.includes('class="game-scene character-world-hero"'), 'Character Worl
 assert(html.includes('id="settingsToggle"'), 'Character World must expose shared settings toggle');
 assert(html.includes('id="settings"'), 'Character World must expose shared settings panel');
 assert(html.includes('id="characterRuntimeTruth"'), 'Character World must expose runtime art truth');
+assert(html.includes('id="characterLibraryProgress"'), 'Character World must expose library progress');
 assert(html.includes('id="characterStateRunway"'), 'Character World must expose five-state runway');
 assert(html.includes('js/v2-character-renderer.js'), 'Character World shared renderer script missing');
 assert(html.includes('js/v2-character-world.js'), 'Character World script missing');
@@ -34,8 +35,17 @@ for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
   assert(js.includes(`['${state}'`), `Missing state anchor: ${state}`);
 }
 for (const text of [
+  'Choose a friend. Change their energy.',
+  'Tap a character, then slide from sleepy to full of energy.',
+  'Leon stays Leon. Zaya stays Zaya.'
+]) {
+  assert(html.includes(text), `Character World missing child-facing copy: ${text}`);
+}
+
+for (const text of [
   'fetch(\'data/character-assets.json\')',
   'renderRuntimeTruth',
+  'renderLibraryProgress',
   'approved runtime states',
   'LeonSalCharacterRenderer',
   'makeCharacter(record, state',
@@ -58,6 +68,7 @@ for (const text of [
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(html), 'Character World HTML must not reference blocked art paths');
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(js), 'Character World JS must not reference blocked art paths');
 assert(css.includes('.character-world-grid'), 'Character World grid styling missing');
+assert(css.includes('.character-library-progress'), 'Character World library progress styling missing');
 assert(css.includes('.character-world-empty'), 'Character World empty status styling missing');
 assert(css.includes('.character-status-tabs'), 'Character World status filter styling missing');
 assert(css.includes('.character-runtime-truth'), 'Runtime truth styling missing');

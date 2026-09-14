@@ -38,6 +38,7 @@
   const stateRunway = document.getElementById('characterStateRunway');
   const count = document.getElementById('characterCount');
   const runtimeTruth = document.getElementById('characterRuntimeTruth');
+  const libraryProgress = document.getElementById('characterLibraryProgress');
   const familyButtons = [...document.querySelectorAll('[data-family-filter]')];
   const statusButtons = [...document.querySelectorAll('[data-status-filter]')];
   const playScene = document.querySelector('.character-chase-scene');
@@ -80,6 +81,23 @@
       .filter(item => item.status !== 'approved')
       .reduce((sum, item) => sum + Object.keys(item.states || {}).length, 0);
     runtimeTruth.innerHTML = `<article><strong>${approvedStates}</strong><span>approved runtime states</span></article><article><strong>${pendingStates}</strong><span>pending review states</span></article><p>Only approved artwork can become a runtime image. Everything else uses this safe vector fallback.</p>`;
+  };
+  const renderLibraryProgress = registry => {
+    if (!libraryProgress) return;
+    const records = allRecords(registry);
+    const approved = records.filter(item => item.status === 'approved').length;
+    const pending = records.length - approved;
+    const families = [
+      ['guide', 'Leon & Zaya'],
+      ['alphabet', 'A-Z'],
+      ['number', '1-10'],
+      ['world', 'World'],
+      ['planet', 'Planets']
+    ].map(([family, label]) => {
+      const familyRecords = records.filter(item => item.family === family);
+      return `<span><strong>${familyRecords.length}</strong>${label}</span>`;
+    }).join('');
+    libraryProgress.innerHTML = `<div>${families}</div><small>${approved} approved · ${pending} pending vector previews</small>`;
   };
   const displayInitial = record => {
     if (record.uppercase) return record.uppercase;
@@ -423,6 +441,7 @@
       if (!response.ok) throw new Error('registry unavailable');
       const registry = await response.json();
       renderRuntimeTruth(registry);
+      renderLibraryProgress(registry);
       characters = allRecords(registry).filter(item => item.id && item.displayName);
       selected = characters.find(item => item.id === 'leon') || characters[0];
       document.querySelector('[data-chase-character="leon"]').append(makeSvg(characters.find(item => item.id === 'leon') || selected, 'happy', { decorative: true }));
