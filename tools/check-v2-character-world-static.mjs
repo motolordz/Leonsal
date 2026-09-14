@@ -63,7 +63,11 @@ for (const text of [
   'Show all artwork',
   'Procedural vector fallback',
   'new LeonSalGameShell',
-  'new LeonSalV2.SettingsPanel'
+  'new LeonSalV2.SettingsPanel',
+  'chaseStatesByMode',
+  'renderChaseScene',
+  'dataset.guideState',
+  'in the Character World play scene'
 ]) {
   assert(js.includes(text), `Character World missing behavior: ${text}`);
 }

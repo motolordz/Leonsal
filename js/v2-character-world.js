@@ -49,6 +49,12 @@
   let statusFilter = 'all';
   let settings = null;
   let gridPreviewState = 'calm';
+  const chaseStatesByMode = {
+    chase: { leon: 'happy', zaya: 'excited' },
+    football: { leon: 'happy', zaya: 'excited' },
+    hoops: { leon: 'excited', zaya: 'happy' },
+    calm: { leon: 'calm', zaya: 'calm' }
+  };
 
   const setSettingsOpen = open => {
     const panel = document.querySelector('#settings');
@@ -378,6 +384,20 @@
     }));
   }
 
+  function renderChaseScene(mode = playScene?.dataset.playMode || 'chase') {
+    if (!playScene) return;
+    const modeStates = chaseStatesByMode[mode] || chaseStatesByMode.chase;
+    for (const id of ['leon', 'zaya']) {
+      const player = document.querySelector(`[data-chase-character="${id}"]`);
+      if (!player) continue;
+      const record = characters.find(item => item.id === id) || selected || characters[0];
+      const state = modeStates[id] || 'happy';
+      player.dataset.guideState = state;
+      player.setAttribute('aria-label', `${id === 'leon' ? 'Leon' : 'Zaya'} ${state} in the Character World play scene`);
+      player.replaceChildren(makeSvg(record, state, { decorative: true }));
+    }
+  }
+
   function renderGrid() {
     const previewState = gridPreviewState || stateForEnergy(energy.value);
     const visible = characters.filter(item => {
@@ -455,8 +475,7 @@
       renderLibraryProgress(registry);
       characters = allRecords(registry).filter(item => item.id && item.displayName);
       selected = characters.find(item => item.id === 'leon') || characters[0];
-      document.querySelector('[data-chase-character="leon"]').append(makeSvg(characters.find(item => item.id === 'leon') || selected, 'happy', { decorative: true }));
-      document.querySelector('[data-chase-character="zaya"]').append(makeSvg(characters.find(item => item.id === 'zaya') || selected, 'excited', { decorative: true }));
+      renderChaseScene(playScene?.dataset.playMode || 'chase');
       renderStatePicker();
       renderGrid();
       energy.addEventListener('input', () => {
@@ -481,6 +500,7 @@
         button.addEventListener('click', () => {
           playScene.dataset.playMode = button.dataset.playMode;
           playModeButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+          renderChaseScene(button.dataset.playMode);
         });
       });
     } catch {

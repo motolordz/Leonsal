@@ -163,6 +163,13 @@ for (const mode of ['Football', 'Hoops', 'Calm', 'Chase']) {
   await page.locator('.play-mode-picker').getByRole('button', { name: mode, exact: true }).click();
   assert.equal(await page.locator('.character-chase-scene').getAttribute('data-play-mode'), mode.toLowerCase(), `${mode} play mode did not activate`);
 }
+assert.equal(await page.locator('[data-chase-character="leon"]').getAttribute('data-guide-state'), 'happy', 'Leon should return to happy state in Chase mode');
+await page.locator('.play-mode-picker').getByRole('button', { name: 'Hoops', exact: true }).click();
+assert.equal(await page.locator('[data-chase-character="leon"]').getAttribute('data-guide-state'), 'excited', 'Leon should rerender to excited state in Hoops mode');
+assert.equal(await page.locator('[data-chase-character="zaya"]').getAttribute('data-guide-state'), 'happy', 'Zaya should rerender to happy state in Hoops mode');
+await page.locator('.play-mode-picker').getByRole('button', { name: 'Calm', exact: true }).click();
+assert.equal(await page.locator('[data-chase-character="leon"]').getAttribute('data-guide-state'), 'calm', 'Leon should rerender to calm state in Calm mode');
+assert.equal(await page.locator('[data-chase-character="zaya"]').getAttribute('data-guide-state'), 'calm', 'Zaya should rerender to calm state in Calm mode');
 
 await page.emulateMedia({ reducedMotion: 'reduce' });
 await page.reload({ waitUntil: 'networkidle' });
