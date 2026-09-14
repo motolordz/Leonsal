@@ -10,6 +10,7 @@
 <body class="world-home v2-hub">
   <main class="world-shell offline-shell">
     <section class="offline-card" aria-labelledby="offlineTitle">
+      <div class="offline-character" id="offlineCharacter" aria-hidden="true"></div>
       <p class="eyebrow">LEONSAL</p>
       <h1 id="offlineTitle">This activity needs a connection.</h1>
       <p>Some activities may still open if they were saved on this device. Nothing is scored or lost.</p>
@@ -19,5 +20,9 @@
       </div>
     </section>
   </main>
+  <script src="js/v2-character-renderer.js"></script>
+  <script>
+    document.querySelector('#offlineCharacter').replaceChildren(LeonSalCharacterRenderer.makeGuide('leon', 'calm', { decorative: true }));
+  </script>
 </body>
 </html>

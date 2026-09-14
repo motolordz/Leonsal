@@ -17,6 +17,7 @@
     </header>
     <section class="proof-grid" aria-label="V2 proof routes">
       <article class="proof-card">
+        <div class="proof-card-character" data-proof-character="battery" aria-hidden="true"></div>
         <div>
           <h2>My Energy Battery</h2>
           <p>Slide a continuous SVG battery from empty to full.</p>
@@ -25,6 +26,7 @@
         <a href="v2-energy-battery.html">Play / Test</a>
       </article>
       <article class="proof-card">
+        <div class="proof-card-character" data-proof-character="world-robot" aria-hidden="true"></div>
         <div>
           <h2>Dash to Charging Dock</h2>
           <p>Move first, then charge only at the dock.</p>
@@ -33,6 +35,7 @@
         <a href="v2-dash-dock.html">Play / Test</a>
       </article>
       <article class="proof-card">
+        <div class="proof-card-character" data-proof-character="world-cloud" aria-hidden="true"></div>
         <div>
           <h2>Quiet Bubble Garden</h2>
           <p>Pop gentle drifting bubbles with touch or pointer.</p>
@@ -41,6 +44,7 @@
         <a href="v2-bubble-garden.html">Play / Test</a>
       </article>
       <article class="proof-card">
+        <div class="proof-card-character" data-proof-character="world-moon" aria-hidden="true"></div>
         <div>
           <h2>Finger Light Trail</h2>
           <p>Draw smooth high-DPI trails in three styles.</p>
@@ -49,6 +53,7 @@
         <a href="v2-light-trail.html">Play / Test</a>
       </article>
       <article class="proof-card">
+        <div class="proof-card-character" data-proof-character="world-cloud" aria-hidden="true"></div>
         <div>
           <h2>Hold to Breathe</h2>
           <p>Hold to expand a calm orb, release to settle.</p>
@@ -58,5 +63,17 @@
       </article>
     </section>
   </main>
+  <script src="js/v2-character-renderer.js"></script>
+  <script>
+    document.querySelectorAll('[data-proof-character]').forEach((slot) => {
+      const id = slot.dataset.proofCharacter;
+      const svg = LeonSalCharacterRenderer.makeCharacter(
+        { id, family: 'world', displayName: id.replace(/^world-/, '').replace('-', ' ') },
+        'happy',
+        { decorative: true }
+      );
+      slot.replaceChildren(svg);
+    });
+  </script>
 </body>
 </html>

@@ -15,6 +15,7 @@
       <div class="settings-popover" id="settings"></div>
     </header>
     <section class="game-scene breathe-world" id="stage" aria-label="Breathing hold area">
+      <div class="breath-helper" id="breathHelper" aria-hidden="true"></div>
       <div class="premium-orb" id="orb" aria-hidden="true"></div>
       <div class="breath-prompt"><span>Hold to grow</span><span>Release to settle</span></div>
       <div class="floating-controls">
@@ -25,15 +26,21 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
     const stage = document.querySelector('#stage');
     const orb = document.querySelector('#orb');
+    const breathHelper = document.querySelector('#breathHelper');
     let scale = 1;
     let velocity = 0;
     let target = 1;
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
+    function renderBreathHelper(state = 'calm') {
+      breathHelper.replaceChildren(LeonSalCharacterRenderer.makeCharacter({ id: 'world-cloud', family: 'world', displayName: 'Cloud' }, state, { decorative: true }));
+    }
+    renderBreathHelper('calm');
     document.querySelector('#settingsToggle').addEventListener('click', () => {
       const panel = document.querySelector('#settings');
       const open = panel.dataset.open !== 'true';
@@ -42,6 +49,7 @@
     });
     function setTarget(next) {
       target = next;
+      renderBreathHelper(next > 1 ? 'happy' : 'calm');
       if (!settings.allowsMotion()) {
         scale = target;
         orb.style.setProperty('--breath-scale', String(scale));
@@ -60,6 +68,7 @@
     document.addEventListener('leonsal-pause', () => setTarget(1));
     document.querySelector('#settle').addEventListener('click', () => setTarget(1));
     const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [], reset: () => setTarget(1) });
+    window.__holdToBreatheProofState = () => ({ hasCharacterRenderer: Boolean(breathHelper.querySelector('svg')) });
   </script>
 </body>
 </html>
