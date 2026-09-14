@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 45,
+      "controls": 46,
       "canvases": []
     },
     {
@@ -179,6 +179,12 @@
           "tabIndex": -1
         }
       ]
+    },
+    {
+      "route": "v2-colour-match.html",
+      "passed": true,
+      "controls": 15,
+      "canvases": []
     },
     {
       "route": "v2-light-trail.html",

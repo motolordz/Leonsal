@@ -22,6 +22,7 @@ const routes = [
   'v2-letter-tracing.html',
   'v2-number-tracing.html',
   'v2-shape-tracing.html',
+  'v2-colour-match.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -113,7 +114,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 9);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 10);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -263,6 +264,16 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__shapeTracingProofState?.());
       assert.equal(state.progress, 0, 'Shape Tracing reset did not clear progress');
+    }
+    if (route === 'v2-colour-match.html') {
+      await page.locator('.colour-drop').first().click();
+      await page.locator('.colour-well').first().click();
+      let state = await page.evaluate(() => window.__colourMatchProofState?.());
+      assert(state.matched.includes('red'), 'Colour Match did not match first colour through tap path');
+      assert.equal(state.hasTapAlternative, true, 'Colour Match missing tap alternative');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__colourMatchProofState?.());
+      assert.equal(state.matched.length, 0, 'Colour Match reset did not clear matches');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

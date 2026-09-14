@@ -21,6 +21,7 @@ const routes = [
   'v2-letter-tracing.html',
   'v2-number-tracing.html',
   'v2-shape-tracing.html',
+  'v2-colour-match.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -65,6 +66,10 @@ async function sampleRoute(page, base, route) {
   if (route === 'v2-letter-tracing.html') await page.getByRole('button', { name: 'Step' }).click();
   if (route === 'v2-number-tracing.html') await page.getByRole('button', { name: 'Step' }).click();
   if (route === 'v2-shape-tracing.html') await page.getByRole('button', { name: 'Step' }).click();
+  if (route === 'v2-colour-match.html') {
+    await page.locator('.colour-drop').first().click();
+    await page.locator('.colour-well').first().click();
+  }
   if (route === 'v2-light-trail.html') {
     const box = await page.locator('#canvas').boundingBox();
     await page.mouse.move(box.x + 60, box.y + 160);

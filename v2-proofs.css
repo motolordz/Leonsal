@@ -1670,6 +1670,18 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .home-number-trace { width: 116px; height: 96px; border-radius: 26px; display: grid; place-items: center; color: #2563eb; font-size: 4rem; font-weight: 950; background: radial-gradient(circle at 30% 24%, rgba(255,255,255,.9) 0 9%, transparent 10%), linear-gradient(145deg, #fff, #bbf7d0); box-shadow: inset 0 -12px 0 rgba(22,101,52,.12), 0 16px 26px rgba(22,101,52,.16); }
 .shape-trace-card .game-art { background: #fff7ed; }
 .home-shape-trace { width: 116px; height: 96px; border-radius: 26px; background: radial-gradient(circle at 50% 44%, transparent 0 29%, #8b5cf6 30% 40%, transparent 41%), conic-gradient(from 45deg, #38bdf8 0 25%, #facc15 0 50%, #fb7185 0 75%, #34d399 0); box-shadow: inset 0 -12px 0 rgba(15,23,42,.1), 0 16px 26px rgba(139,92,246,.18); }
+.colour-match-card .game-art { background: #fff1f2; }
+.home-colour-match { width: 116px; height: 96px; border-radius: 30px; background: radial-gradient(circle at 22% 28%, #f87171 0 18%, transparent 19%), radial-gradient(circle at 70% 30%, #38bdf8 0 18%, transparent 19%), radial-gradient(circle at 36% 72%, #fde047 0 18%, transparent 19%), radial-gradient(circle at 76% 74%, #4ade80 0 18%, transparent 19%), #fff; box-shadow: inset 0 -12px 0 rgba(15,23,42,.08), 0 16px 26px rgba(244,63,94,.16); }
+.colour-match-world { background: linear-gradient(180deg, #fff7ed, #e0f2fe 55%, #f0fdf4); overflow: hidden; }
+.colour-wells, .colour-drops { position: absolute; left: 7%; right: 7%; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; z-index: 3; }
+.colour-wells { top: 15%; }
+.colour-drops { bottom: 16%; }
+.colour-well, .colour-drop { min-height: 96px; border: 0; border-radius: 30px; font: inherit; font-weight: 1000; color: #12213f; touch-action: manipulation; box-shadow: 0 16px 30px rgba(19,35,67,.14), inset 0 -10px 0 rgba(19,35,67,.08); }
+.colour-well { background: color-mix(in srgb, var(--match-colour) 18%, white); border: 5px solid color-mix(in srgb, var(--match-colour) 78%, white); }
+.colour-well[data-matched="true"] { background: color-mix(in srgb, var(--match-colour) 58%, white); }
+.colour-drop { border-radius: 48% 52% 58% 42%; background: radial-gradient(circle at 32% 24%, rgba(255,255,255,.85) 0 12%, transparent 13%), var(--match-colour); transform: translateY(0) scale(1); transition: transform .14s ease, opacity .14s ease; }
+.colour-drop[data-selected="true"] { transform: translateY(-8px) scale(1.04); outline: 5px solid rgba(255,255,255,.86); }
+.colour-drop[data-matched="true"] { opacity: .4; transform: scale(.9); }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1743,7 +1755,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-number { width: 58px; height: 54px; border-radius: 15px; font-size: 1.1rem; }
   .home-letter { width: 58px; height: 54px; border-radius: 15px; font-size: 2.2rem; }
   .home-shapes { width: 58px; height: 54px; border-radius: 15px; }
-  .home-letter-trace, .home-number-trace, .home-shape-trace { width: 58px; height: 54px; border-radius: 15px; font-size: 2.1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
+  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match { width: 58px; height: 54px; border-radius: 15px; font-size: 2.1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
   .number-mat { grid-template-columns: repeat(5, 1fr); padding: 10px; }
   .number-buddy { min-height: 58px; border-radius: 18px; }
   .number-world { padding-bottom: 126px; gap: 10px; }
