@@ -58,6 +58,22 @@ try {
   await page.goto(`${base}/v2-home.html`, { waitUntil: 'networkidle' });
   assert.equal(await page.locator('#localProfile').inputValue(), activeProfileId, 'Home did not restore active profile');
   assert(await page.locator('#progressSummary').getByText('Quiet Bubble Garden').isVisible(), 'Home did not show active profile notes');
+  await page.getByRole('button', { name: 'Prepare summary' }).click();
+  const exported = await page.locator('.profile-download-link').evaluate(async (link) => {
+    const response = await fetch(link.href);
+    return {
+      download: link.getAttribute('download'),
+      payload: await response.json()
+    };
+  });
+  assert.match(exported.download, /^leonsal-local-notes-profile-.*\.json$/, 'Export link did not use local notes filename');
+  assert.equal(exported.payload.privacy, 'local-device-only', 'Export must remain local-device scoped');
+  assert.equal(exported.payload.summaryType, 'visits-and-finished-sessions', 'Export must avoid score/mastery summary type');
+  assert.deepEqual(exported.payload.notIncluded, ['scores', 'grades', 'mastery claims', 'medical labels', 'sensory subtype labels']);
+  assert.equal(exported.payload.activities[0].activity, 'Quiet Bubble Garden', 'Export did not include active profile activity');
+  assert.equal(exported.payload.activities[0].visits, 1, 'Export did not include visits');
+  assert.equal(exported.payload.activities[0].finished, true, 'Export did not include Finished state');
+  assert(!/\bscore|grade|mastery|diagnos|autism subtype|dysregulat|sensory[- ]seeking|sensory[- ]avoiding\b/i.test(JSON.stringify(exported.payload.activities)), 'Export activities must not infer score, mastery or medical labels');
   await page.locator('#localProfile').selectOption('default');
   assert(await page.locator('#progressSummary').getByText('No local activity notes yet.').isVisible(), 'Default profile should keep separate notes');
   await page.locator('#localProfile').selectOption(activeProfileId);
@@ -77,6 +93,8 @@ try {
       'active profile persists',
       'game activity records under active profile key',
       'shared profile remains separate',
+      'caregiver can prepare a local JSON summary',
+      'summary excludes score/mastery/medical/sensory labels',
       'profile removal clears that local profile notes'
     ]
   }, null, 2) + '\n');

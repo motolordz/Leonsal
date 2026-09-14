@@ -11,6 +11,8 @@
     "active profile persists",
     "game activity records under active profile key",
     "shared profile remains separate",
+    "caregiver can prepare a local JSON summary",
+    "summary excludes score/mastery/medical/sensory labels",
     "profile removal clears that local profile notes"
   ]
 }

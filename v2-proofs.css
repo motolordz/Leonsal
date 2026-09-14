@@ -1224,6 +1224,9 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .local-profile-tools label { font-weight: 900; color: #25405f; }
 .local-profile-tools select, .local-profile-tools input { min-height: 48px; border: 1px solid #cddbec; border-radius: 16px; padding: 0 12px; font: inherit; background: #fff; color: var(--ink); }
 .local-profile-tools button { min-height: 48px; }
+.profile-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.profile-export-note { min-height: 52px; margin: 12px 0 0; color: #52617a; }
+.profile-download-link { display: inline-flex; align-items: center; text-decoration: none; min-height: 48px; }
 .hub-mixer-panel { margin: 28px 0; padding: 22px; border-radius: 28px; background: linear-gradient(135deg, #ffffff, #eef8ff); box-shadow: var(--shadow); }
 .mixer-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
 .mixer-card { min-height: 96px; border: 1px solid #cddbec; border-radius: 22px; font: inherit; font-weight: 950; color: #173356; box-shadow: 0 10px 20px #2b5a8814; cursor: pointer; }

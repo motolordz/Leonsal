@@ -19,6 +19,8 @@
 
   const progressHost = document.getElementById('progressSummary');
   const clearProgress = document.getElementById('clearProgress');
+  const exportProgress = document.getElementById('exportProgress');
+  const profileExportNote = document.getElementById('profileExportNote');
   const localProfiles = new LeonSalV2.LocalProfileEngine();
   let profile = new LeonSalV2.ProfileProgressStoreEngine(localProfiles.progressKey());
   const profileSelect = document.getElementById('localProfile');
@@ -54,6 +56,27 @@
       const visits = Number(value.visits || 0);
       return `<article><strong>${gameNames[id] || id}</strong><span>${visits} visit${visits === 1 ? '' : 's'}${finished ? ' · finished once' : ''}</span></article>`;
     }).join('');
+  };
+  const progressSnapshot = () => {
+    const active = localProfiles.activeProfile();
+    const entries = Object.entries(profile.value.progress || {})
+      .filter(([, value]) => Number(value.visits || 0) > 0)
+      .sort((a, b) => String(b[1].updatedAt || '').localeCompare(String(a[1].updatedAt || '')))
+      .map(([id, value]) => ({
+        activity: gameNames[id] || id,
+        visits: Number(value.visits || 0),
+        finished: profile.value.finished.includes(id),
+        updatedAt: value.updatedAt || null
+      }));
+    return {
+      product: 'LeonSal V2 local activity notes',
+      privacy: 'local-device-only',
+      profile: { id: active.id, name: active.name },
+      generatedAt: new Date().toISOString(),
+      summaryType: 'visits-and-finished-sessions',
+      notIncluded: ['scores', 'grades', 'mastery claims', 'medical labels', 'sensory subtype labels'],
+      activities: entries
+    };
   };
   const bindProfileStore = () => {
     profile = new LeonSalV2.ProfileProgressStoreEngine(localProfiles.progressKey());
@@ -96,6 +119,20 @@
     renderProgress();
     clearProgress.textContent = 'Local notes cleared';
     window.setTimeout(() => { clearProgress.textContent = 'Clear local notes'; }, 1300);
+  });
+  exportProgress?.addEventListener('click', () => {
+    const snapshot = progressSnapshot();
+    const blob = new Blob([JSON.stringify(snapshot, null, 2) + '\n'], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `leonsal-local-notes-${snapshot.profile.id}.json`;
+    link.textContent = 'Download local summary';
+    link.className = 'hub-secondary profile-download-link';
+    const existing = document.querySelector('.profile-download-link');
+    existing?.remove();
+    profileExportNote.replaceChildren(link);
+    window.setTimeout(() => URL.revokeObjectURL(url), 60000);
   });
 
   const renderMixer = () => {
