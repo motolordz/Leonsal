@@ -41,12 +41,45 @@ for (const value of ['0', '25', '50', '75', '100']) {
   assert(state && state.includes(`character-state-${value === '0' ? 'empty' : value === '25' ? 'low' : value === '50' ? 'calm' : value === '75' ? 'happy' : 'excited'}`), `State class did not update for ${value}`);
 }
 
-await page.locator('.character-world-card[data-character="zaya"]').first().click();
-assert(await page.locator('.selected-character-card figcaption strong').getByText('Zaya').isVisible(), 'Zaya selection did not render');
+async function assertSelectedFiveStates(characterId, displayName, expectedBodyClass) {
+  await page.locator(`.character-world-card[data-character="${characterId}"]`).first().click();
+  assert(await page.locator('.selected-character-card figcaption strong').getByText(displayName, { exact: true }).isVisible(), `${displayName} selection did not render`);
+  const expectedStates = [
+    ['0', 'empty'],
+    ['25', 'low'],
+    ['50', 'calm'],
+    ['75', 'happy'],
+    ['100', 'excited']
+  ];
+  for (const [value, state] of expectedStates) {
+    await page.locator('#characterEnergy').evaluate((input, next) => {
+      input.value = next;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }, value);
+    await page.waitForTimeout(40);
+    const selectedSvg = page.locator('.selected-character-card svg').first();
+    const className = await selectedSvg.getAttribute('class');
+    assert(className && className.includes(`character-state-${state}`), `${displayName} did not render ${state} state`);
+    if (expectedBodyClass === 'home-guide-svg') {
+      assert(className.includes(expectedBodyClass), `${displayName} ${state} missing ${expectedBodyClass}`);
+    } else {
+      assert.equal(await page.locator(`.selected-character-card .${expectedBodyClass}`).count(), 1, `${displayName} ${state} missing ${expectedBodyClass}`);
+    }
+    assert(await page.locator('.selected-character-card figcaption strong').getByText(displayName, { exact: true }).isVisible(), `${displayName} did not remain selected at ${state}`);
+  }
+}
+
+await assertSelectedFiveStates('zaya', 'Zaya', 'home-guide-svg');
 await page.getByRole('button', { name: 'A-Z' }).click();
 assert(await page.locator('.character-world-card[data-family="alphabet"]').first().isVisible(), 'Alphabet filter did not reveal alphabet characters');
+await assertSelectedFiveStates('letter-z', 'Letter Z', 'letter-number-body');
 await page.getByRole('button', { name: '1-10' }).click();
 assert(await page.locator('.character-world-card[data-family="number"]').first().isVisible(), 'Number filter did not reveal number characters');
+await assertSelectedFiveStates('number-10', 'Number 10', 'letter-number-body');
+await page.getByRole('button', { name: 'World' }).click();
+await assertSelectedFiveStates('world-dinosaur', 'Dinosaur', 'dinosaur-body');
+await page.getByRole('button', { name: 'Planets' }).click();
+await assertSelectedFiveStates('planet-saturn', 'Saturn', 'planet-saturn-body');
 await page.locator('#settingsToggle').click();
 assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', 'Settings panel did not open');
 await page.keyboard.press('Escape');
