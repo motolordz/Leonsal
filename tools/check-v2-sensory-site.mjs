@@ -26,6 +26,7 @@ const routes = [
   'v2-big-small.html',
   'v2-pattern-builder.html',
   'v2-sort-it.html',
+  'v2-planet-pals.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -117,7 +118,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 13);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 14);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -306,6 +307,19 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__sortItProofState?.());
       assert.equal(state.sorted.length, 0, 'Sort It reset did not clear sorted items');
+    }
+    if (route === 'v2-planet-pals.html') {
+      assert(await page.getByText(/not physical scale/i).isVisible(), 'Planet Pals missing educational scale note');
+      await page.getByRole('button', { name: 'Next' }).click();
+      let state = await page.evaluate(() => window.__planetPalsProofState?.());
+      assert(state.visited.includes('Mercury'), 'Planet Pals Next did not visit Mercury');
+      assert.equal(state.educationalScaleNote, true, 'Planet Pals missing scale truth flag');
+      await page.locator('.planet-pal.earth').click();
+      state = await page.evaluate(() => window.__planetPalsProofState?.());
+      assert(state.visited.includes('Earth'), 'Planet Pals tap did not visit Earth');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__planetPalsProofState?.());
+      assert.equal(state.visited.length, 0, 'Planet Pals reset did not clear visits');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

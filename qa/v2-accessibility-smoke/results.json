@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 49,
+      "controls": 50,
       "canvases": []
     },
     {
@@ -202,6 +202,12 @@
       "route": "v2-sort-it.html",
       "passed": true,
       "controls": 13,
+      "canvases": []
+    },
+    {
+      "route": "v2-planet-pals.html",
+      "passed": true,
+      "controls": 11,
       "canvases": []
     },
     {

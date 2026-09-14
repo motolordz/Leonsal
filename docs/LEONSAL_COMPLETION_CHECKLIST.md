@@ -116,7 +116,7 @@ Status below is the existing registry status, not an assertion of release comple
 | 18 | Big & Small | proof | v2-big-small.html |
 | 19 | Pattern Builder | proof | v2-pattern-builder.html |
 | 20 | Sort It | proof | v2-sort-it.html |
-| 21 | Planet Pals | specified | Not implemented |
+| 21 | Planet Pals | proof | v2-planet-pals.html |
 | 22 | Build the Solar System | specified | Not implemented |
 | 23 | Day & Night | specified | Not implemented |
 | 24 | Days of the Week | specified | Not implemented |

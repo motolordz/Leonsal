@@ -1678,6 +1678,8 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .home-pattern { width: 116px; height: 96px; border-radius: 30px; background: radial-gradient(circle at 20% 50%, #fbbf24 0 16%, transparent 17%), radial-gradient(circle at 47% 50%, #60a5fa 0 16%, transparent 17%), radial-gradient(circle at 74% 50%, #fbbf24 0 16%, transparent 17%), linear-gradient(145deg, #fff, #fde68a); box-shadow: inset 0 -12px 0 rgba(15,23,42,.08), 0 16px 26px rgba(245,158,11,.16); }
 .sort-it-card .game-art { background: #ecfeff; }
 .home-sort-it { width: 116px; height: 96px; border-radius: 30px; background: radial-gradient(circle at 22% 28%, #93c5fd 0 17%, transparent 18%), radial-gradient(circle at 72% 28%, #fde047 0 15%, transparent 16%), radial-gradient(circle at 26% 74%, #86efac 0 16%, transparent 17%), radial-gradient(circle at 72% 72%, #22c55e 0 13%, transparent 14%), linear-gradient(145deg, #fff, #cffafe); box-shadow: inset 0 -12px 0 rgba(15,23,42,.08), 0 16px 26px rgba(14,165,233,.16); }
+.planet-pals-card .game-art { background: #e0e7ff; }
+.home-planet-pals { width: 116px; height: 96px; border-radius: 30px; background: radial-gradient(circle at 50% 50%, #fbbf24 0 14%, transparent 15%), radial-gradient(circle at 24% 34%, #94a3b8 0 8%, transparent 9%), radial-gradient(circle at 78% 34%, #60a5fa 0 11%, transparent 12%), radial-gradient(circle at 30% 78%, #fb7185 0 10%, transparent 11%), radial-gradient(circle at 78% 76%, #c4b5fd 0 13%, transparent 14%), #1e3a8a; box-shadow: inset 0 -12px 0 rgba(15,23,42,.18), 0 16px 26px rgba(30,58,138,.18); }
 .colour-match-world { background: linear-gradient(180deg, #fff7ed, #e0f2fe 55%, #f0fdf4); overflow: hidden; }
 .colour-wells, .colour-drops { position: absolute; left: 7%; right: 7%; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; z-index: 3; }
 .colour-wells { top: 15%; }
@@ -1722,6 +1724,22 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .sort-item.leaf { background-image: radial-gradient(ellipse at 50% 50%, #4ade80 0 36%, transparent 37%); background-color: #f0fdf4; }
 .sort-item[data-selected="true"] { transform: translateY(-8px) scale(1.05); outline: 5px solid rgba(255,255,255,.86); }
 .sort-item[data-sorted="true"] { opacity: .35; transform: scale(.9); }
+.planet-pals-world { background: radial-gradient(circle at 50% 44%, rgba(255,255,255,.14), transparent 34%), linear-gradient(180deg, #15254f, #243f86 62%, #31538f); overflow: hidden; color: #fff; }
+.planet-pals-world::before { content: ""; position: absolute; inset: 0; opacity: .58; background-image: radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 1.7px), radial-gradient(circle, rgba(255,216,77,.85) 0 1.2px, transparent 2px); background-size: 64px 64px, 104px 104px; background-position: 0 0, 30px 24px; }
+.planet-pals-sun { position: absolute; left: 50%; top: 47%; width: 92px; aspect-ratio: 1; border-radius: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle at 34% 28%, #fff 0 12%, #fde047 13% 56%, #f97316 100%); box-shadow: 0 0 54px rgba(253,224,71,.5); z-index: 2; }
+.planet-pals-orbit { position: absolute; left: 50%; top: 47%; border: 2px solid rgba(255,255,255,.18); border-radius: 50%; transform: translate(-50%,-50%); z-index: 1; }
+.orbit-one { width: 184px; height: 184px; }
+.orbit-two { width: 256px; height: 256px; }
+.orbit-three { width: 328px; height: 328px; }
+.planet-pal { position: absolute; left: 0; top: 0; z-index: 3; min-width: 70px; min-height: 70px; border: 0; border-radius: 50%; padding: 6px; font: inherit; font-size: .72rem; font-weight: 1000; color: #12213f; box-shadow: inset -10px -12px 0 rgba(19,35,67,.16), 0 14px 24px rgba(0,0,0,.22); transition: outline .14s ease, transform .14s ease; touch-action: manipulation; }
+.planet-pal[data-active="true"] { outline: 5px solid rgba(255,255,255,.82); }
+.planet-pal.mercury { background: radial-gradient(circle at 34% 28%, #fff 0 12%, #94a3b8 13% 100%); }
+.planet-pal.earth { background: radial-gradient(circle at 35% 35%, #22c55e 0 18%, transparent 19%), radial-gradient(circle at 64% 68%, #22c55e 0 16%, transparent 17%), #38bdf8; }
+.planet-pal.mars { background: radial-gradient(circle at 34% 28%, #fff 0 10%, #fb7185 11% 100%); }
+.planet-pal.saturn { background: radial-gradient(circle at 50% 50%, #c4b5fd 0 34%, transparent 35%), linear-gradient(90deg, transparent 0 20%, rgba(255,255,255,.7) 21% 79%, transparent 80%), #7c3aed; }
+.planet-pals-world .scene-status { color: rgba(255,255,255,.92); background: rgba(15,23,42,.3); z-index: 5; }
+.planet-pals-world .drawer-controls { z-index: 5; }
+.scale-note { position: absolute; left: 50%; bottom: 14%; transform: translateX(-50%); z-index: 4; width: max-content; max-width: 82%; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,.16); color: rgba(255,255,255,.8); font-size: .8rem; font-weight: 850; text-align: center; }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1795,7 +1813,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-number { width: 58px; height: 54px; border-radius: 15px; font-size: 1.1rem; }
   .home-letter { width: 58px; height: 54px; border-radius: 15px; font-size: 2.2rem; }
   .home-shapes { width: 58px; height: 54px; border-radius: 15px; }
-  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it { width: 58px; height: 54px; border-radius: 15px; font-size: 2.1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
+  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it, .home-planet-pals { width: 58px; height: 54px; border-radius: 15px; font-size: 2.1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
   .number-mat { grid-template-columns: repeat(5, 1fr); padding: 10px; }
   .number-buddy { min-height: 58px; border-radius: 18px; }
   .number-world { padding-bottom: 126px; gap: 10px; }
