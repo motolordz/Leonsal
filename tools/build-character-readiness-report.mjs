@@ -26,7 +26,7 @@ function blockersFor(record) {
     const suppliedStates = states.filter((state) => Boolean(supplied.states?.[state]));
     if (suppliedStates.length !== states.length) blockers.push(`supplied source intake has ${suppliedStates.length}/5 states`);
     if (/canonical uppercase name|clothing needs/i.test(supplied.notes || "")) blockers.push("guide clothing/name text needs production cleanup");
-    if (/below the 2048 px production requirement/i.test(supplied.notes || "")) blockers.push("supplied source is below 2048 px production master requirement");
+    if (/below (?:the )?2048 px production (?:master )?requirement/i.test(supplied.notes || "")) blockers.push("supplied source is below 2048 px production master requirement");
   }
   if (record.id === "leon") blockers.push("Leon empty generation attempts failed real-alpha gate");
   if (record.family === "guide" && record.status !== "approved") {
@@ -38,7 +38,7 @@ function blockersFor(record) {
 
 function gatesFor(record, supplied, presentStates, suppliedStates) {
   const generatedQualityPending = /procedural review artwork|does not yet match Battery Buddy/i.test(record.notes || "");
-  const sourceTooSmall = supplied && /below the 2048 px production requirement/i.test(supplied.notes || "");
+  const sourceTooSmall = supplied && /below (?:the )?2048 px production (?:master )?requirement/i.test(supplied.notes || "");
   const guideNameNeedsCleanup = supplied && /canonical uppercase name|clothing needs/i.test(supplied.notes || "");
   const leonEmptyBlocked = record.id === "leon";
   const isApproved = record.status === "approved";

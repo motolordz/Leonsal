@@ -19,8 +19,8 @@ This report separates artwork that exists for review from artwork approved for p
 
 ## Immediate Blockers
 
-- Leon: not approved for production runtime; supplied source intake has 4/5 states; guide clothing/name text needs production cleanup; supplied source is below 2048 px production master requirement; Leon empty generation attempts failed real-alpha gate; guide art workflow has style-direction evidence but built-in generation failed transparent 2048px masters; visual quality below Battery Buddy V3 precedent
-- Zaya: not approved for production runtime; guide clothing/name text needs production cleanup; supplied source is below 2048 px production master requirement; guide art workflow has style-direction evidence but built-in generation failed transparent 2048px masters; visual quality below Battery Buddy V3 precedent
+- Leon: not approved for production runtime; supplied source intake has 4/5 states; supplied source is below 2048 px production master requirement; Leon empty generation attempts failed real-alpha gate; guide art workflow has style-direction evidence but built-in generation failed transparent 2048px masters; visual quality below Battery Buddy V3 precedent
+- Zaya: not approved for production runtime; supplied source is below 2048 px production master requirement; guide art workflow has style-direction evidence but built-in generation failed transparent 2048px masters; visual quality below Battery Buddy V3 precedent
 - Letter A: not approved for production runtime; visual quality below Battery Buddy V3 precedent
 - Letter B: not approved for production runtime; visual quality below Battery Buddy V3 precedent
 - Letter C: not approved for production runtime; visual quality below Battery Buddy V3 precedent

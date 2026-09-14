@@ -43,10 +43,6 @@
           "count": 2
         },
         {
-          "blocker": "guide clothing/name text needs production cleanup",
-          "count": 2
-        },
-        {
           "blocker": "not approved for production runtime",
           "count": 2
         },
@@ -57,6 +53,10 @@
         {
           "blocker": "visual quality below Battery Buddy V3 precedent",
           "count": 2
+        },
+        {
+          "blocker": "Leon empty generation attempts failed real-alpha gate",
+          "count": 1
         }
       ]
     },
@@ -175,7 +175,6 @@
       "blockers": [
         "not approved for production runtime",
         "supplied source intake has 4/5 states",
-        "guide clothing/name text needs production cleanup",
         "supplied source is below 2048 px production master requirement",
         "Leon empty generation attempts failed real-alpha gate",
         "guide art workflow has style-direction evidence but built-in generation failed transparent 2048px masters",
@@ -198,7 +197,7 @@
         "runtimeExposure": "pass",
         "visualQuality": "fail",
         "identityConsistency": "pending-visual-review",
-        "guideNameText": "fail",
+        "guideNameText": "pending",
         "approvalStatus": "blocked"
       },
       "evidence": [
@@ -206,7 +205,6 @@
       ],
       "blockers": [
         "not approved for production runtime",
-        "guide clothing/name text needs production cleanup",
         "supplied source is below 2048 px production master requirement",
         "guide art workflow has style-direction evidence but built-in generation failed transparent 2048px masters",
         "visual quality below Battery Buddy V3 precedent"
