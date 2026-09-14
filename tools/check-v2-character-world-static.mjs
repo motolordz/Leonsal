@@ -42,6 +42,8 @@ for (const text of [
   'makeSvg(record, state',
   'renderStateRunway',
   'character-runway-state',
+  'gridPreviewState',
+  'dataset.previewState',
   'statusFilter',
   'data-status',
   'character-world-empty',

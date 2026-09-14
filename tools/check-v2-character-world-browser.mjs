@@ -43,6 +43,10 @@ for (const value of ['0', '25', '50', '75', '100']) {
   const state = await page.locator('.selected-character-card svg').getAttribute('class');
   assert(state && state.includes(`character-state-${value === '0' ? 'empty' : value === '25' ? 'low' : value === '50' ? 'calm' : value === '75' ? 'happy' : 'excited'}`), `State class did not update for ${value}`);
   assert.equal(await page.locator(`.character-runway-state[aria-pressed="true"] strong`).innerText(), `${value}%`, `Runway active state did not track ${value}`);
+  const expectedState = value === '0' ? 'empty' : value === '25' ? 'low' : value === '50' ? 'calm' : value === '75' ? 'happy' : 'excited';
+  assert.equal(await page.locator('.character-world-card').first().getAttribute('data-preview-state'), expectedState, `Grid preview state did not track ${value}`);
+  const gridClass = await page.locator('.character-world-card').first().locator('svg').getAttribute('class');
+  assert(gridClass && gridClass.includes(`character-state-${expectedState}`), `Grid card did not render ${expectedState} preview`);
 }
 
 async function assertSelectedFiveStates(characterId, displayName, expectedBodyClass) {

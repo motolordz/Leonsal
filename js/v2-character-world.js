@@ -47,6 +47,7 @@
   let filter = 'all';
   let statusFilter = 'all';
   let settings = null;
+  let gridPreviewState = 'calm';
 
   const stateForEnergy = value => {
     const percent = Number(value);
@@ -291,6 +292,7 @@
   function renderSelected() {
     if (!selected) return;
     const state = stateForEnergy(energy.value);
+    gridPreviewState = state;
     energyValue.textContent = `${energy.value}%`;
     selectedHost.replaceChildren();
     const figure = document.createElement('figure');
@@ -324,6 +326,7 @@
       button.addEventListener('click', () => {
         energy.value = String(value);
         renderSelected();
+        renderGrid();
       });
       return button;
     }));
@@ -342,12 +345,14 @@
       button.addEventListener('click', () => {
         energy.value = String(value);
         renderSelected();
+        renderGrid();
       });
       return button;
     }));
   }
 
   function renderGrid() {
+    const previewState = gridPreviewState || stateForEnergy(energy.value);
     const visible = characters.filter(item => {
       const familyMatch = filter === 'all' || item.family === filter;
       const statusMatch = statusFilter === 'all'
@@ -379,11 +384,12 @@
       button.dataset.character = record.id;
       button.dataset.family = record.family;
       button.dataset.status = record.status === 'approved' ? 'approved' : 'pending';
-      button.append(makeSvg(record, 'calm'));
+      button.dataset.previewState = previewState;
+      button.append(makeSvg(record, previewState));
       const label = document.createElement('strong');
       label.textContent = record.displayName;
       const detail = document.createElement('span');
-      detail.textContent = record.status === 'approved' ? 'Approved' : 'Five-state vector fallback';
+      detail.textContent = `${stateLabels[previewState]} ${record.status === 'approved' ? 'approved art' : 'vector fallback'}`;
       button.append(label, detail);
       button.addEventListener('click', () => {
         selected = record;
@@ -423,7 +429,10 @@
       document.querySelector('[data-chase-character="zaya"]').append(makeSvg(characters.find(item => item.id === 'zaya') || selected, 'excited', { decorative: true }));
       renderStatePicker();
       renderGrid();
-      energy.addEventListener('input', renderSelected);
+      energy.addEventListener('input', () => {
+        renderSelected();
+        renderGrid();
+      });
       familyButtons.forEach(button => {
         button.addEventListener('click', () => {
           filter = button.dataset.familyFilter;
