@@ -13,6 +13,7 @@ assert(html.includes('class="game-scene character-world-hero"'), 'Character Worl
 assert(html.includes('id="settingsToggle"'), 'Character World must expose shared settings toggle');
 assert(html.includes('id="settings"'), 'Character World must expose shared settings panel');
 assert(html.includes('id="characterRuntimeTruth"'), 'Character World must expose runtime art truth');
+assert(html.includes('id="characterStateRunway"'), 'Character World must expose five-state runway');
 assert(html.includes('js/v2-character-renderer.js'), 'Character World shared renderer script missing');
 assert(html.includes('js/v2-character-world.js'), 'Character World script missing');
 assert(home.includes('href="v2-character-world.html"'), 'V2 home must link child-facing Character World');
@@ -36,6 +37,8 @@ for (const text of [
   'LeonSalCharacterRenderer',
   'makeCharacter(record, state',
   'makeSvg(record, state',
+  'renderStateRunway',
+  'character-runway-state',
   'Procedural vector fallback',
   'new LeonSalGameShell',
   'new LeonSalV2.SettingsPanel'
@@ -47,6 +50,9 @@ assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejecte
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(js), 'Character World JS must not reference blocked art paths');
 assert(css.includes('.character-world-grid'), 'Character World grid styling missing');
 assert(css.includes('.character-runtime-truth'), 'Runtime truth styling missing');
+assert(css.includes('.character-state-runway'), 'Five-state runway styling missing');
+assert(css.includes('.character-runway-state'), 'Five-state runway state styling missing');
+assert(css.includes('scroll-snap-type: x mandatory'), 'Mobile runway must scroll predictably');
 assert(css.includes('@keyframes characterChaseLeon'), 'Leon chase animation missing');
 assert(css.includes('@keyframes footballDribble'), 'Football play animation missing');
 assert(css.includes('@keyframes hoopsArc'), 'Hoop play animation missing');

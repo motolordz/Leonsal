@@ -30,6 +30,7 @@ assert(cardCount >= 60, `Expected broad character library, found ${cardCount}`);
 assert(await page.getByRole('heading', { name: 'Character World' }).isVisible(), 'Heading missing');
 assert(await page.locator('[data-chase-character="leon"] svg').isVisible(), 'Leon procedural runner missing');
 assert(await page.locator('[data-chase-character="zaya"] svg').isVisible(), 'Zaya procedural runner missing');
+assert.equal(await page.locator('.character-runway-state').count(), 5, 'Selected character runway must render five states');
 
 for (const value of ['0', '25', '50', '75', '100']) {
   await page.locator('#characterEnergy').evaluate((input, next) => {
@@ -39,6 +40,7 @@ for (const value of ['0', '25', '50', '75', '100']) {
   await page.waitForTimeout(40);
   const state = await page.locator('.selected-character-card svg').getAttribute('class');
   assert(state && state.includes(`character-state-${value === '0' ? 'empty' : value === '25' ? 'low' : value === '50' ? 'calm' : value === '75' ? 'happy' : 'excited'}`), `State class did not update for ${value}`);
+  assert.equal(await page.locator(`.character-runway-state[aria-pressed="true"] strong`).innerText(), `${value}%`, `Runway active state did not track ${value}`);
 }
 
 async function assertSelectedFiveStates(characterId, displayName, expectedBodyClass) {
@@ -67,6 +69,11 @@ async function assertSelectedFiveStates(characterId, displayName, expectedBodyCl
     }
     assert(await page.locator('.selected-character-card figcaption strong').getByText(displayName, { exact: true }).isVisible(), `${displayName} did not remain selected at ${state}`);
   }
+  await page.locator('.character-runway-state[data-state="empty"]').click();
+  assert.equal(await page.locator('#characterEnergy').inputValue(), '0', `${displayName} runway empty state did not set energy`);
+  assert(await page.locator('.selected-character-card figcaption strong').getByText(displayName, { exact: true }).isVisible(), `${displayName} changed identity after runway click`);
+  await page.locator('.character-runway-state[data-state="excited"]').click();
+  assert.equal(await page.locator('#characterEnergy').inputValue(), '100', `${displayName} runway excited state did not set energy`);
 }
 
 await assertSelectedFiveStates('zaya', 'Zaya', 'home-guide-svg');

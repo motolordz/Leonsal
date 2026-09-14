@@ -35,6 +35,7 @@
   const energy = document.getElementById('characterEnergy');
   const energyValue = document.getElementById('characterEnergyValue');
   const statePicker = document.getElementById('statePicker');
+  const stateRunway = document.getElementById('characterStateRunway');
   const count = document.getElementById('characterCount');
   const runtimeTruth = document.getElementById('characterRuntimeTruth');
   const familyButtons = [...document.querySelectorAll('[data-family-filter]')];
@@ -302,6 +303,28 @@
     for (const card of grid.children) {
       card.classList.toggle('is-selected', card.dataset.character === selected.id);
     }
+    renderStateRunway(state);
+  }
+
+  function renderStateRunway(activeState = stateForEnergy(energy.value)) {
+    if (!stateRunway || !selected) return;
+    stateRunway.replaceChildren(...STATES.map(([state, value]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'character-runway-state';
+      button.dataset.state = state;
+      button.setAttribute('aria-pressed', String(state === activeState));
+      button.setAttribute('aria-label', `${selected.displayName} ${stateLabels[state]} ${value} percent`);
+      button.append(makeSvg(selected, state, { decorative: true }));
+      const label = document.createElement('span');
+      label.innerHTML = `<strong>${value}%</strong><small>${stateLabels[state]}</small>`;
+      button.append(label);
+      button.addEventListener('click', () => {
+        energy.value = String(value);
+        renderSelected();
+      });
+      return button;
+    }));
   }
 
   function renderStatePicker() {
