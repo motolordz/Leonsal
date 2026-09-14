@@ -112,8 +112,8 @@ try {
     assert(uniqueMarkup.size >= 3, `${id} five states are not visually distinct enough`);
   }
 
-  assert(result.output.find(item => item.id === 'leon')?.text.includes('Leon'), 'Leon rendered without visible name');
-  assert(result.output.find(item => item.id === 'zaya')?.text.includes('Zaya'), 'Zaya rendered without visible name');
+  assert(result.output.find(item => item.id === 'leon')?.text.includes('LEON'), 'Leon rendered without uppercase visible name');
+  assert(result.output.find(item => item.id === 'zaya')?.text.includes('ZAYA'), 'Zaya rendered without uppercase visible name');
   assert(result.output.find(item => item.id === 'letter-z')?.text.includes('Z'), 'Letter Z rendered without glyph');
   assert(result.output.find(item => item.id === 'number-10')?.text.includes('10'), 'Number 10 rendered without two-digit glyph');
   assert.deepEqual(errors, [], `Renderer browser errors: ${errors.join('\n')}`);

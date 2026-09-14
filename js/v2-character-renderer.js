@@ -146,7 +146,7 @@
         <path d="M83 179 q-16 12 -27 27" class="clothes-limb"/>
         <path d="M137 179 q18 10 30 25" class="clothes-limb"/>
         <path d="M110 134 l8 16 18 2 -13 12 4 18 -17 -9 -16 9 3 -18 -13 -12 18 -2z" fill="#ffcf48" stroke="#fff" stroke-width="3"/>
-        <text x="110" y="168" text-anchor="middle" class="guide-name">${guide.name}</text>
+        <text x="110" y="168" text-anchor="middle" class="guide-name">${guide.name.toUpperCase()}</text>
       </g>`;
     return svg;
   }

@@ -134,7 +134,7 @@
     if (kind === 'leon' || kind === 'zaya') {
       const shirt = kind === 'zaya' ? '#ff5dab' : '#1872e8';
       const hair = kind === 'zaya' ? '#4a2418' : '#1d1512';
-      const name = kind === 'zaya' ? 'Zaya' : 'Leon';
+      const name = kind === 'zaya' ? 'ZAYA' : 'LEON';
       const bow = kind === 'zaya' ? '<path d="M80 35 q-26 -18 -34 7 q21 18 42 6zM140 35 q26 -18 34 7 q-21 18 -42 6z" fill="#ff5dab"/>' : '<path d="M66 45 q44 -42 93 0 q-38 -18 -93 0z" fill="#12355e"/>';
       return `
         <g class="character-body guide-body">

@@ -24,6 +24,7 @@ for (const mode of ['football', 'hoops', 'hopscotch', 'calm']) {
 for (const text of ['LeonSalCharacterRenderer', 'makeCharacter', 'makeGuide', 'makeLearningGlyph', 'Leon', 'Zaya', 'supportedGuideStates']) {
   assert(renderer.includes(text), `Shared guide renderer missing: ${text}`);
 }
+assert(renderer.includes('guide.name.toUpperCase()'), 'Shared guide renderer must render uppercase LEON/ZAYA identity text');
 for (const family of ['alphabet', 'number']) {
   assert(renderer.includes(family), `Shared renderer missing ${family} support`);
 }
@@ -36,6 +37,7 @@ for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
 for (const text of ['makeCharacter', 'LeonSalCharacterRenderer', 'data-svg-guide', 'home-guide-svg']) {
   assert(js.includes(text), `Home procedural guide renderer missing: ${text}`);
 }
+assert(js.includes('guide.name.toUpperCase()'), 'Home fallback guide renderer must render uppercase LEON/ZAYA identity text');
 assert(homeJs.includes("querySelector('[data-home-play-mode]')"), 'Home play mode script should work on both landing and hub scenes');
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(renderer), 'Shared guide renderer must not reference blocked art paths');
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(js), 'Home procedural guide renderer must not reference blocked art paths');

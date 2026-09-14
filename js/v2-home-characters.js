@@ -36,7 +36,7 @@
         <path d="M83 179 q-16 12 -27 27" fill="none" stroke="#1f4d8d" stroke-width="15" stroke-linecap="round"/>
         <path d="M137 179 q18 10 30 25" fill="none" stroke="#1f4d8d" stroke-width="15" stroke-linecap="round"/>
         <path d="M110 134 l8 16 18 2 -13 12 4 18 -17 -9 -16 9 3 -18 -13 -12 18 -2z" fill="#ffcf48" stroke="#fff" stroke-width="3"/>
-        <text x="110" y="168" text-anchor="middle" fill="#fff" stroke="rgba(20,58,109,.34)" stroke-width="2" paint-order="stroke" font-family="system-ui, sans-serif" font-size="24" font-weight="1000">${guide.name}</text>
+        <text x="110" y="168" text-anchor="middle" fill="#fff" stroke="rgba(20,58,109,.34)" stroke-width="2" paint-order="stroke" font-family="system-ui, sans-serif" font-size="24" font-weight="1000">${guide.name.toUpperCase()}</text>
       </g>`;
     return svg;
   }
