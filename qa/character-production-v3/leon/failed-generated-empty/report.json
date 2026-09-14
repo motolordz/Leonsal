@@ -1,0 +1,41 @@
+{
+  "character": "leon",
+  "state": "empty",
+  "status": "failed-closed",
+  "productionApproved": false,
+  "attempts": [
+    {
+      "path": "assets/source-safe-keeping/generated-attempts/leon/empty/attempt-01-baked-checkerboard.png",
+      "sha256": "493e7c08b257d9ea96fe8d04a550c4a0e122b85c0a22a125ec09d8678eef9761",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": false,
+      "transparentPixels": 0,
+      "cornerAlpha": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "productionVerdict": "rejected",
+      "reason": "Generated file contains no usable transparent alpha; checkerboard/background is baked into the pixels."
+    },
+    {
+      "path": "assets/source-safe-keeping/generated-attempts/leon/empty/attempt-02-baked-checkerboard.png",
+      "sha256": "db690dfa14da8662dbe10bc4e2070788d28458461b40835a15f8a2ecbfbc8977",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": false,
+      "transparentPixels": 0,
+      "cornerAlpha": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "productionVerdict": "rejected",
+      "reason": "Generated file contains no usable transparent alpha; checkerboard/background is baked into the pixels."
+    }
+  ],
+  "nextRequiredAction": "Create a real transparent Leon empty master at production quality before Leon can become a complete five-state approved character."
+}
