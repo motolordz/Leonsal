@@ -36,6 +36,7 @@
 - [x] Add safe V2 offline cache registration for current V2 routes, shared engines and approved Battery web assets, with review/source/QA/rejected paths blocked.
 - [x] Add route-level mobile performance smoke budget for current V2 activities at 390x844, including conservative FPS sampling and long-task observation.
 - [x] Add route-level mobile accessibility smoke for the V2 home and eight current V2 activities at 390x844, including touch target size, accessible names, keyboard settings close, reduced-motion cap, labelled canvases, horizontal overflow and blocked-art request checks.
+- [x] Verify the internal character review surface in Chromium and WebKit across phone, tablet and desktop widths, including vector review derivatives, missing-state fallback, dark-background inspection, reference lazy-load and no review-art leakage into gameplay.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 
@@ -54,6 +55,7 @@ These changes remain preview work. They do not approve character art, claim prod
 Current registry: 69 canonical characters, 1 approved (Battery Buddy), 68 pending. Five approved energy-state derivatives; 340 pending/review energy-state assets. The completeness gate correctly fails.
 
 - [x] Recover and preserve the five supplied individual Elephant PNGs; expose them only in the explicit character review page.
+- [x] Recover and preserve supplied individual Leon/Zaya/Elephant review PNGs and real SVG trace derivatives; expose them only in the explicit character review page. Leon still lacks a supplied empty state and all guide review art remains pending production approval.
 - [ ] Recover remaining original individual five-pose PNGs from “Math Game Upgrade”; inspect actual bytes, alpha, dimensions, identity and provenance before deciding whether replacements are needed.
 - [ ] Resolve canonical Leon/Zaya identity review. Existing failed method pilots remain unapproved.
 - [ ] Deliver verified individual masters (2048+ px longest edge), matching optimised derivatives and exact visible LEON/ZAYA names.
