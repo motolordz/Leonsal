@@ -25,6 +25,7 @@ const SAFE_ASSETS = [
   './v2-sort-it.html',
   './v2-planet-pals.html',
   './v2-build-solar-system.html',
+  './v2-day-night.html',
   './v2-light-trail.html',
   './v2-hold-to-breathe.html',
   './v2-trace-engine.html',

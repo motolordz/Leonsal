@@ -28,6 +28,7 @@ const routes = [
   'v2-sort-it.html',
   'v2-planet-pals.html',
   'v2-build-solar-system.html',
+  'v2-day-night.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -119,7 +120,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 15);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 16);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -334,6 +335,21 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__solarBuildProofState?.());
       assert.equal(state.placed.length, 0, 'Build Solar reset did not clear placements');
+    }
+    if (route === 'v2-day-night.html') {
+      assert(await page.getByText(/not a clock/i).isVisible(), 'Day & Night missing cycle truth note');
+      await page.getByRole('button', { name: 'Next' }).click();
+      let state = await page.evaluate(() => window.__dayNightProofState?.());
+      assert.equal(state.phase, 'day', 'Day & Night Next did not advance to day');
+      assert.equal(state.hasTapAlternative, true, 'Day & Night missing tap alternative');
+      assert.equal(state.cycleNote, true, 'Day & Night missing cycle truth flag');
+      const box = await page.locator('#world').boundingBox();
+      await page.mouse.click(box.x + box.width * .88, box.y + box.height * .42);
+      state = await page.evaluate(() => window.__dayNightProofState?.());
+      assert.equal(state.phase, 'night', 'Day & Night tap did not set night phase');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__dayNightProofState?.());
+      assert.equal(state.phase, 'morning', 'Day & Night reset did not return to morning');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();
