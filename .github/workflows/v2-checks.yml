@@ -1,0 +1,28 @@
+name: LeonSal V2 checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - fix/character-art-pipeline-v2
+    paths-ignore:
+      - "qa/**"
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run check:syntax
+      - run: npm run check:registries
+      - run: npm run check:v2-browser
+      - run: npm run check:characters-browser
