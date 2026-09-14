@@ -77,6 +77,25 @@ try {
     await page.waitForFunction(() => document.querySelectorAll('.character-world-card').length >= 60);
     assert.equal(await page.locator('.state-picker button').count(), 5);
     assert.equal(await page.locator('.play-mode-picker button').count(), 4);
+    const expectedCharacterBodies = [
+      ['battery-buddy', '.battery-body'],
+      ['world-dinosaur', '.dinosaur-body'],
+      ['world-earth', '.earth-body'],
+      ['world-robot', '.robot-body'],
+      ['world-magnifier', '.magnifier-body'],
+      ['world-puzzle', '.puzzle-body'],
+      ['world-train', '.train-body'],
+      ['double-decker', '.vehicle-body'],
+      ['plane', '.plane-body'],
+      ['boat', '.boat-body']
+    ];
+    for (const [characterId, bodySelector] of expectedCharacterBodies) {
+      assert.equal(
+        await page.locator(`.character-world-card[data-character="${characterId}"] ${bodySelector}`).count(),
+        1,
+        `Character World ${characterId} must render ${bodySelector}`
+      );
+    }
     assert((await page.locator('.character-runtime-truth').innerText()).includes('approved runtime states'), 'Character World runtime truth missing approved count');
     assert((await page.locator('.character-runtime-truth').innerText()).includes('pending review states'), 'Character World runtime truth missing pending count');
     await page.locator('[data-family-filter="alphabet"]').click();
