@@ -622,9 +622,23 @@ body[data-contrast="strong"] .game-topbar {
   background:
     radial-gradient(circle at 30% 20%, rgba(255,216,77,.36), transparent 20%),
     radial-gradient(circle at 78% 18%, rgba(241,90,166,.22), transparent 22%),
-    linear-gradient(180deg, #dff4ff, #fff7d9 70%, #c8f1ce);
+    radial-gradient(ellipse at 54% 103%, rgba(69,189,107,.35) 0 34%, transparent 35%),
+    linear-gradient(180deg, #dff4ff, #fff7d9 68%, #c8f1ce 69% 100%);
   overflow: hidden;
   isolation: isolate;
+}
+.hub-art::before {
+  content: "";
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  bottom: 0;
+  height: 26%;
+  background:
+    radial-gradient(ellipse at 18% 100%, rgba(69,189,107,.62) 0 34%, transparent 35%),
+    radial-gradient(ellipse at 76% 100%, rgba(47,145,232,.22) 0 38%, transparent 39%),
+    linear-gradient(180deg, rgba(255,255,255,.16), rgba(69,189,107,.28));
+  z-index: 0;
 }
 .hub-art .landing-sun { z-index: 1; }
 .hub-art .landing-runner { bottom: 20%; }
@@ -633,6 +647,76 @@ body[data-contrast="strong"] .game-topbar {
 .hub-art .landing-ball {
   animation: landingBall 6.5s ease-in-out infinite;
 }
+.hub-cloud {
+  position: absolute;
+  z-index: 1;
+  width: 112px;
+  height: 42px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.82);
+  box-shadow: 24px -12px 0 6px rgba(255,255,255,.76), 52px 0 0 2px rgba(255,255,255,.68);
+}
+.hub-cloud-one { left: 9%; top: 15%; animation: hub-cloud-drift 11s ease-in-out infinite; }
+.hub-cloud-two { right: 18%; top: 29%; transform: scale(.7); animation: hub-cloud-drift 13s ease-in-out infinite reverse; }
+.hub-park {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 12%;
+  height: 38%;
+  z-index: 1;
+  border-radius: 50% 50% 0 0 / 24% 24% 0 0;
+  background:
+    linear-gradient(90deg, transparent 0 6%, rgba(255,255,255,.7) 7% 9%, transparent 10% 100%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.24) 0 22px, transparent 22px 54px),
+    linear-gradient(180deg, #bff0b6, #8bd982);
+  box-shadow: inset 0 12px 0 rgba(255,255,255,.28), 0 18px 28px rgba(46, 102, 74, .14);
+}
+.hub-sports-goal {
+  position: absolute;
+  left: 7%;
+  bottom: 33%;
+  z-index: 2;
+  width: 74px;
+  height: 52px;
+  border: 7px solid rgba(255,255,255,.92);
+  border-bottom: 0;
+  border-radius: 18px 18px 0 0;
+  box-shadow: inset 0 0 0 2px rgba(47,145,232,.22), 0 12px 18px rgba(19,35,67,.1);
+}
+.hub-sports-goal::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -22px;
+  width: 86px;
+  height: 24px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(19,35,67,.13), transparent 68%);
+}
+.hub-hopscotch {
+  position: absolute;
+  right: 10%;
+  bottom: 29%;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 32px);
+  gap: 5px;
+  transform: rotate(-8deg);
+}
+.hub-hopscotch i {
+  display: grid;
+  place-items: center;
+  min-height: 32px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.72);
+  color: #355e8d;
+  font-style: normal;
+  font-weight: 1000;
+  box-shadow: inset 0 -4px 0 rgba(19,35,67,.08);
+}
+.hub-hopscotch i:first-child { grid-column: 1 / -1; width: 32px; justify-self: center; }
 
 .hub-battery {
   position: absolute;
@@ -665,6 +749,7 @@ body[data-contrast="strong"] .game-topbar {
   border-radius: 999px;
   background: linear-gradient(90deg, transparent, #8cdeff, #ff8dc8, #ffd84d, transparent);
   filter: blur(.2px) drop-shadow(0 0 14px rgba(140,222,255,.62));
+  z-index: 2;
 }
 .hub-bubble {
   position: absolute;
@@ -871,7 +956,9 @@ body[data-contrast="strong"] .game-topbar {
 }
 
 .runner-leon span {
-  background: linear-gradient(180deg, #1f8eff, #0966cf);
+  background:
+    radial-gradient(circle at 50% 36%, #ffd84d 0 12%, transparent 13%),
+    linear-gradient(180deg, #1f8eff, #0966cf);
 }
 
 .runner-leon::before {
@@ -889,7 +976,9 @@ body[data-contrast="strong"] .game-topbar {
 }
 
 .runner-zaya span {
-  background: linear-gradient(180deg, #ff6ebd, #e13c91);
+  background:
+    radial-gradient(circle at 50% 36%, #ffd84d 0 12%, transparent 13%),
+    linear-gradient(180deg, #ff6ebd, #e13c91);
 }
 
 .runner-zaya::before {
@@ -1250,6 +1339,11 @@ body[data-calm="true"] .hub-art {
   70% { transform: translate3d(46%, 0, 0) rotate(330deg); }
 }
 
+@keyframes hub-cloud-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(var(--cloud-scale, 1)); }
+  50% { transform: translate3d(18px, -6px, 0) scale(var(--cloud-scale, 1)); }
+}
+
 @keyframes landingFloat {
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-18px) scale(1.05); }
@@ -1258,6 +1352,7 @@ body[data-calm="true"] .hub-art {
 @media (prefers-reduced-motion: reduce) {
   .hub-orbit,
   .hub-bubble,
+  .hub-cloud,
   .runner-leon,
   .runner-zaya,
   .landing-ball,
