@@ -2145,7 +2145,8 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .day-night-world[data-phase="evening"] { background: linear-gradient(180deg, #fb7185, #fbbf24 48%, #a7f3d0); }
 .day-night-world[data-phase="night"] { background: linear-gradient(180deg, #16245a, #243f86 58%, #365314); color: #fff; }
 .sky-glow { position: absolute; left: 50%; top: 42%; width: min(86vw, 520px); aspect-ratio: 1; border-radius: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(255,255,255,.24), transparent 60%); z-index: 1; }
-.sky-body { position: absolute; left: var(--x); top: var(--y); z-index: 4; width: 108px; aspect-ratio: 1; border: 0; border-radius: 50%; transform: translate(-50%,-50%); font: inherit; font-size: .8rem; font-weight: 1000; color: #12213f; box-shadow: inset -12px -16px 0 rgba(19,35,67,.13), 0 18px 32px rgba(19,35,67,.18); transition: left .32s ease, top .32s ease, transform .14s ease, opacity .22s ease; touch-action: manipulation; }
+.sky-body { position: absolute; left: var(--x); top: var(--y); z-index: 4; width: 116px; aspect-ratio: 1; border: 0; border-radius: 50%; transform: translate(-50%,-50%); font: inherit; font-size: .8rem; font-weight: 1000; color: #12213f; box-shadow: inset -12px -16px 0 rgba(19,35,67,.13), 0 18px 32px rgba(19,35,67,.18); transition: left .32s ease, top .32s ease, transform .14s ease, opacity .22s ease; touch-action: manipulation; padding: 5px; display: grid; place-items: center; }
+.sky-body .procedural-character-svg { width: 100%; height: 100%; }
 .sky-body:active { transform: translate(-50%,-50%) scale(.96); }
 .sun-body { background: radial-gradient(circle at 34% 28%, #fff 0 12%, #fde047 13% 58%, #f97316 100%); }
 .moon-body { background: radial-gradient(circle at 68% 28%, #c7d2fe 0 20%, transparent 21%), #f8fafc; }
@@ -2191,14 +2192,16 @@ body[data-motion="off"] .week-day { transition: none; }
 .seasons-world[data-season="autumn"] { background: linear-gradient(180deg, #fed7aa, #fde68a 56%, #f5d0a8); }
 .seasons-world[data-season="winter"] { background: linear-gradient(180deg, #dbeafe, #f8fafc 58%, #dbeafe); }
 .seasons-world canvas { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; pointer-events: none; }
-.season-tree { position: absolute; left: 50%; top: 45%; z-index: 3; width: min(62vw, 330px); height: min(62vw, 330px); transform: translate(-50%,-50%); }
+.season-tree { position: absolute; left: 50%; top: 45%; z-index: 3; width: min(62vw, 330px); height: min(62vw, 330px); transform: translate(-50%,-50%); display: grid; place-items: center; filter: drop-shadow(0 22px 28px rgba(19,35,67,.18)); }
+.season-tree .procedural-character-svg { width: 100%; height: 100%; }
 .tree-trunk { position: absolute; left: 45%; top: 42%; width: 16%; height: 42%; border-radius: 999px 999px 16px 16px; background: linear-gradient(90deg, #8b5a2b, #b7793c); box-shadow: inset -8px 0 0 rgba(19,35,67,.1); }
 .tree-top { position: absolute; left: 50%; top: 31%; width: 76%; aspect-ratio: 1; border-radius: 48% 52% 46% 54%; transform: translate(-50%,-50%); background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.45) 0 12%, transparent 13%), #86efac; box-shadow: inset -18px -20px 0 rgba(19,35,67,.08), 0 22px 40px rgba(34,197,94,.16); }
 .seasons-world[data-season="summer"] .tree-top { background-color: #22c55e; }
 .seasons-world[data-season="autumn"] .tree-top { background: radial-gradient(circle at 28% 28%, #fbbf24 0 18%, transparent 19%), radial-gradient(circle at 70% 60%, #fb923c 0 19%, transparent 20%), #f97316; }
 .seasons-world[data-season="winter"] .tree-top { background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.82) 0 18%, transparent 19%), #e2e8f0; }
 .season-choices { position: absolute; left: 7%; right: 7%; top: 12%; z-index: 4; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 9px; }
-.season-choice { min-height: 62px; border: 0; border-radius: 20px; background: rgba(255,255,255,.72); color: #173356; font: inherit; font-size: .8rem; font-weight: 1000; box-shadow: 0 12px 22px rgba(19,35,67,.12), inset 0 -8px 0 rgba(19,35,67,.06); touch-action: manipulation; }
+.season-choice { min-height: 92px; border: 0; border-radius: 20px; background: rgba(255,255,255,.72); color: #173356; font: inherit; font-size: .8rem; font-weight: 1000; box-shadow: 0 12px 22px rgba(19,35,67,.12), inset 0 -8px 0 rgba(19,35,67,.06); touch-action: manipulation; display: grid; grid-template-rows: minmax(58px,1fr) auto; place-items: center; padding: 6px; }
+.season-choice .procedural-character-svg { width: min(78px, 94%); height: min(78px, 94%); }
 .season-choice[data-active="true"] { background: #facc15; outline: 4px solid rgba(255,255,255,.72); }
 .seasons-world .scene-status { z-index: 5; background: rgba(255,255,255,.6); color: #173356; }
 .seasons-world .drawer-controls { z-index: 5; }
@@ -2515,7 +2518,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .solar-piece.mercury { width: 46px; height: 46px; }
   .solar-piece.venus { width: 54px; height: 54px; }
   .solar-piece.mars { width: 50px; height: 50px; }
-  .sky-body { width: 82px; font-size: .68rem; }
+  .sky-body { width: 88px; font-size: .68rem; }
   .cycle-note { bottom: 16%; }
   .week-ribbon { grid-template-columns: repeat(4, minmax(0,1fr)); top: 12%; gap: 7px; }
   .week-day { min-height: 50px; border-radius: 16px; font-size: .75rem; }
@@ -2524,7 +2527,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .month-dot { width: 54px; height: 46px; border-radius: 14px; font-size: .62rem; transform: translate(-50%,-50%) rotate(calc(var(--month-index) * 30deg)) translateY(-132px) rotate(calc(var(--month-index) * -30deg)); }
   .month-center { top: 45%; min-height: 92px; border-radius: 28px; font-size: 2rem; }
   .season-choices { top: 12%; grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .season-choice { min-height: 50px; border-radius: 16px; }
+  .season-choice { min-height: 78px; border-radius: 16px; }
   .season-tree { top: 47%; width: 260px; height: 260px; }
   .clock-face { width: 288px; top: 42%; border-width: 8px; }
   .clock-number { width: 40px; height: 40px; font-size: .95rem; }

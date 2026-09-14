@@ -30,19 +30,21 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
     const cycle = new LeonSalV2.TimeCycleEngine([
-      { id: 'spring', label: 'Spring', cue: 'Spring brings new flowers.' },
-      { id: 'summer', label: 'Summer', cue: 'Summer brings warm sunshine.' },
-      { id: 'autumn', label: 'Autumn', cue: 'Autumn brings falling leaves.' },
-      { id: 'winter', label: 'Winter', cue: 'Winter brings quiet snow.' }
+      { id: 'spring', label: 'Spring', cue: 'Spring brings new flowers.', characterId: 'world-tree', displayName: 'Tree' },
+      { id: 'summer', label: 'Summer', cue: 'Summer brings warm sunshine.', characterId: 'world-sun', displayName: 'Sun' },
+      { id: 'autumn', label: 'Autumn', cue: 'Autumn brings falling leaves.', characterId: 'world-tree', displayName: 'Tree' },
+      { id: 'winter', label: 'Winter', cue: 'Winter brings quiet snow.', characterId: 'world-moon', displayName: 'Moon' }
     ]);
     const canvas = document.querySelector('#seasonCanvas');
     const world = document.querySelector('#world');
     const choices = document.querySelector('#choices');
     const status = document.querySelector('#status');
+    const treeHost = document.querySelector('.season-tree');
     const particles = new LeonSalV2.ParticleEngine(canvas, motion, settings);
 
     new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
@@ -66,14 +68,33 @@
       particles.seed(kind, particleCount());
       particles.start(kind);
     }
+    function seasonRecord(season) {
+      return { id: season.characterId, displayName: season.displayName, family: 'world', registryGroup: 'world' };
+    }
+    function renderSeasonCharacter(target, season, state) {
+      const renderer = window.LeonSalCharacterRenderer;
+      target.replaceChildren();
+      if (renderer) target.append(renderer.makeCharacter(seasonRecord(season), state, { decorative: false }));
+      else target.textContent = season.label;
+    }
+    function renderChoiceButton(button, season, active) {
+      renderSeasonCharacter(button, season, active ? 'excited' : 'calm');
+      const label = document.createElement('span');
+      label.className = 'choice-label';
+      label.textContent = season.label;
+      button.append(label);
+    }
 
     function setSeason(index) {
       cycle.set(index);
       const current = cycle.sequence.current();
       world.dataset.season = current.id;
       status.textContent = current.cue;
+      renderSeasonCharacter(treeHost, current, 'happy');
       document.querySelectorAll('.season-choice').forEach((button, buttonIndex) => {
-        button.dataset.active = String(buttonIndex === cycle.sequence.index);
+        const active = buttonIndex === cycle.sequence.index;
+        button.dataset.active = String(active);
+        renderChoiceButton(button, cycle.sequence.items[buttonIndex], active);
       });
       paintParticles(current.id === 'winter' ? 'rain' : current.id === 'autumn' ? 'stars' : 'sparkles');
     }
@@ -85,8 +106,8 @@
         button.className = 'season-choice';
         button.type = 'button';
         button.dataset.season = season.id;
-        button.textContent = season.label;
         button.setAttribute('aria-label', `Choose ${season.label}`);
+        renderChoiceButton(button, season, index === cycle.sequence.index);
         button.addEventListener('click', () => setSeason(index));
         choices.append(button);
       });
@@ -107,6 +128,7 @@
       index: cycle.sequence.index,
       count: cycle.sequence.items.length,
       particles: particles.items.length,
+      hasCharacterRenderer: Boolean(treeHost.querySelector('.procedural-character-svg.character-family-world')) && [...document.querySelectorAll('.season-choice')].every((button) => Boolean(button.querySelector('.procedural-character-svg.character-family-world'))),
       hasTapAlternative: true,
       calmMode: settings.value.calmMode,
       reducedMotion: settings.value.reducedMotion || !settings.allowsMotion()

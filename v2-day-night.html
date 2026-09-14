@@ -33,6 +33,7 @@
   </main>
   <script src="v2-engine.js"></script>
   <script src="js/v2-game-shell.js"></script>
+  <script src="js/v2-character-renderer.js"></script>
   <script>
     const settings = new LeonSalV2.SensorySettings();
     const motion = new LeonSalV2.MotionEngine(settings);
@@ -57,6 +58,20 @@
       panel.dataset.open = String(open);
       document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
     });
+    function skyRecord(id) {
+      return {
+        id: id === 'sun' ? 'world-sun' : 'world-moon',
+        displayName: id === 'sun' ? 'Sun' : 'Moon',
+        family: 'world',
+        registryGroup: 'world'
+      };
+    }
+    function renderSkyBody(button, id, active) {
+      const renderer = window.LeonSalCharacterRenderer;
+      button.replaceChildren();
+      if (renderer) button.append(renderer.makeCharacter(skyRecord(id), active ? 'excited' : 'calm', { decorative: false }));
+      else button.textContent = id === 'sun' ? 'Sun' : 'Moon';
+    }
 
     function applyPhase(index) {
       phaseIndex = Math.max(0, Math.min(3, index));
@@ -72,6 +87,8 @@
       sun.style.setProperty('--y', `${sunY}%`);
       moon.style.setProperty('--x', `${moonX}%`);
       moon.style.setProperty('--y', `${moonY}%`);
+      renderSkyBody(sun, 'sun', phaseIndex < 3);
+      renderSkyBody(moon, 'moon', phaseIndex === 3);
     }
 
     function phaseFromPoint(point) {
@@ -95,6 +112,7 @@
     window.__dayNightProofState = () => ({
       phase: cycle.sequence.current().id,
       phaseIndex,
+      hasCharacterRenderer: Boolean(sun.querySelector('.procedural-character-svg.character-family-world')) && Boolean(moon.querySelector('.procedural-character-svg.character-family-world')),
       hasTapAlternative: true,
       cycleNote: true,
       calmMode: settings.value.calmMode,

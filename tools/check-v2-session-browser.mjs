@@ -234,6 +234,7 @@ try {
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__solarBuildProofState().placed.length),0);
     await page.goto(base+'/v2-day-night.html');
+    assert.equal(await page.evaluate(()=>window.__dayNightProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Next',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__dayNightProofState().phase),'day');
     assert.equal(await page.evaluate(()=>window.__dayNightProofState().cycleNote),true);
@@ -250,6 +251,7 @@ try {
     await page.getByRole('button',{name:'Reset',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__monthsYearProofState().month),'January');
     await page.goto(base+'/v2-seasons.html');
+    assert.equal(await page.evaluate(()=>window.__seasonsProofState().hasCharacterRenderer),true);
     await page.getByRole('button',{name:'Next season',exact:true}).click();
     assert.equal(await page.evaluate(()=>window.__seasonsProofState().season),'Summer');
     await page.getByRole('button',{name:'Reset',exact:true}).click();
