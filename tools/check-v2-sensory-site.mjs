@@ -11,6 +11,7 @@ const routes = [
   'v2-energy-battery.html',
   'v2-dash-dock.html',
   'v2-bubble-garden.html',
+  'v2-calm-rain-window.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -101,7 +102,7 @@ async function main() {
       assert(await page.getByText(/not scores, grades or mastery/i).isVisible(), 'V2 home local progress copy implies assessment');
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
-      assert.equal(await page.locator('.hub-game-grid .world-game').count(), 5);
+      assert.equal(await page.locator('.hub-game-grid .world-game').count(), 6);
       assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
@@ -127,6 +128,17 @@ async function main() {
       await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
       const canvas = await sampleCanvas(page, '#canvas');
       assert(canvas.width >= 340 && canvas.height > 400, 'Bubble canvas is not sized for mobile play');
+    }
+    if (route === 'v2-calm-rain-window.html') {
+      const box = await page.locator('#rainCanvas').boundingBox();
+      await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+      const canvas = await sampleCanvas(page, '#rainCanvas');
+      const state = await page.evaluate(() => window.__rainProofState?.());
+      assert(canvas.width >= 320 && canvas.height > 400, 'Rain canvas is not sized for mobile play');
+      assert(state.ripples > 0, 'Rain window did not create a touch ripple');
+      await page.evaluate(() => settings.set({ calmMode: true }));
+      const calmState = await page.evaluate(() => window.__rainProofState?.());
+      assert(calmState.drops <= 28, 'Rain window calm mode did not reduce drops');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

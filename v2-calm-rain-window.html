@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calm Rain Window</title>
+  <link rel="stylesheet" href="v2-proofs.css">
+</head>
+<body class="v2-experience">
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="icon-button" href="v2-home.html" aria-label="Home">‹</a>
+      <div class="game-title"><strong>Calm Rain Window</strong><span>Touch the window and let the rain settle.</span></div>
+      <button class="icon-button" id="settingsToggle" type="button" aria-label="Sensory settings" aria-expanded="false">⚙</button>
+      <div class="settings-popover" id="settings"></div>
+    </header>
+
+    <section class="game-scene rain-world" id="stage" aria-label="Calm rain window play area">
+      <canvas class="rain-canvas" id="rainCanvas" aria-label="Calm rain window. Tap, click, or press the window to make gentle ripples."></canvas>
+      <div class="rain-room" aria-hidden="true">
+        <span class="rain-lamp"></span>
+        <span class="rain-window-frame"></span>
+        <span class="rain-sill"></span>
+        <span class="rain-plant"></span>
+      </div>
+      <p class="scene-status" id="status">Rain is gentle.</p>
+      <div class="drawer-controls">
+        <button id="makeRipple" class="scene-button" type="button">Ripple</button>
+        <button id="reset" class="scene-button" type="button">Reset</button>
+        <button class="mode-pill" data-rain="light" type="button" aria-pressed="true">Light</button>
+        <button class="mode-pill" data-rain="steady" type="button">Steady</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="v2-engine.js"></script>
+  <script src="js/v2-game-shell.js"></script>
+  <script>
+    const settings = new LeonSalV2.SensorySettings();
+    const motion = new LeonSalV2.MotionEngine(settings);
+    const audio = new LeonSalV2.AudioEngine(settings);
+    const stage = document.querySelector('#stage');
+    const canvas = document.querySelector('#rainCanvas');
+    const ctx = canvas.getContext('2d');
+    const status = document.querySelector('#status');
+    let mode = 'light';
+    let drops = [];
+    let ripples = [];
+    let glow = 0.35;
+
+    new LeonSalV2.SettingsPanel(document.querySelector('#settings'), settings, { keys: LeonSalGameShell.sensoryKeys });
+    document.querySelector('#settingsToggle').addEventListener('click', () => {
+      const panel = document.querySelector('#settings');
+      const open = panel.dataset.open !== 'true';
+      panel.dataset.open = String(open);
+      document.querySelector('#settingsToggle').setAttribute('aria-expanded', String(open));
+    });
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      const scale = Math.min(2, window.devicePixelRatio || 1);
+      canvas.width = Math.max(1, Math.round(rect.width * scale));
+      canvas.height = Math.max(1, Math.round(rect.height * scale));
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
+      seed();
+    }
+
+    function dropCount() {
+      const base = mode === 'steady' ? 72 : 42;
+      if (settings.value.calmMode) return Math.min(28, base);
+      return settings.value.particles === 'off' ? 0 : settings.particleCount(base);
+    }
+
+    function seed() {
+      const rect = canvas.getBoundingClientRect();
+      const count = dropCount();
+      drops = Array.from({ length: count }, () => ({
+        x: Math.random() * rect.width,
+        y: Math.random() * rect.height,
+        length: 18 + Math.random() * 30,
+        speed: 62 + Math.random() * (mode === 'steady' ? 70 : 38),
+        alpha: 0.24 + Math.random() * 0.3
+      }));
+      draw(0);
+    }
+
+    function addRipple(x, y) {
+      const rect = canvas.getBoundingClientRect();
+      ripples.push({ x: x ?? rect.width * 0.5, y: y ?? rect.height * 0.5, radius: 8, age: 0, life: settings.allowsMotion() ? 1.1 : 0.55 });
+      glow = 0.68;
+      status.textContent = 'Soft ripple.';
+      audio.tone('tap');
+    }
+
+    function draw(dt) {
+      const rect = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+      const sky = ctx.createLinearGradient(0, 0, 0, rect.height);
+      sky.addColorStop(0, '#547fb6');
+      sky.addColorStop(0.52, '#8eb9d9');
+      sky.addColorStop(1, '#d7eef7');
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, rect.width, rect.height);
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      const halo = ctx.createRadialGradient(rect.width * 0.5, rect.height * 0.42, 20, rect.width * 0.5, rect.height * 0.42, rect.width * 0.54);
+      halo.addColorStop(0, `rgba(255,232,150,${glow})`);
+      halo.addColorStop(1, 'rgba(255,232,150,0)');
+      ctx.fillStyle = halo;
+      ctx.fillRect(0, 0, rect.width, rect.height);
+      ctx.restore();
+
+      if (settings.allowsMotion()) {
+        const speed = settings.speedFactor();
+        for (const drop of drops) {
+          drop.y += drop.speed * speed * dt;
+          drop.x += Math.sin((drop.y + drop.length) * 0.015) * speed * 0.5;
+          if (drop.y > rect.height + drop.length) {
+            drop.y = -drop.length;
+            drop.x = Math.random() * rect.width;
+          }
+        }
+      }
+
+      ctx.lineCap = 'round';
+      for (const drop of drops) {
+        ctx.globalAlpha = settings.allowsMotion() ? drop.alpha : drop.alpha * 0.65;
+        ctx.strokeStyle = '#e9f9ff';
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        ctx.moveTo(drop.x, drop.y);
+        ctx.lineTo(drop.x - 8, drop.y + drop.length);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+
+      ripples = ripples.filter((ripple) => ripple.age < ripple.life);
+      for (const ripple of ripples) {
+        if (settings.allowsMotion()) {
+          ripple.age += dt;
+          ripple.radius += 70 * dt;
+        } else {
+          ripple.age = ripple.life * 0.52;
+          ripple.radius = 36;
+        }
+        const alpha = Math.max(0, 1 - (ripple.age / ripple.life));
+        ctx.globalAlpha = alpha * 0.65;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+      glow += (0.35 - glow) * Math.min(1, dt * 2.8);
+      stage.style.setProperty('--rain-glow', String(glow));
+    }
+
+    const removeTick = motion.add((dt) => draw(dt));
+    new LeonSalV2.InputEngine(canvas).onPointer({
+      down: ({ x, y }) => {
+        const rect = canvas.getBoundingClientRect();
+        addRipple(x - rect.left, y - rect.top);
+      }
+    });
+    document.querySelector('#makeRipple').addEventListener('click', () => addRipple());
+    document.querySelector('#reset').addEventListener('click', () => {
+      ripples = [];
+      glow = 0.35;
+      status.textContent = 'Rain is gentle.';
+      seed();
+    });
+    document.querySelectorAll('[data-rain]').forEach((button) => button.addEventListener('click', () => {
+      mode = button.dataset.rain;
+      document.querySelectorAll('[data-rain]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      status.textContent = mode === 'steady' ? 'Rain is steady.' : 'Rain is gentle.';
+      seed();
+    }));
+    settings.on('settings-change', seed);
+    window.addEventListener('resize', resize);
+    resize();
+    const gameShell = new LeonSalGameShell({ settings, motions: [motion], audio: [audio], resources: [{ destroy: removeTick }], reset: () => { ripples = []; glow = 0.35; seed(); }, gameId: 'calm-rain-window' });
+    window.__rainProofState = () => ({ mode, drops: drops.length, ripples: ripples.length, motion: settings.allowsMotion(), calmMode: settings.value.calmMode });
+  </script>
+</body>
+</html>

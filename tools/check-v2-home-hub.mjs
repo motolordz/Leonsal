@@ -38,7 +38,7 @@ try {
     for (const name of ['Sensory & Regulation', 'Maths & Logic', 'Literacy', 'Time, World & Life', 'Characters & Rewards']) {
       assert(await page.locator('.world-map-card').filter({ hasText: name }).isVisible(), `Missing world card: ${name}`);
     }
-    assert.equal(await page.locator('.hub-game-grid .world-game').count(), 5);
+    assert.equal(await page.locator('.hub-game-grid .world-game').count(), 6);
     assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
     assert(await page.getByRole('link', { name: /open character review/i }).isVisible());
     await page.getByRole('button', { name: 'Settings' }).click();
@@ -51,7 +51,7 @@ try {
     await context.close();
   }
   assert.deepEqual(errors, []);
-  await fs.writeFile(`${out}/results.json`, JSON.stringify({ passed: true, viewports: [390, 768, 1280], checks: ['hub loaded', 'five world cards', 'five sensory games', 'three engine proofs', 'settings popover', 'no horizontal overflow', 'no review-art requests'], errors }, null, 2) + '\n');
+  await fs.writeFile(`${out}/results.json`, JSON.stringify({ passed: true, viewports: [390, 768, 1280], checks: ['hub loaded', 'five world cards', 'six sensory games', 'three engine proofs', 'settings popover', 'no horizontal overflow', 'no review-art requests'], errors }, null, 2) + '\n');
   console.log('V2 home hub checks passed');
 } finally {
   await browser.close();

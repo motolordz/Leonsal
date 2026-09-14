@@ -11,6 +11,7 @@ const routes = [
   'v2-energy-battery.html',
   'v2-dash-dock.html',
   'v2-bubble-garden.html',
+  'v2-calm-rain-window.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',

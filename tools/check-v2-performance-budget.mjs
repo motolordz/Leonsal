@@ -10,6 +10,7 @@ const routes = [
   'v2-energy-battery.html',
   'v2-dash-dock.html',
   'v2-bubble-garden.html',
+  'v2-calm-rain-window.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -40,6 +41,7 @@ async function sampleRoute(page, base, route) {
   }
   if (route === 'v2-dash-dock.html') await page.getByRole('button', { name: 'Move right' }).click();
   if (route === 'v2-bubble-garden.html') await page.getByRole('button', { name: 'Pop a bubble' }).click();
+  if (route === 'v2-calm-rain-window.html') await page.getByRole('button', { name: 'Ripple' }).click();
   if (route === 'v2-light-trail.html') {
     const box = await page.locator('#canvas').boundingBox();
     await page.mouse.move(box.x + 60, box.y + 160);
