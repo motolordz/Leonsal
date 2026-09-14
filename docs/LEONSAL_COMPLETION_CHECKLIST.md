@@ -43,6 +43,7 @@
 - [x] Add a polite connection-status surface for V2 home and direct game entry, with safe offline fallback checks and mobile accessibility smoke coverage.
 - [x] Add local caregiver activity-summary export for the active profile, limited to visits and Finished sessions and explicitly excluding scores, grades, mastery claims and medical/sensory labels.
 - [x] Add a review-only character readiness matrix for supplied Leon, Zaya and Elephant artwork, showing five-state completeness and blockers while preserving production runtime art isolation.
+- [x] Retire the old push-triggered character pilot extraction workflow and add approval-preservation verification so it cannot auto-run, write contents, invoke the chart-crop builder or push generated art.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 

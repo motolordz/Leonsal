@@ -29,6 +29,12 @@ function assert(condition, message) {
 }
 
 const beforeBattery = Object.fromEntries(batteryFiles.map((file) => [file, sha256(file)]));
+const retiredWorkflow = fs.readFileSync(path.join(root, ".github/workflows/build-character-pilot-v2.yml"), "utf8");
+assert(/workflow_dispatch:/.test(retiredWorkflow), "Retired pilot workflow is not manual-only");
+assert(!/push:\s*[\r\n]/.test(retiredWorkflow), "Retired pilot workflow still runs on push");
+assert(/contents:\s*read/.test(retiredWorkflow), "Retired pilot workflow still has write permission");
+assert(!/build-character-pilot-v2\.py/.test(retiredWorkflow), "Retired pilot workflow still invokes the chart-crop pilot builder");
+assert(!/git push/.test(retiredWorkflow), "Retired pilot workflow still pushes generated assets");
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "leonsal-approval-"));
 const tempRegistry = path.join(tempDir, "character-assets.json");
 fs.copyFileSync(registryPath, tempRegistry);
@@ -102,7 +108,8 @@ fs.writeFileSync(outPath, JSON.stringify({
     "report-only registration is idempotent",
     "approved registration requires approval evidence",
     "pending-art exposes no runtime states",
-    "Battery approval and bytes are unchanged"
+    "Battery approval and bytes are unchanged",
+    "retired pilot workflow cannot run on push or push generated assets"
   ]
 }, null, 2) + "\n");
 

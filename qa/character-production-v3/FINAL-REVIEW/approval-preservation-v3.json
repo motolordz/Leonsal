@@ -17,6 +17,7 @@
     "report-only registration is idempotent",
     "approved registration requires approval evidence",
     "pending-art exposes no runtime states",
-    "Battery approval and bytes are unchanged"
+    "Battery approval and bytes are unchanged",
+    "retired pilot workflow cannot run on push or push generated assets"
   ]
 }
