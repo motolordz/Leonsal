@@ -126,7 +126,6 @@ fs.mkdirSync(path.join(root, "qa/character-production-v3/FINAL-REVIEW"), { recur
 fs.writeFileSync(path.join(root, "qa/character-production-v3/FINAL-REVIEW/approved-subset-integrity.json"), JSON.stringify({ ...summary, failures }, null, 2) + "\n");
 fs.writeFileSync(path.join(root, "qa/character-production-v3/FINAL-REVIEW/full-library-completeness.json"), JSON.stringify({
   complete: coverageFailures.length === 0 && failures.length === 0,
-  requireComplete,
   ...summary,
   coverageFailures,
   approvedSubsetFailures: failures
