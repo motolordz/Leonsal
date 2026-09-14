@@ -119,6 +119,7 @@
     const renderFamilyEvidence = () => {
       if (!familyEvidence) return;
       const sheets = [
+        ['Guide pilot', 'Leon and Zaya generated style-direction sheet', 'qa/character-production-v3/LEON-ZAYA-GENUINE-PILOT/leon-zaya-five-state-generated-review.png'],
         ['Supplied poses', 'Elephant, Zaya and Leon source-state intake', 'qa/character-production-v3/READINESS/supplied-character-five-state-review.png'],
         ['Guides', 'Leon and Zaya five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/leon-zaya-five-states.png'],
         ['Alphabet', 'A-Z five-state sheet', 'qa/character-production-v3/FAMILY-REVIEW/alphabet-five-states.png'],

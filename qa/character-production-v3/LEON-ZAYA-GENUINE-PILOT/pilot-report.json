@@ -1,0 +1,37 @@
+{
+  "status": "review-only",
+  "productionApproved": false,
+  "generatedAt": "2026-09-14",
+  "sourceReferencesInspected": [
+    "/Users/mehdisalarzadeh/Downloads/43329A8D-9B15-4442-B997-8101A9038A6A.PNG",
+    "/Users/mehdisalarzadeh/Downloads/B99C7F20-BC7A-4C39-A211-7736ED517606.PNG",
+    "/Users/mehdisalarzadeh/Downloads/12F23ED9-AD0C-49A2-BA57-264362F1D79B.PNG",
+    "/Users/mehdisalarzadeh/Downloads/48CB2E37-1B58-458C-9A71-F469406BE246.PNG"
+  ],
+  "outputs": [
+    {
+      "path": "qa/character-production-v3/LEON-ZAYA-GENUINE-PILOT/leon-zaya-five-state-generated-review.png",
+      "archivedSourcePath": "assets/source-safe-keeping/generated-attempts/leon-zaya/20260914-five-state-pilot/leon-zaya-five-state-generated-review.png",
+      "sha256": "428060ad8d5e3fea3a4fddf98872f4b3f4c911ef5fcba260bd8e8f473a78b972",
+      "format": "png",
+      "width": 1536,
+      "height": 1024,
+      "hasAlpha": false
+    }
+  ],
+  "visualReview": {
+    "styleDirection": "pass",
+    "identityDirection": "pass",
+    "fiveStateReadability": "pass",
+    "nameText": "pass",
+    "notes": "The generated sheet is a useful Leon/Zaya visual direction candidate: both guide identities are recognisable, the five energy states read clearly, and LEON/ZAYA shirt names are legible."
+  },
+  "productionGate": {
+    "individualMasters": "fail",
+    "transparentBackground": "fail",
+    "minimumMasterResolution": "fail",
+    "runtimeReady": "fail",
+    "approval": "not-approved"
+  },
+  "decision": "Keep as review evidence only. Do not register as approved and do not expose as runtime artwork. Next production attempt must generate or extract individual transparent 2048px masters per character state from this accepted style direction."
+}
