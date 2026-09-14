@@ -4,6 +4,7 @@ import fs from 'node:fs';
 const html = fs.readFileSync('v2-home.html', 'utf8');
 const css = fs.readFileSync('v2-proofs.css', 'utf8');
 const js = fs.readFileSync('js/v2-home.js', 'utf8');
+const approvedLoader = fs.readFileSync('js/approved-character-image.js', 'utf8');
 
 assert(html.includes('aria-label="Quick play choices"'), 'V2 home must expose quick play choices');
 assert(html.includes('aria-label="Show activities"'), 'V2 home must expose activity filtering');
@@ -36,6 +37,9 @@ for (const category of ['calm', 'sensory', 'learning', 'world']) {
 }
 for (const text of ['applyWorldFilter', 'data-world-filter', 'data-world-category', 'card.hidden = !visible']) {
   assert(js.includes(text), `V2 home missing filter behavior: ${text}`);
+}
+for (const text of ['new LeonSalV2.AssetLoaderEngine', 'loader.resolve', 'record?.states?.[state]']) {
+  assert(approvedLoader.includes(text), `Approved character loader must use shared asset loader: ${text}`);
 }
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet/i.test(html), 'V2 home must not reference review/source/QA art');
 
