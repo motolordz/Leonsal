@@ -40,7 +40,7 @@ for (const category of ['calm', 'sensory', 'learning', 'world']) {
 for (const text of ['applyWorldFilter', 'data-world-filter', 'data-world-category', 'card.hidden = !visible']) {
   assert(js.includes(text), `V2 home missing filter behavior: ${text}`);
 }
-for (const text of ['const cardCharacters', 'installCardCharacters', 'renderer.makeCharacter', 'characterDecorated', 'renderCharacterStatus', 'character-assets.json', 'safe vector previews']) {
+for (const text of ['const cardCharacters', 'installCardCharacters', 'renderer.makeCharacter', 'characterDecorated', 'renderCharacterStatus', 'character-assets.json', 'approved runtime states', 'pending review states', 'safe vector previews', 'approvedStates', 'pendingStates']) {
   assert(js.includes(text), `V2 home missing procedural card character behavior: ${text}`);
 }
 for (const text of ['const cardCapabilities', 'installCapabilityChips', 'card-capability-row', 'Speed choice', 'UK/HK buses', 'Calm cap', 'No timer', 'Tap or drag']) {

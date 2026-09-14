@@ -16,8 +16,13 @@ for (const group of ['guides', 'alphabet', 'numbers', 'world', 'planets', 'pilot
     registryRecords.push({ ...record, family: record.family === 'numbers' ? 'number' : record.family });
   }
 }
-const approvedCharacters = registryRecords.filter(record => record.status === 'approved').length;
-const pendingCharacters = registryRecords.length - approvedCharacters;
+const pendingCharacters = registryRecords.filter(record => record.status !== 'approved').length;
+const approvedStates = registryRecords
+  .filter(record => record.status === 'approved')
+  .reduce((total, record) => total + Object.keys(record.states || {}).length, 0);
+const pendingStates = registryRecords
+  .filter(record => record.status !== 'approved')
+  .reduce((total, record) => total + Object.keys(record.reviewStates || record.masterStates || {}).length, 0);
 
 const server = http.createServer(async (request, response) => {
   const url = new URL(request.url, 'http://127.0.0.1');
@@ -77,7 +82,8 @@ try {
     assert.equal(await page.getByRole('link', { name: 'Meet the Characters', exact: true }).getAttribute('href'), 'v2-character-world.html', 'Landing hero character action should open Character World');
     const characterStatus = await page.locator('#hubCharacterStatus').innerText();
     const compactCharacterStatus = characterStatus.replace(/\s+/g, '');
-    assert(characterStatus.includes(`${approvedCharacters} approved art set`), 'Landing character status must keep approved count honest');
+    assert(characterStatus.includes(`${approvedStates} approved runtime states`), 'Landing character status must keep approved state count honest');
+    assert(characterStatus.includes(`${pendingStates} pending review states`), 'Landing character status must keep pending state count honest');
     assert(characterStatus.includes(`${pendingCharacters} safe vector previews`), 'Landing character status must keep pending vector count honest');
     for (const expected of ['2 Leon & Zaya', '26 A-Z', '10 1-10', '25 World', '10 Planets']) {
       assert(compactCharacterStatus.includes(expected.replace(/\s+/g, '')), `Landing character status missing ${expected}`);

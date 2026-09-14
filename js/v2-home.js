@@ -216,6 +216,12 @@
       const records = characterRecords(await response.json());
       const approved = records.filter(record => record.status === 'approved').length;
       const pending = records.length - approved;
+      const approvedStates = records
+        .filter(record => record.status === 'approved')
+        .reduce((total, record) => total + Object.keys(record.states || {}).length, 0);
+      const pendingStates = records
+        .filter(record => record.status !== 'approved')
+        .reduce((total, record) => total + Object.keys(record.reviewStates || record.masterStates || {}).length, 0);
       const familyCounts = [
         ['guide', 'Leon & Zaya'],
         ['alphabet', 'A-Z'],
@@ -223,7 +229,7 @@
         ['world', 'World'],
         ['planet', 'Planets']
       ].map(([family, label]) => `<span><strong>${records.filter(record => record.family === family).length}</strong>${label}</span>`).join('');
-      characterStatus.innerHTML = `<div>${familyCounts}</div><small>${approved} approved art set · ${pending} safe vector previews</small>`;
+      characterStatus.innerHTML = `<div>${familyCounts}</div><small>${approvedStates} approved runtime states · ${pendingStates} pending review states · ${pending} safe vector previews</small>`;
     } catch {
       characterStatus.innerHTML = '<small>Character library is available in safe vector mode.</small>';
     }

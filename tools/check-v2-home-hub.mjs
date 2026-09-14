@@ -28,8 +28,13 @@ for (const group of ['guides', 'alphabet', 'numbers', 'world', 'planets', 'pilot
     registryRecords.push({ ...record, family: record.family === 'numbers' ? 'number' : record.family });
   }
 }
-const approvedCharacters = registryRecords.filter(record => record.status === 'approved').length;
-const pendingCharacters = registryRecords.length - approvedCharacters;
+const pendingCharacters = registryRecords.filter(record => record.status !== 'approved').length;
+const approvedStates = registryRecords
+  .filter(record => record.status === 'approved')
+  .reduce((total, record) => total + Object.keys(record.states || {}).length, 0);
+const pendingStates = registryRecords
+  .filter(record => record.status !== 'approved')
+  .reduce((total, record) => total + Object.keys(record.reviewStates || record.masterStates || {}).length, 0);
 const browser = await chromium.launch();
 const out = 'qa/v2-home-hub';
 await fs.mkdir(out, { recursive: true });
@@ -64,7 +69,8 @@ try {
     assert.equal(await page.locator('.bus-need').getAttribute('href'), 'v2-double-decker-bus.html');
     assert(await page.locator('.bus-need').getByText('I want speed choices', { exact: true }).isVisible());
     const characterStatus = (await page.locator('#hubCharacterStatus').innerText()).replace(/\s+/g, ' ');
-    assert(characterStatus.includes(`${approvedCharacters} approved art set`), 'Hub character status must keep approved count honest');
+    assert(characterStatus.includes(`${approvedStates} approved runtime states`), 'Hub character status must keep approved state count honest');
+    assert(characterStatus.includes(`${pendingStates} pending review states`), 'Hub character status must keep pending state count honest');
     assert(characterStatus.includes(`${pendingCharacters} safe vector previews`), 'Hub character status must keep pending vector count honest');
     for (const expected of ['2 Leon & Zaya', '26 A-Z', '10 1-10', '25 World', '10 Planets']) {
       assert(characterStatus.includes(expected), `Hub character status missing ${expected}`);
