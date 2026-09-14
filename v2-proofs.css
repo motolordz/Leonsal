@@ -2735,7 +2735,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   outline: 4px solid rgba(255,207,72,.72);
   background: #fff9dd;
 }
-.procedural-character-svg .body { fill: url(#shine); fill: var(--pc-primary); }
+.procedural-character-svg .body { fill: var(--pc-primary); }
 .procedural-character-svg .glyph {
   fill: var(--pc-primary);
   stroke: #fff;
@@ -2746,6 +2746,20 @@ body[data-calm="true"] .connection-status { transition: none; }
 .procedural-character-svg .object-glyph {
   fill: #fff;
   font: 1000 42px/1 system-ui, sans-serif;
+}
+.procedural-character-svg .guide-name {
+  fill: #fff;
+  stroke: rgba(20,58,109,.34);
+  stroke-width: 2px;
+  paint-order: stroke;
+  font: 1000 25px/1 system-ui, sans-serif;
+}
+.procedural-character-svg .guide-body + .character-face {
+  transform: translateY(-18px);
+}
+.procedural-character-svg .vehicle-body + .character-face,
+.procedural-character-svg .transport-body + .character-face {
+  transform: translateY(11px);
 }
 .procedural-character-svg .eye { fill: #173356; }
 .procedural-character-svg .catch { fill: #fff; }

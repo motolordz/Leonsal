@@ -72,15 +72,117 @@
     if (/cloud/i.test(record.id)) return 'CLOUD';
     if (/rainbow/i.test(record.id)) return 'RAIN';
     if (/plane/i.test(record.id)) return 'JET';
-    if (/rocket/i.test(record.id)) return '↑';
+    if (/rocket/i.test(record.id)) return 'GO';
     if (/bus/i.test(record.id)) return 'BUS';
     if (/boat/i.test(record.id)) return 'BOAT';
     if (/tree/i.test(record.id)) return 'TREE';
-    if (/robot/i.test(record.id)) return '▣';
+    if (/robot/i.test(record.id)) return 'BOT';
     if (/elephant/i.test(record.id)) return 'E';
     return (record.displayName || record.id || '?').slice(0, 1).toUpperCase();
   };
   const safeText = text => String(text || '').replace(/[<&]/g, '');
+  const characterKind = record => {
+    const id = record.id || '';
+    if (record.family === 'guide') return record.id === 'zaya' ? 'zaya' : 'leon';
+    if (record.family === 'alphabet') return 'letter';
+    if (record.family === 'number') return 'number';
+    if (/elephant/.test(id)) return 'elephant';
+    if (/bus|train/.test(id)) return 'vehicle';
+    if (/plane|rocket|boat/.test(id)) return 'transport';
+    if (/sun|moon|earth|planet|mercury|venus|mars|jupiter|saturn|uranus|neptune/.test(id)) return 'planet';
+    if (/cloud|rainbow|water|tree/.test(id)) return 'nature';
+    if (/robot|magnifier|pencil|book|paintbrush|music|clock|calendar|puzzle|treasure/.test(id)) return 'object';
+    return 'buddy';
+  };
+  const bodyMarkupFor = (record, family, glyph, primary, accent, secondary) => {
+    const kind = characterKind(record);
+    if (kind === 'letter' || kind === 'number') {
+      const fontSize = kind === 'number' && glyph.length > 1 ? 82 : 102;
+      return `
+        <g class="character-body letter-number-body">
+          <text x="110" y="142" text-anchor="middle" class="glyph" style="font-size:${fontSize}px">${glyph}</text>
+          <circle cx="76" cy="121" r="10" class="cheek"/>
+          <circle cx="159" cy="121" r="10" class="cheek"/>
+        </g>`;
+    }
+    if (kind === 'leon' || kind === 'zaya') {
+      const shirt = kind === 'zaya' ? '#ff5dab' : '#1872e8';
+      const hair = kind === 'zaya' ? '#4a2418' : '#1d1512';
+      const name = kind === 'zaya' ? 'Zaya' : 'Leon';
+      const bow = kind === 'zaya' ? '<path d="M80 35 q-26 -18 -34 7 q21 18 42 6zM140 35 q26 -18 34 7 q-21 18 -42 6z" fill="#ff5dab"/>' : '<path d="M66 45 q44 -42 93 0 q-38 -18 -93 0z" fill="#12355e"/>';
+      return `
+        <g class="character-body guide-body">
+          <circle cx="110" cy="83" r="47" fill="#ffc58d"/>
+          <path d="M66 71 q32 -48 88 -22 q14 10 19 33 q-44 -22 -107 -11z" fill="${hair}"/>
+          ${bow}
+          <path d="M63 132 q47 -24 94 0 l20 54 q-67 25 -134 0z" fill="${shirt}"/>
+          <text x="110" y="169" text-anchor="middle" class="guide-name">${name}</text>
+          <circle cx="77" cy="104" r="9" class="cheek"/>
+          <circle cx="145" cy="104" r="9" class="cheek"/>
+        </g>`;
+    }
+    if (kind === 'elephant') {
+      return `
+        <g class="character-body elephant-body">
+          <ellipse cx="66" cy="105" rx="34" ry="46" fill="#ff9db3"/>
+          <ellipse cx="154" cy="105" rx="34" ry="46" fill="#ff9db3"/>
+          <circle cx="110" cy="102" r="58" class="body"/>
+          <path d="M111 121 q4 31 -20 51 q26 12 43 -6 q-10 -24 -4 -45z" fill="${primary}" stroke="#173356" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="76" cy="121" r="10" class="cheek"/>
+          <circle cx="159" cy="121" r="10" class="cheek"/>
+        </g>`;
+    }
+    if (kind === 'vehicle') {
+      return `
+        <g class="character-body vehicle-body">
+          <rect x="45" y="76" width="130" height="77" rx="18" class="body"/>
+          <rect x="55" y="87" width="110" height="24" rx="8" fill="#dff5ff" opacity=".9"/>
+          <path d="M58 122 h104" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".55"/>
+          <circle cx="78" cy="158" r="14" fill="#173356"/><circle cx="142" cy="158" r="14" fill="#173356"/>
+          <circle cx="76" cy="121" r="8" class="cheek"/><circle cx="159" cy="121" r="8" class="cheek"/>
+        </g>`;
+    }
+    if (kind === 'transport') {
+      return `
+        <g class="character-body transport-body">
+          <path d="M45 119 q62 -67 128 0 q-45 30 -128 0z" class="body"/>
+          <path d="M91 68 l45 104" stroke="${accent}" stroke-width="15" stroke-linecap="round" opacity=".7"/>
+          <circle cx="76" cy="121" r="9" class="cheek"/><circle cx="159" cy="121" r="9" class="cheek"/>
+        </g>`;
+    }
+    if (kind === 'planet') {
+      return `
+        <g class="character-body planet-body">
+          <ellipse cx="110" cy="112" rx="82" ry="24" fill="none" stroke="${accent}" stroke-width="12" opacity=".72"/>
+          <circle cx="110" cy="108" r="58" class="body"/>
+          <path d="M67 118 q42 20 88 -6" fill="none" stroke="#fff" stroke-width="9" opacity=".35"/>
+          <circle cx="76" cy="121" r="10" class="cheek"/><circle cx="159" cy="121" r="10" class="cheek"/>
+        </g>`;
+    }
+    if (kind === 'nature') {
+      return `
+        <g class="character-body nature-body">
+          <path d="M110 40 q45 19 56 64 q-11 55 -56 77 q-45 -22 -56 -77 q11 -45 56 -64z" class="body"/>
+          <path d="M80 138 q35 18 70 0" fill="none" stroke="#fff" stroke-width="10" opacity=".32"/>
+          <circle cx="76" cy="121" r="10" class="cheek"/><circle cx="159" cy="121" r="10" class="cheek"/>
+        </g>`;
+    }
+    if (kind === 'object') {
+      return `
+        <g class="character-body object-body">
+          <rect x="55" y="58" width="110" height="110" rx="32" class="body"/>
+          <text x="110" y="137" text-anchor="middle" class="object-glyph">${glyph}</text>
+          <circle cx="76" cy="121" r="10" class="cheek"/><circle cx="159" cy="121" r="10" class="cheek"/>
+        </g>`;
+    }
+    return `
+      <g class="character-body buddy-body">
+        <circle cx="110" cy="111" r="54" class="body"/>
+        <text x="110" y="132" text-anchor="middle" class="object-glyph">${glyph}</text>
+        <circle cx="76" cy="121" r="10" class="cheek"/>
+        <circle cx="159" cy="121" r="10" class="cheek"/>
+      </g>`;
+  };
 
   function makeSvg(record, state, options = {}) {
     const family = record.family || 'world';
@@ -108,9 +210,7 @@
       happy: '<path d="M91 132 q27 30 58 0" class="mouth"/><path d="M102 137 q18 14 36 0" class="mouth-fill"/>',
       excited: '<path d="M88 129 q30 40 64 0" class="mouth"/><path d="M101 140 q18 20 39 0" class="mouth-fill"/>'
     }[tone.mouth] || '';
-    const bodyShape = family === 'alphabet' || family === 'number'
-      ? `<text x="110" y="142" text-anchor="middle" class="glyph">${glyph}</text>`
-      : `<circle cx="110" cy="111" r="54" class="body"/><text x="110" y="132" text-anchor="middle" class="object-glyph">${glyph}</text>`;
+    const bodyShape = bodyMarkupFor(record, family, glyph, primary, accent, secondary);
     svg.innerHTML = `
       <defs>
         <radialGradient id="shine-${record.id}-${state}" cx="35%" cy="22%">
@@ -125,10 +225,8 @@
       <g transform="translate(0 ${tone.lift}) rotate(${tone.lean} 110 112)" filter="url(#soft-shadow-${record.id}-${state})">
         <ellipse cx="110" cy="187" rx="58" ry="13" fill="#163f6d" opacity=".12"/>
         <circle cx="110" cy="108" r="76" fill="${accent}" opacity="${glowOpacity}"/>
-        <g class="character-body">
-          ${bodyShape}
-          <circle cx="76" cy="121" r="10" class="cheek"/>
-          <circle cx="159" cy="121" r="10" class="cheek"/>
+        ${bodyShape}
+        <g class="character-face">
           ${eyeMarkup}
           ${mouthMarkup}
         </g>
