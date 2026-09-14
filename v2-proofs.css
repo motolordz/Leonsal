@@ -1235,6 +1235,28 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .offline-card { width: min(640px, 100%); border-radius: 34px; padding: clamp(28px, 8vw, 54px); background: rgba(255,255,255,.9); box-shadow: var(--deep-shadow); text-align: center; }
 .offline-card h1 { margin: 8px 0 10px; font-size: clamp(2rem, 7vw, 4rem); line-height: .98; letter-spacing: 0; }
 .offline-card p { color: #52617a; font-size: 1.05rem; line-height: 1.55; }
+.connection-status {
+  position: fixed;
+  left: 50%;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 80;
+  max-width: min(92vw, 520px);
+  min-height: 48px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.94);
+  color: #173356;
+  font-weight: 900;
+  box-shadow: 0 16px 34px #2b5a8828;
+  transform: translate(-50%, 18px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+}
+.connection-status[data-online="false"] { background: #fff5d8; color: #5e3b05; }
+.connection-status[data-visible="true"] { opacity: 1; transform: translate(-50%, 0); }
+body[data-motion="off"] .connection-status,
+body[data-calm="true"] .connection-status { transition: none; }
 @media (max-width: 760px) { .world-games { grid-template-columns: repeat(2, 1fr); } .planned-worlds { grid-template-columns: repeat(2, 1fr); } .world-section-heading { align-items: start; flex-direction: column; gap: 6px; } }
 @media (max-width: 480px) { .world-games { grid-template-columns: 1fr; } .world-header { gap: 8px; flex-wrap: wrap; } .world-header > a:last-child { margin-left: 0; } .world-welcome { padding-top: 16px; } .session-controls { gap: 6px; } .session-controls a, .session-controls button { padding: 10px 16px; } }
 @media (max-width: 480px) {

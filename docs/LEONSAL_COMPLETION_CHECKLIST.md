@@ -40,6 +40,7 @@
 - [x] Add local-only V2 child profile switching for caregiver activity notes, with separate per-profile storage, no score/mastery claims, no medical/sensory-label inference, and mobile browser smoke evidence.
 - [x] Add repeated V2 route lifecycle stress coverage for all eight current activities, proving one active shell/control set per route, no leaked pause/inert state, reduced-motion reapplication, and no console/page errors across 24 mobile navigations.
 - [x] Implement the Sensory Mixer foundation on V2 home as local saved sensory-world presets that obey global preference ceilings and do not count as games.
+- [x] Add a polite connection-status surface for V2 home and direct game entry, with safe offline fallback checks and mobile accessibility smoke coverage.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 
@@ -49,7 +50,7 @@ These changes remain preview work. They do not approve character art, claim prod
 - [ ] Complete full game-module preload/mount/start/pause/resume/reset/settings/destroy lifecycle, resource ownership, and repeat-route cleanup tests. The current shared session wrapper handles pause/finish and now has repeated-route cleanup stress coverage, but this is still not the entire module architecture.
 - [x] Bridge legacy and V2 sensory preference stores for core controls. V2 now validates and exposes motion, sound, voice, music, vibration, calm mode, particles, speed, effects level, voice level, music level, contrast and pace; the legacy home reads/writes shared motion, sound, vibration, contrast and independent V2 audio-level settings. Deeper profile migration remains outstanding.
 - [x] Implement and verify eight foundation engine contracts: memory-recall, physics-play, character-state-animation, world-shell-progress, asset-loader, performance-monitor, profile-progress-store, hint-feedback. These are foundation primitives, not completed games.
-- [ ] Complete parent/profile controls, full error recovery and full offline behaviour. Local V2 activity notes now support separate local child profiles, and the safe V2 route cache plus navigation-only offline fallback avoid false saved/mastery claims; full caregiver controls and full offline UX are still not complete.
+- [ ] Complete parent/profile controls, full error recovery and full offline behaviour. Local V2 activity notes now support separate local child profiles, and the safe V2 route cache plus navigation-only offline fallback plus connection-status cues avoid false saved/mastery claims; full caregiver controls and full offline UX are still not complete.
 - [x] Implement Sensory Mixer foundation using global preference ceilings; presets do not count as games. Further work remains for a richer creator/editor flow.
 - [ ] Verify repeated route transitions, background suspension, full accessibility and physical iPhone Safari. Viewport-emulated repeated-route cleanup, accessibility and performance/long-task smoke checks now exist, but physical-device and full screen-reader evidence are still required.
 

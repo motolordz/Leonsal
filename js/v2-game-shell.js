@@ -10,6 +10,7 @@ class LeonSalGameShell {
 
   constructor({ settings, motions = [], audio = [], reset, gameId = document.body.dataset.gameId || LeonSalGameShell.routeGameId() }) {
     LeonSalGameShell.registerOffline();
+    LeonSalGameShell.installConnectionStatus();
     this.settings = settings;
     this.motions = motions;
     this.audio = audio;
@@ -65,6 +66,29 @@ class LeonSalGameShell {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('sw.js', { scope: './' }).catch(() => {});
     }, { once: true });
+  }
+  static installConnectionStatus() {
+    if (LeonSalGameShell.connectionStatus || typeof navigator === 'undefined') return;
+    const status = document.createElement('div');
+    LeonSalGameShell.connectionStatus = status;
+    status.className = 'connection-status';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    const update = () => {
+      status.dataset.online = navigator.onLine ? 'true' : 'false';
+      status.textContent = navigator.onLine ? 'Back online.' : 'Offline mode. Saved activities can still open.';
+      status.dataset.visible = 'true';
+      window.clearTimeout(status.hideTimer);
+      status.hideTimer = window.setTimeout(() => {
+        if (navigator.onLine) status.dataset.visible = 'false';
+      }, 3200);
+    };
+    status.dataset.online = navigator.onLine ? 'true' : 'false';
+    status.dataset.visible = navigator.onLine ? 'false' : 'true';
+    status.textContent = navigator.onLine ? 'Ready for online play.' : 'Offline mode. Saved activities can still open.';
+    document.body.append(status);
+    window.addEventListener('online', update);
+    window.addEventListener('offline', update);
   }
   closeSettings(focus = false) {
     if (!this.settingsPanel) return;
