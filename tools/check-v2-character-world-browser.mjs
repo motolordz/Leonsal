@@ -31,6 +31,8 @@ assert(await page.getByRole('heading', { name: 'Character World' }).isVisible(),
 assert(await page.locator('[data-chase-character="leon"] svg').isVisible(), 'Leon procedural runner missing');
 assert(await page.locator('[data-chase-character="zaya"] svg').isVisible(), 'Zaya procedural runner missing');
 assert.equal(await page.locator('.character-runway-state').count(), 5, 'Selected character runway must render five states');
+assert.equal(await page.locator('.character-world-card[data-status="approved"]').count(), 1, 'Only Battery Buddy should appear as approved artwork');
+assert.equal(await page.locator('.character-world-card[data-status="pending"]').count(), cardCount - 1, 'All non-Battery characters should remain pending vector fallbacks');
 
 for (const value of ['0', '25', '50', '75', '100']) {
   await page.locator('#characterEnergy').evaluate((input, next) => {
@@ -87,6 +89,15 @@ await page.getByRole('button', { name: 'World' }).click();
 await assertSelectedFiveStates('world-dinosaur', 'Dinosaur', 'dinosaur-body');
 await page.getByRole('button', { name: 'Planets' }).click();
 await assertSelectedFiveStates('planet-saturn', 'Saturn', 'planet-saturn-body');
+await page.getByRole('button', { name: 'All', exact: true }).click();
+await page.getByRole('button', { name: 'Approved only', exact: true }).click();
+assert.equal(await page.locator('.character-world-card').count(), 1, 'Approved-only filter should show one approved character');
+assert(await page.locator('.character-world-card[data-character="battery-buddy"]').isVisible(), 'Approved-only filter should show Battery Buddy');
+await page.getByRole('button', { name: 'Pending vectors', exact: true }).click();
+assert.equal(await page.locator('.character-world-card[data-status="approved"]').count(), 0, 'Pending filter must hide approved Battery Buddy');
+assert(await page.locator('.character-world-card[data-character="leon"]').isVisible(), 'Pending filter should show Leon procedural vector fallback');
+await page.locator('.character-world-card[data-character="leon"]').first().click();
+assert(await page.locator('.selected-character-card figcaption strong').getByText('Leon', { exact: true }).isVisible(), 'Pending status filter changed selected character identity');
 await page.locator('#settingsToggle').click();
 assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', 'Settings panel did not open');
 await page.keyboard.press('Escape');

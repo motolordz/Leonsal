@@ -3083,7 +3083,8 @@ body[data-calm="true"] .connection-status { transition: none; }
   color: #60748d;
   font-weight: 900;
 }
-.character-family-tabs {
+.character-family-tabs,
+.character-status-tabs {
   display: flex;
   gap: 8px;
   overflow-x: auto;
@@ -3091,7 +3092,12 @@ body[data-calm="true"] .connection-status { transition: none; }
   scroll-snap-type: x mandatory;
   overscroll-behavior-x: contain;
 }
-.character-family-tabs button {
+.character-status-tabs {
+  padding-top: 0;
+  margin-top: -10px;
+}
+.character-family-tabs button,
+.character-status-tabs button {
   flex: 0 0 auto;
   min-height: 52px;
   padding: 0 18px;
@@ -3104,7 +3110,8 @@ body[data-calm="true"] .connection-status { transition: none; }
   box-shadow: 0 8px 18px rgba(43,90,136,.12), inset 0 -6px 0 rgba(43,90,136,.06);
   scroll-snap-align: start;
 }
-.character-family-tabs button[aria-pressed="true"] { background: #143a6d; color: #fff; }
+.character-family-tabs button[aria-pressed="true"],
+.character-status-tabs button[aria-pressed="true"] { background: #143a6d; color: #fff; }
 .character-world-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));

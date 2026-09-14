@@ -24,6 +24,9 @@ assert(sw.includes("'./js/v2-character-world.js'"), 'Offline cache must include 
 for (const family of ['guide', 'alphabet', 'number', 'world', 'planet']) {
   assert(html.includes(`data-family-filter="${family}"`), `Missing family filter: ${family}`);
 }
+for (const status of ['all', 'approved', 'pending']) {
+  assert(html.includes(`data-status-filter="${status}"`), `Missing artwork status filter: ${status}`);
+}
 for (const mode of ['chase', 'football', 'hoops', 'calm']) {
   assert(html.includes(`data-play-mode="${mode}"`), `Missing play mode: ${mode}`);
 }
@@ -39,6 +42,8 @@ for (const text of [
   'makeSvg(record, state',
   'renderStateRunway',
   'character-runway-state',
+  'statusFilter',
+  'data-status',
   'Procedural vector fallback',
   'new LeonSalGameShell',
   'new LeonSalV2.SettingsPanel'
@@ -49,6 +54,7 @@ for (const text of [
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(html), 'Character World HTML must not reference blocked art paths');
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(js), 'Character World JS must not reference blocked art paths');
 assert(css.includes('.character-world-grid'), 'Character World grid styling missing');
+assert(css.includes('.character-status-tabs'), 'Character World status filter styling missing');
 assert(css.includes('.character-runtime-truth'), 'Runtime truth styling missing');
 assert(css.includes('.character-state-runway'), 'Five-state runway styling missing');
 assert(css.includes('.character-runway-state'), 'Five-state runway state styling missing');

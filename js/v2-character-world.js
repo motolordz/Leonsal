@@ -39,11 +39,13 @@
   const count = document.getElementById('characterCount');
   const runtimeTruth = document.getElementById('characterRuntimeTruth');
   const familyButtons = [...document.querySelectorAll('[data-family-filter]')];
+  const statusButtons = [...document.querySelectorAll('[data-status-filter]')];
   const playScene = document.querySelector('.character-chase-scene');
   const playModeButtons = [...document.querySelectorAll('.play-mode-picker [data-play-mode]')];
   let characters = [];
   let selected = null;
   let filter = 'all';
+  let statusFilter = 'all';
   let settings = null;
 
   const stateForEnergy = value => {
@@ -346,7 +348,13 @@
   }
 
   function renderGrid() {
-    const visible = characters.filter(item => filter === 'all' || item.family === filter);
+    const visible = characters.filter(item => {
+      const familyMatch = filter === 'all' || item.family === filter;
+      const statusMatch = statusFilter === 'all'
+        || (statusFilter === 'approved' && item.status === 'approved')
+        || (statusFilter === 'pending' && item.status !== 'approved');
+      return familyMatch && statusMatch;
+    });
     count.textContent = `${visible.length} shown`;
     grid.replaceChildren(...visible.map(record => {
       const button = document.createElement('button');
@@ -354,6 +362,7 @@
       button.className = 'character-world-card';
       button.dataset.character = record.id;
       button.dataset.family = record.family;
+      button.dataset.status = record.status === 'approved' ? 'approved' : 'pending';
       button.append(makeSvg(record, 'calm'));
       const label = document.createElement('strong');
       label.textContent = record.displayName;
@@ -403,6 +412,13 @@
         button.addEventListener('click', () => {
           filter = button.dataset.familyFilter;
           familyButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+          renderGrid();
+        });
+      });
+      statusButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          statusFilter = button.dataset.statusFilter;
+          statusButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
           renderGrid();
         });
       });
