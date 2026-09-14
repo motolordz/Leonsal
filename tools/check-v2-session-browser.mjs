@@ -73,6 +73,21 @@ try {
     assert.equal(await page.locator('.need-card').count(), 5);
     assert.equal(await page.locator('.bus-need').getAttribute('href'), 'v2-double-decker-bus.html');
     await page.screenshot({path:path.join(out,`home-${viewport.width}.png`),fullPage:true});
+    await page.goto(base+'/v2-character-world.html');
+    await page.waitForFunction(() => document.querySelectorAll('.character-world-card').length >= 60);
+    assert.equal(await page.locator('.state-picker button').count(), 5);
+    assert.equal(await page.locator('.play-mode-picker button').count(), 4);
+    assert((await page.locator('.character-runtime-truth').innerText()).includes('approved runtime states'), 'Character World runtime truth missing approved count');
+    assert((await page.locator('.character-runtime-truth').innerText()).includes('pending review states'), 'Character World runtime truth missing pending count');
+    await page.locator('[data-family-filter="alphabet"]').click();
+    assert.equal(await page.locator('.character-world-card[data-family="alphabet"]').count(), 26);
+    await page.locator('[data-family-filter="guide"]').click();
+    assert.equal(await page.locator('.character-world-card[data-family="guide"]').count(), 2);
+    await page.locator('[data-play-mode="football"]').click();
+    assert.equal(await page.locator('.character-chase-scene').getAttribute('data-play-mode'), 'football');
+    await page.locator('.state-picker [data-state="excited"]').click();
+    assert((await page.locator('#selectedCharacterCard .character-state-excited').count()) >= 1, 'Character World state picker did not render excited state');
+    await page.screenshot({path:path.join(out,`character-world-${viewport.width}.png`),fullPage:true});
     for (const route of playableRoutes) {
       await page.goto(`${base}/v2-${route}.html`);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${route}: horizontal overflow`);
