@@ -10,6 +10,8 @@ const records = ["guides", "alphabet", "numbers", "world", "planets"]
 const approved = records.filter((record) => record.status === "approved");
 const pending = records.filter((record) => record.status !== "approved");
 const batches = batchReport.batches || [];
+const leonReadiness = readiness.characters.find((record) => record.id === "leon");
+const zayaReadiness = readiness.characters.find((record) => record.id === "zaya");
 
 assert.equal(batchReport.schemaVersion, 1, "Unexpected production batch schema version");
 assert.equal(batches.length, 6, "Expected six character production batches");
@@ -26,7 +28,11 @@ assert.equal(readiness.familySummary?.planet?.pendingStateSlots, 50, "Planet fam
 assert.equal(readiness.familySummary?.guide?.gateSummary?.blocked, 2, "Guide gate matrix must keep Leon and Zaya blocked");
 assert.equal(readiness.familySummary?.alphabet?.gateSummary?.visualQualityFailed, 26, "Alphabet gate matrix must preserve visual-quality blockers");
 assert.equal(readiness.characters.find((record) => record.id === "battery-buddy")?.gates?.approvalStatus, "approved", "Battery Buddy gate matrix must be approved");
-assert.equal(readiness.characters.find((record) => record.id === "leon")?.gates?.suppliedSourceComplete, "fail", "Leon gate matrix must keep supplied empty failure explicit");
+assert.equal(leonReadiness?.gates?.suppliedSourceComplete, "fail", "Leon gate matrix must keep supplied empty failure explicit");
+assert(leonReadiness?.blockers?.includes("supplied source is below 2048 px production master requirement"), "Leon readiness must preserve the supplied-source size blocker");
+assert(zayaReadiness?.blockers?.includes("supplied source is below 2048 px production master requirement"), "Zaya readiness must preserve the supplied-source size blocker");
+assert.equal(leonReadiness?.gates?.approvalStatus, "blocked", "Leon must remain blocked until production art gates pass");
+assert.equal(zayaReadiness?.gates?.approvalStatus, "blocked", "Zaya must remain blocked until production art gates pass");
 assert(/Only records with status approved/i.test(batchReport.runtimeRule), "Runtime rule must require approved status");
 for (const blocked of ["source-safe-keeping", "review-only", "QA", "contact-sheet", "rejected"]) {
   assert(batchReport.runtimeRule.includes(blocked), `Runtime rule must explicitly block ${blocked}`);
