@@ -12,6 +12,7 @@
     "pause state does not leak",
     "inert state does not leak",
     "reduced-motion cap reapplies",
+    "owned resources destroy exactly once",
     "no console/page errors"
   ],
   "visits": [

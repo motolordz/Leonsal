@@ -71,6 +71,29 @@ try {
       visits.push({ pass, route });
       await page.getByRole('button', { name: 'Pause' }).click();
       assert.equal(await page.locator('body').getAttribute('data-paused'), 'true', `${route}: pause did not set body state`);
+      const cleanup = await page.evaluate(() => {
+        let destroys = 0;
+        const shell = window.__leonSalActiveGameShell;
+        shell.own({ destroy: () => { destroys += 1; } });
+        const ownedBefore = shell.resources.size;
+        shell.destroy();
+        return {
+          destroys,
+          ownedBefore,
+          shellCleared: window.__leonSalActiveGameShell === null,
+          controls: document.querySelectorAll('.session-controls').length,
+          dialogs: document.querySelectorAll('.session-dialog').length,
+          paused: document.body.dataset.paused,
+          inert: document.querySelector('.game-scene')?.inert || false
+        };
+      });
+      assert.equal(cleanup.destroys, 1, `${route}: owned resource did not destroy exactly once`);
+      assert(cleanup.ownedBefore >= 1, `${route}: shell did not track owned resource`);
+      assert.equal(cleanup.shellCleared, true, `${route}: shell did not clear active reference on destroy`);
+      assert.equal(cleanup.controls, 0, `${route}: controls remained after destroy`);
+      assert.equal(cleanup.dialogs, 0, `${route}: dialog remained after destroy`);
+      assert.equal(cleanup.paused, 'false', `${route}: paused state remained after destroy`);
+      assert.equal(cleanup.inert, false, `${route}: inert state remained after destroy`);
     }
   }
   assert.deepEqual(failures, []);
@@ -86,6 +109,7 @@ try {
       'pause state does not leak',
       'inert state does not leak',
       'reduced-motion cap reapplies',
+      'owned resources destroy exactly once',
       'no console/page errors'
     ],
     visits

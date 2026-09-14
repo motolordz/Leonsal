@@ -44,13 +44,14 @@
 - [x] Add local caregiver activity-summary export for the active profile, limited to visits and Finished sessions and explicitly excluding scores, grades, mastery claims and medical/sensory labels.
 - [x] Add a review-only character readiness matrix for supplied Leon, Zaya and Elephant artwork, showing five-state completeness and blockers while preserving production runtime art isolation.
 - [x] Retire the old push-triggered character pilot extraction workflow and add approval-preservation verification so it cannot auto-run, write contents, invoke the chart-crop builder or push generated art.
+- [x] Add explicit shared game-shell resource ownership and destroy coverage so future engines can register disposable resources and clean them up exactly once.
 
 These changes remain preview work. They do not approve character art, claim production deployment, or complete all foundation contracts.
 
 ## Required remaining foundation work
 
 - [ ] Reconcile the static proof architecture with the adopted Vite/TypeScript modular build target; pin test/build dependencies and add reproducible lockfile/CI.
-- [ ] Complete full game-module preload/mount/start/pause/resume/reset/settings/destroy lifecycle, resource ownership, and repeat-route cleanup tests. The current shared session wrapper handles pause/finish and now has repeated-route cleanup stress coverage, but this is still not the entire module architecture.
+- [ ] Complete full game-module preload/mount/start/pause/resume/reset/settings/destroy lifecycle and repeat-route cleanup tests. The current shared session wrapper handles pause/finish, explicit disposable resource ownership, exact-once destroy coverage and repeated-route cleanup stress coverage, but this is still not the entire module architecture.
 - [x] Bridge legacy and V2 sensory preference stores for core controls. V2 now validates and exposes motion, sound, voice, music, vibration, calm mode, particles, speed, effects level, voice level, music level, contrast and pace; the legacy home reads/writes shared motion, sound, vibration, contrast and independent V2 audio-level settings. Deeper profile migration remains outstanding.
 - [x] Implement and verify eight foundation engine contracts: memory-recall, physics-play, character-state-animation, world-shell-progress, asset-loader, performance-monitor, profile-progress-store, hint-feedback. These are foundation primitives, not completed games.
 - [ ] Complete parent/profile controls, full error recovery and full offline behaviour. Local V2 activity notes now support separate local child profiles and local caregiver summary export, and the safe V2 route cache plus navigation-only offline fallback plus connection-status cues avoid false saved/mastery claims; full caregiver controls and full offline UX are still not complete.

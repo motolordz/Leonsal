@@ -8,12 +8,13 @@ class LeonSalGameShell {
     return location.pathname.split('/').pop().replace(/^v2-/, '').replace(/\.html$/, '') || 'v2-game';
   }
 
-  constructor({ settings, motions = [], audio = [], reset, gameId = document.body.dataset.gameId || LeonSalGameShell.routeGameId() }) {
+  constructor({ settings, motions = [], audio = [], resources = [], reset, gameId = document.body.dataset.gameId || LeonSalGameShell.routeGameId() }) {
     LeonSalGameShell.registerOffline();
     LeonSalGameShell.installConnectionStatus();
     this.settings = settings;
     this.motions = motions;
     this.audio = audio;
+    this.resources = new Set(resources);
     this.reset = reset;
     this.gameId = gameId;
     this.localProfiles = typeof LeonSalV2 !== 'undefined' ? new LeonSalV2.LocalProfileEngine() : null;
@@ -58,6 +59,16 @@ class LeonSalGameShell {
     this.unsubscribe = settings.on('settings-change', () => this.applySettings());
     this.applySettings();
     this.profile?.record(this.gameId, { visits: ((this.profile.value.progress[this.gameId]?.visits || 0) + 1) });
+  }
+  own(resource) {
+    if (resource) this.resources.add(resource);
+    return resource;
+  }
+  release(resource) {
+    if (!resource || !this.resources.delete(resource)) return;
+    resource.destroy?.();
+    resource.dispose?.();
+    resource.stop?.();
   }
 
   static registerOffline() {
@@ -130,6 +141,7 @@ class LeonSalGameShell {
     this.unsubscribe?.();
     this.motions.forEach((motion) => motion.stop());
     this.audio.forEach((audio) => audio.stop());
+    for (const resource of this.resources) this.release(resource);
     this.scene.inert = false;
     document.body.dataset.paused = 'false';
     this.controls.remove();
