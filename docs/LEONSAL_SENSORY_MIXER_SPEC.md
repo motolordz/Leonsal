@@ -1,6 +1,6 @@
 # LeonSal Sensory Mixer Spec
 
-The Sensory Mixer is specified here for future implementation. It is not complete in this adoption task.
+The Sensory Mixer now has a foundation implementation for local saved sensory-world presets. It is not a completed game system, and presets do not count as games.
 
 ## Purpose
 
@@ -25,3 +25,7 @@ A preset records ID, name, visual theme, requested motion, requested sound, requ
 ## Product Count Rule
 
 Mixer presets, aliases, variants, and saved worlds are not separate completed games. They are configurations of approved sensory concepts and reusable engines.
+
+## Current Foundation
+
+The current V2 home exposes three local preset examples: Quiet Glow, Bubble Calm, and Star Trail. They are saved only in local browser storage and resolve through the shared settings engine. The implementation must keep Sound Off silent, keep Reduced Motion reduced, cap particles and speed to the current global ceiling, avoid inferred medical/sensory labels, and keep a visible exit path.

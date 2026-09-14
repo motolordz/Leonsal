@@ -1224,6 +1224,13 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .local-profile-tools label { font-weight: 900; color: #25405f; }
 .local-profile-tools select, .local-profile-tools input { min-height: 48px; border: 1px solid #cddbec; border-radius: 16px; padding: 0 12px; font: inherit; background: #fff; color: var(--ink); }
 .local-profile-tools button { min-height: 48px; }
+.hub-mixer-panel { margin: 28px 0; padding: 22px; border-radius: 28px; background: linear-gradient(135deg, #ffffff, #eef8ff); box-shadow: var(--shadow); }
+.mixer-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+.mixer-card { min-height: 96px; border: 1px solid #cddbec; border-radius: 22px; font: inherit; font-weight: 950; color: #173356; box-shadow: 0 10px 20px #2b5a8814; cursor: pointer; }
+.mixer-card:active { transform: translateY(2px) scale(.99); }
+.mixer-card.glow { background: radial-gradient(circle at 50% 25%, #fff, #e7ddff 55%, #c7b4ef); }
+.mixer-card.bubbles { background: radial-gradient(circle at 30% 25%, #fff, #dff5ff 50%, #a9e4f4); }
+.mixer-card.stars { background: radial-gradient(circle at 50% 18%, #fff8a8, #e6f1ff 45%, #b9c9ff); }
 .offline-shell { min-height: 100svh; display: grid; place-items: center; padding-top: 24px; }
 .offline-card { width: min(640px, 100%); border-radius: 34px; padding: clamp(28px, 8vw, 54px); background: rgba(255,255,255,.9); box-shadow: var(--deep-shadow); text-align: center; }
 .offline-card h1 { margin: 8px 0 10px; font-size: clamp(2rem, 7vw, 4rem); line-height: .98; letter-spacing: 0; }
@@ -1233,6 +1240,7 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 @media (max-width: 480px) {
   .local-profile-tools { grid-template-columns: 1fr 1fr; }
   .local-profile-tools label, .local-profile-tools select, .local-profile-tools input { grid-column: 1 / -1; }
+  .mixer-presets { grid-template-columns: 1fr; }
   .world-game { display: grid; grid-template-columns: 88px 1fr; column-gap: 14px; padding: 12px; }
   .world-game .game-art { grid-row: 1 / 4; height: 110px; align-self: center; }
   .world-game h3 { margin: 2px 0 6px; }

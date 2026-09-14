@@ -34,6 +34,9 @@
     'orbit-engine': 'Orbit Play',
     'cause-effect-engine': 'Cause & Effect'
   };
+  const mixer = new LeonSalV2.SensoryMixerEngine(settings);
+  const mixerPresets = document.getElementById('mixerPresets');
+  const mixerSummary = document.getElementById('mixerSummary');
 
   const renderProgress = () => {
     if (!progressHost) return;
@@ -93,6 +96,33 @@
     clearProgress.textContent = 'Local notes cleared';
     window.setTimeout(() => { clearProgress.textContent = 'Clear local notes'; }, 1300);
   });
+
+  const renderMixer = () => {
+    if (!mixerSummary) return;
+    if (!mixer.savedWorlds.length) {
+      mixerSummary.innerHTML = '<p>No saved sensory worlds yet.</p>';
+      return;
+    }
+    mixerSummary.innerHTML = mixer.savedWorlds.slice(0, 3).map((world) => {
+      const effective = world.effective || {};
+      return `<article><strong>${world.name}</strong><span>Motion ${effective.motion ? 'on' : 'off'} · Sound ${effective.sound ? 'on' : 'off'} · Particles ${effective.particles || 'off'} · Speed ${effective.speed || 'slow'}</span></article>`;
+    }).join('');
+  };
+  if (mixerPresets) {
+    mixerPresets.replaceChildren(...mixer.presets.map((preset) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = `mixer-card ${preset.visualTheme}`;
+      button.textContent = preset.name;
+      button.addEventListener('click', () => {
+        mixer.applyPreset(preset.id);
+        renderMixer();
+      });
+      return button;
+    }));
+  }
+  renderMixer();
+  mixer.on('save', renderMixer);
 
   toggle.addEventListener('click', () => {
     const open = host.dataset.open !== 'true';

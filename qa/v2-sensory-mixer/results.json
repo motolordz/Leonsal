@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "reducedMotion": "reduce",
+  "presets": 3,
+  "checks": [
+    "saved worlds are local presets, not games",
+    "Sound Off remains silent",
+    "Reduced Motion caps preset motion",
+    "Calm Mode and Particles Off cap particles",
+    "global speed ceiling caps preset speed",
+    "exit remains available",
+    "no score or inferred sensory/medical labels"
+  ]
+}

@@ -1134,6 +1134,67 @@ const LeonSalV2 = (() => {
     }
   }
 
+  class SensoryMixerEngine extends EventBus {
+    constructor(settings, options = {}) {
+      super();
+      this.settings = settings;
+      this.key = options.key || 'leonsal-v2-sensory-worlds';
+      this.presets = options.presets || [
+        { id: 'quiet-glow', name: 'Quiet Glow', visualTheme: 'glow', motionRequest: false, soundRequest: false, particleRequest: 'off', speedRequest: 'slow', calmCompatible: true, reducedMotionFallback: 'static-glow', exitAlwaysAvailable: true },
+        { id: 'bubble-calm', name: 'Bubble Calm', visualTheme: 'bubbles', motionRequest: true, soundRequest: false, particleRequest: 'low', speedRequest: 'slow', calmCompatible: true, reducedMotionFallback: 'tap-bubbles', exitAlwaysAvailable: true },
+        { id: 'star-trail', name: 'Star Trail', visualTheme: 'stars', motionRequest: true, soundRequest: false, particleRequest: 'gentle', speedRequest: 'normal', calmCompatible: true, reducedMotionFallback: 'still-stars', exitAlwaysAvailable: true }
+      ];
+      this.savedWorlds = [];
+      this.load();
+    }
+    load() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(this.key) || '[]');
+        if (Array.isArray(saved)) this.savedWorlds = saved.filter((world) => world?.id && world?.presetId);
+      } catch (_error) {
+        /* Saved worlds are optional. */
+      }
+    }
+    save() {
+      try { localStorage.setItem(this.key, JSON.stringify(this.savedWorlds)); } catch (_error) { /* optional */ }
+      this.emit('save', this.savedWorlds);
+    }
+    capPreset(preset) {
+      const current = this.settings.value;
+      const capped = {
+        motion: Boolean(preset.motionRequest && this.settings.allowsMotion()),
+        sound: Boolean(preset.soundRequest && current.sound),
+        vibration: false,
+        particles: current.calmMode ? 'off' : this.capParticles(preset.particleRequest, current.particles),
+        speed: this.capSpeed(preset.speedRequest, current.speed),
+        visualTheme: preset.visualTheme,
+        reducedMotionFallback: current.reducedMotion ? preset.reducedMotionFallback : null,
+        exitAlwaysAvailable: preset.exitAlwaysAvailable === true
+      };
+      return capped;
+    }
+    capParticles(requested = 'gentle', current = 'gentle') {
+      const rank = { off: 0, low: 1, gentle: 2 };
+      const capped = Math.min(rank[requested] ?? 2, rank[current] ?? 2);
+      return Object.keys(rank).find((key) => rank[key] === capped) || 'off';
+    }
+    capSpeed(requested = 'normal', current = 'normal') {
+      const rank = { slow: 0, normal: 1, lively: 2 };
+      const capped = Math.min(rank[requested] ?? 1, rank[current] ?? 1);
+      return Object.keys(rank).find((key) => rank[key] === capped) || 'slow';
+    }
+    applyPreset(id) {
+      const preset = this.presets.find((item) => item.id === id);
+      if (!preset) return null;
+      const world = { id: `world-${Date.now().toString(36)}`, presetId: id, name: preset.name, effective: this.capPreset(preset), savedAt: new Date().toISOString() };
+      this.savedWorlds.unshift(world);
+      this.savedWorlds = this.savedWorlds.slice(0, 6);
+      this.save();
+      this.emit('apply', world);
+      return world;
+    }
+  }
+
   class HintFeedbackEngine extends EventBus {
     constructor(options = {}) {
       super();
@@ -1190,6 +1251,7 @@ const LeonSalV2 = (() => {
     PerformanceMonitorEngine,
     ProfileProgressStoreEngine,
     LocalProfileEngine,
+    SensoryMixerEngine,
     HintFeedbackEngine,
     SettingsPanel,
     clamp,

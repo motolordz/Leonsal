@@ -58,8 +58,11 @@ for (const concept of sensoryConcepts.concepts || []) {
   }
 }
 
-if (mixer.implementationStatus !== "specified-only") {
-  failures.push("sensory-mixer-contract-v2.json: Mixer must remain specified-only");
+if (mixer.implementationStatus !== "foundation-implemented") {
+  failures.push("sensory-mixer-contract-v2.json: Mixer foundation must be implemented without counting presets as games");
+}
+if (mixer.productCountStatus !== "presets-are-not-games") {
+  failures.push("sensory-mixer-contract-v2.json: Mixer presets must not count as games");
 }
 
 if (games.total !== 30 || games.games?.length !== 30) {
@@ -93,4 +96,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("V2 contract check passed: 28 engine specs, 8 foundation engines, 56 sensory catalogue concepts, Mixer specified-only.");
+console.log("V2 contract check passed: 28 engine specs, 8 foundation engines, 56 sensory catalogue concepts, Mixer foundation implemented.");
