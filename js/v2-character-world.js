@@ -188,10 +188,12 @@
 
   function makeSvg(record, state, options = {}) {
     const sharedRenderer = window.LeonSalCharacterRenderer;
-    if (sharedRenderer && record.family === 'guide' && (record.id === 'leon' || record.id === 'zaya')) {
+    if (sharedRenderer && ['guide', 'alphabet', 'number', 'numbers'].includes(record.family)) {
       const svg = sharedRenderer.makeCharacter(record, state, options);
-      svg.classList.add('procedural-character-svg', `character-family-${record.family}`, `character-state-${state}`);
-      return svg;
+      if (svg) {
+        svg.classList.add('procedural-character-svg', `character-family-${record.family}`, `character-state-${state}`);
+        return svg;
+      }
     }
     const family = record.family || 'world';
     const [primary, accent, secondary] = palettes[family] || palettes.world;

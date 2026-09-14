@@ -32,6 +32,7 @@ for (const text of [
   'fetch(\'data/character-assets.json\')',
   'LeonSalCharacterRenderer',
   'makeCharacter(record, state',
+  "['guide', 'alphabet', 'number', 'numbers']",
   'makeSvg(record, state',
   'Procedural vector fallback',
   'new LeonSalGameShell',
