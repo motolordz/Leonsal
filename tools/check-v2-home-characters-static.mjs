@@ -16,13 +16,13 @@ for (const source of [landing, home]) {
   assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(source), 'Home route must not reference blocked character art paths');
 }
 
-for (const text of ['LeonSalCharacterRenderer', 'makeGuide', 'Leon', 'Zaya', 'supportedGuideStates']) {
+for (const text of ['LeonSalCharacterRenderer', 'makeCharacter', 'makeGuide', 'Leon', 'Zaya', 'supportedGuideStates']) {
   assert(renderer.includes(text), `Shared guide renderer missing: ${text}`);
 }
 for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
   assert(renderer.includes(state), `Shared guide renderer missing state: ${state}`);
 }
-for (const text of ['makeGuide', 'LeonSalCharacterRenderer', 'data-svg-guide', 'home-guide-svg']) {
+for (const text of ['makeCharacter', 'LeonSalCharacterRenderer', 'data-svg-guide', 'home-guide-svg']) {
   assert(js.includes(text), `Home procedural guide renderer missing: ${text}`);
 }
 assert(!/assets\/character-review|source-safe-keeping|qa\/|contact-sheet|rejected/i.test(renderer), 'Shared guide renderer must not reference blocked art paths');

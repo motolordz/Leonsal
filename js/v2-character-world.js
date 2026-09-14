@@ -189,7 +189,7 @@
   function makeSvg(record, state, options = {}) {
     const sharedRenderer = window.LeonSalCharacterRenderer;
     if (sharedRenderer && record.family === 'guide' && (record.id === 'leon' || record.id === 'zaya')) {
-      const svg = sharedRenderer.makeGuide(record.id, state, options);
+      const svg = sharedRenderer.makeCharacter(record, state, options);
       svg.classList.add('procedural-character-svg', `character-family-${record.family}`, `character-state-${state}`);
       return svg;
     }

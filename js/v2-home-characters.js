@@ -47,7 +47,8 @@
       const renderer = window.LeonSalCharacterRenderer;
       const guide = target.dataset.homeGuide;
       const state = guide === 'zaya' ? 'excited' : 'happy';
-      target.replaceChildren(renderer ? renderer.makeGuide(guide, state, { decorative: true }) : makeGuide(guide));
+      const record = { id: guide, family: 'guide' };
+      target.replaceChildren(renderer ? renderer.makeCharacter(record, state, { decorative: true }) : makeGuide(guide));
     });
   }
 

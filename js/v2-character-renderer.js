@@ -82,7 +82,14 @@
     return svg;
   }
 
+  function makeCharacter(record, state = 'happy', options = {}) {
+    if (!record || !record.id) return makeGuide('leon', state, options);
+    if (record.family === 'guide' && guideModels[record.id]) return makeGuide(record.id, state, options);
+    return null;
+  }
+
   window.LeonSalCharacterRenderer = Object.freeze({
+    makeCharacter,
     makeGuide,
     supportedGuideStates: Object.freeze(Object.keys(emotions))
   });

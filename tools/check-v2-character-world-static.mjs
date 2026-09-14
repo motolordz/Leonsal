@@ -31,6 +31,7 @@ for (const state of ['empty', 'low', 'calm', 'happy', 'excited']) {
 for (const text of [
   'fetch(\'data/character-assets.json\')',
   'LeonSalCharacterRenderer',
+  'makeCharacter(record, state',
   'makeSvg(record, state',
   'Procedural vector fallback',
   'new LeonSalGameShell',
