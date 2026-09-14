@@ -14,10 +14,14 @@ for (const forbidden of [
 }
 
 assert(js.includes('record.status !== "approved"'), "Artwork integration must require approved records");
+assert(js.includes("function approvedStatePath"), "Artwork integration must normalize approved state paths through one guard");
+assert(js.includes('typeof src !== "string"'), "Artwork integration must reject non-string state path records");
+assert(js.includes("approvedStatePath(record, state)"), "Artwork integration must use approved path guard before rendering");
 assert(js.includes("if (!window.LeonSalCharacters) return;"), "Artwork integration must guard the optional character helper");
 assert(js.includes("var realWorld = setRealImage"), "Energy rendering must keep real-art resolution explicit");
 assert(js.includes("var realDash = setRealImage"), "Dash rendering must keep real-art resolution explicit");
 assert(js.includes("glyph.hidden = realWorld || realDash"), "Pending character fallback must not be hidden");
+assert(!js.includes("lastEnergyPercent"), "Energy rendering must not reference undefined fallback state");
 assert(js.includes("if (setRealImage(buddy, record"), "Pending number/letter buddies must not be blanked before approved art resolves");
 assert(js.includes("if (setRealImage(tile, record"), "Pending letter tiles must not be blanked before approved art resolves");
 assert(!js.includes('buddy.dataset.realApplied = "true";\n      setRealImage'), "Buddies must not mark real art before a successful approved-image resolve");

@@ -26,9 +26,17 @@
     return (items || []).find(function (item) { return item.uppercase === String(letter).toUpperCase(); });
   }
 
+  function approvedStatePath(record, state) {
+    if (!record || record.status !== "approved" || !record.states) return "";
+    var src = record.states[state];
+    if (typeof src !== "string") return "";
+    if (/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa\//.test(src)) return "";
+    return src;
+  }
+
   function setRealImage(target, record, state, label) {
-    if (!target || !record || record.status !== "approved" || !record.states || !record.states[state]) return false;
-    if (/source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/.test(record.states[state])) return false;
+    var src = approvedStatePath(record, state);
+    if (!target || !src) return false;
     target.classList.add("ls-real-art-host");
     target.dataset.realCharacterId = record.id;
     target.dataset.realState = state;
@@ -41,7 +49,7 @@
       img.alt = label || record.displayName || record.id;
       target.replaceChildren(img);
     }
-    img.src = record.states[state];
+    img.src = src;
     img.alt = label || record.displayName || record.id;
     return true;
   }
@@ -49,8 +57,10 @@
   function preload(record) {
     if (!record || record.status !== "approved" || !record.states) return;
     states.forEach(function (state) {
+      var src = approvedStatePath(record, state);
+      if (!src) return;
       var img = new Image();
-      img.src = record.states[state];
+      img.src = src;
     });
   }
 
@@ -85,7 +95,7 @@
       var realDash = setRealImage(dashBuddy, record, state, (record && record.displayName) + " " + state);
       if (glyph) glyph.hidden = realWorld || realDash;
       if (sleepCloud) sleepCloud.hidden = realWorld || realDash || state !== "empty";
-      if (energyNumber) energyNumber.textContent = (slider ? slider.value : lastEnergyPercent) + "%";
+      if (energyNumber) energyNumber.textContent = (slider ? slider.value : (appState.energy || 0)) + "%";
     }
 
     document.querySelectorAll("[data-character]").forEach(function (button) {
