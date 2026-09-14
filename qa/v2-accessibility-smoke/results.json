@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 48,
+      "controls": 49,
       "canvases": []
     },
     {
@@ -196,6 +196,12 @@
       "route": "v2-pattern-builder.html",
       "passed": true,
       "controls": 9,
+      "canvases": []
+    },
+    {
+      "route": "v2-sort-it.html",
+      "passed": true,
+      "controls": 13,
       "canvases": []
     },
     {

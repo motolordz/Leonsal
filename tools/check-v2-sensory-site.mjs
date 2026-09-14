@@ -25,6 +25,7 @@ const routes = [
   'v2-colour-match.html',
   'v2-big-small.html',
   'v2-pattern-builder.html',
+  'v2-sort-it.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -116,7 +117,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 12);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 13);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -295,6 +296,16 @@ async function main() {
       await page.getByRole('button', { name: 'Reset' }).click();
       state = await page.evaluate(() => window.__patternBuilderProofState?.());
       assert.equal(state.placed.length, 2, 'Pattern Builder reset did not return to starter pattern');
+    }
+    if (route === 'v2-sort-it.html') {
+      await page.locator('.sort-item').first().click();
+      await page.locator('.sort-basket').first().click();
+      let state = await page.evaluate(() => window.__sortItProofState?.());
+      assert(state.sorted.includes('cloud'), 'Sort It did not sort first item through tap path');
+      assert.equal(state.hasTapAlternative, true, 'Sort It missing tap alternative');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__sortItProofState?.());
+      assert.equal(state.sorted.length, 0, 'Sort It reset did not clear sorted items');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

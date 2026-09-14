@@ -22,6 +22,7 @@ const SAFE_ASSETS = [
   './v2-colour-match.html',
   './v2-big-small.html',
   './v2-pattern-builder.html',
+  './v2-sort-it.html',
   './v2-light-trail.html',
   './v2-hold-to-breathe.html',
   './v2-trace-engine.html',

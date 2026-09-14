@@ -1676,6 +1676,8 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .home-big-small { width: 116px; height: 96px; border-radius: 30px; background: radial-gradient(circle at 28% 62%, #60a5fa 0 14%, transparent 15%), radial-gradient(circle at 70% 46%, #fbbf24 0 28%, transparent 29%), linear-gradient(145deg, #fff, #dbeafe); box-shadow: inset 0 -12px 0 rgba(15,23,42,.08), 0 16px 26px rgba(37,99,235,.16); }
 .pattern-card .game-art { background: #fef9c3; }
 .home-pattern { width: 116px; height: 96px; border-radius: 30px; background: radial-gradient(circle at 20% 50%, #fbbf24 0 16%, transparent 17%), radial-gradient(circle at 47% 50%, #60a5fa 0 16%, transparent 17%), radial-gradient(circle at 74% 50%, #fbbf24 0 16%, transparent 17%), linear-gradient(145deg, #fff, #fde68a); box-shadow: inset 0 -12px 0 rgba(15,23,42,.08), 0 16px 26px rgba(245,158,11,.16); }
+.sort-it-card .game-art { background: #ecfeff; }
+.home-sort-it { width: 116px; height: 96px; border-radius: 30px; background: radial-gradient(circle at 22% 28%, #93c5fd 0 17%, transparent 18%), radial-gradient(circle at 72% 28%, #fde047 0 15%, transparent 16%), radial-gradient(circle at 26% 74%, #86efac 0 16%, transparent 17%), radial-gradient(circle at 72% 72%, #22c55e 0 13%, transparent 14%), linear-gradient(145deg, #fff, #cffafe); box-shadow: inset 0 -12px 0 rgba(15,23,42,.08), 0 16px 26px rgba(14,165,233,.16); }
 .colour-match-world { background: linear-gradient(180deg, #fff7ed, #e0f2fe 55%, #f0fdf4); overflow: hidden; }
 .colour-wells, .colour-drops { position: absolute; left: 7%; right: 7%; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; z-index: 3; }
 .colour-wells { top: 15%; }
@@ -1708,6 +1710,18 @@ body[data-calm="true"] .trail-starscape, body[data-calm="true"] .battery-spark, 
 .pattern-choice:active { transform: translateY(4px) scale(.98); }
 .choice-sun { background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.9) 0 14%, transparent 15%), #fbbf24; }
 .choice-moon { background: radial-gradient(circle at 78% 24%, #dbeafe 0 16%, transparent 17%), #60a5fa; }
+.sort-it-world { background: linear-gradient(180deg, #ecfeff, #fef9c3 52%, #dcfce7); overflow: hidden; }
+.sort-baskets { position: absolute; top: 15%; left: 7%; right: 7%; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; z-index: 3; }
+.sort-basket { min-height: 116px; border: 5px solid rgba(14,165,233,.22); border-radius: 30px; background: rgba(255,255,255,.78); font: inherit; font-size: 1.25rem; font-weight: 1000; color: #12213f; box-shadow: 0 16px 30px rgba(19,35,67,.12), inset 0 -10px 0 rgba(19,35,67,.06); }
+.sort-basket::after { content: attr(data-count); display: grid; place-items: center; width: 34px; height: 34px; margin: 10px auto 0; border-radius: 50%; background: #cffafe; color: #0369a1; }
+.sort-items { position: absolute; left: 7%; right: 7%; bottom: 17%; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; z-index: 3; }
+.sort-item { min-height: 112px; border: 0; border-radius: 32px; font: inherit; font-weight: 1000; color: #12213f; touch-action: manipulation; box-shadow: 0 18px 30px rgba(19,35,67,.14), inset 0 -12px 0 rgba(19,35,67,.08); transition: transform .14s ease, opacity .14s ease; padding-top: 68px; background-position: center 20px; background-repeat: no-repeat; background-size: 72px 50px; }
+.sort-item.cloud { background-image: radial-gradient(ellipse at 35% 56%, #bfdbfe 0 22%, transparent 23%), radial-gradient(ellipse at 58% 42%, #dbeafe 0 28%, transparent 29%); background-color: #eff6ff; }
+.sort-item.star { background-image: radial-gradient(circle at 50% 48%, #fde047 0 34%, transparent 35%); background-color: #fff7ed; }
+.sort-item.flower { background-image: radial-gradient(circle at 50% 50%, #facc15 0 14%, transparent 15%), radial-gradient(circle at 32% 32%, #fb7185 0 18%, transparent 19%), radial-gradient(circle at 68% 32%, #fb7185 0 18%, transparent 19%), radial-gradient(circle at 32% 68%, #fb7185 0 18%, transparent 19%), radial-gradient(circle at 68% 68%, #fb7185 0 18%, transparent 19%); background-color: #fdf2f8; }
+.sort-item.leaf { background-image: radial-gradient(ellipse at 50% 50%, #4ade80 0 36%, transparent 37%); background-color: #f0fdf4; }
+.sort-item[data-selected="true"] { transform: translateY(-8px) scale(1.05); outline: 5px solid rgba(255,255,255,.86); }
+.sort-item[data-sorted="true"] { opacity: .35; transform: scale(.9); }
 .planned-worlds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .planned-worlds article { border-top: 2px solid #cbd8e7; padding: 4px; }
 .planned-worlds h3 { font-size: 1rem; margin-bottom: 8px; }
@@ -1781,7 +1795,7 @@ body[data-calm="true"] .connection-status { transition: none; }
   .home-number { width: 58px; height: 54px; border-radius: 15px; font-size: 1.1rem; }
   .home-letter { width: 58px; height: 54px; border-radius: 15px; font-size: 2.2rem; }
   .home-shapes { width: 58px; height: 54px; border-radius: 15px; }
-  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern { width: 58px; height: 54px; border-radius: 15px; font-size: 2.1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
+  .home-letter-trace, .home-number-trace, .home-shape-trace, .home-colour-match, .home-big-small, .home-pattern, .home-sort-it { width: 58px; height: 54px; border-radius: 15px; font-size: 2.1rem; text-decoration-thickness: 4px; text-underline-offset: 4px; }
   .number-mat { grid-template-columns: repeat(5, 1fr); padding: 10px; }
   .number-buddy { min-height: 58px; border-radius: 18px; }
   .number-world { padding-bottom: 126px; gap: 10px; }
