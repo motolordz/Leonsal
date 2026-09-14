@@ -9,11 +9,78 @@ const records = [
   { id: 'letter-z', displayName: 'Letter Z', family: 'alphabet', uppercase: 'Z' },
   { id: 'number-1', displayName: 'Number 1', family: 'number' },
   { id: 'number-10', displayName: 'Number 10', family: 'number' },
+  { id: 'battery-buddy', displayName: 'Battery Buddy', family: 'world' },
   { id: 'world-elephant', displayName: 'Elephant', family: 'world' },
-  { id: 'world-double-decker-bus', displayName: 'Double-decker Bus', family: 'world' },
+  { id: 'world-dinosaur', displayName: 'Dinosaur', family: 'world' },
+  { id: 'world-sun', displayName: 'Sun', family: 'world' },
+  { id: 'world-moon', displayName: 'Moon', family: 'world' },
+  { id: 'world-cloud', displayName: 'Cloud', family: 'world' },
+  { id: 'world-rainbow', displayName: 'Rainbow', family: 'world' },
+  { id: 'world-rocket', displayName: 'Rocket', family: 'world' },
+  { id: 'world-earth', displayName: 'Earth', family: 'world' },
+  { id: 'world-robot', displayName: 'Robot', family: 'world' },
+  { id: 'world-magnifier', displayName: 'Magnifying Glass', family: 'world' },
+  { id: 'world-puzzle', displayName: 'Puzzle', family: 'world' },
+  { id: 'world-train', displayName: 'Train', family: 'world' },
   { id: 'world-plane', displayName: 'Plane', family: 'world' },
-  { id: 'planet-saturn', displayName: 'Saturn', family: 'planet' }
+  { id: 'world-boat', displayName: 'Boat', family: 'world' },
+  { id: 'world-double-decker-bus', displayName: 'Double-decker Bus', family: 'world' },
+  { id: 'world-clock', displayName: 'Clock', family: 'world' },
+  { id: 'world-calendar', displayName: 'Calendar', family: 'world' },
+  { id: 'world-pencil', displayName: 'Pencil', family: 'world' },
+  { id: 'world-book', displayName: 'Book', family: 'world' },
+  { id: 'world-paintbrush', displayName: 'Paintbrush', family: 'world' },
+  { id: 'world-music-note', displayName: 'Music Note', family: 'world' },
+  { id: 'world-water', displayName: 'Water Droplet', family: 'world' },
+  { id: 'world-treasure', displayName: 'Treasure Chest', family: 'world' },
+  { id: 'planet-sun', displayName: 'Sun', family: 'planet' },
+  { id: 'planet-mercury', displayName: 'Mercury', family: 'planet' },
+  { id: 'planet-venus', displayName: 'Venus', family: 'planet' },
+  { id: 'planet-earth', displayName: 'Earth', family: 'planet' },
+  { id: 'planet-mars', displayName: 'Mars', family: 'planet' },
+  { id: 'planet-jupiter', displayName: 'Jupiter', family: 'planet' },
+  { id: 'planet-saturn', displayName: 'Saturn', family: 'planet' },
+  { id: 'planet-uranus', displayName: 'Uranus', family: 'planet' },
+  { id: 'planet-neptune', displayName: 'Neptune', family: 'planet' },
+  { id: 'planet-moon', displayName: 'Moon', family: 'planet' }
 ];
+
+const expectedBodyClasses = {
+  'battery-buddy': 'battery-body',
+  'world-elephant': 'elephant-body',
+  'world-dinosaur': 'dinosaur-body',
+  'world-sun': 'sun-body',
+  'world-moon': 'moon-body',
+  'world-cloud': 'cloud-body',
+  'world-rainbow': 'rainbow-body',
+  'world-rocket': 'rocket-body',
+  'world-earth': 'earth-body',
+  'world-robot': 'robot-body',
+  'world-magnifier': 'magnifier-body',
+  'world-puzzle': 'puzzle-body',
+  'world-train': 'train-body',
+  'world-plane': 'plane-body',
+  'world-boat': 'boat-body',
+  'world-double-decker-bus': 'vehicle-body',
+  'world-clock': 'clock-body',
+  'world-calendar': 'calendar-body',
+  'world-pencil': 'pencil-body',
+  'world-book': 'book-body',
+  'world-paintbrush': 'paintbrush-body',
+  'world-music-note': 'music-body',
+  'world-water': 'water-body',
+  'world-treasure': 'treasure-body',
+  'planet-sun': 'planet-sun-body',
+  'planet-mercury': 'planet-mercury-body',
+  'planet-venus': 'planet-venus-body',
+  'planet-earth': 'earth-body',
+  'planet-mars': 'planet-mars-body',
+  'planet-jupiter': 'planet-jupiter-body',
+  'planet-saturn': 'planet-saturn-body',
+  'planet-uranus': 'planet-uranus-body',
+  'planet-neptune': 'planet-neptune-body',
+  'planet-moon': 'moon-body'
+};
 
 const browser = await chromium.launch();
 const page = await browser.newPage();
@@ -55,6 +122,9 @@ try {
     assert(item.label?.toLowerCase().includes(item.state), `${item.id} ${item.state} missing state in aria label`);
     assert(item.classes.includes(`character-state-${item.state}`) || item.classes.includes(`guide-state-${item.state}`), `${item.id} ${item.state} missing state class`);
     assert(!/source-safe-keeping|qa\/|contact-sheet|rejected|assets\/character-review|_staging/i.test(item.html), `${item.id} ${item.state} referenced blocked art`);
+    if (expectedBodyClasses[item.id]) {
+      assert(item.html.includes(expectedBodyClasses[item.id]), `${item.id} ${item.state} missing ${expectedBodyClasses[item.id]}`);
+    }
   }
 
   const byId = new Map(records.map(record => [record.id, result.output.filter(item => item.id === record.id)]));
