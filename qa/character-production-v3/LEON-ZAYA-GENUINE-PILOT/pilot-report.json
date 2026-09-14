@@ -17,6 +17,15 @@
       "width": 1536,
       "height": 1024,
       "hasAlpha": false
+    },
+    {
+      "path": "qa/character-production-v3/LEON-ZAYA-GENUINE-PILOT/leon-empty-individual-attempt/leon-empty-generated-review.png",
+      "archivedSourcePath": "assets/source-safe-keeping/generated-attempts/leon/empty/20260914-individual-v2/leon-empty-generated-review.png",
+      "sha256": "7c5b43cd19c4175ef6263aad30a0cfdaf1bf0c12fc40f029a45711e7cd056b21",
+      "format": "png",
+      "width": 1254,
+      "height": 1254,
+      "hasAlpha": false
     }
   ],
   "visualReview": {
@@ -33,5 +42,5 @@
     "runtimeReady": "fail",
     "approval": "not-approved"
   },
-  "decision": "Keep as review evidence only. Do not register as approved and do not expose as runtime artwork. Next production attempt must generate or extract individual transparent 2048px masters per character state from this accepted style direction."
+  "decision": "Keep as review evidence only. Do not register as approved and do not expose as runtime artwork. The built-in generation path produced useful visual direction but did not preserve true alpha, and the individual state output remained below the 2048px master requirement. Next production attempt must use an art workflow that returns individual transparent 2048px masters per character state."
 }
