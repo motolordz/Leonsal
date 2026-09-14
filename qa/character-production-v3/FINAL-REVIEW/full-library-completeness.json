@@ -1,428 +1,101 @@
 {
   "complete": false,
-  "requiredCharacterCount": 69,
+  "requireComplete": false,
   "approvedCharacterCount": 1,
   "approvedStateAssetCount": 5,
-  "pendingCharacterCount": 68,
-  "pendingStateAssetCount": 340,
-  "missingCharacterCount": 0,
-  "incompleteCharacterCount": 0,
-  "approved": [
-    {
-      "family": "world",
-      "id": "battery-buddy"
+  "totalCanonicalCharacterCount": 69,
+  "pendingOrRejectedCharacterCount": 68,
+  "families": {
+    "guides": {
+      "approved": 0,
+      "total": 2
+    },
+    "alphabet": {
+      "approved": 0,
+      "total": 26
+    },
+    "numbers": {
+      "approved": 0,
+      "total": 10
+    },
+    "world": {
+      "approved": 1,
+      "total": 21
+    },
+    "planets": {
+      "approved": 0,
+      "total": 10
     }
+  },
+  "coverageFailures": [
+    "guides/leon: pending-art is not production approved",
+    "guides/zaya: pending-art is not production approved",
+    "alphabet/letter-a: pending-art is not production approved",
+    "alphabet/letter-b: pending-art is not production approved",
+    "alphabet/letter-c: pending-art is not production approved",
+    "alphabet/letter-d: pending-art is not production approved",
+    "alphabet/letter-e: pending-art is not production approved",
+    "alphabet/letter-f: pending-art is not production approved",
+    "alphabet/letter-g: pending-art is not production approved",
+    "alphabet/letter-h: pending-art is not production approved",
+    "alphabet/letter-i: pending-art is not production approved",
+    "alphabet/letter-j: pending-art is not production approved",
+    "alphabet/letter-k: pending-art is not production approved",
+    "alphabet/letter-l: pending-art is not production approved",
+    "alphabet/letter-m: pending-art is not production approved",
+    "alphabet/letter-n: pending-art is not production approved",
+    "alphabet/letter-o: pending-art is not production approved",
+    "alphabet/letter-p: pending-art is not production approved",
+    "alphabet/letter-q: pending-art is not production approved",
+    "alphabet/letter-r: pending-art is not production approved",
+    "alphabet/letter-s: pending-art is not production approved",
+    "alphabet/letter-t: pending-art is not production approved",
+    "alphabet/letter-u: pending-art is not production approved",
+    "alphabet/letter-v: pending-art is not production approved",
+    "alphabet/letter-w: pending-art is not production approved",
+    "alphabet/letter-x: pending-art is not production approved",
+    "alphabet/letter-y: pending-art is not production approved",
+    "alphabet/letter-z: pending-art is not production approved",
+    "numbers/number-1: pending-art is not production approved",
+    "numbers/number-2: pending-art is not production approved",
+    "numbers/number-3: pending-art is not production approved",
+    "numbers/number-4: pending-art is not production approved",
+    "numbers/number-5: pending-art is not production approved",
+    "numbers/number-6: pending-art is not production approved",
+    "numbers/number-7: pending-art is not production approved",
+    "numbers/number-8: pending-art is not production approved",
+    "numbers/number-9: pending-art is not production approved",
+    "numbers/number-10: pending-art is not production approved",
+    "world/world-sun: pending-art is not production approved",
+    "world/world-moon: pending-art is not production approved",
+    "world/world-cloud: pending-art is not production approved",
+    "world/world-rainbow: pending-art is not production approved",
+    "world/world-rocket: pending-art is not production approved",
+    "world/world-earth: pending-art is not production approved",
+    "world/world-robot: pending-art is not production approved",
+    "world/world-magnifier: pending-art is not production approved",
+    "world/world-pencil: pending-art is not production approved",
+    "world/world-book: pending-art is not production approved",
+    "world/world-paintbrush: pending-art is not production approved",
+    "world/world-music-note: pending-art is not production approved",
+    "world/world-clock: pending-art is not production approved",
+    "world/world-calendar: pending-art is not production approved",
+    "world/world-puzzle: pending-art is not production approved",
+    "world/world-water: pending-art is not production approved",
+    "world/world-tree: pending-art is not production approved",
+    "world/world-train: pending-art is not production approved",
+    "world/world-dinosaur: pending-art is not production approved",
+    "world/world-treasure: pending-art is not production approved",
+    "planets/planet-sun: pending-art is not production approved",
+    "planets/planet-mercury: pending-art is not production approved",
+    "planets/planet-venus: pending-art is not production approved",
+    "planets/planet-earth: pending-art is not production approved",
+    "planets/planet-mars: pending-art is not production approved",
+    "planets/planet-jupiter: pending-art is not production approved",
+    "planets/planet-saturn: pending-art is not production approved",
+    "planets/planet-uranus: pending-art is not production approved",
+    "planets/planet-neptune: pending-art is not production approved",
+    "planets/planet-moon: pending-art is not production approved"
   ],
-  "pending": [
-    {
-      "family": "guides",
-      "id": "leon",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "guides",
-      "id": "zaya",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-a",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-b",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-c",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-d",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-e",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-f",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-g",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-h",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-i",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-j",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-k",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-l",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-m",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-n",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-o",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-p",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-q",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-r",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-s",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-t",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-u",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-v",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-w",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-x",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-y",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "alphabet",
-      "id": "letter-z",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "numbers",
-      "id": "number-1",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "numbers",
-      "id": "number-2",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "numbers",
-      "id": "number-3",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "numbers",
-      "id": "number-4",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "numbers",
-      "id": "number-5",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "numbers",
-      "id": "number-6",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "numbers",
-      "id": "number-7",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "numbers",
-      "id": "number-8",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "numbers",
-      "id": "number-9",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "numbers",
-      "id": "number-10",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-sun",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-moon",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-cloud",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-rainbow",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-rocket",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-earth",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-robot",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-magnifier",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-pencil",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-book",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-paintbrush",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-music-note",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-clock",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-calendar",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-puzzle",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-water",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-tree",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-train",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-dinosaur",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "world",
-      "id": "world-treasure",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "planets",
-      "id": "planet-sun",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "planets",
-      "id": "planet-mercury",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "planets",
-      "id": "planet-venus",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "planets",
-      "id": "planet-earth",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "planets",
-      "id": "planet-mars",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "planets",
-      "id": "planet-jupiter",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "planets",
-      "id": "planet-saturn",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "planets",
-      "id": "planet-uranus",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "planets",
-      "id": "planet-neptune",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    },
-    {
-      "family": "planets",
-      "id": "planet-moon",
-      "status": "pending-art",
-      "reason": "not-production-approved"
-    }
-  ],
-  "missing": [],
-  "incomplete": []
+  "approvedSubsetFailures": []
 }

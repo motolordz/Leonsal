@@ -10,8 +10,10 @@ const families = ["guides", "alphabet", "numbers", "world", "planets"];
 const states = ["empty", "low", "calm", "happy", "excited"];
 const forbidden = /source-safe-keeping|rejected-character-crops-v1|review-only|pilot-qa|contact-sheet|qa/i;
 const failures = [];
+const coverageFailures = [];
 const approved = [];
 const pathOwners = new Map();
+const requireComplete = process.argv.includes("--require-complete");
 const batteryHashes = new Set(await Promise.all(states.map(async state => crypto.createHash('sha256').update(await sharp(path.join(root, `assets/characters-v2/battery/${state}/master.png`)).ensureAlpha().raw().toBuffer()).digest('hex'))));
 
 const hash = (buffer) => crypto.createHash("sha256").update(buffer).digest("hex");
@@ -70,6 +72,13 @@ async function inspect(assetPath, label, { master = false } = {}) {
 
 for (const family of families) {
   for (const record of registry[family] || []) {
+    if (record.status !== "approved") {
+      coverageFailures.push(`${family}/${record.id}: ${record.status || "missing-status"} is not production approved`);
+      if (Object.keys(record.states || {}).length) {
+        coverageFailures.push(`${family}/${record.id}: non-approved record exposes runtime states`);
+      }
+      continue;
+    }
     if (record.status !== "approved") continue;
     approved.push(record);
     const stateKeys = Object.keys(record.states || {}).sort().join(",");
@@ -102,11 +111,26 @@ for (const family of families) {
 const summary = {
   approvedCharacterCount: approved.length,
   approvedStateAssetCount: approved.length * states.length,
-  families: Object.fromEntries(families.map((family) => [family, (registry[family] || []).filter((record) => record.status === "approved").length]))
+  totalCanonicalCharacterCount: families.reduce((total, family) => total + (registry[family] || []).length, 0),
+  pendingOrRejectedCharacterCount: coverageFailures.filter((failure) => /is not production approved$/.test(failure)).length,
+  families: Object.fromEntries(families.map((family) => {
+    const records = registry[family] || [];
+    return [family, {
+      approved: records.filter((record) => record.status === "approved").length,
+      total: records.length
+    }];
+  }))
 };
 
 fs.mkdirSync(path.join(root, "qa/character-production-v3/FINAL-REVIEW"), { recursive: true });
-fs.writeFileSync(path.join(root, "qa/character-production-v3/FINAL-REVIEW/production-summary.json"), JSON.stringify({ ...summary, failures }, null, 2) + "\n");
+fs.writeFileSync(path.join(root, "qa/character-production-v3/FINAL-REVIEW/approved-subset-integrity.json"), JSON.stringify({ ...summary, failures }, null, 2) + "\n");
+fs.writeFileSync(path.join(root, "qa/character-production-v3/FINAL-REVIEW/full-library-completeness.json"), JSON.stringify({
+  complete: coverageFailures.length === 0 && failures.length === 0,
+  requireComplete,
+  ...summary,
+  coverageFailures,
+  approvedSubsetFailures: failures
+}, null, 2) + "\n");
 
 if (failures.length) {
   console.error("Approved character subset v3 check failed:");
@@ -114,5 +138,15 @@ if (failures.length) {
   process.exit(1);
 }
 
+if (requireComplete && coverageFailures.length) {
+  console.error("Full character library completeness check failed:");
+  for (const failure of coverageFailures) console.error(`- ${failure}`);
+  process.exit(1);
+}
+
 console.log(`Approved character subset v3 check passed: ${summary.approvedCharacterCount} characters, ${summary.approvedStateAssetCount} approved state assets.`);
+console.log(`Full library coverage: ${summary.approvedCharacterCount}/${summary.totalCanonicalCharacterCount} canonical characters approved.`);
+if (!requireComplete && coverageFailures.length) {
+  console.log("Full-library completeness not enforced in this run. Use --require-complete to fail while canonical characters remain pending/rejected.");
+}
 console.log(`Family counts: ${JSON.stringify(summary.families)}`);

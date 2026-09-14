@@ -1,0 +1,29 @@
+{
+  "approvedCharacterCount": 1,
+  "approvedStateAssetCount": 5,
+  "totalCanonicalCharacterCount": 69,
+  "pendingOrRejectedCharacterCount": 68,
+  "families": {
+    "guides": {
+      "approved": 0,
+      "total": 2
+    },
+    "alphabet": {
+      "approved": 0,
+      "total": 26
+    },
+    "numbers": {
+      "approved": 0,
+      "total": 10
+    },
+    "world": {
+      "approved": 1,
+      "total": 21
+    },
+    "planets": {
+      "approved": 0,
+      "total": 10
+    }
+  },
+  "failures": []
+}
