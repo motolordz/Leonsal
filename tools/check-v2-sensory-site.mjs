@@ -15,6 +15,7 @@ const routes = [
   'v2-calm-rain-window.html',
   'v2-snow-globe.html',
   'v2-star-shower.html',
+  'v2-growing-garden.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -105,7 +106,7 @@ async function main() {
       assert(await page.getByText(/not scores, grades or mastery/i).isVisible(), 'V2 home local progress copy implies assessment');
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
-      assert.equal(await page.locator('.hub-game-grid .world-game').count(), 9);
+      assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
       assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 3);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
@@ -178,6 +179,18 @@ async function main() {
       await page.evaluate(() => settings.set({ calmMode: true }));
       const calmState = await page.evaluate(() => window.__starShowerProofState?.());
       assert(calmState.maxStars <= 5, 'Star Shower calm mode did not cap active stars');
+    }
+    if (route === 'v2-growing-garden.html') {
+      const box = await page.locator('#gardenCanvas').boundingBox();
+      await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+      const canvas = await sampleCanvas(page, '#gardenCanvas');
+      await page.getByRole('button', { name: 'Water' }).click();
+      const state = await page.evaluate(() => window.__growingGardenProofState?.());
+      assert(canvas.width >= 340 && canvas.height > 400, 'Garden canvas is not sized for mobile play');
+      assert(state.grown > 0, 'Growing Garden did not create a growth response');
+      await page.evaluate(() => settings.set({ calmMode: true }));
+      const calmState = await page.evaluate(() => window.__growingGardenProofState?.());
+      assert(calmState.plants <= 3, 'Growing Garden calm mode did not reduce plant count');
     }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();

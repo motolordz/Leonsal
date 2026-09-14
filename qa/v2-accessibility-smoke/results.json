@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 38,
+      "controls": 39,
       "canvases": []
     },
     {
@@ -102,6 +102,20 @@
           "width": 374,
           "height": 656,
           "name": "Star shower. Tap, click, or press the sky to make a soft star fall.",
+          "tabIndex": -1
+        }
+      ]
+    },
+    {
+      "route": "v2-growing-garden.html",
+      "passed": true,
+      "controls": 10,
+      "canvases": [
+        {
+          "id": "gardenCanvas",
+          "width": 374,
+          "height": 656,
+          "name": "Growing garden. Tap, click, or press the garden to water a seed and watch it grow.",
           "tabIndex": -1
         }
       ]
