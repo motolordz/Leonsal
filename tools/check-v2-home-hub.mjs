@@ -84,10 +84,16 @@ try {
     }
     assert(await page.getByRole('link', { name: /open character world/i }).isVisible());
     assert(await page.getByRole('link', { name: /internal art review/i }).isVisible());
-    await page.getByRole('button', { name: 'Settings' }).click();
+    assert.equal(await page.locator('#hubSettings').getAttribute('role'), 'dialog');
+    assert.equal(await page.locator('#hubSettings').getAttribute('aria-label'), 'Sensory settings');
+    assert.equal(await page.locator('#hubSettingsButton').getAttribute('aria-label'), 'Open sensory settings');
+    await page.getByRole('button', { name: /open sensory settings/i }).click();
     assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
+    assert.equal(await page.locator('#hubSettingsButton').getAttribute('aria-label'), 'Close sensory settings');
+    assert(await page.getByRole('button', { name: /motion:/i }).isVisible(), 'Settings choices should expose value labels');
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'false');
+    assert.equal(await page.locator('#hubSettingsButton').getAttribute('aria-label'), 'Open sensory settings');
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth));
     assert(!requests.some(url => /assets\/character-review|source-safe-keeping|qa\/|contact-sheet/i.test(url)), 'Review/source art leaked into V2 home');
     await page.screenshot({ path: `${out}/v2-home-${viewport.width}.png`, fullPage: true });

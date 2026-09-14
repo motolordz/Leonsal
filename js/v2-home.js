@@ -379,23 +379,27 @@
   renderMixer();
   mixer.on('save', renderMixer);
 
-  toggle.addEventListener('click', () => {
-    const open = host.dataset.open !== 'true';
+  const setSettingsOpen = (open) => {
     host.dataset.open = String(open);
     toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close sensory settings' : 'Open sensory settings');
+  };
+  toggle.setAttribute('aria-label', 'Open sensory settings');
+
+  toggle.addEventListener('click', () => {
+    const open = host.dataset.open !== 'true';
+    setSettingsOpen(open);
   });
 
   document.addEventListener('pointerdown', event => {
     if (!event.target.closest('#hubSettings, #hubSettingsButton')) {
-      host.dataset.open = 'false';
-      toggle.setAttribute('aria-expanded', 'false');
+      setSettingsOpen(false);
     }
   });
 
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && host.dataset.open === 'true') {
-      host.dataset.open = 'false';
-      toggle.setAttribute('aria-expanded', 'false');
+      setSettingsOpen(false);
       toggle.focus();
     }
   });

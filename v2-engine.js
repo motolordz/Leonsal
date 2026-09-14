@@ -145,6 +145,7 @@ const LeonSalV2 = (() => {
         const value = this.settings.value[key];
         const isChoice = this.choices[key];
         button.setAttribute('aria-pressed', String(isChoice ? value !== this.choices[key][0] : Boolean(value)));
+        button.setAttribute('aria-label', `${this.labels[key] || key}: ${this.valueLabel(key, value)}`);
         button.querySelector('em')?.replaceChildren(document.createTextNode(this.valueLabel(key, value)));
       });
     }
@@ -154,10 +155,13 @@ const LeonSalV2 = (() => {
       return String(value).split('-').map(part => part[0].toUpperCase() + part.slice(1)).join(' ');
     }
     render() {
+      this.host.setAttribute('role', 'dialog');
+      this.host.setAttribute('aria-label', 'Sensory settings');
       this.host.innerHTML = this.keys.map((key) => {
         const value = this.settings.value[key];
         const pressed = this.choices[key] ? value !== this.choices[key][0] : Boolean(value);
-        return `<button class="v2-setting-pill" type="button" data-key="${key}" aria-pressed="${pressed}"><span></span>${this.labels[key] || key}<em>${this.valueLabel(key, value)}</em></button>`;
+        const label = this.labels[key] || key;
+        return `<button class="v2-setting-pill" type="button" data-key="${key}" aria-pressed="${pressed}" aria-label="${label}: ${this.valueLabel(key, value)}"><span></span>${label}<em>${this.valueLabel(key, value)}</em></button>`;
       }).join('');
       this.host.querySelectorAll('[data-key]').forEach((button) => {
         button.addEventListener('click', () => {
