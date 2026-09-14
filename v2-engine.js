@@ -1001,7 +1001,7 @@ const LeonSalV2 = (() => {
       this.cache = new Map();
     }
     canResolve(record) {
-      return Boolean(record?.status === 'approved' && record.webPath && !this.forbidden.test(record.webPath));
+      return Boolean(record?.status === 'approved' && typeof record.webPath === 'string' && record.webPath && !this.forbidden.test(record.webPath));
     }
     resolve(record) {
       if (!this.canResolve(record)) {

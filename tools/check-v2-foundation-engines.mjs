@@ -51,6 +51,7 @@ async function main() {
       const assetLoader = new LeonSalV2.AssetLoaderEngine();
       const approvedSrc = assetLoader.resolve({ id: 'battery-empty', status: 'approved', webPath: 'assets/characters-v2/battery/empty/web.webp' });
       const blockedSrc = assetLoader.resolve({ id: 'zaya-review', status: 'pending-art', webPath: 'qa/example.png' });
+      const objectPathBlocked = assetLoader.resolve({ id: 'object-path', status: 'approved', webPath: { src: 'assets/characters-v2/battery/empty/web.webp' } });
 
       const img = document.createElement('img');
       const character = new LeonSalV2.CharacterStateAnimationEngine((id, state) => {
@@ -89,7 +90,7 @@ async function main() {
       return {
         memory: { firstReveal: firstReveal.waiting, matched: memoryMatch.matched, completeBeforeReset: memoryResetBefore, completeAfterReset: memory.complete() },
         physicsMoved,
-        assetLoader: { approvedSrc, blockedSrc },
+        assetLoader: { approvedSrc, blockedSrc, objectPathBlocked },
         character: {
           approvedState: characterApproved.state,
           approvedVisible,
@@ -111,6 +112,7 @@ async function main() {
     assert.equal(result.physicsMoved, true);
     assert.equal(result.assetLoader.approvedSrc, 'assets/characters-v2/battery/empty/web.webp');
     assert.equal(result.assetLoader.blockedSrc, null);
+    assert.equal(result.assetLoader.objectPathBlocked, null);
     assert.equal(result.character.approvedState, 'excited');
     assert.equal(result.character.approvedVisible, true);
     assert.equal(result.character.pendingState, 'calm');
