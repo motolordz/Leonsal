@@ -18,6 +18,7 @@ const routes = [
   'v2-number-merge.html',
   'v2-alphabet-adventure.html',
   'v2-shape-builder.html',
+  'v2-letter-tracing.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -59,6 +60,7 @@ async function sampleRoute(page, base, route) {
   }
   if (route === 'v2-alphabet-adventure.html') await page.getByRole('button', { name: 'Next' }).click();
   if (route === 'v2-shape-builder.html') await page.locator('.shape-piece').first().click();
+  if (route === 'v2-letter-tracing.html') await page.getByRole('button', { name: 'Step' }).click();
   if (route === 'v2-light-trail.html') {
     const box = await page.locator('#canvas').boundingBox();
     await page.mouse.move(box.x + 60, box.y + 160);
