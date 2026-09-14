@@ -79,7 +79,7 @@ The V2 proof work is formalised as a shared library. Games compose these engines
 - Input modes: touch, mouse, pen
 - Sensory support: reduced-motion, calm-mode, sound-off, vibration-off, cleanup
 - Performance budget: 60 FPS at 390x844; max particles 0.
-- Templates: alphabet-adventure, pattern-builder, days-week, months-year, transport-adventure
+- Templates: alphabet-adventure, pattern-builder, days-week, months-year, transport-adventure, double-decker-bus-journey
 ## orbit - Orbit Engine
 - Capabilities: Circular/orbital motion; drag-to-orbit; speed scaling
 - Input modes: touch, mouse, pen

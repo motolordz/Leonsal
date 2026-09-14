@@ -4,6 +4,7 @@ import http from 'node:http';
 import path from 'node:path';
 import { chromium, webkit } from 'playwright';
 const root=process.cwd(), name=process.env.LEONSAL_TEST_BROWSER || 'chromium';
+const externalBase=process.env.LEONSAL_BASE_URL?.replace(/\/$/,'');
 const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml'};
 const server=http.createServer(async(req,res)=>{
  const file=path.resolve(root,'.'+new URL(req.url,'http://localhost').pathname);
@@ -11,8 +12,8 @@ const server=http.createServer(async(req,res)=>{
  try { const bytes=await fs.readFile(file);res.writeHead(200,{'content-type':mime[path.extname(file)]||'application/octet-stream'}).end(bytes); }
  catch {res.writeHead(404).end();}
 });
-await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
-const base=`http://127.0.0.1:${server.address().port}`;
+if(!externalBase) await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+const base=externalBase || `http://127.0.0.1:${server.address().port}`;
 const browser=await ({chromium,webkit}[name]).launch();
 const out=`qa/character-integration/${name}`;await fs.mkdir(out,{recursive:true});
 const errors=[];
@@ -36,22 +37,28 @@ try {
   assert(await page.locator('.readiness-card[data-character="zaya"]').getByText('5/5 states supplied').isVisible());
   assert(await page.locator('.readiness-card[data-character="elephant"]').getByText('5/5 states supplied').isVisible());
   assert.equal(await page.locator('.readiness-card').getByText('Not production ready').count(),3);
+  assert.equal(await page.locator('#stateStrip button').count(),5);
+  assert.equal(await page.locator('#stateStrip button[data-missing="true"]').count(),0);
   assert.equal(await page.locator('[data-runner="leon"]').evaluate(img=>img.getAttribute('src').endsWith('/leon/happy.svg')),true);
   assert.equal(await page.locator('[data-runner="zaya"]').evaluate(img=>img.getAttribute('src').endsWith('/zaya/excited.svg')),true);
   assert.equal(await page.evaluate(()=>Array.from(document.styleSheets).every(sheet=>Array.from(sheet.cssRules || []).every(rule=>!String(rule.cssText).includes('scaleX(-1)')))),true);
   for(const character of ['elephant','zaya','leon']) {
    await page.selectOption('#reviewCharacter',character);
    assert(await page.locator(`.character-card[data-character="${character}"]`).evaluate(card=>card.classList.contains('is-active')));
+   assert.equal(await page.locator('#stateStrip button').count(),5);
+   assert.equal(await page.locator('#stateStrip button[data-missing="true"]').count(),character==='leon'?1:0);
    for(const state of ['empty','low','calm','happy','excited']) {
-   await page.locator(`button[data-state="${state}"]`).click();
+   await page.locator(`.pose-buttons button[data-state="${state}"]`).click();
    if(character==='leon' && state==='empty') {
     await page.getByText("Leon's empty artwork has not been supplied.",{exact:true}).waitFor();
     assert(await page.locator('#characterImage').isHidden());
     assert.equal(await page.locator('#characterImage').getAttribute('src'),null);
+    assert.equal(await page.locator(`#stateStrip button[data-state="${state}"]`).getAttribute('data-missing'),'true');
     continue;
    }
    await page.waitForFunction(({state,character})=>{const img=document.querySelector('#characterImage');return !img.hidden && img.dataset.state===state && img.dataset.character===character && img.dataset.format==='vector' && img.complete && img.naturalWidth===1254;},{state,character});
-   assert.equal(await page.locator(`button[data-state="${state}"]`).getAttribute('aria-pressed'),'true');
+   assert.equal(await page.locator(`.pose-buttons button[data-state="${state}"]`).getAttribute('aria-pressed'),'true');
+   assert.equal(await page.locator(`#stateStrip button[data-state="${state}"]`).getAttribute('aria-pressed'),'true');
    }
    await page.screenshot({path:`${out}/${character}-${width}.png`,fullPage:true});
   }
@@ -81,4 +88,4 @@ try {
  await page.goto(base+'/v2-home.html');await page.waitForLoadState('networkidle');assert.equal(await page.locator('[data-approved-character] img').count(),0);assert(await page.locator('.home-battery').first().isVisible());
  assert.deepEqual(errors,[]);await fs.writeFile(`${out}/results.json`,JSON.stringify({passed:true,browser:name,widths:[390,768,1280],checks:['approved-only home','no review gameplay requests','review-only readiness matrix','five poses','keyboard','dark background','references','network failure recovery','pending record fallback'],errors},null,2)+'\n');
  console.log(`${name}: character integration checks passed`);
-} finally {await browser.close();await new Promise(resolve=>server.close(resolve));}
+} finally {await browser.close();if(!externalBase && server.listening) await new Promise(resolve=>server.close(resolve));}

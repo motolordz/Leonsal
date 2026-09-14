@@ -20,7 +20,7 @@ If Sound is Off, opening a saved world with ocean audio remains silent. If Reduc
 
 ## Preset Contract
 
-A preset records ID, name, visual theme, requested motion, requested sound, requested particle intensity, requested speed, calm compatibility, reduced-motion fallback, and exit availability. Presets must not include medical labels or inferred regulation states.
+A preset records ID, name, visual theme, requested motion, requested sound, requested particle intensity, requested speed, calm compatibility, reduced-motion fallback, and exit availability. Canonical speed levels are super-slow, slow, medium, fast and super-speed; legacy saved normal maps to medium, and legacy lively maps to fast. Presets must not include medical labels or inferred regulation states.
 
 ## Product Count Rule
 

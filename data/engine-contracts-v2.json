@@ -23,6 +23,13 @@
     "calm-mode",
     "reduced-motion"
   ],
+  "canonicalSpeedLevels": [
+    "super-slow",
+    "slow",
+    "medium",
+    "fast",
+    "super-speed"
+  ],
   "counts": {
     "totalSpecifications": 28,
     "implementedProof": 20,

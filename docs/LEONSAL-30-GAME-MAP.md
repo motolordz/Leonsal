@@ -392,3 +392,5 @@ This is an implementation map only. Games 6-30 are not implemented in this batch
 - Reduced motion: position states
 - Final character art required: no
 - Can ship using procedural graphics: no
+- Proof variant: Double-Decker Bus Journey uses UK, Hong Kong and night bus types with super slow, slow, medium, fast and super speed modes.
+- Variant route: `v2-double-decker-bus.html`

@@ -6,6 +6,7 @@ import { chromium } from 'playwright';
 
 const root = process.cwd();
 const out = 'qa/v2-sensory-mixer';
+const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webp': 'image/webp', '.png': 'image/png', '.svg': 'image/svg+xml' };
 const server = http.createServer(async (req, res) => {
   const file = path.resolve(root, `.${new URL(req.url, 'http://localhost').pathname}`);
@@ -19,13 +20,15 @@ const server = http.createServer(async (req, res) => {
 });
 
 await fs.mkdir(out, { recursive: true });
-await new Promise((resolve, reject) => {
-  server.once('error', reject);
-  server.listen(0, '127.0.0.1', resolve);
-});
+if (!externalBase) {
+  await new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(0, '127.0.0.1', resolve);
+  });
+}
 
 const browser = await chromium.launch();
-const base = `http://127.0.0.1:${server.address().port}`;
+const base = externalBase || `http://127.0.0.1:${server.address().port}`;
 try {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
   const page = await context.newPage();
@@ -40,9 +43,11 @@ try {
     settings.set({ motion: true, sound: false, vibration: false, calmMode: true, particles: 'off', speed: 'slow', reducedMotion: true });
     const mixer = new LeonSalV2.SensoryMixerEngine(settings, { key: 'leonsal-v2-mixer-test-worlds' });
     const star = mixer.applyPreset('star-trail');
-    settings.set({ sound: true, calmMode: false, particles: 'low', speed: 'normal', reducedMotion: true });
+    settings.set({ sound: true, calmMode: false, particles: 'normal', speed: 'normal', reducedMotion: true });
+    const aliasSpeed = settings.value.speed;
+    settings.set({ particles: 'low', speed: 'medium' });
     const bubble = mixer.applyPreset('bubble-calm');
-    return { star, bubble, saved: JSON.parse(localStorage.getItem('leonsal-v2-mixer-test-worlds') || '[]') };
+    return { star, bubble, aliasSpeed, saved: JSON.parse(localStorage.getItem('leonsal-v2-mixer-test-worlds') || '[]') };
   });
   assert.equal(contract.star.effective.motion, false, 'Reduced motion must cap preset motion off');
   assert.equal(contract.star.effective.sound, false, 'Sound Off must keep preset silent');
@@ -51,6 +56,7 @@ try {
   assert.equal(contract.star.effective.exitAlwaysAvailable, true, 'Saved world must keep exit available');
   assert.equal(contract.bubble.effective.motion, false, 'OS reduced-motion context must cap later preset motion too');
   assert.equal(contract.bubble.effective.particles, 'low', 'Particle request may stay within current low ceiling');
+  assert.equal(contract.aliasSpeed, 'medium', 'Legacy normal speed must resolve to medium');
   assert.equal(contract.saved.length, 2, 'Mixer did not persist saved worlds locally');
 
   await page.getByRole('button', { name: 'Quiet Glow' }).click();
@@ -75,5 +81,5 @@ try {
   await context.close();
 } finally {
   await browser.close();
-  await new Promise((resolve) => server.close(resolve));
+  if (!externalBase && server.listening) await new Promise((resolve) => server.close(resolve));
 }

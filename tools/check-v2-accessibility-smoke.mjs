@@ -6,6 +6,7 @@ import { chromium } from 'playwright';
 
 const root = process.cwd();
 const out = 'qa/v2-accessibility-smoke';
+const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
 const routes = [
   'v2-home.html',
   'v2-energy-battery.html',
@@ -36,6 +37,7 @@ const routes = [
   'v2-weather-world.html',
   'v2-animal-habitats.html',
   'v2-transport-adventure.html',
+  'v2-double-decker-bus.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -188,13 +190,15 @@ async function checkRoute(base, browser, route) {
 }
 
 await fs.mkdir(out, { recursive: true });
-await new Promise((resolve, reject) => {
-  server.once('error', reject);
-  server.listen(0, '127.0.0.1', resolve);
-});
+if (!externalBase) {
+  await new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(0, '127.0.0.1', resolve);
+  });
+}
 
 const browser = await chromium.launch();
-const base = `http://127.0.0.1:${server.address().port}`;
+const base = externalBase || `http://127.0.0.1:${server.address().port}`;
 try {
   const results = [];
   for (const route of routes) results.push(await checkRoute(base, browser, route));
@@ -219,5 +223,5 @@ try {
   console.log(`V2 accessibility smoke passed: ${routes.length} routes.`);
 } finally {
   await browser.close();
-  await new Promise((resolve) => server.close(resolve));
+  if (!externalBase && server.listening) await new Promise((resolve) => server.close(resolve));
 }

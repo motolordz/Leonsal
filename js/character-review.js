@@ -4,6 +4,7 @@
   const picture = document.getElementById('characterImage');
   const status = document.getElementById('imageStatus');
   const buttons = document.getElementById('poseButtons');
+  const stateStrip = document.getElementById('stateStrip');
   let generation = 0;
   document.getElementById('darkBackground').addEventListener('change', event => {
     document.getElementById('reviewStage').classList.toggle('dark', event.target.checked);
@@ -105,6 +106,7 @@
       for (const card of characterCards.children) card.classList.toggle('is-active', card.dataset.character === character.id);
       picture.hidden = true; status.hidden = false; status.textContent = 'Loading pose…';
       picture.removeAttribute('src'); picture.dataset.character = character.id; picture.dataset.state = state;
+      renderStateStrip(state);
       if (!character.states[state]) {
         status.textContent = `${character.name}'s ${state} artwork has not been supplied.`;
         return;
@@ -122,6 +124,40 @@
         if (revision !== generation) return;
         status.textContent = 'This pose could not load. Choose another pose or reload the page.';
       }
+    }
+    function renderStateStrip(activeState) {
+      if (!stateStrip) return;
+      const states = ['empty', 'low', 'calm', 'happy', 'excited'];
+      stateStrip.replaceChildren(...states.map((state) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.state = state;
+        button.setAttribute('aria-pressed', String(state === activeState));
+        button.setAttribute('aria-label', `${character.name} ${LeonSalV2.stateLabels[state]}`);
+        const asset = character.states[state];
+        if (asset) {
+          const image = new Image();
+          image.alt = '';
+          image.decoding = 'async';
+          image.loading = 'lazy';
+          image.src = srcFor(character, state);
+          button.append(image);
+        } else {
+          const missing = document.createElement('span');
+          missing.className = 'missing-state-art';
+          missing.textContent = '?';
+          button.append(missing);
+          button.dataset.missing = 'true';
+        }
+        const label = document.createElement('strong');
+        label.textContent = stateName(state);
+        button.append(label);
+        button.addEventListener('click', () => {
+          energy.value = { empty: 0, low: 25, calm: 50, happy: 75, excited: 100 }[state];
+          render();
+        });
+        return button;
+      }));
     }
     for (const [state, value] of Object.entries({empty:0, low:25, calm:50, happy:75, excited:100})) {
       const button = document.createElement('button'); button.type = 'button';

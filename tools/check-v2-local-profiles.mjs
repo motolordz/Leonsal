@@ -19,13 +19,16 @@ const server = http.createServer(async (req, res) => {
 });
 
 await fs.mkdir(out, { recursive: true });
-await new Promise((resolve, reject) => {
-  server.once('error', reject);
-  server.listen(0, '127.0.0.1', resolve);
-});
+const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
+if (!externalBase) {
+  await new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(0, '127.0.0.1', resolve);
+  });
+}
 
 const browser = await chromium.launch();
-const base = `http://127.0.0.1:${server.address().port}`;
+const base = externalBase || `http://127.0.0.1:${server.address().port}`;
 try {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
   const page = await context.newPage();
@@ -102,5 +105,5 @@ try {
   await context.close();
 } finally {
   await browser.close();
-  await new Promise((resolve) => server.close(resolve));
+  if (!externalBase) await new Promise((resolve) => server.close(resolve));
 }

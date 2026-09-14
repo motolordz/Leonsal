@@ -41,7 +41,7 @@ const LeonSalV2 = (() => {
         vibration: false,
         calmMode: false,
         particles: 'gentle',
-        speed: 'normal',
+        speed: 'medium',
         effectsLevel: 'soft',
         voiceLevel: 'soft',
         musicLevel: 'soft',
@@ -72,7 +72,9 @@ const LeonSalV2 = (() => {
         if (typeof patch[key] === 'boolean') this.value[key] = patch[key];
       }
       if (['off', 'low', 'gentle'].includes(patch.particles)) this.value.particles = patch.particles;
-      if (['slow', 'normal', 'lively'].includes(patch.speed)) this.value.speed = patch.speed;
+      const speedAliases = { normal: 'medium', lively: 'fast' };
+      const requestedSpeed = speedAliases[patch.speed] || patch.speed;
+      if (['super-slow', 'slow', 'medium', 'fast', 'super-speed'].includes(requestedSpeed)) this.value.speed = requestedSpeed;
       if (['off', 'soft', 'medium'].includes(patch.effectsLevel)) this.value.effectsLevel = patch.effectsLevel;
       if (['off', 'soft', 'medium'].includes(patch.voiceLevel)) this.value.voiceLevel = patch.voiceLevel;
       if (['off', 'soft', 'medium'].includes(patch.musicLevel)) this.value.musicLevel = patch.musicLevel;
@@ -89,7 +91,7 @@ const LeonSalV2 = (() => {
     speedFactor() {
       if (!this.allowsMotion()) return 0;
       if (this.value.calmMode) return 0.55;
-      return { slow: 0.65, normal: 1, lively: 1.18 }[this.value.speed] || 1;
+      return { 'super-slow': 0.35, slow: 0.65, medium: 1, fast: 1.18, 'super-speed': 1.4 }[this.value.speed] || 1;
     }
     particleCount(base) {
       if (this.value.calmMode || this.value.particles === 'off') return 0;
@@ -127,7 +129,7 @@ const LeonSalV2 = (() => {
       };
       this.choices = {
         particles: ['gentle', 'low', 'off'],
-        speed: ['normal', 'slow', 'lively'],
+        speed: ['super-slow', 'slow', 'medium', 'fast', 'super-speed'],
         effectsLevel: ['soft', 'medium', 'off'],
         voiceLevel: ['soft', 'medium', 'off'],
         musicLevel: ['soft', 'medium', 'off'],
@@ -643,9 +645,23 @@ const LeonSalV2 = (() => {
       this.audio = audio;
     }
     success(message = 'Complete') {
-      this.audio.tone('success');
+      this.audio?.tone?.('success');
       if (this.settings.value.confetti && !this.settings.value.calmMode) this.particles?.seed('stars', 18);
       return message;
+    }
+    celebrate(target, options = {}) {
+      const type = options.type || 'glow';
+      this.audio?.tone?.('success');
+      if (target && type === 'glow') {
+        target.dataset.reward = 'glow';
+        const duration = this.settings.allowsMotion() && !this.settings.value.calmMode ? 700 : 120;
+        window.clearTimeout(target.rewardTimer);
+        target.rewardTimer = window.setTimeout(() => {
+          if (target.isConnected) target.dataset.reward = 'idle';
+        }, duration);
+      }
+      if (this.settings.value.confetti && !this.settings.value.calmMode) this.particles?.seed?.('stars', 10);
+      return { type, calmMode: this.settings.value.calmMode, reducedMotion: !this.settings.allowsMotion() };
     }
   }
 
@@ -1160,7 +1176,7 @@ const LeonSalV2 = (() => {
       this.presets = options.presets || [
         { id: 'quiet-glow', name: 'Quiet Glow', visualTheme: 'glow', motionRequest: false, soundRequest: false, particleRequest: 'off', speedRequest: 'slow', calmCompatible: true, reducedMotionFallback: 'static-glow', exitAlwaysAvailable: true },
         { id: 'bubble-calm', name: 'Bubble Calm', visualTheme: 'bubbles', motionRequest: true, soundRequest: false, particleRequest: 'low', speedRequest: 'slow', calmCompatible: true, reducedMotionFallback: 'tap-bubbles', exitAlwaysAvailable: true },
-        { id: 'star-trail', name: 'Star Trail', visualTheme: 'stars', motionRequest: true, soundRequest: false, particleRequest: 'gentle', speedRequest: 'normal', calmCompatible: true, reducedMotionFallback: 'still-stars', exitAlwaysAvailable: true }
+        { id: 'star-trail', name: 'Star Trail', visualTheme: 'stars', motionRequest: true, soundRequest: false, particleRequest: 'gentle', speedRequest: 'medium', calmCompatible: true, reducedMotionFallback: 'still-stars', exitAlwaysAvailable: true }
       ];
       this.savedWorlds = [];
       this.load();
@@ -1196,9 +1212,12 @@ const LeonSalV2 = (() => {
       const capped = Math.min(rank[requested] ?? 2, rank[current] ?? 2);
       return Object.keys(rank).find((key) => rank[key] === capped) || 'off';
     }
-    capSpeed(requested = 'normal', current = 'normal') {
-      const rank = { slow: 0, normal: 1, lively: 2 };
-      const capped = Math.min(rank[requested] ?? 1, rank[current] ?? 1);
+    capSpeed(requested = 'medium', current = 'medium') {
+      const aliases = { normal: 'medium', lively: 'fast' };
+      const cleanRequested = aliases[requested] || requested;
+      const cleanCurrent = aliases[current] || current;
+      const rank = { 'super-slow': 0, slow: 1, medium: 2, fast: 3, 'super-speed': 4 };
+      const capped = Math.min(rank[cleanRequested] ?? 2, rank[cleanCurrent] ?? 2);
       return Object.keys(rank).find((key) => rank[key] === capped) || 'slow';
     }
     applyPreset(id) {

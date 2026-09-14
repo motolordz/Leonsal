@@ -17,8 +17,9 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-const base = `http://127.0.0.1:${server.address().port}`;
+const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
+if (!externalBase) await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+const base = externalBase || `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch();
 const out = 'qa/v2-home-hub';
 await fs.mkdir(out, { recursive: true });
@@ -33,13 +34,26 @@ try {
     page.on('request', request => requests.push(request.url()));
     await page.goto(`${base}/v2-home.html`);
     await page.waitForSelector('.hub-welcome');
-    assert(await page.getByRole('heading', { name: /calm sensory world/i }).isVisible());
+    assert(await page.getByRole('heading', { name: /choose a calm world and start playing/i }).isVisible());
+    assert.equal(await page.getByRole('link', { name: 'Ride the bus' }).getAttribute('href'), 'v2-double-decker-bus.html');
     assert.equal(await page.locator('.world-map-card').count(), 5);
     for (const name of ['Sensory & Regulation', 'Maths & Logic', 'Literacy', 'Time, World & Life', 'Characters & Rewards']) {
       assert(await page.locator('.world-map-card').filter({ hasText: name }).isVisible(), `Missing world card: ${name}`);
     }
     assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 23);
+    assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 24);
+    assert.equal(await page.locator('.need-card').count(), 5);
+    assert.equal(await page.locator('.bus-need').getAttribute('href'), 'v2-double-decker-bus.html');
+    assert(await page.locator('.bus-need').getByText('I want speed choices', { exact: true }).isVisible());
+    assert.equal(await page.locator('.hub-game-grid').getAttribute('aria-label'), 'Sensory activity carousel');
+    assert.equal(await page.locator('.hub-engine-grid').getAttribute('aria-label'), 'Learning activity carousel');
+    assert.equal(await page.locator('.hub-game-grid').getAttribute('tabindex'), '0');
+    assert.equal(await page.locator('.hub-engine-grid').getAttribute('tabindex'), '0');
+    if (viewport.width <= 620) {
+      assert.equal(await page.locator('.hub-game-grid').evaluate(element => getComputedStyle(element).display), 'flex');
+      assert.equal(await page.locator('.hub-engine-grid').evaluate(element => getComputedStyle(element).display), 'flex');
+      assert(await page.locator('.hub-engine-grid').evaluate(element => element.scrollWidth > element.clientWidth), 'Learning activity carousel should be horizontally scrollable on phone');
+    }
     assert(await page.getByRole('link', { name: /open character review/i }).isVisible());
     await page.getByRole('button', { name: 'Settings' }).click();
     assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
@@ -51,9 +65,9 @@ try {
     await context.close();
   }
   assert.deepEqual(errors, []);
-  await fs.writeFile(`${out}/results.json`, JSON.stringify({ passed: true, viewports: [390, 768, 1280], checks: ['hub loaded', 'five world cards', 'ten sensory games', 'six learning engine cards', 'settings popover', 'no horizontal overflow', 'no review-art requests'], errors }, null, 2) + '\n');
+  await fs.writeFile(`${out}/results.json`, JSON.stringify({ passed: true, viewports: [390, 768, 1280], checks: ['hub loaded', 'five world cards', 'ten sensory games', 'twenty-four learning engine cards', 'keyboard-focusable mobile carousels', 'settings popover', 'no horizontal overflow', 'no review-art requests'], errors }, null, 2) + '\n');
   console.log('V2 home hub checks passed');
 } finally {
   await browser.close();
-  await new Promise(resolve => server.close(resolve));
+  if (!externalBase) await new Promise(resolve => server.close(resolve));
 }

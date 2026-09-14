@@ -13,6 +13,17 @@
     "speed",
     "motion"
   ],
+  "canonicalSpeedLevels": [
+    "super-slow",
+    "slow",
+    "medium",
+    "fast",
+    "super-speed"
+  ],
+  "legacySpeedAliases": {
+    "normal": "medium",
+    "lively": "fast"
+  },
   "examples": [
     {
       "preference": "sound-off",

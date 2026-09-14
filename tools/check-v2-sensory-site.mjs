@@ -36,6 +36,7 @@ const routes = [
   'v2-weather-world.html',
   'v2-animal-habitats.html',
   'v2-transport-adventure.html',
+  'v2-double-decker-bus.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -84,11 +85,14 @@ async function sampleCanvas(page, selector) {
 
 async function main() {
   await fs.mkdir(out, { recursive: true });
-  await new Promise((resolve, reject) => {
-    server.once('error', reject);
-    server.listen(0, '127.0.0.1', resolve);
-  });
-  const base = `http://127.0.0.1:${server.address().port}`;
+  const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
+  if (!externalBase) {
+    await new Promise((resolve, reject) => {
+      server.once('error', reject);
+      server.listen(0, '127.0.0.1', resolve);
+    });
+  }
+  const base = externalBase || `http://127.0.0.1:${server.address().port}`;
   const browser = await chromium.launch();
   const results = [];
 
@@ -127,7 +131,7 @@ async function main() {
       await page.getByRole('button', { name: 'Settings' }).click();
       assert.equal(await page.locator('#hubSettings').getAttribute('data-open'), 'true');
       assert.equal(await page.locator('.hub-game-grid .world-game').count(), 10);
-      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 23);
+      assert.equal(await page.locator('.hub-engine-grid .world-game').count(), 24);
     } else {
       await page.getByRole('button', { name: 'Sensory settings' }).click();
       assert.equal(await page.locator('#settings').getAttribute('data-open'), 'true', `${route} settings did not open`);
@@ -466,6 +470,27 @@ async function main() {
       assert.equal(state.route, 'Road', 'Transport Adventure reset did not return to Road');
       assert.equal(state.progress, 0, 'Transport Adventure reset did not clear progress');
     }
+    if (route === 'v2-double-decker-bus.html') {
+      assert.equal(await page.locator('.bus-choice').count(), 3, 'Double-Decker Bus does not expose three bus choices');
+      assert.equal(await page.locator('.bus-speed').count(), 5, 'Double-Decker Bus does not expose five speed choices');
+      await page.getByRole('button', { name: 'Hong Kong Bus' }).click();
+      await page.getByRole('button', { name: 'Super speed' }).click();
+      let state = await page.evaluate(() => window.__doubleDeckerBusProofState?.());
+      assert.equal(state.bus, 'hong-kong', 'Double-Decker Bus did not choose Hong Kong bus');
+      assert.equal(state.speed, 'super-speed', 'Double-Decker Bus did not choose super speed');
+      assert.equal(state.hasTapAlternative, true, 'Double-Decker Bus missing tap alternative');
+      await page.evaluate(() => settings.set({ calmMode: true }));
+      state = await page.evaluate(() => window.__doubleDeckerBusProofState?.());
+      assert(state.effectiveSpeed <= 18, 'Double-Decker Bus calm mode did not cap speed');
+      await page.evaluate(() => settings.set({ reducedMotion: true }));
+      await page.getByRole('button', { name: 'Go' }).click();
+      state = await page.evaluate(() => window.__doubleDeckerBusProofState?.());
+      assert.equal(state.progress, 100, 'Double-Decker Bus reduced motion did not complete statically');
+      await page.getByRole('button', { name: 'Reset' }).click();
+      state = await page.evaluate(() => window.__doubleDeckerBusProofState?.());
+      assert.equal(state.bus, 'uk', 'Double-Decker Bus reset did not return to UK bus');
+      assert.equal(state.speed, 'medium', 'Double-Decker Bus reset did not return to medium speed');
+    }
     if (route === 'v2-light-trail.html') {
       const box = await page.locator('#canvas').boundingBox();
       await page.mouse.move(box.x + 70, box.y + 140);
@@ -518,12 +543,12 @@ async function main() {
     console.log(`V2 sensory site smoke passed: ${routes.length} routes`);
   } finally {
     await browser.close();
-    await new Promise((resolve) => server.close(resolve));
+    if (!externalBase) await new Promise((resolve) => server.close(resolve));
   }
 }
 
 main().catch((error) => {
-  server.close();
+  if (server.listening) server.close();
   console.error(error);
   process.exitCode = 1;
 });

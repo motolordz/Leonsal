@@ -5,6 +5,7 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 
 const root = process.cwd();
+const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webp': 'image/webp', '.png': 'image/png', '.svg': 'image/svg+xml' };
 const server = http.createServer(async (req, res) => {
   const file = path.resolve(root, `.${new URL(req.url, 'http://localhost').pathname}`);
@@ -18,17 +19,20 @@ const server = http.createServer(async (req, res) => {
 });
 
 async function main() {
-  await new Promise((resolve, reject) => {
-    server.once('error', reject);
-    server.listen(0, '127.0.0.1', resolve);
-  });
+  if (!externalBase) {
+    await new Promise((resolve, reject) => {
+      server.once('error', reject);
+      server.listen(0, '127.0.0.1', resolve);
+    });
+  }
   const browser = await chromium.launch();
+  const base = externalBase || `http://127.0.0.1:${server.address().port}`;
   const out = 'qa/v2-sensory-preferences';
   await fs.mkdir(out, { recursive: true });
   try {
     const context = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
     const page = await context.newPage();
-    await page.goto(`http://127.0.0.1:${server.address().port}/v2-home.html`, { waitUntil: 'networkidle' });
+    await page.goto(`${base}/v2-home.html`, { waitUntil: 'networkidle' });
     const engineResult = await page.evaluate(() => {
       localStorage.removeItem('leonsal-v2-pref-test');
       const settings = new LeonSalV2.SensorySettings('leonsal-v2-pref-test');
@@ -66,7 +70,7 @@ async function main() {
     assert.equal(engineResult.value.vibration, true);
     assert.equal(engineResult.value.calmMode, true);
     assert.equal(engineResult.value.particles, 'low');
-    assert.equal(engineResult.value.speed, 'lively');
+    assert.equal(engineResult.value.speed, 'fast');
     assert.equal(engineResult.value.effectsLevel, 'medium');
     assert.equal(engineResult.value.voiceLevel, 'medium');
     assert.equal(engineResult.value.musicLevel, 'off');
@@ -91,8 +95,13 @@ async function main() {
     await particles.click();
     assert.match(await particles.textContent(), /Low/);
     const speed = page.locator('#hubSettings [data-key="speed"]');
+    assert.match(await speed.textContent(), /Medium/);
     await speed.click();
-    assert.match(await speed.textContent(), /Slow/);
+    assert.match(await speed.textContent(), /Fast/);
+    await speed.click();
+    assert.match(await speed.textContent(), /Super Speed/);
+    await speed.click();
+    assert.match(await speed.textContent(), /Super Slow/);
     await page.screenshot({ path: `${out}/v2-home-settings-390.png`, fullPage: true });
     await page.evaluate(() => {
       localStorage.setItem('leonsal-v2-settings', JSON.stringify({
@@ -104,7 +113,7 @@ async function main() {
       }));
       localStorage.removeItem('leonsal-sensory-v1');
     });
-    await page.goto(`http://127.0.0.1:${server.address().port}/sensory-lab.html`, { waitUntil: 'networkidle' });
+    await page.goto(`${base}/sensory-lab.html`, { waitUntil: 'networkidle' });
     assert.equal(await page.locator('#motionToggle').getAttribute('aria-checked'), 'true', 'Legacy home did not read V2 motion setting');
     assert.equal(await page.locator('#soundToggle').getAttribute('aria-checked'), 'true', 'Legacy home did not read V2 sound setting');
     assert.equal(await page.locator('#hapticToggle').getAttribute('aria-checked'), 'true', 'Legacy home did not read V2 vibration setting');
@@ -125,12 +134,12 @@ async function main() {
     await context.close();
   } finally {
     await browser.close();
-    await new Promise((resolve) => server.close(resolve));
+    if (!externalBase && server.listening) await new Promise((resolve) => server.close(resolve));
   }
 }
 
 main().catch((error) => {
-  server.close();
+  if (!externalBase && server.listening) server.close();
   console.error(error);
   process.exitCode = 1;
 });

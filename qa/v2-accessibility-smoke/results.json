@@ -21,7 +21,7 @@
     {
       "route": "v2-home.html",
       "passed": true,
-      "controls": 56,
+      "controls": 60,
       "canvases": []
     },
     {
@@ -252,6 +252,38 @@
       "route": "v2-first-clock.html",
       "passed": true,
       "controls": 8,
+      "canvases": []
+    },
+    {
+      "route": "v2-weather-world.html",
+      "passed": true,
+      "controls": 11,
+      "canvases": [
+        {
+          "id": "weatherCanvas",
+          "width": 374,
+          "height": 656,
+          "name": "Gentle weather particles",
+          "tabIndex": -1
+        }
+      ]
+    },
+    {
+      "route": "v2-animal-habitats.html",
+      "passed": true,
+      "controls": 15,
+      "canvases": []
+    },
+    {
+      "route": "v2-transport-adventure.html",
+      "passed": true,
+      "controls": 12,
+      "canvases": []
+    },
+    {
+      "route": "v2-double-decker-bus.html",
+      "passed": true,
+      "controls": 16,
       "canvases": []
     },
     {

@@ -144,6 +144,52 @@
 .pose-buttons { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 24px; }
 .pose-buttons button { min-height:48px; border:1px solid #b4c9e4; border-radius:16px; background:#fff; color:#173b67; padding:10px 16px; font:inherit; cursor:pointer; }
 .pose-buttons button[aria-pressed=true] { background:#214f91; color:white; border-color:#214f91; }
+.state-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 22px;
+}
+.state-strip button {
+  min-height: 112px;
+  padding: 8px;
+  border: 2px solid #c7d9ec;
+  border-radius: 18px;
+  background: #fff;
+  color: #173b67;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(24, 67, 114, .1);
+}
+.state-strip button[aria-pressed=true] {
+  border-color: #214f91;
+  box-shadow: 0 0 0 4px rgba(33, 79, 145, .12), 0 10px 22px rgba(24, 67, 114, .16);
+}
+.state-strip button[data-missing=true] {
+  border-style: dashed;
+  background: #f6f9fc;
+  color: #6a7d93;
+}
+.state-strip img,
+.missing-state-art {
+  display: block;
+  width: 100%;
+  height: 74px;
+  object-fit: contain;
+}
+.missing-state-art {
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: repeating-linear-gradient(135deg, #eef4fb 0 8px, #f8fbff 8px 16px);
+  font-size: 2rem;
+}
+.state-strip strong {
+  display: block;
+  margin-top: 4px;
+  font-size: .76rem;
+}
 .review-shell :focus-visible { outline:3px solid #b86100; outline-offset:4px; }
 .background-control { display:flex!important; gap:10px; align-items:center; min-height:48px; }
 .background-control input { width:22px; height:22px; }
@@ -182,6 +228,7 @@
   .review-stage { min-height:0; }
   .readiness-grid { grid-template-columns: 1fr; }
   .character-cards { grid-template-columns: 1fr; }
+  .state-strip { grid-template-columns: repeat(5, minmax(58px, 1fr)); overflow-x: auto; padding-bottom: 6px; }
   .runner { width: min(48vw, 220px); }
   .runner-leon { left: -6%; }
   .runner-zaya { right: -8%; }

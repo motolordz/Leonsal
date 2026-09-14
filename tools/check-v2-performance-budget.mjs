@@ -35,6 +35,7 @@ const routes = [
   'v2-weather-world.html',
   'v2-animal-habitats.html',
   'v2-transport-adventure.html',
+  'v2-double-decker-bus.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -102,6 +103,7 @@ async function sampleRoute(page, base, route) {
   if (route === 'v2-weather-world.html') await page.getByRole('button', { name: 'Next weather' }).click();
   if (route === 'v2-animal-habitats.html') await page.getByRole('button', { name: 'Hint' }).click();
   if (route === 'v2-transport-adventure.html') await page.getByRole('button', { name: 'Go' }).click();
+  if (route === 'v2-double-decker-bus.html') await page.getByRole('button', { name: 'Go' }).click();
   if (route === 'v2-light-trail.html') {
     const box = await page.locator('#canvas').boundingBox();
     await page.mouse.move(box.x + 60, box.y + 160);
@@ -149,12 +151,15 @@ async function sampleRoute(page, base, route) {
 }
 
 await fs.mkdir(out, { recursive: true });
-await new Promise((resolve, reject) => {
-  server.once('error', reject);
-  server.listen(0, '127.0.0.1', resolve);
-});
+const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
+if (!externalBase) {
+  await new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(0, '127.0.0.1', resolve);
+  });
+}
 const browser = await chromium.launch();
-const base = `http://127.0.0.1:${server.address().port}`;
+const base = externalBase || `http://127.0.0.1:${server.address().port}`;
 const results = [];
 try {
   for (const route of routes) {
@@ -177,5 +182,5 @@ try {
   console.log('V2 performance budget checks passed.');
 } finally {
   await browser.close();
-  await new Promise((resolve) => server.close(resolve));
+  if (!externalBase) await new Promise((resolve) => server.close(resolve));
 }

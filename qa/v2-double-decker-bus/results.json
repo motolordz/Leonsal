@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "geometry": [
+    {
+      "selector": ".game-scene",
+      "left": 8,
+      "right": 382,
+      "width": 374
+    },
+    {
+      "selector": ".bus-choice-row",
+      "left": 30.4375,
+      "right": 359.5625,
+      "width": 329.125
+    },
+    {
+      "selector": ".bus-speed-row",
+      "left": 30.4375,
+      "right": 359.5625,
+      "width": 329.125
+    },
+    {
+      "selector": ".drawer-controls",
+      "left": 18,
+      "right": 372,
+      "width": 354
+    },
+    {
+      "selector": ".session-controls",
+      "left": 8,
+      "right": 382,
+      "width": 374
+    }
+  ],
+  "checks": [
+    "three bus types",
+    "five speed modes",
+    "calm speed cap",
+    "reduced-motion static completion",
+    "reset restores defaults",
+    "no horizontal overflow"
+  ],
+  "consoleErrors": []
+}

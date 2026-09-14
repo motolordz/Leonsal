@@ -17,6 +17,7 @@ const sensoryConcepts = readJson("data/sensory-concepts-v2.json");
 const mixer = readJson("data/sensory-mixer-contract-v2.json");
 const workItems = readJson("data/runtime-work-items-v2.json");
 const games = readJson("data/games-v2.json");
+const canonicalSpeedLevels = ["super-slow", "slow", "medium", "fast", "super-speed"];
 
 if (engineContracts.counts?.totalSpecifications !== 28) {
   failures.push("engine-contracts-v2.json: expected 28 engine specifications");
@@ -35,6 +36,9 @@ const currentIds = currentEngines.engines.map((engine) => engine.id);
 const contractFirst20 = engineContracts.engines.slice(0, 20).map((engine) => engine.id);
 if (JSON.stringify(currentIds) !== JSON.stringify(contractFirst20)) {
   failures.push("engine-contracts-v2.json: first 20 engine IDs must match data/engines-v2.json exactly");
+}
+if (JSON.stringify(engineContracts.canonicalSpeedLevels || []) !== JSON.stringify(canonicalSpeedLevels)) {
+  failures.push("engine-contracts-v2.json: canonical speed levels must be super-slow, slow, medium, fast, super-speed");
 }
 
 const specOnly = engineContracts.engines.filter((engine) => engine.contractStatus === "specified-only");
@@ -63,6 +67,9 @@ if (mixer.implementationStatus !== "foundation-implemented") {
 }
 if (mixer.productCountStatus !== "presets-are-not-games") {
   failures.push("sensory-mixer-contract-v2.json: Mixer presets must not count as games");
+}
+if (JSON.stringify(mixer.canonicalSpeedLevels || []) !== JSON.stringify(canonicalSpeedLevels)) {
+  failures.push("sensory-mixer-contract-v2.json: canonical speed levels must match engine contracts");
 }
 
 if (games.total !== 30 || games.games?.length !== 30) {

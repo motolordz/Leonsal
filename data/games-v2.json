@@ -695,7 +695,32 @@
       "canShipWithProceduralGraphics": true,
       "status": "proof",
       "liveV2Game": false,
-      "route": "v2-transport-adventure.html"
+      "route": "v2-transport-adventure.html",
+      "proofVariants": [
+        {
+          "id": "double-decker-bus-journey",
+          "title": "Double-Decker Bus Journey",
+          "route": "v2-double-decker-bus.html",
+          "purpose": "sensory-sensitive vehicle speed exploration",
+          "busTypes": [
+            "uk",
+            "hong-kong",
+            "night"
+          ],
+          "speedModes": [
+            "super-slow",
+            "slow",
+            "medium",
+            "fast",
+            "super-speed"
+          ],
+          "calmMode": "caps effective speed at slow",
+          "reducedMotion": "arrival can complete without continuous travel animation",
+          "finalCharacterArtRequired": false,
+          "canShipWithProceduralGraphics": true,
+          "status": "proof"
+        }
+      ]
     }
   ],
   "catalogueStatus": "implementation-map-not-live-game-count",

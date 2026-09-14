@@ -38,6 +38,7 @@ for (const route of [
   'v2-weather-world.html',
   'v2-animal-habitats.html',
   'v2-transport-adventure.html',
+  'v2-double-decker-bus.html',
   'v2-light-trail.html',
   'v2-hold-to-breathe.html',
   'v2-trace-engine.html',
@@ -79,7 +80,7 @@ assert(/window\.addEventListener\('offline'/.test(shell), 'V2 game shell does no
 await fs.mkdir('qa/v2-offline', { recursive: true });
 await fs.writeFile('qa/v2-offline/results.json', JSON.stringify({
   passed: true,
-  cachedRoutes: 37,
+  cachedRoutes: 38,
   offlineFallback: 'v2-offline.html',
   connectionStatus: 'polite online/offline status on V2 home and direct game entry',
   cachedApprovedCharacterAssets: 5,

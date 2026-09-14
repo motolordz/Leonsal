@@ -9,7 +9,7 @@
       "vibration": true,
       "calmMode": true,
       "particles": "low",
-      "speed": "lively",
+      "speed": "fast",
       "effectsLevel": "medium",
       "voiceLevel": "medium",
       "musicLevel": "off",

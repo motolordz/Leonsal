@@ -5,6 +5,7 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 
 const root = process.cwd();
+const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
 const mime = { '.html': 'text/html', '.js': 'text/javascript' };
 const server = http.createServer(async (req, res) => {
   const file = path.resolve(root, `.${new URL(req.url, 'http://localhost').pathname}`);
@@ -18,14 +19,17 @@ const server = http.createServer(async (req, res) => {
 });
 
 async function main() {
-  await new Promise((resolve, reject) => {
-    server.once('error', reject);
-    server.listen(0, '127.0.0.1', resolve);
-  });
+  if (!externalBase) {
+    await new Promise((resolve, reject) => {
+      server.once('error', reject);
+      server.listen(0, '127.0.0.1', resolve);
+    });
+  }
   const browser = await chromium.launch();
   const page = await browser.newPage();
+  const base = externalBase || `http://127.0.0.1:${server.address().port}`;
   try {
-    await page.goto(`http://127.0.0.1:${server.address().port}/v2-home.html`, { waitUntil: 'networkidle' });
+    await page.goto(`${base}/v2-home.html`, { waitUntil: 'networkidle' });
     const result = await page.evaluate(async () => {
       const settings = new LeonSalV2.SensorySettings('leonsal-v2-foundation-test');
       settings.set({ motion: true, reducedMotion: false, calmMode: false, sound: false, vibration: false });
@@ -124,12 +128,12 @@ async function main() {
     console.log('V2 foundation engine checks passed.');
   } finally {
     await browser.close();
-    await new Promise((resolve) => server.close(resolve));
+    if (!externalBase && server.listening) await new Promise((resolve) => server.close(resolve));
   }
 }
 
 main().catch((error) => {
-  server.close();
+  if (!externalBase && server.listening) server.close();
   console.error(error);
   process.exitCode = 1;
 });

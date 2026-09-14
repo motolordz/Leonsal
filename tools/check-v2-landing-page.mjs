@@ -6,6 +6,7 @@ import { chromium } from 'playwright';
 
 const root = process.cwd();
 const out = 'qa/v2-landing-page';
+const externalBase = process.env.LEONSAL_BASE_URL?.replace(/\/$/, '');
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webp': 'image/webp', '.png': 'image/png', '.svg': 'image/svg+xml' };
 
 const server = http.createServer(async (request, response) => {
@@ -21,12 +22,15 @@ const server = http.createServer(async (request, response) => {
 });
 
 await fs.mkdir(out, { recursive: true });
-await new Promise((resolve, reject) => {
-  server.once('error', reject);
-  server.listen(0, '127.0.0.1', resolve);
-});
+if (!externalBase) {
+  await new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(0, '127.0.0.1', resolve);
+  });
+}
 
 const browser = await chromium.launch();
+const base = externalBase || `http://127.0.0.1:${server.address().port}`;
 const errors = [];
 const forbiddenRequests = [];
 const viewports = [
@@ -47,13 +51,19 @@ try {
       const url = request.url();
       if (/source-safe-keeping|rejected|pilot-qa|contact-sheet|\/qa\/|review-only/i.test(url)) forbiddenRequests.push(url);
     });
-    await page.goto(`http://127.0.0.1:${server.address().port}/index.html`, { waitUntil: 'networkidle' });
+    await page.goto(`${base}/index.html`, { waitUntil: 'networkidle' });
     await assertVisibleText(page, 'Enter LeonSal');
     await assertVisibleText(page, 'Sensory & Regulation');
     await assertVisibleText(page, 'Maths & Logic');
     await assertVisibleText(page, 'Literacy');
     await assertVisibleText(page, 'Characters & Rewards');
     assert.equal(await page.locator('.world-map-card').count(), 5, 'Landing page should expose five world choices');
+    assert.equal(await page.locator('.wordmark').getAttribute('href'), 'v2-home.html', 'Landing wordmark should enter the V2 world');
+    assert.equal(await page.locator('.maths-world').getAttribute('href'), 'v2-number-merge.html', 'Landing maths card should use V2 Number Merge');
+    assert.equal(await page.locator('.literacy-world').getAttribute('href'), 'v2-alphabet-adventure.html', 'Landing literacy card should use V2 Alphabet Adventure');
+    assert.equal(await page.locator('.archive-link').getAttribute('href'), 'sensory-lab.html', 'Legacy lab should be retained only as an archive link');
+    assert(await page.locator('.runner-leon').getByText('Leon', { exact: true }).isVisible(), 'Landing procedural Leon marker should show Leon');
+    assert(await page.locator('.runner-zaya').getByText('Zaya', { exact: true }).isVisible(), 'Landing procedural Zaya marker should show Zaya');
     assert(await page.locator('[data-approved-character="battery-buddy"]').count(), 'Landing page should include only approved Battery art hook');
     assert.equal(await page.locator('img[src*="assets/characters-v2"][src*="leon"]').count(), 0, 'Landing page must not render pending Leon art');
     assert.equal(await page.locator('img[src*="assets/characters-v2"][src*="zaya"]').count(), 0, 'Landing page must not render pending Zaya art');
@@ -72,7 +82,7 @@ try {
   console.log('V2 landing page checks passed.');
 } finally {
   await browser.close();
-  await new Promise(resolve => server.close(resolve));
+  if (!externalBase && server.listening) await new Promise(resolve => server.close(resolve));
 }
 
 async function assertVisibleText(page, text) {
