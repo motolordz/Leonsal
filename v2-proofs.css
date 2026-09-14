@@ -600,6 +600,43 @@ body[data-contrast="strong"] .game-topbar {
   margin-top: 24px;
 }
 
+.quick-play {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 18px;
+  padding: 10px;
+  border-radius: 24px;
+  background: rgba(255,255,255,.62);
+  box-shadow: inset 0 0 0 1px rgba(195, 214, 237, .74), 0 12px 24px rgba(39, 85, 139, .1);
+}
+.quick-play a {
+  min-height: 74px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  border-radius: 19px;
+  background: rgba(255,255,255,.9);
+  color: #173356;
+  font-weight: 1000;
+  text-decoration: none;
+  box-shadow: inset 0 -5px 0 rgba(19,35,67,.07);
+}
+.quick-play a:active { transform: translateY(2px) scale(.98); }
+.quick-play span {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 27%, #fff 0 20%, #8cdeff 21% 100%);
+}
+.quick-play a:nth-child(1) span { background: linear-gradient(180deg, #a8d8ff, #5f9fd7); border-radius: 45% 45% 52% 52%; }
+.quick-play a:nth-child(2) span { background: conic-gradient(from 20deg, #ffd84d, #45bd6b, #2f91e8, #ffd84d); }
+.quick-play a:nth-child(3) span { width: 34px; border-radius: 999px; background: linear-gradient(90deg, #8cdeff, #ff8dc8, #ffd84d); box-shadow: 0 0 14px rgba(140,222,255,.62); }
+.quick-play a:nth-child(4) span { background: radial-gradient(circle at 32% 27%, #fff, #b8f1ff 36%, #8269df); }
+.quick-play a:nth-child(5) span { width: 38px; height: 25px; border-radius: 8px; background: linear-gradient(180deg, #ef4444 0 64%, #b91c1c 65%); }
+
 .hub-primary,
 .hub-secondary {
   min-height: 58px;
@@ -1422,6 +1459,23 @@ body[data-calm="true"] .hub-art {
     flex: 1 1 148px;
     min-height: 52px;
     padding: 0 16px;
+  }
+  .quick-play {
+    grid-template-columns: repeat(5, minmax(62px, 1fr));
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    padding: 8px;
+    margin-top: 12px;
+  }
+  .quick-play a {
+    min-height: 62px;
+    scroll-snap-align: start;
+    font-size: .86rem;
+  }
+  .quick-play span {
+    width: 23px;
+    height: 23px;
   }
   .hub-art {
     min-height: min(42svh, 330px);

@@ -37,6 +37,10 @@ try {
     assert(await page.getByRole('heading', { name: /choose a calm world and start playing/i }).isVisible());
     assert.equal(await page.getByRole('link', { name: 'Ride the bus' }).getAttribute('href'), 'v2-double-decker-bus.html');
     assert.equal(await page.locator('.world-map-card').count(), 5);
+    assert.equal(await page.locator('.quick-play a').count(), 5);
+    for (const name of ['Quiet', 'Move', 'Draw', 'Breathe', 'Speed']) {
+      assert(await page.locator('.quick-play a').filter({ hasText: name }).isVisible(), `Missing quick play choice: ${name}`);
+    }
     for (const name of ['Sensory & Regulation', 'Maths & Logic', 'Literacy', 'Time, World & Life', 'Characters & Rewards']) {
       assert(await page.locator('.world-map-card').filter({ hasText: name }).isVisible(), `Missing world card: ${name}`);
     }
