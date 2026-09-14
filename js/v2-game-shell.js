@@ -8,14 +8,14 @@ class LeonSalGameShell {
     return location.pathname.split('/').pop().replace(/^v2-/, '').replace(/\.html$/, '') || 'v2-game';
   }
 
-  constructor({ settings, motions = [], audio = [], resources = [], reset, gameId = document.body.dataset.gameId || LeonSalGameShell.routeGameId() }) {
+  constructor({ settings, motions = [], audio = [], resources = [], reset = () => {}, gameId = document.body.dataset.gameId || LeonSalGameShell.routeGameId() }) {
     LeonSalGameShell.registerOffline();
     LeonSalGameShell.installConnectionStatus();
     this.settings = settings;
     this.motions = motions;
     this.audio = audio;
     this.resources = new Set(resources);
-    this.reset = reset;
+    this.reset = typeof reset === 'function' ? reset : () => {};
     this.gameId = gameId;
     this.localProfiles = typeof LeonSalV2 !== 'undefined' ? new LeonSalV2.LocalProfileEngine() : null;
     this.profile = typeof LeonSalV2 !== 'undefined' ? new LeonSalV2.ProfileProgressStoreEngine(this.localProfiles?.progressKey()) : null;
@@ -42,7 +42,7 @@ class LeonSalGameShell {
     this.dialog.innerHTML = '<h2 id="sessionHeading">Take your time</h2><p>Stay here as long as you like.</p><div class="session-actions"><button type="button" data-resume>Keep playing</button><button type="button" data-repeat>Start again</button><a href="v2-home.html">Choose another game</a></div>';
     document.body.append(this.dialog);
     this.dialog.querySelector('[data-resume]').addEventListener('click', () => this.resume(), options);
-    this.dialog.querySelector('[data-repeat]').addEventListener('click', () => { this.reset(); this.resume(); }, options);
+    this.dialog.querySelector('[data-repeat]').addEventListener('click', () => { this.restart(); }, options);
     this.dialog.addEventListener('cancel', (event) => { event.preventDefault(); this.resume(); }, options);
     document.addEventListener('visibilitychange', () => { if (document.hidden) this.pause(); }, options);
     window.addEventListener('pagehide', () => this.pause(), options);
@@ -135,6 +135,11 @@ class LeonSalGameShell {
     this.motions.forEach((motion) => motion.resume());
     const target = this.previousFocus?.isConnected ? this.previousFocus : this.pauseButton;
     target.focus();
+  }
+  restart() {
+    this.reset();
+    document.dispatchEvent(new Event('leonsal-reset'));
+    this.resume();
   }
   destroy() {
     this.controller.abort();

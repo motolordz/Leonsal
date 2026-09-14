@@ -13,6 +13,10 @@ assert(shell.includes('this.scene.inert = true'), 'Shared shell must inert the s
 assert(shell.includes('this.scene.inert = false'), 'Shared shell must restore the scene on resume');
 assert(shell.includes("event.key === 'Escape'"), 'Shared shell must support Escape for settings/dialog flow');
 assert(shell.includes("this.audio.forEach((audio) => audio.stop())"), 'Shared shell must stop audio on pause');
+assert(shell.includes('reset = () => {}'), 'Shared shell must make reset optional-safe');
+assert(shell.includes('typeof reset === \'function\''), 'Shared shell must guard non-function reset callbacks');
+assert(shell.includes('restart()'), 'Shared shell must route Start again through a shared restart method');
+assert(shell.includes("new Event('leonsal-reset')"), 'Shared shell must dispatch a reset lifecycle event');
 
 assert(css.includes('.session-controls'), 'CSS missing shared session controls');
 assert(css.includes('grid-template-columns: repeat(3, minmax(0, 1fr))'), 'Session controls must use stable three-column touch layout');
