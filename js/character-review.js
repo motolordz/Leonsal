@@ -26,8 +26,10 @@
     const candidateLibrary = document.getElementById('candidateLibrary');
     const productionBatches = document.getElementById('productionBatches');
     const familyEvidence = document.getElementById('familyEvidence');
+    const gateMatrix = document.getElementById('gateMatrix');
     const reviewFilters = [...document.querySelectorAll('[data-review-filter]')];
     let reviewFilter = 'all';
+    let readinessReport = null;
     const stateName = state => state[0].toUpperCase() + state.slice(1);
     const familyFor = item => item.family || (['leon', 'zaya'].includes(item.id) ? 'guide' : 'world');
     const statesFor = item => ['empty', 'low', 'calm', 'happy', 'excited'].filter((state) => Boolean(item.states[state]));
@@ -67,6 +69,7 @@
         const reportResponse = await fetch('qa/character-production-v3/READINESS/character-readiness-report.json');
         if (!reportResponse.ok) throw new Error('Readiness report unavailable');
         const report = await reportResponse.json();
+        readinessReport = report;
         const summary = report.summary || {};
         const familyRows = Object.entries(report.familySummary || {})
           .map(([family, item]) => `<li><b>${family}</b>: ${item.approvedCharacters}/${item.characterCount} approved · ${item.pendingStateSlots} pending state slots · ${item.gateSummary?.visualQualityFailed || 0} visual blockers</li>`)
@@ -80,6 +83,26 @@
       } catch {
         candidateLibrary.innerHTML = '<p>Candidate readiness report could not load. Registry checks still enforce approved-only runtime art.</p>';
       }
+    };
+    const renderGateMatrix = () => {
+      if (!gateMatrix) return;
+      const readiness = (readinessReport?.characters || []).find(item => item.id === character.id || item.id === `world-${character.id}`);
+      if (!readiness?.gates) {
+        gateMatrix.innerHTML = '<p>Production gate data is not available for this review source yet.</p>';
+        return;
+      }
+      const labels = {
+        fiveStateComplete: 'Five states',
+        suppliedSourceComplete: 'Supplied source',
+        productionResolution: 'Production size',
+        transparentMasters: 'Transparency',
+        runtimeExposure: 'Runtime boundary',
+        visualQuality: 'Visual quality',
+        identityConsistency: 'Identity',
+        guideNameText: 'Name text',
+        approvalStatus: 'Approval'
+      };
+      gateMatrix.innerHTML = `<h3>Production gates</h3><dl>${Object.entries(labels).map(([key, label]) => `<div data-gate="${readiness.gates[key]}"><dt>${label}</dt><dd>${readiness.gates[key]}</dd></div>`).join('')}</dl>`;
     };
     const renderProductionBatches = async () => {
       if (!productionBatches) return;
@@ -228,6 +251,7 @@
       picture.hidden = true; status.hidden = false; status.textContent = 'Loading pose…';
       picture.removeAttribute('src'); picture.dataset.character = character.id; picture.dataset.state = state;
       renderStateStrip(state);
+      renderGateMatrix();
       if (!character.states[state]) {
         status.textContent = `${character.name}'s ${state} artwork has not been supplied.`;
         return;

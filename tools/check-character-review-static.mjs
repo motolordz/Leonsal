@@ -9,15 +9,15 @@ const review = JSON.parse(await fs.readFile('data/character-review.json', 'utf8'
 assert.equal(review.status, 'review-only', 'Character review data must remain review-only');
 assert.equal(review.productionApproved, false, 'Character review data must not be production approved');
 
-for (const text of ['productionTruth', 'sourceIntake', 'candidateLibrary', 'productionBatches', 'familyEvidence', 'reviewSummary', 'data-review-filter="needs-states"', 'data-review-filter="five-state"', 'data-review-filter="guide"', 'data-review-filter="world"']) {
+for (const text of ['productionTruth', 'sourceIntake', 'candidateLibrary', 'productionBatches', 'familyEvidence', 'gateMatrix', 'reviewSummary', 'data-review-filter="needs-states"', 'data-review-filter="five-state"', 'data-review-filter="guide"', 'data-review-filter="world"']) {
   assert(html.includes(text), `Missing review UI hook: ${text}`);
 }
 
-for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'familySummary', 'gateSummary', 'visual blockers', 'family-status-list', 'renderProductionBatches', 'renderFamilyEvidence', 'leon-zaya-five-states.png', 'leonsal-complete-character-library.png', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'vectorAssets', 'missing.length', 'approved art']) {
+for (const text of ['renderProductionTruth', 'renderSourceIntake', 'renderCandidateLibrary', 'renderGateMatrix', 'Production gates', 'familySummary', 'gateSummary', 'visual blockers', 'family-status-list', 'renderProductionBatches', 'renderFamilyEvidence', 'leon-zaya-five-states.png', 'leonsal-complete-character-library.png', 'character-assets.json', 'character-readiness-report.json', 'character-production-batches.json', 'registryGroups', 'matchesFilter', 'statesFor', 'reviewOnly', 'reviewFilter', 'sourceAssets', 'vectorAssets', 'missing.length', 'approved art']) {
   assert(js.includes(text), `Missing review filter implementation: ${text}`);
 }
 
-for (const text of ['.production-truth', '.source-intake', '.candidate-library', '.production-batches', '.family-evidence', '.review-summary', '.review-filter-row', 'min-height: 46px']) {
+for (const text of ['.production-truth', '.source-intake', '.candidate-library', '.production-batches', '.family-evidence', '.gate-matrix', '.review-summary', '.review-filter-row', 'min-height: 46px']) {
   assert(css.includes(text), `Missing review dashboard styling: ${text}`);
 }
 
