@@ -53,6 +53,9 @@ const summary = {
   approvedCharacters: characters.filter((record) => record.status === "approved").length,
   approvedRuntimeStateAssets: characters.reduce((total, record) => total + record.productionRuntimeStates, 0),
   pendingCharacters: characters.filter((record) => record.status !== "approved").length,
+  pendingGeneratedVectorSources: characters
+    .filter((record) => record.status !== "approved")
+    .reduce((total, record) => total + record.registryStateSlots, 0),
   suppliedReviewCharacters: reviewRecords.length,
   suppliedReviewStateAssets: reviewRecords.reduce((total, record) => total + Object.keys(record.states || {}).length, 0),
   missingSuppliedStates: reviewRecords.flatMap((record) => states

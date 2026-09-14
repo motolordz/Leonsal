@@ -5,6 +5,7 @@
     "approvedCharacters": 1,
     "approvedRuntimeStateAssets": 5,
     "pendingCharacters": 68,
+    "pendingGeneratedVectorSources": 340,
     "suppliedReviewCharacters": 3,
     "suppliedReviewStateAssets": 14,
     "missingSuppliedStates": [
